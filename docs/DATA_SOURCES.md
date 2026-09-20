@@ -23,7 +23,9 @@ stored as `CONFLICTING` and shown to the user (see DATA_PROVENANCE.md).
 - **Authority:** Tier 1
 - **Access:** The site is a JavaScript app. It serves JSON at
   `https://summerofcode.withgoogle.com/api/program/{year}/organizations/`.
-  Verified responses: 2023 (168 orgs), 2024 (194), 2025 (185), 2026 (183).
+  Verified responses: 2022 (198 orgs), 2023 (168), 2024 (194), 2025 (185), 2026 (183).
+  A program metadata endpoint `/api/program/{year}/` also exists (phase and
+  milestone dates). Details: RESEARCH/2026-09-21-source-probes.md.
 - **Fields (2025):** name, slug, logo_url, website_url, tagline, license,
   categories, description, tech_tags, topic_tags, source_code,
   contributor_guidance_url, ideas_link, contact_links,
@@ -33,9 +35,12 @@ stored as `CONFLICTING` and shown to the user (see DATA_PROVENANCE.md).
 - **Terms:** **Unverified.** ToS/robots review is required before any
   production crawl (`/robots.txt` returns 404). Ingest politely: low rate,
   cached, identifiable User-Agent, snapshot raw responses.
-- **Years before 2023:** **Unverified.**
-- **Not available here:** mentor names, per-project/contributor data were not
-  confirmed in this endpoint. Do not claim mentor history until verified.
+- **Years before 2022:** 2016-2021 return 404 at this path; coverage before
+  2022 is unavailable here (other paths untested).
+- **Grain:** data is **organization per year**. The `/projects/` endpoint
+  returns 403 and the organization record has no mentor, person or project
+  fields. GSoC project-level and mentor history are therefore **not
+  available** from this source; do not claim them.
 
 ## 2. LFX Mentorship
 
@@ -48,16 +53,21 @@ stored as `CONFLICTING` and shown to the user (see DATA_PROVENANCE.md).
   completedTaskCount, totalTaskCount, lfid, slug.
 - **Official API?** Not documented as a public API in what was reviewed.
   Treat as undocumented; same caveats as GSoC.
-- **Terms:** **Unverified.**
+- **Terms:** **Unverified.** `mentorship.lfx.dev/robots.txt` disallows all
+  crawlers (`Disallow: /`); the API host has no robots file. Treat as a
+  compliance blocker for production ingestion until permission or terms are
+  confirmed (OPEN_QUESTIONS Q2).
+- **Coverage:** 720 published projects visible; unpublished/older projects
+  unknown.
 - **Historical coverage:** Each project carries `programTerms[]` with `name`
   (e.g. "Summer", "Summer PT"), `startDateTime`, `endDateTime`,
   `applicationStartDate`, `applicationEndDate` (Unix seconds), `active`
-  (e.g. "closed"). Verified 2026-09-21: terms back to at least 2020. This
+  (e.g. "closed"). Verified 2026-09-21: 125 distinct term-name spellings, terms starting
+  2020 through 2027 (one future term). This
   enables term-level history, but term names are not normalized, so the
   ingester must map them to canonical terms by date.
-- **Data quality:** `repoLink` is sometimes an organization URL (e.g.
-  `github.com/openmainframeproject-internship`) or a legacy repo, not a
-  single current repository. Resolve and verify via GitHub before linking.
+- **Data quality:** of 720 projects, 644 `repoLink`s are GitHub repository
+  URLs, 34 are GitHub organization URLs and 42 are other or empty. Resolve and verify via GitHub before linking.
 - **Public statement:** LFX says 190+ mentees accepted since 2019 across 96
   programs (lfx.linuxfoundation.org/tools/mentorship, fetched 2026-09-21).
 
