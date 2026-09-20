@@ -18,5 +18,6 @@ Start with [docs/PRODUCT_VISION.md](docs/PRODUCT_VISION.md) and
 [docs/IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md).
 Unresolved items: [docs/OPEN_QUESTIONS.md](docs/OPEN_QUESTIONS.md).
 
-## Contributing and security
-See [CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md).
+## Security
+See [SECURITY.md](SECURITY.md). This is a proprietary product repository;
+it is not licensed for reuse or redistribution.

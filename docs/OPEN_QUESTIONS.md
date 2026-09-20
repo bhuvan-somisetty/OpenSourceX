@@ -7,4 +7,4 @@
 | Q3 | GSoC data before 2023, and mentor data | History and mentor claims | Investigate; claim nothing until verified | Open |
 | Q4 | LFX term-name normalization | Correct history grid | Map by dates | Open |
 | Q5 | Which LLM provider | Cost, privacy | Keep provider abstraction; decide later | Open |
-| Q6 | Repository visibility and license | Distribution | Private for now; license chosen by the owner | Open |
+| Q6 | Repository visibility and license | Distribution | Private, no license (proprietary product; see D-006) | Resolved |

@@ -27,3 +27,12 @@
 ## D-005 No vector database in the MVP (2026-09-21)
 - Decision: structured retrieval plus Postgres text search first.
 - Reason: no evidence yet that it is needed.
+
+## D-006 OpenSourceX is a proprietary platform, not an open-source project (2026-09-21)
+- Context: the product teaches people about open source; it is not itself
+  meant to be open source.
+- Decision: private repository, no LICENSE file, no CONTRIBUTING guide, no
+  community-contribution workflow.
+- Reason: owner's product intent.
+- Trade-offs: no external contributions; revisit only if the owner decides to
+  open the code.
