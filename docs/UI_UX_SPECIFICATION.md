@@ -42,3 +42,17 @@ form of any chart.
 ## Responsive
 Mobile first; tabs become a scrollable segmented control; tables become
 stacked rows.
+
+## Granularity and coverage copy (D-007, D-013)
+- GSoC: "Organization participated in GSoC 2025". Never "Project X
+  participated in GSoC 2025" unless a verified project-level row exists.
+  Otherwise: "Project-level GSoC participation: not verified".
+- LFX/CNCF: "Project mentored in LFX 2026 Term 3 (CNCF)". Ecosystem data
+  carries a visible "CNCF projects only" label and is never shown as all of
+  LFX Mentorship.
+- Ideas are shown as "Proposed idea", not as participation.
+- Mentors: name and public GitHub handle with role and term; if not
+  verified, say "Mentor not verified". Never show contact data.
+- Attribution: CNCF-derived content shows "Source: CNCF mentoring
+  repository, CC BY 4.0" with links.
+- Every participation cell shows source badge, last verified, and status.

@@ -15,3 +15,15 @@ Status: P3, not in MVP.
 - Limits: past participation does not guarantee future; org acceptance is
   decided by the program.
 - Freshness: forecasts expire when the program publishes official lists.
+
+## Signals available from sources (verified 2026-09-21)
+- GSoC exposes program metadata per year (`phase`, milestone dates such as
+  org application and announcement dates). This is the strongest signal for
+  "has the program officially announced this year's organizations?"
+  Use is subject to DATA_POLICY approval (source is `pending`).
+- CNCF term READMEs give dated timelines and, once published, the selected
+  projects. Term status comes from dates, not README status text.
+- GSoC history is organization-level, so a GSoC forecast is about an
+  **organization**, never a specific project (D-007).
+- CNCF idea files are proposals, not participation, and are not forecast
+  inputs for participation.

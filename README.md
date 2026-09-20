@@ -14,8 +14,11 @@ project, and prepare to explain their contributions.
 ## Documentation
 Start with [docs/PRODUCT_VISION.md](docs/PRODUCT_VISION.md) and
 [docs/PRD.md](docs/PRD.md), then [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md),
-[docs/DATA_SOURCES.md](docs/DATA_SOURCES.md) and
+[docs/DATA_SOURCES.md](docs/DATA_SOURCES.md),
+[docs/DATA_POLICY.md](docs/DATA_POLICY.md) and
 [docs/IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md).
+Requirement coverage: [docs/TRACEABILITY.md](docs/TRACEABILITY.md).
+Review: [docs/DOCUMENTATION_REVIEW.md](docs/DOCUMENTATION_REVIEW.md).
 Unresolved items: [docs/OPEN_QUESTIONS.md](docs/OPEN_QUESTIONS.md).
 
 ## Security

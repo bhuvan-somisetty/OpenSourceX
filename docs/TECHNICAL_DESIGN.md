@@ -1,24 +1,25 @@
 # Technical Design
 
 ## Stack
-TypeScript everywhere. Web: Next.js App Router. API: Fastify + zod. DB:
-PostgreSQL with `pg` and SQL migrations. Queue: pg-boss. Tests: Vitest,
-Playwright for E2E. Lint/format: ESLint, Prettier. CI: GitHub Actions.
+TypeScript everywhere. Web and API layer: Next.js App Router with Route
+Handlers (D-009). Worker: Node/TypeScript with pg-boss. DB: PostgreSQL with
+SQL migrations and typed queries (D-008). Tests: Vitest, Playwright for E2E.
+Lint/format: ESLint, Prettier. CI: GitHub Actions. Module layout:
+ARCHITECTURE.md.
 
-## Source adapters
-Interface: `fetch(cursor) -> RawSnapshot[]`, `normalize(snapshot) -> Facts`.
-Adapters: `gsoc-archive`, `lfx-mentorship`, `github`. Each declares its tier,
-rate limit and User-Agent. Adapters never write to the database directly.
+## Providers
+Each source is a provider module (`packages/providers`) with the pipeline in
+INGESTION_PIPELINE.md: `discover`, `fetch`, `sanitize`, `parse`, plus
+metadata (tier, ecosystem, coverage, terms status, cadence, rate budget).
+Providers never write to the database; the worker persists. Providers:
+`gsoc-archive`, `lfx-mentorship-api`, `cncf-mentoring`, `github`. The first
+three stay `pending` until approved (DATA_POLICY.md).
 
-## Normalization
-- GSoC: org slug is the stable key per year; join across years by slug and
-  by resolved GitHub org/repo where available.
-- LFX: program term mapped from `programTerms` (name + dates) to a canonical
-  term (season + year) by start date; unmatched names are kept raw.
-- Repository linking: resolve `repoLink`/`source_code` URLs through GitHub;
-  org-level URLs become an organization link, not a repository.
-- Entity matching is confidence-scored; low confidence is stored as
-  INFERRED, never CONFIRMED.
+## Normalization and resolution
+Term normalization: INGESTION_PIPELINE.md section 3 (dates first; alias
+table; raw value preserved; no string-only mapping). Entity resolution:
+ENTITY_RESOLUTION.md (stable ids first; INFERRED links carry reasons;
+ambiguous goes to review).
 
 ## Activity evidence
 Computed from GitHub data over windows (30/90/365 days): commits, PRs
@@ -28,7 +29,7 @@ counts and window; no aggregate score.
 
 ## Caching
 API responses cached per resource with TTL tied to freshness policy; GitHub
-uses ETags.
+uses ETags. Raw source data is cached only in sanitized form (DATA_POLICY).
 
 ## Errors
 Typed errors map to HTTP problem+json. Source failures degrade to

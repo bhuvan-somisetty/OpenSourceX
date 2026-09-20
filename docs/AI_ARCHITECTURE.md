@@ -38,3 +38,18 @@ evidence-only views. Timeouts, size limits and cost caps apply.
 ## Tests
 Schema validation, unsupported-claim rejection, grounding, and injection
 fixtures (e.g. README saying "ignore previous instructions").
+
+## Data minimization and confidence
+- AI context is assembled only from stored, sanitized data. Because contact
+  data (emails, LFIDs) is never stored (DATA_POLICY.md section 3), it cannot
+  appear in prompts, embeddings or answers. A test with planted contact data
+  must confirm this.
+- Confidence uses the single scale from DATA_PROVENANCE.md (high, medium,
+  low, none); no numeric scores.
+- Granularity is part of grounding: a claim about GSoC must say
+  "organization" unless a verified project-level record is cited. The
+  validator rejects a project-level GSoC claim without such evidence.
+- Ecosystem coverage is part of grounding: CNCF-derived claims must say
+  "CNCF projects" and never generalize to all of LFX Mentorship.
+- Recommendation explanations may only rephrase criteria supplied by the
+  matching engine (RECOMMENDATION_ENGINE.md).

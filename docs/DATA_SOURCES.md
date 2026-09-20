@@ -9,7 +9,7 @@ actually accessed. Findings below were verified by direct HTTP requests on
 | Tier | Meaning | Examples |
 |------|---------|----------|
 | 1 | Official program source | GSoC archive, LFX Mentorship |
-| 2 | Official organization/project source | Org websites, ideas pages |
+| 2 | Official organization, project or ecosystem source | Org websites, CNCF mentoring repository |
 | 3 | Official GitHub data | GitHub REST/GraphQL API |
 | 4 | Reliable secondary source | Curated third-party archives |
 | 5 | Community/other | Forums, blogs |
@@ -85,35 +85,70 @@ stored as `CONFLICTING` and shown to the user (see DATA_PROVENANCE.md).
   for bulk reads, ETag caching, backoff on 403/429.
 - **Role caution:** activity does not imply maintainer or mentor status.
 
-## 4. CNCF mentoring repository (LFX Mentorship for CNCF projects)
+## 4. CNCF mentoring repository (CNCF ecosystem inside LFX Mentorship)
 
-- **URL:** https://github.com/cncf/mentoring, path
-  `programs/lfx-mentorship/{year}/{term}/`
-- **Authority:** Tier 2 (official CNCF program repository) for CNCF
-  projects only. It does not cover other Linux Foundation projects.
-- **Data:** per-term `README.md` (timeline, status, selected projects with
-  mentors, LFX URL), `project_ideas.md`, and for at least 2026 Term 3 a
-  machine-readable `lfx-export.json` (59 programs: cncf_project, maturity,
-  description, technologies, skills, mentors with GitHub handles, LFX URL,
-  upstream issue URL) and `lfx-tracking.csv`. Year folders exist for 2019 to
-  2027; export files are not present for every term (2025 terms have README
-  only; 2026 Term 1 has README only).
-- **Access:** GitHub REST API or raw files; no scraping needed.
-- **Licensing:** repository is Apache-2.0; `LICENSE-CONTENT` is Creative
-  Commons Attribution 4.0. Reuse is allowed **with attribution**.
-- **Join key:** each project has an LFX URL containing the LFX project UUID,
-  which equals `projectId` in the LFX API (33 of 59 matched in the 2026
-  Term 3 export; the rest are not yet in the API).
-- **Personal data warning:** `lfx-tracking.csv` contains mentor **email
-  addresses and LFIDs**. OpenSourceX must never ingest those columns. Use
-  only name and GitHub handle, and only where published for mentoring.
-- **Reliability caveat:** a README can be stale. 2026 Term 3 still says
-  "Status: Planning" although its dates (start Sep 7) have passed. Derive
-  status from dates, not from that text.
-- **Mentor data:** this is the first verified source of official mentor
-  names per term for CNCF projects. It does not exist for GSoC.
+**Boundary: this is CNCF-specific. It is not the whole LFX Mentorship
+ecosystem** (the LFX API listed 1,301 published projects; CNCF's 2026 Term 3
+export lists 59). It is one provider under `LFX Mentorship > CNCF ecosystem`
+(INGESTION_PIPELINE.md section 4).
+
+- **URL:** https://github.com/cncf/mentoring (default branch `main`, last
+  push 2026-09-14 at time of check)
+- **Authority:** Tier 2, official ecosystem source, for CNCF projects only.
+- **Structure verified 2026-09-21:**
+  - `programs/lfx-mentorship/{year}/{term}/` for 2019 to 2027. Folder names
+    vary by era: 2019 README only; 2020 `q1`, `q2`, `q3-q4`; 2021
+    `01-Spring`, `02-Summer`, `03-Fall`; 2022 `01-Spring`, `02-Summer`,
+    `03-Sept-Nov`; 2023 onward `01-Mar-May`, `02-Jun-Aug`, `03-Sep-Nov`.
+  - Per term: `README.md` (timeline, status, selected projects and mentors,
+    LFX URL) and `project_ideas.md`. Only some terms have machine-readable
+    files: **2026 Term 3** has `lfx-export.json` (59 programs) and
+    `lfx-tracking.csv`; 2025 terms and 2026 Term 1 have README only.
+  - `programs/summerofcode/{2017..2026}.md`: CNCF's GSoC **project ideas**.
+    These are proposals, not participation records, and they are not
+    project-level GSoC participation evidence (D-007).
+  - `programs/outreachy/README.md`, `programs/archive/`.
+  - Top-level `mentors/` and `mentees/` contain only a `README.md` guide;
+    they are **not rosters**.
+- **Export fields (2026 Term 3):** cncf_project, cncf_project_maturity,
+  cncf_project_slug, description, issue_number, issue_url, lfx_url,
+  mentors, prerequisites, program_name_full, program_name_short, skills,
+  technologies, term, upstream_issue_url. Mentor objects carry `name`,
+  `github_handle`, `role`, **`email`, `lfid`**.
+- **Mentor and project data:** available for CNCF LFX projects; this is the
+  first verified source of official mentor names per term. It does not
+  exist for GSoC.
+- **Join key:** the LFX project UUID inside each `lfx_url` equals the
+  `projectId` in the LFX API. Verified for 33 of 59 export projects; the
+  other 26 were not in the API at check time, so the API lags or omits
+  some programs. Treat as a useful key **where verified**, not a guarantee.
+- **Licensing (verified):** GitHub reports the repository licence as
+  Apache-2.0 (code). `LICENSE-CONTENT` is the full Creative Commons
+  Attribution 4.0 text. Which files each licence covers is not stated in
+  the README, so the scope is to be confirmed (DATA_POLICY register).
+  Reuse is permitted with attribution: credit CNCF, link the source and the
+  licence, indicate changes.
+- **Personal data (verified):** contact data appears in `lfx-tracking.csv`
+  **and inside `lfx-export.json`** (mentor `email`, `lfid`) **and in
+  markdown** (GSoC idea files list mentor emails). Rule: never ingest,
+  store, index, embed, log, expose or export it. Use only name, public
+  GitHub handle, publicly documented role and project relationship, with
+  provenance, via allowlist parsers and never persisting raw bodies
+  (DATA_POLICY section 3).
+- **Reliability caveat:** status text can be stale. The 2026 Term 3 README
+  still says "Status: Planning" although the term began Sep 7 2026. Status
+  is derived from dates; the text is recorded as an observation only.
+- **Update frequency:** repository is actively maintained; use conditional
+  requests and a daily check.
+- **Rate limits:** GitHub API limits apply (section 3).
+- **Ingestion status:** `pending` until the sanitizer, licence-scope check
+  and attribution UI exist (DATA_POLICY).
+
+## Permissions and terms
+The per-source terms, robots, licence and attribution status, and the
+`approved/pending/blocked` ingestion register, are in DATA_POLICY.md
+section 2. **No source is approved for production ingestion yet.**
 
 ## Not yet researched
-
-Organization/project websites (Tier 2), CNCF/other mentorship programs,
-Outreachy, Hacktoberfest. Listed in OPEN_QUESTIONS.md when created.
+Organization/project websites (Tier 2), other LF ecosystems' providers,
+Outreachy data, Hacktoberfest. Tracked in OPEN_QUESTIONS.md.
