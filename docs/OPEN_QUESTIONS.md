@@ -8,6 +8,7 @@
 | Q4 | LFX term-name normalization | Correct history grid | Map by dates | Open |
 | Q5 | Which LLM provider | Cost, privacy | Keep provider abstraction; decide later | Open |
 | Q6 | Repository visibility and license | Distribution | Private, no license (proprietary product; see D-006) | Resolved |
+| Q16 | **DECISION NEEDED.** Mentor data policy: which fields from the CNCF repository may be stored and shown (name and GitHub handle only, never email/LFID) and attribution wording | Privacy and CC-BY compliance | Store name and GitHub handle only; show CNCF attribution | Open |
 | Q7 | **DECISION NEEDED.** Provide the original handoff | Traceability (review C-1) | Owner supplies it; re-run review | Open |
 | Q8 | **DECISION NEEDED.** How to present GSoC history given it is org-level only | Avoid false project-level claims (H-1) | Show as organization participation, label grain in UI | Open |
 | Q9 | **DECISION NEEDED.** Keep PR/contribution intelligence in P2 or pull a thin version into MVP | Core differentiator vs scope (H-8) | Owner decides; thin PR explainer is feasible from GitHub data | Open |

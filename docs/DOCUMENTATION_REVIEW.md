@@ -17,6 +17,23 @@ milestone cannot safely start until the finding is resolved.
 
 ---
 
+## Addendum, 2026-09-21 (later): new source and a correction
+
+- **Correction.** The first review cited 720 LFX projects and 125 term
+  spellings. That crawl was capped by my own loop limit. The complete crawl
+  is 1,301 projects, 151 spellings (numbers above are corrected).
+- **New source.** The CNCF mentoring repository (DATA_SOURCES section 4) is
+  Apache-2.0 with CC-BY-4.0 content, exposes mentors per term for CNCF
+  projects, and joins to the LFX API by project UUID. Effects:
+  - C-2: partly eased for CNCF data (explicit reuse licence, attribution
+    required). It does not cover non-CNCF LFX projects or GSoC.
+  - H-1: mentor history is now possible for CNCF-LFX terms, still not GSoC.
+  - H-3: a real cross-source join key exists (LFX UUID); resolution to
+    GitHub repos and GSoC organizations is still open.
+  - H-5: confirmed personal-data risk (mentor emails in the CSV); never
+    ingest them. Attribution to CNCF is required.
+  - New finding **M-11**: the source's own status text can be stale.
+
 ## CRITICAL
 
 ### C-1 Original handoff not available for traceability
@@ -58,7 +75,7 @@ milestone cannot safely start until the finding is resolved.
 - **Blocks:** M1 schema.
 
 ### H-2 LFX term normalization is far harder than "map by dates"
-- **Wrong:** TECHNICAL_DESIGN says terms map by start date. Real data has 125
+- **Wrong:** TECHNICAL_DESIGN says terms map by start date. Real data has 151
   distinct spellings ("Summer PT/FT", "Spring'2022", "01-Mar-May", "2026
   Term 1: March - May"), part-time/full-time tracks, and one future term
   (2027).
@@ -72,8 +89,8 @@ milestone cannot safely start until the finding is resolved.
 ### H-3 Cross-source entity resolution is under-specified
 - **Wrong:** ARCHITECTURE and TECHNICAL_DESIGN mention linking but not how a
   GSoC org, an LFX project and a GitHub org/repo become one Project or
-  Organization. Real data: of 720 LFX projects, 34 link only a GitHub
-  organization and 42 link neither a GitHub repo nor an org; GSoC provides
+  Organization. Real data: of 1,301 LFX projects, 78 link only a GitHub
+  organization and 61 link neither a GitHub repo nor an org; GSoC provides
   `source_code` and `website_url` of varying quality. Slug stability across
   GSoC years is untested.
 - **Matters:** wrong merges silently corrupt history.
@@ -167,6 +184,9 @@ milestone cannot safely start until the finding is resolved.
   frequency, rate limits, terms, historical coverage, reliability and
   implementation method per source. Partly filled; GSoC and LFX rate limits
   are unknown.
+
+- **M-11 Source text can be stale.** CNCF's 2026 Term 3 README says
+  "Planning" after the term began. Freshness must not trust status prose.
 
 ## LOW
 
