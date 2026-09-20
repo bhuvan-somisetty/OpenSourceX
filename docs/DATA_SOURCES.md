@@ -49,8 +49,15 @@ stored as `CONFLICTING` and shown to the user (see DATA_PROVENANCE.md).
 - **Official API?** Not documented as a public API in what was reviewed.
   Treat as undocumented; same caveats as GSoC.
 - **Terms:** **Unverified.**
-- **Historical coverage:** `programTerms` may enable term-level history;
-  its structure and depth must be inspected before modeling (open question).
+- **Historical coverage:** Each project carries `programTerms[]` with `name`
+  (e.g. "Summer", "Summer PT"), `startDateTime`, `endDateTime`,
+  `applicationStartDate`, `applicationEndDate` (Unix seconds), `active`
+  (e.g. "closed"). Verified 2026-09-21: terms back to at least 2020. This
+  enables term-level history, but term names are not normalized, so the
+  ingester must map them to canonical terms by date.
+- **Data quality:** `repoLink` is sometimes an organization URL (e.g.
+  `github.com/openmainframeproject-internship`) or a legacy repo, not a
+  single current repository. Resolve and verify via GitHub before linking.
 - **Public statement:** LFX says 190+ mentees accepted since 2019 across 96
   programs (lfx.linuxfoundation.org/tools/mentorship, fetched 2026-09-21).
 
