@@ -422,7 +422,9 @@ button.btn {
 .intro-rings {
   position: absolute;
   left: 50%;
-  top: 37%;
+  top: 50%;
+  /* the inner circle: everything (mark, name, tagline, button) sits inside it */
+  --d: min(92vw, 78svh, 640px);
   width: 0;
   height: 0;
 }
@@ -464,28 +466,28 @@ button.btn {
     intro-spin 28s linear infinite;
 }
 .ring.r1 {
-  width: min(44vmin, 420px);
-  height: min(44vmin, 420px);
+  width: var(--d);
+  height: var(--d);
 }
 .ring.r2 {
   --ra: 0.26;
-  width: min(70vmin, 680px);
-  height: min(70vmin, 680px);
+  width: calc(var(--d) * 1.4);
+  height: calc(var(--d) * 1.4);
   animation-delay: 0.3s, 0s;
   animation-duration: 2.4s, 44s;
   animation-direction: normal, reverse;
 }
 .ring.r3 {
   --ra: 0.2;
-  width: min(102vmin, 980px);
-  height: min(102vmin, 980px);
+  width: calc(var(--d) * 1.9);
+  height: calc(var(--d) * 1.9);
   animation-delay: 0.6s, 0s;
   animation-duration: 2.4s, 64s;
 }
 .ring.r4 {
   --ra: 0.14;
-  width: min(140vmin, 1320px);
-  height: min(140vmin, 1320px);
+  width: calc(var(--d) * 2.5);
+  height: calc(var(--d) * 2.5);
   animation-delay: 0.9s, 0s;
   animation-duration: 2.4s, 88s;
   animation-direction: normal, reverse;
@@ -510,12 +512,12 @@ button.btn {
     0 0 28px 6px rgba(120, 145, 255, 0.45);
 }
 .planet.p1 {
-  width: min(44vmin, 420px);
-  height: min(44vmin, 420px);
+  width: var(--d);
+  height: var(--d);
 }
 .planet.p2 {
-  width: min(70vmin, 680px);
-  height: min(70vmin, 680px);
+  width: calc(var(--d) * 1.4);
+  height: calc(var(--d) * 1.4);
   animation-duration: 2.4s, 30s;
   animation-direction: normal, reverse;
 }
@@ -523,8 +525,8 @@ button.btn {
   transform: scale(0.8);
 }
 .planet.p3 {
-  width: min(102vmin, 980px);
-  height: min(102vmin, 980px);
+  width: calc(var(--d) * 1.9);
+  height: calc(var(--d) * 1.9);
   animation-duration: 2.4s, 46s;
 }
 .planet.p3::before {
@@ -532,8 +534,8 @@ button.btn {
 }
 .ticks {
   /* a ring of fine tick marks, like a dial */
-  width: min(56vmin, 540px);
-  height: min(56vmin, 540px);
+  width: calc(var(--d) * 0.93);
+  height: calc(var(--d) * 0.93);
   background: repeating-conic-gradient(
     rgba(175, 190, 255, 0.42) 0deg 0.7deg,
     transparent 0.7deg 6deg
@@ -580,25 +582,25 @@ button.btn {
   );
 }
 .orbit.o1 {
-  width: min(44vmin, 420px);
-  height: min(44vmin, 420px);
+  width: var(--d);
+  height: var(--d);
   animation: intro-spin 16s linear infinite;
 }
 .orbit.o3 {
-  width: min(102vmin, 980px);
-  height: min(102vmin, 980px);
+  width: calc(var(--d) * 1.9);
+  height: calc(var(--d) * 1.9);
   opacity: 0.4;
   animation: intro-spin 40s linear infinite;
 }
 .orbit.o2 {
-  width: min(70vmin, 680px);
-  height: min(70vmin, 680px);
+  width: calc(var(--d) * 1.4);
+  height: calc(var(--d) * 1.4);
   opacity: 0.6;
   animation: intro-spin 26s linear infinite reverse;
 }
 .halo {
-  width: min(52vmin, 460px);
-  height: min(52vmin, 460px);
+  width: calc(var(--d) * 0.85);
+  height: calc(var(--d) * 0.85);
   background: radial-gradient(
     closest-side,
     rgba(120, 145, 255, 0.34),
