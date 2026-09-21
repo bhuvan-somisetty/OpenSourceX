@@ -339,8 +339,6 @@ button.btn {
 .intro {
   --mx: 0;
   --my: 0;
-  --bx: 0px;
-  --by: 0px;
   position: relative;
   min-height: 100svh;
   display: grid;
@@ -373,12 +371,34 @@ button.btn {
   background: radial-gradient(closest-side, rgba(96, 120, 255, 0.16), rgba(96, 120, 255, 0) 72%);
   transform: translate3d(calc(var(--mx) * 34px), calc(var(--my) * 24px), 0);
   will-change: transform;
-  animation: intro-fade 1.6s ease-out both;
+  animation:
+    intro-fade 1.6s ease-out both,
+    intro-drift 26s ease-in-out 1.6s infinite alternate;
 }
 .intro-glow.b {
   background: radial-gradient(closest-side, rgba(150, 100, 255, 0.11), rgba(150, 100, 255, 0) 70%);
   transform: translate3d(calc(var(--mx) * -22px + 14vw), calc(var(--my) * -16px + 6vh), 0);
-  animation-delay: 0.2s;
+  animation:
+    intro-fade 1.8s ease-out 0.2s both,
+    intro-drift-b 32s ease-in-out 2s infinite alternate;
+}
+.intro-horizon {
+  position: absolute;
+  left: 50%;
+  bottom: -38%;
+  width: 140%;
+  height: 70%;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    rgba(110, 130, 255, 0.2),
+    rgba(110, 130, 255, 0.05) 55%,
+    transparent 75%
+  );
+  filter: blur(8px);
+  transform: translate3d(calc(var(--mx) * -30px), calc(var(--my) * -12px), 0);
+  animation: intro-breathe 9s ease-in-out infinite alternate;
 }
 .intro-grid {
   position: absolute;
@@ -414,26 +434,6 @@ button.btn {
   color: #f2f4f8;
   --accent: #7d9bff;
   position: relative;
-  overflow: clip;
-  border-radius: 28%;
-  transform: translate3d(calc(var(--mx) * -7px), calc(var(--my) * -5px), 0);
-  will-change: transform;
-}
-.intro-mark::after {
-  /* one soft light pass across the mark on entrance */
-  content: "";
-  position: absolute;
-  inset: -12%;
-  background: linear-gradient(
-    105deg,
-    transparent 40%,
-    rgba(255, 255, 255, 0.28) 50%,
-    transparent 60%
-  );
-  mix-blend-mode: overlay;
-  transform: translateX(-120%);
-  animation: intro-sweep 1.5s ease-in-out 0.9s 1 both;
-  pointer-events: none;
 }
 .intro-mark-in {
   display: block;
@@ -478,11 +478,9 @@ button.btn {
   box-shadow:
     0 0 0 1px rgba(255, 255, 255, 0.04),
     0 8px 28px -8px rgba(120, 140, 255, 0.45);
-  transform: translate3d(var(--bx), var(--by), 0);
   transition:
     box-shadow 0.25s ease,
     filter 0.25s ease,
-    translate 0.25s ease,
     scale 0.12s ease;
 }
 .intro-cta svg {
@@ -490,7 +488,6 @@ button.btn {
 }
 .intro-cta:hover {
   filter: brightness(1.04);
-  translate: 0 -2px;
   box-shadow:
     0 0 0 1px rgba(255, 255, 255, 0.08),
     0 12px 36px -6px rgba(120, 140, 255, 0.65);
@@ -499,8 +496,7 @@ button.btn {
   transform: translateX(3px);
 }
 .intro-cta:active {
-  scale: 0.97;
-  translate: 0 0;
+  scale: 0.98;
 }
 .intro-cta:focus-visible {
   outline: 2px solid #9db2ff;
@@ -524,6 +520,26 @@ button.btn {
     translate: 0 10px;
   }
 }
+@keyframes intro-drift {
+  to {
+    translate: 3vw -2vh;
+    scale: 1.06;
+  }
+}
+@keyframes intro-drift-b {
+  to {
+    translate: -4vw 3vh;
+    scale: 1.08;
+  }
+}
+@keyframes intro-breathe {
+  from {
+    opacity: 0.75;
+  }
+  to {
+    opacity: 1;
+  }
+}
 @keyframes intro-fade {
   from {
     opacity: 0;
@@ -539,12 +555,10 @@ button.btn {
   .intro-in,
   .intro-mark-in,
   .intro-glow,
+  .intro-horizon,
   .intro-cta {
     animation: none;
     transition: none;
-  }
-  .intro-mark::after {
-    display: none;
   }
 }
 .landing,

@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 /**
- * TEMPORARY placeholder mark. The final OpenSourceX logo is supplied separately: replace the
- * contents of `LogoMark` (and `app/icon.svg`) and every place that shows the brand updates,
- * including the intro stage, with no layout change. Keep the 32x32 viewBox.
+ * OpenSourceX mark: a Sagittarius-style arrow (the archer's glyph) reduced to a geometric symbol.
+ * An arrow flies up and to the right, and a short crossbar marks the draw. The head carries the
+ * accent: the direction you are heading. Single source for the brand mark; keep the 32x32 viewBox.
  */
 export function LogoMark({ size = 24 }: { size?: number }) {
   return (
@@ -15,9 +15,13 @@ export function LogoMark({ size = 24 }: { size?: number }) {
       aria-hidden="true"
       focusable="false"
       className="logo-svg"
+      strokeWidth="2.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     >
-      <rect x="3" y="3" width="26" height="26" rx="8" stroke="currentColor" strokeWidth="2" />
-      <circle cx="16" cy="16" r="3.2" fill="var(--accent)" />
+      <path d="M6 26L26 6" stroke="currentColor" />
+      <path d="M8 16.5l7.5 7.5" stroke="currentColor" />
+      <path d="M13.5 6H26v12.5" stroke="var(--accent)" />
     </svg>
   );
 }

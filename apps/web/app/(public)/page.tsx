@@ -9,6 +9,7 @@ export default function Intro() {
       <div className="intro-bg" aria-hidden="true">
         <div className="intro-glow" />
         <div className="intro-glow b" />
+        <div className="intro-horizon" />
         <div className="intro-grid" />
         <div className="intro-grain" />
         <div className="intro-vignette" />
@@ -21,7 +22,7 @@ export default function Intro() {
         </div>
         <h1 className="intro-word intro-in d1">OpenSourceX</h1>
         <p className="intro-tag intro-in d2">Intelligence for open source.</p>
-        <Link className="intro-cta intro-in d3" href="/product" data-testid="intro-cta" data-magnet>
+        <Link className="intro-cta intro-in d3" href="/product" data-testid="intro-cta" data-cta>
           <span>Find Your Path</span>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path

@@ -5,12 +5,11 @@ import { useEffect, useRef, type MouseEvent, type ReactNode } from "react";
 import { INTRO_MOTION as M } from "./motion";
 
 const DEST = "/product";
-const KEYS = ["x", "y", "bx", "by"] as const;
 
 /**
- * Wraps the intro content. Adds cursor-reactive light (CSS variables, updated in one rAF loop with
- * smoothing), a small CTA magnet, and a short exit transition into the product landing.
- * With prefers-reduced-motion nothing follows the cursor and navigation is immediate.
+ * Wraps the intro content. The cursor only moves the background light (CSS variables --mx/--my,
+ * smoothed in one rAF loop); the logo, text and button never move. Adds a short exit transition
+ * into the product landing. With prefers-reduced-motion nothing follows the cursor.
  */
 export function IntroStage({ children }: { children: ReactNode }) {
   const root = useRef<HTMLElement>(null);
@@ -21,25 +20,19 @@ export function IntroStage({ children }: { children: ReactNode }) {
     if (!el) return;
     router.prefetch(DEST);
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const target = { x: 0, y: 0, bx: 0, by: 0 };
-    const cur = { x: 0, y: 0, bx: 0, by: 0 };
+    const target = { x: 0, y: 0 };
+    const cur = { x: 0, y: 0 };
     let raf = 0;
 
     const tick = () => {
       raf = 0;
-      let moving = false;
-      for (const k of KEYS) {
-        const d = target[k] - cur[k];
-        if (Math.abs(d) > 0.001) {
-          cur[k] += d * M.follow;
-          moving = true;
-        }
-      }
+      const dx = target.x - cur.x;
+      const dy = target.y - cur.y;
+      cur.x += dx * M.follow;
+      cur.y += dy * M.follow;
       el.style.setProperty("--mx", cur.x.toFixed(4));
       el.style.setProperty("--my", cur.y.toFixed(4));
-      el.style.setProperty("--bx", `${(cur.bx * M.magnet).toFixed(2)}px`);
-      el.style.setProperty("--by", `${(cur.by * M.magnet).toFixed(2)}px`);
-      if (moving) raf = requestAnimationFrame(tick);
+      if (Math.abs(dx) > 0.001 || Math.abs(dy) > 0.001) raf = requestAnimationFrame(tick);
     };
     const kick = () => {
       if (!raf) raf = requestAnimationFrame(tick);
@@ -48,18 +41,10 @@ export function IntroStage({ children }: { children: ReactNode }) {
       if (e.pointerType === "touch") return;
       target.x = (e.clientX / window.innerWidth) * 2 - 1;
       target.y = (e.clientY / window.innerHeight) * 2 - 1;
-      const b = el.querySelector<HTMLElement>("[data-magnet]")?.getBoundingClientRect();
-      if (b) {
-        const dx = e.clientX - (b.left + b.width / 2);
-        const dy = e.clientY - (b.top + b.height / 2);
-        const near = Math.hypot(dx, dy) < M.magnetRange + b.width / 2;
-        target.bx = near ? Math.max(-1, Math.min(1, dx / (b.width / 2))) : 0;
-        target.by = near ? Math.max(-1, Math.min(1, dy / (b.height / 2))) : 0;
-      }
       kick();
     };
     const leave = () => {
-      target.x = target.y = target.bx = target.by = 0;
+      target.x = target.y = 0;
       kick();
     };
     window.addEventListener("pointermove", move, { passive: true });
@@ -73,7 +58,7 @@ export function IntroStage({ children }: { children: ReactNode }) {
 
   /** Play a short exit, then route. Modified clicks keep the native link behavior. */
   const onClickCapture = (e: MouseEvent) => {
-    const a = (e.target as HTMLElement).closest("a[data-magnet]");
+    const a = (e.target as HTMLElement).closest("a[data-cta]");
     if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
     e.preventDefault();
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return router.push(DEST);
