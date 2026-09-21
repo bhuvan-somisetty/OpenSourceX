@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import type { PoolClient } from "pg";
 import { z } from "zod";
-import { assertNoContactData } from "@opensourcex/shared";
+import { assertNoContactData, inc } from "@opensourcex/shared";
 import { withTx, type Db } from "@opensourcex/db";
 import {
   PROVIDERS,
@@ -12,6 +12,7 @@ import {
   type SnapshotEnvelope,
 } from "@opensourcex/providers";
 import { linkUpstream, normalizeTerm } from "@opensourcex/domain";
+import { shapeFingerprint } from "./resilience";
 
 /**
  * M1a spike pipeline: recorded, sanitized snapshot -> validate -> normalize -> resolve ->
@@ -128,6 +129,25 @@ async function seed(c: PoolClient) {
     );
   }
 }
+
+const FRESHNESS_DAYS: Record<DatasetKey, number> = {
+  "gsoc-orgs": 30,
+  "lfx-projects": 7,
+  "cncf-lfx-export": 7,
+};
+
+async function seedFreshness(c: PoolClient) {
+  for (const [k, days] of Object.entries(FRESHNESS_DAYS)) {
+    await c.query(
+      `INSERT INTO freshness_policy(dataset_key,max_age_days) VALUES ($1,$2)
+       ON CONFLICT (dataset_key) DO UPDATE SET max_age_days=EXCLUDED.max_age_days`,
+      [k, days],
+    );
+  }
+}
+
+const CIRCUIT_THRESHOLD = 3;
+const CIRCUIT_OPEN_MS = 15 * 60_000;
 
 async function prov(x: Ctx, o: ProvOpts): Promise<number> {
   const tier = PROVIDERS.find((p) => p.key === x.env.provider)!.tier;
@@ -527,8 +547,25 @@ const emptyCounts = (): SpikeCounts => ({
   revisions: 0,
 });
 
-export async function runSpike(pool: Db, envelopes: SnapshotEnvelope[]): Promise<SpikeResult> {
-  await withTx(pool, seed);
+export interface SpikeOptions {
+  /** injectable clock for circuit-breaker tests */
+  now?: Date;
+}
+
+/**
+ * Per-source isolation: a failing, drifting or circuit-open source never blocks the others.
+ * Sync state records attempts, successes, consecutive failures and the last good payload shape.
+ */
+export async function runSpike(
+  pool: Db,
+  envelopes: SnapshotEnvelope[],
+  opts: SpikeOptions = {},
+): Promise<SpikeResult> {
+  const now = opts.now ?? new Date();
+  await withTx(pool, async (c) => {
+    await seed(c);
+    await seedFreshness(c);
+  });
   const counts = emptyCounts();
   const failures: SpikeResult["failures"] = [];
   const ordered = [...envelopes].sort(
@@ -537,21 +574,57 @@ export async function runSpike(pool: Db, envelopes: SnapshotEnvelope[]): Promise
       (DATASETS[b.dataset as DatasetKey]?.order ?? 9),
   );
   for (const env of ordered) {
+    const known = env.dataset in DATASETS;
+    const dsId: number | null = known
+      ? ((await pool.query("SELECT id FROM source_dataset WHERE key=$1", [env.dataset])).rows[0]
+          ?.id ?? null)
+      : null;
+    const fail = async (error: string, countAgainstCircuit: boolean) => {
+      failures.push({ dataset: env.dataset, error });
+      inc("sync_failure_total", { dataset: env.dataset });
+      if (dsId && countAgainstCircuit) {
+        const openUntil = new Date(now.getTime() + CIRCUIT_OPEN_MS);
+        await pool.query(
+          `INSERT INTO sync_state(dataset_id,last_attempt_at,consecutive_failures,circuit_open_until)
+           VALUES ($1,$2,1,NULL)
+           ON CONFLICT (dataset_id) DO UPDATE SET last_attempt_at=EXCLUDED.last_attempt_at,
+             consecutive_failures = sync_state.consecutive_failures + 1,
+             circuit_open_until = CASE WHEN sync_state.consecutive_failures + 1 >= $3 THEN $4::timestamptz
+                                       ELSE sync_state.circuit_open_until END`,
+          [dsId, now, CIRCUIT_THRESHOLD, openUntil],
+        );
+      }
+    };
     try {
       const shape = envelopeShape.parse(env);
       assertMayPersist(env.provider, env.origin); // pending providers: recorded snapshots only
       if (DATASETS[shape.dataset].provider !== env.provider)
         throw new Error("dataset does not belong to provider");
       assertNoContactData(env.body); // fail closed before anything is stored
+      const fp = shapeFingerprint(env.body);
+      const st = (await pool.query("SELECT * FROM sync_state WHERE dataset_id=$1", [dsId])).rows[0];
+      if (st?.circuit_open_until && new Date(st.circuit_open_until) > now) {
+        await fail(`circuit open until ${new Date(st.circuit_open_until).toISOString()}`, false);
+        continue;
+      }
+      if (st?.source_shape_hash && st.source_shape_hash !== fp) {
+        // source or schema change: hold the batch, keep the last good data visible
+        await pool.query(
+          `INSERT INTO quarantine(dataset_id,reason,expected_shape_hash,observed_shape_hash,snapshot_hash)
+           VALUES ($1,'payload shape changed',$2,$3,$4) ON CONFLICT DO NOTHING`,
+          [dsId, sha(st.source_shape_hash), sha(fp), sha(env.body)],
+        );
+        inc("sync_quarantine_total", { dataset: env.dataset });
+        await fail("schema drift: batch quarantined", false);
+        continue;
+      }
       await withTx(pool, async (c) => {
-        const ds = (await c.query("SELECT id FROM source_dataset WHERE key=$1", [env.dataset]))
-          .rows[0].id;
         const snap = await c.query(
           `INSERT INTO source_snapshot(dataset_id,url,fetched_at,content_hash,schema_version,sanitized_body,origin)
            VALUES ($1,$2,$3,$4,$5,$6,$7)
            ON CONFLICT (dataset_id,content_hash) DO UPDATE SET url=EXCLUDED.url RETURNING id`,
           [
-            ds,
+            dsId,
             env.url,
             env.fetchedAt,
             sha(env.body),
@@ -567,11 +640,19 @@ export async function runSpike(pool: Db, envelopes: SnapshotEnvelope[]): Promise
         else await ingestCncf(x, env.body as CncfExportBody);
         await c.query(
           "INSERT INTO sync_run(dataset_id,finished_at,status,counts) VALUES ($1,now(),'ok',$2)",
-          [ds, JSON.stringify(counts)],
+          [dsId, JSON.stringify(counts)],
+        );
+        await c.query(
+          `INSERT INTO sync_state(dataset_id,last_attempt_at,last_success_at,consecutive_failures,circuit_open_until,source_shape_hash,parser_version)
+           VALUES ($1,$2,$2,0,NULL,$3,$4)
+           ON CONFLICT (dataset_id) DO UPDATE SET last_attempt_at=EXCLUDED.last_attempt_at, last_success_at=EXCLUDED.last_success_at,
+             consecutive_failures=0, circuit_open_until=NULL, source_shape_hash=EXCLUDED.source_shape_hash, parser_version=EXCLUDED.parser_version`,
+          [dsId, now, fp, DATASETS[shape.dataset].parser],
         );
       });
+      inc("sync_success_total", { dataset: env.dataset });
     } catch (e) {
-      failures.push({ dataset: env.dataset, error: e instanceof Error ? e.message : "unknown" });
+      await fail(e instanceof Error ? e.message : "unknown", true);
     }
   }
   return { counts, failures };

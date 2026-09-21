@@ -5,7 +5,7 @@ projects and repositories connected, with the source of every fact shown.
 
 **Status: early.** Foundation (M0) and a local sanitized ingestion spike (M1a) are
 built and tested. No data source is connected to production, no product
-features are built, and the UI design is a proposal awaiting approval
+features are built, and the UI design is approved and responsive-verified
 (docs/design/preview.html).
 
 ## What it aims to do

@@ -113,3 +113,23 @@ ecosystem means adding a provider, not changing the core.
 Batch fails validation -> quarantined -> last good data stays visible with
 its true `last_verified_at` -> alert. A human reviews quarantines and the
 entity-resolution review queue.
+
+## 7. Sync state, versioning and resilience (M1b preparation, implemented)
+
+- `sync_state` per dataset: last attempt and success, consecutive failures,
+  circuit-open-until, last good payload shape hash, parser version.
+- **Circuit breaker:** 3 consecutive failures open a source's circuit for 15
+  minutes; other sources are unaffected.
+- **Schema/source change:** each payload's key-structure fingerprint is compared
+  with the last good one; a difference quarantines the batch (hashes and
+  reason only, never payload) and keeps the last good data visible.
+- **Retry and rate limits:** `withRetry` (exponential backoff with jitter,
+  honors retry-after; only retryable errors) and `TokenBucket` per provider.
+  They are unit-tested and not yet attached to any live fetch.
+- **Freshness:** `freshness_policy` per dataset; STALE is derived by the
+  `provenance_freshness` view at read time, never stored.
+- **Provider contract:** every provider (current or future LFX ecosystem)
+  must satisfy the contract tests: registered and pending, sanitized and
+  recorded envelopes, declared datasets, live access refused unless approved.
+- **Observability:** in-process counters (`sync_success_total`,
+  `sync_failure_total`, `sync_quarantine_total`) carry ids and counts only.

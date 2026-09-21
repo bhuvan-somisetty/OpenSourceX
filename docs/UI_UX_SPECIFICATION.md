@@ -1,7 +1,8 @@
 # UI/UX Specification
 
-Status: **proposal for owner approval (Q22).** Tokens and components are in
-DESIGN_SYSTEM.md; a browsable preview is `docs/design/preview.html`.
+Status: **direction approved by the owner; responsive design verified (2026-09-21).**
+Tokens and components are in DESIGN_SYSTEM.md; a browsable preview is
+`docs/design/preview.html`. The web app itself is built in M4.
 
 ## 1. Principles
 
@@ -160,3 +161,28 @@ arrive in Phase 2 and 3 with source-backed events only.
 
 Owner approves: visual direction, palette and type, landing hero, project
 page structure, states, granularity copy. Approval is a gate for M4 (web).
+
+## 12. Responsive verification (2026-09-21)
+
+Method: `docs/design/preview.html` loaded in headless Chrome inside iframes of
+real device widths (320, 360, 390, 768, 1024, 1280) to measure page overflow,
+text overflow inside boxes and tap-target size, plus visual review of phone,
+tablet and desktop renders. The preview includes stress cases (very long
+project and organization names, a long source URL, an 8-year by 4-row history).
+
+Defects found and fixed:
+
+- Phone navigation was hidden with no menu: added a no-JS `details` menu.
+- Evidence table was crushed on phones: it now stacks into labeled rows.
+- Term ribbon's sticky column consumed over half a phone: narrowed to 132px,
+  and the GSoC note no longer clips.
+- Status chips wrapped to three lines in table cells: they stay on one line
+  in tables and wrap only elsewhere.
+- Long names and URLs forced sideways page scroll below 390px: they now wrap.
+- Small buttons were 32px on phones: 44px on widths under 768px.
+
+Result: no horizontal page overflow at any tested width. Known residual: a
+7px inner overflow of one grid container at 320px only, with no visible
+effect; recheck when M4 is built. Loading, empty, error, stale, partial and
+conflicting states, focus outlines and keyboard order were reviewed on the
+preview. Real-device testing and a screen-reader pass belong to M4 and M6.

@@ -18,6 +18,7 @@ point to DECISIONS.md.
 | Q14    | Code of conduct                    | Not needed now (D-012)                                                                        |
 | Q15    | Content, licensing, privacy policy | DATA_POLICY.md (D-014)                                                                        |
 | Q16    | CNCF contact data                  | Never ingest; broader than the CSV (D-014)                                                    |
+| Q22    | Design approval                    | Direction approved and responsive design verified (D-017)                                     |
 
 ## Still open
 
@@ -32,7 +33,7 @@ point to DECISIONS.md.
 | Q19 | Retention periods (interviews 30 days, logs 30 days are proposals)                                                | Privacy compliance                       | Confirm before M5                                                                                           | Open                                  |
 | Q20 | Channel for person-removal requests                                                                               | DATA_POLICY commitment                   | Depends on the Q13 contact                                                                                  | Open                                  |
 | Q21 | GitHub token model (GitHub App vs personal token) and rate budget split                                           | Quota safety, terms compliance           | GitHub App preferred; decide in M3                                                                          | Open                                  |
-| Q22 | Design approval: visual direction, tokens, page structure                                                         | Premium UX requirement                   | Proposal written (DESIGN_SYSTEM.md, UI_UX_SPECIFICATION.md, design/preview.html); owner approves before M4  | **Open, awaiting owner review**       |
 | Q23 | Entity-resolution review queue: admin UI in MVP or scripts                                                        | Operational load                         | Scripts and a simple internal page first                                                                    | Open                                  |
 | Q24 | Comfort level showing named mentors (public GitHub handles only)                                                  | Privacy posture                          | Show name, handle, role, term with source; removal on request                                               | Open                                  |
 | Q25 | Whether the LFX API lag (26 of 59 CNCF 2026 Term 3 projects not yet present) is expected                          | Coverage claims                          | Say "published projects visible via the endpoint"; investigate                                              | Open                                  |
+| Q26 | **DECISION NEEDED.** Approve LLM provider, token budgets and spend caps (proposed defaults in AI_ARCHITECTURE.md) | Cost control and privacy                 | Keep AI off until approved; start with evidence-only views                                                  | Open, blocks any AI feature           |

@@ -60,3 +60,25 @@ fixtures (e.g. README saying "ignore previous instructions").
   "CNCF projects" and never generalize to all of LFX Mentorship.
 - Recommendation explanations may only rephrase criteria supplied by the
   matching engine (RECOMMENDATION_ENGINE.md).
+
+## Budgets, limits, caching and fallback (proposed; Q26)
+
+`AI_ENABLED` is false by default and no provider is connected. The proposed
+defaults live in `packages/shared/src/ai-budget.ts` and are not approved:
+
+| Limit                          | Proposed                                  |
+| ------------------------------ | ----------------------------------------- |
+| Max context tokens per request | 6,000                                     |
+| Max output tokens              | 800                                       |
+| Max evidence items in context  | 24 (extra items dropped, count reported)  |
+| Max answer length              | 4,000 characters                          |
+| Requests per IP per hour       | 20                                        |
+| Requests per session per day   | 60                                        |
+| Global daily token cap         | 2,000,000 (hard stop)                     |
+| Response cache TTL             | 24 h, keyed by question and evidence hash |
+| Timeout                        | 20 s                                      |
+
+Fallback when AI is disabled, over budget, timing out or failing validation:
+show the evidence-only view (facts, sources, learning links) with a clear
+note; never show unvalidated model text. Cache hits do not count against
+per-user limits. Spend and cap breaches are logged as metrics (counts only).

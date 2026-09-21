@@ -40,3 +40,20 @@ uses ETags. Raw source data is cached only in sanitized form (DATA_POLICY).
 
 Typed errors map to HTTP problem+json. Source failures degrade to
 stale/partial states, never to fabricated values.
+
+## M2 and M3 plans (refined, not implemented)
+
+**M2 API:** Route Handlers over `packages/domain` for `/programs`,
+`/programs/{slug}/history` (with granularity), `/programs/{slug}/ecosystems`,
+`/projects`, `/sources`, and `/health`. zod request and response schemas in
+`packages/shared`, OpenAPI generated from them, cursor pagination, problem+json
+errors, provenance object on every fact, no contact fields.
+
+**M3 GitHub intelligence (MVP scope only):** repository metadata, languages,
+contributors, commits, issues, PR metadata and activity (counts, recent and
+merged), releases, repository documentation and contribution documentation,
+and the activity evidence table. Uses a GitHub App or read-only token (Q21)
+with ETag caching, a reserved sync budget separate from user-triggered
+analysis, per-IP limits and per-repository cooldown, and the SSRF-safe URL
+parser. Roles stay distinct (contributor, reviewer, merger, maintainer,
+official mentor). Deep PR and code intelligence stay Phase 2 (D-011).

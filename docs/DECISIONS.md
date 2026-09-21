@@ -134,3 +134,17 @@ Format: Decision, Context, Options, Reason, Trade-offs, Date.
   freshness -> expose, with incremental sync, retries, failed-source
   isolation, quarantine on schema drift and historical preservation
   (INGESTION_PIPELINE.md). Status derives from dates, not source prose.
+
+## D-017 UI/UX direction approved (2026-09-21)
+
+- Decision: the "evidence atlas" direction, tokens and page structure in
+  DESIGN_SYSTEM.md and UI_UX_SPECIFICATION.md are approved, after responsive
+  verification and fixes. M4 implements them and must keep the quality bar:
+  premium, distinctive, source-transparent, not a generic admin dashboard.
+
+## D-018 AI is off by default; budgets are proposals (2026-09-21)
+
+- Decision: `AI_ENABLED` defaults to false and no LLM provider is connected.
+  Token budgets, request limits, caching, fallback and context caps are
+  defined as proposed defaults (AI_ARCHITECTURE.md). Production activation
+  requires explicit owner approval (Q5, Q26).

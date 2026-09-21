@@ -5,6 +5,11 @@ const schema = z.object({
   DATABASE_URL: z.string().url().optional(),
   LOG_LEVEL: z.enum(["fatal", "error", "warn", "info", "debug", "trace", "silent"]).default("info"),
   GITHUB_TOKEN: z.string().optional(),
+  /** AI features. Off until the owner approves a provider and budgets (Q5, Q26). */
+  AI_ENABLED: z
+    .enum(["true", "false"])
+    .default("false")
+    .transform((v) => v === "true"),
   /** Live fetching of external sources. Providers are pending until approved (DATA_POLICY.md). */
   INGESTION_LIVE_SOURCES: z
     .enum(["true", "false"])

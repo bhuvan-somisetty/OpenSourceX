@@ -1,7 +1,7 @@
 # Design System
 
-Status: **proposal for owner approval (Q22).** Nothing here is built into the
-app yet. A browsable preview is `docs/design/preview.html` (layout samples
+Status: **direction approved by the owner; responsive design verified (2026-09-21).**
+Nothing here is built into the app yet. A browsable preview is `docs/design/preview.html` (layout samples
 only; its values are placeholders, not real data).
 
 ## 1. Direction: "the evidence atlas"

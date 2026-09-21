@@ -11,13 +11,16 @@ implemented yet.
     provider interface; sanitizer with planted-PII tests; term
     normalization and entity-resolution prototypes against real recorded
     data. No live production crawling.
+  - **M1b preparation (Done, verified):** provider contract and tests, sync state,
+    circuit breaker, schema-drift quarantine, freshness view, retry and rate-limit
+    utilities, metrics, migration-from-scratch test, AI budget guard. No live access.
   - **M1b (Blocked on Q2 and Q18)** real schema (DATA_MODEL.md), provenance, sync pipeline; each
     provider enabled only when `approved` in DATA_POLICY.md.
 - **M2 API (Planned):** Route Handlers over the domain layer: programs,
   projects, history (with granularity), sources.
 - **M3 GitHub intelligence (Planned):** analyze, activity evidence, basic PR
   metadata, contribution-guide detection; SSRF-safe; quota controls.
-- **Design phase (Proposed, awaiting owner approval, Q22):** concrete tokens, wireframes,
+- **Design phase (Done: approved and responsive-verified, D-017):** concrete tokens, wireframes,
   visual direction, owner approval before M4 (H-6).
 - **M4 Web (Planned):** landing, discover, program, project, analysis, all
   UI states, accessibility checks.
