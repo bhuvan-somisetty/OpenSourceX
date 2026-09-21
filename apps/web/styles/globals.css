@@ -2016,7 +2016,7 @@ th {
   }
 }
 
-/* launch: the button turns into a rocket, shakes, then flies up trailing fire and smoke */
+/* launch: the button turns into a rocket, shakes, then flies off to the right trailing fire and smoke */
 .intro-cta {
   position: relative;
   overflow: visible;
@@ -2028,6 +2028,7 @@ th {
   width: 44px;
   height: 70px;
   translate: -50% -50%;
+  rotate: 90deg; /* nose points right, flame trails behind (left) */
   opacity: 0;
   scale: 0.4;
   pointer-events: none;
@@ -2066,7 +2067,7 @@ th {
 .cta-smoke {
   top: calc(100% + 6px);
   width: 34px;
-  height: 70vh;
+  height: min(60vw, 700px);
   background: linear-gradient(
     180deg,
     rgba(255, 170, 90, 0.45),
@@ -2138,7 +2139,7 @@ th {
     translate: 0 0;
   }
   to {
-    translate: 0 -135vh;
+    translate: 140vw 0;
   }
 }
 @keyframes fire-on {
