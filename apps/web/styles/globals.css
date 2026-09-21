@@ -350,10 +350,7 @@ button.btn {
     transform 0.32s ease;
 }
 /* launch: the button becomes a rocket and lifts off with a flame; the rest dissolves */
-.intro.leaving {
-  opacity: 0;
-  transition: opacity 0.3s ease 1.6s;
-}
+
 .intro.leaving .intro-word,
 .intro.leaving .intro-tag,
 .intro.leaving .intro-mark,
