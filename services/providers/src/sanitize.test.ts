@@ -113,3 +113,17 @@ describe("provider gate", () => {
     expect(() => assertMayPersist("cncf-mentoring", "recorded")).not.toThrow();
   });
 });
+
+describe("HTML in source descriptions", () => {
+  it("is stripped to plain text, including a truncated trailing tag", () => {
+    const out = sanitizeLfxProject({
+      projectId: "36d66a45-bf3f-4bd2-8032-438436557e11",
+      name: "T",
+      status: "Published",
+      description:
+        '<h2>Description</h2><p>Jaeger <strong>UI</strong> is &amp; migrating. <a href="x">link</a></p><p>tail <str',
+    });
+    expect(out.summary).toBe("Jaeger UI is & migrating. link tail");
+    expect(out.summary).not.toMatch(/<[a-z/]/i);
+  });
+});

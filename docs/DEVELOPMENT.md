@@ -1,56 +1,88 @@
 # Development
 
-Status: M0 foundation is implemented; M1a spike is in progress. Features are
-not built yet (see IMPLEMENTATION_PLAN.md).
+Run OpenSourceX locally on **recorded, sanitized data**. No live source is
+ever contacted (`DATA_MODE=recorded`; live mode is refused in code until
+source permissions are approved, see SOURCE_PERMISSIONS.md).
 
 ## Prerequisites
 
-Node 24, pnpm 12, Docker (for Postgres), Git.
+Node 24, pnpm 12, Docker (running), Git.
 
-## Setup
+## Run everything (one command)
 
 ```
 pnpm install
-cp .env.example .env
-docker compose up -d --wait db      # Postgres on localhost:5433
-export DATABASE_URL=postgres://osx:osx_dev_password@localhost:5433/opensourcex
-pnpm db:migrate
-pnpm dev                            # Next.js app (UI + Route Handlers)
-pnpm dev:worker                     # background worker (pg-boss)
+pnpm dev
 ```
 
-Port 5433 avoids clashing with a Postgres already installed on the host.
-The dev password in `docker-compose.yml` is for local use only.
+`pnpm dev` (`scripts/dev.mjs`) does, in order:
 
-## Environment
+1. starts PostgreSQL with `docker compose up -d --wait db` (host port **5433**)
+2. runs migrations (`pnpm db:migrate`)
+3. loads the recorded fixtures into the database (`pnpm db:seed`, no network)
+4. starts the background worker (live ingestion off)
+5. starts the web app
 
-`DATABASE_URL`, `LOG_LEVEL`, `GITHUB_TOKEN` (optional, read-only, public
-data), `INGESTION_LIVE_SOURCES` (keep `false`; GSoC, LFX and CNCF are
-`pending` in DATA_POLICY.md). Values are validated by `loadEnv` in
-`packages/shared`. There is no separate API service (D-009).
+Then open **http://localhost:3000**. Health check:
+**http://localhost:3000/api/v1/health** (reports database, data mode, live and AI flags).
+
+PostgreSQL must be able to start: if Docker is not running, `pnpm dev` stops
+with a clear message. Database credentials in `docker-compose.yml` are for
+local use only. Optional: copy `.env.example` to `.env` to override settings.
+
+## Individual steps
+
+| Command                          | What it does                             |
+| -------------------------------- | ---------------------------------------- |
+| `docker compose up -d --wait db` | start PostgreSQL                         |
+| `pnpm db:migrate`                | apply SQL migrations                     |
+| `pnpm db:seed`                   | load recorded fixtures (idempotent)      |
+| `pnpm db:reseed`                 | clear local data and reload the fixtures |
+| `pnpm dev:web`                   | web app only                             |
+| `pnpm dev:worker`                | worker only                              |
 
 ## Checks
 
 `pnpm format:check`, `pnpm lint`, `pnpm typecheck`, `pnpm test` (unit),
-`pnpm test:integration` (needs `DATABASE_URL`), `pnpm build`. CI runs all of
-them plus a dependency audit.
+`pnpm test:integration` (needs `DATABASE_URL`), `pnpm build`, and
+`pnpm test:e2e` (Playwright, uses your installed Chrome; starts `pnpm dev`
+if nothing is running, or set `E2E_BASE_URL`). Visual QA screenshots:
+`SHOTS_DIR=/some/dir pnpm test:e2e shots`.
+
+## Environment
+
+`DATABASE_URL`, `DATA_MODE` (`recorded` only), `INGESTION_LIVE_SOURCES`
+(must stay `false`), `AI_ENABLED` (`false`), `LOG_LEVEL`, `GITHUB_TOKEN`
+(unused for now). Validated by `loadEnv` in `packages/shared`.
 
 ## Layout
 
-`apps/web` (UI and Route Handlers), `apps/worker`, `packages/shared`
-(env, logger, errors, contact-data guard), `packages/database` (client,
-migrations). More packages arrive with M1a (see ARCHITECTURE.md).
+```
+apps/web          Next.js UI (app/, components/, features/, lib/, styles/) and Route Handlers (app/api/v1)
+apps/worker       background worker (pg-boss)
+packages/database schema migrations, client, read-only queries
+packages/shared   env, logger, errors, contact-data guard, metrics, AI budget guard
+services/providers        source providers, sanitizers, registry
+services/ingestion        pipeline, sync state, seed CLI
+services/entity-resolution term normalization, GitHub URL parsing, entity resolution
+fixtures/         recorded, sanitized snapshots (gsoc, lfx, cncf) + ATTRIBUTION.md
+tests/e2e         Playwright tests
+scripts/          dev.mjs
+docs/             product, architecture, data, security and design documents
+```
+
+Frontend code never writes SQL: pages call `packages/database` queries.
 
 ## Data rules
 
-Fixtures are either recorded, sanitized snapshots of real public data or
-clearly labeled `DEVELOPMENT FIXTURE`; neither ships to production. No
-contact data (emails, LFIDs) may enter the repository, database, logs or
-tests other than as deliberately planted, labeled test input.
+Fixtures are recorded, sanitized snapshots of real public data (or clearly
+labeled test input). Contact data (emails, LFIDs) must never enter the
+repository, database, logs or UI. Descriptions have HTML stripped.
 
 ## Troubleshooting
 
-- `role "osx" does not exist`: another Postgres owns the port; use 5433.
+- `role "osx" does not exist`: another Postgres owns the port; this project uses 5433.
+- `pnpm dev` says Docker failed: start Docker Desktop and retry.
 - pnpm ignoring build scripts: `pnpm approve-builds esbuild`.
-- Windows shells: avoid single quotes inside shell heredocs; write such
-  files with an editor.
+- Windows shells: avoid single quotes inside shell heredocs.
+- The Next.js dev "N" badge and a slow first page load are normal in dev mode.

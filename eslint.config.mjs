@@ -23,5 +23,9 @@ export default tseslint.config(
       "no-console": "error",
     },
   },
-  { files: ["**/*-cli.ts", "**/scripts/**"], rules: { "no-console": "off" } },
+  {
+    files: ["**/*-cli.ts", "scripts/**", "**/*.mjs"],
+    languageOptions: { globals: { console: "readonly", process: "readonly" } },
+    rules: { "no-console": "off" },
+  },
 );

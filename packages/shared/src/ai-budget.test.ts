@@ -20,6 +20,14 @@ describe("AI guard", () => {
   });
 });
 
+describe("data mode", () => {
+  it("defaults to recorded and refuses live", () => {
+    expect(loadEnv({}).DATA_MODE).toBe("recorded");
+    expect(() => loadEnv({ DATA_MODE: "live" })).toThrow(/disabled/);
+    expect(() => loadEnv({ INGESTION_LIVE_SOURCES: "true" })).toThrow(/disabled/);
+  });
+});
+
 describe("metrics", () => {
   it("counts by name and labels", () => {
     resetMetrics();

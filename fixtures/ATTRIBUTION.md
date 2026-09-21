@@ -9,7 +9,7 @@ testing. They are not endorsed by the sources.
   under Creative Commons Attribution 4.0 (CC BY 4.0),
   https://creativecommons.org/licenses/by/4.0/. **Changes made:** three programs
   selected; only allowlisted fields kept (email, LFID and all other fields
-  removed); descriptions shortened; field names normalized. The scope of the
+  removed); descriptions shortened with HTML markup stripped; field names normalized. The scope of the
   licence over individual files is still being confirmed (docs/OPEN_QUESTIONS.md Q18).
 - `lfx-projects-sample.json`: three records from the LFX Mentorship service
   (https://mentorship.lfx.dev/), sanitized and shortened. Terms of use are not yet

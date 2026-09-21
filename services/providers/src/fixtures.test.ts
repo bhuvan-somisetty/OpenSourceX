@@ -20,6 +20,7 @@ describe("recorded fixtures (sanitized real public data)", () => {
       const env = JSON.parse(text);
       expect(env.origin).toBe("recorded");
       expect(text).not.toMatch(/@|mailto:|"lfid"/i);
+      expect(text).not.toMatch(/<\/?(h[1-6]|p|strong|em|a|ul|li|div|br)\b/i); // no HTML markup in stored excerpts
       expect(() => assertNoContactData(env)).not.toThrow();
     },
   );

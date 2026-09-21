@@ -3,10 +3,11 @@
 An intelligence layer for navigating open source: programs, organizations,
 projects and repositories connected, with the source of every fact shown.
 
-> **Status: early development.** The foundation and a local ingestion spike are
-> built and tested. No data source is connected in production and no product
-> features are live. This repository is public for visibility; it is
-> proprietary and not licensed for reuse (see [License and reuse](#license-and-reuse)).
+> **Status: early development.** A working local app runs on recorded, sanitized
+> data (`pnpm dev`, then http://localhost:3000). No live data source is connected
+> and several features are not built; see [docs/CURRENT_STATUS.md](docs/CURRENT_STATUS.md).
+> This repository is public for visibility; it is proprietary and not licensed for
+> reuse (see [License and reuse](#license-and-reuse)).
 
 ## Why it exists
 
@@ -31,15 +32,7 @@ OpenSourceX aims to connect them and show where every fact came from.
 
 ## What exists today
 
-| Area                                   | State                                                                            |
-| -------------------------------------- | -------------------------------------------------------------------------------- |
-| Foundation (M0)                        | Done: pnpm workspace, Next.js app with Route Handlers, worker, migrations, CI    |
-| Sanitized ingestion spike (M1a)        | Done, local only: recorded snapshots to Postgres with provenance                 |
-| M1b preparation                        | Done: provider contract, sync state, circuit breaker, quarantine, freshness view |
-| Production ingestion (M1b)             | **Blocked** on source permission and licensing (Q2, Q18); live access is off     |
-| API, GitHub intelligence, web UI, etc. | Planned (M2 to M6)                                                               |
-| UI design                              | Approved and responsive-verified; preview in `docs/design/preview.html`          |
-| AI features                            | Off by default; no provider connected                                            |
+See [docs/CURRENT_STATUS.md](docs/CURRENT_STATUS.md) for the truthful list (implemented, partial, fixture-based, disabled, blocked, planned). In short: a navigable app (home, discover, programs, project detail, repository analysis form, interview, sources) on recorded data; live ingestion, GitHub analysis and AI are off.
 
 Roadmap and order: [docs/IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md).
 
@@ -55,14 +48,14 @@ TypeScript monorepo. No separate API service in the MVP. See
 [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ```
-apps/web         Next.js UI and Route Handlers
-apps/worker      background worker
-packages/shared  env, logger, errors, contact-data guard, metrics, AI budget guard
-packages/database      client and SQL migrations
-services/entity-resolution  term normalization, GitHub URL parsing, entity resolution
-services/providers  source providers, sanitizers, recorded fixtures
-services/ingestion  ingestion pipeline and sync state
-docs/            product, architecture, data, security and design documents
+apps/web          Next.js UI and Route Handlers
+apps/worker       background worker
+packages/database migrations, client, read-only queries
+packages/shared   env, logger, errors, contact-data guard, metrics, AI budget guard
+services/providers, ingestion, entity-resolution   sources, pipeline, normalization
+fixtures/         recorded, sanitized snapshots
+tests/e2e         Playwright tests
+docs/             product, architecture, data, security and design documents
 ```
 
 ## Data and privacy principles
@@ -81,14 +74,8 @@ Prerequisites: Node 24, pnpm 12, Docker.
 
 ```
 pnpm install
-cp .env.example .env
-docker compose up -d --wait db
-export DATABASE_URL=postgres://osx:osx_dev_password@localhost:5433/opensourcex
-pnpm db:migrate
-pnpm dev            # web app
-pnpm dev:worker     # worker
-pnpm test           # unit tests
-pnpm test:integration
+pnpm dev          # database + migrations + recorded data + worker + web
+# then open http://localhost:3000
 ```
 
 Checks: `pnpm lint`, `pnpm typecheck`, `pnpm format:check`, `pnpm build`.

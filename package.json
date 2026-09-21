@@ -8,7 +8,7 @@
     "node": ">=24"
   },
   "scripts": {
-    "dev": "pnpm --filter @opensourcex/web dev",
+    "dev": "node scripts/dev.mjs",
     "dev:worker": "pnpm --filter @opensourcex/worker dev",
     "build": "pnpm -r --filter \"./apps/*\" build",
     "lint": "eslint .",
@@ -18,10 +18,14 @@
     "test": "vitest run --project unit",
     "test:integration": "vitest run --project integration",
     "db:migrate": "tsx packages/database/src/migrate-cli.ts",
-    "db:seed": "tsx services/ingestion/src/seed-cli.ts"
+    "db:seed": "tsx services/ingestion/src/seed-cli.ts",
+    "dev:web": "pnpm --filter @opensourcex/web dev",
+    "test:e2e": "playwright test",
+    "db:reseed": "tsx services/ingestion/src/seed-cli.ts --reset"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.0",
+    "@playwright/test": "^1.63.0",
     "@types/node": "^24.0.0",
     "eslint": "^10.11.0",
     "prettier": "^3.9.8",

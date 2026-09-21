@@ -7,3 +7,9 @@ dist/
 coverage/
 *.log
 .DS_Store
+
+# never commit AI-agent instruction files
+AGENTS.md
+
+test-results/
+playwright-report/

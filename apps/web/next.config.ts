@@ -11,8 +11,15 @@ const headers = [
 
 const config: NextConfig = {
   reactStrictMode: true,
+  // Disable generated agent instruction files in this repository.
+  agentRules: false,
   poweredByHeader: false,
-  transpilePackages: ["@opensourcex/shared", "@opensourcex/database"],
+  transpilePackages: [
+    "@opensourcex/shared",
+    "@opensourcex/database",
+    "@opensourcex/providers",
+    "@opensourcex/entity-resolution",
+  ],
   async headers() {
     return [{ source: "/:path*", headers }];
   },

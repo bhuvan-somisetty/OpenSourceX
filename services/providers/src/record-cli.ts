@@ -6,7 +6,6 @@
  */
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import { FIXTURES_DIR, fixtureFile } from "./provider";
 import { SANITIZER_VERSION, type SnapshotEnvelope } from "./types";
 import { sanitizeCncfExport, type CncfExportBody } from "./cncf";

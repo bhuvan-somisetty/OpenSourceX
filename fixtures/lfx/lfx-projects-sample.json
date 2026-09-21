@@ -12,7 +12,7 @@
         "title": "CNCF - Jaeger: OpenTelemetry-Native Query and State Layers Migration (2026 Term 3)",
         "status": "Published",
         "repoLink": "https://github.com/jaegertracing/jaeger-ui/issues/4278",
-        "summary": "<h2>Description</h2><p>Jaeger UI is two-thirds through three interlocking migrations at different stages. This program finishes all three and deletes what they replaced.</p><p>The OpenTelemetry-native move stopped at a deliberate decision point: the UI speaks OTEL vocabulary throughout but obtains…",
+        "summary": "Jaeger UI is two-thirds through three interlocking migrations at different stages. This program finishes all three and deletes what they replaced. The OpenTelemetry-native move stopped at a deliberate decision point: the UI speaks OTEL vocabulary throughout but obtains…",
         "terms": [
           {
             "rawName": "2026 Term 3 (Sep-Nov)",
@@ -29,7 +29,7 @@
         "title": "CNCF - The Update Framework (TUF): Add ELI5 documentation / video to TUF (2026 Term 3)",
         "status": "Published",
         "repoLink": "https://github.com/theupdateframework/theupdateframework.io/issues/132",
-        "summary": "<h2>Description</h2><p>We've heard from some potential adopters that TUF is hard to understand. We'd like to remedy this by making documentation accessible to a five year old (ELI5). We can be flexible about whether the end result is video, web site documentation, a children's book, or other format…",
+        "summary": "We've heard from some potential adopters that TUF is hard to understand. We'd like to remedy this by making documentation accessible to a five year old (ELI5). We can be flexible about whether the end result is video, web site documentation, a children's book, or other format…",
         "terms": [
           {
             "rawName": "2026 Term 3 (Sep-Nov)",
@@ -46,7 +46,7 @@
         "title": "CNCF - Jaeger: Benchmarking the AI Assistant's MCP Tools and Skills (2026 Term 3)",
         "status": "Published",
         "repoLink": "https://github.com/jaegertracing/jaeger/issues/9135",
-        "summary": "<h2>Description</h2><p>Jaeger's AI assistant analyzes distributed traces through two layers: an <strong>MCP server</strong> exposing tools that fetch trace data (span details, critical paths, service topology), and a <strong>Skills framework</strong> — declarative Markdown files that carry domain e…",
+        "summary": "Jaeger's AI assistant analyzes distributed traces through two layers: an MCP server exposing tools that fetch trace data (span details, critical paths, service topology), and a Skills framework — declarative Markdown files that carry domain e…",
         "terms": [
           {
             "rawName": "2026 Term 3 (Sep-Nov)",
