@@ -651,11 +651,12 @@ button.btn {
 }
 .intro-mark-in {
   display: block;
-  filter: drop-shadow(0 0 30px rgba(110, 135, 255, 0.28));
+  filter: drop-shadow(0 0 22px rgba(130, 155, 255, 0.55))
+    drop-shadow(0 0 60px rgba(110, 135, 255, 0.45));
   animation: intro-rise 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.25s both;
 }
 .intro-mark svg {
-  width: clamp(64px, min(16vw, 15svh), 116px);
+  width: clamp(78px, min(24vw, 20svh), 156px);
   height: auto;
 }
 .intro-word {
@@ -671,8 +672,12 @@ button.btn {
 }
 .intro-tag {
   margin: 0;
-  color: #8a94aa;
-  font-size: clamp(15px, 2.2svh + 6px, 18px);
+  color: #cbd2e6;
+  font-weight: 500;
+  text-shadow:
+    0 1px 14px rgba(5, 6, 8, 0.9),
+    0 0 24px rgba(5, 6, 8, 0.8);
+  font-size: clamp(16px, 2.2svh + 7px, 20px);
   letter-spacing: 0.01em;
 }
 .intro-cta {
