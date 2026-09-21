@@ -28,4 +28,6 @@ Unresolved items: [docs/OPEN_QUESTIONS.md](docs/OPEN_QUESTIONS.md).
 ## Security
 
 See [SECURITY.md](SECURITY.md). This is a proprietary product repository;
-it is not licensed for reuse or redistribution.
+it is visible publicly but not licensed for reuse or redistribution. Third-party
+data excerpts in test fixtures carry their own terms and attribution:
+[packages/providers/fixtures/ATTRIBUTION.md](packages/providers/fixtures/ATTRIBUTION.md).
