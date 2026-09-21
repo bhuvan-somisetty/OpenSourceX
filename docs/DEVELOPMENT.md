@@ -23,7 +23,7 @@ pnpm dev
 4. starts the background worker (live ingestion off)
 5. starts the web app
 
-Then open **http://localhost:3000**. Health check:
+Then open **http://localhost:3000** (landing). Click _Get Started_, then _Continue in Development Mode_ (a labeled local session; real sign-in is not connected). Health check:
 **http://localhost:3000/api/v1/health** (reports database, data mode, live and AI flags).
 
 PostgreSQL must be able to start: if Docker is not running, `pnpm dev` stops
@@ -51,7 +51,7 @@ if nothing is running, or set `E2E_BASE_URL`). Visual QA screenshots:
 
 ## Environment
 
-`DATABASE_URL`, `DATA_MODE` (`recorded` only), `INGESTION_LIVE_SOURCES`
+`DATABASE_URL`, `DATA_MODE` (`recorded` only), `AUTH_MODE` (`development`; refused in production), `INGESTION_LIVE_SOURCES`
 (must stay `false`), `AI_ENABLED` (`false`), `LOG_LEVEL`, `GITHUB_TOKEN`
 (unused for now). Validated by `loadEnv` in `packages/shared`.
 

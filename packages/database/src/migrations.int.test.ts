@@ -17,6 +17,7 @@ describe.skipIf(!url)("migrations from an empty database", () => {
         "002_m1a_domain.sql",
         "003_sync_state.sql",
         "004_organization_tags.sql",
+        "005_saved_items.sql",
       ]);
       expect(await migrate(fresh)).toEqual([]);
       const t = (

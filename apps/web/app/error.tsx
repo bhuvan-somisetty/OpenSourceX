@@ -9,7 +9,7 @@ export default function Error({
   reset: () => void;
 }) {
   return (
-    <div className="wrap" style={{ paddingTop: 48, maxWidth: 720 }} data-testid="error-page">
+    <div className="narrow" style={{ paddingTop: 64 }} data-testid="error-page">
       <div className="notice err" role="alert">
         <strong>Something went wrong loading this page.</strong>
         <p style={{ margin: "6px 0 0" }}>

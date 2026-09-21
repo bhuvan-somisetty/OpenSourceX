@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className="wrap" style={{ paddingTop: 64, maxWidth: 720 }} data-testid="not-found">
+    <div className="narrow" style={{ paddingTop: 80 }} data-testid="not-found">
       <div className="eyebrow">404</div>
       <h1 className="page">We could not find that</h1>
       <p className="sub">

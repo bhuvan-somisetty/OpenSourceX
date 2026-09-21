@@ -1,188 +1,139 @@
 # UI/UX Specification
 
-Status: **direction approved by the owner; responsive design verified (2026-09-21).**
-Tokens and components are in DESIGN_SYSTEM.md; a browsable preview is
-`docs/design/preview.html`. The web app itself is built in M4.
+Status: **redesigned 2026-09-21 and implemented** (the earlier dashboard-style
+UI was not approved). This document describes what the product experience is.
 
-## 1. Principles
-
-1. Every screen answers one question. No database dumps.
-2. Trust is visible: every fact shows source, tier, verified date, status.
-3. Say what is unknown. Never fill a gap with a guess.
-4. Progressive depth: beginner summary first, expert detail one click down.
-5. Understand, not pretend: learning and interview features build real
-   understanding (product rule 56).
-
-## 2. Audiences and the five checks
-
-| Audience              | Check                                 | How the design answers it                                                 |
-| --------------------- | ------------------------------------- | ------------------------------------------------------------------------- |
-| Beginner              | "Can I understand what this means?"   | plain-language summary line on every page, glossary chips, learning trail |
-| Experienced developer | "Can I reach the technical detail?"   | evidence table, raw counts, links to source, keyboard search `/`          |
-| Contributor           | "Can I understand how to contribute?" | Contribute tab: setup, docs, labels, first-issue links                    |
-| Applicant             | "Can I prepare for an interview?"     | Interview tab with project-specific questions                             |
-| Trust-conscious       | "Can I verify where this came from?"  | source rail, exact source links, conflicts shown                          |
-
-## 3. Information architecture
+## 1. The product journey
 
 ```
-/                       Landing
-/explore                Discover projects (search, filters)
-/programs               Programs
-/programs/[slug]        Program: ecosystems, years/terms, history grid
-/programs/[slug]/[year] Year or term: participants
-/projects/[id]          Project (tabs below)
-/analyze                Analyze a repository by URL
-/analyze/[id]           Analysis result
-/interview/[id]         Interview session
-/sources                Source registry: tiers, status, freshness, licences
-/about/data             How data is verified (plain language)
+Landing -> Login -> Choose a program -> Explore that program's projects
+        -> Understand a project -> Save it -> Saved workspace
+        -> Analyze -> Learn -> Contribute -> Explain (interview)
 ```
 
-Project tabs: **Overview**, **History** (term ribbon), **Activity**
-(evidence), **Community**, **Contribute**, **Learn**, **Interview**.
+OpenSourceX should feel like a premium product that helps you navigate the
+open-source ecosystem, not a website that displays data. Every screen
+reinforces that journey.
 
-Global chrome: top bar with logo, search (`/`), Explore, Programs, Analyze,
-Sources; theme toggle; footer with data-policy and attribution links.
+## 2. Two shells
 
-## 4. Landing
+| Shell                               | Routes                                                                                                                                         | Purpose                                                                                                                                            |
+| ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Public** (always dark, cinematic) | `/`, `/login`                                                                                                                                  | Explain and sell the product. Minimal navigation: Product, Programs, How it works, About, Sign in. No catalog, no app navigation.                  |
+| **Application** (dark or light)     | `/app`, `/discover`, `/programs`, `/programs/[id]`, `/projects`, `/projects/[id]`, `/saved`, `/repositories/analyze`, `/interview`, `/sources` | Use the product. Requires a session. Navigation: Discover, Programs, Projects, Saved, Repositories, Interview; search, theme toggle, profile menu. |
 
-Headline "Understand Open Source. Find the Right Projects. Contribute With
-Confidence." Sub-line states the promise in one sentence. Four actions:
-**Start Exploring**, **Analyze a Repository**, **Explore Programs**,
-**Practice Interview**. Below: three proof panels (source rail, term ribbon,
-match criteria) drawn with real component states, then "How we verify"
-(tiers, freshness, no scores). No fake statistics; counts appear only from
-real ingested data, otherwise the section is absent.
+Sources and provenance are not primary navigation. They are reached from
+every fact's source rail, program and project pages, the profile menu and the footer.
 
-## 5. Key screens
+## 3. Public landing (`/`)
 
-### Project page
+Hero with vertical light beams, large editorial headline ("Understand open
+source. Find where you belong."), one-sentence promise, "Get Started" and
+"Explore Open Source". Then: one place to navigate open source (four
+editorial rows: Discover, Understand, Contribute, Prepare), programs (only
+programs with recorded data are marked available; configured programs with
+no data are labeled "no data yet"), the journey, evidence ("every important
+fact should have a source", drawn as a Fact -> Source -> Evidence -> Status
+chain from real recorded data), final call to action, minimal footer.
 
-- **Header:** ecosystem spine, project name, one-line plain summary, status
-  chips (Confirmed, Stale...), primary action **Start the learning path**.
-- **Overview:** what it is, who uses it (sourced), languages, technologies,
-  links (each with source rail).
-- **History:** term ribbon (years x terms). Rows: "LFX Mentorship (CNCF
-  projects only)" at project grain; "Google Summer of Code" at organization
-  grain with the granularity label. Ideas shown as "Proposed idea".
-- **Activity:** evidence table (Commits, PRs, Issues, Releases,
-  Contributors) with label, window, raw count, sparkline; basic PR metadata
-  and links (D-011). A sentence explains what each label means.
-- **Community:** channels (chat, forum, lists) from sources; governance and
-  code-of-conduct presence; roles with the contributor / reviewer / merger /
-  maintainer / official mentor distinction and "Mentor not verified" when so.
-- **Contribute:** the target project's own contribution docs, setup steps,
-  first-issue labels, "what to understand first" links.
-- **Learn:** learning trail (levels 1-3 in MVP): understand the project,
-  understand architecture, understand contribution workflow; each level has
-  concrete reading tasks and a self-check.
-- **Interview:** project-specific questions; user answers first.
+## 4. Login (`/login`)
 
-### Program page
+Google, GitHub and email are shown but **disabled and labeled** as not
+connected: no fake OAuth. The only working path is "Continue in Development
+Mode", labeled development-only. It creates a local development session (an
+HttpOnly cookie) so saved items persist; it is not an authenticated identity
+and is refused in production. The session layer (`lib/auth.ts`) is the single
+place real authentication replaces later.
 
-Ecosystems and coverage note, the term ribbon for the program, participants
-per year with granularity label, milestone dates (when available), source
-rail for every block.
+## 5. Application home (`/app`)
 
-### Analyze
+"What are you exploring today?", search, choose a program, continue exploring
+(from saved items; no fake "recently viewed"), recommended next steps.
 
-URL field (GitHub URLs only, inline validation), progress stepper (fetching
-metadata, contributors, activity, docs), result opens the project-style
-page. Rate-limit and queue messages are explicit.
+## 6. Programs
 
-### Explore and recommendations
+`/programs`: "Where do you want to contribute?" Tiles for programs that have
+data; a separate quiet "Configured, no data yet" group for the rest (typographic
+marks only, no invented logos). Programs are configuration
+(`lib/programs.ts`), so any future program uses the same model.
+`/programs/[id]` (slug or alias): a dedicated ecosystem with Projects (or
+Organizations), Technologies and History tabs, search and filters limited to
+what the data supports, the CNCF-only or organization-level granularity
+notice, and sources.
 
-Search with filters (language, technology, program, year, activity label).
-Result cards show "Why this matches" as check / dash lines with sources and
-"Not verified" lines; ordering is explained in one sentence and can be
-switched (best match by your criteria, recently active, A to Z). No numeric
-match score (D-010).
+## 7. Discover vs Projects (deliberately different)
 
-### Interview
+|         | Discover                                                                                                                         | Projects                                     |
+| ------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| Purpose | "Help me figure out what to explore."                                                                                            | "What projects exist?"                       |
+| Entry   | Choose interests (from real recorded tags), optional program                                                                     | Search, program, technology, year/term, sort |
+| Result  | Matching projects as cards with **Why this appears** (checked and unverified reasons); ordered by how many interests are covered | A dense sortable list                        |
+| Empty   | "Start with an interest"                                                                                                         | "No projects match these filters"            |
 
-Question, answer box, submit; then feedback: covered points, missed points,
-evidence links, inferences labeled. Sessions are anonymous and expire.
+No numeric score anywhere. Experience level is shown disabled because no
+source records difficulty.
 
-### Sources page
+## 8. Program filter drives the data
 
-Table of providers: tier, program, ecosystem, coverage, ingestion status
-(pending / approved / blocked), licence and attribution, last successful
-sync. Makes the trust model transparent.
+`?program=gsoc`, `?program=lfx` (aliases resolve to database slugs) change
+the actual query, are shareable URL state, and work for any configured
+program. A program with no data returns an honest empty state, never invented rows.
 
-## 6. Granularity and coverage copy (D-007, D-013)
+## 9. Save and the Saved workspace
 
-- GSoC: "Organization participated in GSoC 2025". Never "Project X
-  participated in GSoC 2025" unless a verified project-level record exists;
-  otherwise "Project-level GSoC participation: not verified".
-- LFX / CNCF: "Project mentored in LFX 2026 Term 3 (CNCF)". Ecosystem data
-  carries a visible "CNCF projects only" label and is never shown as all of
-  LFX Mentorship.
-- Ideas are "Proposed idea", not participation.
-- Mentors: name and public GitHub handle with role and term; otherwise
-  "Mentor not verified". Contact data is never shown.
-- Attribution: CNCF-derived content shows "Source: CNCF mentoring
-  repository, CC BY 4.0" with links, and notes when content was summarized.
-- Every participation cell shows source badge, last verified and status.
+Users save **projects, organizations and repositories**. The save control
+(bookmark, optimistic, animated, `aria-pressed`) calls `POST/DELETE
+/api/v1/saved` and persists in PostgreSQL (`saved_item`, unique per user,
+type and entity). `/saved` shows a summary, type tabs (All, Projects,
+Repositories, Organizations), program filter, and groups by program, with
+unsave in place and a designed empty state. Program is derived server-side,
+never trusted from the client.
 
-## 7. States (every data page)
+## 10. Project detail (intelligence profile)
 
-| State       | Behavior                                                                                                                     |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| Loading     | skeleton in final layout; progress text for long jobs ("Fetching contributors, 3 of 5")                                      |
-| Empty       | why it is empty + one next step ("No participation found. This does not mean none exists; only verified records are shown.") |
-| Error       | what failed, what still works, retry, link to source status                                                                  |
-| Stale       | banner "May be outdated. Last verified {date}"; values still shown, chips show Stale                                         |
-| Partial     | banner "Showing available data. {X} is not yet connected."                                                                   |
-| Conflicting | values side by side with sources; never silently picked                                                                      |
-| Blocked     | "Data source not yet connected." (used while ingestion is pending)                                                           |
+Hero: program mark, program and term, project name, status chips, Save, Open
+repository, Save repository. Sections: overview, program history (term ribbon
+and source spelling), technologies, repository, mentors (name, public GitHub
+handle, role only), contribution, sources. Provenance is preserved everywhere.
 
-## 8. Responsive behavior
+## 11. Repository analyzer and interview
 
-Mobile first. Phones: single column, sticky bottom action bar for the primary
-action, tabs become a scrollable segmented control, tables become stacked
-rows, the term ribbon scrolls horizontally with a sticky row header and a
-list alternative. Tablets: two columns without the right rail. Desktop:
-8 + 4 columns with the sticky source and legend rail.
+Analyzer: "Understand any open source repository." Validates a GitHub URL
+(never fetched), offers save, checks the recorded sample, and states plainly
+that live analysis is not enabled. Interview: choose project and mode
+(Project understanding, Contribution available; PR review, Technical,
+Architecture disabled), answer first, development feedback that says it is
+not AI.
 
-## 9. Accessibility
+## 12. Status and provenance presentation
 
-See DESIGN_SYSTEM.md section 7. Additional rules: the term ribbon and
-evidence table are real tables with headers; every visualization has a text
-equivalent; error summaries move focus; long jobs use live regions.
+Provenance remains, but quieter: a compact source rail on cards, source
+panels on detail pages, status chips with glyph and label (never color
+alone), a persistent development banner in the app. Vocabulary unchanged
+(Confirmed, Historical, Recorded, Development, Inferred, Unknown, Stale,
+Forecast, Conflicting).
 
-## 10. Visualizations (only what aids understanding)
+## 13. States
 
-Term ribbon (history), evidence table with sparklines (activity), learning
-trail (progress), ecosystem spine (context). Timeline and ecosystem graph
-arrive in Phase 2 and 3 with source-backed events only.
+Loading skeletons, designed empty states (saved, no matches, no program data,
+choose an interest), error page, not-found page, database-down notice,
+"Live repository analysis is not available in this development build."
 
-## 11. Acceptance criteria for approval
+## 14. Responsive behavior
 
-Owner approves: visual direction, palette and type, landing hero, project
-page structure, states, granularity copy. Approval is a gate for M4 (web).
+Verified at 320, 360, 390, 768, 1024, 1280 and 1440px on every route.
+Phones: hamburger menu with search, wordmark collapses to the logo mark below
+420px, tables become labeled rows, filters stack, catalog rows wrap.
 
-## 12. Responsive verification (2026-09-21)
+## 15. Motion
 
-Method: `docs/design/preview.html` loaded in headless Chrome inside iframes of
-real device widths (320, 360, 390, 768, 1024, 1280) to measure page overflow,
-text overflow inside boxes and tap-target size, plus visual review of phone,
-tablet and desktop renders. The preview includes stress cases (very long
-project and organization names, a long source URL, an 8-year by 4-row history).
+Slow drifting beams on the public pages; card and button hover, save
+animation, view transitions between pages, theme cross-fade. Everything
+respects `prefers-reduced-motion` (all animation and transitions off).
 
-Defects found and fixed:
+## 16. Accessibility
 
-- Phone navigation was hidden with no menu: added a no-JS `details` menu.
-- Evidence table was crushed on phones: it now stacks into labeled rows.
-- Term ribbon's sticky column consumed over half a phone: narrowed to 132px,
-  and the GSoC note no longer clips.
-- Status chips wrapped to three lines in table cells: they stay on one line
-  in tables and wrap only elsewhere.
-- Long names and URLs forced sideways page scroll below 390px: they now wrap.
-- Small buttons were 32px on phones: 44px on widths under 768px.
-
-Result: no horizontal page overflow at any tested width. Known residual: a
-7px inner overflow of one grid container at 320px only, with no visible
-effect; recheck when M4 is built. Loading, empty, error, stale, partial and
-conflicting states, focus outlines and keyboard order were reviewed on the
-preview. Real-device testing and a screen-reader pass belong to M4 and M6.
+Skip link, landmarks, one h1 per page, keyboard operation, visible focus,
+`aria-pressed` on toggles, `aria-current` on navigation, labeled form
+controls, live regions for save errors and analysis results, status never by
+color alone, disabled controls explained in text.

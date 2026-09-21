@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useState, useTransition } from "react";
-import { analyzeRepository, type AnalyzeResult } from "@/app/repositories/analyze/actions";
+import { analyzeRepository, type AnalyzeResult } from "@/app/(app)/repositories/analyze/actions";
 import { Notice } from "@/components/feedback/Notice";
 import { StatusChip } from "@/components/status/StatusChip";
+import { SaveButton } from "@/features/saved/SaveButton";
 
 export function AnalyzeForm() {
   const [url, setUrl] = useState("");
@@ -75,6 +76,17 @@ export function AnalyzeForm() {
                 </>
               )}
             </dl>
+            {res.canonical && (
+              <div className="actions" style={{ marginTop: 16 }} data-testid="analyze-save">
+                <SaveButton
+                  key={res.canonical}
+                  entityType="REPOSITORY"
+                  entityId={res.canonical}
+                  initialSaved={!!res.saved}
+                  label="repository"
+                />
+              </div>
+            )}
             <div style={{ marginTop: 12 }}>
               <Notice kind="dev" testId="analyze-disabled">
                 Live repository analysis is not enabled in this development build.

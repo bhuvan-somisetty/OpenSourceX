@@ -16,7 +16,8 @@
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "@opensourcex/providers": "workspace:*",
-    "@opensourcex/entity-resolution": "workspace:*"
+    "@opensourcex/entity-resolution": "workspace:*",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
     "@types/react": "^19.0.0",

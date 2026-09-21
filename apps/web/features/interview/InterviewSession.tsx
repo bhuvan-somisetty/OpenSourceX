@@ -32,11 +32,20 @@ const QUESTIONS = [
   },
 ] as const;
 
-export function InterviewSession({ ctx }: { ctx: InterviewContext }) {
+export function InterviewSession({
+  ctx,
+  mode = "understanding",
+}: {
+  ctx: InterviewContext;
+  mode?: "understanding" | "contribution";
+}) {
+  const QS = QUESTIONS.filter((x) =>
+    mode === "contribution" ? x.id === "contrib" : x.id !== "contrib",
+  );
   const [i, setI] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState<Record<string, boolean>>({});
-  const q = QUESTIONS[i]!;
+  const q = QS[i]!;
   const answer = answers[q.id] ?? "";
   const done = submitted[q.id];
   const mentioned = ctx.technologies.filter((t) => answer.toLowerCase().includes(t.toLowerCase()));
@@ -46,7 +55,7 @@ export function InterviewSession({ ctx }: { ctx: InterviewContext }) {
     <div className="card fade" style={{ marginTop: 16 }} data-testid="interview-session">
       <div className="chips" style={{ marginBottom: 8 }}>
         <span className="tag">
-          Question {i + 1} of {QUESTIONS.length}
+          Question {i + 1} of {QS.length}
         </span>
         <span className="tag">{q.category}</span>
         <StatusChip status="DEVELOPMENT" label="Development version" />
@@ -145,7 +154,7 @@ export function InterviewSession({ ctx }: { ctx: InterviewContext }) {
             </p>
           </div>
           <div className="actions">
-            {i < QUESTIONS.length - 1 ? (
+            {i < QS.length - 1 ? (
               <button className="btn primary" type="button" onClick={() => setI(i + 1)}>
                 Next question
               </button>

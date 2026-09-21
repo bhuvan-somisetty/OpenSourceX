@@ -7,6 +7,7 @@ export default defineConfig({
   testDir: "tests/e2e",
   timeout: 90_000,
   retries: 1,
+  workers: 1,
   reporter: [["list"]],
   use: { baseURL, channel: "chrome", trace: "retain-on-failure" },
   webServer: process.env.E2E_BASE_URL

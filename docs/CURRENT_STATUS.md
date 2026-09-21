@@ -1,8 +1,16 @@
 # Current Status
 
-Truthful state as of 2026-09-21. Run locally with `pnpm dev`
+Truthful state as of 2026-09-21 (after the product UX redesign). Run locally with `pnpm dev`
 (http://localhost:3000). Everything below runs on **recorded, sanitized
 snapshots**, not live data.
+
+## Product redesign (2026-09-21)
+
+Public landing and login, an authenticated application shell (development
+session), program selection and program ecosystems, Discover (intent) and
+Projects (catalog) as separate experiences, save/unsave for projects,
+organizations and repositories persisted in PostgreSQL, and a Saved
+workspace. See UI_UX_SPECIFICATION.md.
 
 ## Implemented (working, tested)
 
@@ -56,3 +64,11 @@ approval, Q26), project timeline, forecasts, accounts, E2E in CI.
 - E2E is run locally; it is not wired into CI yet.
 - Fonts use the system stack (Inter if installed); no web font is bundled.
 - Sample data is small; discovery results and the term ribbon are sparse by design.
+
+## Redesign specifics
+
+- **Authentication:** only a labeled _development session_ exists (HttpOnly cookie, disabled in production, `AUTH_MODE=development`). Google, GitHub and email sign-in are shown disabled and are **not connected**. Nothing pretends to be real authentication.
+- **Saved items:** real and persistent (migration 005: `app_user`, `saved_item`, unique per user/type/entity). API: `GET/POST/DELETE /api/v1/saved`, `DELETE /api/v1/saved/[id]` (session required, validated, same-origin checked).
+- **Programs:** GSoC and LFX have data. Outreachy, Season of Docs, Summer of Bitcoin and MLH Fellowship are configured in `lib/programs.ts` with **no data**; they are labeled "no data yet" and are not explorable.
+- **Not built:** real OAuth, saved programs, a saved-item note field, recently viewed, global search beyond projects, repository intelligence, real interview evaluation.
+- **Tests now:** unit (incl. saved-API validation), integration (saved queries, 5 migrations), E2E for login and session, auth gate, program selection, program filtering, Discover vs Projects, save/unsave persistence, Saved filters, save API, navigation, and a 7-width responsive audit.

@@ -1,6 +1,7 @@
 "use server";
 
-import { listProjects, type ProjectCard } from "@opensourcex/database";
+import { listProjects, savedKeys, type ProjectCard } from "@opensourcex/database";
+import { getSession } from "@/lib/auth";
 import { parseGithubUrl } from "@opensourcex/entity-resolution";
 import { db } from "@/lib/data";
 
@@ -12,6 +13,7 @@ export interface AnalyzeResult {
   canonical?: string;
   note?: string;
   recorded: Pick<ProjectCard, "id" | "name" | "program">[];
+  saved?: boolean;
 }
 
 /** Validates a GitHub URL (SSRF-safe: parsed and rebuilt, never fetched) and looks it up in recorded data only. */
@@ -44,7 +46,16 @@ export async function analyzeRepository(input: string): Promise<AnalyzeResult> {
   } catch {
     recorded = [];
   }
+  const session = await getSession();
+  let saved = false;
+  try {
+    if (session && ref.canonicalUrl)
+      saved = (await savedKeys(db(), session.userId)).has(`REPOSITORY:${ref.canonicalUrl}`);
+  } catch {
+    saved = false;
+  }
   return {
+    saved,
     state: "repo",
     message: "Valid GitHub repository URL.",
     owner: ref.owner ?? undefined,

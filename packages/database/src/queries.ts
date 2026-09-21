@@ -177,10 +177,20 @@ export async function listProjects(db: Db, f: ProjectFilters = {}) {
           .toLowerCase()
           .includes(q)),
   );
-  const count = (xs: string[]) =>
-    [...xs.reduce((m, x) => m.set(x, (m.get(x) ?? 0) + 1), new Map<string, number>())]
-      .map(([value, n]) => ({ value, n }))
-      .sort((a, b) => b.n - a.n || a.value.localeCompare(b.value));
+  // Group case-insensitively (sources differ: "typescript" vs "TypeScript"); show the capitalized spelling if any.
+  const count = (xs: string[]) => {
+    const m = new Map<string, { value: string; n: number }>();
+    for (const x of xs) {
+      const k = x.toLowerCase();
+      const cur = m.get(k);
+      if (!cur) m.set(k, { value: x, n: 1 });
+      else {
+        cur.n += 1;
+        if (cur.value === cur.value.toLowerCase() && x !== x.toLowerCase()) cur.value = x;
+      }
+    }
+    return [...m.values()].sort((a, b) => b.n - a.n || a.value.localeCompare(b.value));
+  };
   return {
     items,
     total: all.length,

@@ -8,6 +8,9 @@ import { SourceBadge } from "@/components/source/SourceBadge";
 import { SourcePanel } from "@/components/source/SourcePanel";
 import { StatusChip } from "@/components/status/StatusChip";
 import { TermRibbon } from "@/components/data-display/TermRibbon";
+import { ProgramMark } from "@/components/ui/ProgramMark";
+import { SaveButton } from "@/features/saved/SaveButton";
+import { currentSaved, entityOf, isSaved } from "@/lib/saved";
 
 export const dynamic = "force-dynamic";
 export async function generateMetadata({
@@ -40,38 +43,68 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
     );
   if (!res.data) notFound();
   const { card: p, detail, sources } = res.data;
+  const savedSet = await currentSaved();
   const mentorship = p.kind === "mentorship";
 
   return (
-    <div className="wrap" style={{ paddingTop: 32 }}>
-      <div className="spine" aria-label="Ecosystem path">
-        <Link href="/programs">{p.program.name}</Link>›
-        {p.ecosystem && (
-          <>
-            <span className="pill">{p.ecosystem} ecosystem</span>›
-          </>
-        )}
-        {p.org && (
-          <>
-            <span className="pill">{p.org}</span>›
-          </>
-        )}
-        <span className="pill" aria-current="page">
+    <div className="wrap">
+      <section className="page-hero" data-testid="project-hero">
+        <div className="spine" aria-label="Ecosystem path">
+          <Link href="/programs">Programs</Link>›
+          <Link href={`/programs/${p.program.slug}`}>{p.program.name}</Link>
+          {p.ecosystem && (
+            <>
+              ›<span className="pill">{p.ecosystem} ecosystem</span>
+            </>
+          )}
+          {p.org && (
+            <>
+              ›<span className="pill">{p.org}</span>
+            </>
+          )}
+        </div>
+        <div style={{ display: "flex", gap: 14, alignItems: "center", marginTop: 22 }}>
+          <ProgramMark slug={p.program.slug} />
+          <div className="eyebrow">
+            {p.program.name}
+            {p.terms[0] ? ` · ${p.terms[0]}` : ""}
+          </div>
+        </div>
+        <h1 className="page" style={{ marginTop: 14, maxWidth: "22ch" }}>
           {p.name}
-        </span>
-      </div>
-      <h1 className="page" style={{ marginTop: 16 }}>
-        {p.name}
-      </h1>
-      <div className="chips">
-        <StatusChip status="DEVELOPMENT" />
-        <StatusChip status="RECORDED" />
-        <StatusChip status={p.source.status} />
-        {p.repoState === "INFERRED" && (
-          <StatusChip status="INFERRED" label="Repository inferred from URL" />
-        )}
-        {!p.repoUrl && <StatusChip status="UNKNOWN" label="Repository not verified" />}
-      </div>
+        </h1>
+        <div className="chips" style={{ marginTop: 16 }}>
+          <StatusChip status="DEVELOPMENT" />
+          <StatusChip status="RECORDED" />
+          <StatusChip status={p.source.status} />
+          {p.repoState === "INFERRED" && (
+            <StatusChip status="INFERRED" label="Repository inferred from URL" />
+          )}
+          {!p.repoUrl && <StatusChip status="UNKNOWN" label="Repository not verified" />}
+        </div>
+        <div className="actions" style={{ marginTop: 24 }}>
+          <SaveButton {...entityOf(p)} initialSaved={isSaved(savedSet, p)} label={p.name} />
+          {p.repoUrl && (
+            <a
+              className="btn"
+              href={p.repoUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+              data-testid="open-repo"
+            >
+              Open repository ↗
+            </a>
+          )}
+          {p.repoUrl && (
+            <SaveButton
+              entityType="REPOSITORY"
+              entityId={p.repoUrl}
+              initialSaved={savedSet.has(`REPOSITORY:${p.repoUrl}`)}
+              label="repository"
+            />
+          )}
+        </div>
+      </section>
 
       <nav className="tabs" aria-label="Project sections">
         {TABS.map((t) => (

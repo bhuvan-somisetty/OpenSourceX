@@ -3,8 +3,9 @@
 An intelligence layer for navigating open source: programs, organizations,
 projects and repositories connected, with the source of every fact shown.
 
-> **Status: early development.** A working local app runs on recorded, sanitized
-> data (`pnpm dev`, then http://localhost:3000). No live data source is connected
+> **Status: early development.** A working local app (public landing, login with a labeled
+> development session, programs, discover, projects, saved workspace) runs on recorded,
+> sanitized data (`pnpm dev`, then http://localhost:3000). No live data source is connected
 > and several features are not built; see [docs/CURRENT_STATUS.md](docs/CURRENT_STATUS.md).
 > This repository is public for visibility; it is proprietary and not licensed for
 > reuse (see [License and reuse](#license-and-reuse)).

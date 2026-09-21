@@ -18,6 +18,8 @@ const schema = z.object({
    * is approved (docs/SOURCE_PERMISSIONS.md); it cannot be enabled by configuration alone.
    */
   DATA_MODE: z.enum(["recorded", "live"]).default("recorded"),
+  /** Authentication. "development" gives a clearly labeled local session; real OAuth is not connected yet. */
+  AUTH_MODE: z.enum(["development", "oauth"]).default("development"),
   /** Live fetching of external sources. Providers are pending until approved (DATA_POLICY.md). */
   INGESTION_LIVE_SOURCES: z
     .enum(["true", "false"])
