@@ -435,32 +435,60 @@ button.btn {
   display: block;
 }
 .ring {
-  border: 1px solid rgba(175, 190, 255, 0.3);
-  -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.35) 45%, transparent 85%);
-  mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.35) 45%, transparent 85%);
-  animation: intro-fade 2.4s ease-out both;
+  /* a 1px ring whose brightness varies around it, so slow rotation is visible */
+  --ra: 0.34;
+  background: conic-gradient(
+    from 0deg,
+    rgba(175, 190, 255, var(--ra)),
+    rgba(175, 190, 255, 0.03) 30%,
+    rgba(175, 190, 255, calc(var(--ra) * 0.6)) 55%,
+    rgba(175, 190, 255, 0.03) 80%,
+    rgba(175, 190, 255, var(--ra))
+  );
+  -webkit-mask-image: radial-gradient(
+    closest-side,
+    transparent calc(100% - 1.5px),
+    #000 calc(100% - 0.5px),
+    #000 100%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    closest-side,
+    transparent calc(100% - 1.5px),
+    #000 calc(100% - 0.5px),
+    #000 100%,
+    transparent 100%
+  );
+  animation:
+    intro-fade 2.4s ease-out both,
+    intro-spin 70s linear infinite;
 }
 .ring.r1 {
   width: min(44vmin, 420px);
   height: min(44vmin, 420px);
 }
 .ring.r2 {
+  --ra: 0.26;
   width: min(70vmin, 680px);
   height: min(70vmin, 680px);
-  border-color: rgba(175, 190, 255, 0.2);
-  animation-delay: 0.3s;
+  animation-delay: 0.3s, 0s;
+  animation-duration: 2.4s, 110s;
+  animation-direction: normal, reverse;
 }
 .ring.r3 {
+  --ra: 0.2;
   width: min(102vmin, 980px);
   height: min(102vmin, 980px);
-  border-color: rgba(175, 190, 255, 0.13);
-  animation-delay: 0.6s;
+  animation-delay: 0.6s, 0s;
+  animation-duration: 2.4s, 160s;
 }
 .ring.r4 {
+  --ra: 0.14;
   width: min(140vmin, 1320px);
   height: min(140vmin, 1320px);
-  border-color: rgba(175, 190, 255, 0.08);
-  animation-delay: 0.9s;
+  animation-delay: 0.9s, 0s;
+  animation-duration: 2.4s, 220s;
+  animation-direction: normal, reverse;
 }
 .orbit {
   /* a soft arc of light travelling around a ring */
