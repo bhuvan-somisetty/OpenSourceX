@@ -55,22 +55,32 @@ export default function Intro() {
               strokeLinejoin="round"
             />
           </svg>
-          <svg
-            className="cta-rocket"
-            width="26"
-            height="26"
-            viewBox="0 0 24 24"
-            fill="none"
-            aria-hidden="true"
-          >
-            <path d="M12 2C15.5 5 16.5 9.5 15.5 15H8.5C7.5 9.5 8.5 5 12 2Z" fill="#1b2033" />
-            <path d="M8.5 11L5 15.5V18l3.5-2zM15.5 11L19 15.5V18l-3.5-2z" fill="#1b2033" />
-            <circle cx="12" cy="9" r="1.9" fill="#7d9bff" />
-            <path d="M9.5 15h5l-.8 2.5h-3.4z" fill="#4a5578" />
-          </svg>
-          <i className="cta-flame" aria-hidden="true" />
+          <span className="cta-ship" aria-hidden="true">
+            <i className="cta-smoke" />
+            <i className="cta-flame" />
+            <svg width="44" height="70" viewBox="0 0 40 64" fill="none">
+              <defs>
+                <linearGradient id="rk" x1="0" y1="0" x2="1" y2="0">
+                  <stop stopColor="#9aa6c8" />
+                  <stop offset="0.45" stopColor="#ffffff" />
+                  <stop offset="1" stopColor="#b7c1dd" />
+                </linearGradient>
+              </defs>
+              <path d="M10 34L2 50v6l9-8z" fill="#6f8cff" />
+              <path d="M30 34l8 16v6l-9-8z" fill="#6f8cff" />
+              <path d="M20 2c10 10 13 26 10 44H10C7 28 10 12 20 2z" fill="url(#rk)" />
+              <circle cx="20" cy="22" r="5" fill="#7d9bff" stroke="#1b2033" strokeWidth="2" />
+              <path d="M13 46h14l-2.5 6h-9z" fill="#4a5578" />
+            </svg>
+          </span>
         </Link>
       </div>
+      {/* runs before hydration, so the launch also plays on a slow first load */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `(function(){var a=document.querySelector('[data-cta]');if(!a)return;a.addEventListener('click',function(e){if(e.metaKey||e.ctrlKey||e.shiftKey||e.button!==0)return;var m=document.querySelector('.intro');if(!m||m.classList.contains('leaving'))return;e.preventDefault();var h=a.getAttribute('href');if(matchMedia('(prefers-reduced-motion: reduce)').matches){location.assign(h);return}a.style.width=a.getBoundingClientRect().width+'px';void a.offsetWidth;m.classList.add('leaving');a.classList.add('go');setTimeout(function(){location.assign(h)},1900)})})();`,
+        }}
+      />
     </IntroStage>
   );
 }
