@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 /**
- * OpenSourceX mark: four wedges converging on a shared centre. The gaps between them draw the X;
- * the wedges are the ecosystem, and the one in accent is the contribution flowing in.
- * Solid shapes only, so it stays crisp from a 16px favicon to a large intro mark.
+ * TEMPORARY placeholder mark. The final OpenSourceX logo is supplied separately: replace the
+ * contents of `LogoMark` (and `app/icon.svg`) and every place that shows the brand updates,
+ * including the intro stage, with no layout change. Keep the 32x32 viewBox.
  */
 export function LogoMark({ size = 24 }: { size?: number }) {
   return (
@@ -15,13 +15,9 @@ export function LogoMark({ size = 24 }: { size?: number }) {
       aria-hidden="true"
       focusable="false"
       className="logo-svg"
-      strokeWidth="2"
-      strokeLinejoin="round"
     >
-      <path d="M7 3h18l-9 9z" fill="currentColor" stroke="currentColor" />
-      <path d="M7 29h18l-9-9z" fill="currentColor" stroke="currentColor" />
-      <path d="M3 7v18l9-9z" fill="currentColor" stroke="currentColor" />
-      <path d="M29 7v18l-9-9z" fill="var(--accent)" stroke="var(--accent)" />
+      <rect x="3" y="3" width="26" height="26" rx="8" stroke="currentColor" strokeWidth="2" />
+      <circle cx="16" cy="16" r="3.2" fill="var(--accent)" />
     </svg>
   );
 }

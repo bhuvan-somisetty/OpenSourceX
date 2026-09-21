@@ -7,6 +7,7 @@ test.skip(!dir, "set SHOTS_DIR to capture screenshots");
 const SHOTS: [string, string, number, "dark" | "light", boolean][] = [
   ["intro-1440", "/", 1440, "dark", false],
   ["intro-1280", "/", 1280, "dark", false],
+  ["intro-1920", "/", 1920, "dark", false],
   ["intro-768", "/", 768, "dark", false],
   ["intro-390", "/", 390, "dark", false],
   ["intro-320", "/", 320, "dark", false],

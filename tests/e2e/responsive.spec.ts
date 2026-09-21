@@ -99,6 +99,10 @@ test.describe("landing fits one viewport (no vertical or horizontal scroll)", ()
 
 const INTRO_FITS = [
   [320, 568],
+  [320, 640],
+  [360, 740],
+  [1024, 700],
+  [1920, 1080],
   [390, 844],
   [768, 1024],
   [1280, 720],
@@ -129,7 +133,7 @@ test.describe("brand intro fits one viewport and leads to the product landing", 
       expect(r.markTop).toBeGreaterThanOrEqual(0);
     });
   }
-  test("Get Started opens the product landing", async ({ page }) => {
+  test("Find Your Path opens the product landing", async ({ page }) => {
     await page.context().clearCookies();
     await page.goto("/");
     await page.getByTestId("intro-cta").click();
