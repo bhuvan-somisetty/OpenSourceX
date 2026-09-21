@@ -335,10 +335,8 @@ button.btn {
 .logo-word {
   color: var(--text);
 }
-/* brand intro (/): a stage for the mark. Light follows the cursor via --mx/--my (-1..1). */
+/* brand intro (/): a stage for the mark. Nothing here reacts to the cursor. */
 .intro {
-  --mx: 0;
-  --my: 0;
   position: relative;
   min-height: 100svh;
   display: grid;
@@ -369,7 +367,6 @@ button.btn {
   width: var(--gw);
   aspect-ratio: 1.5;
   background: radial-gradient(closest-side, rgba(96, 120, 255, 0.16), rgba(96, 120, 255, 0) 72%);
-  transform: translate3d(calc(var(--mx) * 34px), calc(var(--my) * 24px), 0);
   will-change: transform;
   animation:
     intro-fade 1.6s ease-out both,
@@ -377,7 +374,7 @@ button.btn {
 }
 .intro-glow.b {
   background: radial-gradient(closest-side, rgba(150, 100, 255, 0.11), rgba(150, 100, 255, 0) 70%);
-  transform: translate3d(calc(var(--mx) * -22px + 14vw), calc(var(--my) * -16px + 6vh), 0);
+  transform: translate3d(14vw, 6vh, 0);
   animation:
     intro-fade 1.8s ease-out 0.2s both,
     intro-drift-b 32s ease-in-out 2s infinite alternate;
@@ -397,7 +394,6 @@ button.btn {
     transparent 75%
   );
   filter: blur(8px);
-  transform: translate3d(calc(var(--mx) * -30px), calc(var(--my) * -12px), 0);
   animation: intro-breathe 9s ease-in-out infinite alternate;
 }
 .intro-spot {
@@ -408,7 +404,6 @@ button.btn {
   width: min(120vw, 1200px);
   height: 92%;
   translate: -50% 0;
-  transform: translate3d(calc(var(--mx) * 26px), 0, 0);
   background:
     radial-gradient(26% 16% at 50% 10%, rgba(205, 216, 255, 0.4), transparent 100%),
     conic-gradient(
@@ -430,7 +425,6 @@ button.btn {
   top: 37%;
   width: 0;
   height: 0;
-  transform: translate3d(calc(var(--mx) * 14px), calc(var(--my) * 10px), 0);
 }
 .intro-rings i {
   position: absolute;
@@ -495,6 +489,12 @@ button.btn {
   width: min(44vmin, 420px);
   height: min(44vmin, 420px);
   animation: intro-spin 34s linear infinite;
+}
+.orbit.o3 {
+  width: min(102vmin, 980px);
+  height: min(102vmin, 980px);
+  opacity: 0.4;
+  animation: intro-spin 90s linear infinite;
 }
 .orbit.o2 {
   width: min(70vmin, 680px);

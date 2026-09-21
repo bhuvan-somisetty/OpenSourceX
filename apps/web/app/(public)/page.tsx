@@ -18,6 +18,7 @@ export default function Intro() {
           <i className="ring r4" />
           <i className="orbit o1" />
           <i className="orbit o2" />
+          <i className="orbit o3" />
           <i className="halo" />
         </div>
         <div className="intro-grid" />
