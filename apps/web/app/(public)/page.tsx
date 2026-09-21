@@ -19,6 +19,10 @@ export default function Intro() {
           <i className="orbit o1" />
           <i className="orbit o2" />
           <i className="orbit o3" />
+          <i className="ticks" />
+          <i className="planet p1" />
+          <i className="planet p2" />
+          <i className="planet p3" />
           <i className="halo" />
         </div>
         <div className="intro-grid" />

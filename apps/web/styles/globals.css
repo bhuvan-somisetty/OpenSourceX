@@ -490,6 +490,72 @@ button.btn {
   animation-duration: 2.4s, 88s;
   animation-direction: normal, reverse;
 }
+.planet {
+  /* a bright bead riding each ring: makes the rotation obvious */
+  animation:
+    intro-fade 2.4s ease-out 1s both,
+    intro-spin 16s linear infinite;
+}
+.planet::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: calc(50% - 4px);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e6ebff;
+  box-shadow:
+    0 0 10px 2px rgba(150, 170, 255, 0.9),
+    0 0 28px 6px rgba(120, 145, 255, 0.45);
+}
+.planet.p1 {
+  width: min(44vmin, 420px);
+  height: min(44vmin, 420px);
+}
+.planet.p2 {
+  width: min(70vmin, 680px);
+  height: min(70vmin, 680px);
+  animation-duration: 2.4s, 30s;
+  animation-direction: normal, reverse;
+}
+.planet.p2::before {
+  transform: scale(0.8);
+}
+.planet.p3 {
+  width: min(102vmin, 980px);
+  height: min(102vmin, 980px);
+  animation-duration: 2.4s, 46s;
+}
+.planet.p3::before {
+  transform: scale(0.65);
+}
+.ticks {
+  /* a ring of fine tick marks, like a dial */
+  width: min(56vmin, 540px);
+  height: min(56vmin, 540px);
+  background: repeating-conic-gradient(
+    rgba(175, 190, 255, 0.42) 0deg 0.7deg,
+    transparent 0.7deg 6deg
+  );
+  -webkit-mask-image: radial-gradient(
+    closest-side,
+    transparent calc(100% - 9px),
+    #000 calc(100% - 8px),
+    #000 100%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    closest-side,
+    transparent calc(100% - 9px),
+    #000 calc(100% - 8px),
+    #000 100%,
+    transparent 100%
+  );
+  animation:
+    intro-fade 2.4s ease-out 0.5s both,
+    intro-spin 60s linear infinite reverse;
+}
 .orbit {
   /* a soft arc of light travelling around a ring */
   background: conic-gradient(
@@ -706,6 +772,7 @@ button.btn {
   .intro-horizon,
   .intro-spot,
   .intro-rings i,
+  .intro-rings i::before,
   .intro-cta {
     animation: none;
     transition: none;
