@@ -400,6 +400,30 @@ button.btn {
   transform: translate3d(calc(var(--mx) * -30px), calc(var(--my) * -12px), 0);
   animation: intro-breathe 9s ease-in-out infinite alternate;
 }
+.intro-spot {
+  /* light from above: a soft cone with a bright source, falling toward the logo */
+  position: absolute;
+  left: 50%;
+  top: -12%;
+  width: min(120vw, 1200px);
+  height: 92%;
+  translate: -50% 0;
+  transform: translate3d(calc(var(--mx) * 26px), 0, 0);
+  background:
+    radial-gradient(26% 16% at 50% 10%, rgba(205, 216, 255, 0.4), transparent 100%),
+    conic-gradient(
+      from 146deg at 50% 10%,
+      transparent 0deg,
+      rgba(160, 180, 255, 0.24) 34deg,
+      transparent 68deg
+    );
+  filter: blur(22px);
+  -webkit-mask-image: linear-gradient(180deg, #000 10%, rgba(0, 0, 0, 0.5) 55%, transparent 92%);
+  mask-image: linear-gradient(180deg, #000 10%, rgba(0, 0, 0, 0.5) 55%, transparent 92%);
+  animation:
+    intro-fade 2s ease-out 0.2s both,
+    intro-breathe 8s ease-in-out 2.2s infinite alternate;
+}
 .intro-rings {
   position: absolute;
   left: 50%;
@@ -417,9 +441,9 @@ button.btn {
   display: block;
 }
 .ring {
-  border: 1px solid rgba(140, 160, 255, 0.13);
-  -webkit-mask-image: linear-gradient(180deg, #000 30%, transparent 92%);
-  mask-image: linear-gradient(180deg, #000 30%, transparent 92%);
+  border: 1px solid rgba(175, 190, 255, 0.3);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.35) 45%, transparent 85%);
+  mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.35) 45%, transparent 85%);
   animation: intro-fade 2.4s ease-out both;
 }
 .ring.r1 {
@@ -429,14 +453,20 @@ button.btn {
 .ring.r2 {
   width: min(70vmin, 680px);
   height: min(70vmin, 680px);
-  border-color: rgba(140, 160, 255, 0.09);
+  border-color: rgba(175, 190, 255, 0.2);
   animation-delay: 0.3s;
 }
 .ring.r3 {
   width: min(102vmin, 980px);
   height: min(102vmin, 980px);
-  border-color: rgba(140, 160, 255, 0.06);
+  border-color: rgba(175, 190, 255, 0.13);
   animation-delay: 0.6s;
+}
+.ring.r4 {
+  width: min(140vmin, 1320px);
+  height: min(140vmin, 1320px);
+  border-color: rgba(175, 190, 255, 0.08);
+  animation-delay: 0.9s;
 }
 .orbit {
   /* a soft arc of light travelling around a ring */
@@ -646,6 +676,7 @@ button.btn {
   .intro-mark-in,
   .intro-glow,
   .intro-horizon,
+  .intro-spot,
   .intro-rings i,
   .intro-cta {
     animation: none;
