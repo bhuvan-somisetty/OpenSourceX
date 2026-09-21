@@ -3,21 +3,21 @@
 Status values: Planned / In progress / Done (verified). Nothing below is
 implemented yet.
 
-- **M0 Foundation (Planned):** pnpm workspace with the ARCHITECTURE.md
+- **M0 Foundation (Done, verified 2026-09-21):** pnpm workspace with the ARCHITECTURE.md
   module layout, Next.js app, worker skeleton, CI, lint, typecheck,
   Postgres compose, migrations, `.gitattributes`. Done when CI is green.
-- **M1 Ingestion (Planned), split:**
-  - **M1a** local read-only spike on recorded, sanitized snapshots;
+- **M1 Ingestion, split:**
+  - **M1a (Done, verified; local only, see M1A_FINDINGS.md)** local read-only spike on recorded, sanitized snapshots;
     provider interface; sanitizer with planted-PII tests; term
     normalization and entity-resolution prototypes against real recorded
     data. No live production crawling.
-  - **M1b** real schema (DATA_MODEL.md), provenance, sync pipeline; each
+  - **M1b (Blocked on Q2 and Q18)** real schema (DATA_MODEL.md), provenance, sync pipeline; each
     provider enabled only when `approved` in DATA_POLICY.md.
 - **M2 API (Planned):** Route Handlers over the domain layer: programs,
   projects, history (with granularity), sources.
 - **M3 GitHub intelligence (Planned):** analyze, activity evidence, basic PR
   metadata, contribution-guide detection; SSRF-safe; quota controls.
-- **Design phase (Planned, parallel to M1):** concrete tokens, wireframes,
+- **Design phase (Proposed, awaiting owner approval, Q22):** concrete tokens, wireframes,
   visual direction, owner approval before M4 (H-6).
 - **M4 Web (Planned):** landing, discover, program, project, analysis, all
   UI states, accessibility checks.
