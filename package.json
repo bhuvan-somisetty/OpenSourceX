@@ -17,8 +17,8 @@
     "typecheck": "pnpm -r typecheck",
     "test": "vitest run --project unit",
     "test:integration": "vitest run --project integration",
-    "db:migrate": "tsx packages/db/src/migrate-cli.ts",
-    "spike": "tsx packages/ingest/src/spike-cli.ts"
+    "db:migrate": "tsx packages/database/src/migrate-cli.ts",
+    "db:seed": "tsx services/ingestion/src/seed-cli.ts"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.0",

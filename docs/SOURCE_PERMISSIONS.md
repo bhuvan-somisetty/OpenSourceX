@@ -7,7 +7,7 @@ human decision. Silence in a document is never treated as permission.
 
 Decision values: **APPROVED**, **CONDITIONAL** (basis established, owner
 approval still required), **PENDING / REQUIRES PERMISSION**, **BLOCKED**.
-The provider registry (`packages/providers/src/registry.ts`) stays
+The provider registry (`services/providers/src/registry.ts`) stays
 non-approved for every source until the owner records approval here.
 
 Reviewer: prepared for review by the project owner (bhuvan-somisetty). No

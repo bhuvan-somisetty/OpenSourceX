@@ -136,9 +136,9 @@ importers:
 
   apps/web:
     dependencies:
-      '@opensourcex/db':
+      '@opensourcex/database':
         specifier: workspace:*
-        version: link:../../packages/db
+        version: link:../../packages/database
       '@opensourcex/shared':
         specifier: workspace:*
         version: link:../../packages/shared
@@ -161,9 +161,9 @@ importers:
 
   apps/worker:
     dependencies:
-      '@opensourcex/db':
+      '@opensourcex/database':
         specifier: workspace:*
-        version: link:../../packages/db
+        version: link:../../packages/database
       '@opensourcex/shared':
         specifier: workspace:*
         version: link:../../packages/shared
@@ -171,7 +171,7 @@ importers:
         specifier: ^12.33.2
         version: 12.33.2
 
-  packages/db:
+  packages/database:
     dependencies:
       '@opensourcex/shared':
         specifier: workspace:*
@@ -183,48 +183,48 @@ importers:
       '@types/pg':
         specifier: ^8.23.1
         version: 8.23.1
-
-  packages/domain: {}
-
-  packages/ingest:
-    dependencies:
-      '@opensourcex/db':
-        specifier: workspace:*
-        version: link:../db
-      '@opensourcex/domain':
-        specifier: workspace:*
-        version: link:../domain
-      '@opensourcex/providers':
-        specifier: workspace:*
-        version: link:../providers
-      '@opensourcex/shared':
-        specifier: workspace:*
-        version: link:../shared
-      pg:
-        specifier: ^8.23.0
-        version: 8.23.0
-      zod:
-        specifier: ^4.6.5
-        version: 4.6.5
-    devDependencies:
-      '@types/pg':
-        specifier: ^8.23.1
-        version: 8.23.1
-
-  packages/providers:
-    dependencies:
-      '@opensourcex/shared':
-        specifier: workspace:*
-        version: link:../shared
-      zod:
-        specifier: ^4.6.5
-        version: 4.6.5
 
   packages/shared:
     dependencies:
       pino:
         specifier: ^10.3.1
         version: 10.3.1
+      zod:
+        specifier: ^4.6.5
+        version: 4.6.5
+
+  services/entity-resolution: {}
+
+  services/ingestion:
+    dependencies:
+      '@opensourcex/database':
+        specifier: workspace:*
+        version: link:../../packages/database
+      '@opensourcex/entity-resolution':
+        specifier: workspace:*
+        version: link:../entity-resolution
+      '@opensourcex/providers':
+        specifier: workspace:*
+        version: link:../providers
+      '@opensourcex/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
+      pg:
+        specifier: ^8.23.0
+        version: 8.23.0
+      zod:
+        specifier: ^4.6.5
+        version: 4.6.5
+    devDependencies:
+      '@types/pg':
+        specifier: ^8.23.1
+        version: 8.23.1
+
+  services/providers:
+    dependencies:
+      '@opensourcex/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
       zod:
         specifier: ^4.6.5
         version: 4.6.5

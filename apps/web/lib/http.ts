@@ -7,7 +7,7 @@ type Handler = (req: Request) => Promise<Response> | Response;
 
 /**
  * Baseline for every Route Handler: RFC 9457 problem+json errors, no stack
- * leakage, per-IP rate limiting. Business logic belongs in packages/domain, not here.
+ * leakage, per-IP rate limiting. Business logic belongs in services/entity-resolution, not here.
  * NOTE: the limiter is in-memory (single instance). Replace with a shared store before scaling.
  */
 const hits = new Map<string, { count: number; reset: number }>();

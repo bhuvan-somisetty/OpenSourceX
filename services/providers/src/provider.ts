@@ -38,7 +38,18 @@ export function assertLiveAllowed(providerKey: string, ctx: LiveContext): void {
     throw new LiveAccessDisabledError(providerKey, "INGESTION_LIVE_SOURCES is false");
 }
 
-const FIXTURES = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "fixtures");
+/** Recorded, sanitized snapshots live in the repo-level fixtures/ folder, one subfolder per source. */
+export const FIXTURES_DIR = path.join(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "..",
+  "..",
+  "..",
+  "fixtures",
+);
+export function fixtureFile(name: string): string {
+  const sub = name.startsWith("gsoc") ? "gsoc" : name.startsWith("lfx") ? "lfx" : "cncf";
+  return path.join(FIXTURES_DIR, sub, name);
+}
 
 /** Provider backed by recorded, sanitized fixture files. */
 export function recordedProvider(
@@ -53,8 +64,7 @@ export function recordedProvider(
     async fetchRecorded() {
       return Promise.all(
         files.map(
-          async (f) =>
-            JSON.parse(await readFile(path.join(FIXTURES, f), "utf8")) as SnapshotEnvelope,
+          async (f) => JSON.parse(await readFile(fixtureFile(f), "utf8")) as SnapshotEnvelope,
         ),
       );
     },

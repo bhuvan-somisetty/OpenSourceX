@@ -7,22 +7,25 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { FIXTURES_DIR, fixtureFile } from "./provider";
 import { SANITIZER_VERSION, type SnapshotEnvelope } from "./types";
 import { sanitizeCncfExport, type CncfExportBody } from "./cncf";
 import { sanitizeLfxProject, type LfxProjectsBody } from "./lfx";
 import { sanitizeGsocOrg, type GsocOrgsBody } from "./gsoc";
 
 const UA = { "User-Agent": "OpenSourceX-local-research (read-only, low volume)" };
-const OUT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "fixtures");
+const OUT = FIXTURES_DIR;
 const get = async (url: string) => {
   const r = await fetch(url, { headers: UA });
   if (!r.ok) throw new Error(`${url} -> ${r.status}`);
   return r.json();
 };
 const save = (name: string, env: SnapshotEnvelope) =>
-  writeFile(path.join(OUT, name), JSON.stringify(env, null, 2) + "\n");
+  writeFile(fixtureFile(name), JSON.stringify(env, null, 2) + "\n");
 
-await mkdir(OUT, { recursive: true });
+await Promise.all(
+  ["gsoc", "lfx", "cncf"].map((d) => mkdir(path.join(OUT, d), { recursive: true })),
+);
 const now = new Date().toISOString();
 
 // CNCF: first 3 programs of the 2026 Term 3 export that also exist in the LFX API.

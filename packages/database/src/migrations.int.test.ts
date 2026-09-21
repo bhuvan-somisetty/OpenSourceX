@@ -12,7 +12,12 @@ describe.skipIf(!url)("migrations from an empty database", () => {
     const fresh = createPool(url!.replace(/\/[^/?]+(\?|$)/, `/${name}$1`));
     try {
       const ran = await migrate(fresh);
-      expect(ran).toEqual(["001_foundation.sql", "002_m1a_domain.sql", "003_sync_state.sql"]);
+      expect(ran).toEqual([
+        "001_foundation.sql",
+        "002_m1a_domain.sql",
+        "003_sync_state.sql",
+        "004_organization_tags.sql",
+      ]);
       expect(await migrate(fresh)).toEqual([]);
       const t = (
         await fresh.query(

@@ -37,23 +37,23 @@ clients, team boundaries).
 
 ## 2. Modules
 
-| Module               | Responsibility                                                                                                          |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `apps/web`           | Next.js UI and Route Handlers that only validate, call the domain layer and shape responses                             |
-| `apps/worker`        | Long-running process: scheduler, queue consumers, sync runs                                                             |
-| `packages/domain`    | Business logic: activity evidence, matching, freshness, learning paths, resolution rules; no HTTP, no framework imports |
-| `packages/db`        | Schema, migrations, typed queries, repositories                                                                         |
-| `packages/providers` | One module per source provider (fetch, sanitize, parse)                                                                 |
-| `packages/ai`        | Retrieval, prompt assembly, validation, provider adapters                                                               |
-| `packages/shared`    | Types, zod schemas, provenance helpers, error types                                                                     |
-| `packages/ui`        | Design-system components                                                                                                |
+| Module                       | Responsibility                                                                                                          |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `apps/web`                   | Next.js UI and Route Handlers that only validate, call the domain layer and shape responses                             |
+| `apps/worker`                | Long-running process: scheduler, queue consumers, sync runs                                                             |
+| `services/entity-resolution` | Business logic: activity evidence, matching, freshness, learning paths, resolution rules; no HTTP, no framework imports |
+| `packages/database`          | Schema, migrations, typed queries, repositories                                                                         |
+| `services/providers`         | One module per source provider (fetch, sanitize, parse)                                                                 |
+| `packages/ai`                | Retrieval, prompt assembly, validation, provider adapters                                                               |
+| `packages/shared`            | Types, zod schemas, provenance helpers, error types                                                                     |
+| `packages/ui`                | Design-system components                                                                                                |
 
 ## 3. Keeping a future API service possible
 
-- Route Handlers contain no business logic; they call `packages/domain`.
+- Route Handlers contain no business logic; they call `services/entity-resolution`.
 - The API contract is defined once (zod schemas and OpenAPI generated from
   them) in `packages/shared`.
-- `packages/domain` and `packages/db` have no dependency on Next.js.
+- `services/entity-resolution` and `packages/database` have no dependency on Next.js.
 - The web app calls the domain layer through a thin client interface.
   Swapping it for HTTP to a new service changes one adapter.
 

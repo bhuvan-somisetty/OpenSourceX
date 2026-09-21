@@ -38,7 +38,7 @@ them plus a dependency audit.
 ## Layout
 
 `apps/web` (UI and Route Handlers), `apps/worker`, `packages/shared`
-(env, logger, errors, contact-data guard), `packages/db` (client,
+(env, logger, errors, contact-data guard), `packages/database` (client,
 migrations). More packages arrive with M1a (see ARCHITECTURE.md).
 
 ## Data rules

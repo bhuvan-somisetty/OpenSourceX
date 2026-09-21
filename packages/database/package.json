@@ -1,5 +1,5 @@
 {
-  "name": "@opensourcex/ingest",
+  "name": "@opensourcex/database",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,12 +9,8 @@
     "typecheck": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@opensourcex/db": "workspace:*",
-    "@opensourcex/domain": "workspace:*",
-    "@opensourcex/providers": "workspace:*",
     "@opensourcex/shared": "workspace:*",
-    "pg": "^8.23.0",
-    "zod": "^4.6.5"
+    "pg": "^8.23.0"
   },
   "devDependencies": {
     "@types/pg": "^8.23.1"

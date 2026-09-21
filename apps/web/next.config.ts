@@ -12,7 +12,7 @@ const headers = [
 const config: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  transpilePackages: ["@opensourcex/shared", "@opensourcex/db"],
+  transpilePackages: ["@opensourcex/shared", "@opensourcex/database"],
   async headers() {
     return [{ source: "/:path*", headers }];
   },

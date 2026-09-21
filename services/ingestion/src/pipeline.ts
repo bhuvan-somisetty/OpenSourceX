@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import type { PoolClient } from "pg";
 import { z } from "zod";
 import { assertNoContactData, inc } from "@opensourcex/shared";
-import { withTx, type Db } from "@opensourcex/db";
+import { withTx, type Db } from "@opensourcex/database";
 import {
   PROVIDERS,
   assertMayPersist,
@@ -11,7 +11,7 @@ import {
   type LfxProjectsBody,
   type SnapshotEnvelope,
 } from "@opensourcex/providers";
-import { linkUpstream, normalizeTerm } from "@opensourcex/domain";
+import { linkUpstream, normalizeTerm } from "@opensourcex/entity-resolution";
 import { shapeFingerprint } from "./resilience";
 
 /**
@@ -309,6 +309,18 @@ async function ingestGsoc(x: Ctx, body: GsocOrgsBody) {
             fields.tagline,
             provId,
           ],
+        );
+      }
+    }
+    for (const [kind, values] of [
+      ["tech", o.techTags],
+      ["topic", o.topicTags],
+      ["category", o.categories],
+    ] as const) {
+      for (const v of values) {
+        await x.c.query(
+          "INSERT INTO organization_tag(organization_id,kind,value) VALUES ($1,$2,$3) ON CONFLICT DO NOTHING",
+          [orgId, kind, v],
         );
       }
     }

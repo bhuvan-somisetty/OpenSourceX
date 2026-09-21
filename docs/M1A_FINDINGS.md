@@ -9,8 +9,8 @@ immediately. Production ingestion remains blocked on Q2 and Q18.
 
 `recorded snapshot -> validate -> sanitize gate -> normalize -> resolve ->
 persist -> provenance`, in real PostgreSQL, with tests. Implemented in
-`packages/providers` (sanitizers, registry), `packages/domain` (terms, GitHub
-URL parsing, resolution) and `packages/ingest` (pipeline). Migration 002 adds
+`services/providers` (sanitizers, registry), `services/entity-resolution` (terms, GitHub
+URL parsing, resolution) and `services/ingestion` (pipeline). Migration 002 adds
 the typed tables.
 
 ## Findings from real data

@@ -1,21 +1,12 @@
 import { readFileSync } from "node:fs";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
-import { createPool, migrate } from "@opensourcex/db";
-import type { SnapshotEnvelope } from "@opensourcex/providers";
+import { createPool, migrate } from "@opensourcex/database";
+import { fixtureFile, type SnapshotEnvelope } from "@opensourcex/providers";
 import { runSpike } from "./pipeline";
 
 const url = process.env.DATABASE_URL;
 const pool = url ? createPool(url) : undefined;
-const dir = path.join(
-  path.dirname(fileURLToPath(import.meta.url)),
-  "..",
-  "..",
-  "providers",
-  "fixtures",
-);
-const load = (f: string) => JSON.parse(readFileSync(path.join(dir, f), "utf8")) as SnapshotEnvelope;
+const load = (f: string) => JSON.parse(readFileSync(fixtureFile(f), "utf8")) as SnapshotEnvelope;
 const gsoc = () => load("gsoc-2025-orgs-sample.json");
 const lfx = () => load("lfx-projects-sample.json");
 

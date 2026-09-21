@@ -58,10 +58,10 @@ TypeScript monorepo. No separate API service in the MVP. See
 apps/web         Next.js UI and Route Handlers
 apps/worker      background worker
 packages/shared  env, logger, errors, contact-data guard, metrics, AI budget guard
-packages/db      client and SQL migrations
-packages/domain  term normalization, GitHub URL parsing, entity resolution
-packages/providers  source providers, sanitizers, recorded fixtures
-packages/ingest  ingestion pipeline and sync state
+packages/database      client and SQL migrations
+services/entity-resolution  term normalization, GitHub URL parsing, entity resolution
+services/providers  source providers, sanitizers, recorded fixtures
+services/ingestion  ingestion pipeline and sync state
 docs/            product, architecture, data, security and design documents
 ```
 
@@ -117,4 +117,4 @@ This is a proprietary product repository. It is publicly visible but not
 licensed for reuse or redistribution, and it does not accept external
 contributions. Third-party data excerpts in test fixtures carry their own terms
 and attribution:
-[packages/providers/fixtures/ATTRIBUTION.md](packages/providers/fixtures/ATTRIBUTION.md).
+[fixtures/ATTRIBUTION.md](fixtures/ATTRIBUTION.md).

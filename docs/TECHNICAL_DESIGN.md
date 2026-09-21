@@ -10,7 +10,7 @@ ARCHITECTURE.md.
 
 ## Providers
 
-Each source is a provider module (`packages/providers`) with the pipeline in
+Each source is a provider module (`services/providers`) with the pipeline in
 INGESTION_PIPELINE.md: `discover`, `fetch`, `sanitize`, `parse`, plus
 metadata (tier, ecosystem, coverage, terms status, cadence, rate budget).
 Providers never write to the database; the worker persists. Providers:
@@ -43,7 +43,7 @@ stale/partial states, never to fabricated values.
 
 ## M2 and M3 plans (refined, not implemented)
 
-**M2 API:** Route Handlers over `packages/domain` for `/programs`,
+**M2 API:** Route Handlers over `services/entity-resolution` for `/programs`,
 `/programs/{slug}/history` (with granularity), `/programs/{slug}/ecosystems`,
 `/projects`, `/sources`, and `/health`. zod request and response schemas in
 `packages/shared`, OpenAPI generated from them, cursor pagination, problem+json
