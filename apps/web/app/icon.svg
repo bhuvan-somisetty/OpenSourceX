@@ -1,12 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <style>
+    .bow { fill: #F2F4F8; }
+    @media (prefers-color-scheme: light) { .bow { fill: #1B2033; } }
+  </style>
   <defs>
-    <linearGradient id="b" x1="10" y1="3" x2="24" y2="29" gradientUnits="userSpaceOnUse"><stop stop-color="#FFFFFF"/><stop offset="1" stop-color="#A9B4D0"/></linearGradient>
     <linearGradient id="a" x1="4" y1="16" x2="31" y2="16" gradientUnits="userSpaceOnUse"><stop stop-color="#8FA8FF"/><stop offset="1" stop-color="#6F8CFF"/></linearGradient>
-    <radialGradient id="g" cx=".5" cy=".4" r=".8"><stop stop-color="#1B2140"/><stop offset="1" stop-color="#07080D"/></radialGradient>
   </defs>
-  <rect width="32" height="32" rx="8" fill="url(#g)"/>
-  <g transform="translate(16 16) scale(1.12) translate(-16 -16) rotate(-45 16 16)">
-    <path d="M11 3C27 9 27 23 11 29C20 23 20 9 11 3Z" fill="url(#b)"/>
+  <g transform="translate(16 16) scale(1.16) translate(-16 -16) rotate(-45 16 16)">
+    <path class="bow" d="M11 3C27 9 27 23 11 29C20 23 20 9 11 3Z"/>
     <path d="M7 16H26" stroke="url(#a)" stroke-width="3.2" stroke-linecap="round"/>
     <path d="M22.5 10L31.5 16L22.5 22L25 16Z" fill="url(#a)"/>
   </g>
