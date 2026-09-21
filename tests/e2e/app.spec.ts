@@ -4,7 +4,7 @@ import { anon, clearSaved, EMAIL, expect, projectIds, test } from "./fixtures";
 anon(
   "landing: one-screen premium hero with minimal navigation and no sections below",
   async ({ page }) => {
-    await page.goto("/");
+    await page.goto("/product");
     await expect(page.getByRole("heading", { level: 1 })).toContainText("Understand open source.");
     await expect(page.getByRole("heading", { level: 1 })).toContainText("Find where you belong.");
     await expect(page.getByTestId("cta-get-started")).toBeVisible();
@@ -24,7 +24,7 @@ anon(
 anon(
   "landing: navigation sheets open and close (desktop) and the menu works (mobile)",
   async ({ page, isMobile }) => {
-    await page.goto("/");
+    await page.goto("/product");
     await page.waitForLoadState("networkidle");
     if (isMobile) {
       await page.getByTestId("pub-menu-button").click();

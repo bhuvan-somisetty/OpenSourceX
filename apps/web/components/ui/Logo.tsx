@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 /**
- * OpenSourceX mark: two intersecting paths forming an X, with a node at every end.
- * One path is continuous (the accent), the other passes behind it, so the crossing reads as a connection,
- * not a collision. It stays legible from a 16px favicon to a 48px hero mark.
+ * OpenSourceX mark: four wedges converging on a shared centre. The gaps between them draw the X;
+ * the wedges are the ecosystem, and the one in accent is the contribution flowing in.
+ * Solid shapes only, so it stays crisp from a 16px favicon to a large intro mark.
  */
 export function LogoMark({ size = 24 }: { size?: number }) {
   return (
@@ -15,18 +15,13 @@ export function LogoMark({ size = 24 }: { size?: number }) {
       aria-hidden="true"
       focusable="false"
       className="logo-svg"
+      strokeWidth="2"
+      strokeLinejoin="round"
     >
-      <path
-        d="M25 7 L18.4 13.6 M13.6 18.4 L7 25"
-        stroke="currentColor"
-        strokeWidth="2.4"
-        strokeLinecap="round"
-      />
-      <path d="M7 7 L25 25" stroke="var(--accent)" strokeWidth="2.4" strokeLinecap="round" />
-      <circle cx="7" cy="7" r="2.7" fill="var(--accent)" />
-      <circle cx="25" cy="25" r="2.7" fill="var(--accent)" />
-      <circle cx="25" cy="7" r="2.7" fill="currentColor" />
-      <circle cx="7" cy="25" r="2.7" fill="currentColor" />
+      <path d="M7 3h18l-9 9z" fill="currentColor" stroke="currentColor" />
+      <path d="M7 29h18l-9-9z" fill="currentColor" stroke="currentColor" />
+      <path d="M3 7v18l9-9z" fill="currentColor" stroke="currentColor" />
+      <path d="M29 7v18l-9-9z" fill="var(--accent)" stroke="var(--accent)" />
     </svg>
   );
 }
@@ -43,9 +38,7 @@ export function Logo({
   return (
     <Link href={href} className="logo" aria-label={label}>
       <LogoMark size={size} />
-      <span className="logo-word">
-        OpenSource<b>X</b>
-      </span>
+      <span className="logo-word">OpenSourceX</span>
     </Link>
   );
 }

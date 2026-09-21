@@ -1,49 +1,25 @@
 import Link from "next/link";
-import { PublicNav } from "@/features/landing/PublicNav";
-import { ExploreButton } from "@/features/landing/ExploreButton";
+import { LogoMark } from "@/components/ui/Logo";
 
-/** The public landing: one viewport, no sections below. Everything else lives in the product. */
-export default function Landing() {
+/** Brand entrance: mark, wordmark, tagline, one action. Fits one viewport; the product landing is at /product. */
+export default function Intro() {
   return (
-    <div className="landing" data-testid="landing">
+    <main className="intro" data-testid="intro">
       <div className="atmos" aria-hidden="true" />
-      <PublicNav />
-
-      <section className="l-hero" aria-labelledby="hero-h">
-        <div className="eyebrow">Intelligence for open source</div>
-        <h1 id="hero-h" className="hero-title">
-          Understand open source.
-          <br />
-          <span className="soft">Find where you belong.</span>
-        </h1>
-        <p className="hero-lead">
-          Discover programs, organizations, projects and repositories through verified evidence,
-          then understand where and how to contribute.
-        </p>
-        <div className="hero-cta">
-          <Link className="btn primary lg" href="/login" data-testid="cta-get-started">
-            Get started
-          </Link>
-          <ExploreButton />
+      <div className="intro-inner">
+        <div className="intro-mark intro-in" aria-hidden="true">
+          <LogoMark size={96} />
         </div>
-      </section>
-
-      <div className="signal" aria-hidden="true">
-        <div className="wrap">
-          <div className="signal-line">
-            <i />
-            <i />
-            <i />
-            <i />
-          </div>
-          <div className="signal-labels">
-            <span>Programs</span>
-            <span>Projects</span>
-            <span>Repositories</span>
-            <span>Contributions</span>
-          </div>
-        </div>
+        <h1 className="intro-word intro-in d1">OpenSourceX</h1>
+        <p className="intro-tag intro-in d2">Intelligence for open source.</p>
+        <Link
+          className="btn primary lg intro-cta intro-in d3"
+          href="/product"
+          data-testid="intro-cta"
+        >
+          Get Started
+        </Link>
       </div>
-    </div>
+    </main>
   );
 }

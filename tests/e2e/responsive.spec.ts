@@ -1,7 +1,7 @@
 import { expect, test } from "./fixtures";
 
 const WIDTHS = [320, 360, 390, 768, 1024, 1280, 1440];
-const PUBLIC = ["/", "/login"];
+const PUBLIC = ["/", "/product", "/login"];
 const APP = [
   "/app",
   "/discover?i=TypeScript",
@@ -79,7 +79,7 @@ test.describe("landing fits one viewport (no vertical or horizontal scroll)", ()
     test(`${w}x${h}`, async ({ page }) => {
       await page.context().clearCookies();
       await page.setViewportSize({ width: w, height: h });
-      await page.goto("/");
+      await page.goto("/product");
       const r = await page.evaluate(() => {
         const d = document.documentElement;
         const cta = document.querySelector('[data-testid="cta-explore"]')!.getBoundingClientRect();
@@ -95,4 +95,45 @@ test.describe("landing fits one viewport (no vertical or horizontal scroll)", ()
       expect(r.ctaBottom, `CTA below the fold at ${w}x${h}`).toBeLessThanOrEqual(r.vh);
     });
   }
+});
+
+const INTRO_FITS = [
+  [320, 568],
+  [390, 844],
+  [768, 1024],
+  [1280, 720],
+  [1440, 900],
+];
+test.describe("brand intro fits one viewport and leads to the product landing", () => {
+  test.skip(({ isMobile }) => isMobile, "runs once; it resizes the viewport itself");
+  for (const [w, h] of INTRO_FITS) {
+    test(`${w}x${h}`, async ({ page }) => {
+      await page.context().clearCookies();
+      await page.setViewportSize({ width: w, height: h });
+      await page.goto("/");
+      const r = await page.evaluate(() => {
+        const d = document.documentElement;
+        const cta = document.querySelector('[data-testid="intro-cta"]')!.getBoundingClientRect();
+        const mark = document.querySelector(".intro-mark")!.getBoundingClientRect();
+        return {
+          v: d.scrollHeight > window.innerHeight + 1,
+          h: d.scrollWidth > d.clientWidth + 1,
+          ctaBottom: cta.bottom,
+          markTop: mark.top,
+          vh: window.innerHeight,
+        };
+      });
+      expect(r.h).toBe(false);
+      expect(r.v).toBe(false);
+      expect(r.ctaBottom).toBeLessThanOrEqual(r.vh);
+      expect(r.markTop).toBeGreaterThanOrEqual(0);
+    });
+  }
+  test("Get Started opens the product landing", async ({ page }) => {
+    await page.context().clearCookies();
+    await page.goto("/");
+    await page.getByTestId("intro-cta").click();
+    await expect(page).toHaveURL(/\/product$/);
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("Understand open source.");
+  });
 });
