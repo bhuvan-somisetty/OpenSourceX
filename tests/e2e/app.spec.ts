@@ -1,27 +1,57 @@
 import { anon, clearSaved, EMAIL, expect, projectIds, test } from "./fixtures";
 
 // ---------- public experience ----------
-anon("landing: premium public page with minimal navigation and real programs", async ({ page }) => {
-  await page.goto("/");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Understand open source.");
-  await expect(page.getByTestId("cta-get-started")).toBeVisible();
-  await expect(page.getByTestId("cta-explore")).toBeVisible();
-  await expect(page.getByRole("link", { name: "Saved" })).toHaveCount(0); // the public nav is not the app nav
-  await expect(page.getByTestId("dev-banner")).toHaveCount(0);
-  await expect(page.getByTestId("landing-programs")).toContainText("GSoC");
-  await expect(page.getByTestId("landing-programs")).toContainText("LFX");
-  await expect(page.getByTestId("landing-programs")).toContainText("no data yet"); // configured programs without data are labeled
-  await expect(page.getByTestId("trust-chain")).toContainText("Recorded snapshot");
-  await expect(page.getByText(/\d+\s*\/\s*100/)).toHaveCount(0);
-});
+anon(
+  "landing: one-screen premium hero with minimal navigation and no sections below",
+  async ({ page }) => {
+    await page.goto("/");
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("Understand open source.");
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("Find where you belong.");
+    await expect(page.getByTestId("cta-get-started")).toBeVisible();
+    await expect(page.getByTestId("cta-explore")).toBeVisible();
+    await expect(page.getByRole("link", { name: "Saved" })).toHaveCount(0); // the public nav is not the app nav
+    await expect(page.getByTestId("dev-banner")).toHaveCount(0);
+    // one viewport: nothing to scroll, and the old sections are gone
+    const scrolls = await page.evaluate(
+      () => document.documentElement.scrollHeight > window.innerHeight + 1,
+    );
+    expect(scrolls).toBe(false);
+    await expect(page.getByTestId("landing-programs")).toHaveCount(0);
+    await expect(page.getByTestId("trust-chain")).toHaveCount(0);
+  },
+);
 
 anon(
-  "login: OAuth and email are honestly disabled; development mode signs in and is labeled",
+  "landing: navigation sheets open and close (desktop) and the menu works (mobile)",
+  async ({ page, isMobile }) => {
+    await page.goto("/");
+    await page.waitForLoadState("networkidle");
+    if (isMobile) {
+      await page.getByTestId("pub-menu-button").click();
+      await expect(page.getByTestId("pub-menu")).toBeVisible();
+      await page.getByTestId("pub-menu").getByRole("button", { name: "How it works" }).click();
+    } else {
+      await page.getByTestId("nav-programs").click();
+    }
+    await expect(page.getByTestId("sheet")).toBeVisible();
+    await page.keyboard.press("Escape");
+    await expect(page.getByTestId("sheet")).toHaveCount(0);
+    await page.getByTestId("cta-explore").click();
+    await expect(page.getByTestId("sheet")).toContainText("Source, evidence, provenance");
+  },
+);
+
+anon(
+  "login: OAuth and email are honestly disabled; Local Preview signs in and is clearly labeled",
   async ({ page }) => {
     await page.goto("/login");
     await expect(page.getByTestId("oauth-google")).toBeDisabled();
     await expect(page.getByTestId("oauth-github")).toBeDisabled();
     await expect(page.getByText("not connected in this development build")).toBeVisible();
+    await expect(page.getByTestId("local-preview")).toContainText(
+      "No Google, GitHub or real account is used",
+    );
+    await expect(page.getByTestId("dev-login")).toHaveText("Continue in Local Preview");
     await page.waitForLoadState("networkidle");
     await page.getByTestId("dev-login").click();
     await expect(page).toHaveURL(/\/app$/);

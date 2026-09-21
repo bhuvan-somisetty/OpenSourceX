@@ -63,3 +63,36 @@ test.describe("responsive: no sideways scroll or clipped text", () => {
     });
   }
 });
+
+const FITS: [number, number][] = [
+  [320, 640],
+  [360, 740],
+  [390, 844],
+  [768, 1024],
+  [1024, 700],
+  [1280, 720],
+  [1440, 900],
+];
+test.describe("landing fits one viewport (no vertical or horizontal scroll)", () => {
+  test.skip(({ isMobile }) => isMobile, "runs once; it resizes the viewport itself");
+  for (const [w, h] of FITS) {
+    test(`${w}x${h}`, async ({ page }) => {
+      await page.context().clearCookies();
+      await page.setViewportSize({ width: w, height: h });
+      await page.goto("/");
+      const r = await page.evaluate(() => {
+        const d = document.documentElement;
+        const cta = document.querySelector('[data-testid="cta-explore"]')!.getBoundingClientRect();
+        return {
+          v: d.scrollHeight > window.innerHeight + 1,
+          h: d.scrollWidth > d.clientWidth + 1,
+          ctaBottom: cta.bottom,
+          vh: window.innerHeight,
+        };
+      });
+      expect(r.h, `horizontal overflow at ${w}x${h}`).toBe(false);
+      expect(r.v, `vertical scroll at ${w}x${h}`).toBe(false);
+      expect(r.ctaBottom, `CTA below the fold at ${w}x${h}`).toBeLessThanOrEqual(r.vh);
+    });
+  }
+});

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { signOut } from "@/features/auth/actions";
+import { Logo } from "@/components/ui/Logo";
 
 export const NAV = [
   { href: "/discover", label: "Discover" },
@@ -112,10 +113,7 @@ export function Header({ userName }: { userName: string }) {
   return (
     <header className="app">
       <div className="wrap bar">
-        <Link href="/app" className="logo" aria-label="OpenSourceX home">
-          <span className="logo-mark" aria-hidden="true" />
-          <span>OpenSourceX</span>
-        </Link>
+        <Logo href="/app" size={24} />
         <nav className="nav" aria-label="Primary">
           {NAV.map((n) => (
             <Link

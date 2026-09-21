@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { developmentAuthAvailable, getSession } from "@/lib/auth";
-import { Logo, PublicNav } from "@/features/landing/PublicNav";
+import { LogoMark } from "@/components/ui/Logo";
+import { PublicNav } from "@/features/landing/PublicNav";
 import { continueInDevelopmentMode } from "@/features/auth/actions";
 
 export const metadata: Metadata = { title: "Sign in" };
@@ -11,12 +12,12 @@ export default async function Login() {
   if (await getSession()) redirect("/app");
   const dev = developmentAuthAvailable();
   return (
-    <>
+    <div className="auth" data-testid="login-page">
+      <div className="atmos" aria-hidden="true" />
       <PublicNav />
-      <div className="auth">
-        <div className="beams" aria-hidden="true" />
+      <div className="auth-body">
         <section className="auth-card" aria-labelledby="login-h" data-testid="login-card">
-          <Logo />
+          <LogoMark size={34} />
           <h1 id="login-h">Your path into open source starts here.</h1>
           <p className="muted" style={{ margin: 0 }}>
             Sign in to explore programs, save projects and prepare to contribute.
@@ -48,53 +49,49 @@ export default async function Login() {
 
           <div className="divider">or</div>
 
-          <form>
-            <div className="field">
-              <label htmlFor="email">Email</label>
-              <input
-                id="email"
-                type="email"
-                name="email"
-                placeholder="you@example.com"
-                disabled
-                aria-describedby="email-hint"
-              />
-              <span id="email-hint" className="hint">
-                Email sign-in is not configured in this development build.
-              </span>
-            </div>
-            <div className="auth-stack">
-              <button className="btn" type="button" disabled aria-disabled="true">
-                Continue
-              </button>
-            </div>
-          </form>
+          <div className="field">
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              placeholder="you@example.com"
+              disabled
+              aria-describedby="email-hint"
+            />
+            <span id="email-hint" className="hint">
+              Email sign-in is not configured in this development build.
+            </span>
+          </div>
 
-          <div className="divider">development only</div>
-
-          {dev ? (
-            <form action={continueInDevelopmentMode}>
-              <button
-                className="btn primary"
-                type="submit"
-                style={{ width: "100%" }}
-                data-testid="dev-login"
-              >
-                Continue in Development Mode
-              </button>
-              <p className="hint" style={{ marginTop: 10 }}>
-                Creates a local <strong>development session</strong> so saved items persist on this
-                machine. It is not a real account and is disabled in production.
+          <div className="local-preview" data-testid="local-preview">
+            <div className="lp-head">
+              <span className="lp-tag">Local preview</span>
+              <span className="dim">development only</span>
+            </div>
+            {dev ? (
+              <form action={continueInDevelopmentMode}>
+                <button
+                  className="btn primary"
+                  type="submit"
+                  style={{ width: "100%" }}
+                  data-testid="dev-login"
+                >
+                  Continue in Local Preview
+                </button>
+                <p className="hint" style={{ margin: "10px 0 0" }}>
+                  Creates a temporary local development session for this machine. No Google, GitHub
+                  or real account is used, and this does not create a real OpenSourceX account.
+                </p>
+              </form>
+            ) : (
+              <p className="notice err" role="alert" style={{ margin: 0 }}>
+                Local preview is disabled in this environment and real sign-in is not connected.
               </p>
-            </form>
-          ) : (
-            <p className="notice err" role="alert">
-              Development sessions are disabled in this environment and real sign-in is not
-              connected.
-            </p>
-          )}
+            )}
+          </div>
         </section>
       </div>
-    </>
+    </div>
   );
 }
