@@ -10,6 +10,14 @@ export default function Intro() {
         <div className="intro-glow" />
         <div className="intro-glow b" />
         <div className="intro-horizon" />
+        <div className="intro-rings">
+          <i className="ring r1" />
+          <i className="ring r2" />
+          <i className="ring r3" />
+          <i className="orbit o1" />
+          <i className="orbit o2" />
+          <i className="halo" />
+        </div>
         <div className="intro-grid" />
         <div className="intro-grain" />
         <div className="intro-vignette" />
