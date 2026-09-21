@@ -461,7 +461,7 @@ button.btn {
   );
   animation:
     intro-fade 2.4s ease-out both,
-    intro-spin 70s linear infinite;
+    intro-spin 28s linear infinite;
 }
 .ring.r1 {
   width: min(44vmin, 420px);
@@ -472,7 +472,7 @@ button.btn {
   width: min(70vmin, 680px);
   height: min(70vmin, 680px);
   animation-delay: 0.3s, 0s;
-  animation-duration: 2.4s, 110s;
+  animation-duration: 2.4s, 44s;
   animation-direction: normal, reverse;
 }
 .ring.r3 {
@@ -480,14 +480,14 @@ button.btn {
   width: min(102vmin, 980px);
   height: min(102vmin, 980px);
   animation-delay: 0.6s, 0s;
-  animation-duration: 2.4s, 160s;
+  animation-duration: 2.4s, 64s;
 }
 .ring.r4 {
   --ra: 0.14;
   width: min(140vmin, 1320px);
   height: min(140vmin, 1320px);
   animation-delay: 0.9s, 0s;
-  animation-duration: 2.4s, 220s;
+  animation-duration: 2.4s, 88s;
   animation-direction: normal, reverse;
 }
 .orbit {
@@ -516,19 +516,19 @@ button.btn {
 .orbit.o1 {
   width: min(44vmin, 420px);
   height: min(44vmin, 420px);
-  animation: intro-spin 34s linear infinite;
+  animation: intro-spin 16s linear infinite;
 }
 .orbit.o3 {
   width: min(102vmin, 980px);
   height: min(102vmin, 980px);
   opacity: 0.4;
-  animation: intro-spin 90s linear infinite;
+  animation: intro-spin 40s linear infinite;
 }
 .orbit.o2 {
   width: min(70vmin, 680px);
   height: min(70vmin, 680px);
   opacity: 0.6;
-  animation: intro-spin 58s linear infinite reverse;
+  animation: intro-spin 26s linear infinite reverse;
 }
 .halo {
   width: min(52vmin, 460px);
