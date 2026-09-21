@@ -4,6 +4,7 @@ Resolves Q11 (D-010). Recommendations are **transparent matching**, not a
 score.
 
 ## Rules
+
 - **No numeric match score.** Never show "87/100" or a percentage, and never
   imply a universal objective ranking.
 - **Show criteria.** Each result lists the criteria it meets and, equally,
@@ -14,6 +15,7 @@ score.
   verified" is shown instead of assumed.
 
 ## Result presentation
+
 ```
 WHY THIS PROJECT MATCHES
  ✓ Go matches your selected language          [GitHub, verified 2026-..]
@@ -24,15 +26,18 @@ WHY THIS PROJECT MATCHES
 NOT VERIFIED
  - Current-year program participation
 ```
+
 (Illustrative layout only; real entries come from stored evidence.)
 
 ## Matching criteria (MVP)
+
 Language match, technology match, program/history match (with grain stated:
 organization-level vs project-level), repository activity evidence,
 contribution documentation present, beginner-friendly labels present,
 community channels documented.
 
 ## Ordering
+
 - Filter first: candidates must satisfy the user's hard filters.
 - Then order by an **internal relevance strategy**: a documented, rule-based
   ordering (e.g. more of the user's selected criteria met first; ties broken
@@ -44,6 +49,7 @@ community channels documented.
 - The ordering and criteria set are versioned and tested with golden cases.
 
 ## Guardrails
+
 - Never claim a future program participation; use FORECASTING.md wording.
 - Do not recommend from data older than its freshness window without a
   stale marker.

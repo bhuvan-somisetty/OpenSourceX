@@ -1,0 +1,18 @@
+{
+  "name": "@opensourcex/db",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@opensourcex/shared": "workspace:*",
+    "pg": "^8.23.0"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.23.1"
+  }
+}

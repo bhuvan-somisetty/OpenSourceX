@@ -3,6 +3,7 @@
 Status: P3, not in MVP.
 
 ## Rules
+
 - A forecast is never a fact. UI wording: "No official {year} announcement
   has been verified. Historical participation suggests this project may be
   worth monitoring."
@@ -17,6 +18,7 @@ Status: P3, not in MVP.
 - Freshness: forecasts expire when the program publishes official lists.
 
 ## Signals available from sources (verified 2026-09-21)
+
 - GSoC exposes program metadata per year (`phase`, milestone dates such as
   org application and announcement dates). This is the strongest signal for
   "has the program officially announced this year's organizations?"

@@ -1,0 +1,32 @@
+{
+  "name": "opensourcex",
+  "private": true,
+  "version": "0.0.0",
+  "packageManager": "pnpm@12.3.4",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @opensourcex/web dev",
+    "dev:worker": "pnpm --filter @opensourcex/worker dev",
+    "build": "pnpm -r --filter \"./apps/*\" build",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "pnpm -r typecheck",
+    "test": "vitest run --project unit",
+    "test:integration": "vitest run --project integration",
+    "db:migrate": "tsx packages/db/src/migrate-cli.ts",
+    "spike": "tsx packages/ingest/src/spike-cli.ts"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.0",
+    "@types/node": "^24.0.0",
+    "eslint": "^10.11.0",
+    "prettier": "^3.9.8",
+    "tsx": "^4.23.15",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.70.0",
+    "vitest": "^5.0.1"
+  }
+}

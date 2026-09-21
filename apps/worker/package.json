@@ -1,0 +1,17 @@
+{
+  "name": "@opensourcex/worker",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc -p tsconfig.json --noEmit",
+    "start": "tsx src/index.ts",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@opensourcex/db": "workspace:*",
+    "@opensourcex/shared": "workspace:*",
+    "pg-boss": "^12.33.2"
+  }
+}

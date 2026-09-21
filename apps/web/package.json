@@ -1,0 +1,23 @@
+{
+  "name": "@opensourcex/web",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@opensourcex/db": "workspace:*",
+    "@opensourcex/shared": "workspace:*",
+    "next": "^16.3.5",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0"
+  }
+}

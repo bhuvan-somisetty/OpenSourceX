@@ -1,0 +1,17 @@
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: osx
+      POSTGRES_PASSWORD: osx_dev_password
+      POSTGRES_DB: opensourcex
+    ports:
+      - "5433:5432"
+    volumes:
+      - osx_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U osx -d opensourcex"]
+      interval: 5s
+      retries: 10
+volumes:
+  osx_pgdata:

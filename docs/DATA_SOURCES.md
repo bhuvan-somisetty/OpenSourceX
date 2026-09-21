@@ -6,13 +6,13 @@ actually accessed. Findings below were verified by direct HTTP requests on
 
 ## Source hierarchy
 
-| Tier | Meaning | Examples |
-|------|---------|----------|
-| 1 | Official program source | GSoC archive, LFX Mentorship |
-| 2 | Official organization, project or ecosystem source | Org websites, CNCF mentoring repository |
-| 3 | Official GitHub data | GitHub REST/GraphQL API |
-| 4 | Reliable secondary source | Curated third-party archives |
-| 5 | Community/other | Forums, blogs |
+| Tier | Meaning                                            | Examples                                |
+| ---- | -------------------------------------------------- | --------------------------------------- |
+| 1    | Official program source                            | GSoC archive, LFX Mentorship            |
+| 2    | Official organization, project or ecosystem source | Org websites, CNCF mentoring repository |
+| 3    | Official GitHub data                               | GitHub REST/GraphQL API                 |
+| 4    | Reliable secondary source                          | Curated third-party archives            |
+| 5    | Community/other                                    | Forums, blogs                           |
 
 A lower-tier source never overrides a higher-tier one. Disagreements are
 stored as `CONFLICTING` and shown to the user (see DATA_PROVENANCE.md).
@@ -145,10 +145,12 @@ export lists 59). It is one provider under `LFX Mentorship > CNCF ecosystem`
   and attribution UI exist (DATA_POLICY).
 
 ## Permissions and terms
+
 The per-source terms, robots, licence and attribution status, and the
 `approved/pending/blocked` ingestion register, are in DATA_POLICY.md
 section 2. **No source is approved for production ingestion yet.**
 
 ## Not yet researched
+
 Organization/project websites (Tier 2), other LF ecosystems' providers,
 Outreachy data, Hacktoberfest. Tracked in OPEN_QUESTIONS.md.

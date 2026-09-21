@@ -37,6 +37,7 @@ milestone cannot safely start until the finding is resolved.
 ## CRITICAL
 
 ### C-1 Original handoff not available for traceability
+
 - **Wrong:** requirement preservation cannot be certified. Scope, edge cases
   and open questions from the handoff may be missing or contradicted.
 - **Matters:** the master prompt makes the handoff the source of truth.
@@ -44,6 +45,7 @@ milestone cannot safely start until the finding is resolved.
 - **Blocks:** M1 scope freeze. M0 (scaffolding) is not blocked.
 
 ### C-2 Ingestion of both program sources has unresolved permission status
+
 - **Wrong:** neither GSoC nor LFX offers a documented public API. The
   endpoints are those the sites' own front ends use. `mentorship.lfx.dev`
   serves `robots.txt` with `Disallow: /` for all agents. Neither site's
@@ -61,6 +63,7 @@ milestone cannot safely start until the finding is resolved.
 ## HIGH
 
 ### H-1 GSoC data is organization-per-year, not project- or mentor-level
+
 - **Wrong:** PRD FR2, the project page and the interview/community features
   imply GSoC history per project and mention "mentor history where
   available". Verified: GSoC's `/projects/` endpoint returns 403 and
@@ -75,6 +78,7 @@ milestone cannot safely start until the finding is resolved.
 - **Blocks:** M1 schema.
 
 ### H-2 LFX term normalization is far harder than "map by dates"
+
 - **Wrong:** TECHNICAL_DESIGN says terms map by start date. Real data has 151
   distinct spellings ("Summer PT/FT", "Spring'2022", "01-Mar-May", "2026
   Term 1: March - May"), part-time/full-time tracks, and one future term
@@ -87,6 +91,7 @@ milestone cannot safely start until the finding is resolved.
 - **Blocks:** M1.
 
 ### H-3 Cross-source entity resolution is under-specified
+
 - **Wrong:** ARCHITECTURE and TECHNICAL_DESIGN mention linking but not how a
   GSoC org, an LFX project and a GitHub org/repo become one Project or
   Organization. Real data: of 1,301 LFX projects, 78 link only a GitHub
@@ -99,6 +104,7 @@ milestone cannot safely start until the finding is resolved.
 - **Blocks:** M1.
 
 ### H-4 "Automatic data updates" is a requirement with almost no design
+
 - **Wrong:** only ARCHITECTURE/OPERATIONS mention scheduling. Missing:
   per-source cadence, change detection, handling removals and renames,
   backfill vs incremental, snapshot retention, and how a failed refresh
@@ -109,6 +115,7 @@ milestone cannot safely start until the finding is resolved.
 - **Blocks:** M1.
 
 ### H-5 No policy for third-party content, licensing and personal data
+
 - **Wrong:** the product will store and redisplay GSoC organization
   descriptions and logos (hosted by Google), repository text (READMEs,
   issues) and GitHub logins. No doc covers content licensing, attribution,
@@ -120,6 +127,7 @@ milestone cannot safely start until the finding is resolved.
 - **Blocks:** M3 (storing repo text). M0/M1 metadata-only is not blocked.
 
 ### H-6 UI/UX spec cannot yet produce the premium experience required
+
 - **Wrong:** UI_UX_SPECIFICATION and DESIGN_SYSTEM are checklists. No
   information architecture per page, wireframes, concrete tokens (no color or
   type values), dark-theme rules, hero concept, microcopy, interaction or
@@ -131,6 +139,7 @@ milestone cannot safely start until the finding is resolved.
 - **Blocks:** M4. Not M0/M1.
 
 ### H-7 Abuse of shared quotas is not addressed
+
 - **Wrong:** `POST /repositories/analyze` lets anonymous users spend our
   single GitHub token budget (5,000 requests/hour), and interview/AI
   endpoints let anonymous users spend LLM budget.
@@ -140,6 +149,7 @@ milestone cannot safely start until the finding is resolved.
 - **Blocks:** M3 (GitHub) and M5 (LLM).
 
 ### H-8 PR/contribution intelligence was silently deferred to P2
+
 - **Wrong:** the master prompt calls it "a major differentiating feature" and
   lists a "Contribution" interview category. PRD puts it in P2 and the MVP
   interview excludes those questions, so the "Sam" persona is not served in
@@ -228,25 +238,25 @@ milestone cannot safely start until the finding is resolved.
 
 ## Requirement traceability (against the master prompt)
 
-| Requirement | Where | Status |
-|-------------|-------|--------|
-| Program intelligence | PRD MVP 1, API programs | Covered; GSoC is org-level (H-1) |
-| GSoC history | DATA_SOURCES, PRD | Partial: 2022-2026 only, org-level |
-| LFX term-level history | DATA_SOURCES, TECHNICAL_DESIGN | Partial: feasible, normalization hard (H-2) |
-| Repository intelligence | PRD MVP 2, API | Covered at outline level |
-| Project/activity analysis | TECHNICAL_DESIGN | Covered; evidence table, no score |
-| Recommendations | RECOMMENDATION_ENGINE | Partial (M-3), personalization P2 |
-| Community intelligence | DATA_MODEL | Weak (M-2) |
-| Contribution guidance | PRD MVP 6 | Covered |
-| Project learning | PRD, UI | Partial: levels 1-3 in MVP, no content design |
-| PR/contribution intelligence | CONTRIBUTION_INTELLIGENCE | Deferred to P2 (H-8) |
-| Interview preparation | INTERVIEW_SYSTEM | Partial: basic mode only |
-| Source provenance | DATA_PROVENANCE | Covered |
-| Freshness | DATA_PROVENANCE | Covered; windows are initial guesses |
-| Confirmed/historical/inferred/forecast | DATA_PROVENANCE, FORECASTING | Covered |
-| Automatic data updates | ARCHITECTURE, OPERATIONS | Under-specified (H-4) |
-| Ecosystem graph, timeline, readiness, workspace | PRD P2/P3 | Deferred, recorded in roadmap |
-| Notifications | PRD P3 | Deferred |
+| Requirement                                     | Where                          | Status                                        |
+| ----------------------------------------------- | ------------------------------ | --------------------------------------------- |
+| Program intelligence                            | PRD MVP 1, API programs        | Covered; GSoC is org-level (H-1)              |
+| GSoC history                                    | DATA_SOURCES, PRD              | Partial: 2022-2026 only, org-level            |
+| LFX term-level history                          | DATA_SOURCES, TECHNICAL_DESIGN | Partial: feasible, normalization hard (H-2)   |
+| Repository intelligence                         | PRD MVP 2, API                 | Covered at outline level                      |
+| Project/activity analysis                       | TECHNICAL_DESIGN               | Covered; evidence table, no score             |
+| Recommendations                                 | RECOMMENDATION_ENGINE          | Partial (M-3), personalization P2             |
+| Community intelligence                          | DATA_MODEL                     | Weak (M-2)                                    |
+| Contribution guidance                           | PRD MVP 6                      | Covered                                       |
+| Project learning                                | PRD, UI                        | Partial: levels 1-3 in MVP, no content design |
+| PR/contribution intelligence                    | CONTRIBUTION_INTELLIGENCE      | Deferred to P2 (H-8)                          |
+| Interview preparation                           | INTERVIEW_SYSTEM               | Partial: basic mode only                      |
+| Source provenance                               | DATA_PROVENANCE                | Covered                                       |
+| Freshness                                       | DATA_PROVENANCE                | Covered; windows are initial guesses          |
+| Confirmed/historical/inferred/forecast          | DATA_PROVENANCE, FORECASTING   | Covered                                       |
+| Automatic data updates                          | ARCHITECTURE, OPERATIONS       | Under-specified (H-4)                         |
+| Ecosystem graph, timeline, readiness, workspace | PRD P2/P3                      | Deferred, recorded in roadmap                 |
+| Notifications                                   | PRD P3                         | Deferred                                      |
 
 ## Checks against the numbered review items
 
@@ -276,12 +286,14 @@ milestone cannot safely start until the finding is resolved.
   Repository visibility: private.
 
 ## Before M0 (scaffolding only)
+
 1. Decide deployables: web + API + worker or web (with route handlers) +
    worker (M-5, Q12).
 2. Add `.gitattributes` (L-1).
-No source or data decisions are required for M0.
+   No source or data decisions are required for M0.
 
 ## Before M1 (ingestion)
+
 1. Provide the handoff and re-run traceability (C-1).
 2. Read both programs' terms and decide the permission path (C-2, Q2).
 3. Fix the PRD/DATA_MODEL grain (H-1) and decide typed vs generic facts
@@ -290,6 +302,7 @@ No source or data decisions are required for M0.
    (H-4).
 
 ## Recommended implementation order
+
 1. Resolve C-1 and C-2; apply the doc fixes above.
 2. M0 foundation.
 3. M1 as a local, read-only spike on recorded snapshots, then the real
@@ -303,6 +316,7 @@ No source or data decisions are required for M0.
 # Addendum 2: owner decisions and second consistency audit (2026-09-21)
 
 ## Decisions applied
+
 Owner decisions were applied to the docs: Q7 handoff (full handoff is
 source of truth), Q8 GSoC granularity (D-007), Q9 PR phasing (D-011), Q10
 hybrid model (D-008), Q11 transparent recommendations (D-010), Q12 Next.js
@@ -314,45 +328,48 @@ normalization and entity resolution (D-015), and the update pipeline
 TRACEABILITY.
 
 ## Additional research finding
+
 `lfx-export.json` itself contains `email` and `lfid` in every mentor object
 (133 email-like strings), and CNCF's GSoC idea files list mentor emails, so
 the privacy rule covers JSON and markdown, not only the CSV. CNCF's
 `mentors/` and `mentees/` folders hold only guide READMEs, not rosters, and
-`programs/summerofcode/*.md` are project *ideas*, not participation.
+`programs/summerofcode/*.md` are project _ideas_, not participation.
 
 ## Status of earlier findings
-| ID | Status |
-|----|--------|
-| C-1 handoff | Resolved (Q7); traceability in TRACEABILITY.md |
-| C-2 permissions | **Still open (Q2).** No source is `approved`; register in DATA_POLICY.md. CNCF blocked only on Q18 and the sanitizer |
-| H-1 GSoC grain | Resolved by design (D-007, DATA_MODEL 3) |
-| H-2 term normalization | Resolved by design (INGESTION_PIPELINE 3); implementation in M1 |
-| H-3 entity resolution | Resolved by design (ENTITY_RESOLUTION.md); implementation in M1 |
-| H-4 automatic updates | Resolved by design (INGESTION_PIPELINE.md) |
-| H-5 content and privacy | Resolved by policy (DATA_POLICY.md); retention values await Q19 |
-| H-6 UI/UX depth | **Still open (Q22).** Needs a design phase before M4 |
-| H-7 quota abuse | Requirements written (SECURITY_ARCHITECTURE); numbers set in M3 and M5 |
-| H-8 PR intelligence | Resolved (D-011) |
-| M-1 data model shape | Resolved (D-008) |
-| M-2 community intelligence | Partly: `community_channel` typed, GSoC comm links now in scope; GitHub discussions and governance files listed in the PRD. Field mapping happens in M1/M3 |
-| M-3 ranking vs D-004 | Resolved (D-010); no numeric score |
-| M-4 confidence scale | Resolved (single scale in DATA_PROVENANCE) |
-| M-5 deployables | Resolved (D-009): app plus worker |
-| M-6 program metadata signal | Documented in FORECASTING; use pending Q2 |
-| M-7 technology taxonomy | Open: alias table exists, matching strategy to define in M1 |
-| M-8 retention | Proposals written; confirm via Q19 |
-| M-9 security contact | Open (Q13), owner input |
-| M-10 DATA_SOURCES template | Mostly filled; GSoC and LFX rate limits still unknown |
-| M-11 stale source text | Resolved (status derived from dates) |
-| L-1 `.gitattributes` | Scheduled for M0 |
-| L-2 CI and templates | M0; templates optional |
-| L-3 "CONTRIBUTING" wording | Fixed in the PRD |
-| L-4 forecast schema | Added to DATA_MODEL section 9 |
-| L-5 API detail | Open, low priority |
-| L-6 code of conduct | Resolved (D-012) |
-| L-7 LFX coverage wording | Applied ("published projects visible via the endpoint") |
+
+| ID                          | Status                                                                                                                                                     |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| C-1 handoff                 | Resolved (Q7); traceability in TRACEABILITY.md                                                                                                             |
+| C-2 permissions             | **Still open (Q2).** No source is `approved`; register in DATA_POLICY.md. CNCF blocked only on Q18 and the sanitizer                                       |
+| H-1 GSoC grain              | Resolved by design (D-007, DATA_MODEL 3)                                                                                                                   |
+| H-2 term normalization      | Resolved by design (INGESTION_PIPELINE 3); implementation in M1                                                                                            |
+| H-3 entity resolution       | Resolved by design (ENTITY_RESOLUTION.md); implementation in M1                                                                                            |
+| H-4 automatic updates       | Resolved by design (INGESTION_PIPELINE.md)                                                                                                                 |
+| H-5 content and privacy     | Resolved by policy (DATA_POLICY.md); retention values await Q19                                                                                            |
+| H-6 UI/UX depth             | **Still open (Q22).** Needs a design phase before M4                                                                                                       |
+| H-7 quota abuse             | Requirements written (SECURITY_ARCHITECTURE); numbers set in M3 and M5                                                                                     |
+| H-8 PR intelligence         | Resolved (D-011)                                                                                                                                           |
+| M-1 data model shape        | Resolved (D-008)                                                                                                                                           |
+| M-2 community intelligence  | Partly: `community_channel` typed, GSoC comm links now in scope; GitHub discussions and governance files listed in the PRD. Field mapping happens in M1/M3 |
+| M-3 ranking vs D-004        | Resolved (D-010); no numeric score                                                                                                                         |
+| M-4 confidence scale        | Resolved (single scale in DATA_PROVENANCE)                                                                                                                 |
+| M-5 deployables             | Resolved (D-009): app plus worker                                                                                                                          |
+| M-6 program metadata signal | Documented in FORECASTING; use pending Q2                                                                                                                  |
+| M-7 technology taxonomy     | Open: alias table exists, matching strategy to define in M1                                                                                                |
+| M-8 retention               | Proposals written; confirm via Q19                                                                                                                         |
+| M-9 security contact        | Open (Q13), owner input                                                                                                                                    |
+| M-10 DATA_SOURCES template  | Mostly filled; GSoC and LFX rate limits still unknown                                                                                                      |
+| M-11 stale source text      | Resolved (status derived from dates)                                                                                                                       |
+| L-1 `.gitattributes`        | Scheduled for M0                                                                                                                                           |
+| L-2 CI and templates        | M0; templates optional                                                                                                                                     |
+| L-3 "CONTRIBUTING" wording  | Fixed in the PRD                                                                                                                                           |
+| L-4 forecast schema         | Added to DATA_MODEL section 9                                                                                                                              |
+| L-5 API detail              | Open, low priority                                                                                                                                         |
+| L-6 code of conduct         | Resolved (D-012)                                                                                                                                           |
+| L-7 LFX coverage wording    | Applied ("published projects visible via the endpoint")                                                                                                    |
 
 ## Remaining blockers
+
 - **Before any production ingestion:** Q2 (GSoC and LFX permission), and for
   CNCF, Q18 plus the sanitizer with planted-PII tests.
 - **Before M4:** Q22 design phase.
@@ -361,5 +378,6 @@ the privacy rule covers JSON and markdown, not only the CSV. CNCF's
 - **Owner input:** Q13 security contact.
 
 ## Second audit: results
+
 Automated checks were run on the final tree and history; the results are in
 the completion report. Findings that need a decision are Q2, Q13, Q18, Q22.
