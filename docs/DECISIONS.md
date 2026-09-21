@@ -148,3 +148,14 @@ Format: Decision, Context, Options, Reason, Trade-offs, Date.
   Token budgets, request limits, caching, fallback and context caps are
   defined as proposed defaults (AI_ARCHITECTURE.md). Production activation
   requires explicit owner approval (Q5, Q26).
+
+## D-019 Source permission review outcome (2026-09-21)
+
+- Context: Q2 and Q18 required a source-by-source terms review (SOURCE_PERMISSIONS.md).
+- Decision: LFX Mentorship API is **blocked** (its Acceptable Use Policy prohibits
+  data mining and robots); GSoC is **pending** (program terms unreadable); CNCF
+  and GitHub are **conditional** on owner approval. Nothing is approved and live
+  ingestion stays off. If a source cannot provide a dataset, another legitimate
+  source provides it (provider architecture, D-013); the product scope is unchanged.
+- Trade-offs: LFX term history beyond CNCF projects waits for permission or
+  another licensed source.

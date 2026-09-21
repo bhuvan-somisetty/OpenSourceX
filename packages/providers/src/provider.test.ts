@@ -12,9 +12,9 @@ import { PROVIDERS } from "./registry";
 function providerContract(make: () => SourceProvider) {
   const p = make();
   describe(`provider contract: ${p.info.key}`, () => {
-    it("is registered and starts pending", () => {
+    it("is registered and not approved", () => {
       expect(PROVIDERS.map((x) => x.key)).toContain(p.info.key);
-      expect(p.info.ingestion).toBe("pending");
+      expect(p.info.ingestion).not.toBe("approved");
     });
     it("recorded snapshots are sanitized, recorded and match declared datasets", async () => {
       const envs = await p.fetchRecorded();

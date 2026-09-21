@@ -21,7 +21,10 @@ Resolves Q15, Q16 and Q17. Evidence: RESEARCH/2026-09-21-source-probes.md.
 
 `Ingestion` values: `approved`, `pending` (do not run in production),
 `blocked`. Nothing is `approved` yet: no automated production ingestion has
-been authorized. Local read-only research is allowed.
+been authorized. Local read-only research is allowed. The reviewed decisions,
+evidence and field-level rules are in SOURCE_PERMISSIONS.md; the table below is
+superseded by it where they differ (LFX is **blocked**: its Acceptable Use Policy
+prohibits data mining and robots).
 
 | Source                                                            | Official API?                              | Terms reviewed                                                                                                                                                  | Robots                                                                        | Licence / reuse                                                                                                                                                                                                  | Attribution                                                                       | Ingestion                                                                       |
 | ----------------------------------------------------------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |

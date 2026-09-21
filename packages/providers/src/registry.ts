@@ -25,7 +25,8 @@ export const PROVIDERS: readonly ProviderInfo[] = [
     ecosystem: null,
     coverage: "partial",
     baseUrl: "https://summerofcode.withgoogle.com",
-    licenceNote: "Terms not reviewed; undocumented endpoint. Organization/year level only.",
+    licenceNote:
+      "PENDING: GSoC Program Rules and Terms unread; no reuse licence found (docs/SOURCE_PERMISSIONS.md). Organization/year level only.",
     ingestion: "pending",
   },
   {
@@ -36,8 +37,9 @@ export const PROVIDERS: readonly ProviderInfo[] = [
     ecosystem: null,
     coverage: "partial",
     baseUrl: "https://api.mentorship.lfx.linuxfoundation.org",
-    licenceNote: "Terms not reviewed; site robots.txt disallows crawlers. Published projects only.",
-    ingestion: "pending",
+    licenceNote:
+      "BLOCKED: Acceptable Use Policy prohibits data mining and robots; robots.txt disallows crawlers. Needs written permission (docs/SOURCE_PERMISSIONS.md).",
+    ingestion: "blocked",
   },
   {
     key: "cncf-mentoring",
@@ -47,7 +49,8 @@ export const PROVIDERS: readonly ProviderInfo[] = [
     ecosystem: "cncf",
     coverage: "ecosystem",
     baseUrl: "https://github.com/cncf/mentoring",
-    licenceNote: "Code Apache-2.0; content CC BY 4.0 (scope unconfirmed, Q18). CNCF projects only.",
+    licenceNote:
+      "CONDITIONAL: program materials CC BY 4.0, code Apache-2.0 (CONTRIBUTING.md); owner approval pending. CNCF projects only.",
     ingestion: "pending",
   },
 ];

@@ -105,7 +105,8 @@ describe("GSoC sanitizer", () => {
 
 describe("provider gate", () => {
   it("no provider is approved yet", () => {
-    expect(PROVIDERS.every((p) => p.ingestion === "pending")).toBe(true);
+    expect(PROVIDERS.every((p) => p.ingestion !== "approved")).toBe(true);
+    expect(PROVIDERS.find((p) => p.key === "lfx-mentorship-api")?.ingestion).toBe("blocked");
   });
   it("blocks live persistence for pending providers, allows recorded", () => {
     expect(() => assertMayPersist("cncf-mentoring", "live")).toThrow(/not allowed/);
