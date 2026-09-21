@@ -1,0 +1,102 @@
+{
+  "provider": "cncf-mentoring",
+  "dataset": "cncf-lfx-export",
+  "url": "https://github.com/cncf/mentoring/blob/17ef996a1fc7b266dbf2cfa6362752d6bb5c4c3d/programs/lfx-mentorship/2026/03-Sep-Nov/lfx-export.json",
+  "fetchedAt": "2026-09-21T00:23:38.853Z",
+  "origin": "recorded",
+  "sourceRef": "17ef996a1fc7b266dbf2cfa6362752d6bb5c4c3d",
+  "schemaVersion": "1",
+  "body": {
+    "term": "2026 Term 3 (Sep-Nov)",
+    "generatedAt": "2026-08-04T21:49:16.677Z",
+    "programs": [
+      {
+        "cncfProject": "Jaeger",
+        "slug": "jaeger",
+        "maturity": "graduated",
+        "title": "OpenTelemetry-Native Query and State Layers Migration",
+        "term": "2026 Term 3 (Sep-Nov)",
+        "lfxProjectUuid": "36d66a45-bf3f-4bd2-8032-438436557e11",
+        "upstreamIssueUrl": "https://github.com/jaegertracing/jaeger-ui/issues/4278",
+        "technologies": [
+          "TypeScript",
+          "React",
+          "TanStack Query",
+          "Zustand",
+          "Zod",
+          "OpenTelemetry / OTLP",
+          "Go",
+          "Protobuf",
+          "OpenAPI"
+        ],
+        "summary": "## Description Jaeger UI is two-thirds through three interlocking migrations at different stages. This program finishes all three and deletes what they replaced. The OpenTelemetry-native move stopped at a deliberate decision point: the UI speaks OTEL vocabulary throughout but obtains it by wrapping the legacy Jaeger model in a facade, and while service discovery and search run on `/api/v3/`, load…",
+        "mentors": [
+          {
+            "name": "Parship Chowdhury",
+            "githubHandle": "parshipcy",
+            "role": "primary"
+          },
+          {
+            "name": "Yuri Shkuro",
+            "githubHandle": "yurishkuro",
+            "role": "co-mentor"
+          }
+        ]
+      },
+      {
+        "cncfProject": "The Update Framework (TUF)",
+        "slug": "tuf",
+        "maturity": "graduated",
+        "title": "Add ELI5 documentation / video to TUF",
+        "term": "2026 Term 3 (Sep-Nov)",
+        "lfxProjectUuid": "514edf13-be1b-4b3c-a71c-2cacd81c9c8e",
+        "upstreamIssueUrl": "https://github.com/theupdateframework/theupdateframework.io/issues/132",
+        "technologies": ["TUF"],
+        "summary": "## Description We've heard from some potential adopters that TUF is hard to understand. We'd like to remedy this by making documentation accessible to a five year old (ELI5). We can be flexible about whether the end result is video, web site documentation, a children's book, or other format. We'd like this to be quality tested within our community and with outside users to ensure this is effectiv…",
+        "mentors": [
+          {
+            "name": "Justin Cappos",
+            "githubHandle": "JustinCappos",
+            "role": "primary"
+          },
+          {
+            "name": "Kairo de Araujo",
+            "githubHandle": "kairoaraujo",
+            "role": "co-mentor"
+          }
+        ]
+      },
+      {
+        "cncfProject": "Jaeger",
+        "slug": "jaeger",
+        "maturity": "graduated",
+        "title": "Benchmarking the AI Assistant's MCP Tools and Skills",
+        "term": "2026 Term 3 (Sep-Nov)",
+        "lfxProjectUuid": "72e84a43-6be8-4967-a077-53e06b769096",
+        "upstreamIssueUrl": "https://github.com/jaegertracing/jaeger/issues/9135",
+        "technologies": [
+          "Go",
+          "Python",
+          "TypeScript",
+          "OpenTelemetry",
+          "Model Context Protocol (MCP)",
+          "LLMs / prompt engineering",
+          "Docker Compose"
+        ],
+        "summary": "## Description Jaeger's AI assistant analyzes distributed traces through two layers: an **MCP server** exposing tools that fetch trace data (span details, critical paths, service topology), and a **Skills framework** — declarative Markdown files that carry domain expertise and narrate when and how to use those tools. Both layers were designed by intuition. We have no empirical evidence for how to…",
+        "mentors": [
+          {
+            "name": "Jonah Kowall",
+            "githubHandle": "jkowall",
+            "role": "primary"
+          },
+          {
+            "name": "Yuri Shkuro",
+            "githubHandle": "yurishkuro",
+            "role": "co-mentor"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "provider": "gsoc-archive",
+  "dataset": "gsoc-orgs",
+  "url": "https://summerofcode.withgoogle.com/api/program/2025/organizations/",
+  "fetchedAt": "2026-09-21T00:23:38.853Z",
+  "origin": "recorded",
+  "schemaVersion": "1",
+  "body": {
+    "year": 2025,
+    "orgs": [
+      {
+        "slug": "fortran-lang",
+        "name": "Fortran-lang",
+        "websiteUrl": "https://fortran-lang.org",
+        "sourceCode": "https://github.com/fortran-lang",
+        "license": "MIT",
+        "tagline": "High-performance parallel programming language",
+        "categories": ["Programming languages"],
+        "techTags": ["python", "c++", "fortran"],
+        "topicTags": ["compilers", "programming languages", "build systems", "libraries", "Fortran"]
+      },
+      {
+        "slug": "zulip",
+        "name": "Zulip",
+        "websiteUrl": "https://zulip.com/",
+        "sourceCode": "https://github.com/zulip/zulip",
+        "license": "Apache-2.0",
+        "tagline": "Organized chat for distributed teams",
+        "categories": ["End user applications", "Social and communication"],
+        "techTags": ["python", "django", "flutter", "css", "typescript"],
+        "topicTags": [
+          "great developer tooling",
+          "visual design",
+          "teaching quality codebase",
+          "team chat",
+          "integrations"
+        ]
+      },
+      {
+        "slug": "grame",
+        "name": "GRAME",
+        "websiteUrl": "https://faust.grame.fr",
+        "sourceCode": "https://github.com/grame-cncm/faust",
+        "license": "LGPL-2.1",
+        "tagline": "Domain specific language for audio",
+        "categories": ["Programming languages", "Media"],
+        "techTags": ["c", "javascript", "c++", "rust", "typescript"],
+        "topicTags": [
+          "audio",
+          "compiler",
+          "digital signal processing",
+          "function programming language"
+        ]
+      }
+    ]
+  }
+}
