@@ -38,8 +38,15 @@ export default function Intro() {
         <h1 className="intro-word intro-in d1">OpenSourceX</h1>
         <p className="intro-tag intro-in d2">Intelligence for open source.</p>
         <Link className="intro-cta intro-in d3" href="/product" data-testid="intro-cta" data-cta>
-          <span>Find Your Path</span>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <span className="cta-label">Find Your Path</span>
+          <svg
+            className="cta-arrow"
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            aria-hidden="true"
+          >
             <path
               d="M3 8h9m0 0L8.5 4.5M12 8l-3.5 3.5"
               stroke="currentColor"
@@ -48,6 +55,20 @@ export default function Intro() {
               strokeLinejoin="round"
             />
           </svg>
+          <svg
+            className="cta-rocket"
+            width="26"
+            height="26"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path d="M12 2C15.5 5 16.5 9.5 15.5 15H8.5C7.5 9.5 8.5 5 12 2Z" fill="#1b2033" />
+            <path d="M8.5 11L5 15.5V18l3.5-2zM15.5 11L19 15.5V18l-3.5-2z" fill="#1b2033" />
+            <circle cx="12" cy="9" r="1.9" fill="#7d9bff" />
+            <path d="M9.5 15h5l-.8 2.5h-3.4z" fill="#4a5578" />
+          </svg>
+          <i className="cta-flame" aria-hidden="true" />
         </Link>
       </div>
     </IntroStage>

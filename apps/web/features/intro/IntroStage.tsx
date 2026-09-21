@@ -7,7 +7,7 @@ import { INTRO_MOTION as M } from "./motion";
 const DEST = "/product";
 
 /**
- * Wraps the intro content and adds a short exit transition into the product landing.
+ * Wraps the intro content and adds a rocket lift-off into the product landing.
  * The background animates on its own (CSS only); nothing is linked to the cursor.
  */
 export function IntroStage({ children }: { children: ReactNode }) {
@@ -24,7 +24,12 @@ export function IntroStage({ children }: { children: ReactNode }) {
     if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
     e.preventDefault();
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return router.push(DEST);
+    if (root.current?.classList.contains("leaving")) return;
+    const btn = a as HTMLElement;
+    btn.style.width = `${btn.getBoundingClientRect().width}px`; // lets the width animate down to a circle
+    void btn.offsetWidth;
     root.current?.classList.add("leaving");
+    btn.classList.add("go");
     window.setTimeout(() => router.push(DEST), M.leaveMs);
   };
 

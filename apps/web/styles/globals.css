@@ -349,9 +349,17 @@ button.btn {
     opacity 0.32s ease,
     transform 0.32s ease;
 }
+/* launch: the button becomes a rocket and lifts off with a flame; the rest dissolves */
 .intro.leaving {
   opacity: 0;
-  transform: scale(1.025);
+  transition: opacity 0.25s ease 1.1s;
+}
+.intro.leaving .intro-word,
+.intro.leaving .intro-tag,
+.intro.leaving .intro-mark,
+.intro.leaving .intro-rings {
+  opacity: 0;
+  transition: opacity 0.5s ease 0.15s;
 }
 .intro-bg {
   position: absolute;
@@ -2004,6 +2012,97 @@ th {
     gap: 8px;
   }
   header.app .logo .logo-word {
+    display: none;
+  }
+}
+
+.intro-cta {
+  position: relative;
+  overflow: visible;
+}
+.cta-rocket,
+.cta-flame {
+  position: absolute;
+  left: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+.cta-rocket {
+  top: 50%;
+  translate: -50% -50%;
+}
+.cta-flame {
+  top: calc(50% + 12px);
+  width: 20px;
+  height: 96px;
+  translate: -50% 0;
+  transform-origin: 50% 0;
+  border-radius: 50% 50% 50% 50% / 12% 12% 88% 88%;
+  background: linear-gradient(
+    180deg,
+    #fff6c8 0%,
+    #ffc44d 22%,
+    #ff7a2f 55%,
+    rgba(255, 70, 30, 0) 100%
+  );
+  filter: blur(0.6px);
+  box-shadow: 0 0 18px 4px rgba(255, 140, 60, 0.55);
+  z-index: -1;
+}
+.intro-cta.go {
+  animation: none;
+  width: 48px !important;
+  padding: 0;
+  gap: 0;
+  z-index: 5;
+  transition:
+    width 0.35s cubic-bezier(0.3, 0.8, 0.3, 1),
+    padding 0.35s ease;
+  animation: cta-fly 0.95s cubic-bezier(0.5, 0, 0.9, 0.4) 0.4s forwards;
+}
+.intro-cta.go .cta-label,
+.intro-cta.go .cta-arrow {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+  transition: opacity 0.15s ease;
+}
+.intro-cta.go .cta-rocket {
+  opacity: 1;
+  transition: opacity 0.25s ease 0.2s;
+}
+.intro-cta.go .cta-flame {
+  animation:
+    flame-on 0.3s ease 0.4s forwards,
+    flame-flicker 0.09s ease-in-out 0.4s infinite alternate;
+}
+@keyframes cta-fly {
+  0% {
+    translate: 0 0;
+  }
+  15% {
+    translate: 0 6px;
+  }
+  100% {
+    translate: 0 -120vh;
+  }
+}
+@keyframes flame-on {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes flame-flicker {
+  from {
+    transform: scaleY(0.85) scaleX(0.9);
+  }
+  to {
+    transform: scaleY(1.25) scaleX(1.1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cta-rocket,
+  .cta-flame {
     display: none;
   }
 }
