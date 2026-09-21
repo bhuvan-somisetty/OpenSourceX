@@ -1,9 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <linearGradient id="b" x1="10" y1="3" x2="24" y2="29" gradientUnits="userSpaceOnUse"><stop stop-color="#F2F4F8"/><stop offset="1" stop-color="#8E97AD"/></linearGradient>
+    <linearGradient id="a" x1="4" y1="16" x2="31" y2="16" gradientUnits="userSpaceOnUse"><stop stop-color="#7D9BFF" stop-opacity=".75"/><stop offset="1" stop-color="#7D9BFF"/></linearGradient>
+  </defs>
   <rect width="32" height="32" rx="7" fill="#050608"/>
-  <g transform="translate(16 16) scale(.8) translate(-16 -16) rotate(-45 16 16)">
-    <path d="M12 4Q26 16 12 28" stroke="#F2F4F8"/>
-    <path d="M12 4L8 16L12 28" stroke="#F2F4F8" stroke-width="1.6"/>
-    <path d="M8 16H29" stroke="#F2F4F8"/>
-    <path d="M24 11L29 16L24 21" stroke="#7D9BFF"/>
+  <g transform="translate(16 16) scale(.82) translate(-16 -16) rotate(-45 16 16)">
+    <path d="M11 3C27 9 27 23 11 29C20 23 20 9 11 3Z" fill="url(#b)"/>
+    <path d="M11 3L7 16L11 29" stroke="#F2F4F8" stroke-opacity=".6" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M7 16H26" stroke="url(#a)" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M23.5 11L31 16L23.5 21L25.6 16Z" fill="url(#a)"/>
+    <path d="M8 16L4 12.5L6.4 16L4 19.5Z" fill="url(#a)"/>
   </g>
 </svg>
