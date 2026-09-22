@@ -882,6 +882,10 @@ button.btn {
   .l-nav .signin {
     display: inline-flex;
   }
+  /* the horizontal nav covers this already at desktop widths; never let the mobile dropdown render here */
+  .pub-menu {
+    display: none !important;
+  }
 }
 .pub-menu {
   position: absolute;
