@@ -33,7 +33,7 @@ export function SourcePanel({ sources }: { sources: SourceInfo[] }) {
             </dd>
             <dt>Confidence</dt>
             <dd>
-              {s.confidence} — {s.confidenceReason}
+              {s.confidence} ({s.confidenceReason})
             </dd>
             <dt>Live access</dt>
             <dd>{liveLabel(s.ingestion)}</dd>

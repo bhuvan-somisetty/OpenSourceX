@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 const POINTS = [
   "Programs, organizations, projects and repositories in one place",
   "Evidence and provenance behind every fact, not a guess",
-  "A local preview session — no real account, no live data",
+  "A local preview session: no real account, no live data",
 ];
 
 export default async function Login() {
