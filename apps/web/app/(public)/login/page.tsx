@@ -25,7 +25,7 @@ export default async function Login() {
         <section className="auth-card" aria-labelledby="login-h" data-testid="login-card">
           <div className="auth-visual" aria-hidden="true">
             <div className="auth-glow" />
-            <LogoMark size={56} />
+            <LogoMark size={76} />
             <h1 id="login-h">Your path into open source starts here.</h1>
             <p className="muted">
               Sign in to explore programs, save projects and prepare to contribute.
