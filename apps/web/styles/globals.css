@@ -1152,8 +1152,13 @@ button.btn {
   background: rgba(255, 255, 255, 0.055);
   border-radius: 12px;
 }
+.section-rule {
+  height: 0;
+  margin: clamp(2px, 0.7svh, 14px) 0;
+  border-top: 1px dashed var(--border-strong);
+}
 .local-preview {
-  margin-top: clamp(2px, 0.7svh, 14px);
+  margin-top: 0;
   padding: clamp(4px, 0.9svh, 16px);
   border-radius: 12px;
   border: 1px solid color-mix(in srgb, var(--dev) 65%, var(--border));
@@ -1310,8 +1315,11 @@ button.btn {
     font-size: 12px;
   }
   .auth-form .local-preview {
-    margin-top: 18px;
+    margin-top: 0;
     padding: 16px;
+  }
+  .auth-form .section-rule {
+    margin: 18px 0;
   }
   .auth-form .local-preview .btn {
     min-height: 46px;

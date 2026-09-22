@@ -107,6 +107,8 @@ export default async function Login() {
               </span>
             </div>
 
+            <div className="section-rule" aria-hidden="true" />
+
             <div className="local-preview" data-testid="local-preview">
               <div className="lp-head">
                 <span className="lp-tag">Local preview</span>
