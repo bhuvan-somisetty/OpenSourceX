@@ -946,6 +946,26 @@ button.btn {
   min-height: 50px;
   padding: 0 26px;
   font-size: 15px;
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+}
+.hero-cta .btn.lg.primary {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.75));
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.5) inset,
+    0 10px 34px -10px rgba(125, 155, 255, 0.5);
+}
+.hero-cta .btn.lg:not(.primary) {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.1) inset,
+    0 10px 30px -14px rgba(0, 0, 0, 0.6);
+}
+.hero-cta .btn.lg:not(.primary):hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 .signal {
   padding: 0 0 clamp(14px, 3.2vh, 30px);
