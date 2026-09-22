@@ -1082,6 +1082,10 @@ button.btn {
 .auth-points {
   display: none;
 }
+.auth-form {
+  /* a hair lighter than the card so buttons and fields aren't black-on-black */
+  background: rgba(255, 255, 255, 0.015);
+}
 .auth-stack {
   display: grid;
   gap: clamp(4px, 0.8svh, 10px);
@@ -1092,8 +1096,11 @@ button.btn {
 }
 .btn.oauth {
   gap: 10px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
-  border-color: rgba(255, 255, 255, 0.12);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
+  border-color: rgba(255, 255, 255, 0.22);
+}
+.btn.oauth[disabled] {
+  opacity: 0.72;
 }
 .btn.oauth svg {
   flex: none;
@@ -1125,7 +1132,7 @@ button.btn {
   min-height: clamp(30px, 4.6svh, 46px);
 }
 .auth-form .field input {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.055);
   border-radius: 12px;
 }
 .local-preview {
