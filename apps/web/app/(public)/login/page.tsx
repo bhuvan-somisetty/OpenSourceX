@@ -25,7 +25,7 @@ export default async function Login() {
         <section className="auth-card" aria-labelledby="login-h" data-testid="login-card">
           <div className="auth-visual" aria-hidden="true">
             <div className="auth-glow" />
-            <LogoMark size={40} />
+            <LogoMark size={56} />
             <h1 id="login-h">Your path into open source starts here.</h1>
             <p className="muted">
               Sign in to explore programs, save projects and prepare to contribute.
@@ -108,7 +108,6 @@ export default async function Login() {
             </div>
 
             <div className="local-preview" data-testid="local-preview">
-              <div className="lp-rule" aria-hidden="true" />
               <div className="lp-head">
                 <span className="lp-tag">Local preview</span>
                 <span className="dim">development only</span>

@@ -1170,12 +1170,6 @@ button.btn {
   font-size: clamp(9px, 1.15svh, 12px);
   line-height: 1.12;
 }
-.lp-rule {
-  width: 36px;
-  height: 0;
-  margin: 0 auto clamp(6px, 1.2svh, 12px);
-  border-top: 1px dashed color-mix(in srgb, var(--dev) 55%, transparent);
-}
 .lp-head {
   display: flex;
   justify-content: space-between;
