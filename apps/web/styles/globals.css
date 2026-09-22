@@ -1083,8 +1083,12 @@ button.btn {
   display: none;
 }
 .auth-form {
-  /* a hair lighter than the card so buttons and fields aren't black-on-black */
-  background: rgba(255, 255, 255, 0.015);
+  /* a hair lighter than the card so buttons and fields aren't black-on-black,
+     plus a soft light in the corner so the form side isn't flat next to the brand side */
+  position: relative;
+  background:
+    radial-gradient(60% 50% at 100% 0%, rgba(125, 155, 255, 0.09), transparent 70%),
+    rgba(255, 255, 255, 0.015);
 }
 .auth-stack {
   display: grid;
@@ -1098,9 +1102,22 @@ button.btn {
   gap: 10px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
   border-color: rgba(255, 255, 255, 0.22);
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
 }
 .btn.oauth[disabled] {
   opacity: 0.72;
+}
+.btn.oauth[disabled]:hover {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.06));
+  border-color: color-mix(in srgb, var(--accent) 55%, rgba(255, 255, 255, 0.3));
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent) 25%, transparent) inset,
+    0 10px 28px -12px color-mix(in srgb, var(--accent) 45%, transparent);
+  transform: translateY(-1px);
 }
 .btn.oauth svg {
   flex: none;
