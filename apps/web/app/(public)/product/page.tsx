@@ -7,6 +7,16 @@ export default function ProductLanding() {
   return (
     <div className="landing" data-testid="landing">
       <div className="atmos" aria-hidden="true" />
+      <div className="pl-bg" aria-hidden="true">
+        <div className="pl-spot" />
+        <div className="pl-glow a" />
+        <div className="pl-glow b" />
+        <div className="pl-rings">
+          <i className="pl-ring r1" />
+          <i className="pl-ring r2" />
+          <i className="pl-ring r3" />
+        </div>
+      </div>
       <PublicNav />
 
       <section className="l-hero" aria-labelledby="hero-h">
