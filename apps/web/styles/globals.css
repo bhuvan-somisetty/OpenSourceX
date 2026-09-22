@@ -1100,8 +1100,11 @@ button.btn {
   margin-top: clamp(2px, 0.7svh, 14px);
   padding: clamp(4px, 0.9svh, 16px);
   border-radius: 12px;
-  border: 1px dashed color-mix(in srgb, var(--dev) 45%, var(--border));
-  background: color-mix(in srgb, var(--dev) 5%, transparent);
+  border: 1px solid color-mix(in srgb, var(--dev) 65%, var(--border));
+  background: color-mix(in srgb, var(--dev) 10%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--dev) 20%, transparent),
+    0 16px 40px -18px color-mix(in srgb, var(--dev) 55%, transparent);
 }
 .local-preview .btn {
   min-height: clamp(28px, 4.4svh, 46px);
