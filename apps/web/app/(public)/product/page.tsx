@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { PublicNav } from "@/features/landing/PublicNav";
-import { ExploreButton } from "@/features/landing/ExploreButton";
 
 /** The public landing: one viewport, no sections below. Everything else lives in the product. */
 export default function ProductLanding() {
@@ -34,7 +33,6 @@ export default function ProductLanding() {
           <Link className="btn primary lg" href="/login" data-testid="cta-get-started">
             Get started
           </Link>
-          <ExploreButton />
         </div>
       </section>
 

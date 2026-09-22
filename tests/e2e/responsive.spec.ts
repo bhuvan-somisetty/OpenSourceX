@@ -82,7 +82,9 @@ test.describe("landing fits one viewport (no vertical or horizontal scroll)", ()
       await page.goto("/product");
       const r = await page.evaluate(() => {
         const d = document.documentElement;
-        const cta = document.querySelector('[data-testid="cta-explore"]')!.getBoundingClientRect();
+        const cta = document
+          .querySelector('[data-testid="cta-get-started"]')!
+          .getBoundingClientRect();
         return {
           v: d.scrollHeight > window.innerHeight + 1,
           h: d.scrollWidth > d.clientWidth + 1,

@@ -8,7 +8,6 @@ anon(
     await expect(page.getByRole("heading", { level: 1 })).toContainText("Understand open source.");
     await expect(page.getByRole("heading", { level: 1 })).toContainText("Find where you belong.");
     await expect(page.getByTestId("cta-get-started")).toBeVisible();
-    await expect(page.getByTestId("cta-explore")).toBeVisible();
     await expect(page.getByRole("link", { name: "Saved" })).toHaveCount(0); // the public nav is not the app nav
     await expect(page.getByTestId("dev-banner")).toHaveCount(0);
     // one viewport: nothing to scroll, and the old sections are gone
@@ -36,8 +35,6 @@ anon(
     await expect(page.getByTestId("sheet")).toBeVisible();
     await page.keyboard.press("Escape");
     await expect(page.getByTestId("sheet")).toHaveCount(0);
-    await page.getByTestId("cta-explore").click();
-    await expect(page.getByTestId("sheet")).toContainText("Source, evidence, provenance");
   },
 );
 
