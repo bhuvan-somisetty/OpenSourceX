@@ -1,13 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
   <style>
     .bow { fill: #F2F4F8; }
-    @media (prefers-color-scheme: light) { .bow { fill: #1B2033; } }
+    .string { stroke: #F2F4F8; }
+    @media (prefers-color-scheme: light) { .bow { fill: #1B2033; } .string { stroke: #1B2033; } }
   </style>
   <defs>
     <linearGradient id="a" x1="4" y1="16" x2="31" y2="16" gradientUnits="userSpaceOnUse"><stop stop-color="#8FA8FF"/><stop offset="1" stop-color="#6F8CFF"/></linearGradient>
   </defs>
   <g transform="translate(16 16) scale(1.16) translate(-16 -16) rotate(-45 16 16)">
     <path class="bow" d="M11 3C27 9 27 23 11 29C20 23 20 9 11 3Z"/>
+    <path class="string" d="M11 3L7 16L11 29" fill="none" stroke-opacity="0.6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M7 16H26" stroke="url(#a)" stroke-width="3.2" stroke-linecap="round"/>
     <path d="M22.5 10L31.5 16L22.5 22L25 16Z" fill="url(#a)"/>
   </g>
