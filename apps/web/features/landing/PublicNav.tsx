@@ -105,9 +105,6 @@ export function PublicNav() {
             <h2 id="sheet-h">{p.title}</h2>
             <p className="muted">{p.body}</p>
             <div className="actions" style={{ marginTop: 22 }}>
-              <Link className="btn primary sm" href="/login">
-                Get started
-              </Link>
               <button
                 ref={closeRef}
                 type="button"
