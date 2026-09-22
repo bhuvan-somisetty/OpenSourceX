@@ -979,10 +979,6 @@ button.btn {
   background: #050608;
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
-.signal-line i:nth-child(2) {
-  border-color: var(--accent);
-  box-shadow: 0 0 10px rgba(125, 155, 255, 0.45);
-}
 .signal-labels {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
