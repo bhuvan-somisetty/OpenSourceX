@@ -57,7 +57,7 @@ export default function Intro() {
           </svg>
           <span className="cta-archer" aria-hidden="true">
             <i className="cta-flash" />
-            <svg width="150" height="150" viewBox="0 0 32 32" fill="none" className="archer-svg">
+            <svg width="220" height="220" viewBox="0 0 32 32" fill="none" className="archer-svg">
               <defs>
                 <linearGradient
                   id="ctaBow"

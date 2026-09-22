@@ -1765,7 +1765,7 @@ a.tile:hover::after {
 .tile.soon {
   opacity: 0.55;
   border-style: dashed;
-  min-height: 150px;
+  min-height: 220px;
 }
 .tile.soon::after {
   display: none;
@@ -2263,8 +2263,8 @@ th {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 150px;
-  height: 150px;
+  width: 220px;
+  height: 220px;
   translate: -50% -50%;
   opacity: 0;
   scale: 0.5;
@@ -2279,8 +2279,8 @@ th {
   position: absolute;
   left: 38%;
   top: 50%;
-  width: 62px;
-  height: 62px;
+  width: 90px;
+  height: 90px;
   translate: -50% -50%;
   border-radius: 50%;
   background: radial-gradient(closest-side, rgba(180, 195, 255, 0.9), transparent 70%);
