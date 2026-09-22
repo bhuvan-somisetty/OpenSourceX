@@ -14,7 +14,7 @@ const PANELS = {
   programs: {
     label: "Programs",
     title: "Choose a program, explore its ecosystem",
-    body: "Google Summer of Code and LFX Mentorship have recorded data in this build. Other programs are configured and appear as soon as they have data.",
+    body: "Google Summer of Code and LFX Mentorship have recorded data in this build. Summer of Bitcoin is configured and set to follow, along with other programs as they get data.",
   },
   how: {
     label: "How it works",

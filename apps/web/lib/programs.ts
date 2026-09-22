@@ -30,6 +30,14 @@ export const PROGRAM_CATALOG: readonly ProgramDef[] = [
     blurb: "Explore mentorship projects and terms. Recorded data covers the CNCF ecosystem only.",
   },
   {
+    slug: "summer-of-bitcoin",
+    alias: "summer-of-bitcoin",
+    name: "Summer of Bitcoin",
+    short: "Summer of Bitcoin",
+    tagline: "Bitcoin open source",
+    blurb: "Summer mentorships across Bitcoin and Lightning projects.",
+  },
+  {
     slug: "outreachy",
     alias: "outreachy",
     name: "Outreachy",
@@ -44,14 +52,6 @@ export const PROGRAM_CATALOG: readonly ProgramDef[] = [
     short: "Season of Docs",
     tagline: "Documentation projects",
     blurb: "Technical writers working with open-source projects.",
-  },
-  {
-    slug: "summer-of-bitcoin",
-    alias: "summer-of-bitcoin",
-    name: "Summer of Bitcoin",
-    short: "Summer of Bitcoin",
-    tagline: "Bitcoin open source",
-    blurb: "Summer mentorships across Bitcoin and Lightning projects.",
   },
   {
     slug: "mlh-fellowship",
