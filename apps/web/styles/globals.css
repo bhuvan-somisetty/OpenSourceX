@@ -801,7 +801,11 @@ button.btn {
   background: #050608;
 }
 .auth {
+  height: 100svh;
   grid-template-rows: auto minmax(0, 1fr);
+}
+.auth .l-nav .in {
+  height: clamp(46px, 8svh, 72px);
 }
 .atmos {
   position: absolute;
@@ -1029,30 +1033,46 @@ button.btn {
   }
 }
 
-/* auth */
+/* auth: sized in svh so the whole card fits one screen, never scrolls */
 .auth-body {
   display: grid;
   place-items: center;
-  padding: clamp(8px, 2vh, 24px) 20px clamp(20px, 4vh, 40px);
+  min-height: 0;
+  overflow: hidden;
+  padding: 0 20px clamp(10px, 2.4svh, 28px);
 }
 .auth-card {
   width: min(440px, 100%);
+  max-height: 100%;
+  overflow: hidden;
   background: #0b0d11;
   border: 1px solid var(--border-strong);
   border-radius: 18px;
-  padding: clamp(22px, 3.4vh, 32px) clamp(20px, 4vw, 32px);
+  padding: clamp(6px, 1.8svh, 28px) clamp(16px, 4vw, 30px);
   box-shadow: 0 30px 90px -30px rgba(0, 0, 0, 0.85);
 }
 .auth-card h1 {
-  font-size: clamp(22px, 3vh, 26px);
+  font-size: clamp(16px, 2.4svh, 25px);
   letter-spacing: -0.03em;
-  margin: 16px 0 6px;
+  margin: clamp(4px, 1svh, 14px) 0 2px;
   line-height: 1.15;
+}
+.auth-card > p.muted {
+  font-size: clamp(11.5px, 1.4svh, 15px);
+  line-height: 1.28;
 }
 .auth-stack {
   display: grid;
-  gap: 10px;
-  margin-top: 18px;
+  gap: clamp(4px, 0.8svh, 10px);
+  margin-top: clamp(4px, 1.1svh, 16px);
+}
+.auth-stack .btn {
+  min-height: clamp(32px, 4.8svh, 46px);
+}
+.auth-stack .hint {
+  margin-top: 2px !important;
+  font-size: clamp(10px, 1.3svh, 12px);
+  line-height: 1.22;
 }
 .divider {
   display: flex;
@@ -1060,7 +1080,7 @@ button.btn {
   gap: 12px;
   color: var(--text-dim);
   font-size: 12px;
-  margin: 16px 0;
+  margin: clamp(3px, 0.9svh, 14px) 0;
 }
 .divider::before,
 .divider::after {
@@ -1069,19 +1089,30 @@ button.btn {
   height: 1px;
   background: var(--border);
 }
+.field input {
+  min-height: clamp(30px, 4.6svh, 46px);
+}
 .local-preview {
-  margin-top: 18px;
-  padding: 16px;
+  margin-top: clamp(2px, 0.7svh, 14px);
+  padding: clamp(4px, 0.9svh, 16px);
   border-radius: 12px;
   border: 1px dashed color-mix(in srgb, var(--dev) 45%, var(--border));
   background: color-mix(in srgb, var(--dev) 5%, transparent);
+}
+.local-preview .btn {
+  min-height: clamp(28px, 4.4svh, 46px);
+}
+.local-preview .hint {
+  margin-top: 2px !important;
+  font-size: clamp(9px, 1.15svh, 12px);
+  line-height: 1.12;
 }
 .lp-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
-  font-size: 12px;
+  margin-bottom: clamp(3px, 0.8svh, 12px);
+  font-size: 11px;
 }
 .lp-tag {
   color: var(--dev);
@@ -1091,11 +1122,11 @@ button.btn {
 }
 .field {
   display: grid;
-  gap: 6px;
+  gap: 4px;
   min-width: 0;
 }
 .field label {
-  font-size: 13px;
+  font-size: clamp(11.5px, 1.4svh, 13px);
   font-weight: 500;
   color: var(--text-muted);
 }
