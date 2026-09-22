@@ -45,8 +45,6 @@ export default function ProductLanding() {
             <i />
             <i />
             <i />
-            <i className="signal-packet p1" />
-            <i className="signal-packet p2" />
           </div>
           <div className="signal-labels">
             <span>Programs</span>

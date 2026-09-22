@@ -1103,72 +1103,33 @@ button.btn {
 .signal-line i {
   position: relative;
   justify-self: center;
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: #050608;
-  border: 1px solid rgba(160, 180, 255, 0.4);
-  animation: pl-node-pulse 3.2s ease-in-out infinite;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
-.signal-line i:nth-child(1) {
-  animation-delay: 0s;
-}
-.signal-line i:nth-child(2) {
-  animation-delay: 0.5s;
-}
-.signal-line i:nth-child(3) {
-  animation-delay: 1s;
-}
-.signal-line i:nth-child(4) {
-  animation-delay: 1.5s;
-}
-@keyframes pl-node-pulse {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(140, 165, 255, 0.45);
-  }
-  50% {
-    box-shadow: 0 0 0 5px rgba(140, 165, 255, 0);
-  }
-}
-.signal-packet {
+.signal-line::after {
+  content: "";
   position: absolute;
   top: 4px;
-  left: 0;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: #cdd8ff;
-  box-shadow: 0 0 10px 2px rgba(150, 170, 255, 0.85);
-  translate: 0 -50%;
-  animation: pl-packet 4.5s linear infinite;
+  left: -100px;
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(180, 195, 255, 0.95), transparent);
+  filter: blur(0.5px);
+  box-shadow: 0 0 16px 3px rgba(150, 170, 255, 0.7);
+  animation: pl-sweep 5s linear infinite;
 }
-.signal-packet.p2 {
-  animation-delay: 2.25s;
-  opacity: 0.75;
-}
-@keyframes pl-packet {
-  0% {
-    left: 0;
-    opacity: 0;
-  }
-  6% {
-    opacity: 1;
-  }
-  94% {
-    opacity: 1;
-  }
-  100% {
+@keyframes pl-sweep {
+  to {
     left: 100%;
-    opacity: 0;
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .signal-line i {
+  .signal-line::after {
     animation: none;
-  }
-  .signal-packet {
-    display: none;
+    opacity: 0;
   }
 }
 .signal-labels {
