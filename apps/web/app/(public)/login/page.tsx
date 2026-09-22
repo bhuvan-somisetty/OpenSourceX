@@ -98,15 +98,17 @@ export default async function Login() {
                 type="email"
                 name="email"
                 placeholder="you@example.com"
-                disabled
+                autoComplete="email"
                 aria-describedby="email-hint"
               />
               <span id="email-hint" className="hint">
-                Email sign-in is not configured in this development build.
+                You can type here, but email sign-in is not connected in this development build, so
+                nothing is sent.
               </span>
             </div>
 
             <div className="local-preview" data-testid="local-preview">
+              <div className="lp-rule" aria-hidden="true" />
               <div className="lp-head">
                 <span className="lp-tag">Local preview</span>
                 <span className="dim">development only</span>
