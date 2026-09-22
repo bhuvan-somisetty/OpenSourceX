@@ -2263,8 +2263,8 @@ th {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   translate: -50% -50%;
   opacity: 0;
   scale: 0.5;
@@ -2279,8 +2279,8 @@ th {
   position: absolute;
   left: 38%;
   top: 50%;
-  width: 42px;
-  height: 42px;
+  width: 62px;
+  height: 62px;
   translate: -50% -50%;
   border-radius: 50%;
   background: radial-gradient(closest-side, rgba(180, 195, 255, 0.9), transparent 70%);
