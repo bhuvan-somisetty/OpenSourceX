@@ -75,12 +75,6 @@ export default function Intro() {
           </span>
         </Link>
       </div>
-      {/* runs before hydration, so the launch also plays on a slow first load */}
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `(function(){var a=document.querySelector('[data-cta]');if(!a)return;try{fetch(a.getAttribute('href'),{credentials:'same-origin'})}catch(x){}a.addEventListener('click',function(e){if(e.metaKey||e.ctrlKey||e.shiftKey||e.button!==0)return;var m=document.querySelector('.intro');if(!m||m.classList.contains('leaving'))return;e.preventDefault();var h=a.getAttribute('href');if(matchMedia('(prefers-reduced-motion: reduce)').matches){location.assign(h);return}a.style.width=a.getBoundingClientRect().width+'px';void a.offsetWidth;m.classList.add('leaving');a.classList.add('go');setTimeout(function(){location.assign(h)},1700)})})();`,
-        }}
-      />
     </IntroStage>
   );
 }
