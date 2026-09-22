@@ -55,22 +55,55 @@ export default function Intro() {
               strokeLinejoin="round"
             />
           </svg>
-          <span className="cta-ship" aria-hidden="true">
-            <i className="cta-smoke" />
-            <i className="cta-flame" />
-            <svg width="44" height="70" viewBox="0 0 40 64" fill="none">
+          <span className="cta-archer" aria-hidden="true">
+            <i className="cta-flash" />
+            <svg width="60" height="60" viewBox="0 0 32 32" fill="none" className="archer-svg">
               <defs>
-                <linearGradient id="rk" x1="0" y1="0" x2="1" y2="0">
-                  <stop stopColor="#9aa6c8" />
-                  <stop offset="0.45" stopColor="#ffffff" />
-                  <stop offset="1" stopColor="#b7c1dd" />
+                <linearGradient
+                  id="ctaBow"
+                  x1="10"
+                  y1="3"
+                  x2="24"
+                  y2="29"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stopColor="#fff" />
+                  <stop offset="1" stopColor="#fff" stopOpacity="0.55" />
+                </linearGradient>
+                <linearGradient
+                  id="ctaArrow"
+                  x1="4"
+                  y1="16"
+                  x2="31"
+                  y2="16"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stopColor="#8fa8ff" stopOpacity="0.85" />
+                  <stop offset="1" stopColor="#aebfff" />
                 </linearGradient>
               </defs>
-              <path d="M10 34L2 50v6l9-8z" fill="#6f8cff" />
-              <path d="M30 34l8 16v6l-9-8z" fill="#6f8cff" />
-              <path d="M20 2c10 10 13 26 10 44H10C7 28 10 12 20 2z" fill="url(#rk)" />
-              <circle cx="20" cy="22" r="5" fill="#7d9bff" stroke="#1b2033" strokeWidth="2" />
-              <path d="M13 46h14l-2.5 6h-9z" fill="#4a5578" />
+              <g transform="rotate(-45 16 16)">
+                <path d="M11 3C27 9 27 23 11 29C20 23 20 9 11 3Z" fill="url(#ctaBow)" />
+                <path
+                  className="cta-string"
+                  d="M11 3L7 16L11 29"
+                  stroke="#fff"
+                  strokeOpacity="0.55"
+                  strokeWidth="1.1"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <g className="cta-arrow-grp">
+                  <path
+                    d="M7 16H26"
+                    stroke="url(#ctaArrow)"
+                    strokeWidth="2.4"
+                    strokeLinecap="round"
+                  />
+                  <path d="M23.5 11L31 16L23.5 21L25.6 16Z" fill="url(#ctaArrow)" />
+                  <path d="M8 16L4 12.5L6.4 16L4 19.5Z" fill="url(#ctaArrow)" />
+                </g>
+              </g>
             </svg>
           </span>
         </Link>

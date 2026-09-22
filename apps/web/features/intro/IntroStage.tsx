@@ -7,7 +7,7 @@ import { INTRO_MOTION as M } from "./motion";
 const DEST = "/product";
 
 /**
- * Wraps the intro content and adds a rocket lift-off into the product landing.
+ * Wraps the intro content and adds an archer draw-and-release into the product landing.
  * The background animates on its own (CSS only); nothing is linked to the cursor.
  */
 export function IntroStage({ children }: { children: ReactNode }) {
