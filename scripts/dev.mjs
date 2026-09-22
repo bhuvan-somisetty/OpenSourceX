@@ -18,7 +18,7 @@ env.DATABASE_URL ||= "postgres://osx:osx_dev_password@localhost:5433/opensourcex
 env.DATA_MODE = "recorded";
 env.INGESTION_LIVE_SOURCES = "false";
 env.AI_ENABLED = "false";
-const PORT = env.PORT || "3000";
+const PORT = env.PORT || "3001";
 
 function step(label, cmd, args) {
   console.log(`\n[dev] ${label}`);

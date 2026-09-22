@@ -5,7 +5,7 @@ projects and repositories connected, with the source of every fact shown.
 
 > **Status: early development.** A working local app (public landing, login with a labeled
 > development session, programs, discover, projects, saved workspace) runs on recorded,
-> sanitized data (`pnpm dev`, then http://localhost:3000). No live data source is connected
+> sanitized data (`pnpm dev`, then http://localhost:3001). No live data source is connected
 > and several features are not built; see [docs/CURRENT_STATUS.md](docs/CURRENT_STATUS.md).
 > This repository is public for visibility; it is proprietary and not licensed for
 > reuse (see [License and reuse](#license-and-reuse)).
@@ -76,7 +76,7 @@ Prerequisites: Node 24, pnpm 12, Docker.
 ```
 pnpm install
 pnpm dev          # database + migrations + recorded data + worker + web
-# then open http://localhost:3000
+# then open http://localhost:3001
 ```
 
 Checks: `pnpm lint`, `pnpm typecheck`, `pnpm format:check`, `pnpm build`.

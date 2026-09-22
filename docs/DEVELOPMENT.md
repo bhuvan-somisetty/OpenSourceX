@@ -23,8 +23,8 @@ pnpm dev
 4. starts the background worker (live ingestion off)
 5. starts the web app
 
-Then open **http://localhost:3000** (landing). Click _Get Started_, then _Continue in Development Mode_ (a labeled local session; real sign-in is not connected). Health check:
-**http://localhost:3000/api/v1/health** (reports database, data mode, live and AI flags).
+Then open **http://localhost:3001** (landing). Click _Get Started_, then _Continue in Development Mode_ (a labeled local session; real sign-in is not connected). Health check:
+**http://localhost:3001/api/v1/health** (reports database, data mode, live and AI flags).
 
 PostgreSQL must be able to start: if Docker is not running, `pnpm dev` stops
 with a clear message. Database credentials in `docker-compose.yml` are for

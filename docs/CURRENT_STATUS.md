@@ -1,7 +1,7 @@
 # Current Status
 
 Truthful state as of 2026-09-21 (after the product UX redesign). Run locally with `pnpm dev`
-(http://localhost:3000). Everything below runs on **recorded, sanitized
+(http://localhost:3001). Everything below runs on **recorded, sanitized
 snapshots**, not live data.
 
 ## Product redesign (2026-09-21)

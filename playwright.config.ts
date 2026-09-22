@@ -1,6 +1,6 @@
 import { defineConfig, devices } from "@playwright/test";
 
-const baseURL = process.env.E2E_BASE_URL ?? "http://localhost:3000";
+const baseURL = process.env.E2E_BASE_URL ?? "http://localhost:3001";
 
 /** E2E runs against the real app on recorded data. It starts `pnpm dev` if nothing is running. */
 export default defineConfig({
