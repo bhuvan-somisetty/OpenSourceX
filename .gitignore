@@ -13,3 +13,10 @@ AGENTS.md
 
 test-results/
 playwright-report/
+
+.vercel
+.env*
+!.env.example
+.claude/
+.agents/
+skills-lock.json
