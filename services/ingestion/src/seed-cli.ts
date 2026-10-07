@@ -9,6 +9,7 @@ const files = [
   "gsoc-2025-orgs-sample.json",
   "lfx-projects-sample.json",
   "cncf-lfx-export-2026-t3.json",
+  "cncf-lfx-history.json",
 ];
 const envelopes = await Promise.all(
   files.map(async (f) => JSON.parse(await readFile(fixtureFile(f), "utf8")) as SnapshotEnvelope),

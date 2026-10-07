@@ -105,9 +105,12 @@ test("program filter drives the actual data, and is URL state", async ({ page })
   await page.goto("/projects?program=lfx");
   for (const t of await page.getByTestId("project-row").allInnerTexts())
     expect(t).toContain("LFX Mentorship");
-  const lfx = await page.getByTestId("project-row").count();
+  // lists are paginated, so compare the totals in the result count, not the rows on one page
+  const total = async () =>
+    Number((await page.getByTestId("result-count").innerText()).match(/^(\d+)/)![1]);
+  const lfx = await total();
   await page.goto("/projects");
-  expect(await page.getByTestId("project-row").count()).toBeGreaterThan(lfx);
+  expect(await total()).toBeGreaterThan(lfx);
   await page.goto("/projects?program=outreachy"); // configured but no data: no invented rows
   await expect(page.getByTestId("project-row")).toHaveCount(
     await page.getByTestId("project-row").count(),
@@ -351,4 +354,37 @@ test("health API reports recorded mode with live and AI off", async ({ request }
     liveSources: false,
     aiEnabled: false,
   });
+});
+
+test("ask: answers about CNCF in LFX Mentorship come from the term READMEs, with sources", async ({
+  page,
+}) => {
+  await page.goto("/ask");
+  await page.getByLabel("Your question").fill("Which CNCF projects repeat in every LFX term?");
+  await page.getByRole("button", { name: "Ask", exact: true }).click();
+  await expect(page).toHaveURL(/\/ask\?q=/);
+  const answer = page.getByTestId("ask-answer");
+  await expect(answer).toHaveAttribute("data-kind", "recurring");
+  await expect(page.getByTestId("ask-summary")).toContainText("CNCF projects have taken part");
+  await expect(page.getByTestId("ask-table").locator("tbody tr").first()).toBeVisible();
+  await expect(page.getByTestId("ask-sources").getByRole("link").first()).toHaveAttribute(
+    "href",
+    /github\.com\/cncf\/mentoring/,
+  );
+
+  // a term timeline links that term's README
+  await page.goto(`/ask?q=${encodeURIComponent("What is the timeline for 2026 Term 3?")}`);
+  await expect(answer).toHaveAttribute("data-kind", "timeline");
+  await expect(page.getByTestId("ask-table")).toContainText("Mentee Applications Open");
+  await expect(page.getByTestId("ask-sources").getByRole("link").first()).toHaveAttribute(
+    "href",
+    /2026\/03-Sep-Nov\/README\.md$/,
+  );
+
+  // the API gives the same grounded answer, and never invents one
+  const res = await page.request.get(`/api/v1/ask?q=${encodeURIComponent("what is the weather")}`);
+  expect((await res.json()).answer.kind).toBe("none");
+  expect(JSON.stringify(await (await page.request.get("/api/v1/ask?q=jaeger")).json())).not.toMatch(
+    EMAIL,
+  );
 });

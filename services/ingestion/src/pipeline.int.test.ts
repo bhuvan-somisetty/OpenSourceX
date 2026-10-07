@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
-import { createPool, migrate } from "@opensourcex/database";
+import { createPool, loadLfxHistory, migrate } from "@opensourcex/database";
 import { fixtureFile, type SnapshotEnvelope } from "@opensourcex/providers";
 import { runSpike } from "./pipeline";
 
@@ -14,7 +14,7 @@ const fixtures = () => [
 ];
 
 const TABLES =
-  "entity_revision, conflict, entity_link, person_role, person, mentorship_project_term, mentorship_project, participation, external_identifier, organization, term_alias, program_term, program_year, program_ecosystem, program, sync_run, provenance_record, source_snapshot, source_dataset, source_provider";
+  "program_term_detail, entity_revision, conflict, entity_link, person_role, person, mentorship_project_term, mentorship_project, participation, external_identifier, organization, term_alias, program_term, program_year, program_ecosystem, program, sync_run, provenance_record, source_snapshot, source_dataset, source_provider";
 const count = async (t: string) =>
   Number((await pool!.query(`SELECT count(*) FROM ${t}`)).rows[0].count);
 
@@ -175,5 +175,26 @@ describe.skipIf(!pool)("M1a pipeline (recorded, sanitized snapshots)", () => {
       year: 2026,
       term_code: "T3",
     });
+  });
+
+  it("loads every CNCF LFX term with timelines, programs and mentors, idempotently", async () => {
+    const all = [...fixtures(), load("cncf-lfx-history.json")];
+    const r = await runSpike(pool!, all);
+    expect(r.failures).toEqual([]);
+    expect(await count("program_term_detail")).toBe(22); // 2020 Term 1 to 2027 Term 1; 2019 has no terms
+    const h = await loadLfxHistory(pool!);
+    expect(h.programs.length).toBeGreaterThan(850);
+    // cross-checked against the raw READMEs: Kyverno is listed in 17 terms, all but 2024 Term 2 since 2021
+    const kyverno = new Set(
+      h.programs.filter((p) => p.cncfProject === "Kyverno").flatMap((p) => p.terms),
+    );
+    expect(kyverno.size).toBe(17);
+    expect(kyverno.has("2024-T2")).toBe(false);
+    const t3 = h.terms.find((t) => t.key === "2026-T3")!;
+    expect(t3.timeline.map((e) => e.activity)).toContain("Mentee Applications Open");
+    expect(t3.sourceUrl).toMatch(/2026\/03-Sep-Nov\/README\.md$/);
+    const before = await count("mentorship_project");
+    expect((await runSpike(pool!, all)).failures).toEqual([]);
+    expect(await count("mentorship_project")).toBe(before);
   });
 });

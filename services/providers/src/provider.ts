@@ -81,5 +81,9 @@ export const lfxProvider = () =>
   recordedProvider("lfx-mentorship-api", ["lfx-projects"], ["lfx-projects-sample.json"]);
 /** CNCF ecosystem inside LFX Mentorship. Covers CNCF projects only, never all of LFX. */
 export const cncfProvider = () =>
-  recordedProvider("cncf-mentoring", ["cncf-lfx-export"], ["cncf-lfx-export-2026-t3.json"]);
+  recordedProvider(
+    "cncf-mentoring",
+    ["cncf-lfx-export", "cncf-lfx-history"],
+    ["cncf-lfx-export-2026-t3.json", "cncf-lfx-history.json"],
+  );
 export const allProviders = () => [gsocProvider(), lfxProvider(), cncfProvider()];

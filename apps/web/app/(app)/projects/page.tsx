@@ -7,9 +7,13 @@ import { PROGRAM_CATALOG, resolveProgram } from "@/lib/programs";
 import { first, withParams, type Params } from "@/lib/url";
 import { DbDown, EmptyState } from "@/components/feedback/Notice";
 import { ProjectRow } from "@/features/projects/ProjectRow";
+import { Pager, pageOf, pageSlice } from "@/features/projects/Pager";
 
 export const metadata: Metadata = { title: "Project catalog" };
 export const dynamic = "force-dynamic";
+
+/** Most-used technologies only; the rest stay reachable through search. */
+const TECH_OPTIONS = 80;
 
 /** The catalog: every recorded project, searchable, filterable, sortable. (Discover is the intent-driven entry point.) */
 export default async function Projects({ searchParams }: { searchParams: Promise<Params> }) {
@@ -58,6 +62,7 @@ export default async function Projects({ searchParams }: { searchParams: Promise
                 ? b.name.localeCompare(a.name)
                 : a.name.localeCompare(b.name),
           );
+          const page = pageOf(first(sp.page), items.length);
           return (
             <>
               <div className="scroll-x" data-testid="program-filter">
@@ -103,7 +108,7 @@ export default async function Projects({ searchParams }: { searchParams: Promise
                   <label htmlFor="tech">Technology</label>
                   <select id="tech" name="tech" defaultValue={tech}>
                     <option value="">Any</option>
-                    {res.data.all.facets.technologies.map((t) => (
+                    {res.data.all.facets.technologies.slice(0, TECH_OPTIONS).map((t) => (
                       <option key={t.value} value={t.value}>
                         {t.value} ({t.n})
                       </option>
@@ -158,11 +163,14 @@ export default async function Projects({ searchParams }: { searchParams: Promise
                   sample.
                 </EmptyState>
               ) : (
-                <div data-testid="results">
-                  {items.map((p) => (
-                    <ProjectRow key={p.id} p={p} saved={isSaved(saved, p)} />
-                  ))}
-                </div>
+                <>
+                  <div data-testid="results">
+                    {pageSlice(items, page).map((p) => (
+                      <ProjectRow key={p.id} p={p} saved={isSaved(saved, p)} />
+                    ))}
+                  </div>
+                  <Pager path="/projects" params={cur} page={page} total={items.length} />
+                </>
               )}
             </>
           );

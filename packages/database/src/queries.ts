@@ -89,7 +89,7 @@ const termLabel = (year: number, code: string, track: string) =>
 async function allCards(db: Db): Promise<ProjectCard[]> {
   const mp = (
     await db.query(`
-      SELECT m.id, m.title, m.raw_repo_link, m.upstream_key, m.link_state, m.summary, m.technologies, m.cncf_project_slug,
+      SELECT m.id, m.title, m.raw_repo_link, m.upstream_key, m.link_state, m.summary, m.technologies, m.cncf_project_slug, m.cncf_project_name,
              m.provenance_id, e.name AS ecosystem, pg.slug AS pslug, pg.name AS pname
       FROM mentorship_project m JOIN program pg ON pg.id = m.program_id
       LEFT JOIN program_ecosystem e ON e.id = m.ecosystem_id ORDER BY m.title`)
@@ -117,7 +117,7 @@ async function allCards(db: Db): Promise<ProjectCard[]> {
     id: `mp-${m.id}`,
     kind: "mentorship",
     name: m.title,
-    org: m.cncf_project_slug ? m.cncf_project_slug : null,
+    org: m.cncf_project_name ?? m.cncf_project_slug ?? null,
     program: { slug: m.pslug, name: m.pname },
     ecosystem: m.ecosystem,
     terms: mterms

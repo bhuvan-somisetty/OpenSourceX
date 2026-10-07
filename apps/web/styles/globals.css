@@ -2553,3 +2553,70 @@ th {
     display: none;
   }
 }
+
+/* ask */
+.ask-form {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+.ask-form input {
+  flex: 1;
+  min-width: 0;
+}
+.ask-examples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0 24px;
+}
+.ask-examples .chip {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.ask-examples .chip:hover {
+  color: var(--text);
+}
+.ask-answer {
+  margin-bottom: 40px;
+}
+.ask-summary {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 10px 0 18px;
+  max-width: 78ch;
+}
+.ask-programs {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+  display: grid;
+  gap: 12px;
+}
+.ask-programs .muted {
+  font-size: 13px;
+  margin-top: 2px;
+}
+.ask-sources {
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 560px) {
+  .ask-form {
+    flex-direction: column;
+  }
+}
+.ask-answer td:not(:last-child) {
+  white-space: nowrap;
+}
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 18px 0 8px;
+  font-size: 13px;
+}

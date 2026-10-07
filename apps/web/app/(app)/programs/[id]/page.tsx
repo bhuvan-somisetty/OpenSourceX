@@ -12,6 +12,7 @@ import { SourceBadge } from "@/components/source/SourceBadge";
 import { TermRibbon } from "@/components/data-display/TermRibbon";
 import { ProgramMark } from "@/components/ui/ProgramMark";
 import { ProjectRow } from "@/features/projects/ProjectRow";
+import { Pager, pageOf, pageSlice } from "@/features/projects/Pager";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Program" };
@@ -73,6 +74,7 @@ export default async function ProgramDetail({
   const { prog, items, all } = res.data;
   const s = prog.summary;
   const cur: Params = { q, tech, tab };
+  const page = pageOf(first(sp.page), items.items.length);
   const latest =
     prog.kind === "gsoc"
       ? String(prog.years[prog.years.length - 1]?.year ?? "")
@@ -159,7 +161,7 @@ export default async function ProgramDetail({
               <label htmlFor="pt">Technology</label>
               <select id="pt" name="tech" defaultValue={tech}>
                 <option value="">Any</option>
-                {all.facets.technologies.map((t) => (
+                {all.facets.technologies.slice(0, 80).map((t) => (
                   <option key={t.value} value={t.value}>
                     {t.value} ({t.n})
                   </option>
@@ -185,11 +187,19 @@ export default async function ProgramDetail({
               No recorded entry matches these filters.
             </EmptyState>
           ) : (
-            <div data-testid="results">
-              {items.items.map((p) => (
-                <ProjectRow key={p.id} p={p} saved={isSaved(saved, p)} />
-              ))}
-            </div>
+            <>
+              <div data-testid="results">
+                {pageSlice(items.items, page).map((p) => (
+                  <ProjectRow key={p.id} p={p} saved={isSaved(saved, p)} />
+                ))}
+              </div>
+              <Pager
+                path={`/programs/${def.alias}`}
+                params={cur}
+                page={page}
+                total={items.items.length}
+              />
+            </>
           )}
         </section>
       )}

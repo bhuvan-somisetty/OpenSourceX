@@ -4,6 +4,19 @@ Truthful state as of 2026-09-21 (after the product UX redesign). Run locally wit
 (http://localhost:3001). Everything below runs on **recorded, sanitized
 snapshots**, not live data.
 
+## CNCF LFX Mentorship history and Ask (2026-10-08)
+
+- Every CNCF LFX Mentorship term from the CNCF mentoring repository, 2019 to 2027 Term 1: 23
+  terms, about 930 programs from 104 CNCF projects, with term timelines and mentors (name and
+  GitHub handle only). Recorded snapshot `fixtures/cncf/cncf-lfx-history.json`, dataset
+  `cncf-lfx-history`, migration `006_cncf_lfx_history.sql`.
+- `/ask` and `GET /api/v1/ask?q=`: deterministic answers (no AI) about recurring projects, a
+  project's terms and mentors, a mentor's programs, term timelines, skills and yearly counts.
+  Every answer is counted from the data and links the term README it came from; questions the
+  data cannot answer get an explicit "not found".
+- Project lists are paginated (50 per page).
+- Hosted preview: guest sessions (`GUEST_PREVIEW=true`) at https://opensource-x.vercel.app.
+
 ## Product redesign (2026-09-21)
 
 Public landing and login, an authenticated application shell (development

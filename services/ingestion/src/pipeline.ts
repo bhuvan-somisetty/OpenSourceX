@@ -7,6 +7,7 @@ import {
   PROVIDERS,
   assertMayPersist,
   type CncfExportBody,
+  type CncfHistoryBody,
   type GsocOrgsBody,
   type LfxProjectsBody,
   type SnapshotEnvelope,
@@ -23,6 +24,7 @@ const DATASETS = {
   "gsoc-orgs": { provider: "gsoc-archive", parser: "gsoc-orgs/v1", order: 1 },
   "lfx-projects": { provider: "lfx-mentorship-api", parser: "lfx-projects/v1", order: 2 },
   "cncf-lfx-export": { provider: "cncf-mentoring", parser: "cncf-lfx-export/v1", order: 3 },
+  "cncf-lfx-history": { provider: "cncf-mentoring", parser: "cncf-lfx-history/v1", order: 4 },
 } as const;
 type DatasetKey = keyof typeof DATASETS;
 
@@ -56,7 +58,7 @@ export interface SpikeResult {
 
 const envelopeShape = z.object({
   provider: z.string(),
-  dataset: z.enum(["gsoc-orgs", "lfx-projects", "cncf-lfx-export"]),
+  dataset: z.enum(["gsoc-orgs", "lfx-projects", "cncf-lfx-export", "cncf-lfx-history"]),
   url: z.string().url(),
   fetchedAt: z.string().datetime(),
   origin: z.enum(["recorded", "live"]),
@@ -134,6 +136,7 @@ const FRESHNESS_DAYS: Record<DatasetKey, number> = {
   "gsoc-orgs": 30,
   "lfx-projects": 7,
   "cncf-lfx-export": 7,
+  "cncf-lfx-history": 30,
 };
 
 async function seedFreshness(c: PoolClient) {
@@ -337,7 +340,9 @@ async function ingestGsoc(x: Ctx, body: GsocOrgsBody) {
 async function upsertMentorshipProject(
   x: Ctx,
   a: {
-    uuid: string;
+    /** LFX project UUID; early CNCF terms have none and use `sourceKey` instead */
+    uuid: string | null;
+    sourceKey?: string;
     title: string;
     repoLink: string | null;
     summary: string | null;
@@ -349,16 +354,29 @@ async function upsertMentorshipProject(
   const pid = await programId(x.c, "lfx-mentorship");
   const cur = (
     await x.c.query(
-      "SELECT id,title,raw_repo_link,provenance_id FROM mentorship_project WHERE lfx_project_uuid=$1",
-      [a.uuid],
+      a.uuid
+        ? "SELECT id,title,raw_repo_link,provenance_id FROM mentorship_project WHERE lfx_project_uuid=$1"
+        : "SELECT id,title,raw_repo_link,provenance_id FROM mentorship_project WHERE source_key=$1",
+      [a.uuid ?? a.sourceKey],
     )
   ).rows[0];
   if (!cur) {
     const id = (
       await x.c.query(
-        `INSERT INTO mentorship_project(lfx_project_uuid,title,program_id,raw_repo_link,upstream_key,link_state,link_reason,summary,provenance_id)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING id`,
-        [a.uuid, a.title, pid, a.repoLink, l.key, l.state, l.reason, a.summary, a.provId],
+        `INSERT INTO mentorship_project(lfx_project_uuid,source_key,title,program_id,raw_repo_link,upstream_key,link_state,link_reason,summary,provenance_id)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING id`,
+        [
+          a.uuid,
+          a.uuid ? null : (a.sourceKey ?? null),
+          a.title,
+          pid,
+          a.repoLink,
+          l.key,
+          l.state,
+          l.reason,
+          a.summary,
+          a.provId,
+        ],
       )
     ).rows[0].id;
     x.counts.mentorshipProjects++;
@@ -545,6 +563,134 @@ async function ingestCncf(x: Ctx, body: CncfExportBody) {
   }
 }
 
+const slugify = (s: string) =>
+  s
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+/**
+ * CNCF LFX Mentorship history: every term README from 2019 on. Creates the term (with its
+ * stated timeline), each mentorship program, its term membership and its official mentors.
+ * Like the export pass it never overwrites LFX-owned title or repo link of an existing program.
+ */
+async function ingestCncfHistory(x: Ctx, body: CncfHistoryBody) {
+  const pid = await programId(x.c, "lfx-mentorship");
+  const direct = await prov(x, {
+    status: "CONFIRMED",
+    confidence: "high",
+    reason: "stated by the CNCF mentoring repository term README (CNCF projects only)",
+  });
+  const eco = (
+    await x.c.query(
+      "SELECT e.id FROM program_ecosystem e JOIN program p ON p.id=e.program_id WHERE p.slug='lfx-mentorship' AND e.key='cncf'",
+    )
+  ).rows[0].id;
+  const today = new Date().toISOString().slice(0, 10);
+  for (const t of body.terms) {
+    await x.c.query(
+      "INSERT INTO program_year(program_id,year) VALUES ($1,$2) ON CONFLICT (program_id,year) DO NOTHING",
+      [pid, t.year],
+    );
+    const url = `https://github.com/cncf/mentoring/blob/${body.sourceRef}/${t.sourcePath}`;
+    let termId: number | null = null;
+    if (t.termCode) {
+      await x.c.query(
+        `INSERT INTO program_term(program_id,year,term_code,track,starts_on,ends_on,provenance_id)
+         VALUES ($1,$2,$3,'unspecified',$4,$5,$6)
+         ON CONFLICT (program_id,year,term_code,track) DO UPDATE
+           SET starts_on = COALESCE(program_term.starts_on, EXCLUDED.starts_on),
+               ends_on = COALESCE(program_term.ends_on, EXCLUDED.ends_on)`,
+        [pid, t.year, t.termCode, t.startsOn, t.endsOn, direct],
+      );
+      termId = (
+        await x.c.query(
+          "SELECT id FROM program_term WHERE program_id=$1 AND year=$2 AND term_code=$3 AND track='unspecified'",
+          [pid, t.year, t.termCode],
+        )
+      ).rows[0].id;
+      await x.c.query(
+        `INSERT INTO program_term_detail(program_term_id,label,source_url,timeline,starts_on,ends_on,provenance_id)
+         VALUES ($1,$2,$3,$4,$5,$6,$7)
+         ON CONFLICT (program_term_id) DO UPDATE SET label=EXCLUDED.label, source_url=EXCLUDED.source_url,
+           timeline=EXCLUDED.timeline, starts_on=EXCLUDED.starts_on, ends_on=EXCLUDED.ends_on,
+           provenance_id=EXCLUDED.provenance_id`,
+        [termId, t.label, url, JSON.stringify(t.timeline), t.startsOn, t.endsOn, direct],
+      );
+    }
+    // a term that has not ended yet is current or planned, not historical
+    const status = t.endsOn && t.endsOn < today ? "HISTORICAL" : "CONFIRMED";
+    for (const p of t.programs) {
+      const sourceKey = `cncf:${t.year}:${t.folder}:${slugify(p.cncfProject)}:${slugify(p.title)}`;
+      const mp = await upsertMentorshipProject(
+        x,
+        {
+          uuid: p.lfxProjectUuid,
+          sourceKey,
+          title: p.title,
+          repoLink: p.upstreamIssueUrl,
+          summary: p.summary,
+          provId: direct,
+        },
+        { createOnly: true },
+      );
+      await x.c.query(
+        `UPDATE mentorship_project SET ecosystem_id=$2, cncf_project_name=$3,
+           cncf_project_slug=COALESCE(cncf_project_slug,$4),
+           technologies=CASE WHEN cardinality(technologies)=0 THEN $5 ELSE technologies END,
+           summary=COALESCE(summary,$6)
+         WHERE id=$1`,
+        [mp.id, eco, p.cncfProject, slugify(p.cncfProject), p.skills, p.summary],
+      );
+      if (mp.link.key)
+        await link(
+          x,
+          mp.id,
+          mp.link.key,
+          mp.link.state,
+          "cncf-upstream-issue-url",
+          mp.link.reason,
+          direct,
+        );
+      await x.c.query(
+        `INSERT INTO mentorship_project_term(mentorship_project_id,program_term_id,raw_term_name,norm_status,norm_confidence,norm_reason,source_start,source_end,provenance_id)
+         VALUES ($1,$2,$3,$4,'high',$5,$6,$7,$8)
+         ON CONFLICT (mentorship_project_id,raw_term_name) DO UPDATE SET program_term_id=EXCLUDED.program_term_id,
+           norm_status=EXCLUDED.norm_status, provenance_id=EXCLUDED.provenance_id`,
+        [
+          mp.id,
+          termId,
+          t.label,
+          "CONFIRMED",
+          `listed in the ${t.label} README of the CNCF mentoring repository`,
+          t.startsOn,
+          t.endsOn,
+          direct,
+        ],
+      );
+      x.counts.terms++;
+      for (const m of p.mentors) {
+        if (!m.githubHandle) {
+          x.counts.mentorsWithoutHandle++;
+          continue;
+        }
+        const person = await x.c.query(
+          `INSERT INTO person(display_name,github_login,provenance_id) VALUES ($1,$2,$3)
+           ON CONFLICT (lower(github_login)) DO UPDATE SET display_name=EXCLUDED.display_name RETURNING id`,
+          [m.name, m.githubHandle, direct],
+        );
+        await x.c.query(
+          `INSERT INTO person_role(person_id,role,mentorship_project_id,role_label,status,provenance_id)
+           VALUES ($1,'official_mentor',$2,NULL,$3,$4)
+           ON CONFLICT (person_id,role,mentorship_project_id) DO UPDATE SET status=EXCLUDED.status, provenance_id=EXCLUDED.provenance_id`,
+          [person.rows[0].id, mp.id, status, direct],
+        );
+        x.counts.mentors++;
+      }
+    }
+  }
+}
+
 const emptyCounts = (): SpikeCounts => ({
   snapshots: 0,
   organizations: 0,
@@ -649,6 +795,8 @@ export async function runSpike(
         counts.snapshots++;
         if (env.dataset === "gsoc-orgs") await ingestGsoc(x, env.body as GsocOrgsBody);
         else if (env.dataset === "lfx-projects") await ingestLfx(x, env.body as LfxProjectsBody);
+        else if (env.dataset === "cncf-lfx-history")
+          await ingestCncfHistory(x, env.body as CncfHistoryBody);
         else await ingestCncf(x, env.body as CncfExportBody);
         await c.query(
           "INSERT INTO sync_run(dataset_id,finished_at,status,counts) VALUES ($1,now(),'ok',$2)",
