@@ -20,6 +20,11 @@ const schema = z.object({
   DATA_MODE: z.enum(["recorded", "live"]).default("recorded"),
   /** Authentication. "development" gives a clearly labeled local session; real OAuth is not connected yet. */
   AUTH_MODE: z.enum(["development", "oauth"]).default("development"),
+  /** Guest preview for hosted builds: each visitor gets an anonymous, labeled session until real sign-in exists. */
+  GUEST_PREVIEW: z
+    .enum(["true", "false"])
+    .default("false")
+    .transform((v) => v === "true"),
   /** Live fetching of external sources. Providers are pending until approved (DATA_POLICY.md). */
   INGESTION_LIVE_SOURCES: z
     .enum(["true", "false"])

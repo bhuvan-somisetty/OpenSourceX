@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { developmentAuthAvailable, getSession } from "@/lib/auth";
+import { developmentAuthAvailable, getSession, guestPreviewAvailable } from "@/lib/auth";
 import { LogoMark } from "@/components/ui/Logo";
 import { PublicNav } from "@/features/landing/PublicNav";
-import { continueInDevelopmentMode } from "@/features/auth/actions";
+import { continueAsGuest, continueInDevelopmentMode } from "@/features/auth/actions";
 
 export const metadata: Metadata = { title: "Sign in" };
 export const dynamic = "force-dynamic";
@@ -13,10 +13,16 @@ const POINTS = [
   "Evidence and provenance behind every fact, not a guess",
   "A local preview session: no real account, no live data",
 ];
+const GUEST_POINTS = [
+  POINTS[0],
+  POINTS[1],
+  "A guest preview session: no real account, no live data",
+];
 
 export default async function Login() {
   if (await getSession()) redirect("/app");
   const dev = developmentAuthAvailable();
+  const guest = !dev && guestPreviewAvailable();
   return (
     <div className="auth" data-testid="login-page">
       <div className="atmos" aria-hidden="true" />
@@ -31,7 +37,7 @@ export default async function Login() {
               Sign in to explore programs, save projects and prepare to contribute.
             </p>
             <ul className="auth-points">
-              {POINTS.map((p) => (
+              {(guest ? GUEST_POINTS : POINTS).map((p) => (
                 <li key={p}>{p}</li>
               ))}
             </ul>
@@ -85,7 +91,8 @@ export default async function Login() {
                 Continue with GitHub
               </button>
               <p className="hint" style={{ margin: 0 }}>
-                Google and GitHub sign-in are not connected in this development build.
+                Google and GitHub sign-in are not connected{" "}
+                {guest ? "yet" : "in this development build"}.
               </p>
             </div>
 
@@ -102,8 +109,8 @@ export default async function Login() {
                 aria-describedby="email-hint"
               />
               <span id="email-hint" className="hint">
-                You can type here, but email sign-in is not connected in this development build, so
-                nothing is sent.
+                You can type here, but email sign-in is not connected{" "}
+                {guest ? "yet" : "in this development build"}, so nothing is sent.
               </span>
             </div>
 
@@ -111,10 +118,25 @@ export default async function Login() {
 
             <div className="local-preview" data-testid="local-preview">
               <div className="lp-head">
-                <span className="lp-tag">Local preview</span>
-                <span className="dim">development only</span>
+                <span className="lp-tag">{guest ? "Guest preview" : "Local preview"}</span>
+                <span className="dim">{guest ? "no account needed" : "development only"}</span>
               </div>
-              {dev ? (
+              {guest ? (
+                <form action={continueAsGuest}>
+                  <button
+                    className="btn primary"
+                    type="submit"
+                    style={{ width: "100%" }}
+                    data-testid="guest-login"
+                  >
+                    Continue as guest
+                  </button>
+                  <p className="hint" style={{ margin: "10px 0 0" }}>
+                    Starts an anonymous guest session in this browser. No Google, GitHub or real
+                    account is used. Saved items stay with this browser for up to 7 days.
+                  </p>
+                </form>
+              ) : dev ? (
                 <form action={continueInDevelopmentMode}>
                   <button
                     className="btn primary"

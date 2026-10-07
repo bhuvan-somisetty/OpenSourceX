@@ -44,7 +44,7 @@ anon(
     await page.goto("/login");
     await expect(page.getByTestId("oauth-google")).toBeDisabled();
     await expect(page.getByTestId("oauth-github")).toBeDisabled();
-    await expect(page.getByText("not connected in this development build")).toBeVisible();
+    await expect(page.getByText("not connected in this development build").first()).toBeVisible();
     await expect(page.getByTestId("local-preview")).toContainText(
       "No Google, GitHub or real account is used",
     );
