@@ -524,7 +524,15 @@ export function answerQuestion(
   today = new Date().toISOString().slice(0, 10),
 ): Answer {
   const q = question.trim().slice(0, 300);
-  if (!q || !h.programs.length) return overview(h, today);
+  if (!h.programs.length)
+    return {
+      kind: "none",
+      title: "The LFX Mentorship history is not loaded yet",
+      summary:
+        "This environment has no CNCF LFX Mentorship history in its database yet, so there is nothing to answer from. Load the recorded data (pnpm db:seed) and ask again.",
+      sources: [{ label: "CNCF mentoring repository, LFX Mentorship terms", url: h.source.url }],
+    };
+  if (!q) return overview(h, today);
   const pq = parseQuestion(q, h);
   if (pq.mentor && !pq.project) return mentorHistory(pq, h);
   if (pq.project && !pq.skill) return projectHistory(pq, h, today);
