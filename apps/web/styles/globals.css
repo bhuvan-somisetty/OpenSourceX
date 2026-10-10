@@ -2155,23 +2155,21 @@ a.card:hover,
   flex-wrap: wrap;
   gap: 4px;
   padding: 4px;
-  border-radius: 999px;
+  border-radius: 12px;
   background: var(--glass);
   border: 1px solid var(--border);
 }
 .segmented a,
 .segmented button {
-  padding: 8px 16px;
-  border-radius: 999px;
+  padding: 6px 14px;
+  border-radius: 8px;
   color: var(--text-muted);
   text-decoration: none;
-  font: 500 14px var(--font);
+  font: 500 13px var(--font);
   border: 0;
   background: none;
   cursor: pointer;
-  transition:
-    background 0.2s,
-    color 0.2s;
+  transition: all 0.16s ease;
   white-space: nowrap;
 }
 .segmented a:hover {
@@ -2182,6 +2180,30 @@ a.card:hover,
 .segmented [aria-pressed="true"] {
   background: var(--btn-bg);
   color: var(--btn-ink);
+  font-weight: 600;
+  box-shadow: 0 2px 8px -1px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="light"] .segmented {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+}
+[data-theme="light"] .segmented a,
+[data-theme="light"] .segmented button {
+  color: #64748b;
+  font-weight: 500;
+}
+[data-theme="light"] .segmented a:hover {
+  color: #0f172a;
+}
+[data-theme="light"] .segmented [aria-current="true"],
+[data-theme="light"] .segmented [aria-current="page"],
+[data-theme="light"] .segmented [aria-pressed="true"] {
+  background: #ffffff;
+  color: #0f172a;
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.04);
 }
 .scroll-x {
   overflow-x: auto;
@@ -2659,6 +2681,20 @@ a.tile:hover::after {
   background: rgba(255, 255, 255, 0.035);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
+[data-theme="light"] .prow {
+  border-top-color: rgba(15, 23, 42, 0.08);
+}
+[data-theme="light"] .prow:last-child {
+  border-bottom-color: rgba(15, 23, 42, 0.08);
+}
+[data-theme="light"] .prow:hover {
+  background: rgba(15, 23, 42, 0.025);
+  box-shadow: none;
+}
+[data-theme="light"] .prow .t a {
+  color: #0f172a;
+  font-weight: 600;
+}
 .prow .t a {
   color: var(--text);
   text-decoration: none;
@@ -2734,6 +2770,21 @@ a.tile:hover::after {
   width: 40px;
   justify-content: center;
 }
+[data-theme="light"] .save {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.12);
+  color: #0f172a;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+[data-theme="light"] .save:hover {
+  background: #f8fafc;
+  border-color: var(--accent);
+}
+[data-theme="light"] .save[aria-pressed="true"] {
+  background: rgba(37, 99, 235, 0.08);
+  border-color: var(--accent);
+  color: var(--accent);
+}
 .empty {
   text-align: center;
   padding: clamp(40px, 8vw, 88px) 20px;
@@ -2800,31 +2851,64 @@ td .chip {
   background: var(--glass);
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 0 9px;
-  font: 12px/24px var(--mono);
+  padding: 2px 10px;
+  font: 500 12px/20px var(--mono);
   color: var(--text-muted);
   overflow-wrap: anywhere;
 }
+[data-theme="light"] .tag {
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+  color: #475569;
+}
+
 .interest {
-  font: 500 15px var(--font);
-  padding: 10px 18px;
+  font: 500 14px var(--font);
+  padding: 8px 18px;
   border-radius: 999px;
   border: 1px solid var(--border-strong);
   background: var(--glass);
   color: var(--text-muted);
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.2s;
-  display: inline-block;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 .interest:hover {
   color: var(--text);
   border-color: var(--accent);
+  transform: translateY(-1px);
 }
 .interest[aria-pressed="true"] {
   background: var(--btn-bg);
   color: var(--btn-ink);
   border-color: transparent;
+  font-weight: 600;
+  box-shadow: 0 4px 14px -2px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+[data-theme="light"] .interest {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.12);
+  color: #334155;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+[data-theme="light"] .interest:hover {
+  background: #ffffff;
+  border-color: #94a3b8;
+  color: #0f172a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.08);
+}
+[data-theme="light"] .interest[aria-pressed="true"] {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+  font-weight: 600;
+  box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.3);
+  transform: translateY(-1px);
 }
 .rail {
   display: flex;
