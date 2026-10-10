@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%" fill="none" aria-label="Processing">
+  <path d="M400 500C700 500 700 100 400 100" stroke="#0468FF" stroke-width="150" fill="none"/>
+  <path d="M400 200L100 600" stroke="#1F34AB" stroke-width="150" fill="none"/>
+  <path d="M100 300L200 500" stroke="#85AEFF" stroke-width="150" fill="none"/>
+</svg>

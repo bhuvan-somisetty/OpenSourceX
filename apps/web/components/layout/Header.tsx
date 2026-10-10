@@ -127,22 +127,6 @@ export function Header({ userName }: { userName: string }) {
           ))}
         </nav>
         <div className="grow" />
-        <form action="/projects" role="search" className="hsearch">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            aria-hidden="true"
-          >
-            <circle cx="11" cy="11" r="7" />
-            <path d="m20 20-3.5-3.5" />
-          </svg>
-          <label htmlFor="global-q" className="skip">
-            Search projects
-          </label>
-          <input id="global-q" type="search" name="q" placeholder="Search projects" />
-        </form>
         <ThemeToggle />
         <ProfileMenu name={userName} />
         <button
@@ -159,12 +143,6 @@ export function Header({ userName }: { userName: string }) {
       {open && (
         <nav id="mobile-menu" className="menu-panel" aria-label="Mobile" data-testid="mobile-menu">
           <div className="wrap">
-            <form action="/projects" role="search" style={{ padding: "14px 0" }}>
-              <label htmlFor="m-q" className="skip">
-                Search projects
-              </label>
-              <input id="m-q" type="search" name="q" placeholder="Search projects" />
-            </form>
             {NAV.map((n) => (
               <Link
                 key={n.href}

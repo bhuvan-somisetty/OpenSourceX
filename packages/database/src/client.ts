@@ -3,7 +3,16 @@ import pg from "pg";
 export type Db = pg.Pool;
 
 export function createPool(connectionString: string): Db {
-  return new pg.Pool({ connectionString, max: 10, statement_timeout: 30_000 });
+  const pool = new pg.Pool({
+    connectionString,
+    max: 10,
+    statement_timeout: 30_000,
+    connectionTimeoutMillis: 3_000,
+  });
+  pool.on("error", () => {
+    /* prevent unhandled error event from crashing the process when database is offline */
+  });
+  return pool;
 }
 
 /** Run `fn` in a transaction; rolls back on error. */

@@ -18,11 +18,15 @@ export async function ensureUser(
   displayName: string,
   kind: "development" | "oauth",
 ) {
-  await db.query(
-    `INSERT INTO app_user(id, display_name, kind) VALUES ($1,$2,$3)
-     ON CONFLICT (id) DO UPDATE SET display_name = EXCLUDED.display_name`,
-    [id, displayName, kind],
-  );
+  try {
+    await db.query(
+      `INSERT INTO app_user(id, display_name, kind) VALUES ($1,$2,$3)
+       ON CONFLICT (id) DO UPDATE SET display_name = EXCLUDED.display_name`,
+      [id, displayName, kind],
+    );
+  } catch {
+    /* database unavailable: caller handles offline state */
+  }
 }
 
 const map = (r: Record<string, unknown>): SavedRow => ({

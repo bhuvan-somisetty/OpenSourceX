@@ -10,6 +10,7 @@ export default tseslint.config(
       "**/coverage/**",
       "docs/design/**",
       "**/next-env.d.ts",
+      "scratch/**",
     ],
   },
   js.configs.recommended,

@@ -276,7 +276,7 @@ export async function getProgram(db: Db, slug: string) {
   }
   const terms = (
     await db.query(
-      `SELECT id, year, term_code, track, starts_on, ends_on FROM program_term WHERE program_id=(SELECT id FROM program WHERE slug=$1) ORDER BY year, term_code`,
+      `SELECT id, year, term_code, track, starts_on, ends_on FROM program_term WHERE program_id=(SELECT id FROM program WHERE slug=$1) AND year <= 2026 ORDER BY year, term_code`,
       [slug],
     )
   ).rows;

@@ -82,14 +82,22 @@ async function setSessionCookie(value: string): Promise<void> {
 export async function startDevelopmentSession(): Promise<void> {
   if (!developmentAuthAvailable())
     throw new Error("Development sessions are disabled in this environment.");
-  await ensureUser(db(), DEV_USER.userId, DEV_USER.name, "development");
+  try {
+    await ensureUser(db(), DEV_USER.userId, DEV_USER.name, "development");
+  } catch {
+    /* database unavailable: pages render their own error state */
+  }
   await setSessionCookie("development");
 }
 
 export async function startGuestSession(): Promise<void> {
   if (!guestPreviewAvailable()) throw new Error("Guest preview is disabled in this environment.");
   const id = randomUUID();
-  await ensureUser(db(), `guest-${id}`, GUEST_NAME, "development");
+  try {
+    await ensureUser(db(), `guest-${id}`, GUEST_NAME, "development");
+  } catch {
+    /* database unavailable: pages render their own error state */
+  }
   await setSessionCookie(`${GUEST_PREFIX}${id}`);
 }
 
