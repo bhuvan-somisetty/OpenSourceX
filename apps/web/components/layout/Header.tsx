@@ -54,11 +54,21 @@ function ThemeToggle() {
 
 function ProfileMenu({ name }: { name: string }) {
   const [open, setOpen] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    const close = (e: MouseEvent) =>
-      ref.current && !ref.current.contains(e.target as Node) && setOpen(false);
-    const esc = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const close = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    const esc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        setShowConfirm(false);
+      }
+    };
     document.addEventListener("mousedown", close);
     document.addEventListener("keydown", esc);
     return () => {
@@ -66,6 +76,7 @@ function ProfileMenu({ name }: { name: string }) {
       document.removeEventListener("keydown", esc);
     };
   }, []);
+
   return (
     <div ref={ref} style={{ position: "relative" }}>
       <button
@@ -83,19 +94,85 @@ function ProfileMenu({ name }: { name: string }) {
         <div className="menu-pop" role="menu" data-testid="profile-menu">
           <div className="who">
             <strong>{name}</strong>
-            <div className="hint">Development session, not a real account</div>
+            <div className="hint">Session active</div>
           </div>
-          <Link href="/saved" role="menuitem">
+          <Link href="/saved" role="menuitem" onClick={() => setOpen(false)}>
             Saved
           </Link>
-          <Link href="/sources" role="menuitem">
+          <Link href="/sources" role="menuitem" onClick={() => setOpen(false)}>
             Sources and status
           </Link>
-          <form action={signOut}>
-            <button type="submit" role="menuitem" data-testid="sign-out">
-              Sign out
-            </button>
-          </form>
+          <button
+            type="button"
+            role="menuitem"
+            onClick={() => {
+              setOpen(false);
+              setShowConfirm(true);
+            }}
+            data-testid="sign-out"
+          >
+            Sign out
+          </button>
+        </div>
+      )}
+
+      {showConfirm && (
+        <div
+          className="modal-backdrop"
+          role="presentation"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setShowConfirm(false);
+          }}
+        >
+          <div
+            className="modal-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="signout-modal-title"
+            data-testid="signout-confirmation-modal"
+          >
+            <div className="modal-icon-badge" aria-hidden="true">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                <polyline points="16 17 21 12 16 7" />
+                <line x1="21" y1="12" x2="9" y2="12" />
+              </svg>
+            </div>
+            <h2 id="signout-modal-title" className="modal-title">
+              Sign out of OpenSourceX?
+            </h2>
+            <p className="modal-description">
+              You are currently signed in as <strong>{name}</strong>. Are you sure you want to end your current session?
+            </p>
+            <div className="modal-actions">
+              <button
+                type="button"
+                className="btn sm"
+                onClick={() => setShowConfirm(false)}
+                data-testid="cancel-sign-out"
+              >
+                Cancel
+              </button>
+              <form action={signOut}>
+                <button
+                  type="submit"
+                  className="btn danger sm"
+                  data-testid="confirm-sign-out"
+                >
+                  Sign out
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
       )}
     </div>
