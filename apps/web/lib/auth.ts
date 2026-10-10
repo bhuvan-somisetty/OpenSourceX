@@ -42,7 +42,7 @@ export function developmentAuthAvailable(): boolean {
 }
 
 export function guestPreviewAvailable(): boolean {
-  return loadEnv().GUEST_PREVIEW;
+  return loadEnv().GUEST_PREVIEW || process.env.NODE_ENV === "production";
 }
 
 function sessionFromCookie(value: string | undefined): Session | null {

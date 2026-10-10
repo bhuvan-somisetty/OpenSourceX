@@ -49,7 +49,7 @@ const schema = z.object({
   /** Guest preview for hosted builds: each visitor gets an anonymous, labeled session until real sign-in exists. */
   GUEST_PREVIEW: z
     .enum(["true", "false"])
-    .default("false")
+    .default("true")
     .transform((v) => v === "true"),
   /** Live fetching of external sources. Providers are pending until approved (DATA_POLICY.md). */
   INGESTION_LIVE_SOURCES: z
