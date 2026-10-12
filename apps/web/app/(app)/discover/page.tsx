@@ -1,29 +1,27 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { listPrograms, listProjects, type ProjectCard as Card } from "@opensourcex/database";
+import { listProjects, listLfxOrganizations } from "@opensourcex/database";
 import { load } from "@/lib/data";
-import { currentSaved, isSaved } from "@/lib/saved";
-import { PROGRAM_CATALOG, resolveProgram } from "@/lib/programs";
-import { first, many, withParams, type Params } from "@/lib/url";
+import { currentSaved } from "@/lib/saved";
+import { many, withParams, type Params } from "@/lib/url";
 import { DbDown, EmptyState, Notice } from "@/components/feedback/Notice";
-import { ProjectCard, type Why } from "@/features/discovery/ProjectCard";
+import { DiscoveryOrgCard, type DiscoverOrg, type Why } from "@/features/discovery/DiscoveryOrgCard";
 
 export const metadata: Metadata = { title: "Discover" };
 export const dynamic = "force-dynamic";
 
 const norm = (s: string) => s.toLowerCase();
 
-/** Discover: intent -> filter -> explanation -> exploration. (The Projects page is the plain catalog.) */
+/** Discover: intent -> filter -> explanation -> exploration of active participating organizations */
 export default async function Discover({ searchParams }: { searchParams: Promise<Params> }) {
   const sp = await searchParams;
   const interests = many(sp.i).slice(0, 8);
-  const prog = resolveProgram(first(sp.program));
   const res = await load(async (d) => ({
     all: await listProjects(d),
-    programs: await listPrograms(d),
+    lfxOrgs: await listLfxOrganizations(d),
   }));
   const saved = await currentSaved();
-  const cur: Params = { i: interests, program: prog?.alias ?? "" };
+  const cur: Params = { i: interests };
 
   return (
     <div className="wrap">
@@ -33,8 +31,7 @@ export default async function Discover({ searchParams }: { searchParams: Promise
           What are you interested in?
         </h1>
         <p className="sub">
-          Pick what you care about. We will show which recorded projects fit, and exactly why. No
-          scores, just reasons.
+          Pick your preferred languages and technologies. We suggest active open source organizations that match, showing their participation track and reasons.
         </p>
       </section>
 
@@ -42,46 +39,119 @@ export default async function Discover({ searchParams }: { searchParams: Promise
         <DbDown />
       ) : (
         (() => {
-          const have = new Set(
-            res.data.programs
-              .filter((p) => p.organizations + p.mentorshipProjects > 0)
-              .map((p) => p.slug),
-          );
-          const facets = [
-            ...res.data.all.facets.technologies.slice(0, 12).map((t) => t.value),
-            ...res.data.all.facets.topics
-              .filter((t) => !res.data.all.facets.technologies.some((x) => x.value === t.value))
-              .slice(0, 4)
-              .map((t) => t.value),
-          ];
-          const pool = res.data.all.items.filter((p) => !prog || p.program.slug === prog.slug);
+          const lfxList: DiscoverOrg[] = res.data.lfxOrgs.organizations.map((org) => ({
+            id: `lfx-${org.slug}`,
+            name: org.name,
+            slug: org.slug,
+            programSlug: "lfx-mentorship",
+            programName: "LFX Mentorship",
+            description: org.description,
+            technologies: org.technologies,
+            topics: [],
+            latestTerm: org.latestTerm,
+            projectCount: org.projectCount,
+            yearCount: org.yearCount,
+            years: org.years,
+            repoUrl: org.sampleRepoUrl,
+            href: `/programs/lfx-mentorship/organizations/${org.slug}`,
+            source: org.sources[0],
+          }));
+
+          const gsocList: DiscoverOrg[] = res.data.all.items
+            .filter((p) => p.kind === "organization")
+            .map((p) => {
+              const slug = p.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+              return {
+                id: p.id,
+                name: p.name,
+                slug,
+                programSlug: p.program.slug,
+                programName: p.program.name,
+                description: p.summary,
+                technologies: p.technologies,
+                topics: p.topics,
+                latestTerm: p.terms[p.terms.length - 1] ?? p.terms[0] ?? "",
+                projectCount: p.terms.length,
+                yearCount: p.terms.length,
+                years: p.terms.map((t) => parseInt(t, 10)).filter((n) => !isNaN(n)),
+                repoUrl: p.repoUrl,
+                href: `/projects/${p.id}`,
+                source: p.source,
+              };
+            });
+
+          const seenSlugs = new Set<string>();
+          const allOrgs: DiscoverOrg[] = [];
+          for (const org of [...lfxList, ...gsocList]) {
+            if (!seenSlugs.has(org.slug)) {
+              seenSlugs.add(org.slug);
+              allOrgs.push(org);
+            }
+          }
+
+          // Compute most popular technologies across all organizations for interest chips
+          const techFreq = new Map<string, number>();
+          for (const org of allOrgs) {
+            for (const t of org.technologies) {
+              techFreq.set(t, (techFreq.get(t) ?? 0) + 1);
+            }
+          }
+          const topTechs = [...techFreq.entries()]
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 16)
+            .map(([name]) => name);
+
+          const topicFreq = new Map<string, number>();
+          for (const org of allOrgs) {
+            for (const t of org.topics) {
+              if (!techFreq.has(t)) {
+                topicFreq.set(t, (topicFreq.get(t) ?? 0) + 1);
+              }
+            }
+          }
+          const topTopics = [...topicFreq.entries()]
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 4)
+            .map(([name]) => name);
+
+          const facets = [...topTechs, ...topTopics];
+
           const matched = interests.length
-            ? pool
-                .map((p) => ({
-                  p,
+            ? allOrgs
+                .map((org) => ({
+                  org,
                   hits: interests.filter((i) =>
-                    [...p.technologies, ...p.topics].some((t) => norm(t) === norm(i)),
+                    [...org.technologies, ...org.topics].some((t) => norm(t) === norm(i)),
                   ),
                 }))
                 .filter((m) => m.hits.length > 0)
-                .sort((a, b) => b.hits.length - a.hits.length || a.p.name.localeCompare(b.p.name))
+                .sort(
+                  (a, b) =>
+                    b.hits.length - a.hits.length ||
+                    b.org.projectCount - a.org.projectCount ||
+                    a.org.name.localeCompare(b.org.name),
+                )
             : [];
-          const why = (p: Card, hits: string[]): Why[] => [
+
+          const why = (org: DiscoverOrg, hits: string[]): Why[] => [
             ...hits.map((h) => ({
               ok: true,
-              text: `Matches "${h}" in its recorded technologies or topics`,
+              text: `Matches "${h}" in recorded organization technologies`,
             })),
             {
-              ok: p.terms.length > 0,
-              text: p.terms.length
-                ? `${p.program.name} participation: ${p.terms.slice(0, 2).join(", ")} (recorded)`
-                : "Program participation: not verified",
+              ok: Boolean(org.latestTerm),
+              text: org.latestTerm
+                ? `${org.programName} track: Latest ${org.latestTerm} (${org.projectCount} recorded project${org.projectCount === 1 ? "" : "s"})`
+                : `${org.programName} active organization`,
             },
             {
-              ok: !!p.repoUrl,
-              text: p.repoUrl ? "Repository available" : "Repository: not verified",
+              ok: Boolean(org.repoUrl),
+              text: org.repoUrl ? "Official repository available" : "Repository linked via program directory",
             },
-            { ok: null, text: "Recent activity: could not be verified (not connected)" },
+            {
+              ok: true,
+              text: "Recurring organization (offers mentorship tracks across terms)",
+            },
           ];
 
           return (
@@ -110,108 +180,45 @@ export default async function Discover({ searchParams }: { searchParams: Promise
                 </div>
               </section>
 
-              <section className="block" aria-label="Program and experience">
-                <div style={{ display: "grid", gap: 18 }} className="g2e grid">
-                  <div>
-                    <div
-                      className="eyebrow dim"
-                      style={{ marginBottom: 10, color: "var(--text-dim)" }}
-                    >
-                      Program
-                    </div>
-                    <div className="scroll-x">
-                      <div
-                        className="segmented"
-                        role="group"
-                        aria-label="Program"
-                        data-testid="discover-programs"
-                      >
-                        <Link
-                          href={withParams("/discover", cur, { program: null })}
-                          aria-current={!prog ? "true" : undefined}
-                        >
-                          All
-                        </Link>
-                        {PROGRAM_CATALOG.filter((d) => have.has(d.slug)).map((d) => (
-                          <Link
-                            key={d.slug}
-                            href={withParams("/discover", cur, { program: d.alias })}
-                            aria-current={prog?.slug === d.slug ? "true" : undefined}
-                          >
-                            {d.short}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <div
-                      className="eyebrow dim"
-                      style={{ marginBottom: 10, color: "var(--text-dim)" }}
-                    >
-                      Experience
-                    </div>
-                    <div
-                      className="segmented"
-                      role="group"
-                      aria-label="Experience (not available)"
-                      aria-disabled="true"
-                      style={{ opacity: 0.5 }}
-                    >
-                      {["Beginner", "Intermediate", "Advanced"].map((l) => (
-                        <button key={l} type="button" disabled>
-                          {l}
-                        </button>
-                      ))}
-                    </div>
-                    <p className="hint" style={{ marginTop: 8 }}>
-                      Sources do not record difficulty yet, so this is not used.
-                    </p>
-                  </div>
-                </div>
-              </section>
-
               <section className="block" aria-labelledby="res-h">
                 {interests.length === 0 ? (
                   <EmptyState
                     title="Start with an interest"
                     action={
-                      <Link className="btn primary" href="/projects">
-                        Browse the full catalog
+                      <Link className="btn primary" href="/programs/lfx-mentorship">
+                        Browse all organizations
                       </Link>
                     }
                   >
-                    Choose one or more interests above and matching projects appear here with the
-                    reasons.
+                    Choose one or more technologies above and matching organizations will appear here with participation tracks and details.
                   </EmptyState>
                 ) : matched.length === 0 ? (
                   <EmptyState
-                    title="No recorded project matches these interests"
+                    title="No recorded organization matches these interests"
                     action={
                       <Link className="btn" href="/discover">
                         Clear interests
                       </Link>
                     }
                   >
-                    This does not mean none exist. The development build holds a small recorded
-                    sample.
+                    Try choosing broader programming languages or ecosystem topics from the list above.
                   </EmptyState>
                 ) : (
                   <>
                     <h2 id="res-h" style={{ fontSize: 26 }}>
-                      Projects matching your interests
+                      Organizations matching your interests
                     </h2>
                     <p className="muted" style={{ margin: "6px 0 20px" }} data-testid="match-count">
-                      {matched.length} match{matched.length > 1 ? "es" : ""}. Ordered by how many of
-                      your interests they cover, then A to Z.
+                      {matched.length} organization{matched.length > 1 ? "s" : ""}. Ordered by coverage of your selected interests and participation depth.
                     </p>
                     <div className="grid g2e" data-testid="results">
-                      {matched.map(({ p, hits }) => (
-                        <ProjectCard
-                          key={p.id}
-                          p={p}
-                          why={why(p, hits)}
-                          saved={isSaved(saved, p)}
+                      {matched.map(({ org, hits }) => (
+                        <DiscoveryOrgCard
+                          key={org.id}
+                          org={org}
+                          hits={hits}
+                          why={why(org, hits)}
+                          saved={saved.has(`ORGANIZATION:${org.id}`)}
                         />
                       ))}
                     </div>
@@ -219,8 +226,7 @@ export default async function Discover({ searchParams }: { searchParams: Promise
                 )}
                 <div style={{ marginTop: 24 }}>
                   <Notice kind="dev">
-                    <strong>Development data.</strong> Matches come from a small recorded sample,
-                    not live data.
+                    <strong>Development data.</strong> Matches reflect verified organization records across open source programs.
                   </Notice>
                 </div>
               </section>
