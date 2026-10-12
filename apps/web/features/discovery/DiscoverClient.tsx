@@ -1,0 +1,443 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { DiscoveryOrgCard, type DiscoverOrg, type Why } from "@/features/discovery/DiscoveryOrgCard";
+import { Notice } from "@/components/feedback/Notice";
+
+const norm = (s: string) => s.toLowerCase();
+
+export function DiscoverClient({
+  allOrgs,
+  facets,
+  initialInterests,
+  savedSet,
+}: {
+  allOrgs: DiscoverOrg[];
+  facets: string[];
+  initialInterests: string[];
+  savedSet: string[];
+}) {
+  const router = useRouter();
+  const [interests, setInterests] = useState<string[]>(initialInterests);
+  const [showPicker, setShowPicker] = useState(false);
+  const [pendingInterests, setPendingInterests] = useState<string[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const saved = new Set(savedSet);
+
+  useEffect(() => {
+    if (!showPicker) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setShowPicker(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [showPicker]);
+
+  const matched = interests.length
+    ? allOrgs
+        .map((org) => ({
+          org,
+          hits: interests.filter((i) =>
+            [...org.technologies, ...org.topics].some((t) => norm(t) === norm(i)),
+          ),
+        }))
+        .filter((m) => m.hits.length > 0)
+        .sort(
+          (a, b) =>
+            b.hits.length - a.hits.length ||
+            b.org.projectCount - a.org.projectCount ||
+            a.org.name.localeCompare(b.org.name),
+        )
+    : [];
+
+  const displayList = interests.length
+    ? matched
+    : allOrgs.map((org) => ({ org, hits: [] as string[] }));
+
+  const why = (org: DiscoverOrg, hits: string[]): Why[] => [
+    ...(hits.length > 0
+      ? hits.map((h) => ({
+          ok: true as const,
+          text: `Matches "${h}" in recorded organization technologies`,
+        }))
+      : [
+          {
+            ok: true as const,
+            text:
+              org.technologies.length > 0
+                ? `Primary stack: ${org.technologies.slice(0, 3).join(", ")}`
+                : "Active open source technology stack",
+          },
+        ]),
+    {
+      ok: Boolean(org.latestTerm),
+      text: org.latestTerm
+        ? `${org.programName} track: Latest ${org.latestTerm} (${org.projectCount} recorded project${org.projectCount === 1 ? "" : "s"})`
+        : `${org.programName} active organization`,
+    },
+    {
+      ok: Boolean(org.repoUrl),
+      text: org.repoUrl ? "Official repository available" : "Repository linked via program directory",
+    },
+    {
+      ok: true,
+      text: "Recurring organization (offers mentorship tracks across terms)",
+    },
+  ];
+
+  function openPicker() {
+    setPendingInterests([...interests]);
+    setSearchQuery("");
+    setShowPicker(true);
+  }
+
+  function togglePending(tech: string) {
+    setPendingInterests((prev) =>
+      prev.some((p) => norm(p) === norm(tech))
+        ? prev.filter((p) => norm(p) !== norm(tech))
+        : prev.length < 8
+          ? [...prev, tech]
+          : prev,
+    );
+  }
+
+  function applyInterests() {
+    setInterests([...pendingInterests]);
+    setShowPicker(false);
+    const params = new URLSearchParams();
+    for (const i of pendingInterests) params.append("i", i);
+    router.replace(`/discover${pendingInterests.length ? `?${params.toString()}` : ""}`, {
+      scroll: false,
+    });
+  }
+
+  function clearInterests() {
+    setInterests([]);
+    setPendingInterests([]);
+    setShowPicker(false);
+    router.replace("/discover", { scroll: false });
+  }
+
+  const filteredFacets = searchQuery.trim()
+    ? facets.filter((f) => f.toLowerCase().includes(searchQuery.trim().toLowerCase()))
+    : facets;
+
+  return (
+    <>
+      {/* Action bar below the hero text (after track and reasons) */}
+      <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap", marginTop: 14 }}>
+        <button
+          type="button"
+          className="btn primary"
+          onClick={openPicker}
+          data-testid="open-interest-picker"
+          style={{ display: "inline-flex", alignItems: "center", gap: 8 }}
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+          </svg>
+          {interests.length > 0
+            ? `Interests (${interests.length})`
+            : "Select your interests"}
+        </button>
+
+        {interests.length > 0 && (
+          <>
+            <div className="chips" style={{ gap: 6 }}>
+              {interests.map((i) => (
+                <span
+                  key={i}
+                  className="tag accent"
+                  style={{
+                    background: "rgba(0, 153, 255, 0.15)",
+                    color: "#38bdf8",
+                    border: "1px solid rgba(56, 189, 248, 0.35)",
+                    fontWeight: 600,
+                    fontSize: 12,
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 4,
+                  }}
+                >
+                  {i}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const next = interests.filter((x) => norm(x) !== norm(i));
+                      setInterests(next);
+                      const params = new URLSearchParams();
+                      for (const t of next) params.append("i", t);
+                      router.replace(`/discover${next.length ? `?${params.toString()}` : ""}`, {
+                        scroll: false,
+                      });
+                    }}
+                    style={{
+                      background: "none",
+                      border: "none",
+                      padding: 0,
+                      color: "inherit",
+                      cursor: "pointer",
+                      fontSize: 14,
+                      lineHeight: 1,
+                    }}
+                    aria-label={`Remove ${i}`}
+                  >
+                    ×
+                  </button>
+                </span>
+              ))}
+            </div>
+            <button
+              type="button"
+              className="btn sm"
+              onClick={clearInterests}
+              style={{ fontSize: 12 }}
+            >
+              Clear all
+            </button>
+          </>
+        )}
+      </div>
+
+      {/* Results */}
+      <section className="block" aria-labelledby="res-h" style={{ marginTop: 28 }}>
+        {interests.length > 0 && matched.length === 0 ? (
+          <div className="card" style={{ padding: 40, textAlign: "center" }}>
+            <h3 style={{ fontSize: 20, marginBottom: 8 }}>No matches for these interests</h3>
+            <p className="muted" style={{ marginBottom: 16, fontSize: 14 }}>
+              Try selecting broader programming languages or ecosystem topics.
+            </p>
+            <div style={{ display: "flex", gap: 10, justifyContent: "center" }}>
+              <button type="button" className="btn primary sm" onClick={openPicker}>
+                Select interests
+              </button>
+              <button type="button" className="btn sm" onClick={clearInterests}>
+                Clear all
+              </button>
+            </div>
+          </div>
+        ) : (
+          <>
+            <p className="muted" style={{ margin: "0 0 18px", fontSize: 14 }} data-testid="match-count">
+              {interests.length > 0
+                ? `${matched.length} match${matched.length > 1 ? "es" : ""}. Ordered by coverage of your selected interests and participation depth.`
+                : `Showing all ${allOrgs.length} participating organizations. Use the button above to filter by your preferred technologies.`}
+            </p>
+            <div className="grid g2e" data-testid="results">
+              {displayList.map(({ org, hits }) => (
+                <DiscoveryOrgCard
+                  key={org.id}
+                  org={org}
+                  hits={hits}
+                  why={why(org, hits)}
+                  saved={saved.has(`ORGANIZATION:${org.id}`)}
+                />
+              ))}
+            </div>
+          </>
+        )}
+        <div style={{ marginTop: 24 }}>
+          <Notice kind="dev">
+            <strong>Development data.</strong> Matches reflect verified organization records across open source programs.
+          </Notice>
+        </div>
+      </section>
+
+      {/* Interest Picker Modal (matching sign out confirmation modal design) */}
+      {showPicker && (
+        <div
+          className="modal-backdrop"
+          role="presentation"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setShowPicker(false);
+          }}
+        >
+          <div
+            className="modal-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="interest-modal-title"
+            data-testid="interest-picker-modal"
+            style={{ maxWidth: 580, maxHeight: "90vh", display: "flex", flexDirection: "column" }}
+          >
+            <div
+              className="modal-icon-badge"
+              aria-hidden="true"
+              style={{
+                background: "rgba(0, 153, 255, 0.12)",
+                border: "1px solid rgba(0, 153, 255, 0.3)",
+                color: "#0099ff",
+              }}
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+              </svg>
+            </div>
+
+            <h2 id="interest-modal-title" className="modal-title">
+              Select your interests
+            </h2>
+            <p className="modal-description" style={{ marginBottom: 14 }}>
+              Choose up to 8 programming languages and technologies to filter matching organizations.
+            </p>
+
+            {/* Quick search input */}
+            <input
+              type="search"
+              placeholder="Search languages and technologies..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              autoFocus
+              style={{
+                width: "100%",
+                padding: "9px 12px",
+                fontSize: 14,
+                borderRadius: 10,
+                border: "1px solid var(--border)",
+                background: "var(--surface)",
+                color: "var(--text)",
+                marginBottom: 14,
+                outline: "none",
+              }}
+            />
+
+            {/* Currently selected items in modal */}
+            {pendingInterests.length > 0 && (
+              <div style={{ marginBottom: 12 }}>
+                <div
+                  style={{
+                    fontSize: 11,
+                    fontWeight: 700,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.06em",
+                    color: "var(--text-dim, #94a3b8)",
+                    marginBottom: 6,
+                  }}
+                >
+                  Selected ({pendingInterests.length}/8)
+                </div>
+                <div className="chips" style={{ gap: 6, flexWrap: "wrap" }}>
+                  {pendingInterests.map((i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      className="interest"
+                      aria-pressed="true"
+                      onClick={() => togglePending(i)}
+                      style={{
+                        background: "rgba(0, 153, 255, 0.18)",
+                        color: "#38bdf8",
+                        border: "1px solid rgba(56, 189, 248, 0.45)",
+                        fontWeight: 700,
+                        cursor: "pointer",
+                        fontSize: 12,
+                        padding: "4px 10px",
+                      }}
+                    >
+                      {i} ×
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* All available languages and technologies */}
+            <div
+              style={{
+                flex: 1,
+                minHeight: 180,
+                maxHeight: 280,
+                overflowY: "auto",
+                paddingRight: 4,
+                marginBottom: 18,
+              }}
+            >
+              <div
+                style={{
+                  fontSize: 11,
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.06em",
+                  color: "var(--text-dim, #94a3b8)",
+                  marginBottom: 8,
+                }}
+              >
+                All languages & technologies ({filteredFacets.length})
+              </div>
+              <div className="chips" style={{ gap: 8, flexWrap: "wrap" }}>
+                {filteredFacets.map((f) => {
+                  const on = pendingInterests.some((p) => norm(p) === norm(f));
+                  return (
+                    <button
+                      key={f}
+                      type="button"
+                      className="interest"
+                      aria-pressed={on}
+                      onClick={() => togglePending(f)}
+                      style={{ cursor: "pointer", fontSize: 13 }}
+                    >
+                      {f}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="modal-actions">
+              <button
+                type="button"
+                className="btn sm"
+                onClick={() => setShowPicker(false)}
+                data-testid="cancel-interest-picker"
+              >
+                Cancel
+              </button>
+              {pendingInterests.length > 0 && (
+                <button
+                  type="button"
+                  className="btn sm"
+                  onClick={() => setPendingInterests([])}
+                  style={{ color: "var(--text-dim)" }}
+                >
+                  Clear
+                </button>
+              )}
+              <button
+                type="button"
+                className="btn primary sm"
+                onClick={applyInterests}
+                data-testid="apply-interests"
+              >
+                {pendingInterests.length > 0
+                  ? `Apply (${pendingInterests.length})`
+                  : "Show all"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
