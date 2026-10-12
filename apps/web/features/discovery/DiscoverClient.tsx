@@ -53,25 +53,11 @@ export function DiscoverClient({
         )
     : [];
 
-  const displayList = interests.length
-    ? matched
-    : allOrgs.map((org) => ({ org, hits: [] as string[] }));
-
   const why = (org: DiscoverOrg, hits: string[]): Why[] => [
-    ...(hits.length > 0
-      ? hits.map((h) => ({
-          ok: true as const,
-          text: `Matches "${h}" in recorded organization technologies`,
-        }))
-      : [
-          {
-            ok: true as const,
-            text:
-              org.technologies.length > 0
-                ? `Primary stack: ${org.technologies.slice(0, 3).join(", ")}`
-                : "Active open source technology stack",
-          },
-        ]),
+    ...hits.map((h) => ({
+      ok: true as const,
+      text: `Matches "${h}" in recorded organization technologies`,
+    })),
     {
       ok: Boolean(org.latestTerm),
       text: org.latestTerm
@@ -212,49 +198,49 @@ export function DiscoverClient({
         )}
       </div>
 
-      {/* Results */}
-      <section className="block" aria-labelledby="res-h" style={{ marginTop: 28 }}>
-        {interests.length > 0 && matched.length === 0 ? (
-          <div className="card" style={{ padding: 40, textAlign: "center" }}>
-            <h3 style={{ fontSize: 20, marginBottom: 8 }}>No matches for these interests</h3>
-            <p className="muted" style={{ marginBottom: 16, fontSize: 14 }}>
-              Try selecting broader programming languages or ecosystem topics.
-            </p>
-            <div style={{ display: "flex", gap: 10, justifyContent: "center" }}>
-              <button type="button" className="btn primary sm" onClick={openPicker}>
-                Select interests
-              </button>
-              <button type="button" className="btn sm" onClick={clearInterests}>
-                Clear all
-              </button>
+      {/* Results - Only shown after user selects and applies interests */}
+      {interests.length > 0 && (
+        <section className="block" aria-labelledby="res-h" style={{ marginTop: 28 }}>
+          {matched.length === 0 ? (
+            <div className="card" style={{ padding: 40, textAlign: "center" }}>
+              <h3 style={{ fontSize: 20, marginBottom: 8 }}>No matches for these interests</h3>
+              <p className="muted" style={{ marginBottom: 16, fontSize: 14 }}>
+                Try selecting broader programming languages or ecosystem topics.
+              </p>
+              <div style={{ display: "flex", gap: 10, justifyContent: "center" }}>
+                <button type="button" className="btn primary sm" onClick={openPicker}>
+                  Select interests
+                </button>
+                <button type="button" className="btn sm" onClick={clearInterests}>
+                  Clear all
+                </button>
+              </div>
             </div>
+          ) : (
+            <>
+              <p className="muted" style={{ margin: "0 0 18px", fontSize: 14 }} data-testid="match-count">
+                {matched.length} organization{matched.length > 1 ? "s" : ""} match your selected interests. Ordered by coverage and participation depth.
+              </p>
+              <div className="grid g2e" data-testid="results">
+                {matched.map(({ org, hits }) => (
+                  <DiscoveryOrgCard
+                    key={org.id}
+                    org={org}
+                    hits={hits}
+                    why={why(org, hits)}
+                    saved={saved.has(`ORGANIZATION:${org.id}`)}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+          <div style={{ marginTop: 24 }}>
+            <Notice kind="dev">
+              <strong>Development data.</strong> Matches reflect verified organization records across open source programs.
+            </Notice>
           </div>
-        ) : (
-          <>
-            <p className="muted" style={{ margin: "0 0 18px", fontSize: 14 }} data-testid="match-count">
-              {interests.length > 0
-                ? `${matched.length} match${matched.length > 1 ? "es" : ""}. Ordered by coverage of your selected interests and participation depth.`
-                : `Showing all ${allOrgs.length} participating organizations. Use the button above to filter by your preferred technologies.`}
-            </p>
-            <div className="grid g2e" data-testid="results">
-              {displayList.map(({ org, hits }) => (
-                <DiscoveryOrgCard
-                  key={org.id}
-                  org={org}
-                  hits={hits}
-                  why={why(org, hits)}
-                  saved={saved.has(`ORGANIZATION:${org.id}`)}
-                />
-              ))}
-            </div>
-          </>
-        )}
-        <div style={{ marginTop: 24 }}>
-          <Notice kind="dev">
-            <strong>Development data.</strong> Matches reflect verified organization records across open source programs.
-          </Notice>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Interest Picker Modal (matching sign out confirmation modal design) */}
       {showPicker && (
@@ -432,7 +418,7 @@ export function DiscoverClient({
               >
                 {pendingInterests.length > 0
                   ? `Apply (${pendingInterests.length})`
-                  : "Show all"}
+                  : "Apply"}
               </button>
             </div>
           </div>
