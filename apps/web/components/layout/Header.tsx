@@ -52,7 +52,7 @@ function ThemeToggle() {
   );
 }
 
-function ProfileMenu({ name }: { name: string }) {
+function ProfileMenu({ name, kind }: { name: string; kind: "development" | "guest" }) {
   const [open, setOpen] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -88,7 +88,7 @@ function ProfileMenu({ name }: { name: string }) {
         onClick={() => setOpen((o) => !o)}
         data-testid="profile-button"
       >
-        {name[0]}
+        {kind === "guest" ? null : name[0]?.toUpperCase()}
       </button>
       {open && (
         <div className="menu-pop" role="menu" data-testid="profile-menu">
@@ -179,7 +179,7 @@ function ProfileMenu({ name }: { name: string }) {
   );
 }
 
-export function Header({ userName }: { userName: string }) {
+export function Header({ userName, kind }: { userName: string; kind: "development" | "guest" }) {
   const path = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
   useEffect(() => setOpen(false), [path]);
@@ -205,7 +205,7 @@ export function Header({ userName }: { userName: string }) {
         </nav>
         <div className="grow" />
         <ThemeToggle />
-        <ProfileMenu name={userName} />
+        <ProfileMenu name={userName} kind={kind} />
         <button
           type="button"
           className="btn menu-btn sm"

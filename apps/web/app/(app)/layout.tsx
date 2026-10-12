@@ -12,7 +12,7 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
     <div className="app-shell">
       <div className="app-atmos" aria-hidden="true" />
       <DevBanner session={session.kind} />
-      <Header userName={session.name} />
+      <Header userName={session.name} kind={session.kind} />
       <main id="main">{children}</main>
     </div>
   );
