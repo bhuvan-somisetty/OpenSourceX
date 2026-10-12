@@ -9,12 +9,12 @@ export const metadata: Metadata = {
 };
 export const viewport: Viewport = { width: "device-width", initialScale: 1 };
 
-// Applies the saved theme before first paint (the signed-in app supports light and dark).
-const themeInit = `try{var t=localStorage.getItem("osx-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}`;
+// Strictly locks to original dark mode and clears any saved light theme
+const themeInit = `try{localStorage.removeItem("osx-theme");document.documentElement.setAttribute("data-theme","dark")}catch(e){}`;
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
       </head>

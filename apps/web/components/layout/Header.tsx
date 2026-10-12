@@ -19,38 +19,6 @@ export const NAV = [
 const active = (path: string, href: string) =>
   path.startsWith(href.split("/").slice(0, 2).join("/"));
 
-function ThemeToggle() {
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
-  useEffect(() => {
-    const t = document.documentElement.getAttribute("data-theme");
-    setTheme(
-      t === "light" || (!t && window.matchMedia("(prefers-color-scheme: light)").matches)
-        ? "light"
-        : "dark",
-    );
-  }, []);
-  function toggle() {
-    const next = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    document.documentElement.setAttribute("data-theme", next);
-    try {
-      localStorage.setItem("osx-theme", next);
-    } catch {
-      /* storage may be unavailable; the theme still applies for this visit */
-    }
-  }
-  return (
-    <button
-      type="button"
-      className="btn icon-btn sm"
-      onClick={toggle}
-      aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
-      data-testid="theme-toggle"
-    >
-      <span aria-hidden="true">{theme === "dark" ? "☀" : "☾"}</span>
-    </button>
-  );
-}
 
 function ProfileMenu({ name, kind }: { name: string; kind: "development" | "guest" }) {
   const [open, setOpen] = useState(false);
@@ -204,7 +172,6 @@ export function Header({ userName, kind }: { userName: string; kind: "developmen
           ))}
         </nav>
         <div className="grow" />
-        <ThemeToggle />
         <ProfileMenu name={userName} kind={kind} />
         <button
           type="button"

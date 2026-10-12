@@ -505,7 +505,6 @@ function C4gtLogo() {
         objectFit: "contain",
         borderRadius: "50%",
         display: "block",
-        filter: "invert(1)",
       }}
     />
   );
