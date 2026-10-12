@@ -133,11 +133,25 @@ export default async function Discover({ searchParams }: { searchParams: Promise
                 )
             : [];
 
+          const displayList = interests.length
+            ? matched
+            : allOrgs.map((org) => ({ org, hits: [] }));
+
           const why = (org: DiscoverOrg, hits: string[]): Why[] => [
-            ...hits.map((h) => ({
-              ok: true,
-              text: `Matches "${h}" in recorded organization technologies`,
-            })),
+            ...(hits.length > 0
+              ? hits.map((h) => ({
+                  ok: true,
+                  text: `Matches "${h}" in recorded organization technologies`,
+                }))
+              : [
+                  {
+                    ok: true,
+                    text:
+                      org.technologies.length > 0
+                        ? `Primary stack: ${org.technologies.slice(0, 3).join(", ")}`
+                        : "Active open source technology stack",
+                  },
+                ]),
             {
               ok: Boolean(org.latestTerm),
               text: org.latestTerm
@@ -181,18 +195,7 @@ export default async function Discover({ searchParams }: { searchParams: Promise
               </section>
 
               <section className="block" aria-labelledby="res-h">
-                {interests.length === 0 ? (
-                  <EmptyState
-                    title="Start with an interest"
-                    action={
-                      <Link className="btn primary" href="/programs/lfx-mentorship">
-                        Browse all organizations
-                      </Link>
-                    }
-                  >
-                    Choose one or more technologies above and matching organizations will appear here with participation tracks and details.
-                  </EmptyState>
-                ) : matched.length === 0 ? (
+                {interests.length > 0 && matched.length === 0 ? (
                   <EmptyState
                     title="No recorded organization matches these interests"
                     action={
@@ -206,13 +209,17 @@ export default async function Discover({ searchParams }: { searchParams: Promise
                 ) : (
                   <>
                     <h2 id="res-h" style={{ fontSize: 26 }}>
-                      Organizations matching your interests
+                      {interests.length > 0
+                        ? "Organizations matching your interests"
+                        : "Organizations across open source programs"}
                     </h2>
                     <p className="muted" style={{ margin: "6px 0 20px" }} data-testid="match-count">
-                      {matched.length} organization{matched.length > 1 ? "s" : ""}. Ordered by coverage of your selected interests and participation depth.
+                      {interests.length > 0
+                        ? `${matched.length} organization${matched.length > 1 ? "s" : ""}. Ordered by coverage of your selected interests and participation depth.`
+                        : `Showing all ${allOrgs.length} active participating organizations. Select one or more interests above to filter organizations by your preferred technologies.`}
                     </p>
                     <div className="grid g2e" data-testid="results">
-                      {matched.map(({ org, hits }) => (
+                      {displayList.map(({ org, hits }) => (
                         <DiscoveryOrgCard
                           key={org.id}
                           org={org}
