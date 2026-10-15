@@ -18,7 +18,7 @@
    "name": "ADC Karnal",
    "tagline": null,
    "description": null,
-   "website": null,
+   "website": "https://karnal.gov.in",
    "repoUrl": null,
    "tags": [],
    "years": [
@@ -41,14 +41,14 @@
    "links": [],
    "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/472",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/c4gt/adc-karnal.jpg"
   },
   {
    "slug": "adc-mahendragarh",
    "name": "ADC Mahendragarh",
    "tagline": null,
    "description": null,
-   "website": null,
+   "website": "https://mahendragarh.gov.in",
    "repoUrl": null,
    "tags": [],
    "years": [
@@ -71,14 +71,14 @@
    "links": [],
    "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/493",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/c4gt/adc-mahendragarh.jpg"
   },
   {
    "slug": "adc-rohtak",
    "name": "ADC Rohtak",
    "tagline": null,
    "description": null,
-   "website": null,
+   "website": "https://rohtak.gov.in",
    "repoUrl": null,
    "tags": [],
    "years": [
@@ -101,14 +101,14 @@
    "links": [],
    "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/513",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/c4gt/adc-rohtak.jpg"
   },
   {
    "slug": "armman",
    "name": "Armman",
    "tagline": null,
    "description": null,
-   "website": null,
+   "website": "https://armman.org",
    "repoUrl": null,
    "tags": [],
    "years": [
@@ -125,7 +125,7 @@
    "links": [],
    "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/459",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/c4gt/armman.png"
   },
   {
    "slug": "avanti-fellows",
@@ -234,7 +234,7 @@
    "links": [],
    "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/511",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/c4gt/cmc-ambala.png"
   },
   {
    "slug": "coss",
@@ -320,7 +320,7 @@
    "name": "Haqdarshak",
    "tagline": null,
    "description": null,
-   "website": null,
+   "website": "https://www.haqdarshak.com",
    "repoUrl": null,
    "tags": [],
    "years": [
@@ -343,7 +343,7 @@
    "links": [],
    "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/554",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/c4gt/haqdarshak.jpg"
   },
   {
    "slug": "idinsight",
@@ -406,7 +406,7 @@
    "name": "IIIT-Delhi",
    "tagline": null,
    "description": null,
-   "website": null,
+   "website": "https://www.iiitd.ac.in",
    "repoUrl": null,
    "tags": [],
    "years": [
@@ -423,7 +423,7 @@
    "links": [],
    "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/514",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/c4gt/iiit-delhi.png"
   },
   {
    "slug": "medplat",
@@ -461,7 +461,7 @@
    "name": "MeitY",
    "tagline": null,
    "description": null,
-   "website": null,
+   "website": "https://www.meity.gov.in",
    "repoUrl": null,
    "tags": [],
    "years": [
@@ -491,7 +491,7 @@
    "name": "National Health Authority",
    "tagline": null,
    "description": null,
-   "website": null,
+   "website": "https://nha.gov.in",
    "repoUrl": null,
    "tags": [],
    "years": [
@@ -508,14 +508,14 @@
    "links": [],
    "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/539",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/c4gt/national-health-authority.jpg"
   },
   {
    "slug": "nsut-in-collaboration-with-c4gt-seeta-and-aic",
    "name": "NSUT in collaboration with C4GT, SEETA and AIC",
    "tagline": null,
    "description": null,
-   "website": null,
+   "website": "https://www.nsut.ac.in",
    "repoUrl": null,
    "tags": [],
    "years": [
@@ -574,7 +574,7 @@
    "links": [],
    "sourceUrl": "https://github.com/seetadev/RoadICM/issues/1",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/c4gt/nsut-in-collaboration-with-c4gt-seeta-and-aic.png"
   },
   {
    "slug": "opennyai",
@@ -606,7 +606,7 @@
    "name": "Protean",
    "tagline": null,
    "description": null,
-   "website": null,
+   "website": "https://www.proteantech.in",
    "repoUrl": null,
    "tags": [],
    "years": [
@@ -623,7 +623,7 @@
    "links": [],
    "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/556",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/c4gt/protean.png"
   },
   {
    "slug": "sampatti-card",

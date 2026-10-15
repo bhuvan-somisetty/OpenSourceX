@@ -57,18 +57,18 @@ export default async function ProgramDetail({
               {def.short}
             </span>
           </div>
-          <div style={{ display: "flex", gap: 18, alignItems: "center", marginTop: 20 }}>
-            <ProgramMark slug={def.slug} />
-            <div className="eyebrow">
+          <div className="program-hero-center">
+            <div className="program-hero-mark">
+              <ProgramMark slug={def.slug} />
+            </div>
+            <div className="eyebrow" style={{ marginTop: 22 }}>
               {staticData.years.length
                 ? `${staticData.years[0]}${staticData.years.length > 1 ? `–${staticData.years[staticData.years.length - 1]}` : ""} · ${staticData.orgs.length} organization${staticData.orgs.length === 1 ? "" : "s"}`
                 : `${staticData.orgs.length} organization${staticData.orgs.length === 1 ? "" : "s"}`}
             </div>
+            <h1 className="page program-hero-title">{def.name}</h1>
+            <p className="sub program-hero-sub">{staticData.note}</p>
           </div>
-          <h1 className="page" style={{ marginTop: 14 }}>
-            {def.name}
-          </h1>
-          <p className="sub">{staticData.note}</p>
         </section>
 
         {info && (
@@ -86,6 +86,7 @@ export default async function ProgramDetail({
               tags: o.tags,
               years: o.years,
               logo: o.logo,
+              logoOnDark: o.logoOnDark,
               chats: [...new Set(o.chats.map((c) => c.platform))],
             }))}
             programName={staticData.name}

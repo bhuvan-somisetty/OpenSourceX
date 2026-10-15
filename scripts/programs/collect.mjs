@@ -24,6 +24,7 @@ const OUT = path.join(ROOT, "apps/web/data/programs");
 const LOGOS = path.join(ROOT, "apps/web/public/logos/programs");
 const CACHE = path.join(os.tmpdir(), "opensourcex-collect-cache");
 const UA = "OpenSourceX-collector/1.0 (+https://opensource-x.vercel.app)";
+const BROWSER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36";
 const TOKEN = process.env.GITHUB_TOKEN || execSync("gh auth token").toString().trim();
 const TODAY = new Date().toISOString().slice(0, 10);
 
@@ -90,7 +91,8 @@ async function fetchText(url, { method = "GET", body, headers = {}, timeout = 20
       const res = await fetch(url, {
         method,
         body,
-        headers: { "user-agent": UA, ...headers },
+        // some official sites refuse unknown agents; APIs get the collector's own name
+        headers: { "user-agent": /api\.github\.com|summer\.ospp|summerofbitcoin\.org\/v1/.test(url) ? UA : BROWSER_UA, ...headers },
         signal: AbortSignal.timeout(timeout),
         redirect: "follow",
       });
@@ -156,6 +158,8 @@ const NOT_OWNERS = new Set(
 
 /** github.com/<owner>[/<repo>] from a URL, or null. */
 export function parseGithub(url) {
+  const orgs = (url ?? "").match(/^https?:\/\/(?:www\.)?github\.com\/orgs\/([A-Za-z0-9_.-]+)/i);
+  if (orgs) return { owner: orgs[1], repo: null };
   const m = (url ?? "").match(/^https?:\/\/(?:www\.)?github\.com\/([A-Za-z0-9_.-]+)(?:\/([A-Za-z0-9_.-]+))?/i);
   if (!m || NOT_OWNERS.has(m[1].toLowerCase())) return null;
   const repo = m[2] && !/^(issues|pulls|wiki|discussions|blob|tree)$/i.test(m[2]) ? m[2].replace(/\.git$/, "") : null;
@@ -297,7 +301,69 @@ export function chatsIn(text, orgName) {
 
 // ---------- logos ----------
 
-const EXT = { "image/png": "png", "image/jpeg": "jpg", "image/svg+xml": "svg", "image/webp": "webp", "image/gif": "gif" };
+const EXT = {
+  "image/png": "png",
+  "image/jpeg": "jpg",
+  "image/svg+xml": "svg",
+  "image/webp": "webp",
+  "image/gif": "gif",
+  "image/x-icon": "ico",
+  "image/vnd.microsoft.icon": "ico",
+};
+
+/**
+ * The logo an organization's own website declares, best first: its touch icon, an SVG icon,
+ * an image marked as the logo, a large PNG icon, then the favicon.
+ */
+async function logoFromWebsite(website, orgName) {
+  // a github.com page only offers GitHub's own icon
+  if (!website || !/^https?:/.test(website) || /^https?:\/\/(www\.)?github\.com/i.test(website)) return null;
+  const html = await fetchText(website, { timeout: 15000 });
+  if (!html) return null;
+  const abs = (href) => {
+    try {
+      return new URL(href.replace(/&amp;/g, "&"), website).href;
+    } catch {
+      return null;
+    }
+  };
+  const attr = (tag, name) => tag.match(new RegExp(`\\b${name}\\s*=\\s*["']([^"']+)["']`, "i"))?.[1] ?? null;
+  const links = [...html.matchAll(/<link\b[^>]*>/gi)].map((m) => m[0]);
+  const rel = (tag) => (attr(tag, "rel") ?? "").toLowerCase();
+  const size = (tag) => Number((attr(tag, "sizes") ?? "0x0").split("x")[0]) || 0;
+  const icons = links.filter((l) => /(^|\s)icon(\s|$)/.test(rel(l)) && attr(l, "href"));
+
+  // 1. the touch icon the site declares for itself (square, high resolution)
+  const touch = links.filter((l) => rel(l).includes("apple-touch-icon")).sort((a, b) => size(b) - size(a))[0];
+  if (touch && attr(touch, "href")) return abs(attr(touch, "href"));
+  // 2. an SVG site icon
+  const svg = icons.find((l) => /\.svg(\?|$)/i.test(attr(l, "href")) || /svg/i.test(attr(l, "type") ?? ""));
+  if (svg) return abs(attr(svg, "href"));
+  // 3. a large PNG site icon
+  const big = [...icons].sort((a, b) => size(b) - size(a)).find((l) => size(l) >= 96);
+  if (big) return abs(attr(big, "href"));
+  // 4. the header logo: the image inside the link back to the homepage, or an image whose
+  //    file name or alt text names the organization (not a sponsor's or partner's logo)
+  const host = siteOf(website) ?? "";
+  const home = new RegExp(`<a\\b[^>]*href\\s*=\\s*["'](?:/|./|https?://(?:www.)?${host.replace(/[.]/g, "\\.")}/?)["'][^>]*>\\s*(<img\\b[^>]*>)`, "i");
+  const homeImg = html.match(home)?.[1];
+  if (homeImg && attr(homeImg, "src") && !attr(homeImg, "src").startsWith("data:")) return abs(attr(homeImg, "src"));
+  const tokens = [...new Set([...(orgName ?? "").toLowerCase().split(/[^a-z0-9]+/), host.split(".")[0]])].filter(
+    (t) => t.length >= 3 && !["the", "and", "for", "project", "foundation", "community", "open", "org", "www"].includes(t),
+  );
+  for (const m of html.matchAll(/<img\b[^>]*>/gi)) {
+    const src = attr(m[0], "src");
+    if (!src || src.startsWith("data:")) continue;
+    // the file name and alt text only: a sponsor logo hosted on the org's own domain must not count
+    const file = src.split(/[?#]/)[0].split("/").pop() ?? "";
+    const hint = `${file} ${attr(m[0], "alt") ?? ""}`.toLowerCase();
+    if (/logo/.test(hint) && tokens.some((t) => hint.includes(t))) return abs(src);
+  }
+  // 5. any declared site icon, then the conventional favicon
+  const png = [...icons].sort((a, b) => size(b) - size(a))[0];
+  if (png) return abs(attr(png, "href"));
+  return abs("/favicon.ico");
+}
 async function downloadLogo(program, slug, url) {
   if (!url) return null;
   const dir = path.join(LOGOS, program);
@@ -318,6 +384,42 @@ async function downloadLogo(program, slug, url) {
     } catch {
       await sleep(1000 * (attempt + 1));
     }
+  }
+  // some official sites refuse Node's TLS chain or user agent; curl with a browser agent works
+  const ext = url.match(/\.(png|jpe?g|svg|webp|gif|ico)(?:\?|$)/i)?.[1]?.toLowerCase().replace("jpeg", "jpg");
+  if (!ext) return null;
+  const file = path.join(dir, `${slug}.${ext}`);
+  try {
+    execSync(`curl -sL --max-time 40 -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" -o "${file}" "${url}"`);
+    if (fs.existsSync(file) && fs.statSync(file).size > 100) return `/logos/programs/${program}/${slug}.${ext}`;
+    fs.rmSync(file, { force: true });
+  } catch {}
+  return null;
+}
+
+/**
+ * The logo a repository shows at the top of its own README: an HTML or Markdown image whose
+ * alt text, title or file name says "logo" and names the project (e.g. "nostream logo",
+ * "GDevelop logo", "skpro-logo.png"). Relative paths resolve against the repository.
+ */
+async function readmeLogo(owner, repo, name) {
+  const readme = await ghReadme(owner, repo);
+  if (!readme) return null;
+  const want = [norm(name), norm(repo)].filter((t) => t.length >= 3);
+  const images = [
+    ...[...readme.matchAll(/<img\b[^>]*>/gi)].map((m) => ({
+      src: m[0].match(/src\s*=\s*["']([^"']+)["']/i)?.[1],
+      text: `${m[0].match(/alt\s*=\s*["']([^"']*)["']/i)?.[1] ?? ""} ${m[0].match(/title\s*=\s*["']([^"']*)["']/i)?.[1] ?? ""}`,
+    })),
+    ...[...readme.matchAll(/!\[([^\]]*)\]\(\s*<?([^)\s>]+)>?(?:\s+"([^"]*)")?\s*\)/g)].map((m) => ({ src: m[2], text: `${m[1]} ${m[3] ?? ""}` })),
+  ].filter((i) => i.src && !/shields\.io|badge|travis-ci|codecov|actions\/workflows/i.test(i.src));
+  for (const i of images) {
+    const file = decodeURIComponent(i.src.split(/[?#]/)[0].split("/").pop() ?? "");
+    const hint = `${i.text} ${file}`.toLowerCase();
+    if (!/logo/.test(hint)) continue;
+    if (!want.some((t) => norm(hint).includes(t))) continue;
+    if (/^https?:/.test(i.src)) return i.src.replace(/^https:\/\/github\.com\/([^/]+)\/([^/]+)\/blob\//, "https://raw.githubusercontent.com/$1/$2/");
+    return `https://raw.githubusercontent.com/${owner}/${repo}/HEAD/${i.src.replace(/^\.?\//, "")}`;
   }
   return null;
 }
@@ -360,7 +462,8 @@ async function enrich(program, org, known) {
       org.repoUrl = null;
     } else {
       g.owner = user.login;
-      g.avatar = user.avatar_url;
+      // a personal account's avatar is a person's picture, not the organization's logo
+      g.avatar = user.type === "Organization" ? user.avatar_url : null;
       // a personal account's website is the person's, not the organization's
       if (user.type === "Organization" && user.blog)
         org.website ??= /^https?:/.test(user.blog) ? user.blog : `https://${user.blog}`;
@@ -409,10 +512,24 @@ async function enrich(program, org, known) {
       org.logo = `/logos/programs/${program}/${file}`;
     }
   }
+  // A project that lives inside a larger account (sktime/skpro, apache/airflow) has its own logo;
+  // the parent account's avatar would make several projects look identical.
+  const subProject = g?.repo && norm(g.repo) !== norm(g.owner);
+  if (!org.logo && !org.logoFrom && subProject) {
+    const src = await readmeLogo(g.owner, g.repo, org.name);
+    if (src) org.logo = await downloadLogo(program, org.slug, src);
+  }
   if (!org.logo) {
     const src = org.logoFrom ?? g?.avatar ?? null;
     org.logo = await downloadLogo(program, org.slug, src && g?.avatar === src ? `${src}${src.includes("?") ? "&" : "?"}s=240` : src);
   }
+  if (!org.logo && org.logoUrl) org.logo = await downloadLogo(program, org.slug, org.logoUrl);
+  if (!org.logo && g?.repo && !subProject) {
+    const src = await readmeLogo(g.owner, g.repo, org.name);
+    if (src) org.logo = await downloadLogo(program, org.slug, src);
+  }
+  if (!org.logo && org.website) org.logo = await downloadLogo(program, org.slug, await logoFromWebsite(org.website, org.name));
+  delete org.logoUrl;
   delete org.logoFrom;
   delete org.requireOrgAccount;
   return org;
@@ -732,6 +849,8 @@ async function mlh() {
     slug: slugify(name),
     name,
     tagline: "MLH Fellowship partner",
+    // MLH publishes these marks in white for its dark site; they need a dark tile
+    logoOnDark: true,
     description: null,
     website: null,
     repoUrl: null,

@@ -24,6 +24,8 @@ export interface ProgramOrg {
   githubUrl?: string | null;
   sourceCodeUrl?: string | null;
   logo: string | null;
+  /** The published logo is light-coloured and must sit on a dark tile. */
+  logoOnDark?: boolean;
   tags: string[];
   categories?: string[];
   years: number[];

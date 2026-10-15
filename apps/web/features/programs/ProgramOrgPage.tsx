@@ -41,7 +41,7 @@ export function ProgramOrgPage({
 
         <div className="lfx-org-hero-content" style={{ marginTop: 24 }}>
           <div className="lfx-org-hero-top">
-            <ProgramOrgLogo src={org.logo} name={org.name} size={72} />
+            <ProgramOrgLogo src={org.logo} name={org.name} size={72} dark={org.logoOnDark} />
             <div>
               <div className="eyebrow">Organization · {data.name}</div>
               <h1 className="page" style={{ marginTop: 6, fontSize: "clamp(26px, 4vw, 36px)" }}>

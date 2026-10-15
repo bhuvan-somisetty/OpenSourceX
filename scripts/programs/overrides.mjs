@@ -10,6 +10,21 @@
 const sob = (repoUrl, website) => ({ noGithubSearch: true, fields: { repoUrl, ...(website ? { website } : {}) } });
 
 export const OVERRIDES = {
+  // Season of Docs organizations whose own sites give no usable logo (checked 2026-10-15)
+  "season-of-docs": {
+    // pymc-devs: "PyMC", https://www.pymc.io (pymc.io itself is rendered only by JavaScript)
+    pymc3: { github: "pymc-devs" },
+    // c3g: "C3G", https://www.computationalgenomics.ca/ — the centre that develops GenPipes
+    genpipes: { github: "c3g", fields: { website: "https://computationalgenomics.ca/genpipes/" } },
+    // ros2: "ROS 2", https://docs.ros.org
+    ros2: { github: "ros2" },
+    // folio-org: "FOLIO", https://dev.folio.org/
+    folio: { github: "folio-org" },
+    // wireshark: "Wireshark Foundation", https://wiresharkfoundation.org/
+    wireshark: { github: "wireshark" },
+    // 4ian/GDevelop's homepage field is https://gdevelop.io; its README opens with the "GDevelop logo" image
+    gdevelop: { fields: { website: "https://gdevelop.io" } },
+  },
   // MLH lists partner logos only. Accounts checked by their own display name and website.
   "mlh-fellowship": {
     // aws: "Amazon Web Services", https://amazon.com/aws (not the 2-repo "amazonwebservices")
@@ -40,6 +55,60 @@ export const OVERRIDES = {
     // MedPlat's DMP tickets are filed in ArgusoftOpen/medplat
     medplat: { github: "ArgusoftOpen/medplat" },
     "the-apprentice-project": { github: "theapprenticeproject", fields: { website: "https://theapprenticeproject.org" } },
+    // Official sites (checked 2026-10-15). Logos are the ones each site declares for itself.
+    armman: {
+      noGithubSearch: true,
+      fields: {
+        website: "https://armman.org",
+        // armman.org's declared apple-touch-icon (the site refuses non-browser requests)
+        logoUrl: "https://armman.org/wp-content/uploads/2025/05/cropped-logo-1-180x180.png",
+      },
+    },
+    haqdarshak: { noGithubSearch: true, fields: { website: "https://www.haqdarshak.com" } },
+    protean: { noGithubSearch: true, fields: { name: "Protean", website: "https://www.proteantech.in" } },
+    meity: { noGithubSearch: true, fields: { website: "https://www.meity.gov.in" } },
+    // NHA-ABDM: display name "National Health Authority", website field https://nha.gov.in/
+    // (nha.gov.in is drawn by JavaScript and declares no usable icon)
+    "national-health-authority": {
+      noGithubSearch: true,
+      fields: { website: "https://nha.gov.in", logoUrl: "https://avatars.githubusercontent.com/NHA-ABDM?s=240" },
+    },
+    "iiit-delhi": {
+      noGithubSearch: true,
+      // the site icon iiitd.ac.in declares (its TLS chain fails Node's check)
+      fields: { website: "https://www.iiitd.ac.in", logoUrl: "https://www.iiitd.ac.in/sites/default/files/style1coloricon_0.png" },
+    },
+    "nsut-in-collaboration-with-c4gt-seeta-and-aic": {
+      noGithubSearch: true,
+      fields: { website: "https://www.nsut.ac.in", logoUrl: "https://www.nsut.ac.in/sites/default/files/logo_nsut_0_0_0.png" },
+    },
+    // Haryana district administrations: their official sites carry the Government of Haryana emblem
+    "adc-karnal": {
+      noGithubSearch: true,
+      fields: {
+        website: "https://karnal.gov.in",
+        logoUrl: "https://cdn.s3waas.gov.in/s3a01a0380ca3c61428c26a231f0e49a09/uploads/2026/10/17911857819948-e1791185909647.jpg",
+      },
+    },
+    "adc-rohtak": {
+      noGithubSearch: true,
+      fields: {
+        website: "https://rohtak.gov.in",
+        logoUrl: "https://cdn.s3waas.gov.in/s37fe1f8abaad094e0b5cb1b01d712f708/uploads/2018/03/2018031997.jpg",
+      },
+    },
+    "adc-mahendragarh": {
+      noGithubSearch: true,
+      fields: {
+        website: "https://mahendragarh.gov.in",
+        logoUrl: "https://cdn.s3waas.gov.in/s338913e1d6a7b94cb0f55994f679f5956/uploads/2018/05/2018052332.jpg",
+      },
+    },
+    // CMC Ambala: an Ambala civic body in Haryana; ambala.gov.in carries the Government of Haryana emblem
+    "cmc-ambala": {
+      noGithubSearch: true,
+      fields: { logoUrl: "https://cdn.s3waas.gov.in/s315d4e891d784977cacbfcbb00c48f133/uploads/2018/03/cropped-2018032778-180x180.png" },
+    },
     // IDinsight: "IDinsight", https://idinsight.org
     idinsight: { github: "IDinsight", fields: { website: "https://idinsight.org" } },
     // OpenNyAI: "OpenNyAI", https://opennyai.org/
@@ -117,5 +186,31 @@ export const OVERRIDES = {
     "yocto-project": { github: "yoctoproject", fields: { website: "https://www.yoctoproject.org/" } },
     // zarr-developers: "Zarr Developers", https://zarr.dev
     zarr: { github: "zarr-developers", fields: { website: "https://zarr.dev" } },
+    // The accounts below were checked 2026-10-15: display name and website field name the community.
+    bioconductor: { github: "Bioconductor", fields: { website: "https://bioconductor.org" } },
+    bokeh: { github: "bokeh", fields: { website: "https://bokeh.org" } },
+    "common-workflow-language": { github: "common-workflow-language", fields: { website: "https://www.commonwl.org" } },
+    "conda-forge": { github: "conda-forge", fields: { website: "https://conda-forge.org" } },
+    // eclipse-vertx: "Eclipse Vert.x" (no website field; vertx.io is the project site)
+    "eclipse-vert-x": { github: "eclipse-vertx", fields: { website: "https://vertx.io" } },
+    irdest: { github: "irdest", fields: { website: "https://irde.st" } },
+    jupyterhub: { github: "jupyterhub", fields: { website: "https://jupyter.org/hub" } },
+    kernelci: { github: "kernelci", fields: { website: "https://kernelci.org" } },
+    "les-fruits-defendus": { github: "LesFruitsDefendus", fields: { website: "http://www.lesfruitsdefendus.org/" } },
+    llvm: { github: "llvm", fields: { website: "https://llvm.org" } },
+    mboalab: { github: "Mboalab", fields: { website: "https://www.mboalab.africa/" } },
+    modeci: { github: "ModECI", fields: { website: "http://www.modeci.org" } },
+    networkx: { github: "networkx", fields: { website: "https://networkx.org/" } },
+    ocaml: { github: "ocaml", fields: { website: "https://ocaml.org" } },
+    "odk-x": { github: "odk-x", fields: { website: "https://odk-x.org/" } },
+    "open-life-science": { github: "open-life-science", fields: { website: "https://we-are-ols.org" } },
+    // openstack: "Mirrors of opendev.org/openstack"; the code itself lives on opendev.org
+    openstack: { github: "openstack", fields: { website: "https://www.openstack.org", repoUrl: "https://opendev.org/openstack" } },
+    parsl: { github: "Parsl", fields: { website: "https://parsl-project.org" } },
+    "scikit-image": { github: "scikit-image", fields: { website: "https://scikit-image.org" } },
+    servo: { github: "servo", fields: { website: "https://servo.org" } },
+    systemd: { github: "systemd", fields: { website: "https://systemd.io" } },
+    "unstructured-studio": { github: "unstructuredstudio", fields: { website: "https://unstructured.studio" } },
+    ushahidi: { github: "ushahidi", fields: { website: "https://www.ushahidi.com" } },
   },
 };

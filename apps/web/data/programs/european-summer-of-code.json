@@ -172,7 +172,7 @@
      "joinUrl": "https://discord.com/invite/54ACzaFsn7"
     }
    ],
-   "logo": "/logos/programs/european-summer-of-code/pytorch-forecasting.jpg"
+   "logo": "/logos/programs/european-summer-of-code/pytorch-forecasting.svg"
   },
   {
    "slug": "pytorch-tabular",
@@ -244,7 +244,7 @@
      "joinUrl": "https://discord.com/invite/54ACzaFsn7"
     }
    ],
-   "logo": "/logos/programs/european-summer-of-code/scikit-base.jpg"
+   "logo": "/logos/programs/european-summer-of-code/scikit-base.png"
   },
   {
    "slug": "shap",

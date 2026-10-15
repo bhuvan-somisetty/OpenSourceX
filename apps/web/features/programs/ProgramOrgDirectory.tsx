@@ -14,6 +14,7 @@ export interface DirectoryOrg {
   tags: string[];
   years: number[];
   logo: string | null;
+  logoOnDark?: boolean;
   chats: string[];
 }
 
@@ -217,7 +218,7 @@ export function ProgramOrgDirectory({
                       go(o.slug);
                     }}
                   >
-                    <ProgramOrgLogo src={o.logo} name={o.name} size={28} />
+                    <ProgramOrgLogo src={o.logo} name={o.name} size={28} dark={o.logoOnDark} />
                     <span className="porg-suggest-name">
                       <Highlight text={o.name} q={q} />
                     </span>
@@ -303,7 +304,7 @@ export function ProgramOrgDirectory({
               return (
                 <Link key={org.slug} href={`${basePath}/organizations/${org.slug}`} className="card hover lfx-org-card">
                   <div className="lfx-org-card-top">
-                    <ProgramOrgLogo src={org.logo} name={org.name} size={52} />
+                    <ProgramOrgLogo src={org.logo} name={org.name} size={52} dark={org.logoOnDark} />
                     <div className="lfx-org-card-title-wrap">
                       <h3 className="lfx-org-card-title">
                         <Highlight text={org.name} q={q} />

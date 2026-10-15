@@ -64,8 +64,8 @@
    "name": "Bioconductor",
    "tagline": "Open Source Software for Bioinformatics",
    "description": null,
-   "website": null,
-   "repoUrl": null,
+   "website": "https://bioconductor.org",
+   "repoUrl": "https://github.com/Bioconductor",
    "tags": [],
    "years": [
     2022,
@@ -135,16 +135,17 @@
     }
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-december-2025-internship-cohort/communities/bioconductor/",
+   "githubUrl": "https://github.com/Bioconductor",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/outreachy/bioconductor.jpg"
   },
   {
    "slug": "bokeh",
    "name": "Bokeh",
    "tagline": "Bokeh is a Python library for creating interactive data visualizations for modern web browsers. It helps you build beautiful graphics, ranging from simple plots to complex dashboards with streaming datasets. With Bokeh, you can create JavaScript-powered visualizations without writing any JavaScript yourself.",
    "description": null,
-   "website": null,
-   "repoUrl": null,
+   "website": "https://bokeh.org",
+   "repoUrl": "https://github.com/bokeh",
    "tags": [],
    "years": [
     2023
@@ -176,8 +177,9 @@
     }
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-may-2023-internship-cohort/communities/bokeh/",
+   "githubUrl": "https://github.com/bokeh",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/outreachy/bokeh.png"
   },
   {
    "slug": "camicroscope",
@@ -473,8 +475,8 @@
    "name": "Common Workflow Language",
    "tagline": "The Common Workflow Language (CWL) is an open standard for describing analysis workflows and tools in a way that makes them portable and scalable across a variety of software and hardware environments, from workstations to cluster, cloud, and high performance computing (HPC) environments. CWL is designed to meet the needs of data-intensive science, such as Bioinformatics, Medical Imaging, Astronomy, High Energy Physics, and Machine Learning.",
    "description": null,
-   "website": null,
-   "repoUrl": null,
+   "website": "https://www.commonwl.org",
+   "repoUrl": "https://github.com/common-workflow-language",
    "tags": [],
    "years": [
     2022
@@ -496,16 +498,24 @@
     }
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-december-2022-internship-round/communities/common-workflow-language/",
-   "chats": [],
-   "logo": null
+   "githubUrl": "https://github.com/common-workflow-language",
+   "chatSource": "https://www.commonwl.org",
+   "chats": [
+    {
+     "platform": "matrix",
+     "workspace": "Common Workflow Language Matrix",
+     "joinUrl": "https://matrix.to/#/#common-workflow-language_common-workflow-language:gitter.im"
+    }
+   ],
+   "logo": "/logos/programs/outreachy/common-workflow-language.png"
   },
   {
    "slug": "conda-forge",
    "name": "conda-forge",
    "tagline": "A community-led collection of recipes, build infrastructure and distributions for the conda package manager.",
    "description": null,
-   "website": null,
-   "repoUrl": null,
+   "website": "https://conda-forge.org",
+   "repoUrl": "https://github.com/conda-forge",
    "tags": [],
    "years": [
     2022
@@ -527,8 +537,16 @@
     }
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-may-2022-internship-round/communities/conda-forge/",
-   "chats": [],
-   "logo": null
+   "githubUrl": "https://github.com/conda-forge",
+   "chatSource": "https://conda-forge.org",
+   "chats": [
+    {
+     "platform": "zulip",
+     "workspace": "conda-forge Zulip",
+     "joinUrl": "https://conda-forge.zulipchat.com"
+    }
+   ],
+   "logo": "/logos/programs/outreachy/conda-forge.png"
   },
   {
    "slug": "confidential-computing-consortium",
@@ -749,8 +767,8 @@
    "name": "Eclipse Vert.x",
    "tagline": "A resource efficient polyglot reactive application development toolkit for the JVM",
    "description": null,
-   "website": null,
-   "repoUrl": null,
+   "website": "https://vertx.io",
+   "repoUrl": "https://github.com/eclipse-vertx",
    "tags": [],
    "years": [
     2022
@@ -772,8 +790,16 @@
     }
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-may-2022-internship-round/communities/eclipse-vertx/",
-   "chats": [],
-   "logo": null
+   "githubUrl": "https://github.com/eclipse-vertx",
+   "chatSource": "https://vertx.io",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "Eclipse Vert.x Discord",
+     "joinUrl": "https://discord.gg/6ry7aqPWXy"
+    }
+   ],
+   "logo": "/logos/programs/outreachy/eclipse-vert-x.png"
   },
   {
    "slug": "ersilia-open-source-initiative",
@@ -1308,8 +1334,8 @@
    "name": "Irdest",
    "tagline": "Irdest is a research project that works to create tools for the next, decentralised internet. Our goal is to create technology that is easy to setup and configure to allow more people to take control over their digital infrastructure.",
    "description": null,
-   "website": null,
-   "repoUrl": null,
+   "website": "https://irde.st",
+   "repoUrl": "https://github.com/irdest",
    "tags": [],
    "years": [
     2022
@@ -1331,16 +1357,17 @@
     }
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-may-2022-internship-round/communities/irdest/",
+   "githubUrl": "https://github.com/irdest",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/outreachy/irdest.png"
   },
   {
    "slug": "jupyterhub",
    "name": "JupyterHub",
    "tagline": "Project Jupyter exists to develop open-source software, open-standards, and services for interactive computing across dozens of programming languages. JupyterHub, a subproject, helps provide interactive computing environments over the web to a large number of users in various contexts (Education, Research, Companies doing Data Science, etc).",
    "description": null,
-   "website": null,
-   "repoUrl": null,
+   "website": "https://jupyter.org/hub",
+   "repoUrl": "https://github.com/jupyterhub",
    "tags": [],
    "years": [
     2022
@@ -1372,16 +1399,24 @@
     }
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-december-2022-internship-round/communities/jupyterhub/",
-   "chats": [],
-   "logo": null
+   "githubUrl": "https://github.com/jupyterhub",
+   "chatSource": "https://jupyter.org/hub",
+   "chats": [
+    {
+     "platform": "zulip",
+     "workspace": "JupyterHub Zulip",
+     "joinUrl": "https://jupyter.zulipchat.com/#narrow/channel/469744-jupyterhub"
+    }
+   ],
+   "logo": "/logos/programs/outreachy/jupyterhub.png"
   },
   {
    "slug": "kernelci",
    "name": "KernelCI",
    "tagline": "KernelCI is a community-led test system focused on the upstream Linux kernel. It follows the open testing philosophy to enable the same collaboration to happen with testing as open source does to the code itself.",
    "description": null,
-   "website": null,
-   "repoUrl": null,
+   "website": "https://kernelci.org",
+   "repoUrl": "https://github.com/kernelci",
    "tags": [],
    "years": [
     2023,
@@ -1405,16 +1440,24 @@
     }
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-june-2025-internship-cohort/communities/kernelci/",
-   "chats": [],
-   "logo": null
+   "githubUrl": "https://github.com/kernelci",
+   "chatSource": "https://kernelci.org",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "KernelCI Discord",
+     "joinUrl": "https://discord.gg/KWbrbWEyqb"
+    }
+   ],
+   "logo": "/logos/programs/outreachy/kernelci.png"
   },
   {
    "slug": "les-fruits-defendus",
    "name": "Les Fruits défendus",
    "tagline": "Volunteer-led urban fruit harvest initiative in Montréal, Québec",
    "description": null,
-   "website": null,
-   "repoUrl": null,
+   "website": "http://www.lesfruitsdefendus.org/",
+   "repoUrl": "https://github.com/LesFruitsDefendus",
    "tags": [],
    "years": [
     2022
@@ -1436,8 +1479,9 @@
     }
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-may-2022-internship-round/communities/les-fruits-defendus/",
+   "githubUrl": "https://github.com/LesFruitsDefendus",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/outreachy/les-fruits-defendus.jpg"
   },
   {
    "slug": "libreoffice",
@@ -1618,15 +1662,15 @@
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-june-2025-internship-cohort/communities/linux-kernel/",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/outreachy/linux-kernel.png"
   },
   {
    "slug": "llvm",
    "name": "LLVM",
    "tagline": "The LLVM project is a collection of modular and reusable compiler and toolchain technologies used to develop compiler front ends (ie. Clang), back ends, and a wide variety of related sub-projects such as debuggers (LLDB), linkers (LLD), standard libraries, and more.",
    "description": null,
-   "website": null,
-   "repoUrl": null,
+   "website": "https://llvm.org",
+   "repoUrl": "https://github.com/llvm",
    "tags": [],
    "years": [
     2022,
@@ -1662,8 +1706,16 @@
     }
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/llvm/",
-   "chats": [],
-   "logo": null
+   "githubUrl": "https://github.com/llvm",
+   "chatSource": "https://llvm.org",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "LLVM Discord",
+     "joinUrl": "https://discord.gg/xS7Z362"
+    }
+   ],
+   "logo": "/logos/programs/outreachy/llvm.png"
   },
   {
    "slug": "matrix",
@@ -1709,8 +1761,8 @@
    "name": "Mboalab",
    "tagline": "MboaLab is an open and collaborative space located in Yaoundé, Cameroon. The aim of MboaLab is to catalyse sustainable local development and improve people’s living conditions through open science.",
    "description": null,
-   "website": null,
-   "repoUrl": null,
+   "website": "https://www.mboalab.africa/",
+   "repoUrl": "https://github.com/Mboalab",
    "tags": [],
    "years": [
     2022,
@@ -1771,8 +1823,9 @@
     }
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-december-2023-internship-round/communities/mboalab/",
+   "githubUrl": "https://github.com/Mboalab",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/outreachy/mboalab.png"
   },
   {
    "slug": "mdanalysis",
@@ -1875,8 +1928,8 @@
    "name": "ModECI",
    "tagline": "ModECI (Model Exchange and Convergence Initiative) is a collaboration that aims to develop a standardized format for exchanging computational models across tools and applications in neuroscience, machine learning and artificial intelligence.",
    "description": null,
-   "website": null,
-   "repoUrl": null,
+   "website": "http://www.modeci.org",
+   "repoUrl": "https://github.com/ModECI",
    "tags": [],
    "years": [
     2022,
@@ -1918,8 +1971,9 @@
     }
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/modeci/",
+   "githubUrl": "https://github.com/ModECI",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/outreachy/modeci.png"
   },
   {
    "slug": "moja-global",
@@ -2021,8 +2075,8 @@
    "name": "NetworkX",
    "tagline": "NetworkX is a Python package for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks.",
    "description": null,
-   "website": null,
-   "repoUrl": null,
+   "website": "https://networkx.org/",
+   "repoUrl": "https://github.com/networkx",
    "tags": [],
    "years": [
     2022,
@@ -2063,8 +2117,9 @@
     }
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-december-2023-internship-round/communities/networkx/",
+   "githubUrl": "https://github.com/networkx",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/outreachy/networkx.png"
   },
   {
    "slug": "nixos",
@@ -2179,8 +2234,8 @@
    "name": "OCaml",
    "tagline": "OCaml is a (high-level, typed, functional) programming language. The OCaml community contributes to the implementation of the language, as well as the surrounding ecosystem of tools and libraries.",
    "description": null,
-   "website": null,
-   "repoUrl": null,
+   "website": "https://ocaml.org",
+   "repoUrl": "https://github.com/ocaml",
    "tags": [],
    "years": [
     2022,
@@ -2321,16 +2376,24 @@
     }
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-december-2025-internship-cohort/communities/ocaml/",
-   "chats": [],
-   "logo": null
+   "githubUrl": "https://github.com/ocaml",
+   "chatSource": "https://ocaml.org",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "OCaml Discord",
+     "joinUrl": "https://discord.gg/cCYQbqN"
+    }
+   ],
+   "logo": "/logos/programs/outreachy/ocaml.png"
   },
   {
    "slug": "odk-x",
    "name": "ODK-X",
    "tagline": "ODK-X lets you build custom apps to gather, manage, and visualize your data just as well in the field as you do in the office. From cold chain management to longitudinal patient tracking to geographic data collection on mosquito releases, ODK-X helps you build your custom data management app.",
    "description": null,
-   "website": null,
-   "repoUrl": null,
+   "website": "https://odk-x.org/",
+   "repoUrl": "https://github.com/odk-x",
    "tags": [],
    "years": [
     2022,
@@ -2410,8 +2473,9 @@
     }
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-june-2025-internship-cohort/communities/odk-x/",
+   "githubUrl": "https://github.com/odk-x",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/outreachy/odk-x.png"
   },
   {
    "slug": "open-information-security-foundation",
@@ -2479,8 +2543,8 @@
    "name": "Open Life Science",
    "tagline": "The Open Life Science (OLS) program is for people interested in applying open principles in their work and becoming Open Science ambassadors in their communities.",
    "description": null,
-   "website": null,
-   "repoUrl": null,
+   "website": "https://we-are-ols.org",
+   "repoUrl": "https://github.com/open-life-science",
    "tags": [],
    "years": [
     2022
@@ -2507,8 +2571,9 @@
     }
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-december-2022-internship-round/communities/open-life-science/",
+   "githubUrl": "https://github.com/open-life-science",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/outreachy/open-life-science.png"
   },
   {
    "slug": "open-science-community-saudi-arabia-oscsa",
@@ -2623,8 +2688,8 @@
    "name": "OpenStack",
    "tagline": "OpenStack is an open source software for building public and private clouds. What does that mean? We're a collection of open source projects that integrate to help organizations deploy and run clouds for computing, networking, and storage (both block storage for providing volumes to VMs and object storage for storing objects such as images or music files). With OpenStack, you can control large pools of compute, storage, and networking resources throughout a data center, all managed through a dashboard that gives administrators control while empowering their users to provision resources through a web interface",
    "description": null,
-   "website": null,
-   "repoUrl": null,
+   "website": "https://www.openstack.org",
+   "repoUrl": "https://opendev.org/openstack",
    "tags": [],
    "years": [
     2022,
@@ -2740,8 +2805,9 @@
     }
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-december-2025-internship-cohort/communities/openstack/",
+   "githubUrl": "https://github.com/openstack",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/outreachy/openstack.png"
   },
   {
    "slug": "oppia",
@@ -2885,8 +2951,8 @@
    "name": "Parsl",
    "tagline": "Use Parsl to create parallel programs composed of Python functions and external components. Execute Parsl programs on any compute resource from laptops to supercomputers. Contribute to Parsl to improve it and its interoperability with other tools and systems.",
    "description": null,
-   "website": null,
-   "repoUrl": null,
+   "website": "https://parsl-project.org",
+   "repoUrl": "https://github.com/Parsl",
    "tags": [],
    "years": [
     2024
@@ -2913,8 +2979,9 @@
     }
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/parsl/",
+   "githubUrl": "https://github.com/Parsl",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/outreachy/parsl.png"
   },
   {
    "slug": "perl-raku",
@@ -3101,8 +3168,8 @@
    "name": "scikit-image",
    "tagline": "scikit-image is a popular Python library for scientific image processing and analysis. It has been used in applications ranging from atomic force microscopy, to deciphering ancient scrolls, satellite imagery, and astronomy. We pride ourselves on high-quality, readable code, written and reviewed by an active community of volunteers.",
    "description": null,
-   "website": null,
-   "repoUrl": null,
+   "website": "https://scikit-image.org",
+   "repoUrl": "https://github.com/scikit-image",
    "tags": [],
    "years": [
     2023
@@ -3129,16 +3196,24 @@
     }
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-may-2023-internship-cohort/communities/scikit-image/",
-   "chats": [],
-   "logo": null
+   "githubUrl": "https://github.com/scikit-image",
+   "chatSource": "https://scikit-image.org",
+   "chats": [
+    {
+     "platform": "zulip",
+     "workspace": "scikit-image Zulip",
+     "joinUrl": "https://skimage.zulipchat.com"
+    }
+   ],
+   "logo": "/logos/programs/outreachy/scikit-image.png"
   },
   {
    "slug": "servo",
    "name": "Servo",
    "tagline": "Servo aims to empower developers with a lightweight, high-performance alternative for embedding web technologies in applications.",
    "description": null,
-   "website": null,
-   "repoUrl": null,
+   "website": "https://servo.org",
+   "repoUrl": "https://github.com/servo",
    "tags": [],
    "years": [
     2024,
@@ -3187,8 +3262,16 @@
     }
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-june-2025-internship-cohort/communities/servo/",
-   "chats": [],
-   "logo": null
+   "githubUrl": "https://github.com/servo",
+   "chatSource": "https://servo.org",
+   "chats": [
+    {
+     "platform": "zulip",
+     "workspace": "Servo Zulip",
+     "joinUrl": "https://servo.zulipchat.com/"
+    }
+   ],
+   "logo": "/logos/programs/outreachy/servo.png"
   },
   {
    "slug": "software-heritage",
@@ -3258,8 +3341,8 @@
    "name": "systemd",
    "tagline": "A System and Service Manager for Linux",
    "description": null,
-   "website": null,
-   "repoUrl": null,
+   "website": "https://systemd.io",
+   "repoUrl": "https://github.com/systemd",
    "tags": [],
    "years": [
     2022,
@@ -3302,8 +3385,9 @@
     }
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-june-2025-internship-cohort/communities/systemd/",
+   "githubUrl": "https://github.com/systemd",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/outreachy/systemd.png"
   },
   {
    "slug": "tensorflow",
@@ -3417,8 +3501,8 @@
    "name": "Unstructured Studio",
    "tagline": "Creating learning for all",
    "description": null,
-   "website": null,
-   "repoUrl": null,
+   "website": "https://unstructured.studio",
+   "repoUrl": "https://github.com/unstructuredstudio",
    "tags": [],
    "years": [
     2022,
@@ -3483,16 +3567,17 @@
     }
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-december-2023-internship-round/communities/unstructured-studio/",
+   "githubUrl": "https://github.com/unstructuredstudio",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/outreachy/unstructured-studio.png"
   },
   {
    "slug": "ushahidi",
    "name": "Ushahidi",
    "tagline": "Ushahidi empowers people through citizen-generated data to develop solutions that strengthen their communities in response to 4 key thematic areas: Good governance, human rights protection, humanitarian and disaster relief, and climate action.",
    "description": null,
-   "website": null,
-   "repoUrl": null,
+   "website": "https://www.ushahidi.com",
+   "repoUrl": "https://github.com/ushahidi",
    "tags": [],
    "years": [
     2022,
@@ -3533,8 +3618,16 @@
     }
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/ushahidi/",
-   "chats": [],
-   "logo": null
+   "githubUrl": "https://github.com/ushahidi",
+   "chatSource": "https://www.ushahidi.com",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "Ushahidi Discord",
+     "joinUrl": "https://discord.com/invite/p6BAVx7T9K"
+    }
+   ],
+   "logo": "/logos/programs/outreachy/ushahidi.png"
   },
   {
    "slug": "wagtail",

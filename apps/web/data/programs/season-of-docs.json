@@ -160,7 +160,7 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/season-of-docs/apache-cassandra.png"
   },
   {
    "slug": "arduino",
@@ -1012,7 +1012,7 @@
    "tagline": null,
    "description": null,
    "website": "https://www.folio.org",
-   "repoUrl": null,
+   "repoUrl": "https://github.com/folio-org",
    "tags": [],
    "years": [
     2020,
@@ -1037,6 +1037,7 @@
    ],
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/folio-org",
    "chatSource": "https://www.folio.org",
    "chats": [
     {
@@ -1045,7 +1046,7 @@
      "joinUrl": "https://folio-project.slack.com/messages"
     }
    ],
-   "logo": null
+   "logo": "/logos/programs/season-of-docs/folio.png"
   },
   {
    "slug": "fonttools",
@@ -1083,7 +1084,7 @@
    "name": "GDevelop",
    "tagline": null,
    "description": null,
-   "website": null,
+   "website": "https://gdevelop.io",
    "repoUrl": "https://github.com/4ian/GDevelop",
    "tags": [],
    "years": [
@@ -1118,15 +1119,15 @@
      "joinUrl": "https://discord.gg/gdevelop"
     }
    ],
-   "logo": "/logos/programs/season-of-docs/gdevelop.jpg"
+   "logo": "/logos/programs/season-of-docs/gdevelop.png"
   },
   {
    "slug": "genpipes",
    "name": "GenPipes",
    "tagline": null,
    "description": null,
-   "website": "http://www.computationalgenomics.ca/genpipes/",
-   "repoUrl": null,
+   "website": "https://computationalgenomics.ca/genpipes/",
+   "repoUrl": "https://github.com/c3g",
    "tags": [],
    "years": [
     2019
@@ -1140,8 +1141,9 @@
    ],
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/c3g",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/season-of-docs/genpipes.jpg"
   },
   {
    "slug": "geomscale",
@@ -1375,7 +1377,7 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/season-of-docs/ignition-robotics.ico"
   },
   {
    "slug": "incf",
@@ -2764,7 +2766,7 @@
    "tagline": null,
    "description": null,
    "website": "https://pymc.io",
-   "repoUrl": null,
+   "repoUrl": "https://github.com/pymc-devs",
    "tags": [],
    "years": [
     2021
@@ -2778,8 +2780,9 @@
    ],
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/pymc-devs",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/season-of-docs/pymc3.png"
   },
   {
    "slug": "pytorch-ignite",
@@ -2810,7 +2813,7 @@
      "joinUrl": "https://discord.gg/djZtm3EmKj"
     }
    ],
-   "logo": "/logos/programs/season-of-docs/pytorch-ignite.jpg"
+   "logo": "/logos/programs/season-of-docs/pytorch-ignite.svg"
   },
   {
    "slug": "qubes-os",
@@ -2958,7 +2961,7 @@
    "tagline": null,
    "description": null,
    "website": "https://www.ros.org/",
-   "repoUrl": null,
+   "repoUrl": "https://github.com/ros2",
    "tags": [],
    "years": [
     2021
@@ -2972,7 +2975,8 @@
    ],
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
-   "chatSource": "https://www.ros.org/",
+   "githubUrl": "https://github.com/ros2",
+   "chatSource": "https://github.com/ros2",
    "chats": [
     {
      "platform": "zulip",
@@ -2980,7 +2984,7 @@
      "joinUrl": "https://openrobotics.zulipchat.com/"
     }
    ],
-   "logo": null
+   "logo": "/logos/programs/season-of-docs/ros2.png"
   },
   {
    "slug": "scipy",
@@ -3211,8 +3215,8 @@
    "name": "Talawa",
    "tagline": null,
    "description": null,
-   "website": "https://github.com/orgs/PalisadoesFoundation/repositories",
-   "repoUrl": null,
+   "website": null,
+   "repoUrl": "https://github.com/orgs/PalisadoesFoundation/repositories",
    "tags": [],
    "years": [
     2022
@@ -3226,8 +3230,9 @@
    ],
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/PalisadoesFoundation",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/season-of-docs/talawa.jpg"
   },
   {
    "slug": "the-freebsd-project",
@@ -3457,7 +3462,7 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/season-of-docs/the-r-project.png"
   },
   {
    "slug": "the-ushahidi-platform",
@@ -3553,7 +3558,7 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/season-of-docs/thegooddocsproject.svg"
   },
   {
    "slug": "tor-project",
@@ -3631,7 +3636,7 @@
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/cbg-ethz",
    "chats": [],
-   "logo": "/logos/programs/season-of-docs/v-pipe.jpg"
+   "logo": "/logos/programs/season-of-docs/v-pipe.svg"
   },
   {
    "slug": "videolan",
@@ -3682,7 +3687,7 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "chats": [],
-   "logo": null
+   "logo": "/logos/programs/season-of-docs/vlc.png"
   },
   {
    "slug": "wagtail",
@@ -3817,7 +3822,7 @@
    "tagline": null,
    "description": null,
    "website": "https://www.wireshark.org/",
-   "repoUrl": null,
+   "repoUrl": "https://github.com/wireshark",
    "tags": [],
    "years": [
     2020
@@ -3831,6 +3836,7 @@
    ],
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/wireshark",
    "chatSource": "https://www.wireshark.org/",
    "chats": [
     {
@@ -3839,7 +3845,7 @@
      "joinUrl": "https://discord.com/invite/ts9GZCjGj5"
     }
    ],
-   "logo": null
+   "logo": "/logos/programs/season-of-docs/wireshark.png"
   },
   {
    "slug": "wordpress",
