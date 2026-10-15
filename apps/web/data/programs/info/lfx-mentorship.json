@@ -1,0 +1,61 @@
+{
+ "program": "lfx-mentorship",
+ "checked": "2026-10-15",
+ "status": "running",
+ "statusNote": "Runs three full-time terms a year (Spring, Summer, Fall).",
+ "summary": "The Linux Foundation Mentorship Program (LFX Mentorship) pairs mentees with mentors from Linux Foundation projects such as CNCF projects. Mentees learn open source collaboration while contributing to a real project.",
+ "runBy": "The Linux Foundation",
+ "stipend": {
+  "headline": "$1,000 – $6,600",
+  "detail": "Based on your country of current residence, using Purchasing Power Parity (PPP): a base of $6,000 adjusted per country, with a minimum of $1,000 and a maximum of $6,600. Amounts apply to programs starting on or after July 1, 2026.",
+  "currency": "USD",
+  "payments": [
+   { "label": "Midterm evaluation", "share": "50%", "when": "End of week 6 (full-time) or week 12 (part-time)" },
+   { "label": "Final evaluation", "share": "50%", "when": "End of week 12 (full-time) or week 24 (part-time)" }
+  ],
+  "method": "Mentees submit an Expensify report after each successful evaluation; international payments go by wire transfer and can take up to six weeks to arrive.",
+  "table": "lfx-mentorship",
+  "tableNote": "Total stipend for your country of residence."
+ },
+ "facts": [
+  { "label": "Full-time terms", "value": "Spring: Mar 1 – May 31 · Summer: Jun 1 – Aug 31 · Fall: Sep 1 – Nov 30" },
+  { "label": "Length", "value": "12 weeks full-time, or 24 weeks part-time" },
+  { "label": "Evaluations", "value": "Every 3 weeks (full-time); midterm and final are required" },
+  { "label": "Completion", "value": "Digital Letter of Completion after meeting all requirements" }
+ ],
+ "eligibility": [
+  "At least 18 years old when the program starts.",
+  "Not a prior or active participant in another Linux Foundation mentorship program.",
+  "Eligible to work in the country where you will participate.",
+  "Not living in a country where participation is prohibited under U.S. or other applicable law.",
+  "Applying for yourself, with no obligations (such as an employment contract) that prevent participation.",
+  "Meet the prerequisites set by the program you apply to."
+ ],
+ "timelineTitle": "Each term",
+ "timeline": [
+  { "label": "Spring term mentorships listed", "date": "Mid-January" },
+  { "label": "Summer term mentorships listed", "date": "Mid-April" },
+  { "label": "Fall term mentorships listed", "date": "Mid-July" },
+  { "label": "Mentee applications open", "date": "About 4 weeks" },
+  { "label": "Review and acceptance", "date": "About 2 weeks before the term begins" }
+ ],
+ "howToApply": [
+  "Create a mentee profile on LFX Mentorship with your Linux Foundation account.",
+  "Apply to the mentorship programs you are interested in.",
+  "Complete every prerequisite task during the review period; applications without them are not accepted.",
+  "Selected mentees are notified and complete a contract and onboarding."
+ ],
+ "links": [
+  { "label": "LFX Mentorship", "url": "https://mentorship.lfx.linuxfoundation.org/" },
+  { "label": "Mentee stipends", "url": "https://docs.linuxfoundation.org/lfx/mentorship/mentee-stipends" },
+  { "label": "Program timelines", "url": "https://docs.linuxfoundation.org/lfx/mentorship/mentorship-program-timelines" }
+ ],
+ "sources": [
+  { "label": "Mentee stipends", "url": "https://docs.linuxfoundation.org/lfx/mentorship/mentee-stipends", "file": "lfx-mentorship/mentee-stipends.md" },
+  { "label": "Total stipend amount by country", "url": "https://docs.linuxfoundation.org/lfx/mentorship/mentee-stipends/total-stipend-amount", "file": "lfx-mentorship/total-stipend-amount.md" },
+  { "label": "Program schedule and timelines", "url": "https://docs.linuxfoundation.org/lfx/mentorship/mentorship-program-timelines", "file": "lfx-mentorship/program-timelines.md" },
+  { "label": "Am I eligible?", "url": "https://docs.linuxfoundation.org/lfx/mentorship/mentee-guide/am-i-eligible", "file": "lfx-mentorship/am-i-eligible.md" },
+  { "label": "How it works", "url": "https://docs.linuxfoundation.org/lfx/mentorship/mentee-guide/how-mentorship-program-works", "file": "lfx-mentorship/how-it-works.md" },
+  { "label": "Receiving the stipend", "url": "https://docs.linuxfoundation.org/lfx/mentorship/mentees/submit-a-report-to-receive-a-mentorship-stipend", "file": "lfx-mentorship/stipend-payment.md" }
+ ]
+}

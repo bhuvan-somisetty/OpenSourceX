@@ -1,0 +1,94 @@
+Source: https://docs.google.com/document/d/e/2PACX-1vQ4m8tMZKfc9ZvwGXOGJOUkfGHHVpQsaLfwA2Ky1gpjK_8B9jltbs5H8jCfOS_1M-eBGmymiZL_n0TT/pub
+Retrieved: 2026-10-15
+
+MLH Fellowship FAQ Published using Google Docs
+Report abuse Learn more
+MLH Fellowship FAQ
+Updated automatically every 5 minutes
+What are the eligibility requirements? Is the program open to high school students or non-traditional students or professionals?
+Edited 11 months ago
+In order to be eligible to participate, you must meet the following minimum criteria:
+Be at least 18 years of age
+Reside in a country not embargoed  by the United States
+For our Production Engineering Track, you must r eside in the United States, Canada or Mexico.
+Able to commit at least 20 hours per week to this program
+Know how to code in at least one programming language
+Be a proficient English speaker
+Have been a participant in at least one MLH Hackathon  or Global Hack Week  event
+Have access to a video call quality Internet connection. You can use a speed test tool (e.g., Fast.com ) to check your internet connection. We recommend a minimum of 30 Mbps; 50 Mbps is better.
+Beyond that, the MLH Fellowship is open to all developers, regardless of where you  live, the stage of your career , or what type of institution you attend(ed).If you are looking for some inspiring stories of people switching careers, coming from non-traditional backgrounds, and different countries, you may find them in our MLH Blog .
+Do I need to know how to code already? At what level?
+Edited 12 months ago
+You will need to be proficient in at least one programming language to participate. You should have some experience working on a variety of projects using that language and feel comfortable using it to solve real-world, practical problems.
+Experience levels usually range from intermediate to advanced for each language. Based on your experience level, we will try to match you with an appropriate project.
+In addition to coding experience, we ask that you are proficient in using collaboration tools such as Git and the remote collaboration platforms like GitHub and GitLab.
+What is the required time commitment from Fellows?
+Edited 12 months ago
+We estimate that you will spend roughly 20 hours per week on this program, including networking and other fun events. You should expect to spend about 15 hours of your week collaborating on your project and the rest of the time with your mentor or peers to level up your skills.
+In order for you to collaborate with your Pod, every Pod will have a set of program hours based on the timezones of the members. You should assume that you will need to be online Monday through Friday from around 10 am until 6 pm in your local time. You are welcome to contribute additional hours to the program; however, it is not a requirement.
+Is this considered an internship, job, or any form of employment?
+Edited last year
+No. The MLH Fellowship is an educational fellowship program. Think about it like taking a class.
+As of 2026: Depending on the program they are admitted to, Fellows may receive either university credits or an educational stipend as part of their participation during the course of the program . If you are a United States resident, you may receive a tax document from our payment provider at the end of the tax year. The value of the stipend and/or credits differs depending on the length and content of the program.
+If you are an international student studying in the United States, you may need to consult your university to make sure you are eligible to go through the program. Many past  Fellows had to request CPT and OPT to stay compliant with their school programs.
+How are Fellows matched to projects?
+Edited last year
+Qualified applicants are matched to educational projects based on a variety of factors. These include, but are not limited to: relevant programming language, framework, or tooling experience; timezone; and weekly availability.
+You can learn more in our info session: Fellowship Info Session - October 2022
+How does MLH review my code sample? What do you look for?
+Edited 7 months ago
+Our admissions team will review the code sample you submit by asking the following questions:
+Is the project easy to navigate through?
+Does the project follow clean code principles? (DRY code, good use of naming principles, etc.)
+Is it original work, not a tutorial or classroom project?
+If the project was built using any existing boilerplate, has the sample built upon it?
+Is the sample well documented, with a descriptive README?
+Is there any evidence of testing or test files?
+If appropriate to the project and programming language, is there evidence of object-orientation?
+Is there appropriate use of .gitignore?
+We may also dive into your other publicly-available GitHub projects or commits to learn more about your holistic skill set. Your code sample is your starting point, but we want to learn about your coding interests and passions so we can make the best match possible for you.
+You can learn more in our info session: Fellowship Info Session - October 2022
+Do you have any advice for writing my essay questions?
+Edited 12 months ago
+We receive an overwhelming demand from students, so it's important to spend time writing your essay responses. Since everybody applying for the role “needs a job”, you should focus on what’s unique about the circumstances that make you interesting or noteworthy. You don't need to hit any particular word limit, but adding more clarity will strengthen your application.
+Remember: the application essays are the first thing our admissions team considers when looking at your application. If you send in very bare-bones essays, we may never even consider your code sample, so keep in mind that you want to make a great impression. The most powerful essays tell a personal story that’s unique and relevant to the opportunity. For us, these typically tell the tale of how someone fell in love with coding, hackathons, or the CS community.
+You can learn more in our info session: Fellowship Info Session - October 2022
+I finished the technical interview, does that mean I'm guaranteed a position?
+Edited 12 months ago
+No. Once an applicant has finished their technical interview, they are moved to a final review stage. This is where we review all evaluations made by our team of interviewers to decide if we want to move the applicant forward. These candidates are matched to Pods based on their availability and technical proficiencies before being enrolled.
+It can take a week or so for us to fill all of our Pods once offers are sent, as a number of applicants defer to later batches. If this happens, we look at more applications in Final Review to move forwards.
+Please Note: Candidates are only advanced from Final Review once we have a specific project in mind for them. As we often only get final project details from our sponsors in the weeks leading up to the program, if you're in Final Review, you may not hear from us for a while.
+You can learn more in our info session: Fellowship Info Session - October 2022
+I was rejected, can I be reconsidered or apply again?
+Edited 12 months ago
+Unfortunately, due to the overwhelming demand from students, we cannot reconsider applications for a particular semester after they have been rejected. We understand that this can be frustrating, especially if you believe the decision was made based on a mistake or a one-time issue on your end. However, the MLH Fellowship runs regularly and welcomes  anyone who meets the program criteria to reapply for a future batch.
+To help you understand our decision and to improve your chances of getting accepted into a future program, we’re doing our best to provide clear feedback to everyone we reject from the program.
+I successfully went through the application process but did not get a project. What can I improve to increase my chances next time?
+Because there are always more applicants than projects available, it is not uncommon to go through the interview process and not get matched with a project. It is not an indication of your performance and you are welcome to re-apply for the next batch.
+Here are some things you can do to improve and maintain your skills in the meantime:
+Re-visit your essays before you apply again to include your latest experiences.
+Keep your social profiles up to date, including LinkedIn and GitHub. The admissions team does look at those and it can help us learn more about you and your interests.
+Continue working on the code sample you submitted previously or start a better one with your improved skills.
+Look for ways to constantly improve your communication and teamwork skills.
+Consider building out your GitHub profile to reflect your diversity of knowledge and experience. We look to GitHub to verify skills, and if we don’t see evidence of a particular coding language, we won’t be able to consider you for a project in that language.
+Keep in mind that the admissions team has a history of your previous applications and can see the growth in your essays, code samples, and interview responses.
+You are welcome to join our MLH Hackathon  and Global Hack Week  events
+I did not find answers to my questions here. Where can I go?
+You are welcoming to join MLH Community Discord: https://discord.mlh.io/
+There, you will find channels labeled #fellowship-faq and #ask-fellowship  where you can get support from the community
+You may also email MLH Fellowship support team at fellowship@mlh.io
+Can I submit the same code sample as before?
+We encourage you to submit a code sample that you believe presents your best skills at the time of the application! If you submitted a code sample for one batch, continued working on it, and believe it still represents your skills best, then you are welcome to apply with the same code sample.
+I am a returning fellow preparing to do a technical interview again. Should I talk about the same code sample?
+If you previously joined the fellowship and are looking to interview again with the same code sample, make sure to highlight to the team your new skills or improvements you brought since you first interviewed!
+As a returning fellow, you gained a lot more valuable experience since you last interviewed, so the team would be looking forward to seeing how you have grown in skills.
+Any examples of successful code sample projects?
+You may find some examples of successful projects talked about in our info session: Fellowship Info Session - October 2022
+Preferred programming languages of code samples?
+Some of the most common languages that our fellows worked on the past are: JavaScript/TypeScript, Python, and C/C++/C#.
+However, that does not mean there is no project for you if you do not yet have experience in these languages. Apply with your best code sample and the fellowship team will try to match you with a project regardless!
+Why is the application not open for the India/APAC region?
+The MLH Fellowship is fully funded by employers and, as a result, the size of the program is directly related to employer demand for hiring developers from MLH's community. While we'd love to be in a position to expand access to the MLH Fellowship to more fellows from APAC, unfortunately we don't have any customers who are focused on hiring in the region right now due to the current market conditions of the tech industry. Please note that this includes all  Asia-Pacific countries, from Japan to Indonesia to Mongolia to Pakistan.
+We're anxiously awaiting the day that hiring in APAC starts to rebound, as I'm sure you are too! For now though, we felt that rather than getting applicants' hopes up, we should set expectations clearly from the beginning. Best of luck. We hope to see your name on our list of fellows one day!
+How do I know if I’m considered for a stipend or college credits?
+This will depend on the program track you are admitted to. When you’re accepted in the MLH Fellowship, you’ll sign an educational agreement, where it’ll state the compensation type. In rare circumstances you may be able to switch from stipend to college credits or vice versa. Raise this to your Pod Leader or Program Coordinator at the start of the program to inquire.

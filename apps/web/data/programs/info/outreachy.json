@@ -1,0 +1,56 @@
+{
+ "program": "outreachy",
+ "checked": "2026-10-15",
+ "status": "running",
+ "statusNote": "Initial applications for the December 2026 cohort closed on August 31, 2026; approved applicants are in the contribution period.",
+ "summary": "Outreachy provides paid, remote internships in open source and open science for people who face under-representation, systemic bias or discrimination in the technology industry of their country.",
+ "runBy": "Software Freedom Conservancy",
+ "stipend": {
+  "headline": "$7,000",
+  "detail": "Every intern is paid $7,000 USD in total for three months of work, the same amount in every country.",
+  "currency": "USD",
+  "payments": [
+   { "label": "Initial stipend", "share": "$3,000", "when": "After the first mentor feedback" },
+   { "label": "Final stipend", "share": "$4,000", "when": "After the final mentor feedback" }
+  ]
+ },
+ "facts": [
+  { "label": "Length", "value": "13 weeks; at least 12 weeks of work" },
+  { "label": "Time commitment", "value": "30 hours per week (full-time)" },
+  { "label": "Cohorts", "value": "May to August, and December to March" },
+  { "label": "Format", "value": "Remote" }
+ ],
+ "eligibility": [
+  "18 years or older by the internship start date.",
+  "Face under-representation, systemic bias or discrimination in the technology industry of your country.",
+  "Never been an Outreachy, Outreach Program for Women or Google Summer of Code intern (including unfinished GSoC internships).",
+  "No full-time job, full-time contract or other internship during the internship; part-time jobs need organizer approval.",
+  "University students need 42 consecutive days free of classes and exams during the internship.",
+  "Northern Hemisphere students can only apply for May–August; Southern Hemisphere students only for December–March. Students in India count as Northern Hemisphere.",
+  "Your visa must allow 30 hours of work per week."
+ ],
+ "timelineTitle": "December 2026 cohort (UTC)",
+ "timeline": [
+  { "label": "Initial applications open", "date": "2026-08-24" },
+  { "label": "Initial application deadline", "date": "2026-08-31" },
+  { "label": "Initial application results; contribution period opens", "date": "2026-10-12" },
+  { "label": "Final application deadline", "date": "2026-11-09" },
+  { "label": "Accepted interns announced", "date": "2026-11-30" },
+  { "label": "Internship period", "date": "2026-12-07 to 2027-03-08" }
+ ],
+ "howToApply": [
+  "Submit the initial application with its essays (generative AI is not allowed for the essays).",
+  "If approved, contribute to a project during the contribution period and record at least one contribution.",
+  "Submit a final application for that project, including a project timeline.",
+  "Mentors pick interns; results are announced on the published date."
+ ],
+ "links": [
+  { "label": "Outreachy website", "url": "https://www.outreachy.org/" },
+  { "label": "Applicant guide and eligibility", "url": "https://www.outreachy.org/docs/applicant/" },
+  { "label": "Internship guide", "url": "https://www.outreachy.org/docs/internship/" }
+ ],
+ "sources": [
+  { "label": "Outreachy internship guide", "url": "https://www.outreachy.org/docs/internship/", "file": "outreachy/internship.txt" },
+  { "label": "Outreachy applicant guide (December 2026 cohort)", "url": "https://www.outreachy.org/docs/applicant/", "file": "outreachy/applicant.txt" }
+ ]
+}

@@ -1,0 +1,35 @@
+{
+ "program": "igalia",
+ "name": "Igalia Coding Experience",
+ "generatedAt": "2026-10-15",
+ "years": [],
+ "note": "The Coding Experience is run by Igalia itself; there are no other participating organizations.",
+ "sources": [
+  {
+   "label": "Igalia Coding Experience",
+   "url": "https://www.igalia.com/coding-experience/"
+  }
+ ],
+ "orgs": [
+  {
+   "slug": "igalia",
+   "name": "Igalia",
+   "tagline": "Open Source Consulting and Development",
+   "description": "The Igalia Coding Experience is a grant program for people studying Computer Science, Information Technology or Free Software, who work hand in hand with Igalia programmers.",
+   "website": "https://www.igalia.com/",
+   "repoUrl": "https://github.com/Igalia",
+   "tags": [],
+   "years": [],
+   "links": [
+    {
+     "label": "Igalia Coding Experience",
+     "url": "https://www.igalia.com/coding-experience/"
+    }
+   ],
+   "sourceUrl": "https://www.igalia.com/coding-experience/",
+   "githubUrl": "https://github.com/Igalia",
+   "chats": [],
+   "logo": "/logos/programs/igalia/igalia.png"
+  }
+ ]
+}

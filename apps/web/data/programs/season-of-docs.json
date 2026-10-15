@@ -1,0 +1,3905 @@
+{
+ "program": "season-of-docs",
+ "name": "Season of Docs",
+ "generatedAt": "2026-10-15",
+ "years": [
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024
+ ],
+ "note": "Organizations that completed Season of Docs projects, 2019 to 2024.",
+ "sources": [
+  {
+   "label": "Season of Docs participants",
+   "url": "https://developers.google.com/season-of-docs/docs/participants"
+  }
+ ],
+ "orgs": [
+  {
+   "slug": "aboutcode-org",
+   "name": "AboutCode.org",
+   "tagline": null,
+   "description": null,
+   "website": "https://aboutcode.org",
+   "repoUrl": "https://github.com/nexB/",
+   "tags": [],
+   "years": [
+    2019,
+    2021
+   ],
+   "projects": [
+    {
+     "year": 2021,
+     "title": "Create and update ScanCode.io HowTo Guides and Tutorials",
+     "url": "https://docs.google.com/document/d/1jW2ogyALIBNsVpHhQ0EbBKzpfPF8BJzmT4vCfU3sQso/edit?usp=sharing"
+    },
+    {
+     "year": 2019,
+     "title": "Reference for Command Line Options in scancode-toolkit and Reorganize the structure of AboutCode documentation at aboutcode.readthedocs.io",
+     "url": "/season-of-docs/docs/2019/participants/project-aboutcode"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "matrix",
+     "workspace": "AboutCode Matrix",
+     "joinUrl": "https://matrix.to/#/#aboutcode-org_gsoc2026:gitter.im"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/aboutcode",
+   "githubUrl": "https://github.com/nexB",
+   "logo": "/logos/programs/season-of-docs/aboutcode-org.png"
+  },
+  {
+   "slug": "afl",
+   "name": "afl++",
+   "tagline": null,
+   "description": null,
+   "website": "https://aflplus.plus",
+   "repoUrl": "https://github.com/AFLplusplus/AFLplusplus",
+   "tags": [],
+   "years": [
+    2021
+   ],
+   "projects": [
+    {
+     "year": 2021,
+     "title": "Restructure afl++'s documentation",
+     "url": "https://github.com/AFLplusplus/AFLplusplus/blob/d51ec57d91e8f4b80f8970268abdeda7e5c7c0fe/docs/docs.md"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/AFLplusplus",
+   "chatSource": "https://github.com/AFLplusplus/AFLplusplus#readme",
+   "chats": [
+    {
+     "platform": "zulip",
+     "workspace": "afl++ Zulip",
+     "joinUrl": "https://fuzz.zulipchat.com/"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/afl.png"
+  },
+  {
+   "slug": "apache-airflow",
+   "name": "Apache Airflow",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.apache.org/",
+   "repoUrl": "https://github.com/apache/airflow",
+   "tags": [],
+   "years": [
+    2019
+   ],
+   "projects": [
+    {
+     "year": 2019,
+     "title": "How to create a workflow",
+     "url": "/season-of-docs/docs/2019/participants/project-apacheairflow-1"
+    },
+    {
+     "year": 2019,
+     "title": "Documenting using local development environments",
+     "url": "/season-of-docs/docs/2019/participants/project-apacheairflow-2"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/apache",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/apache-airflow.png"
+  },
+  {
+   "slug": "apache-beam",
+   "name": "Apache Beam",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.apache.org/",
+   "repoUrl": "https://github.com/apache/beam",
+   "tags": [],
+   "years": [
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Update of the runner comparison page / capability matrix",
+     "url": "/season-of-docs/docs/2020/participants/project-apachebeam-sruthisreekumar"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/apache",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/apache-beam.png"
+  },
+  {
+   "slug": "apache-cassandra",
+   "name": "Apache Cassandra",
+   "tagline": null,
+   "description": null,
+   "website": "https://cassandra.apache.org/",
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2019
+   ],
+   "projects": [
+    {
+     "year": 2019,
+     "title": "Resolve TODOs in Apache Cassandra Documentation",
+     "url": "/season-of-docs/docs/2019/participants/project-apachecassandra"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "arduino",
+   "name": "Arduino",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.arduino.cc",
+   "repoUrl": "https://github.com/arduino",
+   "tags": [],
+   "years": [
+    2019
+   ],
+   "projects": [
+    {
+     "year": 2019,
+     "title": "Document third-party libraries",
+     "url": "/season-of-docs/docs/2019/participants/project-arduino"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/arduino",
+   "chatSource": "https://www.arduino.cc",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "Arduino Discord",
+     "joinUrl": "https://discord.com/invite/jQJFwW7"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/arduino.png"
+  },
+  {
+   "slug": "arviz",
+   "name": "ArviZ",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.arviz.org",
+   "repoUrl": "https://github.com/arviz-devs/arviz",
+   "tags": [],
+   "years": [
+    2021
+   ],
+   "projects": [
+    {
+     "year": 2021,
+     "title": "Update online docs for ease of exploration and usability",
+     "url": "https://docs.google.com/document/d/1dSc--H5MYGEBsYioohWDtmJwx-VBtXrVjjkvfmwBdag"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/arviz-devs",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/arviz.png"
+  },
+  {
+   "slug": "asyncapi-initiative",
+   "name": "AsyncAPI Initiative",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.asyncapi.com",
+   "repoUrl": "https://github.com/asyncapi",
+   "tags": [],
+   "years": [
+    2022,
+    2023
+   ],
+   "projects": [
+    {
+     "year": 2023,
+     "title": "🙌🏾 Bridge AsyncAPI Document Knowledge Gaps & Build Interactive Learning Paths",
+     "url": "https://github.com/orgs/asyncapi/discussions/601"
+    },
+    {
+     "year": 2022,
+     "title": "Update Docs Information Architecture - AsyncAPI Initiative",
+     "url": "https://github.com/asyncapi/community/discussions/303"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/asyncapi",
+   "chatSource": "https://github.com/asyncapi",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "AsyncAPI Initiative Slack",
+     "joinUrl": "https://asyncapi.slack.com"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/asyncapi-initiative.png"
+  },
+  {
+   "slug": "bokeh",
+   "name": "Bokeh",
+   "tagline": null,
+   "description": null,
+   "website": "https://bokeh.org/",
+   "repoUrl": "https://github.com/bokeh/bokeh",
+   "tags": [],
+   "years": [
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Creating, reading, sharing: Optimizing Bokeh’s documentation",
+     "url": "/season-of-docs/docs/2020/participants/project-bokeh-visverborum"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/bokeh",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/bokeh.png"
+  },
+  {
+   "slug": "brl-cad",
+   "name": "BRL-CAD",
+   "tagline": null,
+   "description": null,
+   "website": "https://brlcad.org",
+   "repoUrl": "https://github.com/BRL-CAD/brlcad",
+   "tags": [],
+   "years": [
+    2019,
+    2021
+   ],
+   "projects": [
+    {
+     "year": 2021,
+     "title": "Migrate BRL-CAD's Documentation Infrastructure",
+     "url": "https://brlcad.org/wiki/Google_Season_of_Docs/Proposal"
+    },
+    {
+     "year": 2019,
+     "title": "A Beginner's Guide To BRL-CAD",
+     "url": "/season-of-docs/docs/2019/participants/project-brlcad"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "other",
+     "workspace": "BRL-CAD Chat",
+     "joinUrl": "https://opencax.github.io"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/brl-cad",
+   "logo": "/logos/programs/season-of-docs/brl-cad.png"
+  },
+  {
+   "slug": "casbin",
+   "name": "Casbin",
+   "tagline": null,
+   "description": null,
+   "website": "https://casbin.org",
+   "repoUrl": "https://github.com/casbin",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Improve the Casbin and Casdoor Docs Sites",
+     "url": "https://github.com/casbin/SeasonOfDocs2022"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "Casbin Discord",
+     "joinUrl": "https://discord.com/invite/qteNGWt8UY"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2022/organizations/casbin",
+   "githubUrl": "https://github.com/casbin",
+   "logo": "/logos/programs/season-of-docs/casbin.png"
+  },
+  {
+   "slug": "cern-hsf",
+   "name": "CERN-HSF",
+   "tagline": null,
+   "description": null,
+   "website": "https://hepsoftwarefoundation.org",
+   "repoUrl": "https://github.com/HSF",
+   "tags": [],
+   "years": [
+    2019,
+    2020,
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Improving Analysis Tool Documentation for the HSF",
+     "url": "https://cernbox.cern.ch/index.php/s/C7cXGo1R6ERnpvN"
+    },
+    {
+     "year": 2020,
+     "title": "Rucio – Modernize (restructure & rewrite) the Rucio documentation",
+     "url": "/season-of-docs/docs/2020/participants/project-cernhsf-ariadne"
+    },
+    {
+     "year": 2020,
+     "title": "CERN-HSF - ROOT Documentation for General Audience Adoption, Dynamic Python Bindings, and Tutorials",
+     "url": "/season-of-docs/docs/2020/participants/project-cernhsf-john"
+    },
+    {
+     "year": 2020,
+     "title": "Extending and improving the ROOT documentation",
+     "url": "/season-of-docs/docs/2020/participants/project-cernhsf-luckintherain"
+    },
+    {
+     "year": 2020,
+     "title": "Restructuring & Streamlining of the Allpix Squared Documentation",
+     "url": "/season-of-docs/docs/2020/participants/project-cernhsf-sabitar"
+    },
+    {
+     "year": 2019,
+     "title": "ROOT Documentation: Analyzing, Restructuring and Rewriting",
+     "url": "/season-of-docs/docs/2019/participants/project-cernhsf"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "gitter",
+     "workspace": "CERN-HSF Gitter",
+     "joinUrl": "https://gitter.im/HSF/HSF-GSoC?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"
+    }
+   ],
+   "chatSource": "http://hepsoftwarefoundation.org/activities/gsoc.html",
+   "githubUrl": "https://github.com/HSF",
+   "logo": "/logos/programs/season-of-docs/cern-hsf.png"
+  },
+  {
+   "slug": "cert-manager-io",
+   "name": "cert-manager.io",
+   "tagline": null,
+   "description": null,
+   "website": "https://cert-manager.io",
+   "repoUrl": "https://github.com/cert-manager/website",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Improve the Navigation and Structure of the cert-manager Website",
+     "url": "https://cert-manager.io/docs/contributing/google-season-of-docs/2022/improve-navigation-and-structure/"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/cert-manager",
+   "chatSource": "https://cert-manager.io",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "Kubernetes Slack",
+     "joinUrl": "https://kubernetes.slack.com/"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/cert-manager-io.png"
+  },
+  {
+   "slug": "chaoss",
+   "name": "CHAOSS",
+   "tagline": null,
+   "description": null,
+   "website": "https://chaoss.community",
+   "repoUrl": "https://github.com/chaoss/augur",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Knowledge Base, Handbook, Website, and Metric Organizing, Updating and Creating",
+     "url": "https://github.com/chaoss/community/blob/main/GSoD-proposal.md"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "CHAOSS Slack",
+     "joinUrl": "https://join.slack.com/t/chaoss-workspace/shared_invite/zt-289zxh6tu-3oQaFlutPFY039MjKpnWcA"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2025/organizations/chaoss",
+   "githubUrl": "https://github.com/chaoss",
+   "logo": "/logos/programs/season-of-docs/chaoss.png"
+  },
+  {
+   "slug": "cilium",
+   "name": "Cilium",
+   "tagline": null,
+   "description": null,
+   "website": "https://cilium.io",
+   "repoUrl": "https://github.com/cilium/cilium",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Reorganize Cilium Features and Getting Started",
+     "url": "https://docs.cilium.io/en/latest/contributing/development/season_of_docs/"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/cilium",
+   "chatSource": "https://github.com/cilium/cilium#readme",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "Cilium Slack",
+     "joinUrl": "https://slack.cilium.io"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/cilium.png"
+  },
+  {
+   "slug": "circuitverse",
+   "name": "CircuitVerse",
+   "tagline": null,
+   "description": null,
+   "website": "https://circuitverse.org/",
+   "repoUrl": "https://github.com/circuitverse",
+   "tags": [],
+   "years": [
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "CircuitVerse Interactive Book Consolidation and Improvements",
+     "url": "/season-of-docs/docs/2020/participants/project-circuitverse-dvls"
+    },
+    {
+     "year": 2020,
+     "title": "User Documentation and Guides",
+     "url": "/season-of-docs/docs/2020/participants/project-circuitverse-pragati"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/CircuitVerse",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/circuitverse.png"
+  },
+  {
+   "slug": "cloud-native-buildpacks",
+   "name": "Cloud Native Buildpacks",
+   "tagline": null,
+   "description": null,
+   "website": "https://buildpacks.io",
+   "repoUrl": "https://github.com/buildpacks",
+   "tags": [],
+   "years": [
+    2024
+   ],
+   "projects": [
+    {
+     "year": 2024,
+     "title": "Fill in missing docs content by adapting the CNB technical specification for buildpacks.io",
+     "url": "https://github.com/buildpacks/docs/issues/677"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/buildpacks",
+   "chatSource": "https://buildpacks.io",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "CNCF Slack",
+     "joinUrl": "https://slack.cncf.io"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/cloud-native-buildpacks.png"
+  },
+  {
+   "slug": "cloud-native-computing-foundation-cncf",
+   "name": "Cloud Native Computing Foundation (CNCF)",
+   "tagline": null,
+   "description": null,
+   "website": "https://cncf.io",
+   "repoUrl": "https://github.com/cncf",
+   "tags": [],
+   "years": [
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Update how the Kubernetes website serves API references",
+     "url": "/season-of-docs/docs/2020/participants/project-cncf-feloy"
+    },
+    {
+     "year": 2020,
+     "title": "Improve documentation of SMI & related service meshes",
+     "url": "/season-of-docs/docs/2020/participants/project-cncf-shriti"
+    },
+    {
+     "year": 2020,
+     "title": "More and Better Kubectl Examples",
+     "url": "/season-of-docs/docs/2020/participants/project-cncf-syamsundark"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/cncf",
+   "chatSource": "https://cncf.io",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "CNCF Slack",
+     "joinUrl": "https://slack.cncf.io/"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/cloud-native-computing-foundation-cncf.png"
+  },
+  {
+   "slug": "co2-js",
+   "name": "CO2.js",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.thegreenwebfoundation.org/co2-js/",
+   "repoUrl": "https://github.com/thegreenwebfoundation/co2.js",
+   "tags": [],
+   "years": [
+    2024
+   ],
+   "projects": [
+    {
+     "year": 2024,
+     "title": "Document CO2.js contributor pathways",
+     "url": "https://docs.google.com/document/d/1wRHLRqo0PQ9DFHGuFH2AmlRv1i8N_zrcD_GWXntnDB0/edit?usp=sharing"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/thegreenwebfoundation",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/co2-js.png"
+  },
+  {
+   "slug": "compiler-research-org",
+   "name": "compiler-research.org",
+   "tagline": null,
+   "description": null,
+   "website": "https://compiler-research.org",
+   "repoUrl": "https://github.com/compiler-research",
+   "tags": [],
+   "years": [
+    2023
+   ],
+   "projects": [
+    {
+     "year": 2023,
+     "title": "Interactive Programming Documentation for Data Science",
+     "url": "https://docs.google.com/document/d/1kGlj1-Aks59gS9_8kNdaq12X5FV9bx4F9E-HExm7UWA/edit#heading=h.90qx5465ubcu"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/compiler-research",
+   "chatSource": "https://compiler-research.org",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "compiler-research.org Discord",
+     "joinUrl": "https://discord.gg/Vkv3ne4zVK"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/compiler-research-org.png"
+  },
+  {
+   "slug": "conda",
+   "name": "conda",
+   "tagline": null,
+   "description": null,
+   "website": "https://conda.org",
+   "repoUrl": "https://github.com/conda",
+   "tags": [],
+   "years": [
+    2023
+   ],
+   "projects": [
+    {
+     "year": 2023,
+     "title": "Writing content for the upcoming conda.org",
+     "url": "https://github.com/conda-incubator/conda-dot-org/discussions/73"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/conda",
+   "chatSource": "https://github.com/conda",
+   "chats": [
+    {
+     "platform": "zulip",
+     "workspace": "conda Zulip",
+     "joinUrl": "https://conda.zulipchat.com/"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/conda.png"
+  },
+  {
+   "slug": "creative-commons",
+   "name": "Creative Commons",
+   "tagline": null,
+   "description": null,
+   "website": "https://opensource.creativecommons.org/",
+   "repoUrl": "https://github.com/creativecommons",
+   "tags": [],
+   "years": [
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Improve CC Catalog API Usage Guide",
+     "url": "/season-of-docs/docs/2020/participants/project-creativecommons-ariessa"
+    },
+    {
+     "year": 2020,
+     "title": "WordPress base theme usage guide",
+     "url": "/season-of-docs/docs/2020/participants/project-creativecommons-jackiebinya"
+    },
+    {
+     "year": 2020,
+     "title": "Vocabulary Usage Guide",
+     "url": "/season-of-docs/docs/2020/participants/project-creativecommons-nimishnb"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "other",
+     "workspace": "Creative Commons Chat",
+     "joinUrl": "https://opensource.creativecommons.org/community/"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2024/organizations/creative-commons",
+   "githubUrl": "https://github.com/creativecommons",
+   "logo": "/logos/programs/season-of-docs/creative-commons.png"
+  },
+  {
+   "slug": "curious-reader",
+   "name": "Curious Reader",
+   "tagline": null,
+   "description": null,
+   "website": "https://curiouslearning.org",
+   "repoUrl": "https://github.com/curiouslearning/CuriousReaderRCC",
+   "tags": [],
+   "years": [
+    2021
+   ],
+   "projects": [
+    {
+     "year": 2021,
+     "title": "Curious Learning: Book Creator Documentation",
+     "url": "https://docs.google.com/document/d/1b3sJyE7bi01EAKS_sQ2KR5AGUg7Sp9dFZdhGSQoEowk/edit?usp=sharing"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/curiouslearning",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/curious-reader.png"
+  },
+  {
+   "slug": "data-commons",
+   "name": "Data Commons",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.datacommons.org",
+   "repoUrl": "https://github.com/datacommonsorg",
+   "tags": [],
+   "years": [
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Improving DataCommons Getting Started Documentation",
+     "url": "/season-of-docs/docs/2020/participants/project-datacommons-kilimannejaro"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/datacommonsorg",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/data-commons.png"
+  },
+  {
+   "slug": "digital-biomarker-discovery-project-dbdp",
+   "name": "Digital Biomarker Discovery Project (DBDP)",
+   "tagline": null,
+   "description": null,
+   "website": null,
+   "repoUrl": "https://github.com/DigitalBiomarkerDiscoveryPipeline, https://dbdp.org/",
+   "tags": [],
+   "years": [
+    2023
+   ],
+   "projects": [
+    {
+     "year": 2023,
+     "title": "Create Case Studies for Digital Biomarker Discovery Pipeline",
+     "url": "https://docs.google.com/document/d/1pfVZjNvJkED4XqDBEl7JLHu_AJylDA_Q9gtjOY1Q7Cc/edit"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/DigitalBiomarkerDiscoveryPipeline",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/digital-biomarker-discovery-project-dbdp.png"
+  },
+  {
+   "slug": "dipy",
+   "name": "DIPY",
+   "tagline": null,
+   "description": null,
+   "website": "https://dipy.org/",
+   "repoUrl": "https://github.com/dipy/dipy",
+   "tags": [],
+   "years": [
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "High-level restructuring and end-user focus",
+     "url": "/season-of-docs/docs/2020/participants/project-dipy-areeshatariq"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/dipy",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/dipy.png"
+  },
+  {
+   "slug": "django",
+   "name": "Django",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.djangoproject.com/",
+   "repoUrl": "https://github.com/django/django",
+   "tags": [],
+   "years": [
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Rewrite Contribution guide to be more user-friendly and easily navigated",
+     "url": "/season-of-docs/docs/2020/participants/project-django-gabbyprecious"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/django",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/django.png"
+  },
+  {
+   "slug": "dvc",
+   "name": "DVC",
+   "tagline": null,
+   "description": null,
+   "website": "https://datachain.ai",
+   "repoUrl": "https://github.com/iterative/dvc.org",
+   "tags": [],
+   "years": [
+    2019,
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Implementing \"How To\" section guides and updating DVC 1.0 docs",
+     "url": "/season-of-docs/docs/2020/participants/project-dvc-imhardikj"
+    },
+    {
+     "year": 2020,
+     "title": "SEO / Site Analytics & Docs Site Updates",
+     "url": "/season-of-docs/docs/2020/participants/project-dvc-remastered"
+    },
+    {
+     "year": 2019,
+     "title": "Improving and expanding the docs of DVC.org",
+     "url": "/season-of-docs/docs/2019/participants/project-dvc"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/iterative",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/dvc.png"
+  },
+  {
+   "slug": "electron",
+   "name": "Electron",
+   "tagline": null,
+   "description": null,
+   "website": "http://electronjs.org/",
+   "repoUrl": "https://github.com/electron/electron",
+   "tags": [],
+   "years": [
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Electron Tutorial Flow",
+     "url": "/season-of-docs/docs/2020/participants/project-electron-mistergold"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/electron",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/electron.png"
+  },
+  {
+   "slug": "ensembl",
+   "name": "Ensembl",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.ensembl.org",
+   "repoUrl": "https://github.com/Ensembl",
+   "tags": [],
+   "years": [
+    2019
+   ],
+   "projects": [
+    {
+     "year": 2019,
+     "title": "REST API documentation",
+     "url": "/season-of-docs/docs/2019/participants/project-ensembl"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/Ensembl",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/ensembl.png"
+  },
+  {
+   "slug": "eslint",
+   "name": "ESLint",
+   "tagline": null,
+   "description": null,
+   "website": "https://eslint.org",
+   "repoUrl": "https://github.com/eslint/eslint",
+   "tags": [],
+   "years": [
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Reorganize/Rewrite Configuration Documentation",
+     "url": "/season-of-docs/docs/2020/participants/project-eslint-khawar"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/eslint",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/eslint.png"
+  },
+  {
+   "slug": "expresslrs",
+   "name": "ExpressLRS",
+   "tagline": null,
+   "description": null,
+   "website": null,
+   "repoUrl": "https://github.com/ExpressLRS",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Review and Expand ExpressLRS User Documentation",
+     "url": "https://www.expresslrs.org/2.0/gsod/"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/ExpressLRS",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/expresslrs.png"
+  },
+  {
+   "slug": "flux",
+   "name": "Flux",
+   "tagline": null,
+   "description": null,
+   "website": "https://fluxcd.io",
+   "repoUrl": "https://github.com/fluxcd",
+   "tags": [],
+   "years": [
+    2023
+   ],
+   "projects": [
+    {
+     "year": 2023,
+     "title": "Improving the Flux User Onramp",
+     "url": "https://fluxcd.io/contributing/docs/google-season-of-docs-2023/"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/fluxcd",
+   "chatSource": "https://fluxcd.io",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "CNCF Slack",
+     "joinUrl": "https://slack.cncf.io/"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/flux.png"
+  },
+  {
+   "slug": "folio",
+   "name": "FOLIO",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.folio.org",
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2020,
+    2021
+   ],
+   "projects": [
+    {
+     "year": 2021,
+     "title": "Update FOLIO End User and System Administrator Guides",
+     "url": "https://wiki.folio.org/display/COMMUNITY/Google+Season+of+Docs+2021"
+    },
+    {
+     "year": 2020,
+     "title": "Expansion of End User Documentation of FOLIO Apps",
+     "url": "/season-of-docs/docs/2020/participants/project-folio-gallinita"
+    },
+    {
+     "year": 2020,
+     "title": "Creation of System Administrator Documentation for FOLIO Implementations",
+     "url": "/season-of-docs/docs/2020/participants/project-folio-joseortiz"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chatSource": "https://www.folio.org",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "FOLIO Slack",
+     "joinUrl": "https://folio-project.slack.com/messages"
+    }
+   ],
+   "logo": null
+  },
+  {
+   "slug": "fonttools",
+   "name": "FontTools",
+   "tagline": null,
+   "description": null,
+   "website": "https://groups.google.com/forum/#!forum/fonttools",
+   "repoUrl": "https://github.com/fonttools/fonttools",
+   "tags": [],
+   "years": [
+    2024
+   ],
+   "projects": [
+    {
+     "year": 2024,
+     "title": "Complete module references and users' guides",
+     "url": "https://github.com/fonttools/fonttools/wiki/Season-of-Docs-2024-project-proposal"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/fonttools",
+   "chatSource": "https://github.com/fonttools/fonttools#readme",
+   "chats": [
+    {
+     "platform": "gitter",
+     "workspace": "FontTools Gitter",
+     "joinUrl": "https://gitter.im/fonttools-dev/Lobby"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/fonttools.png"
+  },
+  {
+   "slug": "gdevelop",
+   "name": "GDevelop",
+   "tagline": null,
+   "description": null,
+   "website": null,
+   "repoUrl": "https://github.com/4ian/GDevelop",
+   "tags": [],
+   "years": [
+    2019,
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Design the optimal learning experience for beginners",
+     "url": "/season-of-docs/docs/2020/participants/project-gdevelop-davidturnbull"
+    },
+    {
+     "year": 2020,
+     "title": "A brand new tutorial",
+     "url": "/season-of-docs/docs/2020/participants/project-gdevelop-sedna"
+    },
+    {
+     "year": 2019,
+     "title": "New tutorial: building hyper-casual mobile game",
+     "url": "/season-of-docs/docs/2019/participants/project-gdevelop"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/4ian",
+   "chatSource": "https://github.com/4ian/GDevelop#readme",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "GDevelop Discord",
+     "joinUrl": "https://discord.gg/gdevelop"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/gdevelop.jpg"
+  },
+  {
+   "slug": "genpipes",
+   "name": "GenPipes",
+   "tagline": null,
+   "description": null,
+   "website": "http://www.computationalgenomics.ca/genpipes/",
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2019
+   ],
+   "projects": [
+    {
+     "year": 2019,
+     "title": "Set up GenPipes docs at 'Read The Docs'",
+     "url": "/season-of-docs/docs/2019/participants/project-genpipes"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "geomscale",
+   "name": "GeomScale",
+   "tagline": null,
+   "description": null,
+   "website": "https://geomscale.github.io",
+   "repoUrl": "https://github.com/GeomScale/",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Create the GeomScale Reference Documentation",
+     "url": "https://geomscale.github.io/GSoD-application"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "gitter",
+     "workspace": "GeomScale Gitter",
+     "joinUrl": "https://gitter.im/GeomScale/community?utm_source=share-link&utm_medium=link&utm_campaign=share-link"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/geomscale",
+   "githubUrl": "https://github.com/GeomScale",
+   "logo": "/logos/programs/season-of-docs/geomscale.png"
+  },
+  {
+   "slug": "geomstats",
+   "name": "Geomstats",
+   "tagline": null,
+   "description": null,
+   "website": null,
+   "repoUrl": "https://github.com/geomstats/geomstats",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Design and Organize Scattered Documentation",
+     "url": "https://geomstats.github.io/gsod.html"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/geomstats",
+   "chatSource": "https://github.com/geomstats/geomstats#readme",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "Geomstats Slack",
+     "joinUrl": "https://join.slack.com/t/geomstats/shared_invite/zt-15t8k0q7r-Duxt6j6aA3rDOIms2Vd~RQ"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/geomstats.png"
+  },
+  {
+   "slug": "global-wordnet-association",
+   "name": "Global Wordnet Association",
+   "tagline": null,
+   "description": null,
+   "website": "http://globalwordnet.org/",
+   "repoUrl": "https://github.com/globalwordnet",
+   "tags": [],
+   "years": [
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Wordnet Structure",
+     "url": "/season-of-docs/docs/2020/participants/project-globalwordnet-gloryagatevure"
+    },
+    {
+     "year": 2020,
+     "title": "The Open Multilingual Wordnet (OMW)",
+     "url": "/season-of-docs/docs/2020/participants/project-globalwordnet-kumar"
+    },
+    {
+     "year": 2020,
+     "title": "Wordnet Structure",
+     "url": "/season-of-docs/docs/2020/participants/project-globalwordnet-yoyowu"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/globalwordnet",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/global-wordnet-association.png"
+  },
+  {
+   "slug": "gnu-mailman",
+   "name": "GNU Mailman",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.list.org/",
+   "repoUrl": "https://gitlab.com/mailman",
+   "tags": [],
+   "years": [
+    2019
+   ],
+   "projects": [
+    {
+     "year": 2019,
+     "title": "Instructions for Migrating from Mailman 2 to Mailman 3",
+     "url": "/season-of-docs/docs/2019/participants/project-gnumailman"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "irc",
+     "workspace": "GNU Mailman IRC",
+     "joinUrl": "https://web.libera.chat/#mailman"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/gnu-mailman",
+   "logo": "/logos/programs/season-of-docs/gnu-mailman.png"
+  },
+  {
+   "slug": "graphql",
+   "name": "GraphQL",
+   "tagline": null,
+   "description": null,
+   "website": "https://graphql.org",
+   "repoUrl": "https://github.com/graphql",
+   "tags": [],
+   "years": [
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Create FAQ resource",
+     "url": "/season-of-docs/docs/2020/participants/project-graphql-carolstran"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/graphql",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/graphql.png"
+  },
+  {
+   "slug": "grpc-gateway",
+   "name": "gRPC-Gateway",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.grpc.io",
+   "repoUrl": "https://github.com/grpc-ecosystem/grpc-gateway",
+   "tags": [],
+   "years": [
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Refactoring the Existing Docs Site of gRPC-Gateway",
+     "url": "/season-of-docs/docs/2020/participants/project-grpcgateway-iamrajiv"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/grpc-ecosystem",
+   "chatSource": "https://www.grpc.io",
+   "chats": [
+    {
+     "platform": "gitter",
+     "workspace": "gRPC-Gateway Gitter",
+     "joinUrl": "https://gitter.im/grpc/grpc"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/grpc-gateway.png"
+  },
+  {
+   "slug": "hpx",
+   "name": "HPX",
+   "tagline": null,
+   "description": null,
+   "website": "https://stellar-group.org/",
+   "repoUrl": "https://github.com/STEllAR-GROUP/hpx",
+   "tags": [],
+   "years": [
+    2019,
+    2021
+   ],
+   "projects": [
+    {
+     "year": 2021,
+     "title": "Improve discoverability of content",
+     "url": "https://github.com/STEllAR-GROUP/hpx/wiki/GSoD-2021-Project-Proposal"
+    },
+    {
+     "year": 2019,
+     "title": "Edit & Streamline Existing HPX Documentation",
+     "url": "/season-of-docs/docs/2019/participants/project-hpx"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/STEllAR-GROUP",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/hpx.png"
+  },
+  {
+   "slug": "ignition-robotics",
+   "name": "Ignition Robotics",
+   "tagline": null,
+   "description": null,
+   "website": "https://ignitionrobotics.org/",
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Ignition Physics tutorials and API documentation",
+     "url": "/season-of-docs/docs/2020/participants/project-ignitionrobotics-anthaile"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "incf",
+   "name": "INCF",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.incf.org/",
+   "repoUrl": "https://github.com/INCF",
+   "tags": [],
+   "years": [
+    2019,
+    2020,
+    2024
+   ],
+   "projects": [
+    {
+     "year": 2024,
+     "title": "Streamlining the BIDS Online Presence - Brain Imaging Data Structure",
+     "url": "https://www.incf.org/activities/gsod"
+    },
+    {
+     "year": 2020,
+     "title": "LORIS training docs for open reproducible neuroscience",
+     "url": "/season-of-docs/docs/2020/participants/project-incf-hq"
+    },
+    {
+     "year": 2020,
+     "title": "The Turing Way: A How-to Guide to Data Science",
+     "url": "/season-of-docs/docs/2020/participants/project-incf-ogbonoko"
+    },
+    {
+     "year": 2019,
+     "title": "OpenWorm",
+     "url": "/season-of-docs/docs/2019/participants/project-incf-2"
+    },
+    {
+     "year": 2019,
+     "title": "Simplifying LORIS",
+     "url": "/season-of-docs/docs/2019/participants/project-incf-1"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/INCF",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/incf.png"
+  },
+  {
+   "slug": "internet-archive-ux-for-archive-org",
+   "name": "Internet Archive UX for Archive.org",
+   "tagline": null,
+   "description": null,
+   "website": "https://archive.org/",
+   "repoUrl": "https://github.com/internetarchive/iaux",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Create a Developer Portal for Internet Archive",
+     "url": "https://docs.google.com/document/d/1ToZ2OzxHOyQtXB7IpvVHM2bJw0wed6iwvEwCBgAtJGQ/edit?usp=sharing"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/internetarchive",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/internet-archive-ux-for-archive-org.jpg"
+  },
+  {
+   "slug": "jenkins-project",
+   "name": "Jenkins Project",
+   "tagline": null,
+   "description": null,
+   "website": "https://jenkins.io/",
+   "repoUrl": "https://github.com/jenkinsci/",
+   "tags": [],
+   "years": [
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Jenkins on Kubernetes",
+     "url": "/season-of-docs/docs/2020/participants/project-jenkins-zaycodes"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "gitter",
+     "workspace": "Jenkins Gitter",
+     "joinUrl": "https://gitter.im/jenkinsci/gsoc-sig"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/jenkins-wp",
+   "githubUrl": "https://github.com/jenkinsci",
+   "logo": "/logos/programs/season-of-docs/jenkins-project.png"
+  },
+  {
+   "slug": "jenkins-x",
+   "name": "Jenkins X",
+   "tagline": null,
+   "description": null,
+   "website": "https://jenkins-x.io/",
+   "repoUrl": "https://github.com/jenkins-x/jx",
+   "tags": [],
+   "years": [
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Refactoring the existing Jenkins X docs site and Jenkins X Capabilities Matrix",
+     "url": "/season-of-docs/docs/2020/participants/project-jenkinsx-nitin"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "Kubernetes Slack",
+     "joinUrl": "https://kubernetes.slack.com/messages/C9LTHT2BB"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2022/organizations/jenkins-x",
+   "githubUrl": "https://github.com/jenkins-x",
+   "logo": "/logos/programs/season-of-docs/jenkins-x.png"
+  },
+  {
+   "slug": "json-schema",
+   "name": "JSON Schema",
+   "tagline": null,
+   "description": null,
+   "website": "https://json-schema.org/",
+   "repoUrl": "https://github.com/json-schema-org",
+   "tags": [],
+   "years": [
+    2024
+   ],
+   "projects": [
+    {
+     "year": 2024,
+     "title": "Rebuild the JSON Schema's Reference and Specification docs",
+     "url": "https://github.com/orgs/json-schema-org/discussions/687"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "other",
+     "workspace": "JSON Schema Chat",
+     "joinUrl": "https://json-schema.org/slack"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/json-schema",
+   "githubUrl": "https://github.com/json-schema-org",
+   "logo": "/logos/programs/season-of-docs/json-schema.png"
+  },
+  {
+   "slug": "kolibri",
+   "name": "Kolibri",
+   "tagline": null,
+   "description": null,
+   "website": "https://learningequality.org/",
+   "repoUrl": "https://github.com/learningequality/kolibri",
+   "tags": [],
+   "years": [
+    2019,
+    2020,
+    2021
+   ],
+   "projects": [
+    {
+     "year": 2021,
+     "title": "Document context for translatable user interface strings",
+     "url": "https://docs.google.com/document/d/e/2PACX-1vTV6kRoc_0BoVSnGr4O-a05tMzQkEBHeS_Wv79j1kD3eHALeWM7YBFmP_v8ZkxatB-7ro4g7udlW1Wx/pub"
+    },
+    {
+     "year": 2020,
+     "title": "Kolibri Grassroots Stories",
+     "url": "/season-of-docs/docs/2020/participants/project-kolibri-ctran19"
+    },
+    {
+     "year": 2020,
+     "title": "Kolibri Ecosystem Documentation Style and Workflows conventions",
+     "url": "/season-of-docs/docs/2020/participants/project-kolibri-stephdix"
+    },
+    {
+     "year": 2019,
+     "title": "Kolibri Content Workflow",
+     "url": "/season-of-docs/docs/2019/participants/project-kolibri"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/learningequality",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/kolibri.png"
+  },
+  {
+   "slug": "lfortran",
+   "name": "LFortran",
+   "tagline": null,
+   "description": null,
+   "website": "https://lfortran.org/",
+   "repoUrl": "https://github.com/lfortran/lfortran",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Compiler Developer Documentation",
+     "url": "https://gitlab.com/lfortran/lfortran/-/wikis/GSoD%20Proposal%202022%20-%20LFortran%20Compiler%20Developer%20Documentation"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/lfortran",
+   "chatSource": "https://github.com/lfortran/lfortran#readme",
+   "chats": [
+    {
+     "platform": "zulip",
+     "workspace": "LFortran Zulip",
+     "joinUrl": "https://lfortran.zulipchat.com/"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/lfortran.png"
+  },
+  {
+   "slug": "libreoffice",
+   "name": "LibreOffice",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.libreoffice.org",
+   "repoUrl": "https://www.libreoffice.org/about-us/source-code/",
+   "tags": [],
+   "years": [
+    2019,
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Calc Functions Reference and User Guide",
+     "url": "/season-of-docs/docs/2020/participants/project-libreoffice-krezhairo"
+    },
+    {
+     "year": 2020,
+     "title": "LibreOffice E-Learning Calc",
+     "url": "/season-of-docs/docs/2020/participants/project-libreoffice-prashant"
+    },
+    {
+     "year": 2019,
+     "title": "LibreOffice Online Guide: a guide similar to those used for other LO applications, to include not only usage but also installation and administration.",
+     "url": "/season-of-docs/docs/2019/participants/project-libreoffice"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "other",
+     "workspace": "LibreOffice Chat",
+     "joinUrl": "https://wiki.documentfoundation.org/Website/IRC"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/libreoffice",
+   "logo": "/logos/programs/season-of-docs/libreoffice.png"
+  },
+  {
+   "slug": "litmuschaos",
+   "name": "LitmusChaos",
+   "tagline": null,
+   "description": null,
+   "website": "https://litmuschaos.io",
+   "repoUrl": "https://github.com/litmuschaos/litmus",
+   "tags": [],
+   "years": [
+    2021
+   ],
+   "projects": [
+    {
+     "year": 2021,
+     "title": "Create Tutorials for Litmus 2.0",
+     "url": "https://github.com/litmuschaos/litmus/blob/master/GoogleSeasonOfDocs.md"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/litmuschaos",
+   "chatSource": "https://github.com/litmuschaos/litmus#readme",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "LitmusChaos Slack",
+     "joinUrl": "https://slack.litmuschaos.io"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/litmuschaos.png"
+  },
+  {
+   "slug": "llvm-compiler-infrastructure",
+   "name": "LLVM Compiler Infrastructure",
+   "tagline": null,
+   "description": null,
+   "website": "http://llvm.org",
+   "repoUrl": "https://github.com/llvm/llvm-project/",
+   "tags": [],
+   "years": [
+    2019
+   ],
+   "projects": [
+    {
+     "year": 2019,
+     "title": "Restructure LLVM documentation index and documentation style guide",
+     "url": "/season-of-docs/docs/2019/participants/project-llvm"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "other",
+     "workspace": "LLVM Compiler Infrastructure Chat",
+     "joinUrl": "https://discord.com/channels/636084430946959380/642374147640524831"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/llvm-compiler-infrastructure",
+   "githubUrl": "https://github.com/llvm",
+   "logo": "/logos/programs/season-of-docs/llvm-compiler-infrastructure.png"
+  },
+  {
+   "slug": "matplotlib",
+   "name": "Matplotlib",
+   "tagline": null,
+   "description": null,
+   "website": "https://matplotlib.org",
+   "repoUrl": "https://github.com/matplotlib/matplotlib",
+   "tags": [],
+   "years": [
+    2020,
+    2023
+   ],
+   "projects": [
+    {
+     "year": 2023,
+     "title": "Indexing of Matplotlib gallery examples",
+     "url": "https://github.com/matplotlib/matplotlib/wiki/Google-Season-of-Docs-2023:-Proposal"
+    },
+    {
+     "year": 2020,
+     "title": "Improving feature discoverability by standardizing documentation of “implicit” types",
+     "url": "/season-of-docs/docs/2020/participants/project-matplotlib-brunobeltran"
+    },
+    {
+     "year": 2020,
+     "title": "Developing Matplotlib Entry Paths",
+     "url": "/season-of-docs/docs/2020/participants/project-matplotlib-jeromev"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/matplotlib",
+   "chatSource": "https://matplotlib.org",
+   "chats": [
+    {
+     "platform": "gitter",
+     "workspace": "Matplotlib Gitter",
+     "joinUrl": "https://gitter.im/matplotlib/matplotlib"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/matplotlib.png"
+  },
+  {
+   "slug": "mattermost",
+   "name": "Mattermost",
+   "tagline": null,
+   "description": null,
+   "website": "https://mattermost.com/",
+   "repoUrl": "https://github.com/mattermost",
+   "tags": [],
+   "years": [
+    2019
+   ],
+   "projects": [
+    {
+     "year": 2019,
+     "title": "Review and Refine In-Product Text",
+     "url": "/season-of-docs/docs/2019/participants/project-mattermost"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/mattermost",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/mattermost.jpg"
+  },
+  {
+   "slug": "mautic",
+   "name": "Mautic",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.mautic.org",
+   "repoUrl": "https://github.com/mautic/mautic",
+   "tags": [],
+   "years": [
+    2020,
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Update Mautic End User Documentation",
+     "url": "https://github.com/mautic/Gsod/blob/main/gsod.md"
+    },
+    {
+     "year": 2020,
+     "title": "Knowledgebase",
+     "url": "/season-of-docs/docs/2020/participants/project-mautic-favourkelvin"
+    },
+    {
+     "year": 2020,
+     "title": "Review and update the End-User documentation for Mautic",
+     "url": "/season-of-docs/docs/2020/participants/project-mautic-swatithacker"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "other",
+     "workspace": "Mautic Chat",
+     "joinUrl": "https://mautic.org/slack"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2024/organizations/mautic",
+   "githubUrl": "https://github.com/mautic",
+   "logo": "/logos/programs/season-of-docs/mautic.png"
+  },
+  {
+   "slug": "mdanalysis",
+   "name": "MDAnalysis",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.mdanalysis.org/",
+   "repoUrl": "https://github.com/MDAnalysis/mdanalysis",
+   "tags": [],
+   "years": [
+    2019
+   ],
+   "projects": [
+    {
+     "year": 2019,
+     "title": "A user guide structured by topic",
+     "url": "/season-of-docs/docs/2019/participants/project-mdanalysis"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "other",
+     "workspace": "MDAnalysis Chat",
+     "joinUrl": "https://discord.com/channels/807348386012987462/"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/mdanalysis",
+   "githubUrl": "https://github.com/MDAnalysis",
+   "logo": "/logos/programs/season-of-docs/mdanalysis.png"
+  },
+  {
+   "slug": "metanorma",
+   "name": "Metanorma",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.metanorma.org",
+   "repoUrl": "https://github.com/metanorma",
+   "tags": [],
+   "years": [
+    2021
+   ],
+   "projects": [
+    {
+     "year": 2021,
+     "title": "Metanorma authoring guide for new users",
+     "url": "https://www.metanorma.org/blog/2021-03-26/metanorma-gsod-2021/"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/metanorma",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/metanorma.png"
+  },
+  {
+   "slug": "micropython",
+   "name": "MicroPython",
+   "tagline": null,
+   "description": null,
+   "website": "https://micropython.org",
+   "repoUrl": "https://github.com/micropython/micropython/",
+   "tags": [],
+   "years": [
+    2020,
+    2021,
+    2023
+   ],
+   "projects": [
+    {
+     "year": 2023,
+     "title": "Implement stubfile-based API documentation for MicroPython",
+     "url": "https://docs.google.com/document/d/1JtwBneelTCVpFIw4ER0POs_-jksD96I00qqanieELMQ"
+    },
+    {
+     "year": 2021,
+     "title": "Update MicroPython port documentation",
+     "url": "https://docs.google.com/document/d/e/2PACX-1vTvChU9v84tQ2Jtir_1Fpw8pzCwXbCZmgnQ57NQGPVk6Dj6jCdoI7uj5vkcO_WMWBUZoGJErdOARmw0/pub"
+    },
+    {
+     "year": 2020,
+     "title": "Document the Internals of MicroPython",
+     "url": "/season-of-docs/docs/2020/participants/project-micropython-joannahnanjekye"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/micropython",
+   "chatSource": "https://github.com/micropython/micropython#readme",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "MicroPython Discord",
+     "joinUrl": "https://discord.gg/RB8HZSAExQ"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/micropython.jpg"
+  },
+  {
+   "slug": "moja-global",
+   "name": "moja global",
+   "tagline": null,
+   "description": null,
+   "website": "https://moja.global/",
+   "repoUrl": "https://github.com/moja-global",
+   "tags": [],
+   "years": [
+    2020,
+    2021,
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Docgen and user guides for complex carbon models",
+     "url": "https://github.com/moja-global/mentorship/blob/main/google-season-of-docs/GSOD-2022-Project.md"
+    },
+    {
+     "year": 2021,
+     "title": "Develop a content strategy to consolidate and promote documentation for the FLINT",
+     "url": "https://github.com/moja-global/Google_Season_of_Documentation/blob/master/GSoD2021-moja-global-proposal.md"
+    },
+    {
+     "year": 2020,
+     "title": "Documentation of Reporting Tool Code",
+     "url": "/season-of-docs/docs/2020/participants/project-mojaglobal-anthony"
+    },
+    {
+     "year": 2020,
+     "title": "Documentation of Technical Onboarding Guide for FLINT",
+     "url": "/season-of-docs/docs/2020/participants/project-mojaglobal-tlazypanda"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "moja global Slack",
+     "joinUrl": "https://join.slack.com/t/mojaglobal/shared_invite/zt-o6ta1ug0-rVLjAo460~d7JbZ~HpFFtw"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2022/organizations/moja-global",
+   "githubUrl": "https://github.com/moja-global",
+   "logo": "/logos/programs/season-of-docs/moja-global.png"
+  },
+  {
+   "slug": "national-resource-for-network-biology-nrnb",
+   "name": "National Resource for Network Biology (NRNB)",
+   "tagline": null,
+   "description": null,
+   "website": "https://nrnb.org",
+   "repoUrl": "https://github.com/nrnb",
+   "tags": [],
+   "years": [
+    2019,
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Create user documentation for SynBioHub & develop tutorials for specific use cases",
+     "url": "/season-of-docs/docs/2020/participants/project-nrnb-prubhtej9"
+    },
+    {
+     "year": 2020,
+     "title": "Improving Cytoscape.Js Documentation",
+     "url": "/season-of-docs/docs/2020/participants/project-nrnb-rahulagrawal"
+    },
+    {
+     "year": 2019,
+     "title": "Replacing GUI control tutorials to Jupyter Notebook and R Markdown",
+     "url": "/season-of-docs/docs/2019/participants/project-nrnb"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "other",
+     "workspace": "National Resource for Network Biology (NRNB) Chat",
+     "joinUrl": "https://github.com/nrnb/GoogleSummerOfCode/issues"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/national-resource-for-network-biology-nrnb",
+   "githubUrl": "https://github.com/nrnb",
+   "logo": "/logos/programs/season-of-docs/national-resource-for-network-biology-nrnb.png"
+  },
+  {
+   "slug": "nimbleedge-envisedge",
+   "name": "NimbleEdge - EnvisEdge",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.nimbleedge.com",
+   "repoUrl": "https://github.com/NimbleEdge/EnvisEdge",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "EnvisEdge Documentation and Relevant Content - NimbleEdge",
+     "url": "https://github.com/NimbleEdge/gsod"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/NimbleEdge",
+   "chatSource": "https://www.nimbleedge.com",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "NimbleEdge - EnvisEdge Discord",
+     "joinUrl": "https://discord.com/invite/y8WkMncstk"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/nimbleedge-envisedge.jpg"
+  },
+  {
+   "slug": "numpy",
+   "name": "NumPy",
+   "tagline": null,
+   "description": null,
+   "website": "https://numpy.org",
+   "repoUrl": "https://github.com/numpy/numpy",
+   "tags": [],
+   "years": [
+    2019,
+    2020,
+    2021,
+    2023,
+    2024
+   ],
+   "projects": [
+    {
+     "year": 2024,
+     "title": "Contributor Journey Comics - NumPy",
+     "url": "https://github.com/numpy/numpy/wiki/Google-Season-of-Docs-2024:-Project-Proposal"
+    },
+    {
+     "year": 2023,
+     "title": "CONTRIBUTOR JOURNEY COMICS",
+     "url": "https://github.com/numpy/numpy/wiki/Google-Season-of-Docs-2023:-Project-Proposal"
+    },
+    {
+     "year": 2021,
+     "title": "High-Level Restructuring and End-User Focus",
+     "url": "https://github.com/numpy/numpy/wiki/Google-Season-of-Docs-2021:-Submitted-Project"
+    },
+    {
+     "year": 2020,
+     "title": "NumPy Documentation for Community Education",
+     "url": "/season-of-docs/docs/2020/participants/project-numpy-cooperrc"
+    },
+    {
+     "year": 2020,
+     "title": "High level restructuring and end user focus",
+     "url": "/season-of-docs/docs/2020/participants/project-numpy-kubedoc"
+    },
+    {
+     "year": 2019,
+     "title": "Making \"The Basics\" a Little More Basic: Improving the Introductory NumPy Sections",
+     "url": "/season-of-docs/docs/2019/participants/project-numpy"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/numpy",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/numpy.png"
+  },
+  {
+   "slug": "open-collective",
+   "name": "Open Collective",
+   "tagline": null,
+   "description": null,
+   "website": "https://opencollective.com",
+   "repoUrl": "https://github.com/opencollective",
+   "tags": [],
+   "years": [
+    2019
+   ],
+   "projects": [
+    {
+     "year": 2019,
+     "title": "Improve general help documentation",
+     "url": "/season-of-docs/docs/2019/participants/project-opencollective"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/opencollective",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/open-collective.png"
+  },
+  {
+   "slug": "open-contracting-data-standard",
+   "name": "Open Contracting Data Standard",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.open-contracting.org",
+   "repoUrl": "https://github.com/open-contracting/standard",
+   "tags": [],
+   "years": [
+    2021
+   ],
+   "projects": [
+    {
+     "year": 2021,
+     "title": "Align the Guidance and Reference sections of the OCDS",
+     "url": "https://github.com/open-contracting/standard/wiki/Google-Season-of-Docs-2021-Project-Ideas"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/open-contracting",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/open-contracting-data-standard.png"
+  },
+  {
+   "slug": "open-food-facts",
+   "name": "Open Food Facts",
+   "tagline": null,
+   "description": null,
+   "website": "https://world.openfoodfacts.org/discover",
+   "repoUrl": "https://github.com/openfoodfacts/",
+   "tags": [],
+   "years": [
+    2019,
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Have a complete OpenAPI compliant documentation for the Open Food Facts API",
+     "url": "https://docs.google.com/document/d/1sr3sQCQ88lgTrHRQwKZCQgAacYvgBmneu2Kf4V9OcLs/edit?usp=sharing"
+    },
+    {
+     "year": 2019,
+     "title": "Document the Open Food Facts API",
+     "url": "/season-of-docs/docs/2019/participants/project-openfoodfacts"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "Open Food Facts Slack",
+     "joinUrl": "https://slack.openfoodfacts.org"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/open-food-facts",
+   "githubUrl": "https://github.com/openfoodfacts",
+   "logo": "/logos/programs/season-of-docs/open-food-facts.png"
+  },
+  {
+   "slug": "open-source-geospatial-foundation",
+   "name": "Open Source Geospatial Foundation",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.osgeo.org/",
+   "repoUrl": "https://github.com/OSGeo",
+   "tags": [],
+   "years": [
+    2019
+   ],
+   "projects": [
+    {
+     "year": 2019,
+     "title": "Review OSGeoLive Quickstarts",
+     "url": "/season-of-docs/docs/2019/participants/project-osgeo-1"
+    },
+    {
+     "year": 2019,
+     "title": "OSGeo Templates",
+     "url": "/season-of-docs/docs/2019/participants/project-osgeo-2"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/OSGeo",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/open-source-geospatial-foundation.png"
+  },
+  {
+   "slug": "open-rmf",
+   "name": "Open-RMF",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.open-rmf.org/",
+   "repoUrl": "https://github.com/open-rmf",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Creation of introductory tutorials and examples",
+     "url": "https://github.com/osrf/osrf_wiki/wiki/GSoD"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/open-rmf",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/open-rmf.png"
+  },
+  {
+   "slug": "open3d",
+   "name": "Open3D",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.intel.com/labs",
+   "repoUrl": "https://github.com/isl-org/Open3D",
+   "tags": [],
+   "years": [
+    2019,
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Update Open3D API Docs and Examples - Open3D",
+     "url": "https://github.com/isl-org/Open3D/wiki/Google-Season-of-Docs-2022"
+    },
+    {
+     "year": 2019,
+     "title": "Technical Documentation of Python & C++ API",
+     "url": "/season-of-docs/docs/2019/participants/project-open3d-1"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/isl-org",
+   "chatSource": "https://github.com/isl-org/Open3D#readme",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "Open3D Discord",
+     "joinUrl": "https://discord.gg/D35BGvn"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/open3d.png"
+  },
+  {
+   "slug": "openelis-global",
+   "name": "OpenELIS Global",
+   "tagline": null,
+   "description": null,
+   "website": "http://openelisglobal.org",
+   "repoUrl": "https://github.com/I-TECH-UW/OpenELIS-Global-2",
+   "tags": [],
+   "years": [
+    2019
+   ],
+   "projects": [
+    {
+     "year": 2019,
+     "title": "OpenELIS documentation for end users",
+     "url": "/season-of-docs/docs/2019/participants/project-openelis"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "OpenELIS Global Slack",
+     "joinUrl": "https://digi-team-uw.slack.com/archives/CFUH9HLUF"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/openelis-global",
+   "logo": "/logos/programs/season-of-docs/openelis-global.png"
+  },
+  {
+   "slug": "openjs-foundation",
+   "name": "OpenJS Foundation",
+   "tagline": null,
+   "description": null,
+   "website": "https://openjsf.org",
+   "repoUrl": "https://github.com/openjs-foundation",
+   "tags": [],
+   "years": [
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Overhaul Fastify Docs",
+     "url": "/season-of-docs/docs/2020/participants/project-openjsfoundation-light"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/openjs-foundation",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/openjs-foundation.png"
+  },
+  {
+   "slug": "openmined",
+   "name": "OpenMined",
+   "tagline": null,
+   "description": null,
+   "website": "https://openmined.org",
+   "repoUrl": "https://github.com/OpenMined",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "PySyft documentation audit, update & expansion into a standardized framework - OpenMined",
+     "url": "https://docs.google.com/document/d/1KdiX3pHs9G8VxU8RX6Sh_cEtThntFReR6yFrLcMiSIw/edit?usp=sharing"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/OpenMined",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/openmined.png"
+  },
+  {
+   "slug": "openmrs",
+   "name": "OpenMRS",
+   "tagline": null,
+   "description": null,
+   "website": "https://openmrs.org/",
+   "repoUrl": "https://github.com/openmrs",
+   "tags": [],
+   "years": [
+    2019,
+    2020,
+    2021,
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Standard, Easy to Access OpenMRS FHIR2 Module Implementation Guide",
+     "url": "https://wiki.openmrs.org/display/RES/2022+Google+Season+of+Docs"
+    },
+    {
+     "year": 2021,
+     "title": "Sustainable OpenMRS Getting Started Guides",
+     "url": "https://docs.google.com/document/d/1k6w4FONIDas245KSJSMPdxqo-GzD1nDkzbwky7TVFKg/edit"
+    },
+    {
+     "year": 2020,
+     "title": "Improving OpenMRS Technical Documentations for New Developers",
+     "url": "/season-of-docs/docs/2020/participants/project-openmrs-rainbow"
+    },
+    {
+     "year": 2020,
+     "title": "Extending User Friendly Github Documentation for REST API",
+     "url": "/season-of-docs/docs/2020/participants/project-openmrs-saurabh"
+    },
+    {
+     "year": 2019,
+     "title": "Developing User Friendly Github Documentation for REST API",
+     "url": "/season-of-docs/docs/2019/participants/project-openmrs-3"
+    },
+    {
+     "year": 2019,
+     "title": "OpenMRS REST API documentation",
+     "url": "/season-of-docs/docs/2019/participants/project-openmrs-1"
+    },
+    {
+     "year": 2019,
+     "title": "Review and Refactor existing Wiki to be more User profile driven",
+     "url": "/season-of-docs/docs/2019/participants/project-openmrs-2"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "OpenMRS Slack",
+     "joinUrl": "https://slack.openmrs.org/"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/openmrs",
+   "githubUrl": "https://github.com/openmrs",
+   "logo": "/logos/programs/season-of-docs/openmrs.png"
+  },
+  {
+   "slug": "openms",
+   "name": "OpenMS",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.openms.de",
+   "repoUrl": "https://github.com/OpenMS/OpenMS",
+   "tags": [],
+   "years": [
+    2021,
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Restructuring OpenMS Developer Documentation",
+     "url": "https://github.com/OpenMS/OpenMS/wiki/Google-Season-of-Docs-2022-Proposal-Restructuring-OpenMS-Developer-Documentation-(OpenMS-ReDevDoc)"
+    },
+    {
+     "year": 2021,
+     "title": "OpenMS budget",
+     "url": "https://github.com/OpenMS/OpenMS/wiki/Google-Season-of-Docs-2021-Proposal-Restructuring-OpenMS-Developer-Documentation-(OpenMS-ReDevDoc)"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "OpenMS Inc Discord",
+     "joinUrl": "https://discord.com/invite/4TAGhqJ7s5"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/openms-inc",
+   "githubUrl": "https://github.com/OpenMS",
+   "logo": "/logos/programs/season-of-docs/openms.png"
+  },
+  {
+   "slug": "openquake-engine",
+   "name": "OpenQuake-engine",
+   "tagline": null,
+   "description": null,
+   "website": "http://www.globalquakemodel.org",
+   "repoUrl": "https://github.com/gem/oq-engine",
+   "tags": [],
+   "years": [
+    2023
+   ],
+   "projects": [
+    {
+     "year": 2023,
+     "title": "Consolidation of OpenQuake Engine Documentation",
+     "url": "https://github.com/gem/oq-engine/wiki/Google-Season-of-Docs-2023-Project"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/gem",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/openquake-engine.png"
+  },
+  {
+   "slug": "openscad",
+   "name": "OpenSCAD",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.openscad.org/",
+   "repoUrl": "https://github.com/openscad/openscad",
+   "tags": [],
+   "years": [
+    2019,
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Introduction to OpenSCAD for Educators",
+     "url": "/season-of-docs/docs/2020/participants/project-openscad-ijforst"
+    },
+    {
+     "year": 2019,
+     "title": "Create an OpenSCAD Tutorial",
+     "url": "/season-of-docs/docs/2019/participants/project-openscad"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/openscad",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/openscad.png"
+  },
+  {
+   "slug": "oppia",
+   "name": "Oppia",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.oppia.org",
+   "repoUrl": "https://github.com/oppia/oppia",
+   "tags": [],
+   "years": [
+    2019,
+    2021
+   ],
+   "projects": [
+    {
+     "year": 2021,
+     "title": "Improve the Oppia Developer Guide",
+     "url": "https://docs.google.com/document/d/1o4V_77RH6lf176Wmi4B4wh0Y4M5HTKoEd0RAlKUuB5o/edit#heading=h.tutth7lpzwjh"
+    },
+    {
+     "year": 2019,
+     "title": "Beginners’ guide to creating lessons and associated material on Oppia",
+     "url": "/season-of-docs/docs/2019/participants/project-oppia"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/oppia",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/oppia.png"
+  },
+  {
+   "slug": "owasp-foundation",
+   "name": "OWASP Foundation",
+   "tagline": null,
+   "description": null,
+   "website": "https://owasp.org",
+   "repoUrl": "https://github.com/owasp",
+   "tags": [],
+   "years": [
+    2019
+   ],
+   "projects": [
+    {
+     "year": 2019,
+     "title": "Enhancement of the ZAP API Documentation",
+     "url": "/season-of-docs/docs/2019/participants/project-owasp"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "other",
+     "workspace": "OWASP Foundation Chat",
+     "joinUrl": "https://owasp.org/slack/invite"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/owasp-foundation",
+   "githubUrl": "https://github.com/OWASP",
+   "logo": "/logos/programs/season-of-docs/owasp-foundation.png"
+  },
+  {
+   "slug": "p5-js",
+   "name": "p5.js",
+   "tagline": null,
+   "description": null,
+   "website": "https://p5js.org/",
+   "repoUrl": "https://github.com/processing/p5.js",
+   "tags": [],
+   "years": [
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "projects": [
+    {
+     "year": 2024,
+     "title": "Create p5.js Critical AI Tutorials",
+     "url": "https://github.com/processing/p5.js/wiki/Season-of-Docs-2024-Organization-Application:-p5.js"
+    },
+    {
+     "year": 2023,
+     "title": "Improve p5.js Reference and Example Docs",
+     "url": "https://github.com/processing/p5.js/wiki/Season-of-Docs-2023-Organization-Application:-p5.js"
+    },
+    {
+     "year": 2022,
+     "title": "Organize and Develop p5.js Contributor Docs - Processing Foundation",
+     "url": "https://github.com/processing/p5.js/wiki/Season-of-Docs-2022-Organization-Application---p5.js"
+    },
+    {
+     "year": 2021,
+     "title": "Onboarding New Contributors, Processing Foundation",
+     "url": "https://github.com/processing/p5.js/wiki/Google-Season-of-Docs"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/processing",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/p5-js.png"
+  },
+  {
+   "slug": "performance-co-pilot",
+   "name": "Performance Co-Pilot",
+   "tagline": null,
+   "description": null,
+   "website": "https://pcp.io/",
+   "repoUrl": "https://github.com/performancecopilot",
+   "tags": [],
+   "years": [
+    2020,
+    2021
+   ],
+   "projects": [
+    {
+     "year": 2021,
+     "title": "Task-based Guides",
+     "url": "https://pcp.io/gsod/2021/proposal.html"
+    },
+    {
+     "year": 2020,
+     "title": "Convert book project areas content to readthedocs and reStructuredText format along with the stretch goal of diagrams' improvement.",
+     "url": "/season-of-docs/docs/2020/participants/project-pcp-arzoo14"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "Performance Co-Pilot Slack",
+     "joinUrl": "https://performancecopilot.slack.com/"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2022/organizations/performance-co-pilot",
+   "githubUrl": "https://github.com/performancecopilot",
+   "logo": "/logos/programs/season-of-docs/performance-co-pilot.png"
+  },
+  {
+   "slug": "perl",
+   "name": "Perl",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.perl.org",
+   "repoUrl": "http://github.com/perl/perl5/",
+   "tags": [],
+   "years": [
+    2021
+   ],
+   "projects": [
+    {
+     "year": 2021,
+     "title": "Audit Perl's documentation",
+     "url": "https://gist.github.com/jmacdotorg/f306d9b0d4eae1dba879cad9cb8d2ace"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/Perl",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/perl.png"
+  },
+  {
+   "slug": "postgresql",
+   "name": "PostgreSQL",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.postgresql.org",
+   "repoUrl": "https://git.postgresql.org/gitweb/?p=postgresql.git",
+   "tags": [],
+   "years": [
+    2019
+   ],
+   "projects": [
+    {
+     "year": 2019,
+     "title": "Introductory Tutorial",
+     "url": "/season-of-docs/docs/2019/participants/project-postgresql"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "other",
+     "workspace": "PostgreSQL Chat",
+     "joinUrl": "https://www.postgresql.org/community/irc/"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/postgresql",
+   "logo": "/logos/programs/season-of-docs/postgresql.png"
+  },
+  {
+   "slug": "public-utility-data-liberation-project",
+   "name": "Public Utility Data Liberation project",
+   "tagline": null,
+   "description": null,
+   "website": "https://catalyst.coop",
+   "repoUrl": "https://github.com/catalyst-cooperative/pudl",
+   "tags": [],
+   "years": [
+    2024
+   ],
+   "projects": [
+    {
+     "year": 2024,
+     "title": "Reorganize PUDL Documentation For Clarity",
+     "url": "https://catalyst.coop/work-with-us/pudl-season-of-docs-project-proposal/"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/catalyst-cooperative",
+   "chatSource": "https://github.com/catalyst-cooperative/pudl#readme",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "Public Utility Data Liberation project Slack",
+     "joinUrl": "https://join.slack.com/t/catalystcooperative/shared_invite/zt-2yg1v2sb7-GsoGlA9Ojc_LCJ00vPWKbQ"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/public-utility-data-liberation-project.png"
+  },
+  {
+   "slug": "purr-data",
+   "name": "Purr Data",
+   "tagline": null,
+   "description": null,
+   "website": "https://git.purrdata.net/jwilkes/purr-data",
+   "repoUrl": "https://git.purrdata.net/jwilkes/purr-data",
+   "tags": [],
+   "years": [
+    2021
+   ],
+   "projects": [
+    {
+     "year": 2021,
+     "title": "Create Interactive Web Tutorials",
+     "url": "https://git.purrdata.net/jwilkes/summer-of-code-ideas-list/-/blob/master/sod_idea.md"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "Purr Data Discord",
+     "joinUrl": "https://discord.gg/MyhXnbnbZU"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2024/organizations/purr-data",
+   "logo": "/logos/programs/season-of-docs/purr-data.png"
+  },
+  {
+   "slug": "pymc3",
+   "name": "PyMC3",
+   "tagline": null,
+   "description": null,
+   "website": "https://pymc.io",
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2021
+   ],
+   "projects": [
+    {
+     "year": 2021,
+     "title": "Fundamental Updates to PyMC3's Teaching Resources",
+     "url": "https://github.com/pymc-devs/pymc3/wiki/Season-of-Docs-2021-Proposal"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "pytorch-ignite",
+   "name": "PyTorch-Ignite",
+   "tagline": null,
+   "description": null,
+   "website": "https://pytorch.org/ignite/",
+   "repoUrl": "https://github.com/pytorch/ignite",
+   "tags": [],
+   "years": [
+    2021
+   ],
+   "projects": [
+    {
+     "year": 2021,
+     "title": "Refresh our documentation and tutorials",
+     "url": "https://github.com/pytorch/ignite/wiki/Google-Season-of-Docs-2021---Organization-Proposal"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/pytorch",
+   "chatSource": "https://github.com/pytorch/ignite#readme",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "PyTorch-Ignite Discord",
+     "joinUrl": "https://discord.gg/djZtm3EmKj"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/pytorch-ignite.jpg"
+  },
+  {
+   "slug": "qubes-os",
+   "name": "Qubes OS",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.qubes-os.org",
+   "repoUrl": "https://github.com/QubesOS/",
+   "tags": [],
+   "years": [
+    2019,
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Consolidate troubleshooting guides",
+     "url": "/season-of-docs/docs/2020/participants/project-qubesos-c1e0"
+    },
+    {
+     "year": 2019,
+     "title": "Onboard with QubesOS ! Let's write an open and easy-to-use guide",
+     "url": "/season-of-docs/docs/2019/participants/project-qubes"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "other",
+     "workspace": "Qubes OS Chat",
+     "joinUrl": "https://internal-team.matrix.instance"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/qubes-os-f3",
+   "githubUrl": "https://github.com/QubesOS",
+   "logo": "/logos/programs/season-of-docs/qubes-os.png"
+  },
+  {
+   "slug": "r-universe",
+   "name": "R-Universe",
+   "tagline": null,
+   "description": null,
+   "website": "https://r-universe.dev",
+   "repoUrl": "https://github.com/r-universe",
+   "tags": [],
+   "years": [
+    2024
+   ],
+   "projects": [
+    {
+     "year": 2024,
+     "title": "Documenting R software publication with R‐universe",
+     "url": "https://github.com/r-universe-org/gsod-2024/wiki/GSOD-2024-proposal:-Documenting-R-software-publication-with-R%E2%80%90universe"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/r-universe",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/r-universe.png"
+  },
+  {
+   "slug": "redocly",
+   "name": "Redocly",
+   "tagline": null,
+   "description": null,
+   "website": "https://redocly.com",
+   "repoUrl": "https://github.com/Redocly/redoc",
+   "tags": [],
+   "years": [
+    2021
+   ],
+   "projects": [
+    {
+     "year": 2021,
+     "title": "Contribute to documenting Redocly's open-source tools",
+     "url": "https://redoc.ly/gsod"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/Redocly",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/redocly.png"
+  },
+  {
+   "slug": "robocomp",
+   "name": "RoboComp",
+   "tagline": null,
+   "description": null,
+   "website": "http://robocomp.org",
+   "repoUrl": "https://github.com/robocomp",
+   "tags": [],
+   "years": [
+    2019
+   ],
+   "projects": [
+    {
+     "year": 2019,
+     "title": "RoboComp’s basic components",
+     "url": "/season-of-docs/docs/2019/participants/project-robocomp"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/robocomp",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/robocomp.png"
+  },
+  {
+   "slug": "rocket-chat",
+   "name": "Rocket.Chat",
+   "tagline": null,
+   "description": null,
+   "website": "https://github.com/RocketChat",
+   "repoUrl": "https://github.com/RocketChat/Rocket.Chat",
+   "tags": [],
+   "years": [
+    2019
+   ],
+   "projects": [
+    {
+     "year": 2019,
+     "title": "The Bot Docs",
+     "url": "/season-of-docs/docs/2019/participants/project-rocketchat"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "other",
+     "workspace": "rocket.chat Chat",
+     "joinUrl": "https://open.rocket.chat/channel/opensource2026"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/rocketchat",
+   "githubUrl": "https://github.com/RocketChat",
+   "logo": "/logos/programs/season-of-docs/rocket-chat.png"
+  },
+  {
+   "slug": "ros2",
+   "name": "ROS2",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.ros.org/",
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2021
+   ],
+   "projects": [
+    {
+     "year": 2021,
+     "title": "Create intermediate tutorials",
+     "url": "https://github.com/osrf/osrf_wiki/wiki/GSoD"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chatSource": "https://www.ros.org/",
+   "chats": [
+    {
+     "platform": "zulip",
+     "workspace": "ROS2 Zulip",
+     "joinUrl": "https://openrobotics.zulipchat.com/"
+    }
+   ],
+   "logo": null
+  },
+  {
+   "slug": "scipy",
+   "name": "SciPy",
+   "tagline": null,
+   "description": null,
+   "website": "http://www.scipy.org/",
+   "repoUrl": "https://github.com/scipy/scipy",
+   "tags": [],
+   "years": [
+    2019
+   ],
+   "projects": [
+    {
+     "year": 2019,
+     "title": "User-oriented documentation and thorough restructuring",
+     "url": "/season-of-docs/docs/2019/participants/project-scipy"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/scipy",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/scipy.png"
+  },
+  {
+   "slug": "scummvm",
+   "name": "ScummVM",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.scummvm.org/",
+   "repoUrl": "https://github.com/scummvm/",
+   "tags": [],
+   "years": [
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Improve source code documentation via Doxygen",
+     "url": "/season-of-docs/docs/2020/participants/project-scummvm-bgent"
+    },
+    {
+     "year": 2020,
+     "title": "Launch a Documentation Portal",
+     "url": "/season-of-docs/docs/2020/participants/project-scummvm-cadi"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "ScummVM Discord",
+     "joinUrl": "https://discord.gg/4cDsMNtcpG"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/scummvm",
+   "githubUrl": "https://github.com/scummvm",
+   "logo": "/logos/programs/season-of-docs/scummvm.png"
+  },
+  {
+   "slug": "signoz",
+   "name": "SigNoz",
+   "tagline": null,
+   "description": null,
+   "website": "https://signoz.io/",
+   "repoUrl": "https://github.com/signoz/signoz",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Update SigNoz user guide",
+     "url": "https://github.com/SigNoz/signoz/discussions/779"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/SigNoz",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/signoz.png"
+  },
+  {
+   "slug": "sigstore",
+   "name": "Sigstore",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.sigstore.dev/",
+   "repoUrl": "https://github.com/sigstore",
+   "tags": [],
+   "years": [
+    2023
+   ],
+   "projects": [
+    {
+     "year": 2023,
+     "title": "Update, Reorganize, and Expand the Sigstore Docs",
+     "url": "https://github.com/sigstore/docs/wiki/Season-of-Docs-2023-Organization-Project-Proposal"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/sigstore",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/sigstore.png"
+  },
+  {
+   "slug": "spyder-ide",
+   "name": "Spyder IDE",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.spyder-ide.org/",
+   "repoUrl": "https://github.com/spyder-ide/spyder",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Update user and developer documentation for Spyder 5",
+     "url": "https://github.com/spyder-ide/spyder/wiki/GSoD-2022-Project-Proposal"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/spyder-ide",
+   "chatSource": "https://github.com/spyder-ide/spyder#readme",
+   "chats": [
+    {
+     "platform": "gitter",
+     "workspace": "Spyder IDE Gitter",
+     "joinUrl": "https://gitter.im/spyder-ide/public"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/spyder-ide.png"
+  },
+  {
+   "slug": "ste-ar-group",
+   "name": "STE||AR GROUP",
+   "tagline": null,
+   "description": null,
+   "website": "http://stellar-group.org/",
+   "repoUrl": "https://github.com/STEllAR-GROUP/hpx",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Further improve discoverability of content",
+     "url": "https://github.com/STEllAR-GROUP/hpx/wiki/GSoD-2022-Project-Proposal"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "other",
+     "workspace": "Ste||ar group Chat",
+     "joinUrl": "https://github.com/STEllAR-GROUP/hpx/blob/master/.github/SUPPORT.md"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/stear-group",
+   "githubUrl": "https://github.com/STEllAR-GROUP",
+   "logo": "/logos/programs/season-of-docs/ste-ar-group.png"
+  },
+  {
+   "slug": "sympy",
+   "name": "SymPy",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.sympy.org/",
+   "repoUrl": "https://github.com/sympy/sympy",
+   "tags": [],
+   "years": [
+    2019,
+    2020,
+    2021,
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Improving SymPy's Solvers Documentation",
+     "url": "https://github.com/sympy/sympy/wiki/Season-of-Docs-2022-Organization-Application"
+    },
+    {
+     "year": 2021,
+     "title": "Documentation Organization",
+     "url": "https://github.com/sympy/sympy/wiki/GSoD-2021-Organization-Application"
+    },
+    {
+     "year": 2020,
+     "title": "SymEngine",
+     "url": "/season-of-docs/docs/2020/participants/project-sympy-haozeke"
+    },
+    {
+     "year": 2020,
+     "title": "Consistency across docstrings - Sympy documentation",
+     "url": "/season-of-docs/docs/2020/participants/project-sympy-soumi7"
+    },
+    {
+     "year": 2019,
+     "title": "Consistency across docstrings",
+     "url": "/season-of-docs/docs/2019/participants/project-sympy"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "gitter",
+     "workspace": "SymPy Gitter",
+     "joinUrl": "https://gitter.im/sympy/sympy"
+    }
+   ],
+   "chatSource": "https://github.com/sympy/sympy#readme",
+   "githubUrl": "https://github.com/sympy",
+   "logo": "/logos/programs/season-of-docs/sympy.png"
+  },
+  {
+   "slug": "talawa",
+   "name": "Talawa",
+   "tagline": null,
+   "description": null,
+   "website": "https://github.com/orgs/PalisadoesFoundation/repositories",
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Revamping and restructuring the Talawa Docs",
+     "url": "https://palisadoesfoundation.github.io/talawa-docs/docs/internships/gsod/gsod-ideas/#revamping-and-restructuring-the-talawa-docs"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "the-freebsd-project",
+   "name": "The FreeBSD Project",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.freebsd.org",
+   "repoUrl": "https://cgit.freebsd.org/",
+   "tags": [],
+   "years": [
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Create a Wine handbook chapter",
+     "url": "/season-of-docs/docs/2020/participants/project-freebsd-quaffeine"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "other",
+     "workspace": "The FreeBSD Project Chat",
+     "joinUrl": "https://wiki.freebsd.org/SummerOfCode/IRC"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/the-freebsd-project",
+   "logo": "/logos/programs/season-of-docs/the-freebsd-project.png"
+  },
+  {
+   "slug": "the-gnome-foundation",
+   "name": "The GNOME Foundation",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.gnome.org/",
+   "repoUrl": "https://gitlab.gnome.org/",
+   "tags": [],
+   "years": [
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Update GNOME Applications Help Documentation (Update App help)",
+     "url": "/season-of-docs/docs/2020/participants/project-gnome-pranali"
+    },
+    {
+     "year": 2020,
+     "title": "GObject tutorial consolidation",
+     "url": "/season-of-docs/docs/2020/participants/project-gnome-wise4rmgod"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "other",
+     "workspace": "GNOME Foundation Chat",
+     "joinUrl": "https://handbook.gnome.org/get-in-touch.html"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/gnome-foundation",
+   "logo": "/logos/programs/season-of-docs/the-gnome-foundation.png"
+  },
+  {
+   "slug": "the-julia-language",
+   "name": "The Julia Language",
+   "tagline": null,
+   "description": null,
+   "website": "https://julialang.org",
+   "repoUrl": "https://github.com/JuliaLang/julia",
+   "tags": [],
+   "years": [
+    2020,
+    2021,
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Documenting Machine Learning Models in MLJ.jl",
+     "url": "https://julialang.org/jsoc/gsod/2022/proposal/"
+    },
+    {
+     "year": 2021,
+     "title": "Create a Comprehensive Julia Contributing Guide",
+     "url": "https://julialang.org/jsoc/gsod/proposal/"
+    },
+    {
+     "year": 2020,
+     "title": "Bayesian inference for Gaussian Processes",
+     "url": "/season-of-docs/docs/2020/participants/project-julialang-liza"
+    },
+    {
+     "year": 2020,
+     "title": "The unified documentation of Scientific Machine Learning",
+     "url": "/season-of-docs/docs/2020/participants/project-julialang-mkg33"
+    },
+    {
+     "year": 2020,
+     "title": "Reinventing the FluxML Website",
+     "url": "/season-of-docs/docs/2020/participants/project-julialang-sophb"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "other",
+     "workspace": "The Julia Language Chat",
+     "joinUrl": "https://julialang.org/slack/"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/the-julia-language",
+   "githubUrl": "https://github.com/JuliaLang",
+   "logo": "/logos/programs/season-of-docs/the-julia-language.png"
+  },
+  {
+   "slug": "the-linux-foundation",
+   "name": "The Linux Foundation",
+   "tagline": null,
+   "description": null,
+   "website": "http://www.linuxfoundation.org/",
+   "repoUrl": "https://github.com/LinuxFoundationGSoC/ProjectIdeas/wiki/Google-Summer-of-Code-2026#our-source-code-repositories",
+   "tags": [],
+   "years": [
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Rework the documentation hosting & generation and Restructure getting started pages and developer guides",
+     "url": "/season-of-docs/docs/2020/participants/project-linuxfoundation-boron"
+    },
+    {
+     "year": 2020,
+     "title": "CHAOSS: Create a CHAOSS Community-wide Handbook",
+     "url": "/season-of-docs/docs/2020/participants/project-linuxfoundation-jaskiratsingh2000"
+    },
+    {
+     "year": 2020,
+     "title": "Tutorial and Design Guidelines for Printer/Scanner drivers in Printer Applications",
+     "url": "/season-of-docs/docs/2020/participants/project-linuxfoundation-piyushgoyal16"
+    },
+    {
+     "year": 2020,
+     "title": "Build Documentation for CHAOSS D&I Badging Project",
+     "url": "/season-of-docs/docs/2020/participants/project-linuxfoundation-xiaoya"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "other",
+     "workspace": "The Linux Foundation Chat",
+     "joinUrl": "https://github.com/LinuxFoundationGSoC/ProjectIdeas/wiki/Google-Summer-of-Code-2026#contact-us"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/the-linux-foundation",
+   "githubUrl": "https://github.com/LinuxFoundationGSoC",
+   "logo": "/logos/programs/season-of-docs/the-linux-foundation.png"
+  },
+  {
+   "slug": "the-mifos-initiative",
+   "name": "The Mifos Initiative",
+   "tagline": null,
+   "description": null,
+   "website": "https://mifos.org",
+   "repoUrl": "https://github.com/openmf",
+   "tags": [],
+   "years": [
+    2021,
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Update Platform and Collaboration Documentation for Launch of Mifos X 3.0",
+     "url": "https://mifosforge.jira.com/wiki/spaces/RES/pages/3038248961/Season+of+Docs+-+2022#proposal"
+    },
+    {
+     "year": 2021,
+     "title": "Consolidate Documentation into Mifos Developer Portal",
+     "url": "https://mifosforge.jira.com/wiki/spaces/RES/pages/2428043320/Season+of+Docs#proposal"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "other",
+     "workspace": "The Mifos Initiative Chat",
+     "joinUrl": "https://mifos.short.gy/slack"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/the-mifos-initiative",
+   "githubUrl": "https://github.com/openMF",
+   "logo": "/logos/programs/season-of-docs/the-mifos-initiative.png"
+  },
+  {
+   "slug": "the-r-project",
+   "name": "The R Project",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.r-project.org/",
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2021,
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Expand and Reorganize the R Development Guide",
+     "url": "https://github.com/rstats-gsod/gsod2022/wiki/GSOD-2022-Proposal"
+    },
+    {
+     "year": 2021,
+     "title": "Organize useR! Conference Documentation",
+     "url": "https://github.com/rstats-gsod/gsod2021/wiki/GSOD-2021-Proposal"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "the-ushahidi-platform",
+   "name": "The Ushahidi platform",
+   "tagline": null,
+   "description": null,
+   "website": "http://www.ushahidi.com",
+   "repoUrl": "https://github.com/ushahidi/platform",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Update the technical documentation for The Ushahidi platform API",
+     "url": "https://docs.ushahidi.com/platform-developer-documentation/hackathon-and-events/google-season-of-docs"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/ushahidi",
+   "chatSource": "http://www.ushahidi.com",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "The Ushahidi platform Discord",
+     "joinUrl": "https://discord.com/invite/p6BAVx7T9K"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/the-ushahidi-platform.png"
+  },
+  {
+   "slug": "the-wikimedia-foundation",
+   "name": "The Wikimedia Foundation",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.mediawiki.org/wiki/MediaWiki",
+   "repoUrl": "https://gerrit.wikimedia.org/r/",
+   "tags": [],
+   "years": [
+    2019,
+    2020,
+    2024
+   ],
+   "projects": [
+    {
+     "year": 2024,
+     "title": "Consolidate MediaWiki Help Documentation",
+     "url": "https://www.mediawiki.org/wiki/Season_of_Docs/2024/Proposal"
+    },
+    {
+     "year": 2020,
+     "title": "Improving Wikimedia's onboarding processes and documentation standards",
+     "url": "/season-of-docs/docs/2020/participants/project-wikimediafoundation-gbahdeyboh"
+    },
+    {
+     "year": 2019,
+     "title": "Improving documentation for Wikimedia’s technical documentarians and videographers",
+     "url": "/season-of-docs/docs/2019/participants/project-wikimedia"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "zulip",
+     "workspace": "Wikimedia Foundation Zulip",
+     "joinUrl": "https://wikimedia.zulipchat.com/#narrow/channel/561533-GSoC2026"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/wikimedia-foundation-nd",
+   "logo": "/logos/programs/season-of-docs/the-wikimedia-foundation.png"
+  },
+  {
+   "slug": "thegooddocsproject",
+   "name": "TheGoodDocsProject",
+   "tagline": null,
+   "description": null,
+   "website": "https://thegooddocsproject.dev/",
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Information architecture guide",
+     "url": "/season-of-docs/docs/2020/participants/project-thegooddocsproject-loquacity"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "tor-project",
+   "name": "Tor Project",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.torproject.org/",
+   "repoUrl": "https://gitlab.torproject.org/tpo",
+   "tags": [],
+   "years": [
+    2019
+   ],
+   "projects": [
+    {
+     "year": 2019,
+     "title": "Rewrite the Tor manual page",
+     "url": "/season-of-docs/docs/2019/participants/project-tor"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "other",
+     "workspace": "The Tor Project Chat",
+     "joinUrl": "https://support.torproject.org/get-in-touch/#irc-help"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2025/organizations/the-tor-project",
+   "logo": "/logos/programs/season-of-docs/tor-project.png"
+  },
+  {
+   "slug": "tryton",
+   "name": "Tryton",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.tryton.org",
+   "repoUrl": "https://github.com/tryton",
+   "tags": [],
+   "years": [
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Documentation for Basic Modules",
+     "url": "/season-of-docs/docs/2020/participants/project-tryton-dave"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/tryton",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/tryton.png"
+  },
+  {
+   "slug": "v-pipe",
+   "name": "V-pipe",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.bsse.ethz.ch/cbg",
+   "repoUrl": "https://github.com/cbg-ethz/V-pipe",
+   "tags": [],
+   "years": [
+    2024
+   ],
+   "projects": [
+    {
+     "year": 2024,
+     "title": "Better V-pipe tutorial for virus variant surveillance in wastewater",
+     "url": "https://gist.github.com/DrYak/ed38215519683ccd5c4657760050add7"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/cbg-ethz",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/v-pipe.jpg"
+  },
+  {
+   "slug": "videolan",
+   "name": "VideoLAN",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.videolan.org/vlc",
+   "repoUrl": "https://code.videolan.org/videolan/",
+   "tags": [],
+   "years": [
+    2019
+   ],
+   "projects": [
+    {
+     "year": 2019,
+     "title": "Modernize (rewrite) the VLC user documentation",
+     "url": "/season-of-docs/docs/2019/participants/project-videolan"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/videolan.png"
+  },
+  {
+   "slug": "vlc",
+   "name": "VLC",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.videolan.org/",
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Continue the Modernization of the VLC user documentation",
+     "url": "/season-of-docs/docs/2020/participants/project-vlc-abhishekpratapsingh"
+    },
+    {
+     "year": 2020,
+     "title": "Create the VLC User Documentation for one mobile port (Android)",
+     "url": "/season-of-docs/docs/2020/participants/project-vlc-avii"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "wagtail",
+   "name": "Wagtail",
+   "tagline": null,
+   "description": null,
+   "website": "https://wagtail.org/",
+   "repoUrl": "https://github.com/wagtail/wagtail",
+   "tags": [],
+   "years": [
+    2023
+   ],
+   "projects": [
+    {
+     "year": 2023,
+     "title": "Create Wagtail developer onboarding tutorials",
+     "url": "https://github.com/wagtail/wagtail/wiki/Google-Season-of-Docs-2023#create-wagtail-developer-onboarding-tutorials"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/wagtail",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/wagtail.png"
+  },
+  {
+   "slug": "weaviate",
+   "name": "Weaviate",
+   "tagline": null,
+   "description": null,
+   "website": "https://weaviate.io",
+   "repoUrl": "https://github.com/semi-technologies/weaviate",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Create a comprehensive contributor onboarding guide for Weaviate",
+     "url": "https://weaviate.io/resources/gsod.html"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "Weaviate Slack",
+     "joinUrl": "https://join.slack.com/t/weaviate/shared_invite/zt-goaoifjr-o8FuVz9b1HLzhlUfyfddhw"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2022/organizations/weaviate",
+   "githubUrl": "https://github.com/semi-technologies",
+   "logo": "/logos/programs/season-of-docs/weaviate.png"
+  },
+  {
+   "slug": "webots",
+   "name": "Webots",
+   "tagline": null,
+   "description": null,
+   "website": "https://cyberbotics.com",
+   "repoUrl": "https://github.com/cyberbotics/webots",
+   "tags": [],
+   "years": [
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Video Tutorials series for Webots (Integration with ROS2)",
+     "url": "/season-of-docs/docs/2020/participants/project-webots-softillusionchannel"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/cyberbotics",
+   "chatSource": "https://github.com/cyberbotics/webots#readme",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "Webots Discord",
+     "joinUrl": "https://discordapp.com/invite/nTWbN9m"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/webots.png"
+  },
+  {
+   "slug": "wechaty",
+   "name": "Wechaty",
+   "tagline": null,
+   "description": null,
+   "website": "https://wechaty.js.org",
+   "repoUrl": "https://github.com/wechaty/wechaty",
+   "tags": [],
+   "years": [
+    2021
+   ],
+   "projects": [
+    {
+     "year": 2021,
+     "title": "Wechaty budget",
+     "url": "https://wechaty.js.org/docs/gsod/2021/#budget"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/wechaty",
+   "chatSource": "https://github.com/wechaty/wechaty#readme",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "Wechaty Discord",
+     "joinUrl": "https://discord.gg/7q8NBZbQzt"
+    },
+    {
+     "platform": "gitter",
+     "workspace": "Wechaty Gitter",
+     "joinUrl": "https://gitter.im/wechaty/wechaty?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge"
+    },
+    {
+     "platform": "telegram",
+     "workspace": "Wechaty Telegram",
+     "joinUrl": "https://t.me/wechaty"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/wechaty.png"
+  },
+  {
+   "slug": "wireshark",
+   "name": "Wireshark",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.wireshark.org/",
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "To document 35 menu items",
+     "url": "/season-of-docs/docs/2020/participants/project-wireshark-alexnik"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "chatSource": "https://www.wireshark.org/",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "Wireshark Discord",
+     "joinUrl": "https://discord.com/invite/ts9GZCjGj5"
+    }
+   ],
+   "logo": null
+  },
+  {
+   "slug": "wordpress",
+   "name": "WordPress",
+   "tagline": null,
+   "description": null,
+   "website": "https://wordpress.org/",
+   "repoUrl": "https://github.com/WordPress",
+   "tags": [],
+   "years": [
+    2020
+   ],
+   "projects": [
+    {
+     "year": 2020,
+     "title": "Improve Article Discoverability in WordPress HelpHub Documentation",
+     "url": "/season-of-docs/docs/2020/participants/project-wordpress-dmivelli"
+    },
+    {
+     "year": 2020,
+     "title": "A Full and Renewed Set of Documentation Style Guide",
+     "url": "/season-of-docs/docs/2020/participants/project-wordpress-tacitonic"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/WordPress",
+   "chats": [],
+   "logo": "/logos/programs/season-of-docs/wordpress.png"
+  },
+  {
+   "slug": "zulip-open-source-team-chat",
+   "name": "Zulip Open Source Team Chat",
+   "tagline": null,
+   "description": null,
+   "website": "https://zulip.com",
+   "repoUrl": "https://github.com/zulip/zulip",
+   "tags": [],
+   "years": [
+    2019
+   ],
+   "projects": [
+    {
+     "year": 2019,
+     "title": "Refactoring of ReadTheDocs and API Docs",
+     "url": "/season-of-docs/docs/2019/participants/project-zulip"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
+   "githubUrl": "https://github.com/zulip",
+   "chatSource": "https://github.com/zulip/zulip#readme",
+   "chats": [
+    {
+     "platform": "zulip",
+     "workspace": "Zulip Open Source Team Chat Zulip",
+     "joinUrl": "https://chat.zulip.org"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/zulip-open-source-team-chat.png"
+  }
+ ]
+}

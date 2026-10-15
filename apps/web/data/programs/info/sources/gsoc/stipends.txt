@@ -1,0 +1,943 @@
+Source: https://developers.google.com/open-source/gsoc/help/student-stipends?hl=en
+Retrieved: 2026-10-15
+
+Contributor Stipends for 2026 | Google Summer of Code | Google for Developers
+Skip to main content
+Google
+Summer of Code
+/
+English
+Deutsch
+Español
+Español – América Latina
+Français
+Indonesia
+Italiano
+Polski
+Português – Brasil
+Tiếng Việt
+Türkçe
+Русский
+עברית
+العربيّة
+فارسی
+हिंदी
+বাংলা
+ภาษาไทย
+中文 – 简体
+中文 – 繁體
+日本語
+한국어
+Sign in
+Home
+Resources
+History
+Rules
+Google
+Summer of Code
+Home
+Resources
+History
+Rules
+FAQ
+Videos
+Glossary
+Guides
+Mailing Lists
+Marketing
+Resources
+Roles and Responsibilities
+Timeline
+Contact Us
+Home
+Products
+Open Source Programs Office
+Google Summer of Code
+Resources
+Contributor Stipends for 2026
+Stay organized with collections
+Save and categorize content based on your preferences.
+Page Summary
+outlined_flag
+GSoC stipends are paid in two installments after successful evaluations, with 45% disbursed midway and 55% at the project's end.
+Stipend amounts vary based on project size (small, medium, large) and are adjusted by Purchasing Power Parity (PPP) based on the student's location.
+Students can find their specific stipend amount by referencing the comprehensive table listing amounts for various countries, categorized by project size.
+Small projects range from $750 to $1650, medium projects range from $1500 to $3300, and large projects range from $3000 to $6600 USD, depending on location.
+Stipends are paid in two parts, one after each successful evaluation. The
+dates below are based on the standard 12 week project. If your project is
+longer, your evaluation and payments schedule will be different. The first
+evaluation will occur at the halfway point of your project (e.g. For a 16
+week project the evaluation will occur after week 8). You can also check
+your GSoC dashboard to view when your evaluations occur.
+First Evaluation (paid July 11): 45%
+Final Evaluation (paid September 1): 55%
+Stipend amounts are calculated based on your location.
+How is my location determined?
+Your location is determined by the country where you are residing during
+the GSoC 2026 coding period.
+How are the stipend amounts determined?
+We are using a Purchasing Power Parity (PPP) based calculation to
+determine the stipend.
+For medium sized projects: We start with a base amount of 3000 USD and
+then adjust it based on each country's PPP value. There is a minimum (1500
+USD) and maximum (3300 USD) stipend amount.
+For large sized projects: We start with a base amount of 6000 USD and then
+adjust it based on each country's PPP value. There is a minimum (3000 USD)
+and maximum (6600 USD) stipend amount.
+For small sized projects: Google starts with a base amount of 1500 USD and
+then adjust it based on each country's PPP value. There is a minimum (750
+USD) and maximum (1650 USD) stipend amount.
+What is Purchasing Power Parity? (PPP)
+Purchasing Power Parity is a way to estimate the exchange rate between two
+currencies to determine equivalent purchasing power.
+Wikipedia: Purchasing Power Parity
+World Bank: Fundamentals of Purchasing Power Parity
+If I don't see my country listed, can I still be paid?
+Our global payment provider, Payoneer, services 190+ countries around the
+world. If you don't see your country listed below, you are not eligible to
+receive a payment for your participation in GSoC.
+A special note about Canada: Due to local regulatory requirements, effective
+in 2026 Payoneer will no longer be able to provide payment disbursements and
+other payment services to Payoneer account holders registered or residing in
+the province of Quebec, Canada. This affects new and existing Payoneer account
+holders with address and/or the place of incorporation in Quebec.
+Total Stipend Amount
+All amounts in USD
+|
+| Country
+| Small Size
+| Medium Size
+| Large Size
+| Afghanistan
+| $750
+| $1500
+| $3000
+| Albania
+| $750
+| $1500
+| $3000
+| Algeria
+| $750
+| $1500
+| $3000
+| Andorra
+| $1050
+| $2100
+| $4200
+| Angola
+| $750
+| $1500
+| $3000
+| Antigua and Barbuda
+| $1200
+| $2400
+| $4800
+| Argentina
+| $750
+| $1500
+| $3000
+| Armenia
+| $750
+| $1500
+| $3000
+| Australia
+| $1650
+| $3300
+| $6600
+| Austria
+| $1350
+| $2700
+| $5400
+| Azerbaijan
+| $750
+| $1500
+| $3000
+| Bahamas, The
+| $1200
+| $2400
+| $4800
+| Bahrain
+| $750
+| $1500
+| $3000
+| Bangladesh
+| $750
+| $1500
+| $3000
+| Barbados
+| $1650
+| $3300
+| $6600
+| Belarus
+| $750
+| $1500
+| $3000
+| Belgium
+| $1350
+| $2700
+| $5400
+| Belize
+| $900
+| $1800
+| $3600
+| Benin
+| $750
+| $1500
+| $3000
+| Bermuda
+| $1650
+| $3300
+| $6600
+| Bhutan
+| $750
+| $1500
+| $3000
+| Bolivia
+| $750
+| $1500
+| $3000
+| Bosnia-Herzegovina
+| $750
+| $1500
+| $3000
+| Botswana
+| $750
+| $1500
+| $3000
+| Brazil
+| $750
+| $1500
+| $3000
+| Brunei Darussalam
+| $750
+| $1500
+| $3000
+| Bulgaria
+| $750
+| $1500
+| $3000
+| Burkina Faso
+| $750
+| $1500
+| $3000
+| Burundi
+| $750
+| $1500
+| $3000
+| Cabo Verde
+| $750
+| $1500
+| $3000
+| Cambodia
+| $750
+| $1500
+| $3000
+| Cameroon
+| $750
+| $1500
+| $3000
+| *Canada
+| $1500
+| $3000
+| $6000
+| Central African Republic
+| $750
+| $1500
+| $3000
+| Chad
+| $750
+| $1500
+| $3000
+| Chile
+| $900
+| $1800
+| $3600
+| China
+| $900
+| $1800
+| $3600
+| Colombia
+| $750
+| $1500
+| $3000
+| Comoros
+| $750
+| $1500
+| $3000
+| Congo, Dem. Rep.
+| $750
+| $1500
+| $3000
+| Congo, Rep.
+| $900
+| $1800
+| $3600
+| Costa Rica
+| $750
+| $1500
+| $3000
+| Cote d'Ivoire
+| $750
+| $1500
+| $3000
+| Croatia
+| $750
+| $1500
+| $3000
+| Cyprus
+| $1050
+| $2100
+| $4200
+| Czech Republic
+| $900
+| $1800
+| $3600
+| Denmark
+| $1500
+| $3000
+| $6000
+| Djibouti
+| $900
+| $1800
+| $3600
+| Dominica
+| $900
+| $1800
+| $3600
+| Dominican Republic
+| $750
+| $1500
+| $3000
+| Ecuador
+| $750
+| $1500
+| $3000
+| Egypt
+| $750
+| $1500
+| $3000
+| El Salvador
+| $750
+| $1500
+| $3000
+| Equatorial Guinea
+| $750
+| $1500
+| $3000
+| Eritrea
+| $750
+| $1500
+| $3000
+| Estonia
+| $900
+| $1800
+| $3600
+| Eswatini
+| $750
+| $1500
+| $3000
+| Ethiopia
+| $750
+| $1500
+| $3000
+| Fiji
+| $750
+| $1500
+| $3000
+| Finland
+| $1500
+| $3000
+| $6000
+| France
+| $1350
+| $2700
+| $5400
+| Gabon
+| $750
+| $1500
+| $3000
+| Gambia, The
+| $750
+| $1500
+| $3000
+| Georgia
+| $750
+| $1500
+| $3000
+| Germany
+| $1350
+| $2700
+| $5400
+| Ghana
+| $750
+| $1500
+| $3000
+| Greece
+| $900
+| $1800
+| $3600
+| Grenada
+| $900
+| $1800
+| $3600
+| Guatemala
+| $750
+| $1500
+| $3000
+| Guinea
+| $750
+| $1500
+| $3000
+| Guinea-Bissau
+| $750
+| $1500
+| $3000
+| Guyana
+| $750
+| $1500
+| $3000
+| Haiti
+| $900
+| $1800
+| $3600
+| Honduras
+| $750
+| $1500
+| $3000
+| Hong Kong
+| $1200
+| $2400
+| $4800
+| Hungary
+| $750
+| $1500
+| $3000
+| Iceland
+| $1650
+| $3300
+| $6600
+| India
+| $750
+| $1500
+| $3000
+| Indonesia
+| $750
+| $1500
+| $3000
+| Iraq
+| $750
+| $1500
+| $3000
+| Ireland
+| $1350
+| $2700
+| $5400
+| Israel
+| $1650
+| $3300
+| $6600
+| Italy
+| $1200
+| $2400
+| $4800
+| Jamaica
+| $750
+| $1500
+| $3000
+| Japan
+| $1350
+| $2700
+| $5400
+| Jordan
+| $750
+| $1500
+| $3000
+| Kazakhstan
+| $750
+| $1500
+| $3000
+| Kenya
+| $750
+| $1500
+| $3000
+| Kiribati
+| $1050
+| $2100
+| $4200
+| Kosovo
+| $750
+| $1500
+| $3000
+| Kuwait
+| $750
+| $1500
+| $3000
+| Kyrgyz Republic
+| $750
+| $1500
+| $3000
+| Lao PDR
+| $750
+| $1500
+| $3000
+| Latvia
+| $900
+| $1800
+| $3600
+| Lebanon
+| $750
+| $1500
+| $3000
+| Lesotho
+| $750
+| $1500
+| $3000
+| Liberia
+| $750
+| $1500
+| $3000
+| Libya
+| $750
+| $1500
+| $3000
+| Lithuania
+| $750
+| $1500
+| $3000
+| Luxembourg
+| $1500
+| $3000
+| $6000
+| Macao SAR, China
+| $900
+| $1800
+| $3600
+| Madagascar
+| $750
+| $1500
+| $3000
+| Malawi
+| $750
+| $1500
+| $3000
+| Malaysia
+| $750
+| $1500
+| $3000
+| Maldives
+| $750
+| $1500
+| $3000
+| Mali
+| $750
+| $1500
+| $3000
+| Malta
+| $1050
+| $2100
+| $4200
+| Marshall Islands
+| $1500
+| $3000
+| $6000
+| Mauritania
+| $750
+| $1500
+| $3000
+| Mauritius
+| $750
+| $1500
+| $3000
+| Mexico
+| $750
+| $1500
+| $3000
+| Micronesia, Fed. Sts.
+| $1500
+| $3000
+| $6000
+| Moldova
+| $750
+| $1500
+| $3000
+| Mongolia
+| $750
+| $1500
+| $3000
+| Montenegro
+| $750
+| $1500
+| $3000
+| Morocco
+| $750
+| $1500
+| $3000
+| Mozambique
+| $750
+| $1500
+| $3000
+| Myanmar
+| $750
+| $1500
+| $3000
+| Namibia
+| $750
+| $1500
+| $3000
+| Nepal
+| $750
+| $1500
+| $3000
+| Netherlands
+| $1350
+| $2700
+| $5400
+| New Zealand
+| $1650
+| $3300
+| $6600
+| Nicaragua
+| $750
+| $1500
+| $3000
+| Niger
+| $750
+| $1500
+| $3000
+| Nigeria
+| $750
+| $1500
+| $3000
+| North Macedonia
+| $750
+| $1500
+| $3000
+| Norway
+| $1650
+| $3300
+| $6600
+| Oman
+| $750
+| $1500
+| $3000
+| Pakistan
+| $750
+| $1500
+| $3000
+| Palau
+| $1350
+| $2700
+| $5400
+| Panama
+| $750
+| $1500
+| $3000
+| Papua New Guinea
+| $1050
+| $2100
+| $4200
+| Paraguay
+| $750
+| $1500
+| $3000
+| Peru
+| $750
+| $1500
+| $3000
+| Philippines
+| $750
+| $1500
+| $3000
+| Poland
+| $750
+| $1500
+| $3000
+| Portugal
+| $1050
+| $2100
+| $4200
+| Puerto Rico
+| $1350
+| $2700
+| $5400
+| Qatar
+| $1050
+| $2100
+| $4200
+| Romania
+| $750
+| $1500
+| $3000
+| Russian Federation
+| $750
+| $1500
+| $3000
+| Rwanda
+| $750
+| $1500
+| $3000
+| Samoa
+| $900
+| $1800
+| $3600
+| Sao Tome and Principe
+| $900
+| $1800
+| $3600
+| Saudi Arabia
+| $750
+| $1500
+| $3000
+| Senegal
+| $750
+| $1500
+| $3000
+| Serbia
+| $750
+| $1500
+| $3000
+| Seychelles
+| $750
+| $1500
+| $3000
+| Sierra Leone
+| $750
+| $1500
+| $3000
+| Singapore
+| $900
+| $1800
+| $3600
+| Slovak Republic
+| $900
+| $1800
+| $3600
+| Slovenia
+| $1050
+| $2100
+| $4200
+| Solomon Islands
+| $1350
+| $2700
+| $5400
+| Somalia
+| $750
+| $1500
+| $3000
+| South Africa
+| $750
+| $1500
+| $3000
+| South Korea
+| $1050
+| $2100
+| $4200
+| South Sudan
+| $1350
+| $2700
+| $5400
+| Spain
+| $1050
+| $2100
+| $4200
+| Sri Lanka
+| $750
+| $1500
+| $3000
+| St. Kitts and Nevis
+| $1050
+| $2100
+| $4200
+| St. Lucia
+| $1050
+| $2100
+| $4200
+| St. Vincent and the Grenadines
+| $900
+| $1800
+| $3600
+| Sudan
+| $750
+| $1500
+| $3000
+| Suriname
+| $750
+| $1500
+| $3000
+| Swaziland
+| $750
+| $1500
+| $3000
+| Sweden
+| $1500
+| $3000
+| $6000
+| Switzerland
+| $1650
+| $3300
+| $6600
+| Taiwan
+| $750
+| $1500
+| $3000
+| Tajikistan
+| $750
+| $1500
+| $3000
+| Tanzania
+| $750
+| $1500
+| $3000
+| Thailand
+| $750
+| $1500
+| $3000
+| Timor-Leste
+| $750
+| $1500
+| $3000
+| Togo
+| $750
+| $1500
+| $3000
+| Tonga
+| $1050
+| $2100
+| $4200
+| Trinidad and Tobago
+| $900
+| $1800
+| $3600
+| Tunisia
+| $750
+| $1500
+| $3000
+| Turkey
+| $750
+| $1500
+| $3000
+| Turkmenistan
+| $750
+| $1500
+| $3000
+| Turks and Caicos Islands
+| $1500
+| $3000
+| $6000
+| Tuvalu
+| $1500
+| $3000
+| $6000
+| Uganda
+| $750
+| $1500
+| $3000
+| Ukraine
+| $750
+| $1500
+| $3000
+| United Arab Emirates
+| $750
+| $1500
+| $3000
+| United Kingdom
+| $1500
+| $3000
+| $6000
+| United States
+| $1500
+| $3000
+| $6000
+| Uruguay
+| $1050
+| $2100
+| $4200
+| Uzbekistan
+| $750
+| $1500
+| $3000
+| Vanuatu
+| $1500
+| $3000
+| $6000
+| Venezuela
+| $900
+| $1800
+| $3600
+| Vietnam
+| $750
+| $1500
+| $3000
+| West Bank and Gaza
+| $900
+| $1800
+| $3600
+| Yemen, Rep.
+| $750
+| $1500
+| $3000
+| Zambia
+| $750
+| $1500
+| $3000
+| Zimbabwe
+| $1050
+| $2100
+| $4200
+Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License . For details, see the Google Developers Site Policies . Java is a registered trademark of Oracle and/or its affiliates.
+Last updated 2026-02-17 UTC.
+[[["Easy to understand","easyToUnderstand","thumb-up"],["Solved my problem","solvedMyProblem","thumb-up"],["Other","otherUp","thumb-up"]],[["Missing the information I need","missingTheInformationINeed","thumb-down"],["Too complicated / too many steps","tooComplicatedTooManySteps","thumb-down"],["Out of date","outOfDate","thumb-down"],["Samples / code issue","samplesCodeIssue","thumb-down"],["Other","otherDown","thumb-down"]],["Last updated 2026-02-17 UTC."],[],["Stipends are paid in two installments after evaluations, with the first, (45%) for 12-week projects, on July 18, and the final (55%) on September 9. Stipend amounts, determined by the participant's country of residence and project size (Small, Medium, Large), use Purchasing Power Parity (PPP) adjustments. Base amounts for small, medium, and large projects are $1500, $3000, and $6000 USD, respectively, with varying ranges. Several countries have different associated monetary values. Specific evaluation dates are available on the dashboard.\n"]]
+Blog
+Engage
+Google Developer Program
+Google Developer Groups
+Google Developer Experts
+Accelerators
+Google Cloud & NVIDIA
+Connect
+Blog
+Bluesky
+Instagram
+LinkedIn
+X (Twitter)
+YouTube
+Build
+Android
+Chrome
+Firebase
+Google AI Studio
+Google Antigravity
+Google Cloud
+Google Play
+View all
+Android
+Chrome
+Firebase
+Google Cloud Platform
+Google AI
+All products
+Terms
+Privacy
+Manage cookies
+English
+Deutsch
+Español
+Español – América Latina
+Français
+Indonesia
+Italiano
+Polski
+Português – Brasil
+Tiếng Việt
+Türkçe
+Русский
+עברית
+العربيّة
+فارسی
+हिंदी
+বাংলা
+ภาษาไทย
+中文 – 简体
+中文 – 繁體
+日本語
+한국어

@@ -1,0 +1,41 @@
+{
+ "program": "mlh-fellowship",
+ "checked": "2026-10-15",
+ "status": "running",
+ "statusNote": "Applications are currently not open to the India / Asia-Pacific region.",
+ "summary": "The MLH Fellowship is a fully remote, 12-week internship alternative run by Major League Hacking. Fellows work in small groups (pods) on real open source and partner projects with guidance from expert mentors.",
+ "runBy": "Major League Hacking (MLH)",
+ "stipend": {
+  "headline": "Educational stipend",
+  "detail": "Depending on the program track, fellows receive either an educational stipend or university credit. MLH does not publish the amount; it depends on the length and content of the program and is stated in the educational agreement you sign when accepted. U.S. residents may receive a tax document from the payment provider.",
+  "notes": ["The fellowship is funded by employers, so places depend on employer demand."]
+ },
+ "facts": [
+  { "label": "Length", "value": "12 weeks" },
+  { "label": "Time commitment", "value": "About 20 hours per week (about 15 on the project)" },
+  { "label": "Format", "value": "Fully remote, in timezone-based pods" },
+  { "label": "Region", "value": "Not open to India / Asia-Pacific applicants at present" }
+ ],
+ "eligibility": [
+  "At least 18 years old.",
+  "Living in a country not embargoed by the United States; the Production Engineering track requires living in the U.S., Canada or Mexico.",
+  "Able to commit at least 20 hours per week.",
+  "Know how to code in at least one programming language and speak English proficiently.",
+  "Have taken part in at least one MLH hackathon or Global Hack Week event.",
+  "Have a video-call-quality internet connection (30 Mbps minimum recommended).",
+  "Currently not available to applicants in India and all Asia-Pacific countries, because no employer funding the fellowship is hiring in the region."
+ ],
+ "howToApply": [
+  "Apply on fellowship.mlh.io with essays and a code sample (clean, original, documented work).",
+  "Qualified applicants go through interviews and a final review.",
+  "Candidates are matched to projects by language, framework, timezone and availability; rejected applicants can reapply for a later batch."
+ ],
+ "links": [
+  { "label": "MLH Fellowship", "url": "https://fellowship.mlh.io/" },
+  { "label": "MLH Fellowship FAQ", "url": "https://hackp.ac/fellowship-faq" }
+ ],
+ "sources": [
+  { "label": "MLH Fellowship FAQ", "url": "https://hackp.ac/fellowship-faq", "file": "mlh-fellowship/faq.txt" },
+  { "label": "MLH Fellowship home page", "url": "https://fellowship.mlh.io/", "file": "mlh-fellowship/home.txt" }
+ ]
+}

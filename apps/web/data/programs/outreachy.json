@@ -1,0 +1,4031 @@
+{
+ "program": "outreachy",
+ "name": "Outreachy",
+ "generatedAt": "2026-10-15",
+ "years": [
+  2022,
+  2023,
+  2024,
+  2025
+ ],
+ "note": "Communities listed on the Outreachy round pages for May 2022 to December 2025. The December 2024 round page is not published.",
+ "sources": [
+  {
+   "label": "Outreachy internship rounds (CC BY 3.0)",
+   "url": "https://www.outreachy.org/past-projects/"
+  }
+ ],
+ "orgs": [
+  {
+   "slug": "asf",
+   "name": "ASF",
+   "tagline": "The ASF is a charitable non-profit organization founded in 1999 to provide software for the public good. With 350+ open source projects, 730+ foundation members, and 7000+ project committers, the ASF provides an established framework for intellectual property and financial contributions that simultaneously limits potential legal exposure for our project committers. Individuals from around the world collaborate through a distributed, asynchronous, community-driven process known as \"The Apache Way\" to develop freely available enterprise-grade software published under the commercially friendly and permissive open source Apache License, benefitting millions of users worldwide.",
+   "description": null,
+   "website": "https://www.apache.org/",
+   "repoUrl": "https://github.com/apache",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "rounds": [
+    "May 2022",
+    "December 2022"
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Improve Camel K Examples",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Improve Camel K operator scalability",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "SOLR-11872 Refactor test infra to work with a managed SolrClient; ditch TestHarness",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-december-2022-internship-round/communities/asf/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-december-2022-internship-round/communities/asf/",
+   "githubUrl": "https://github.com/apache",
+   "chats": [],
+   "logo": "/logos/programs/outreachy/asf.png"
+  },
+  {
+   "slug": "bioconductor",
+   "name": "Bioconductor",
+   "tagline": "Open Source Software for Bioinformatics",
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "rounds": [
+    "December 2022",
+    "May 2023",
+    "December 2023",
+    "June 2024",
+    "June 2025",
+    "December 2025"
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Microbiome Study Curation",
+     "round": "June 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Microbiome Study Curation",
+     "round": "December 2025"
+    },
+    {
+     "year": 2024,
+     "title": "Microbiome Study Curation",
+     "round": "June 2024"
+    },
+    {
+     "year": 2023,
+     "title": "Convert Sweave Vignettes to R Markdown",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Microbiome Study Curation",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Optimize microbiome data science framework",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Microbiome Study Curation",
+     "round": "December 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Convert Sweave vignettes to R Markdown",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Refactor the BSgenomeForge tools",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-december-2025-internship-cohort/communities/bioconductor/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-december-2025-internship-cohort/communities/bioconductor/",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "bokeh",
+   "name": "Bokeh",
+   "tagline": "Bokeh is a Python library for creating interactive data visualizations for modern web browsers. It helps you build beautiful graphics, ranging from simple plots to complex dashboards with streaming datasets. With Bokeh, you can create JavaScript-powered visualizations without writing any JavaScript yourself.",
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2023
+   ],
+   "rounds": [
+    "May 2023"
+   ],
+   "projects": [
+    {
+     "year": 2023,
+     "title": "Create a blog post series: \"Fundamentals of Data Visualization in Bokeh\"",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Improve Bokeh's documentation using the Diátaxis framework",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Improve the accessibility of Bokeh's Gallery examples",
+     "round": "May 2023"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-may-2023-internship-cohort/communities/bokeh/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-may-2023-internship-cohort/communities/bokeh/",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "camicroscope",
+   "name": "caMicroscope",
+   "tagline": "An Open-Source Platform for Biomedical Image and Data Analysis",
+   "description": null,
+   "website": "https://camicroscope.github.io",
+   "repoUrl": "https://github.com/camicroscope",
+   "tags": [],
+   "years": [
+    2024
+   ],
+   "rounds": [
+    "June 2024"
+   ],
+   "projects": [
+    {
+     "year": 2024,
+     "title": "Accessibility Testing and Improvement for Biomedical Imaging",
+     "round": "June 2024"
+    },
+    {
+     "year": 2024,
+     "title": "Create Stanalone Executable for caMicroscope",
+     "round": "June 2024"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/camicroscope/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/camicroscope/",
+   "chats": [
+    {
+     "platform": "telegram",
+     "workspace": "caMicroscope Telegram",
+     "joinUrl": "https://t.me/share"
+    }
+   ],
+   "chatSource": "https://camicroscope.github.io",
+   "githubUrl": "https://github.com/camicroscope",
+   "logo": "/logos/programs/outreachy/camicroscope.png"
+  },
+  {
+   "slug": "ceph",
+   "name": "Ceph",
+   "tagline": "Ceph is distributed, software-defined storage that allows users to turn commodity hardware into a massively scalable storage cluster with no single point of failure. This storage solution is able to speak object, block, and file which unifies all storage needs under a single system with self-managing and self-healing characteristics. Ceph is already integrated with many systems, including the ever-growing world of cloud offerings like OpenStack.",
+   "description": null,
+   "website": "https://ceph.io/en/",
+   "repoUrl": "https://github.com/ceph",
+   "tags": [],
+   "years": [
+    2022,
+    2023
+   ],
+   "rounds": [
+    "May 2022",
+    "May 2023"
+   ],
+   "projects": [
+    {
+     "year": 2023,
+     "title": "Making Teuthology Friendly",
+     "round": "May 2023"
+    },
+    {
+     "year": 2022,
+     "title": "All Clients Deserve a Chance",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Improve Dashboard Accessibility for Blind and Visually-Impaired Ceph Users",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Making Teuthology a Better Detective",
+     "round": "May 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-may-2023-internship-cohort/communities/ceph/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-may-2023-internship-cohort/communities/ceph/",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "Ceph Slack",
+     "joinUrl": "https://join.slack.com/t/ceph-storage/shared_invite/zt-1n8yigss2-yYg099VlTiGMCLIziG_h4Q"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/ceph",
+   "githubUrl": "https://github.com/ceph",
+   "logo": "/logos/programs/outreachy/ceph.png"
+  },
+  {
+   "slug": "chaoss",
+   "name": "CHAOSS",
+   "tagline": "Development of metrics, software, and practices in making open source project health more transparent and actionable",
+   "description": null,
+   "website": "https://chaoss.community",
+   "repoUrl": "https://github.com/chaoss/augur",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "rounds": [
+    "May 2022"
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Augur Documentation Inclusivity",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Implement Conversion Rate Metric in CHAOSS Software",
+     "round": "May 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-may-2022-internship-round/communities/chaoss/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-may-2022-internship-round/communities/chaoss/",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "CHAOSS Slack",
+     "joinUrl": "https://join.slack.com/t/chaoss-workspace/shared_invite/zt-289zxh6tu-3oQaFlutPFY039MjKpnWcA"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2025/organizations/chaoss",
+   "githubUrl": "https://github.com/chaoss",
+   "logo": "/logos/programs/outreachy/chaoss.png"
+  },
+  {
+   "slug": "chris-project",
+   "name": "ChRIS Project",
+   "tagline": "ChRIS is a general-purpose, open source distributed data and computation platform. ChRIS is principally used for the analysis of medical data such as radiological images, and allows for the creation and automation of complex workflows involving open source data analysis tools that would otherwise be inaccessible to medical researchers and practitioners. ChRIS was started at Boston Children's Hospital and multiple organizations now contribute to the project.",
+   "description": null,
+   "website": "https://chrisproject.org/",
+   "repoUrl": "https://github.com/FNNDSC",
+   "tags": [],
+   "years": [
+    2022,
+    2023
+   ],
+   "rounds": [
+    "May 2022",
+    "December 2022",
+    "May 2023"
+   ],
+   "projects": [
+    {
+     "year": 2023,
+     "title": "ChRIS in a Box / Edge Computing",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Help enable HIPAA cloud computing on open source production clouds",
+     "round": "May 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Create data viewing app registration system for React-based user interface",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Create external app registration system for React-based user interface",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Improve ChRIS Core User Interface Experience and extend PACS Query React Components",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Consolidating and making reusable various react UI components from two user interfaces",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Improve how plugin instance logs are stored in the backend",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Improve observability and deploy telemetry solution to cloud-based application",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Research and evaluate search engines for use in the ChRIS project",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-may-2023-internship-cohort/communities/the-chris-project/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-may-2023-internship-cohort/communities/the-chris-project/",
+   "githubUrl": "https://github.com/FNNDSC",
+   "chatSource": "https://chrisproject.org/",
+   "chats": [
+    {
+     "platform": "matrix",
+     "workspace": "ChRIS Project Matrix",
+     "joinUrl": "https://matrix.to/#/#chris:fedora.im"
+    }
+   ],
+   "logo": "/logos/programs/outreachy/chris-project.png"
+  },
+  {
+   "slug": "cncf-opentelemetry",
+   "name": "CNCF OpenTelemetry",
+   "tagline": "OpenTelemetry is a collection of tools, APIs, and SDKs. Use it to instrument, generate, collect, and export telemetry data (metrics, logs, and traces) to help you analyze your software’s performance and behavior.",
+   "description": null,
+   "website": "https://opentelemetry.io",
+   "repoUrl": "https://github.com/open-telemetry",
+   "tags": [],
+   "years": [
+    2022,
+    2023,
+    2024
+   ],
+   "rounds": [
+    "December 2022",
+    "December 2023",
+    "June 2024"
+   ],
+   "projects": [
+    {
+     "year": 2024,
+     "title": "Implement one logging bridge",
+     "round": "June 2024"
+    },
+    {
+     "year": 2023,
+     "title": "Enable Allstar policy across all the repos in the org",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "OTel Collector - Dev Mode",
+     "round": "December 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Add auto instrumentation support for python threading module",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Create a Component Generator",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/cncf-tracing/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/cncf-tracing/",
+   "githubUrl": "https://github.com/open-telemetry",
+   "chatSource": "https://opentelemetry.io",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "CNCF Slack",
+     "joinUrl": "https://cloud-native.slack.com/archives/C09H3MNMBQV"
+    }
+   ],
+   "logo": "/logos/programs/outreachy/cncf-opentelemetry.png"
+  },
+  {
+   "slug": "common-workflow-language",
+   "name": "Common Workflow Language",
+   "tagline": "The Common Workflow Language (CWL) is an open standard for describing analysis workflows and tools in a way that makes them portable and scalable across a variety of software and hardware environments, from workstations to cluster, cloud, and high performance computing (HPC) environments. CWL is designed to meet the needs of data-intensive science, such as Bioinformatics, Medical Imaging, Astronomy, High Energy Physics, and Machine Learning.",
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "rounds": [
+    "December 2022"
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Expanding the CWL User Guide",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-december-2022-internship-round/communities/common-workflow-language/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-december-2022-internship-round/communities/common-workflow-language/",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "conda-forge",
+   "name": "conda-forge",
+   "tagline": "A community-led collection of recipes, build infrastructure and distributions for the conda package manager.",
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "rounds": [
+    "May 2022"
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Documenting the conda-forge ecosystem",
+     "round": "May 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-may-2022-internship-round/communities/conda-forge/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-may-2022-internship-round/communities/conda-forge/",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "confidential-computing-consortium",
+   "name": "Confidential Computing Consortium",
+   "tagline": "The Confidential Computing Consortium brings together hardware vendors, cloud providers, and software developers to accelerate the adoption of Trusted Execution Environment (TEE) technologies and standards. The consortium supports open source projects that advance the use of hardware-based TEEs.",
+   "description": null,
+   "website": "https://confidentialcomputing.io/",
+   "repoUrl": "https://github.com/confidential-computing",
+   "tags": [],
+   "years": [
+    2022,
+    2023
+   ],
+   "rounds": [
+    "May 2022",
+    "May 2023"
+   ],
+   "projects": [
+    {
+     "year": 2023,
+     "title": "Secure Integration of TEEs with Other Hardware-based Privilege Separation Mechanisms",
+     "round": "May 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Create a WebAssembly system Interface test suite.",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Create demos to show how Confidential Computing works",
+     "round": "May 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-may-2023-internship-cohort/communities/confidential-computing-consortium/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-may-2023-internship-cohort/communities/confidential-computing-consortium/",
+   "githubUrl": "https://github.com/confidential-computing",
+   "chats": [],
+   "logo": "/logos/programs/outreachy/confidential-computing-consortium.png"
+  },
+  {
+   "slug": "creative-commons",
+   "name": "Creative Commons",
+   "tagline": "Creative Commons is a nonprofit building tools to promote digital creativity, sharing, and innovation",
+   "description": null,
+   "website": "https://opensource.creativecommons.org/",
+   "repoUrl": "https://github.com/creativecommons",
+   "tags": [],
+   "years": [
+    2022,
+    2025
+   ],
+   "rounds": [
+    "December 2022",
+    "December 2025"
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Improving Quantifying the Commons",
+     "round": "December 2025"
+    },
+    {
+     "year": 2022,
+     "title": "Add plain text format to CC Legal Tools",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Modernize termination-of-transfer WordPress plugin",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Refactor CC meta search",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-december-2025-internship-cohort/communities/creative-commons/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-december-2025-internship-cohort/communities/creative-commons/",
+   "chats": [
+    {
+     "platform": "other",
+     "workspace": "Creative Commons Chat",
+     "joinUrl": "https://opensource.creativecommons.org/community/"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2024/organizations/creative-commons",
+   "githubUrl": "https://github.com/creativecommons",
+   "logo": "/logos/programs/outreachy/creative-commons.png"
+  },
+  {
+   "slug": "debian",
+   "name": "Debian",
+   "tagline": "Debian is a volunteer-driven project building \"the Universal Operating System\", a 100% free and open source distribution, based on the Linux, FreeBSD and Hurd kernels, for all devices, ranging from mobile phones, personal computers, to mainframes and distributed cluster.",
+   "description": null,
+   "website": "https://debian.org",
+   "repoUrl": "https://salsa.debian.org",
+   "tags": [],
+   "years": [
+    2022,
+    2023,
+    2025
+   ],
+   "rounds": [
+    "May 2022",
+    "December 2022",
+    "December 2023",
+    "June 2025",
+    "December 2025"
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Debian Images Testing with OpenQA",
+     "round": "December 2025"
+    },
+    {
+     "year": 2023,
+     "title": "Experiment to modernize the Debian Wiki",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Integrate yarn-plugin-apt into Gitlab Packaging and Nodejs Package Testing Workflows",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Quality assurance for biological and medical applications inside Debian",
+     "round": "December 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Improve yarn package manager integration with Debian",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Quality assurance for biological and medical applications inside Debian",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "extrepo",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Improve Salsa CI",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Prepare OpenPGP.js for distribution in Debian and related operating systems",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-december-2025-internship-cohort/communities/debian/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-december-2025-internship-cohort/communities/debian/",
+   "chats": [],
+   "logo": "/logos/programs/outreachy/debian.png"
+  },
+  {
+   "slug": "eclipse-adoptium",
+   "name": "Eclipse Adoptium",
+   "tagline": "Eclipse Adoptium is a set of open-source projects that build, test and distribute high-quality, freely available OpenJDK-based binaries to a rapidly expanding set of consumers across a broad set of platforms.",
+   "description": null,
+   "website": "https://adoptium.net",
+   "repoUrl": "https://github.com/adoptium",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "rounds": [
+    "December 2022"
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Open Infrastructure Monitoring Configuration (Codename \"MonCon\")",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Software Bill of Materials Refinements (Codename \"SmoothBOM\")",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-december-2022-internship-round/communities/eclipse-adoptium/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-december-2022-internship-round/communities/eclipse-adoptium/",
+   "githubUrl": "https://github.com/adoptium",
+   "chats": [],
+   "logo": "/logos/programs/outreachy/eclipse-adoptium.png"
+  },
+  {
+   "slug": "eclipse-vert-x",
+   "name": "Eclipse Vert.x",
+   "tagline": "A resource efficient polyglot reactive application development toolkit for the JVM",
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "rounds": [
+    "May 2022"
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Extend Vert.x Eventbus Bridge using WebRTC",
+     "round": "May 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-may-2022-internship-round/communities/eclipse-vertx/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-may-2022-internship-round/communities/eclipse-vertx/",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "ersilia-open-source-initiative",
+   "name": "Ersilia Open Source Initiative",
+   "tagline": "The Ersilia Open Source Initiative is a catalan non-profit organisation focused on strengthening the research capacity for infectious and neglected diseases by developing and implementing novel artificial intelligence and machine learning tools.",
+   "description": null,
+   "website": "https://ersilia.io",
+   "repoUrl": "https://github.com/ersilia-os",
+   "tags": [],
+   "years": [
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "rounds": [
+    "May 2022",
+    "December 2022",
+    "May 2023",
+    "December 2023",
+    "June 2024",
+    "June 2025"
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Enhancing the Ersilia Model Hub, an AI platform for drug discovery",
+     "round": "June 2025"
+    },
+    {
+     "year": 2024,
+     "title": "Extension of the Ersilia Model Hub, a FOSS platform featuring pretrained AI/ML models for biomedical",
+     "round": "June 2024"
+    },
+    {
+     "year": 2023,
+     "title": "Extension of the Ersilia Model Hub, a FOSS platform featuring pretrained AI/ML models for biomedical",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Improvement of the Ersilia Model Hub, a FOSS platform of AI/ML models for biomedical research",
+     "round": "December 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Improve the documentation and outreach material of the Ersilia Model Hub",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Improve the Ersilia Model Hub, a FOSS platform offering pretrained AI/ML models for research",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Extension of the Ersilia Model Hub, a FOSS platform featuring AI/ML models for biomedical research",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-june-2025-internship-cohort/communities/ersilia-open-source-initiative/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-june-2025-internship-cohort/communities/ersilia-open-source-initiative/",
+   "githubUrl": "https://github.com/ersilia-os",
+   "chats": [],
+   "logo": "/logos/programs/outreachy/ersilia-open-source-initiative.png"
+  },
+  {
+   "slug": "fedora",
+   "name": "Fedora",
+   "tagline": "Fedora is a Linux-based operating system, which offers Editions focused on three possible uses: workstation, server, and cloud.",
+   "description": null,
+   "website": "https://getfedora.org/",
+   "repoUrl": "https://src.fedoraproject.org/",
+   "tags": [],
+   "years": [
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "rounds": [
+    "May 2022",
+    "December 2022",
+    "May 2023",
+    "June 2024",
+    "June 2025"
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Create DEI event organization documentation, coordinate marketing and DEI local communities",
+     "round": "June 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Easy local testing of Fedora packages",
+     "round": "June 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Release Schedule Planner",
+     "round": "June 2025"
+    },
+    {
+     "year": 2024,
+     "title": "Create a gateway from webhooks to Fedora Messaging",
+     "round": "June 2024"
+    },
+    {
+     "year": 2024,
+     "title": "Create an outreach strategy, write documentation, run a marketing campaign, and measure results",
+     "round": "June 2024"
+    },
+    {
+     "year": 2024,
+     "title": "Create a tool to use natural language to generate NetworkManager configuration",
+     "round": "June 2024"
+    },
+    {
+     "year": 2023,
+     "title": "Fedora Badges Design",
+     "round": "May 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Extend Zezere, the Fedora IoT onboarding web app, to support the FIDO device onboarding spec and imp",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Fedora Badges Design",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Improve Docs Experience",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Improve ethtool information querying in NetworkManager using Netlink",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Create and Design Icons for a Chat System",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-june-2025-internship-cohort/communities/fedora/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-june-2025-internship-cohort/communities/fedora/",
+   "chats": [
+    {
+     "platform": "irc",
+     "workspace": "Fedora Project IRC",
+     "joinUrl": "https://web.libera.chat/?channels=fedora-summer-coding"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2025/organizations/fedora-project",
+   "logo": "/logos/programs/outreachy/fedora.png"
+  },
+  {
+   "slug": "firefox",
+   "name": "Firefox",
+   "tagline": "Firefox is a free web browser dedicated to internet health and privacy.",
+   "description": null,
+   "website": "https://www.mozilla.org/firefox/",
+   "repoUrl": "https://github.com/mozilla",
+   "tags": [],
+   "years": [
+    2022,
+    2023,
+    2025
+   ],
+   "rounds": [
+    "May 2022",
+    "December 2022",
+    "May 2023",
+    "December 2023",
+    "June 2025",
+    "December 2025"
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Improve the Firefox Translation Models Ecosystem",
+     "round": "June 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Improve Firefox Features",
+     "round": "December 2025"
+    },
+    {
+     "year": 2023,
+     "title": "Automatic identification of performance bugs",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Create a Reusable moz-message-bar Component",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Firefox for iOS: Improve the pull to refresh feature or logger file retrieval",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "History Tracker",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Improve accessibility of performance comparison tool, and implement new UI/UX design",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Automatic identification of performance bugs",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Create an LLM-based Chat AI Firefox Add-ons Discovery Feature",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Improve the UI of the Firefox update server",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Improve The User Experience of Translations Settings",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Re-enable the Reporting API in Firefox",
+     "round": "December 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Firefox Picture-in-Picture Improvements",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Automatic identification of performance bugs",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Evaluate the performance of alternative memory allocators for Firefox",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-december-2025-internship-cohort/communities/firefox/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-december-2025-internship-cohort/communities/firefox/",
+   "githubUrl": "https://github.com/mozilla",
+   "chats": [],
+   "logo": "/logos/programs/outreachy/firefox.png"
+  },
+  {
+   "slug": "galaxy-community",
+   "name": "Galaxy Community",
+   "tagline": "We enable reproducible, acessible, and transparent data-intensive science for everyone.",
+   "description": null,
+   "website": "https://galaxyproject.org/",
+   "repoUrl": "https://github.com/galaxyproject",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "rounds": [
+    "May 2022"
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Develop a culture of wellbeing for open source projects, the Galaxy community as a use case",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Develop a notification system for different events in Galaxy",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Galaxy climate to support local/regional initiatives and concrete actions to fight climate change",
+     "round": "May 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-may-2022-internship-round/communities/galaxy-community/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-may-2022-internship-round/communities/galaxy-community/",
+   "githubUrl": "https://github.com/galaxyproject",
+   "chats": [],
+   "logo": "/logos/programs/outreachy/galaxy-community.png"
+  },
+  {
+   "slug": "git",
+   "name": "Git",
+   "tagline": "Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.",
+   "description": null,
+   "website": "https://git-scm.com/",
+   "repoUrl": "https://github.com/git/git",
+   "tags": [],
+   "years": [
+    2022,
+    2023,
+    2025
+   ],
+   "rounds": [
+    "December 2022",
+    "December 2023",
+    "December 2025"
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Refactor in order to reduce Git’s global state",
+     "round": "December 2025"
+    },
+    {
+     "year": 2023,
+     "title": "Move existing tests to a unit testing framework",
+     "round": "December 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Unify ref-filter formats with other pretty formats",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-december-2025-internship-cohort/communities/git/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-december-2025-internship-cohort/communities/git/",
+   "chats": [
+    {
+     "platform": "other",
+     "workspace": "Git Chat",
+     "joinUrl": "https://git-scm.com/community"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/git",
+   "githubUrl": "https://github.com/git",
+   "logo": "/logos/programs/outreachy/git.png"
+  },
+  {
+   "slug": "gnome",
+   "name": "GNOME",
+   "tagline": "GNOME is an innovative free software desktop environment that is design-driven and easy to use.",
+   "description": null,
+   "website": "https://gnome.org",
+   "repoUrl": "https://gitlab.gnome.org/",
+   "tags": [],
+   "years": [
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "rounds": [
+    "May 2022",
+    "December 2022",
+    "May 2023",
+    "December 2023",
+    "June 2024",
+    "June 2025",
+    "December 2025"
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Add Wordlist Scoring to the GNOME Crosswords Editor",
+     "round": "June 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Improve document signing in GNOME Document Viewer (Papers)",
+     "round": "December 2025"
+    },
+    {
+     "year": 2024,
+     "title": "Conduct a series of short user research exercises, using a mix of research methods",
+     "round": "June 2024"
+    },
+    {
+     "year": 2023,
+     "title": "Create GNOME platform demos",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Implement end-to-end tests for GNOME OS using openQA",
+     "round": "December 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Extend the feature set of Rust GObject introspection code generator",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Migrate GNOME Translation Editor to Gtk4",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Add observability to librsvg",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Create infrastructure for Performance tracking for librsvg",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Design toolings: Auto update Icon Library icons",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Extend the feature set of Rust GObject introspection code generator",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-december-2025-internship-cohort/communities/gnome/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-december-2025-internship-cohort/communities/gnome/",
+   "chats": [
+    {
+     "platform": "other",
+     "workspace": "GNOME Foundation Chat",
+     "joinUrl": "https://handbook.gnome.org/get-in-touch.html"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/gnome-foundation",
+   "logo": "/logos/programs/outreachy/gnome.png"
+  },
+  {
+   "slug": "humanitarian-openstreetmap-team",
+   "name": "Humanitarian OpenStreetMap Team",
+   "tagline": "HOT is an international team dedicated to humanitarian action and community development through open mapping. Open source is at the heart of the HOT Community. We create and build open source tools and run our projects with an open source ethos.",
+   "description": null,
+   "website": "https://www.hotosm.org",
+   "repoUrl": "https://github.com/hotosm",
+   "tags": [],
+   "years": [
+    2023,
+    2024
+   ],
+   "rounds": [
+    "May 2023",
+    "December 2023",
+    "June 2024"
+   ],
+   "projects": [
+    {
+     "year": 2024,
+     "title": "Create a Python-based mobile application to collect OpenStreetMap data in the field.",
+     "round": "June 2024"
+    },
+    {
+     "year": 2024,
+     "title": "Create backend tests and API documentations",
+     "round": "June 2024"
+    },
+    {
+     "year": 2023,
+     "title": "Improve documentation on HOTOSM Github repos",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Tech community engagement intern: improve open source contributor journey for HOTOSM projects",
+     "round": "December 2023"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/humanitarian-openstreetmap-team/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/humanitarian-openstreetmap-team/",
+   "githubUrl": "https://github.com/hotosm",
+   "chatSource": "https://github.com/hotosm",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "Humanitarian OpenStreetMap Team Slack",
+     "joinUrl": "https://slack.hotosm.org/"
+    }
+   ],
+   "logo": "/logos/programs/outreachy/humanitarian-openstreetmap-team.png"
+  },
+  {
+   "slug": "irdest",
+   "name": "Irdest",
+   "tagline": "Irdest is a research project that works to create tools for the next, decentralised internet. Our goal is to create technology that is easy to setup and configure to allow more people to take control over their digital infrastructure.",
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "rounds": [
+    "May 2022"
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Create an Irdest Android VPN app",
+     "round": "May 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-may-2022-internship-round/communities/irdest/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-may-2022-internship-round/communities/irdest/",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "jupyterhub",
+   "name": "JupyterHub",
+   "tagline": "Project Jupyter exists to develop open-source software, open-standards, and services for interactive computing across dozens of programming languages. JupyterHub, a subproject, helps provide interactive computing environments over the web to a large number of users in various contexts (Education, Research, Companies doing Data Science, etc).",
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "rounds": [
+    "December 2022"
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Create a reusable JupyterHub pytest plugin",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Improve Accessibility in JupyterHub",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Restructure and improve JupyterHub documentation by implementing the Diataxis framework",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-december-2022-internship-round/communities/jupyterhub/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-december-2022-internship-round/communities/jupyterhub/",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "kernelci",
+   "name": "KernelCI",
+   "tagline": "KernelCI is a community-led test system focused on the upstream Linux kernel. It follows the open testing philosophy to enable the same collaboration to happen with testing as open source does to the code itself.",
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2023,
+    2025
+   ],
+   "rounds": [
+    "May 2023",
+    "June 2025"
+   ],
+   "projects": [
+    {
+     "year": 2023,
+     "title": "Implement artifact mirroring for KCIDB",
+     "round": "May 2023"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-june-2025-internship-cohort/communities/kernelci/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-june-2025-internship-cohort/communities/kernelci/",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "les-fruits-defendus",
+   "name": "Les Fruits défendus",
+   "tagline": "Volunteer-led urban fruit harvest initiative in Montréal, Québec",
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "rounds": [
+    "May 2022"
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "[No longer taking applicants] Getting Saskatoon-ng ready",
+     "round": "May 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-may-2022-internship-round/communities/les-fruits-defendus/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-may-2022-internship-round/communities/les-fruits-defendus/",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "libreoffice",
+   "name": "LibreOffice",
+   "tagline": "LibreOffice is a lively and diverse community, delivering a full-featured cross-platform office suite. We value new contributors, just as we prize Open Source and Open Standards.",
+   "description": null,
+   "website": "https://www.libreoffice.org/",
+   "repoUrl": "https://www.libreoffice.org/about-us/source-code/",
+   "tags": [],
+   "years": [
+    2022,
+    2023,
+    2025
+   ],
+   "rounds": [
+    "December 2022",
+    "December 2023",
+    "December 2025"
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Implement Xara X import filter",
+     "round": "December 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Transform the existing Hyperlink dialog into a standard SfxTabDialog",
+     "round": "December 2025"
+    },
+    {
+     "year": 2025,
+     "title": "UI feature: variable units on numerical input fields",
+     "round": "December 2025"
+    },
+    {
+     "year": 2023,
+     "title": "Implement Qt/KDE Frameworks theming using native Qt widgets (Weld interface)",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Sidebar deck for quick find",
+     "round": "December 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Implement Document Themes",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Rework the LibreOffice installer",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-december-2025-internship-cohort/communities/libreoffice/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-december-2025-internship-cohort/communities/libreoffice/",
+   "chats": [
+    {
+     "platform": "other",
+     "workspace": "LibreOffice Chat",
+     "joinUrl": "https://wiki.documentfoundation.org/Website/IRC"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/libreoffice",
+   "logo": "/logos/programs/outreachy/libreoffice.png"
+  },
+  {
+   "slug": "linux-kernel",
+   "name": "Linux Kernel",
+   "tagline": "The Linux kernel is the most basic layer of the Linux operating system. It encompasses many things: hardware drivers, file systems, security, task scheduling, and much more. Most projects involve coding in C, and may require some operating system knowledge.",
+   "description": null,
+   "website": "https://www.kernel.org/",
+   "repoUrl": "https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git",
+   "tags": [],
+   "years": [
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "rounds": [
+    "May 2022",
+    "December 2022",
+    "May 2023",
+    "December 2023",
+    "June 2024",
+    "June 2025"
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Use resource cleanup features in the Linux kernel",
+     "round": "June 2025"
+    },
+    {
+     "year": 2024,
+     "title": "Improve Landlock access control",
+     "round": "June 2024"
+    },
+    {
+     "year": 2023,
+     "title": "Analyzing Linux Security Subsystems",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Convert kmap() and kmap_atomic() call sites to kmap_local_page()",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Improve Landlock tests and thread management",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Improving Linux Security via Architectural Capabilities (Morello-Linux)",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Extend the number of devices supported by DRM/CI",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Extend the support for regression reporting and tracking in Linux Kernel",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Improve i915 sysfs interface implementation",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Improve media subsystem test drivers",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Refactor and clean up the upstream Linux Kernel",
+     "round": "December 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Extend memblock simulator",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Linux kernel Networking API and selftest improvements",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Refactoring the HIGHMEM interface",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Coccinelle cleanups in the Linux Kernel",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-june-2025-internship-cohort/communities/linux-kernel/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-june-2025-internship-cohort/communities/linux-kernel/",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "llvm",
+   "name": "LLVM",
+   "tagline": "The LLVM project is a collection of modular and reusable compiler and toolchain technologies used to develop compiler front ends (ie. Clang), back ends, and a wide variety of related sub-projects such as debuggers (LLDB), linkers (LLD), standard libraries, and more.",
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2022,
+    2023,
+    2024
+   ],
+   "rounds": [
+    "May 2022",
+    "May 2023",
+    "June 2024"
+   ],
+   "projects": [
+    {
+     "year": 2024,
+     "title": "Improve Arm 64-bit performance",
+     "round": "June 2024"
+    },
+    {
+     "year": 2023,
+     "title": "Arm 64 bit performance improvements",
+     "round": "May 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Add profile guidance to Outlining.",
+     "round": "May 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/llvm/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/llvm/",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "matrix",
+   "name": "Matrix",
+   "tagline": "Matrix is an open source project developing an open standard for secure, decentralised, real-time communication. We aim to create a communications platform which is as independent, vibrant and evolving as the Web itself.",
+   "description": null,
+   "website": "https://matrix.org",
+   "repoUrl": "https://github.com/matrix-org",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "rounds": [
+    "May 2022"
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Prototype Bookmarking Messages in Element Web",
+     "round": "May 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-may-2022-internship-round/communities/matrix/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-may-2022-internship-round/communities/matrix/",
+   "chats": [
+    {
+     "platform": "matrix",
+     "workspace": "Matrix.org Matrix",
+     "joinUrl": "https://matrix.to/#/#community:matrix.org"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2022/organizations/matrixorg",
+   "githubUrl": "https://github.com/matrix-org",
+   "logo": "/logos/programs/outreachy/matrix.png"
+  },
+  {
+   "slug": "mboalab",
+   "name": "Mboalab",
+   "tagline": "MboaLab is an open and collaborative space located in Yaoundé, Cameroon. The aim of MboaLab is to catalyse sustainable local development and improve people’s living conditions through open science.",
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2022,
+    2023
+   ],
+   "rounds": [
+    "May 2022",
+    "December 2022",
+    "May 2023",
+    "December 2023"
+   ],
+   "projects": [
+    {
+     "year": 2023,
+     "title": "Create a platform to link-up medical facilities globally",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Improve-a-digital-Stethoscope-app",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Open Pay: The Open Source Payment technology for small change scarcity",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Improve-a-digital-Stethoscope-app",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Improve the platform to link-up medical facilities globally",
+     "round": "December 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Improve diagnostics of typhoid through Open Science: An Artificial Intelligence-based technique",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "improve a digital stethoscope android app",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Improve diagnostics of typhoid through Open Science: An Artificial Intelligence-based technique",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-december-2023-internship-round/communities/mboalab/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-december-2023-internship-round/communities/mboalab/",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "mdanalysis",
+   "name": "MDAnalysis",
+   "tagline": "MDAnalysis is an object-oriented Python library to analyze trajectories from molecular dynamics (MD) simulations in many popular formats. MDAnalysis allows one to read particle-based trajectories (including individual coordinate frames such as biomolecules in the PDB format) and access the atomic coordinates through NumPy arrays. This provides a flexible and relatively fast framework for complex analysis tasks.",
+   "description": null,
+   "website": "https://www.mdanalysis.org",
+   "repoUrl": "https://github.com/MDAnalysis/mdanalysis",
+   "tags": [],
+   "years": [
+    2022,
+    2024
+   ],
+   "rounds": [
+    "May 2022",
+    "June 2024"
+   ],
+   "projects": [
+    {
+     "year": 2024,
+     "title": "Develop a communications strategy for a growing MDAnalysis user and contributor base",
+     "round": "June 2024"
+    },
+    {
+     "year": 2024,
+     "title": "Enhance installation and training materials to support accessible MDAnalysis workshops",
+     "round": "June 2024"
+    },
+    {
+     "year": 2022,
+     "title": "Improve MDAnalysis by implementing type hinting",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Improve the organization and contents of teaching materials for MDAnalysis",
+     "round": "May 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/mdanalysis/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/mdanalysis/",
+   "chats": [
+    {
+     "platform": "other",
+     "workspace": "MDAnalysis Chat",
+     "joinUrl": "https://discord.com/channels/807348386012987462/"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/mdanalysis",
+   "githubUrl": "https://github.com/MDAnalysis",
+   "logo": "/logos/programs/outreachy/mdanalysis.png"
+  },
+  {
+   "slug": "metal3",
+   "name": "Metal3",
+   "tagline": null,
+   "description": null,
+   "website": "https://metal3.io",
+   "repoUrl": "https://github.com/metal3-io",
+   "tags": [],
+   "years": [
+    2023
+   ],
+   "rounds": [
+    "May 2023",
+    "December 2023"
+   ],
+   "projects": [
+    {
+     "year": 2023,
+     "title": "Improve the metal3-io website and documentation",
+     "round": "May 2023"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-december-2023-internship-round/communities/metal3/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-december-2023-internship-round/communities/metal3/",
+   "githubUrl": "https://github.com/metal3-io",
+   "chatSource": "https://github.com/metal3-io",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "Kubernetes Slack",
+     "joinUrl": "https://slack.k8s.io/"
+    }
+   ],
+   "logo": "/logos/programs/outreachy/metal3.png"
+  },
+  {
+   "slug": "modeci",
+   "name": "ModECI",
+   "tagline": "ModECI (Model Exchange and Convergence Initiative) is a collaboration that aims to develop a standardized format for exchanging computational models across tools and applications in neuroscience, machine learning and artificial intelligence.",
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2022,
+    2023,
+    2024
+   ],
+   "rounds": [
+    "May 2022",
+    "December 2022",
+    "May 2023",
+    "June 2024"
+   ],
+   "projects": [
+    {
+     "year": 2024,
+     "title": "Streamlit based interface for running/visualizing ML/AI models in MDF",
+     "round": "June 2024"
+    },
+    {
+     "year": 2023,
+     "title": "Create Jupyter notebooks demonstrating Machine Learning workflows using MDF",
+     "round": "May 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Create Jupyter notebooks demonstrating machine learning workflows using MDF",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Create Jupyter notebooks demonstrating Machine Learning workflows using MDF",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/modeci/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/modeci/",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "moja-global",
+   "name": "moja global",
+   "tagline": "Help fight climate change from your keyboard! moja global specialises in software for monitoring greenhouse gas emissions and removals from land use and landuse change.",
+   "description": null,
+   "website": "https://moja.global",
+   "repoUrl": "https://github.com/moja-global",
+   "tags": [],
+   "years": [
+    2022,
+    2023,
+    2024
+   ],
+   "rounds": [
+    "May 2022",
+    "December 2022",
+    "May 2023",
+    "December 2023",
+    "June 2024"
+   ],
+   "projects": [
+    {
+     "year": 2024,
+     "title": "Developing a FLINT Forest Monitoring tool using Land Sector datasets",
+     "round": "June 2024"
+    },
+    {
+     "year": 2024,
+     "title": "Develop pipeline for high-throughput visualisation on Google Earth Engine",
+     "round": "June 2024"
+    },
+    {
+     "year": 2024,
+     "title": "Packaging FLINT for cross-platform usage",
+     "round": "June 2024"
+    },
+    {
+     "year": 2023,
+     "title": "Automated versioning and curation of land sector datasets",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Python packaging for land sector dataset analysis",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Charting the Path to Sustainability: Integrating Land Sector Data with SDGs",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Integrating an Interactive Data Visualization Gallery into Moja Global Land Sector Datasets",
+     "round": "December 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Research data sources for carbon sequestration in forests",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "MLOps for distributed land sector modelling",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Object oriented refactoring of the FLINTcloud API",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Research data sources for carbon sequestration in forests",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/moja-global/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/moja-global/",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "moja global Slack",
+     "joinUrl": "https://join.slack.com/t/mojaglobal/shared_invite/zt-o6ta1ug0-rVLjAo460~d7JbZ~HpFFtw"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2022/organizations/moja-global",
+   "githubUrl": "https://github.com/moja-global",
+   "logo": "/logos/programs/outreachy/moja-global.png"
+  },
+  {
+   "slug": "networkx",
+   "name": "NetworkX",
+   "tagline": "NetworkX is a Python package for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks.",
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2022,
+    2023
+   ],
+   "rounds": [
+    "May 2022",
+    "December 2022",
+    "May 2023",
+    "December 2023"
+   ],
+   "projects": [
+    {
+     "year": 2023,
+     "title": "Create Pedagogical Interactive Notebooks for Algorithms Implemented in NetworkX",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Implement new parallel algorithms in nx-parallel",
+     "round": "December 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Create Pedagogical Interactive Notebooks for Algorithms Implemented in NetworkX",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Create Pedagogical Interactive Notebooks for Algorithms Implemented in NetworkX",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-december-2023-internship-round/communities/networkx/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-december-2023-internship-round/communities/networkx/",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "nixos",
+   "name": "NixOS",
+   "tagline": "The Nix community builds tools for sustainable software development and reproducible science. Volunteers across the globe collaboratively develop Nixpkgs, the world's largest and most up-to-date software distribution, and NixOS, a Linux distribution that can be configured fully declaratively.",
+   "description": null,
+   "website": "https://nixos.org/",
+   "repoUrl": "https://github.com/nixos/nixpkgs",
+   "tags": [],
+   "years": [
+    2025
+   ],
+   "rounds": [
+    "June 2025"
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Create centralized on-failure reporting for failed systemd units",
+     "round": "June 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Explore interactive visualization opportunities for Nix derivation graphs",
+     "round": "June 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Introduce PQC OpenSSH to NixOS",
+     "round": "June 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Package NGI-funded open source projects for NixOS",
+     "round": "June 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Ensure the reproducibility of packages in the Nix Packages collection",
+     "round": "June 2025"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-june-2025-internship-cohort/communities/nixos-foundation/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-june-2025-internship-cohort/communities/nixos-foundation/",
+   "chats": [
+    {
+     "platform": "matrix",
+     "workspace": "NixOS Foundation Matrix",
+     "joinUrl": "https://matrix.to/#/#community:nixos.org"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/nixos-foundation",
+   "githubUrl": "https://github.com/NixOS",
+   "logo": "/logos/programs/outreachy/nixos.png"
+  },
+  {
+   "slug": "numfocus",
+   "name": "NumFOCUS",
+   "tagline": "The mission of NumFOCUS is to promote open practices in research, data, and scientific computing by serving as a fiscal sponsor for open source projects and organizing community-driven educational programs.",
+   "description": null,
+   "website": "https://numfocus.org",
+   "repoUrl": "https://github.com/numfocus/gsoc#organizations-confirmed-under-numfocus-umbrella",
+   "tags": [],
+   "years": [
+    2023
+   ],
+   "rounds": [
+    "May 2023"
+   ],
+   "projects": [
+    {
+     "year": 2023,
+     "title": "Perform a Governance Audit of 55+ Open Source Projects",
+     "round": "May 2023"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-may-2023-internship-cohort/communities/numfocus/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-may-2023-internship-cohort/communities/numfocus/",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "NumFOCUS Discord",
+     "joinUrl": "https://discord.gg/BxFTEPFFZn"
+    },
+    {
+     "platform": "zulip",
+     "workspace": "NumFOCUS Zulip",
+     "joinUrl": "https://julialang.zulipchat.com/#narrow/stream/279055-sciml-bridged"
+    },
+    {
+     "platform": "gitter",
+     "workspace": "NumFOCUS Gitter",
+     "joinUrl": "https://gitter.im/weecology/retriever"
+    }
+   ],
+   "chatSource": "https://github.com/numfocus/gsoc#readme",
+   "githubUrl": "https://github.com/numfocus",
+   "logo": "/logos/programs/outreachy/numfocus.png"
+  },
+  {
+   "slug": "ocaml",
+   "name": "OCaml",
+   "tagline": "OCaml is a (high-level, typed, functional) programming language. The OCaml community contributes to the implementation of the language, as well as the surrounding ecosystem of tools and libraries.",
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "rounds": [
+    "May 2022",
+    "December 2022",
+    "May 2023",
+    "December 2023",
+    "June 2024",
+    "June 2025",
+    "December 2025"
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Claudius",
+     "round": "June 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Extend dune to discover system information",
+     "round": "June 2025"
+    },
+    {
+     "year": 2025,
+     "title": "An OCaml library for reading and writing TIFF files",
+     "round": "December 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Create an OxCaml backend for Raven",
+     "round": "December 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Improve YOCaml error reporting and data model",
+     "round": "December 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Build a terminal-based monitoring dashboard for deep learning",
+     "round": "December 2025"
+    },
+    {
+     "year": 2024,
+     "title": "Create an accessible diff viewer",
+     "round": "June 2024"
+    },
+    {
+     "year": 2024,
+     "title": "OCaml library API diff tool",
+     "round": "June 2024"
+    },
+    {
+     "year": 2024,
+     "title": "Run OCaml Exercises Everywhere",
+     "round": "June 2024"
+    },
+    {
+     "year": 2023,
+     "title": "Extend the network testing tool conntest with visualizations",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Improve error reporting in existing ppxlib-based PPXs",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "MIDI over Ethernet with MirageOS",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Persistent storage in MirageOS",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Develop a geometric creative coding library for OCaml",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Implement a dark mode for OCaml.org",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Implement R*-tree in OCaml",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Improve the GUI experience for OCaml users",
+     "round": "December 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Expand OCaml 5.0 Parallel Benchmark suite",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Expand OCaml's library of standard derivers",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Extend OCaml's GeoJSON library to support TopoJSON",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Improve OPAM Respository CI usability",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Implement a non-blocking, streaming codec for TopoJSON",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Improve OCaml error identification",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-december-2025-internship-cohort/communities/ocaml/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-december-2025-internship-cohort/communities/ocaml/",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "odk-x",
+   "name": "ODK-X",
+   "tagline": "ODK-X lets you build custom apps to gather, manage, and visualize your data just as well in the field as you do in the office. From cold chain management to longitudinal patient tracking to geographic data collection on mosquito releases, ODK-X helps you build your custom data management app.",
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "rounds": [
+    "May 2022",
+    "December 2022",
+    "May 2023",
+    "December 2023",
+    "June 2024",
+    "June 2025"
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Create Android Tests for ODK-X’s Android tools",
+     "round": "June 2025"
+    },
+    {
+     "year": 2024,
+     "title": "Create Android Tests for ODK-X’s Android tools",
+     "round": "June 2024"
+    },
+    {
+     "year": 2024,
+     "title": "ODK-X mobile apps UI Design Consistency",
+     "round": "June 2024"
+    },
+    {
+     "year": 2023,
+     "title": "Create a GitHub and CircleCI based continuous build system for ODK-X",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Create Android tests for Services new file interface",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "UI improvements to ODK-X Tables and Survey",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Update and Improve ODK-X Documentation for New Release",
+     "round": "December 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Create Android Tests for Services New User Interface",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Improving setup flow for sync-endpoint",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "User interface uplift for mobile apps",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Custom UI components for ODK-X mobile apps",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-june-2025-internship-cohort/communities/odk-x/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-june-2025-internship-cohort/communities/odk-x/",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "open-information-security-foundation",
+   "name": "Open Information Security Foundation",
+   "tagline": "The Open Information Security Foundation is a non-profit organization created to build community and to support open source security technologies like Suricata, the world-class IDS/IPS network monitoring engine.",
+   "description": null,
+   "website": "https://www.oisf.net",
+   "repoUrl": "https://github.com/OISF",
+   "tags": [],
+   "years": [
+    2022,
+    2023,
+    2025
+   ],
+   "rounds": [
+    "December 2022",
+    "December 2023",
+    "December 2025"
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Improve Suricata Logging and Rule Keyword Parity",
+     "round": "December 2025"
+    },
+    {
+     "year": 2023,
+     "title": "Increase Suricata's rule keyword/ log output parity.",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Suricata Hardening: Work on finding and fixing bugs in Suricata using code analyzing tools.",
+     "round": "December 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Add Frame Support to Application Layer Parsers in Suricata",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Increase Suricata Code coverage",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Suricata tests: clean up, simplify, increase suricata-verify coverage",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-december-2025-internship-cohort/communities/the-open-information-security-foundation/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-december-2025-internship-cohort/communities/the-open-information-security-foundation/",
+   "githubUrl": "https://github.com/OISF",
+   "chats": [],
+   "logo": "/logos/programs/outreachy/open-information-security-foundation.jpg"
+  },
+  {
+   "slug": "open-life-science",
+   "name": "Open Life Science",
+   "tagline": "The Open Life Science (OLS) program is for people interested in applying open principles in their work and becoming Open Science ambassadors in their communities.",
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "rounds": [
+    "December 2022"
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Improve the OLS Community website and its infrastructure",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Re-brand OLS name and materials",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-december-2022-internship-round/communities/open-life-science/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-december-2022-internship-round/communities/open-life-science/",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "open-science-community-saudi-arabia-oscsa",
+   "name": "Open Science Community Saudi Arabia (OSCSA)",
+   "tagline": "Open Science community Saudi Arabia (OSCSA) aims to provide a place where newcomers and experienced peers interact, inspire each other to embed open science practices and values in their workflows and provide feedback on policies, infrastructures and support services. Our community is part of the International Network of Open Science & Scholarship Communities (INOSC).",
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "rounds": [
+    "May 2022",
+    "December 2022"
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Localisation of OERs to introduce Open Science Practices for novice learners in Arabic",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Improve the bilinguality and accessibility of OSCSA website",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Localisation of Open Educational Resources of Open Science Practices",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-december-2022-internship-round/communities/open-science-community-saudi-arabia-oscsa/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-december-2022-internship-round/communities/open-science-community-saudi-arabia-oscsa/",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "openrefine",
+   "name": "OpenRefine",
+   "tagline": "OpenRefine is a power tool to clean messy data. We have a vibrant community of users and contributors, with many training workshops organized around the world all the time.",
+   "description": null,
+   "website": "https://openrefine.org",
+   "repoUrl": "https://github.com/OpenRefine/OpenRefine/",
+   "tags": [],
+   "years": [
+    2022,
+    2023
+   ],
+   "rounds": [
+    "May 2022",
+    "May 2023"
+   ],
+   "projects": [
+    {
+     "year": 2023,
+     "title": "Improve design workflows and communications",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Improve OpenRefine Reconciliation",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Syntax highlighting for expressions",
+     "round": "May 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Implement a SPARQL importer",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Implement user-defined clustering",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Implement server-side localization",
+     "round": "May 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-may-2023-internship-cohort/communities/openrefine/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-may-2023-internship-cohort/communities/openrefine/",
+   "chats": [
+    {
+     "platform": "gitter",
+     "workspace": "OpenRefine Gitter",
+     "joinUrl": "https://gitter.im/OpenRefine/OpenRefine"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2024/organizations/openrefine-j0",
+   "githubUrl": "https://github.com/OpenRefine",
+   "logo": "/logos/programs/outreachy/openrefine.png"
+  },
+  {
+   "slug": "openstack",
+   "name": "OpenStack",
+   "tagline": "OpenStack is an open source software for building public and private clouds. What does that mean? We're a collection of open source projects that integrate to help organizations deploy and run clouds for computing, networking, and storage (both block storage for providing volumes to VMs and object storage for storing objects such as images or music files). With OpenStack, you can control large pools of compute, storage, and networking resources throughout a data center, all managed through a dashboard that gives administrators control while empowering their users to provision resources through a web interface",
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "rounds": [
+    "May 2022",
+    "December 2022",
+    "May 2023",
+    "December 2023",
+    "June 2024",
+    "June 2025",
+    "December 2025"
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Enhance Feature Parity in Manila UI",
+     "round": "June 2025"
+    },
+    {
+     "year": 2025,
+     "title": "PKCS#12 Bundle Type Support",
+     "round": "June 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Set bare metal host's clock remotely using Redfish",
+     "round": "June 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Extend Ironic node deployment history api",
+     "round": "December 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Implement new features in the OpenStack Manila Dashboard",
+     "round": "December 2025"
+    },
+    {
+     "year": 2024,
+     "title": "Extend image service support in OpenStack Horizon",
+     "round": "June 2024"
+    },
+    {
+     "year": 2024,
+     "title": "Implement new features in the OpenStack Manila Dashboard",
+     "round": "June 2024"
+    },
+    {
+     "year": 2023,
+     "title": "Extend automated validation of API reference request/response samples",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Implementing metadata for Manila share export locations",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Implement support for dual stack load balancers in cloud-provider-openstack",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Reduce Openstack Client Gap",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Support new Manila API features in the OpenStack Dashboard",
+     "round": "December 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Add missing CLI support for some Glance API in Openstack Client",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Add mypy support in OpenStack glance",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Add possibility for network cascade deletion in Openstack Neutron",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Finish up OpenStack Client support for Manila",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Extend automated validation of API reference request/response samples",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Implement features for Manila User Interface",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-december-2025-internship-cohort/communities/openstack/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-december-2025-internship-cohort/communities/openstack/",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "oppia",
+   "name": "Oppia",
+   "tagline": "By creating tools to enable the creation/distribution of high-quality scalable online lessons, Oppia works to make high-quality education available to those who lack access to it. The Oppia codebase is written using Python and AngularJS/Angular, and is built on top of Google App Engine.",
+   "description": null,
+   "website": "https://www.oppia.org",
+   "repoUrl": "https://github.com/oppia/oppia",
+   "tags": [],
+   "years": [
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "rounds": [
+    "May 2022",
+    "December 2022",
+    "May 2023",
+    "December 2023",
+    "June 2024",
+    "June 2025"
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Create and illustrate effective and engaging online lessons on Science and Financial Literacy",
+     "round": "June 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Expanding User Reach, Engagement, and Retention",
+     "round": "June 2025"
+    },
+    {
+     "year": 2024,
+     "title": "Create and illustrate effective and engaging online lessons on Science and Financial Literacy",
+     "round": "June 2024"
+    },
+    {
+     "year": 2024,
+     "title": "Enhancing Brand Awareness, Go-To-Market Activities and User Research",
+     "round": "June 2024"
+    },
+    {
+     "year": 2023,
+     "title": "Create effective and engaging online lessons on Science",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "User Research and Go-to-Market activities to increase usage and awareness of Oppia on web and mobile",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Create effective and engaging online lessons on Science and Financial Literacy",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Digital Brand Visibility Boost, Go-to-Market Activities and User Research",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Help launch the beta Oppia Android app to GA and develop new features for the platform",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Writing Tutorials and Improving the Technical Onboarding Process",
+     "round": "December 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Go-to-market strategies and User Experience Research",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Create effective and engaging online lessons on Basic Science and/or Digital Skills.",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "User Research and Go-to-Market activities to increase usage and awareness of Oppia on web and mobile",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-june-2025-internship-cohort/communities/oppia/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-june-2025-internship-cohort/communities/oppia/",
+   "githubUrl": "https://github.com/oppia",
+   "chats": [],
+   "logo": "/logos/programs/outreachy/oppia.png"
+  },
+  {
+   "slug": "palisadoes-foundation",
+   "name": "Palisadoes Foundation",
+   "tagline": "The Palisadoes Foundation is focused on providing equitable access to life opportunities for STEM education recipients.",
+   "description": null,
+   "website": "https://www.palisadoes.org",
+   "repoUrl": "https://github.com/PalisadoesFoundation",
+   "tags": [],
+   "years": [
+    2023
+   ],
+   "rounds": [
+    "May 2023"
+   ],
+   "projects": [
+    {
+     "year": 2023,
+     "title": "Implementing new and refining old features for the Talawa Admin portal",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Improving the UX/UI on the Talawa documentation website",
+     "round": "May 2023"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-may-2023-internship-cohort/communities/palisadoes-foundation/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-may-2023-internship-cohort/communities/palisadoes-foundation/",
+   "githubUrl": "https://github.com/PalisadoesFoundation",
+   "chats": [],
+   "logo": "/logos/programs/outreachy/palisadoes-foundation.png"
+  },
+  {
+   "slug": "parsl",
+   "name": "Parsl",
+   "tagline": "Use Parsl to create parallel programs composed of Python functions and external components. Execute Parsl programs on any compute resource from laptops to supercomputers. Contribute to Parsl to improve it and its interoperability with other tools and systems.",
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2024
+   ],
+   "rounds": [
+    "June 2024"
+   ],
+   "projects": [
+    {
+     "year": 2024,
+     "title": "Increasing Access to Distributed Computing in Python: Improving Parsl’s Website and Documentation",
+     "round": "June 2024"
+    },
+    {
+     "year": 2024,
+     "title": "More Efficient Worker Selection in Parsl's High Throughput Executor",
+     "round": "June 2024"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/parsl/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/parsl/",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "perl-raku",
+   "name": "Perl & Raku",
+   "tagline": "Perl is a highly capable, feature-rich programming language with over 28 years of development, making it one of the longest standing FOSS projects. Raku is a member of the Perl family of programming languages, formerly known as Perl 6.",
+   "description": null,
+   "website": "https://www.perl.org",
+   "repoUrl": "https://github.com/Perl/perl5",
+   "tags": [],
+   "years": [
+    2022,
+    2023,
+    2024
+   ],
+   "rounds": [
+    "May 2022",
+    "May 2023",
+    "June 2024"
+   ],
+   "projects": [
+    {
+     "year": 2024,
+     "title": "Extend Open Food Facts to enable food manufacturers to open data and improve food product qualy",
+     "round": "June 2024"
+    },
+    {
+     "year": 2024,
+     "title": "Migrate the Perl Weekly Challenge site to more dynamic site using Dancer2 and MySQL",
+     "round": "June 2024"
+    },
+    {
+     "year": 2023,
+     "title": "Bring the Open Food Facts producers platform to the next level to boost food transparency",
+     "round": "May 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Improve the code quality of the Perl code of the Open Food Facts backend and website",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Improve the detection of data quality problems in Open Food Facts",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Improve the ingredients analysis in Open Food Facts, the Wikipedia of food products",
+     "round": "May 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/perl/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/perl/",
+   "githubUrl": "https://github.com/Perl",
+   "chats": [],
+   "logo": "/logos/programs/outreachy/perl-raku.png"
+  },
+  {
+   "slug": "public-lab",
+   "name": "Public Lab",
+   "tagline": "Public Lab is a community where you can learn how to investigate environmental concerns. Using inexpensive DIY techniques, we seek to change how people see the world in environmental, social, and political terms. We are an open network of community organizers, educators, technologists and researchers working to create low cost solutions for monitoring air, water and land.",
+   "description": null,
+   "website": "https://publiclab.org",
+   "repoUrl": "https://github.com/publiclab",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "rounds": [
+    "May 2022",
+    "December 2022"
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Design a new full-screen user interface for Infragram.org",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "MapKnitter.org Spam Management system",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Improve MapKnitter Lite for mapmaking with aerial photos as a lightweight web service",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-december-2022-internship-round/communities/public-lab/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-december-2022-internship-round/communities/public-lab/",
+   "chats": [
+    {
+     "platform": "gitter",
+     "workspace": "Public Lab Gitter",
+     "joinUrl": "https://gitter.im/publiclab/publiclab"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2022/organizations/public-lab",
+   "githubUrl": "https://github.com/publiclab",
+   "logo": "/logos/programs/outreachy/public-lab.png"
+  },
+  {
+   "slug": "qemu",
+   "name": "QEMU",
+   "tagline": "QEMU is a machine emulator and virtualizer that can run operating systems and programs made for one machine (e.g. an ARM board) on a different machine (e.g. your own PC).",
+   "description": null,
+   "website": "https://qemu.org/",
+   "repoUrl": "https://gitlab.com/qemu-project/qemu",
+   "tags": [],
+   "years": [
+    2022,
+    2023,
+    2024
+   ],
+   "rounds": [
+    "May 2022",
+    "December 2022",
+    "May 2023",
+    "December 2023",
+    "June 2024"
+   ],
+   "projects": [
+    {
+     "year": 2023,
+     "title": "Add support for zoned block devices to the libblkio library",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Implement native library calls for QEMU user mode emulation",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "gstreamer audio backend for vhost-user-sound",
+     "round": "December 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Add zoned device support to QEMU's virtio-blk emulation",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Implement VIRTIO_F_IN_ORDER support for virtio devices",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Extend QEMU Storage Daemon, supporting the new Linux's userspace block driver (ublk) framework",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/qemu/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/qemu/",
+   "chats": [
+    {
+     "platform": "irc",
+     "workspace": "QEMU IRC",
+     "joinUrl": "https://webchat.oftc.net/?channels=qemu-gsoc"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/qemu",
+   "logo": "/logos/programs/outreachy/qemu.png"
+  },
+  {
+   "slug": "scikit-image",
+   "name": "scikit-image",
+   "tagline": "scikit-image is a popular Python library for scientific image processing and analysis. It has been used in applications ranging from atomic force microscopy, to deciphering ancient scrolls, satellite imagery, and astronomy. We pride ourselves on high-quality, readable code, written and reviewed by an active community of volunteers.",
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2023
+   ],
+   "rounds": [
+    "May 2023"
+   ],
+   "projects": [
+    {
+     "year": 2023,
+     "title": "Enhance image warping in scikit-image with thin-plate spines",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Expand scikit-image gallery with biomedical examples (narrative documentation)",
+     "round": "May 2023"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-may-2023-internship-cohort/communities/scikit-image/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-may-2023-internship-cohort/communities/scikit-image/",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "servo",
+   "name": "Servo",
+   "tagline": "Servo aims to empower developers with a lightweight, high-performance alternative for embedding web technologies in applications.",
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2024,
+    2025
+   ],
+   "rounds": [
+    "June 2024",
+    "June 2025"
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Implement network monitor developer tool",
+     "round": "June 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Improve code linting in Servo’s CI",
+     "round": "June 2025"
+    },
+    {
+     "year": 2024,
+     "title": "Add support for language-specific `text-transform` behavior",
+     "round": "June 2024"
+    },
+    {
+     "year": 2024,
+     "title": "Fix support for the DevTools protocol in Servo",
+     "round": "June 2024"
+    },
+    {
+     "year": 2024,
+     "title": "Improve the Servo Intermittent Dashboard",
+     "round": "June 2024"
+    },
+    {
+     "year": 2024,
+     "title": "Switch Servo Layout to Fixed Point Arithmetic",
+     "round": "June 2024"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-june-2025-internship-cohort/communities/servo/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-june-2025-internship-cohort/communities/servo/",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "software-heritage",
+   "name": "Software Heritage",
+   "tagline": "The universal source code archive",
+   "description": null,
+   "website": "https://www.softwareheritage.org/",
+   "repoUrl": "https://forge.softwareheritage.org/diffusion/",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "rounds": [
+    "May 2022"
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Create embedable widgets",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Dashboard UI for the Code Scanner",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Extend the developer and user documentations of Software Heritage",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Improve and extend the archive web UI",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Mine information from archived content",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Mine information from external sources",
+     "round": "May 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-may-2022-internship-round/communities/software-heritage/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-may-2022-internship-round/communities/software-heritage/",
+   "chats": [
+    {
+     "platform": "other",
+     "workspace": "Software Heritage Chat",
+     "joinUrl": "https://wiki.softwareheritage.org/wiki/IRC"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2022/organizations/software-heritage",
+   "logo": "/logos/programs/outreachy/software-heritage.png"
+  },
+  {
+   "slug": "systemd",
+   "name": "systemd",
+   "tagline": "A System and Service Manager for Linux",
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "rounds": [
+    "May 2022",
+    "May 2023",
+    "June 2024",
+    "June 2025"
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Add Linux Services live-debugging functionality to systemd-analyze",
+     "round": "June 2025"
+    },
+    {
+     "year": 2024,
+     "title": "Add Linux Services live-debugging functionality to systemd-analyze",
+     "round": "June 2024"
+    },
+    {
+     "year": 2023,
+     "title": "Improve user experience on early system boot failures",
+     "round": "May 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Improve Suspend-Then-Hibernate functionality on Linux",
+     "round": "May 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-june-2025-internship-cohort/communities/systemd/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-june-2025-internship-cohort/communities/systemd/",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "tensorflow",
+   "name": "TensorFlow",
+   "tagline": "TensorFlow is an open-source machine learning framework for everyone. We actively build community by welcoming and mentoring a wide range of contributors of all experience levels.",
+   "description": null,
+   "website": "https://www.tensorflow.org/",
+   "repoUrl": "https://github.com/tensorflow/tensorflow",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "rounds": [
+    "December 2022"
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Add test coverage and detect dead code in TensorFlow",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-december-2022-internship-round/communities/tensorflow/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-december-2022-internship-round/communities/tensorflow/",
+   "githubUrl": "https://github.com/tensorflow",
+   "chats": [],
+   "logo": "/logos/programs/outreachy/tensorflow.png"
+  },
+  {
+   "slug": "tor-project",
+   "name": "Tor Project",
+   "tagline": "At the Tor Project, we fight for everyone to have private access to an uncensored internet, and the Tor network has become the world's strongest tool for privacy and freedom online.",
+   "description": null,
+   "website": "https://www.torproject.org/",
+   "repoUrl": "https://gitlab.torproject.org/tpo",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "rounds": [
+    "December 2022"
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Create Tool to Detect/Prevent Proxy Leaks",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Extend GetTor to distribute TorBrowser on censored networks over IM and social media",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-december-2022-internship-round/communities/tor-project/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-december-2022-internship-round/communities/tor-project/",
+   "chats": [
+    {
+     "platform": "other",
+     "workspace": "The Tor Project Chat",
+     "joinUrl": "https://support.torproject.org/get-in-touch/#irc-help"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2025/organizations/the-tor-project",
+   "logo": "/logos/programs/outreachy/tor-project.png"
+  },
+  {
+   "slug": "unicef-innovation",
+   "name": "UNICEF Innovation",
+   "tagline": "Innovation at UNICEF is about doing new things to solve problems and improve the lives of children around the world. It is about matching today’s challenges with tomorrow’s solutions.",
+   "description": null,
+   "website": "https://www.unicef.org/innovation/",
+   "repoUrl": "https://github.com/unicef",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "rounds": [
+    "May 2022"
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Improve UI/UX of UNICEF Inventory and redesign site around the Digital Public Goods Standard",
+     "round": "May 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-may-2022-internship-round/communities/unicef/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-may-2022-internship-round/communities/unicef/",
+   "githubUrl": "https://github.com/unicef",
+   "chats": [],
+   "logo": "/logos/programs/outreachy/unicef-innovation.png"
+  },
+  {
+   "slug": "unstructured-studio",
+   "name": "Unstructured Studio",
+   "tagline": "Creating learning for all",
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2022,
+    2023
+   ],
+   "rounds": [
+    "May 2022",
+    "May 2023",
+    "December 2023"
+   ],
+   "projects": [
+    {
+     "year": 2023,
+     "title": "Generate UX ideas & create wireframes & mockups to guide the development of ZubHub's new features",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Implement UX/UI for new users and grouping feature for ZubHub",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Improve the UI/UX for activity and project creation features for ZubHub",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Develop UX wireframes and mockups to guide the development of ZubHub's new features",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Improve the user experience of project & activity features",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Review and improve app-wide user experience",
+     "round": "December 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Allow creation of learning activities on ZubHub web app",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Develop a mobile app for ZubHub",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Make enhancements to user profiles",
+     "round": "May 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-december-2023-internship-round/communities/unstructured-studio/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-december-2023-internship-round/communities/unstructured-studio/",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "ushahidi",
+   "name": "Ushahidi",
+   "tagline": "Ushahidi empowers people through citizen-generated data to develop solutions that strengthen their communities in response to 4 key thematic areas: Good governance, human rights protection, humanitarian and disaster relief, and climate action.",
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2022,
+    2023,
+    2024
+   ],
+   "rounds": [
+    "May 2022",
+    "December 2023",
+    "June 2024"
+   ],
+   "projects": [
+    {
+     "year": 2024,
+     "title": "Accessibility review and accessibility improvement of the Ushahidi Platform Client",
+     "round": "June 2024"
+    },
+    {
+     "year": 2024,
+     "title": "Enabling Real-time Citizen Reporting through WhatsApp Integration for Ushahidi",
+     "round": "June 2024"
+    },
+    {
+     "year": 2023,
+     "title": "Revamping Software Testing: Internship Project",
+     "round": "December 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Adding Voice to Text integration to the Ushahidi Platform",
+     "round": "May 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/ushahidi/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/ushahidi/",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "wagtail",
+   "name": "Wagtail",
+   "tagline": "A Django content management system focused on flexibility and user experience",
+   "description": null,
+   "website": "https://wagtail.org/",
+   "repoUrl": "https://github.com/wagtail/wagtail",
+   "tags": [],
+   "years": [
+    2022,
+    2023
+   ],
+   "rounds": [
+    "December 2022",
+    "December 2023"
+   ],
+   "projects": [
+    {
+     "year": 2023,
+     "title": "Accessibility features documentation",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Adopt generic class based views across the Wagtail admin",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Wagtail.org website accessibility",
+     "round": "December 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Develop tools to help Wagtail editors create accessible content",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Improve user guide documentation for Wagtail",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Introduce Stimulus for interactive widgets within Wagtail",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-december-2023-internship-round/communities/wagtail/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-december-2023-internship-round/communities/wagtail/",
+   "githubUrl": "https://github.com/wagtail",
+   "chats": [],
+   "logo": "/logos/programs/outreachy/wagtail.png"
+  },
+  {
+   "slug": "wikimedia-foundation",
+   "name": "Wikimedia Foundation",
+   "tagline": "Wikimedia is a global movement whose mission is to bring free educational content to the world, via Wikipedia and other projects. Help improve our technical backstage!",
+   "description": null,
+   "website": "http://wikimediafoundation.org/",
+   "repoUrl": "https://gerrit.wikimedia.org/r/",
+   "tags": [],
+   "years": [
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "rounds": [
+    "May 2022",
+    "December 2022",
+    "May 2023",
+    "December 2023",
+    "June 2024",
+    "June 2025",
+    "December 2025"
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Addressing the new Lusophone Technological Wishlist proposals",
+     "round": "June 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Bulk OCR on Wikisource",
+     "round": "June 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Cat-a-lot javascript gadget development",
+     "round": "June 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Connect Scribe End Applications to Data Server",
+     "round": "June 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Create a tool to simplify creation of mediawiki banners",
+     "round": "June 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Improve performance of slow routes in Programs & Events Dashboard",
+     "round": "June 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Improve the Nearby feature of the Wikimedia Commons Android app",
+     "round": "June 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Improve the Search entry points for the Wikipedia iOS App",
+     "round": "June 2025"
+    },
+    {
+     "year": 2025,
+     "title": "minecraft-education",
+     "round": "June 2025"
+    },
+    {
+     "year": 2025,
+     "title": "VisualData's Json-schema enhancements (bringing json-schema into MediaWiki)",
+     "round": "June 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Add Wikidata-editing features to Paulina, a user-friendly interface to discover authors and works",
+     "round": "December 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Improve the Wikisource Reader App",
+     "round": "December 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Micro-task Generator for Organizers on Wikipedia",
+     "round": "December 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Programs & Events Dashboard — Upgrade Ruby-on-Rails and other dependencies",
+     "round": "December 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Rewriting PendingChangesBot from PHP to Python",
+     "round": "December 2025"
+    },
+    {
+     "year": 2025,
+     "title": "Scribe Client Mobile Application to Server Connections",
+     "round": "December 2025"
+    },
+    {
+     "year": 2024,
+     "title": "Build a data visualization tool for the evolution of Wikipedia articles maintained by WikiProjects",
+     "round": "June 2024"
+    },
+    {
+     "year": 2024,
+     "title": "Create tool for informative infographics from structured information from Wikimedia projects",
+     "round": "June 2024"
+    },
+    {
+     "year": 2023,
+     "title": "Research imbalances in translation between languages on Wikipedia",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Write a Ruby gem for analyzing Wikidata edits",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Addressing the Lusophone technological wishlist proposals",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Assist Capacity Exchange Development",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Extend WikiCurricula, an interactive dashboard to visualize curriculum data",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Improve documentation of Programs & Events Dashboard",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Improve how Wiki Education Dashboard counts references added",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Integrate Wikimedia Ecosystem within BUB2 tool",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Multilingual Wikipedia Editor Survey",
+     "round": "December 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Add support for tracking specific namespaces to Programs & Events Dashboard",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Build a Python library to work with Wikipedia’s HTML-dumps",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Create an Edit Request Wizard",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "What's in a name? Automatically identifying first and last author names for Wikicite and Wikidata",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Create a Web Application for Editing Toolhub Records",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Develop a web app for patrolling based on the new ML-based service to predict reverts",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Develop features for Wiki Loves Monuments App",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Hybrid event production for QueeringWikipedia 2023",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Rewrite Imagebulk tool to scale up",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Write a Ruby gem for analyzing Wikidata edits",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-december-2025-internship-cohort/communities/wikimedia/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-december-2025-internship-cohort/communities/wikimedia/",
+   "chats": [
+    {
+     "platform": "zulip",
+     "workspace": "Wikimedia Foundation Zulip",
+     "joinUrl": "https://wikimedia.zulipchat.com/#narrow/channel/561533-GSoC2026"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/wikimedia-foundation-nd",
+   "logo": "/logos/programs/outreachy/wikimedia-foundation.png"
+  },
+  {
+   "slug": "xarray",
+   "name": "xarray",
+   "tagline": "Xarray is an open source project and Python package that introduces labels in the form of dimensions, coordinates, and attributes on top of raw NumPy-like arrays, which allows for more intuitive, more concise, and less error-prone user experience. Xarray includes a large and growing library of domain-agnostic functions for advanced analytics and visualization with these data structures.",
+   "description": null,
+   "website": "https://xarray.dev",
+   "repoUrl": "https://github.com/pydata/xarray",
+   "tags": [],
+   "years": [
+    2023
+   ],
+   "rounds": [
+    "May 2023"
+   ],
+   "projects": [
+    {
+     "year": 2023,
+     "title": "Create diagrammatic representation of xarray-datatree.",
+     "round": "May 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Document examples of using various xarray methods",
+     "round": "May 2023"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-may-2023-internship-cohort/communities/xarray/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-may-2023-internship-cohort/communities/xarray/",
+   "githubUrl": "https://github.com/pydata",
+   "chats": [],
+   "logo": "/logos/programs/outreachy/xarray.png"
+  },
+  {
+   "slug": "yocto-project",
+   "name": "Yocto Project",
+   "tagline": "Yocto Project is an open source project whose goal is to create and provide templates, tools, and methods to make it easy to create embedded Linux distributions. The project works heavily with upstream providers and downstream participants, cooperatively manages software packages with the OpenEmbedded Project, and is developed by hundreds of people worldwide. It is mostly written in Python and C, but the most important skill to bring is the willingness to work with others.",
+   "description": null,
+   "website": "https://www.yoctoproject.org/",
+   "repoUrl": "https://github.com/yoctoproject",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "rounds": [
+    "May 2022"
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Exploratory port of Yocto Project to FreeBSD",
+     "round": "May 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-may-2022-internship-round/communities/yocto-project/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-may-2022-internship-round/communities/yocto-project/",
+   "githubUrl": "https://github.com/yoctoproject",
+   "chats": [],
+   "logo": "/logos/programs/outreachy/yocto-project.jpg"
+  },
+  {
+   "slug": "zarr",
+   "name": "Zarr",
+   "tagline": "Zarr is a format for the storage of chunked, compressed, N-dimensional arrays. Zarr is designed for use in parallel and cloud computing. There are implementations in Python, Java, C++, C, Javascript, Rust, Julia but more are welcome!",
+   "description": null,
+   "website": "https://zarr.dev",
+   "repoUrl": "https://github.com/zarr-developers",
+   "tags": [],
+   "years": [
+    2022
+   ],
+   "rounds": [
+    "December 2022"
+   ],
+   "projects": [
+    {
+     "year": 2022,
+     "title": "Create Tutorials for Zarr",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Managing Zarr Releases with Rever",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Testing the support and interoperability of Zarr Zip Stores",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-december-2022-internship-round/communities/zarr/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-december-2022-internship-round/communities/zarr/",
+   "githubUrl": "https://github.com/zarr-developers",
+   "chatSource": "https://zarr.dev",
+   "chats": [
+    {
+     "platform": "zulip",
+     "workspace": "Zarr Zulip",
+     "joinUrl": "https://ossci.zulipchat.com/"
+    }
+   ],
+   "logo": "/logos/programs/outreachy/zarr.png"
+  },
+  {
+   "slug": "zulip",
+   "name": "Zulip",
+   "tagline": "Zulip is an organized chat app for distributed teams. We value engaged, responsive mentorship, and you can expect to receive disciplined code reviews by highly experienced engineers. Since Zulip is a team chat product, your internship experience with the Zulip project will be highly interactive.",
+   "description": null,
+   "website": "https://zulip.com/",
+   "repoUrl": "https://github.com/zulip/zulip",
+   "tags": [],
+   "years": [
+    2022,
+    2023
+   ],
+   "rounds": [
+    "May 2022",
+    "December 2022",
+    "December 2023"
+   ],
+   "projects": [
+    {
+     "year": 2023,
+     "title": "Extend and improve Zulip's integrations",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Improve the Zulip server and web application",
+     "round": "December 2023"
+    },
+    {
+     "year": 2023,
+     "title": "Contribute to Zulip's redesign project",
+     "round": "December 2023"
+    },
+    {
+     "year": 2022,
+     "title": "Contribute to Zulip's redesign project",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Extend and polish Zulip's OpenAPI documentation",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Improve the Zulip mobile app",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Improve the Zulip server and web application",
+     "round": "May 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Extend and improve Zulip's integrations",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Improve the Zulip mobile app",
+     "round": "December 2022"
+    },
+    {
+     "year": 2022,
+     "title": "Improve the Zulip server and web application",
+     "round": "December 2022"
+    }
+   ],
+   "links": [
+    {
+     "label": "Outreachy community page",
+     "url": "https://www.outreachy.org/outreachy-december-2023-internship-round/communities/zulip/"
+    }
+   ],
+   "sourceUrl": "https://www.outreachy.org/outreachy-december-2023-internship-round/communities/zulip/",
+   "chats": [
+    {
+     "platform": "zulip",
+     "workspace": "Zulip Zulip",
+     "joinUrl": "https://chat.zulip.org/"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/zulip",
+   "githubUrl": "https://github.com/zulip",
+   "logo": "/logos/programs/outreachy/zulip.png"
+  }
+ ]
+}

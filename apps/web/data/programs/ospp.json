@@ -1,0 +1,1714 @@
+{
+ "program": "ospp",
+ "name": "Open Source Promotion Plan",
+ "generatedAt": "2026-10-15",
+ "years": [
+  2026
+ ],
+ "note": "Communities approved for OSPP 2026 so far (OSPP lists organizations in order of approval).",
+ "sources": [
+  {
+   "label": "OSPP 2026 organizations",
+   "url": "https://summer.ospp.ac.cn/org/orglist"
+  }
+ ],
+ "orgs": [
+  {
+   "slug": "agiros",
+   "name": "AGIROS",
+   "tagline": null,
+   "description": null,
+   "website": "https://agiros.org.cn",
+   "repoUrl": null,
+   "sourceCodeUrl": null,
+   "tags": [
+    "AI",
+    "OpenCV",
+    "Computer Vision(CV)",
+    "Deep Learning",
+    "C",
+    "C++",
+    "Python"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "chats": [],
+   "logo": "/logos/programs/ospp/agiros.png"
+  },
+  {
+   "slug": "aibrix",
+   "name": "AIBrix",
+   "tagline": null,
+   "description": null,
+   "website": "https://aibrix.readthedocs.io/latest/",
+   "repoUrl": "https://github.com/vllm-project/aibrix",
+   "sourceCodeUrl": null,
+   "tags": [
+    "AI",
+    "Kubernetes",
+    "Go",
+    "Python"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/vllm-project",
+   "chatSource": "https://github.com/vllm-project/aibrix#readme",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "AIBrix Slack",
+     "joinUrl": "https://vllm-dev.slack.com/archives/C08EQ883CSV"
+    }
+   ],
+   "logo": "/logos/programs/ospp/aibrix.png"
+  },
+  {
+   "slug": "apache-dolphinscheduler",
+   "name": "Apache DolphinScheduler",
+   "tagline": null,
+   "description": "Apache DolphinScheduler is a cloud-native, distributed, easily extensible, and visualized DAG workflow task scheduling system. On April 9, 2021, DolphinScheduler officially became a top-level project of the Apache Software Foundation. This is the first top-level project in the big data workflow field led and contributed by Chinese people to the Apache Foundation.\n\nCurrently, DolphinScheduler has been adopted in production environments by over 3,000 companies, including Alibaba, Tencent, and Huawei. It is a popular big data scheduling project in China, having amassed over 14.4k stars on GitHub. The community boasts more than 6,000 verified users and over 600 contributors from more than 400 companies, who are responsible for the iterative updates of the project code and the organization of community activities.\n\nSo far, the community has organized nearly a hundred online and offline user exchange activities and cross-community cooperation activities, covering regions around the globe such as China, the United States, Southeast Asia, and the Middle East. As a result, Apache DolphinScheduler has become a well-known open-source big data task scheduling product both at home and abroad.",
+   "website": "https://dolphinscheduler.apache.org/",
+   "repoUrl": null,
+   "sourceCodeUrl": null,
+   "tags": [
+    "Data Science",
+    "DataOps",
+    "Spark",
+    "Java"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "chats": [],
+   "logo": "/logos/programs/ospp/apache-dolphinscheduler.png"
+  },
+  {
+   "slug": "apache-dubbo-go",
+   "name": "Apache Dubbo-go",
+   "tagline": null,
+   "description": "Apache Dubbo-go is a high-performance RPC and microservice framework compatible with other Dubbo language implementations. It leverages Golang's concurrency features to provide efficient service governance, including service discovery, load balancing, and traffic management. Dubbo-go supports multiple protocols, such as Dubbo, JSONRPC, Triple(gRPC-compatible), gRPC, HTTP, HTTP2, and HTTP/3, ensuring seamless integration in heterogeneous environments.",
+   "website": "https://cn.dubbo.apache.org/zh-cn/overview/mannual/golang-sdk/",
+   "repoUrl": null,
+   "sourceCodeUrl": null,
+   "tags": [
+    "Cloud Native",
+    "Kubernetes",
+    "Prometheus",
+    "ZooKeeper",
+    "RabbitMQ",
+    "Grafana",
+    "Docker",
+    "Go"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "chats": [],
+   "logo": "/logos/programs/ospp/apache-dubbo-go.png"
+  },
+  {
+   "slug": "apache-geaflow",
+   "name": "Apache GeaFlow（孵化中）",
+   "tagline": null,
+   "description": null,
+   "website": "https://geaflow.apache.org/",
+   "repoUrl": "https://github.com/apache/geaflow",
+   "sourceCodeUrl": null,
+   "tags": [
+    "GraphQL",
+    "Graph Database",
+    "CNN",
+    "Apache",
+    "Java"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/apache",
+   "chatSource": "https://github.com/apache/geaflow#readme",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "Apache GeaFlow（孵化中） Discord",
+     "joinUrl": "https://discord.gg/apKdP3DXuH"
+    }
+   ],
+   "logo": "/logos/programs/ospp/apache-geaflow.png"
+  },
+  {
+   "slug": "apache-hugegraph",
+   "name": "Apache HugeGraph",
+   "tagline": null,
+   "description": "Apache HugeGraph is the only full-stack graph system under the Apache Foundation, covering graph databases, graph computing, and graph AI. It's got killer OLTP + OLAP capabilities, easily storing and querying tens to hundreds of billions of vertices and edges. \n\nIt supports mainstream graph query languages, relies on Rust/Java/Go/Python for different scenarios (actively rewriting components in Rust), and plugs right into various big data components, SQL, and RocksDB. Right now, it's evolving toward \"graph memory\" as an LLM Memory base. Super welcome to collaborate and build together!",
+   "website": "https://hugegraph.apache.org/ ",
+   "repoUrl": "https://github.com/apache/hugegraph",
+   "sourceCodeUrl": null,
+   "tags": [
+    "RESTful API ",
+    "AI",
+    "Linux",
+    "Database",
+    "Graph Database",
+    "Java",
+    "Python",
+    "Go"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/apache",
+   "chatSource": "https://github.com/apache/hugegraph#readme",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "Apache HugeGraph Slack",
+     "joinUrl": "https://the-asf.slack.com/archives/C059UU2FJ23"
+    }
+   ],
+   "logo": "/logos/programs/ospp/apache-hugegraph.png"
+  },
+  {
+   "slug": "apache-seata-go",
+   "name": "Apache Seata Go",
+   "tagline": null,
+   "description": null,
+   "website": "https://seata.apache.org/",
+   "repoUrl": null,
+   "sourceCodeUrl": null,
+   "tags": [
+    "RabbitMQ",
+    "ZooKeeper",
+    "Grafana",
+    "Docker",
+    "Docker Compose",
+    "Go"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "chats": [],
+   "logo": "/logos/programs/ospp/apache-seata-go.png"
+  },
+  {
+   "slug": "apache-seatunnel",
+   "name": "Apache SeaTunnel",
+   "tagline": null,
+   "description": "Apache SeaTunnel is an ultra-high-performance data integration tool and a data integration foundation built for distributed production systems. It features fault tolerance, schema evolution and multi-engine execution capabilities, covering batch processing, stream processing, CDC, multimodal data and AI data scenarios.\n\nOn June 1, 2023, SeaTunnel graduated from the Apache Incubator to become a Top-Level Project (TLP). It is also the first data integration platform originating from China within the Apache Software Foundation.\n\nAt present, SeaTunnel has gained over 9.6k GitHub Stars and more than 500 Contributors, with a community size exceeding 10,000 members. Up to now, SeaTunnel has been deployed in production environments of more than 3,000 enterprises. Companies including Bilibili, Sina, Shuidichou, Sogou, Shopee and Vipshop widely adopt it for massive data integration, data ETL, data aggregation, multi-source data processing and other scenarios.",
+   "website": "https://seatunnel.apache.org",
+   "repoUrl": "https://github.com/apache/seatunnel",
+   "sourceCodeUrl": null,
+   "tags": [
+    "DataOps",
+    "JavaFX",
+    "Data Science",
+    "Database",
+    "Java",
+    "Python"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/apache",
+   "chats": [],
+   "logo": "/logos/programs/ospp/apache-seatunnel.png"
+  },
+  {
+   "slug": "apache-shenyu",
+   "name": "Apache ShenYu",
+   "tagline": null,
+   "description": null,
+   "website": "https://shenyu.apache.org/",
+   "repoUrl": "https://github.com/apache/shenyu",
+   "sourceCodeUrl": null,
+   "tags": [
+    "Apache",
+    "Java"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/apache",
+   "chats": [],
+   "logo": "/logos/programs/ospp/apache-shenyu.png"
+  },
+  {
+   "slug": "apache-skywalking",
+   "name": "Apache SkyWalking",
+   "tagline": null,
+   "description": null,
+   "website": "https://skywalking.apache.org",
+   "repoUrl": "https://github.com/apache/skywalking",
+   "sourceCodeUrl": null,
+   "tags": [
+    "Vue.js",
+    "PostgreSQL",
+    "Hive",
+    "Kafka",
+    "Grafana",
+    "AmazonDynamoDB",
+    "Docker",
+    "Elasticsearch",
+    "Redis",
+    "RabbitMQ",
+    "Prometheus",
+    "Git"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/apache",
+   "chats": [],
+   "logo": "/logos/programs/ospp/apache-skywalking.png"
+  },
+  {
+   "slug": "areno",
+   "name": "AReno",
+   "tagline": null,
+   "description": null,
+   "website": "https://asystem-ai.io/docs/areno/",
+   "repoUrl": null,
+   "sourceCodeUrl": null,
+   "tags": [
+    "AI",
+    "LLM",
+    "Python"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "chats": [],
+   "logo": "/logos/programs/ospp/areno.png"
+  },
+  {
+   "slug": "asterinas",
+   "name": "Asterinas",
+   "tagline": null,
+   "description": "Asterinas is a next-generation, general-purpose open source operating system kernel initiated and open sourced by organizations including Zhongguancun Laboratory, Ant Group, Peking University, and Southern University of Science and Technology. It offers Linux-compatible interfaces while fundamentally resolving the long-standing memory safety vulnerabilities that have plagued Linux through architectural innovations. This makes Asterinas highly attractive for security-critical application scenarios such as confidential and privacy computing, multi-tenant public clouds, autonomous driving, and embodied intelligence.\n\n● Security: Utilizes the Rust programming language and a framework-based kernel architecture to significantly enhance the OS kernel’s memory safety.\n● Performance: Highly optimized to deliver performance on par with Linux on industry-recognized benchmarks (e.g., LMbench).\n● Generality: Supports multiple CPU architectures (such as x86-64 and riscv64) and caters to a variety of application scenarios.\n● Compatibility: Provides Linux-compatible system calls (currently over 200), allowing many Linux applications to run out-of-the-box.",
+   "website": "https://asterinas.github.io/",
+   "repoUrl": "https://github.com/asterinas/asterinas",
+   "sourceCodeUrl": null,
+   "tags": [
+    "x86",
+    "Linux",
+    "RISC-V",
+    "Rust"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/asterinas",
+   "chatSource": "https://asterinas.github.io/",
+   "chats": [
+    {
+     "platform": "zulip",
+     "workspace": "Asterinas Zulip",
+     "joinUrl": "https://asterinas.zulipchat.com/"
+    }
+   ],
+   "logo": "/logos/programs/ospp/asterinas.png"
+  },
+  {
+   "slug": "buckyball",
+   "name": "buckyball",
+   "tagline": null,
+   "description": null,
+   "website": "https://docs.buckyball.tech/",
+   "repoUrl": null,
+   "sourceCodeUrl": null,
+   "tags": [
+    "Chip Design/Verification",
+    "AI",
+    "Chisel",
+    "C++",
+    "Rust"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "chats": [],
+   "logo": "/logos/programs/ospp/buckyball.png"
+  },
+  {
+   "slug": "cloudpods",
+   "name": "Cloudpods",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.cloudpods.org",
+   "repoUrl": "https://github.com/yunionio/cloudpods",
+   "sourceCodeUrl": null,
+   "tags": [
+    "KVM",
+    "AIOps",
+    "Linux",
+    "QEMU",
+    "Go"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/yunionio",
+   "chatSource": "https://github.com/yunionio/cloudpods#readme",
+   "chats": [
+    {
+     "platform": "telegram",
+     "workspace": "Cloudpods Telegram",
+     "joinUrl": "https://t.me/cloudpods_org"
+    }
+   ],
+   "logo": "/logos/programs/ospp/cloudpods.png"
+  },
+  {
+   "slug": "db-gpt",
+   "name": "DB-GPT",
+   "tagline": null,
+   "description": null,
+   "website": "http://docs.dbgpt.cn/",
+   "repoUrl": "https://github.com/eosphoros-ai/DB-GPT",
+   "sourceCodeUrl": null,
+   "tags": [
+    "AI",
+    "Database",
+    "LLM",
+    "LLMOps",
+    "Python"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/eosphoros-ai",
+   "chatSource": "https://github.com/eosphoros-ai/DB-GPT#readme",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "DB-GPT Slack",
+     "joinUrl": "https://join.slack.com/t/slack-inu2564/shared_invite/zt-29rcnyw2b-N~ubOD9kFc7b7MDOAM1otA"
+    }
+   ],
+   "logo": "/logos/programs/ospp/db-gpt.png"
+  },
+  {
+   "slug": "deepin",
+   "name": "deepin",
+   "tagline": null,
+   "description": "Deepin Open Source Community is an open source community composed of developers, designers, members and advocates.\nWe are committed to providing a free and open communication platform and the best open source operating system for all through community development and collaboration!\nWhether you are an experienced developer, a creative designer, or an ordinary user, we welcome you to join us and contribute to the community.\n\nThe deepin open source community takes the concept of \"open,transparency, freedom,sharing and cooperation\" as the criteria for community work and communication:\n\nOpen: people of all backgrounds and experiences can join us and participate in community work\nTransparency: planning decisions and progress will be brought into the community, known to all, and contributed by all\nFreedom: freedom of obtain、use and modify\nSharing: sharing of idea\ncooperation: advocate open source cooperation mode, and jointly create excellent community achievements",
+   "website": "https://www.deepin.org/",
+   "repoUrl": null,
+   "sourceCodeUrl": null,
+   "tags": [
+    "Linux",
+    "Qt",
+    "C++",
+    "Go"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "chatSource": "https://www.deepin.org/",
+   "chats": [
+    {
+     "platform": "matrix",
+     "workspace": "deepin Matrix",
+     "joinUrl": "https://matrix.to/#/#deepin-community:matrix.org"
+    },
+    {
+     "platform": "telegram",
+     "workspace": "deepin Telegram",
+     "joinUrl": "https://t.me/+sotJGV9DtyBiNDg0"
+    }
+   ],
+   "logo": "/logos/programs/ospp/deepin.png"
+  },
+  {
+   "slug": "dora-rs-open-source-project",
+   "name": "DORA-rs Open Source Project",
+   "tagline": null,
+   "description": "1. Rust-based framework – Leveraging the memory safety and high-performance characteristics of the Rust language\n- If you look at the AutoSAR C++ specifications, they primarily achieve memory safety through programming rules.2. Middleware abstraction (publish/subscribe, remote procedure call, point-to-point channels)\n2. Middleware abstraction (publish/subscribe, remote procedure call, point-to-point channels)\n- Zenoh (and its variants such as Zenoh-pico, Zenoh-DDS, etc.) is a truly memory-safe middleware implementation in Rust, supporting device-edge-cloud deployment with multi-node and multi-network capabilities.\n- However, users can also use other communication middleware through middleware abstraction, such as DDS, ZeroMQ, etc.\n3. Control plane for distributed deployment of dataflow graphs\n- End-to-end dataflow graphs within nodes (e.g., pipeline tasks) and across nodes (graphs of graphs) can be declaratively specified using YAML specifications, leveraging cloud-native tools.\n- ADS-specific task scheduling algorithms (e.g., run-to-completion tasks, soft real-time, deadlines, and watermarks).\n4. ADS-specific task scheduling algorithms (e.g., run-to-completion tasks, soft real-time, deadlines, and watermarks)\n- Utilizing the cloud-native ecosystem for cloud integration (northbound) to achieve management, telemetry, and tooling functions\n- Lifecycle management (LCM) of dataflow components (operators, sources, sinks), especially for source-end components in vehicles and robots.",
+   "website": "https://www.dora-rs.ai",
+   "repoUrl": "https://github.com/dora-rs/dora",
+   "sourceCodeUrl": null,
+   "tags": [
+    "AI",
+    "PyTorch",
+    "OpenCV",
+    "C++",
+    "Python",
+    "Rust"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/dora-rs",
+   "chatSource": "https://github.com/dora-rs/dora#readme",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "DORA-rs Open Source Project Discord",
+     "joinUrl": "https://discord.gg/6eMGGutkfE"
+    }
+   ],
+   "logo": "/logos/programs/ospp/dora-rs-open-source-project.png"
+  },
+  {
+   "slug": "dragonfly",
+   "name": "Dragonfly",
+   "tagline": null,
+   "description": "Dragonfly has been selected and put into production use by many Internet companies since its open source in 2017, and entered CNCF in October 2018, becoming the third project in China to enter the CNCF Sandbox. In April 2020, CNCF TOC voted to accept Dragonfly as an CNCF Incubating project. In August 2025, Dragonfly became a CNCF graduated project. Dragonfly has developed the next version through production practice, which has absorbed the advantages of Dragonfly1.x and made a lot of optimizations for known problems.",
+   "website": "https://d7y.io/",
+   "repoUrl": "https://github.com/dragonflyoss/dragonfly",
+   "sourceCodeUrl": null,
+   "tags": [
+    "Docker",
+    "Kubernetes",
+    "Data Science",
+    "AI",
+    "Cloud Native",
+    "Rust",
+    "Go"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/dragonflyoss",
+   "chatSource": "https://github.com/dragonflyoss/dragonfly#readme",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "CNCF Slack",
+     "joinUrl": "https://cloud-native.slack.com/messages/dragonfly/"
+    }
+   ],
+   "logo": "/logos/programs/ospp/dragonfly.png"
+  },
+  {
+   "slug": "dubbo-admin",
+   "name": "Dubbo Admin",
+   "tagline": null,
+   "description": null,
+   "website": "https://cn.dubbo.apache.org/zh-cn/overview/mannual/control-plane/",
+   "repoUrl": "https://github.com/apache/dubbo",
+   "sourceCodeUrl": null,
+   "tags": [
+    "Kubernetes",
+    "Cloud Native",
+    "Vue.js",
+    "Go",
+    "Typescript"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/apache",
+   "chats": [],
+   "logo": "/logos/programs/ospp/dubbo-admin.png"
+  },
+  {
+   "slug": "easy-es",
+   "name": "Easy-Es",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.easy-es.cn/",
+   "repoUrl": "https://github.com/dromara/easy-es",
+   "sourceCodeUrl": null,
+   "tags": [
+    "Database",
+    "Spring Boot",
+    "Java"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/dromara",
+   "chats": [],
+   "logo": "/logos/programs/ospp/easy-es.png"
+  },
+  {
+   "slug": "erofs-file-system-community",
+   "name": "EROFS file system community",
+   "tagline": null,
+   "description": "EROFS is a modern, enhanced image filesystem for the Linux kernel that was merged into Linux 4.19. Compared to other filesystems, it offers superior runtime performance for compressed data and lower memory overhead. It is widely adopted within the Android ecosystem and by major device manufacturers. In the container ecosystem, it supports technologies such as containerd, gVisor, and Kata Containers, as well as emerging use cases including immutable OS images (e.g., AWS Bottlerocket), software package distribution (e.g., Linglong), and the distribution of AI models and training datasets (e.g., DeepSeek).",
+   "website": "https://erofs.docs.kernel.org",
+   "repoUrl": "https://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs-utils.git",
+   "sourceCodeUrl": null,
+   "tags": [
+    "Linux",
+    "Kubernetes",
+    "Docker",
+    "C++",
+    "Rust",
+    "C",
+    "Go"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "chats": [
+    {
+     "platform": "matrix",
+     "workspace": "EROFS filesystem Matrix",
+     "joinUrl": "https://matrix.to/#/#erofs:matrix.org"
+    }
+   ],
+   "chatSource": "https://erofs.docs.kernel.org",
+   "logo": "/logos/programs/ospp/erofs-file-system-community.png"
+  },
+  {
+   "slug": "eulixos",
+   "name": "EulixOS",
+   "tagline": null,
+   "description": null,
+   "website": "https://eulixos.com/",
+   "repoUrl": null,
+   "sourceCodeUrl": null,
+   "tags": [
+    "Linux",
+    "RISC-V",
+    "AI",
+    "LLM",
+    "PyTorch",
+    "Spark",
+    "QEMU",
+    "C",
+    "C++",
+    "Java",
+    "Python"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "chats": [],
+   "logo": "/logos/programs/ospp/eulixos.png"
+  },
+  {
+   "slug": "eweos",
+   "name": "eweOS",
+   "tagline": null,
+   "description": "eweOS is a lightweight, multi-arch, general-purpose Linux distro with a rolling release model, based on musl libc, LLVM, as well as modern, lightweight and experimental alternatives to traditional or bulky components, achieving simplicity and efficiency. eweOS currently supports 4 mainstream architectures: x86_64, aarch64, riscv64, and loongarch64. Boasting over 1600 packages, eweOS ensures a package availability exceeding 90% on all 4 architectures.\n\nBeing an independently maintained distro, eweOS picks software selections that diverge significantly from mainstream distributions. Unlike most distributions that rely on the GNU C Library (glibc) and the GNU Compiler Collection (gcc), eweOS exclusively utilizes musl libc and Clang to build its entire software repository. Opting for the modern Wayland protocol, it drops X11 and its burden, and embraces a more active ecosystem and feature set. Leveraging dinit as its init process, it offers service description capabilities akin to systemd but in a more lightweight manner. For its bootloader, eweOS is ditching GRUB, another component with historical burden, for the more streamlined and portable Limine.\n\neweOS encourages upstreaming downstream features and fixes to benefit the community. eweOS contributors are actively involved in projects like musl, busybox, and LLVM.",
+   "website": "https://os.ewe.moe",
+   "repoUrl": "https://github.com/eweOS",
+   "sourceCodeUrl": null,
+   "tags": [
+    "Linux",
+    "ARM",
+    "LLVM",
+    "RISC-V",
+    "x86",
+    "Shell",
+    "Perl",
+    "Lua",
+    "C"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/eweOS",
+   "chatSource": "https://os.ewe.moe",
+   "chats": [
+    {
+     "platform": "telegram",
+     "workspace": "eweOS Telegram",
+     "joinUrl": "https://t.me/eweos"
+    }
+   ],
+   "logo": "/logos/programs/ospp/eweos.png"
+  },
+  {
+   "slug": "excelize",
+   "name": "Excelize",
+   "tagline": null,
+   "description": "Excelize is a library written in pure Go providing a set of functions that allow you to write to and read from XLAM / XLSM / XLSX / XLTM / XLTX files. Supports reading and writing spreadsheet documents generated by Microsoft Excel, KingSoft WPS, Apache OpenOffice, LibreOffice, and etc., Supports complex components by high compatibility, and provided streaming API for generating or reading data from a worksheet with huge amounts of data.",
+   "website": "https://xuri.me/excelize",
+   "repoUrl": "https://github.com/xuri/excelize",
+   "sourceCodeUrl": null,
+   "tags": [
+    "Power BI",
+    "Go",
+    "XML"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/xuri",
+   "chats": [],
+   "logo": "/logos/programs/ospp/excelize.png"
+  },
+  {
+   "slug": "gevico-tech-open-community",
+   "name": "Gevico Tech Open Community",
+   "tagline": null,
+   "description": "Gevico Tech Open Community (GTOC) takes its name from the principles of “investigating things to gain knowledge, multidimensional innovation, technological inclusiveness, and community openness.” It is an open technology community focused on foundational software for RISC-V, with open-source project development at the center of its work. Through software development, technical validation, collaborative maintenance, and upstream contribution, GTOC turns RISC-V technologies into runnable, verifiable, and maintainable open-source implementations.\n\nQEMU is one of GTOC’s key technical focus areas. The community works on RISC-V device and board modeling, virtualization environments, testing and validation, and upstream collaboration. It also maintains a QEMU fork, qemu-board, the QEMU Training Camp, technical tutorials, and an open-source book, creating a practical path from learning and hands-on engineering to upstream contribution.\n\nBuilding on its work in RISC-V and system software, GTOC’s projects have expanded into emulation, artificial intelligence, operating systems, compilers, and embedded systems. Machina explores full-system emulation for RISC-V and LoongArch64 in Rust. cosim-gpu connects QEMU with gem5 to provide a co-simulation environment for AMD MI300X GPUs. RT-Claw combines large language models, tool use, and embedded systems, bringing AI assistants to FreeRTOS, RT-Thread, Zephyr, and Linux. AntOS, MCS51-ELL, and MiniDSO-Pro contribute practical work in real-time operating systems, hardware abstraction, and open-source hardware.\n\nGTOC connects developers, universities, and industry partners through real open-source projects, working together to advance foundational software for RISC-V and related open technologies.",
+   "website": "https://github.com/gevico",
+   "repoUrl": "https://github.com/gevico",
+   "sourceCodeUrl": null,
+   "tags": [
+    "KVM",
+    "Linux",
+    "QEMU",
+    "RISC-V",
+    "RTOS",
+    "Chip Design/Verification",
+    "C",
+    "Rust",
+    "Python"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/gevico",
+   "chatSource": "https://github.com/gevico",
+   "chats": [
+    {
+     "platform": "telegram",
+     "workspace": "Gevico Tech Open Community Telegram",
+     "joinUrl": "https://t.me/gevico_channel"
+    }
+   ],
+   "logo": "/logos/programs/ospp/gevico-tech-open-community.png"
+  },
+  {
+   "slug": "godothub",
+   "name": "GodotHub",
+   "tagline": null,
+   "description": null,
+   "website": "https://godothub.com",
+   "repoUrl": "https://github.com/godot-hub",
+   "sourceCodeUrl": null,
+   "tags": [
+    "UI",
+    ".NET",
+    "GPU",
+    "Programming Language",
+    "C++",
+    "C#"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/godot-hub",
+   "chats": [],
+   "logo": "/logos/programs/ospp/godothub.png"
+  },
+  {
+   "slug": "greptimedb",
+   "name": "GreptimeDB",
+   "tagline": null,
+   "description": "GreptimeDB is an open-source, cloud-native observability database for metrics, logs, and traces. It uses a unified columnar storage engine and data model, with object storage as the primary storage layer, and is built for high-cardinality data, long retention, and large-scale ingestion and query workloads. The project is written in Rust, and its core code is licensed under Apache 2.0.\n\nKey features\n\n1. Unified observability data model\n\nGreptimeDB manages metrics, logs, and traces in a single table model. Different types of data share tags, timestamps, and fields, and can be correlated and analyzed together in SQL, which reduces the data movement and operational cost of running separate storage systems.\n\n2. Multi-protocol ingestion and query\n\nFor ingestion, GreptimeDB supports OpenTelemetry OTLP, Prometheus Remote Write, Loki Push, Elasticsearch Bulk, InfluxDB Line Protocol, and gRPC. For queries, it supports SQL, PromQL, and Jaeger-compatible APIs, as well as the MySQL and PostgreSQL wire protocols.\n\n3. Cloud-native distributed architecture\n\nGreptimeDB runs in standalone or distributed mode. The distributed mode separates compute from storage and consists of Frontend, Datanode, Metasrv, and Flownode components, each of which scales independently. Data can be stored on S3, GCS, Azure Blob, or any S3-compatible object storage, with in-memory and local-disk caches to speed up access. Deployments range from edge devices to the cloud.\n\n4. Data processing and indexing\n\nGreptimeDB has built-in retention policies, downsampling, and continuous aggregation. Its Flow engine computes over incoming data in real time and materializes the results. It also provides inverted indexes for tag filtering, skipping indexes for scan pruning, and full-text indexes for log search.\n\n5. Ecosystem\n\nGreptimeDB ships with a Kubernetes Operator, Helm charts, a Grafana data source, and documentation, plus client libraries for Go, Java, Rust, C++, TypeScript, and .NET. The project has shipped stable v1.x releases and keeps a regular release cadence.",
+   "website": "https://greptime.com/",
+   "repoUrl": "https://github.com/GreptimeTeam/greptimedb",
+   "sourceCodeUrl": null,
+   "tags": [
+    "Database",
+    "Kafka",
+    "Kubernetes",
+    "Prometheus",
+    "Grafana",
+    "Cloud Native",
+    "AWS IoT",
+    "Rust"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/GreptimeTeam",
+   "chats": [],
+   "logo": "/logos/programs/ospp/greptimedb.png"
+  },
+  {
+   "slug": "hust-openatom-open-source-club",
+   "name": "HUST OpenAtom Open Source Club",
+   "tagline": null,
+   "description": "The OpenAtom Open Source Club at HUST (Huazhong University of Science and Technology) is a vibrant community dedicated to advancing open source culture and contributing high-quality open source software. We firmly believe in the significance of open source philosophy and are convinced that shared open source aspirations will empower us to become stronger and more influential. To this end, we actively invest resources in contributing to open source operating system communities, guiding faculty and students to engage in open source initiatives and make their own contributions.\n\nOur club upholds the core principles of open source: openness, sharing, collaboration, and contribution. Guided by this ethos, we promote open source endeavors both within and beyond the university. By continuously enhancing members' technical skills, we engage in code development, testing, bug fixing, documentation writing, and other efforts to contribute to the community. Our focus spans mainstream Linux kernels, domestic Linux distributions (e.g., OpenEuler, OpenAnolis, OpenKylin, Deepin), and IoT operating systems (e.g., LiteOS, RT-Thread, AliOS Things, TencentOS Tiny), as we persistently expand our scope of contributions to amplify our impact and value.\n\nComposed of like-minded faculty and students from diverse academic backgrounds, our club unites individuals passionate about open source culture. We foster a culture of mutual learning and collaboration, encouraging all members to share knowledge and experiences to ensure the club's sustainable growth. Within this community, members support one another, refine their technical expertise, and collectively amplify their contributions to open source ecosystems.\n\nWe regularly organize technical workshops and roundtable discussions to share research outcomes, troubleshoot challenges, and strengthen mutual understanding and trust. We warmly welcome all students interested in open source culture and committed to advancing its cause. Here, you will gain exposure to cutting-edge open source technologies, connect with passionate peers, and forge your unique path in the open source world.",
+   "website": "https://hust.openatom.club/",
+   "repoUrl": null,
+   "sourceCodeUrl": null,
+   "tags": [
+    "Linux",
+    "Yarn",
+    "C",
+    "Rust",
+    "Python",
+    "Go"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "chats": [],
+   "logo": "/logos/programs/ospp/hust-openatom-open-source-club.png"
+  },
+  {
+   "slug": "iflytek-opensource",
+   "name": "iFLYTEK OPENSOURCE",
+   "tagline": null,
+   "description": "iFLYTEK Open Source is an open innovation ecosystem for the AI Agent era. We are committed to lowering the barrier for developers and enterprises to leverage Large Language Models (LLMs) and Agentic technologies by offering a full-stack open-source suite—ranging from core AI infrastructure and desktop/cloud tools to business automation engines.\n\nKey Open-Source Projects\niflytek / astron-agent: An enterprise-grade, commercial-friendly agentic workflow platform built for orchestrating next-generation SuperAgents with multi-agent orchestration, MCP support, and low-code interfaces.\n\niflytek / astron-rpa: An agent-ready RPA suite with out-of-the-box automation capabilities, designed for both personal efficiency and enterprise-grade data security.\n\niflytek / skillhub: A self-hosted, open-source AI agent skill registry with built-in RBAC and audit logs for governing, versioning, and deploying agent skills safely.\n\niflytek / iFly-Skills: Official collection of iFLYTEK skills covering speech processing, OCR, translation, proofreading, and multimodal AI capabilities.\n\niflytek / memflywheel: An agent-native long-term memory engine that learns after every run, file-native, and fully auditable.",
+   "website": "https://opensource.iflytek.com/",
+   "repoUrl": null,
+   "sourceCodeUrl": null,
+   "tags": [
+    "AI",
+    "LLM",
+    "Java",
+    "Go"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "chatSource": "https://opensource.iflytek.com/",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "iFLYTEK OPENSOURCE Discord",
+     "joinUrl": "https://discord.gg/UgnuzaJKwc"
+    }
+   ],
+   "logo": "/logos/programs/ospp/iflytek-opensource.png"
+  },
+  {
+   "slug": "jeandle",
+   "name": "Jeandle",
+   "tagline": null,
+   "description": "Jeandle is a Just-in-Time compiler for Java. It is built on OpenJDK and leverages the LLVM compiler infrastructure to generate machine code, aiming to provide powerful compilation optimizations and deliver high-performance code.",
+   "website": "https://github.com/jeandle",
+   "repoUrl": "https://github.com/jeandle",
+   "sourceCodeUrl": null,
+   "tags": [
+    "Compiler",
+    "LLVM",
+    "C++",
+    "Java"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/jeandle",
+   "chatSource": "https://github.com/jeandle",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "Jeandle Slack",
+     "joinUrl": "https://join.slack.com/t/jeandle/shared_invite/zt-38frttmvo-H~vDGc04NmPnxAZm~ojqow"
+    }
+   ],
+   "logo": "/logos/programs/ospp/jeandle.png"
+  },
+  {
+   "slug": "kaiwu-pytorch-plugin",
+   "name": "Kaiwu-PyTorch-Plugin",
+   "tagline": null,
+   "description": null,
+   "website": "https://github.com/qboson/kaiwu-pytorch-plugin",
+   "repoUrl": "https://github.com/qboson/kaiwu-pytorch-plugin",
+   "sourceCodeUrl": null,
+   "tags": [
+    "AI",
+    "Machine Learning",
+    "Natural Language Processing (NLP)",
+    "PyTorch",
+    "Deep Learning",
+    "Python"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/qboson",
+   "chats": [],
+   "logo": "/logos/programs/ospp/kaiwu-pytorch-plugin.png"
+  },
+  {
+   "slug": "kata-containers",
+   "name": "Kata Containers",
+   "tagline": null,
+   "description": "Since Docker was introduced in 2013, container technology immediately fascinated developers worldwide and gradually became the mainstream way for modern application development, building, deployment, and operation. Containers encapsulate applications in a standard format, allowing applications to switch quickly and securely from one computing environment to another, which is crucial for developers who want to rapidly build, test, and deploy software. However, traditional container solutions represented by runc are based on shared kernel technology and use isolation and control solutions such as cgroups and namespaces provided by Linux. If malicious programs in a container exploit system vulnerabilities to escape from the container, they pose a serious threat to the host system. Especially in public cloud environments, this potential threat has become a major obstacle to the popularization and implementation of container technology.\n\nBy nesting different containers into different virtual machines through adding a layer of relatively secure and mature isolation technology can greatly enhance system security and reduce the risk of system compromise. Based on this idea, open-source technologies have emerged accordingly with two representative projects being Clear Containers from Intel Open Source Technology Center and runV from Hyper.sh.\n\nIn 2017, these two open-source projects merged to create the Kata Containers project with the goal of combining the security advantages of virtual machines with the speediness and manageability of containers to provide users with standardized, secure high-performance container solutions. Different Pods (containers) created by Kata Containers run within separate virtual machines (kernels), offering better isolation and security than traditional containers while inheriting benefits like rapid startup time and standardization.",
+   "website": "https://katacontainers.io/",
+   "repoUrl": "https://github.com/kata-containers/kata-containers",
+   "sourceCodeUrl": null,
+   "tags": [
+    "Linux",
+    "KVM",
+    "Kubernetes",
+    "Rust",
+    "Go"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/kata-containers",
+   "chatSource": "https://katacontainers.io/",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "Kata Containers Slack",
+     "joinUrl": "https://join.slack.com/t/katacontainers/shared_invite/zt-16w1u6usn-sK871qbMxVN8KsCP5Gr56A"
+    }
+   ],
+   "logo": "/logos/programs/ospp/kata-containers.png"
+  },
+  {
+   "slug": "kubeedge",
+   "name": "KubeEdge",
+   "tagline": null,
+   "description": "KubeEdge is the industry's first cloud-native edge intelligent computing framework, and the only graduated-level cloud-native edge computing open source project under CNCF (Cloud Native Computing Foundation). The project was open sourced in November 2018, became the first cloud-native edge project accepted into the CNCF Sandbox in 2019, and officially graduated in October 2024.\n\nBuilt upon Kubernetes, KubeEdge extends native container orchestration, device management, and AI capabilities to the edge, enabling cloud-edge synergy, lightweight computing, massive edge device management, and edge autonomy — with AI model training and inference performed directly at the edge — fully bridging cloud, edge, and device collaboration. It is widely adopted in finance, logistics, smart CDN, IoV, industrial IoT, aerospace, and beyond, with landmark deployments including the industry's largest cloud-native edge-cloud collaborative highway project (managing 100,000 edge nodes and 500,000 edge applications), the industry's first cloud-native satellite-ground collaborative satellite, the industry's first cloud-native vehicle-cloud collaborative automobile, and the industry's first cloud-native oilfield project. Production users include China Unicom, HUAWEI CLOUD, DaoCloud, KubeSphere, China Mobile Online, Raisecom, and many others.\n\nThe community operates 10+ SIGs including Scalability, Node, Device-IoT, AI, Dashboard, and Example, and has incubated industry-leading projects such as Sedna — the industry's first distributed collaborative AI framework featuring an edge-cloud collaborative lifelong learning paradigm — and Ianvs, the industry's first distributed synergy AI benchmarking platform, spanning the full technology landscape from infrastructure to application scenarios and driving cloud-native edge intelligence across industries.",
+   "website": "https://kubeedge.io",
+   "repoUrl": "https://github.com/kubeedge/kubeedge",
+   "sourceCodeUrl": null,
+   "tags": [
+    "Docker",
+    "Kubernetes",
+    "AI",
+    "RISC-V",
+    "Go"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/kubeedge",
+   "chats": [],
+   "logo": "/logos/programs/ospp/kubeedge.png"
+  },
+  {
+   "slug": "kwdb",
+   "name": "KWDB",
+   "tagline": null,
+   "description": null,
+   "website": "https://kwdb.tech",
+   "repoUrl": "https://github.com/KWDB/kwdb",
+   "sourceCodeUrl": null,
+   "tags": [
+    "Database",
+    "Kafka",
+    "MySQL",
+    "Prometheus",
+    "Ubuntu",
+    "x86",
+    "MQTT",
+    "AI",
+    "C++",
+    "Go"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/KWDB",
+   "chats": [],
+   "logo": "/logos/programs/ospp/kwdb.png"
+  },
+  {
+   "slug": "libra",
+   "name": "Libra",
+   "tagline": null,
+   "description": null,
+   "website": "https://libra.tools",
+   "repoUrl": "https://github.com/libra-tools/libra",
+   "sourceCodeUrl": null,
+   "tags": [
+    "AI",
+    "Git",
+    "AIOps",
+    "Rust"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/libra-tools",
+   "chatSource": "https://github.com/libra-tools/libra#readme",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "Libra Discord",
+     "joinUrl": "https://discord.gg/MTbb5rDYsC"
+    }
+   ],
+   "logo": "/logos/programs/ospp/libra.png"
+  },
+  {
+   "slug": "loongsuite",
+   "name": "LoongSuite",
+   "tagline": null,
+   "description": "### 1. About the Organization\nLoongSuite is Alibaba's open-source unified observability data collection suite, dedicated to providing high-performance, end-to-end, full-stack observability data collection for modern cloud-native environments and the AI era. The suite covers the complete collection landscape — from host nodes and container clusters, to application processes, and further to AI coding agents. It consists of multiple sub-projects, including LoongCollector (a universal node-level collector), LoongSuite Pilot (a telemetry collector for AI coding agents), and process-level agents for Java, Go, Python, JavaScript, and other languages. All projects are open-sourced under the Apache 2.0 License. The community hosts monthly online sharing meetings and stays closely connected with developers through GitHub Discussions, DingTalk groups, WeChat groups, and Bilibili.\nThe two core repositories participating in OSPP 2026 are:\n- **LoongCollector** (https://github.com/alibaba/loongcollector): a fast and lightweight observability data collector;\n- **LoongSuite Pilot** (https://github.com/alibaba/loongsuite-pilot): a local telemetry collector for AI coding agents running on developer machines.\n### 2. LoongCollector: High-Performance Observability Data Collector\n#### 2.1 Positioning and Background\nLoongCollector is a high-performance, lightweight observability data collector designed for modern cloud-native environments and serves as the core component of the LoongSuite family. Born from Alibaba's 15-year journey of handling exponential traffic growth (evolved from the well-known open-source project iLogtail), it powers tens of millions of active deployments. Compared with mainstream open-source alternatives, LoongCollector delivers more than 10x higher throughput while reducing resource usage by roughly 80%.\n#### 2.2 Core Capabilities\n**All-in-One Collection**: A single unified agent collects all five types of observability data — logs, metrics, traces, events, and profiles. It provides native Kubernetes support and eBPF-powered network monitoring and security event collection, eliminating the resource waste and operational complexity of deploying multiple collectors on the same node.\n**Pluggable Architecture**: With 100+ built-in plugins and multi-language plugin development support (C++ and Go), LoongCollector covers a rich set of input, processor, and flusher scenarios. A powerful built-in SPL engine enables flexible data processing and transformation.\n**Advanced Management**: It supports remote configuration management via the SLS console, SDK, and Kubernetes Operator, along with comprehensive self-monitoring, flow control, resource control, alarms, and statistics collection.\n#### 2.3 Performance Benchmarks\nIn single-line log collection scenarios, LoongCollector reaches a maximum throughput of 546 MB/s on a single processing thread, while FluentBit, Vector, and Filebeat achieve only 36 MB/s, 38 MB/s, and 9 MB/s respectively. It also leads by several to dozens of times in multi-line (238 MB/s) and regex-parsing (68 MB/s) scenarios. Under a 10 MB/s processing load, its footprint is far lower than competitors — only 3.40% CPU and about 29 MB RAM in the simple single-line scenario, versus 12.29% CPU for FluentBit and 35.80% CPU for Vector. While competitors hit CPU saturation at around 40 MB/s, LoongCollector maintains linear scaling with predictable performance growth.\n#### 2.4 Architecture Highlights\n- **Memory Arena with Zero-Copy Design**: A shared memory pool (SourceBuffer) stores all string data only once per event group, with string_view references pointing to the original data segments instead of copying;\n- **Lock-Free Event Pool**: Thread-aware allocation strategies eliminate lock contention — same-thread pools enable direct reuse, while double-buffer pools handle cross-thread scenarios;\n- **Zero-Copy Serialization**: Bypasses intermediate Protobuf objects and serializes directly into the network output format;\n- **Multi-Tenant Pipeline Isolation**: High-low watermark feedback queues prevent interference between pipelines; each pipeline has independent resource allocation with automatic back-pressure control, ensuring that one pipeline's failure never affects others;\n- **Fair Resource Allocation**: Priority-aware round-robin scheduling ensures fairness while respecting business priorities — higher-priority pipelines are always processed first, with fair distribution within the same priority level;\n- **Self-Healing Network Resilience**: Adaptive concurrency limiting per destination based on the AIMD (Additive Increase, Multiplicative Decrease) algorithm, with fast failure detection and gradual recovery to prevent network jitter, providing a zero-data-loss guarantee with intelligent back-pressure control.\n#### 2.5 Production Validation\nLoongCollector has been battle-tested in some of the world's most demanding production environments: it powers the entire Alibaba ecosystem (including the Double 11 shopping festival), serves tens of thousands of Alibaba Cloud enterprise customers, and handles financial transaction observability at massive scale for Ant Group. It collects hundreds of petabytes of observability data daily across tens of millions of active deployments.\n### 3. LoongSuite Pilot: Telemetry Collector for AI Coding Agents\n#### 3.1 Background and Positioning\nWith the rapid adoption of AI-assisted programming, development teams often use multiple AI coding agents at the same time (such as Claude Code, Codex, and Cursor), yet each agent records its activity in a different local format with different hook mechanisms and log structures. This makes it hard for teams to answer basic questions such as \"which agents are being used, what model calls and tool calls happened, and how many tokens were consumed.\" LoongSuite Pilot is a local telemetry collector for AI coding agents that runs on developer machines. It provides a unified local collection solution: it automatically discovers supported agents installed on the machine, deploys the required hooks or plugins, normalizes each agent's activity data into a shared GenAI event schema, and exports the data to backends suitable for analysis, audit, and observability.\n#### 3.2 Core Capabilities\n- **Agent Discovery**: Automatically detects supported agents through local paths and commands;\n- **Collection Deployment**: Automatically installs hooks or plugins and reads local logs, sessions, or data files;\n- **Unified Event Schema**: Normalizes agent-native events into a shared GenAI event model, covering model calls, sessions, turns, tool calls, and token usage;\n- **Multi-Destination Output**: Supports local JSONL files (enabled by default for backup and easy inspection), Alibaba Cloud Log Service SLS (supporting both WebTracking and AK modes), batched POST to custom HTTP endpoints, and OTLP traces (exporting GenAI activity as OpenTelemetry traces);\n- **Privacy Controls**: Supports per-agent content capture policies and masks sensitive prompts, tool arguments, and secrets before export;\n- **Local Operations**: Provides service commands for status, start/stop, restart, and rollback, plus an optional local dashboard showing multi-agent collection status, token usage, and reporting health at a glance. On macOS, a menu bar app displays live token, session, request, and tool-call counts with per-agent and per-provider breakdowns.\n#### 3.3 Broad Agent Support and Extensibility\nPilot currently supports more than a dozen mainstream AI coding tools, including Claude Code, Codex, Cursor, Kiro CLI, OpenCode, the Qoder family (Qoder, Qoder CLI, Qoder Work, Qoder for JetBrains, etc.), Qwen Code CLI, and Wukong, with integration methods covering hooks, plugin injection, session polling, and CLI API polling. Agent definitions live declaratively in the `agents.d/` directory, so new agents can be added without changing the deployment framework. The community provides a complete Agent Onboarding developer guide, making the project highly extensible and friendly to new contributors.\n#### 3.4 Technical Features\nPilot is built with Node.js/TypeScript, supports Linux, macOS, and Windows, and offers one-command installation scripts. It also provides an optional \"upstream trace linking\" capability: by passing the `traceparent` through a correlation file or an environment variable, the collected agent spans can be reparented under an upstream trace, enabling end-to-end correlation between AI coding activity and business call chains. This feature is fully fail-open and never affects normal collection or reporting.\n### 4. Open-Source Community and Ecosystem\nThe LoongSuite community is active and well organized. Beyond the two repositories above, the ecosystem also includes the LoongSuite Java Agent, LoongSuite Go Agent (compile-time instrumentation), LoongSuite Python Agent, and LoongSuite JS (OpenTelemetry instrumentation plugins for JS-based AI coding agents), each with its own SIG (Special Interest Group). The community collaborates through GitHub Issues/Discussions, DingTalk groups, and WeChat groups, hosts monthly online sharing meetings with recordings published on Bilibili, maintains a Zhihu column, and provides a documentation site (observability.cn) with a complete user manual, configuration references, and developer guides.\n### 5. Join Us\nWhether you are interested in high-performance C++/Go systems programming, eBPF kernel technology, cloud-native and Kubernetes, and the OpenTelemetry observability standard, or you want to explore GenAI observability and TypeScript engineering in the cutting-edge field of AI coding agents, LoongSuite offers real production-grade scenarios and experienced community mentors. We warmly welcome students to join the LoongSuite community through OSPP 2026 and build the observability infrastructure for the AI era together with us!",
+   "website": "https://cnops.com.cn/projects/p0ddwzs2lutt63pe6e390hs4",
+   "repoUrl": null,
+   "sourceCodeUrl": null,
+   "tags": [
+    "ELK Stack",
+    "Cloud Native",
+    "Docker",
+    "Elasticsearch",
+    "Kubernetes",
+    "Logstash",
+    "Prometheus",
+    "Linux",
+    "AIOps",
+    "LLMOps",
+    "AI",
+    "C++"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "chats": [],
+   "logo": "/logos/programs/ospp/loongsuite.png"
+  },
+  {
+   "slug": "moonbit-community",
+   "name": "MoonBit Community",
+   "tagline": null,
+   "description": "As the cornerstone of all upper-layer software applications, basic software supports the operation of computer system software and the network environment. Computer performance has grown rapidly over the past few decades, but software experience has not improved accordingly, and the potential for optimizing software performance is still huge. As a latecomer in the global basic software industry, how China should seize opportunities and ride on the momentum is a problem that the industry continues to work hard to solve.\n\nDrawing on the core development team’s experience in the development of OCaml, BuckleScript, ReasonML, ReScript, Flow and other programming languages ​​and tools over the past decade, the IDEA Research Institute’s Basic Software Center independently developed a set of new software core development tools - Moonbit (Yuetu) development platform covers general programming language design, compilers, build systems, IDEs, deployment tools, etc. It achieves a high degree of vertical integration in language design, compilers and build systems to provide users with a better development experience. and performance, and strive to create a world-class basic software ecosystem in the future.",
+   "website": "https://www.moonbitlang.cn/",
+   "repoUrl": "https://github.com/moonbitlang",
+   "sourceCodeUrl": null,
+   "tags": [
+    "Programming Language",
+    "MoonBit"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/moonbitlang",
+   "chats": [],
+   "logo": "/logos/programs/ospp/moonbit-community.png"
+  },
+  {
+   "slug": "mooncake",
+   "name": "Mooncake",
+   "tagline": null,
+   "description": null,
+   "website": "https://kvcache-ai.github.io/Mooncake/",
+   "repoUrl": "https://github.com/kvcache-ai/Mooncake",
+   "sourceCodeUrl": null,
+   "tags": [
+    "PyTorch",
+    "LLM",
+    "GPU",
+    "AI",
+    "C++",
+    "Python",
+    "Rust"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/kvcache-ai",
+   "chatSource": "https://github.com/kvcache-ai/Mooncake#readme",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "Mooncake Slack",
+     "joinUrl": "https://join.slack.com/t/mooncake-project/shared_invite/zt-3qx4x35ea-zSSTqTHItHJs9SCoXLOSPA"
+    }
+   ],
+   "logo": "/logos/programs/ospp/mooncake.png"
+  },
+  {
+   "slug": "nacos",
+   "name": "Nacos",
+   "tagline": null,
+   "description": "Nacos is a dynamic service discovery, configuration management, and AI agent management platform that makes it easy to build AI Agent applications \nOfficial Website: nacos.io\nGithub Website: https://github.com/alibaba/nacos\n\nSince its incubation and open-sourcing in 2018, it has garnered 33K stars and 13.3K forks, and is now widely adopted by software companies with microservices architecture as their service registry and discovery center. Since Nacos 3.x, Nacos support Agentic resource discovery and management, include SKILL, Agent, MCP and so on.",
+   "website": "https://nacos.io",
+   "repoUrl": "https://github.com/alibaba/nacos",
+   "sourceCodeUrl": null,
+   "tags": [
+    "Spring Cloud",
+    "Cloud Native",
+    "Java",
+    "Go"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/alibaba",
+   "chatSource": "https://github.com/alibaba/nacos#readme",
+   "chats": [
+    {
+     "platform": "gitter",
+     "workspace": "Nacos Gitter",
+     "joinUrl": "https://gitter.im/alibaba/nacos?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge"
+    }
+   ],
+   "logo": "/logos/programs/ospp/nacos.png"
+  },
+  {
+   "slug": "nydus",
+   "name": "Nydus 镜像加速",
+   "tagline": null,
+   "description": null,
+   "website": "https://nydus.dev/",
+   "repoUrl": "https://github.com/dragonflyoss/nydus",
+   "sourceCodeUrl": null,
+   "tags": [
+    "AI",
+    "Docker",
+    "Kubernetes",
+    "ext4",
+    "Linux",
+    "Rust",
+    "Go"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/dragonflyoss",
+   "chatSource": "https://github.com/dragonflyoss/nydus#readme",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "Nydus 镜像加速 Slack",
+     "joinUrl": "https://join.slack.com/t/nydusimageservice/shared_invite/zt-pz4qvl4y-WIh4itPNILGhPS8JqdFm_w"
+    }
+   ],
+   "logo": "/logos/programs/ospp/nydus.png"
+  },
+  {
+   "slug": "openanolis",
+   "name": "OpenAnolis",
+   "tagline": null,
+   "description": "Anolis OS, powered by the ANCK kernel, has been battle-tested through multiple Singles' Day (11.11) shopping festivals. It delivers a 40% overall performance improvement for typical cloud workloads, reduces failure rates by 50%, maintains full compatibility with the Linux ecosystem, supports one-click migration, and provides a complete suite of China's national cryptographic standards (SM series). The latest release, Anolis OS 23, adds comprehensive support for intelligent computing with built-in RPM-packaged AI components, mainstream AI frameworks including TensorFlow 2 and PyTorch, and one-click installation of NVIDIA GPU drivers and CUDA libraries. The OpenAnolis community is building an AI container image ecosystem on top of Anolis OS 23, offering mainstream AI training and inference images along with ready-to-use images featuring ModelScope and Hugging Face large model workflows, steadily expanding its AI support roadmap.\nDownload and try it here：https://openanolis.cn/download",
+   "website": "https://openanolis.cn",
+   "repoUrl": null,
+   "sourceCodeUrl": null,
+   "tags": [
+    "Linux",
+    "RISC-V",
+    "x86",
+    "Programming Language",
+    "C",
+    "C++",
+    "Java",
+    "Python"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "chats": [],
+   "logo": "/logos/programs/ospp/openanolis.png"
+  },
+  {
+   "slug": "opencodereview",
+   "name": "OpenCodeReview",
+   "tagline": null,
+   "description": "OpenCodeReview is an open source community dedicated to AI-powered code review. The flagship project, Open Code Review (OCR), is an intelligent code review CLI tool powered by large language models.\n\n**Background and Vision**\n\nOpen Code Review originated as Alibaba Group's internal official AI code review assistant. Over the past two years, it has operated continuously in large-scale production environments within the group, serving tens of thousands of developers and identifying millions of code defects. After thorough validation at massive scale, we incubated it into an open source project for the global developer community. Our vision is to provide developers worldwide with a high-precision, high-efficiency, and customizable AI code review infrastructure.\n\n**Core Design: Deterministic Engineering × Agent Hybrid Architecture**\n\nUnlike general-purpose AI coding agents, Open Code Review's core philosophy is to combine deterministic engineering with an agent, each handling what it does best.\n\nGeneral-purpose agents (e.g., Claude Code with Skills) often suffer from incomplete coverage on larger changesets, position drift in reported issues, and unstable quality. The root cause is that a purely language-driven architecture lacks hard constraints on the review process.\n\nDeterministic Engineering handles steps that must not go wrong:\n- Precise file selection — determines exactly which files need review and which should be filtered, ensuring no important change is missed\n- Smart file bundling — groups related files into a single review unit, each bundle runs as a sub-agent with isolated context, naturally supporting concurrent review\n- Fine-grained rule matching — matches review rules to each file's characteristics using a template engine rather than purely natural language, more stable and predictable\n- External positioning and reflection modules — independent modules systematically improve both location accuracy and content accuracy of AI feedback\n\nAgent handles dynamic decision-making:\n- Scenario-tuned prompts — prompt templates deeply optimized for code review, improving effectiveness while reducing token consumption\n- Scenario-tuned toolset — distilled from deep analysis of tool-call traces in large-scale production data, resulting in a purpose-built toolset more stable and predictable than generic agent toolkits\n\n**Benchmark**\n\nWe built a real-world code review benchmark from 50 popular open-source repositories, 200 real Pull Requests, and 10 programming languages — cross-validated by 80+ senior engineers with 1,505 annotated ground-truth issues. Results show that compared to general-purpose agents (Claude Code), Open Code Review achieves significantly higher Precision and F1 with the same underlying model, while consuming only approximately 1/9 of the tokens and completing reviews faster.\n\n**Technology Stack and Platform Support**\n\n- Primary language: Go\n- Supported platforms: Windows, macOS, Linux\n- Supported coding agents: Claude Code, Codex, Cursor, OpenCode, and any skill-compatible agent\n- CI/CD integration: GitHub Actions, GitLab CI, GitFlic CI, Gerrit\n- Installation methods: npm, install script, GitHub Release binary, build from source\n\n**Key Features**\n\n- Workspace mode: review all staged, unstaged, and untracked changes\n- Branch range mode: compare two Git refs\n- Single commit review\n- Full-file scan (ocr scan): review entire files or directories without requiring a diff\n- Delegation mode: let your coding agent perform the review using its own LLM — no OCR API key required\n- Session management: support for resuming interrupted reviews and replaying history\n- MCP Server support: extend the review agent with external tools\n- Customizable review rules: path filtering and targeting\n- Session Viewer: browse and replay review sessions in browser\n- OpenTelemetry integration for observability\n\n**Open Source Governance**\n\n- License: Apache-2.0\n- OpenSSF Best Practices Silver certified\n- Ranked among top trending repositories on GitHub Trending\n- Comprehensive contributor guide and development documentation\n- Official website: https://open-codereview.ai\n\nWe welcome students interested in AI code review, software engineering productivity, and large language model applications to participate in Open Source Summer projects and contribute to advancing AI code review technology together.",
+   "website": "https://open-codereview.ai",
+   "repoUrl": null,
+   "sourceCodeUrl": null,
+   "tags": [
+    "AI",
+    "LLM",
+    "AIOps",
+    "Git",
+    "LLMOps",
+    "Go",
+    "JavaScript",
+    "Typescript"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "chats": [],
+   "logo": "/logos/programs/ospp/opencodereview.png"
+  },
+  {
+   "slug": "openeuler",
+   "name": "openEuler",
+   "tagline": null,
+   "description": "openEuler is an open source operating system designed for digital infrastructure. openEuler supports a diverse range of devices, and covers various application scenarios, and interfaces with other OSs such as OpenHarmony, achieving ecosystem interoperability through shared capabilities. With a unified OS architecture supporting all mainstream computing architectures, openEuler is one of the best open source OSs for diverse computing powers. It introduces the concept of the versatile-scenario OS, which achieves flexible version build and service composition through a full-stack atomization decoupling and Lego-style architecture, making it ideal for servers, cloud computing, edge computing, and embedded systems.",
+   "website": "https://www.openeuler.org/en/",
+   "repoUrl": "https://github.com/openeuler",
+   "sourceCodeUrl": null,
+   "tags": [
+    "Linux",
+    "Complier",
+    "RISC-V",
+    "Embedded Database",
+    "C#",
+    "C++",
+    "Java",
+    "Python"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/openeuler",
+   "chats": [],
+   "logo": "/logos/programs/ospp/openeuler.png"
+  },
+  {
+   "slug": "opengauss",
+   "name": "openGauss 社区",
+   "tagline": null,
+   "description": null,
+   "website": "https://opengauss.org/zh/",
+   "repoUrl": null,
+   "sourceCodeUrl": null,
+   "tags": [
+    "CentOS",
+    "ARM",
+    "Linux",
+    "x86",
+    "C++",
+    "C",
+    "Java",
+    "SQL"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "chats": [],
+   "logo": "/logos/programs/ospp/opengauss.png"
+  },
+  {
+   "slug": "openhitls",
+   "name": "openHiTLS",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.openhitls.net/",
+   "repoUrl": "https://github.com/openHiTLS",
+   "sourceCodeUrl": null,
+   "tags": [
+    "RISC-V",
+    "x86",
+    "ARM",
+    "Linux",
+    "SSL/TLS",
+    "PKI",
+    "RSA",
+    "AES",
+    "TCP/IP",
+    "C"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/openHiTLS",
+   "chats": [],
+   "logo": "/logos/programs/ospp/openhitls.png"
+  },
+  {
+   "slug": "openkylin",
+   "name": "openKylin",
+   "tagline": null,
+   "description": "OpenAtom openKylin (referred to as \"openKylin\") is an open source project incubated and operated by the OpenAtom Foundation. It was co-founded by basic software and hardware enterprises, non-profit organizations, community organizations, universities, research institutions, and individual developers. With the community vision of \"providing the world with an open source operating system deeply integrated with artificial intelligence technology,\" openKylin aims to build a globally leading intelligent operating system open source root community based on open source, voluntary, equal, and collaborative principles, and promote the prosperity and development of Linux open source technology and its software and hardware ecosystem.",
+   "website": "https://www.openkylin.top",
+   "repoUrl": null,
+   "sourceCodeUrl": null,
+   "tags": [
+    "x86",
+    "RISC-V",
+    "Linux",
+    "ARM",
+    "C",
+    "C++",
+    "Python",
+    "Rust"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "chats": [],
+   "logo": "/logos/programs/ospp/openkylin.png"
+  },
+  {
+   "slug": "openruyi",
+   "name": "openRuyi",
+   "tagline": null,
+   "description": "The openRuyi-Project is an open, rolling-release Linux distribution dedicated to the RISC-V architecture. Initiated and long-term maintained by the Institute of Software, Chinese Academy of Sciences (ISCAS), it serves as a robust technical foundation for the RISC-V software ecosystem and its real-world adoption. Designed natively for RISC-V, the project ensures the early integration of emerging features and actively collaborates with upstream communities to foster innovation. It provides developers and industry partners with a practical, high-performance platform for building, validating, and delivering software, with a strong focus on security, compatibility, and ongoing optimizations for cloud-native and AI workloads. The ecosystem is further supported by related initiatives including the RVCK (RISC-V Common Kernel Project), RuyiAI (an AI software stack), RuyiSDK (an all-in-one development environment), and comprehensive tutorials. We warmly welcome hardware vendors, upstream developers, researchers, and open source contributors to join us in advancing the future of the RISC-V software landscape.",
+   "website": "https://www.openruyi.cn/",
+   "repoUrl": "https://github.com/openRuyi-Project",
+   "sourceCodeUrl": null,
+   "tags": [
+    "RISC-V",
+    "QEMU",
+    "Linux",
+    "GNU",
+    "Virtualization",
+    "KVM",
+    "C",
+    "Perl",
+    "Rust",
+    "Python",
+    "Lua",
+    "Go"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/openRuyi-Project",
+   "chatSource": "https://www.openruyi.cn/",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "openRuyi Discord",
+     "joinUrl": "https://discord.gg/ycDafzwsud"
+    }
+   ],
+   "logo": "/logos/programs/ospp/openruyi.png"
+  },
+  {
+   "slug": "pikapython",
+   "name": "PikaPython",
+   "tagline": null,
+   "description": "PikaPython is a Python language runtime implemented from scratch in C for microcontrollers. It is\nnot a simple reduction of desktop Python. Its runtime is designed for limited RAM and Flash and\nfor bare-metal systems, allowing Python scripts to be integrated into resource-constrained\nembedded C projects.\n\nThe foundational software work covers Python source parsing and execution, object and memory\nmanagement, built-in modules, C extension bindings, board support packages, and cross-compilation\nconfiguration. PikaPython does not require an operating system, a file system, or third-party\nruntime dependencies. Developers can add it to existing Keil, IAR, CMake, or RT-Thread projects\nand continue using their C compiler, linker, and debugger to inspect the runtime and extension\nmodules.\n\nLow resource usage is a primary design constraint. PikaPython can run on MCUs with about 4 KB of\nRAM and 64 KB of Flash, including resource-constrained devices such as STM32F103C8T6 and STM32G0.\nIts C extension interface and module organization reduce the amount of manual registration,\ncomplex macro code, and duplicated build configuration required for embedded Python modules.\n\nRISC-V is a current focus of the community. The PikaPython V1 repository already contains BSP\nassets for CH32V103R8 and CH582. Repository-visible components include `core_riscv`, `RVMSIS`,\nstartup files, peripheral code, the `PikaScript/main.py` application entry point, and RV32 CMake\nsettings such as `rv32imac`, `ilp32`, and `medany`. These assets provide an engineering basis for\nintegrating the language runtime with RISC-V MCUs, startup flows, and embedded toolchains.\n\nThe community plans to improve the RISC-V support matrix, BSP organization, build configuration,\nexamples, and porting documentation. It also welcomes reviewable contributions to language\nexecution, runtime resource management, and C extension support. Open Source Promotion Plan\nprojects will start from code already present in the PikaPython repository and aim to produce\ndocumentation or code changes suitable for upstream review.",
+   "website": "http://pikapython.com/",
+   "repoUrl": "https://github.com/pikasTech/PikaPython",
+   "sourceCodeUrl": null,
+   "tags": [
+    "ARM",
+    "RTOS",
+    "GDB",
+    "QEMU",
+    "GNU",
+    "TCP/IP",
+    "Socket",
+    "MQTT",
+    "HTTP",
+    "FreeRTOS",
+    "Linux",
+    "Programming Language"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/pikasTech",
+   "chats": [],
+   "logo": "/logos/programs/ospp/pikapython.png"
+  },
+  {
+   "slug": "pixiu",
+   "name": "pixiu",
+   "tagline": null,
+   "description": "The Dubbo-go-pixiu community continues to optimize around the direction of efficiency, stability, and cloud native, providing powerful API gateway capabilities for the Golang ecosystem. As part of the Dubbo-go ecosystem, it not only meets the needs of Dubbo microservices, but also serves as a general gateway, playing an important role in distributed systems, microservice architectures, edge computing and other scenarios. With an active community and continuous optimization, it is the good choice for API gateways in the Golang field.",
+   "website": "https://cn.dubbo.apache.org/zh-cn/overview/reference/pixiu/",
+   "repoUrl": null,
+   "sourceCodeUrl": null,
+   "tags": [
+    "RESTful API",
+    "Cloud Native",
+    "Go"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "chats": [],
+   "logo": "/logos/programs/ospp/pixiu.png"
+  },
+  {
+   "slug": "project-c",
+   "name": "Project C",
+   "tagline": null,
+   "description": "Project C\nThis is the patch repository for Project C, a project to provide BMQ(Bit Map Queue) and PDS-mq(Priority and Deadline based Skiplist multiple queue) cpu scheduler in one single patch set.\nThe patches can apply upon mainline linux kernel tree, and categoried by kernel release.\nFor bug reporting and discussion, please use source code repository at\n\nhttps://gitlab.com/alfredchen/linux-prjc\n\nThird party Testing&Report\n\nhttps://docs.google.com/spreadsheets/d/163U3H-gnVeGopMrHiJLeEY1b7XlvND2yoceKbOvQRm4/edit#gid=1819453664\nhttps://www.reddit.com/r/linux_gaming/comments/ix6kyv/cpu_scheduler_benchmark_6_games_bmq_pds_undead_pds/\n\nDevelopment blog (Just for talks&discussion)\n\nhttps://cchalpha.blogspot.com",
+   "website": "https://gitlab.com/alfredchen/projectc",
+   "repoUrl": null,
+   "sourceCodeUrl": null,
+   "tags": [
+    "Linux",
+    "C"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "chats": [],
+   "logo": "/logos/programs/ospp/project-c.png"
+  },
+  {
+   "slug": "rt-thread",
+   "name": "RT-Thread",
+   "tagline": null,
+   "description": "RT-Thread born in 2006, it's an open-source, neutral, and community-based real-time operating system (RTOS). The software has the characteristics of very low resource occupancy, high reliability, high scalability, can be greatly used in sensing nodes, wireless connection chips and many resource-constrained scenes, also widely applied in gateway, IPC, smart speakers, and many other high-performance applications.\n\nRT-Thread is also considered as an IoT platform with its rich middle-tier components and great hardware and software ecosystem, with almost every key basic component required for IoT devices, such as network protocols, file systems, low power management, etc. It supports all mainstream compiling tools such as GCC, Keil, IAR, etc., and a variety of standard interfaces, such as POSIX, CMSIS, C++application environment, Micropython, and Javascript, easy for developers to port a wide range of applications. RT-Thread also offers great commercial support to all the mainstream CPU architectures such as ARM Cortex-M/R/A, RISC-V, MIPS, X86, Xtensa, etc.\n\nWe and the community strive to create a New Class of IoT operating system with great hardware and software ecosystem, get everything connected, keep information flowing, and make opensource project benefits more people!",
+   "website": "https://www.rt-thread.io/",
+   "repoUrl": "https://github.com/RT-Thread",
+   "sourceCodeUrl": null,
+   "tags": [
+    "RTOS",
+    "C"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/RT-Thread",
+   "chats": [],
+   "logo": "/logos/programs/ospp/rt-thread.png"
+  },
+  {
+   "slug": "rustsbi",
+   "name": "RustSBI",
+   "tagline": null,
+   "description": null,
+   "website": "https://rustsbi.com",
+   "repoUrl": "https://github.com/rustsbi",
+   "sourceCodeUrl": null,
+   "tags": [
+    "RISC-V",
+    "Programming Language",
+    "Rust"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/rustsbi",
+   "chats": [],
+   "logo": "/logos/programs/ospp/rustsbi.png"
+  },
+  {
+   "slug": "ruyiai",
+   "name": "RuyiAI",
+   "tagline": null,
+   "description": "RuyiAI anchors its ecosystem on PyTorch and MLIR, with the RuyiAI Compiler, RuyiAI Library, and RuyiAI DSL as its core components. Complemented by an inference framework, a hardware abstraction layer, and a runtime environment, it forms an end-to-end inference and deployment solution.\nSpecifically, the RuyiAI Compiler is responsible for ingesting AI models and performing multi-level compilation optimization; the RuyiAI Library focuses on peak performance optimization for key operators; and the RuyiAI DSL delivers high-performance implementations for flexible fused operators. These core components work in synergy to form a unified inference and deployment system, establishing RuyiAI as a new starting point for RISC-V AI system software stacks.\nFurthermore, the RuyiAI team actively collaborates with a wide range of partners to advance technical cooperation and ecosystem adoption, building a comprehensive, multi-level collaboration framework. Through ongoing partnerships with upstream communities, industry partners, and academic teams, RuyiAI continues to refine the AI system software ecosystem for RISC-V.\nGoing forward, driven by real-world industrial application demands, RuyiAI will sustain key software ecosystems, iteratively improve its core components, and advance the co-evolution of software and hardware aligned with practical industrial scenarios. Together with its partners, RuyiAI will build an open, win-win RISC-V AI industrial ecosystem.",
+   "website": "https://www.ruyiai.org/",
+   "repoUrl": null,
+   "sourceCodeUrl": null,
+   "tags": [
+    "Compiler",
+    "AI",
+    "Programming Language",
+    "RISC-V",
+    "C++",
+    "Python",
+    "Shell"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "chats": [],
+   "logo": "/logos/programs/ospp/ruyiai.png"
+  },
+  {
+   "slug": "ruyisdk",
+   "name": "RuyiSDK",
+   "tagline": null,
+   "description": "RuyiSDK, built around the ruyi package manager and IDE plugin ecosystem, integrates compilation toolchains (GCC/LLVM), emulation (QEMU), debugging tools (GDB/LLDB), and runtime environments, covering the entire development workflow from coding and building to debugging and deployment. RuyiSDK has established deep ecosystem integration with mainstream RISC-V hardware platforms, offering multi-dimensional support through package management, IDE plugins, system images, and application example repositories. It is compatible with dozens of mainstream development boards and operating systems including Debian, Fedora, openEuler, and openRuyi, serving as essential infrastructure for the RISC-V software ecosystem. The project embraces open-source collaboration and welcomes developers to join in lowering the barriers to RISC-V development.",
+   "website": "https://ruyisdk.org/",
+   "repoUrl": "https://github.com/ruyisdk/ruyisdk",
+   "sourceCodeUrl": null,
+   "tags": [
+    "Linux",
+    "RISC-V",
+    "GNU",
+    "LLVM",
+    "QEMU",
+    "C",
+    "C++",
+    "Python",
+    "Java",
+    "Typescript",
+    "Shell"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/ruyisdk",
+   "chats": [],
+   "logo": "/logos/programs/ospp/ruyisdk.png"
+  },
+  {
+   "slug": "sa-token",
+   "name": "Sa-Token开发团队",
+   "tagline": null,
+   "description": null,
+   "website": "https://sa-token.cc/",
+   "repoUrl": "https://github.com/dromara/sa-token",
+   "sourceCodeUrl": null,
+   "tags": [
+    "OAuth",
+    "JWT",
+    "Spring Boot",
+    "Spring Cloud",
+    "Java"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/dromara",
+   "chats": [],
+   "logo": "/logos/programs/ospp/sa-token.png"
+  },
+  {
+   "slug": "spacemit",
+   "name": "SpacemiT",
+   "tagline": null,
+   "description": "For more details, please visit our website.",
+   "website": "https://www.spacemit.com/",
+   "repoUrl": null,
+   "sourceCodeUrl": null,
+   "tags": [
+    "Chip Design/Verification",
+    "Assembly",
+    "Python",
+    "Triton"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "chats": [],
+   "logo": "/logos/programs/ospp/spacemit.png"
+  },
+  {
+   "slug": "spinalhdl",
+   "name": "SpinalHDL",
+   "tagline": null,
+   "description": "The community is now maintaining the SpinalHDL core library, three RISC-V cores, and an SoC integration solution, a widely recognized industry solution for developing digital logic circuits based on Scala. The now-maintained SOC and RISC-V cores have been successfully running Linux OS and some applications on several FPGAs.",
+   "website": "https://github.com/SpinalHDL",
+   "repoUrl": "https://github.com/SpinalHDL",
+   "sourceCodeUrl": null,
+   "tags": [
+    "Programming Language",
+    "Scala"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/SpinalHDL",
+   "chats": [],
+   "logo": "/logos/programs/ospp/spinalhdl.png"
+  },
+  {
+   "slug": "vllm-semantic-router",
+   "name": "vLLM Semantic Router",
+   "tagline": null,
+   "description": "Modern AI applications rarely rely on one interchangeable model. A request may need a fast local model, a specialist or frontier model, retrieval, memory, tools, a verifier, or several models working together. Those paths may span the cloud, a data center, or the edge.Each path carries different tradeoffs in capability, latency, cost, and trust. The right choice can also change with the request, user, session, and available infrastructure.When every application hard-codes these choices, product code becomes coupled to the current model fleet. The same routing logic is repeated across clients, and it becomes difficult to change, explain, or evaluate as the system grows.\n\nSemantic Router moves that decision into a shared layer in the request path. It can observe the work in front of it—intent, difficulty, context, modality, identity, risk, preference, and system state—then resolve a stable entrypoint to an isolated recipe.\nA recipe can choose one model, escalate through a cascade, coordinate a bounded multi-model workflow, or attach behavior such as retrieval, memory, tool filtering, caching, safety checks, and verification. The application keeps one familiar API while the capability path can evolve behind it.\nThe result is more than a model name:\n1.The right model path: direct, specialist, local, cascade, or collaborative.\n2.The right supporting capabilities: retrieval, memory, tools, prompts, caching, or verification where the request needs them.\n3.The right execution boundary: configured cloud, data center, or edge backends across heterogeneous hardware.\n4.Evidence for what happened: routing metadata plus configured feedback, replay, and evaluation workflows.\nvLLM Semantic Router does not replace the gateway or the model servers. Envoy continues to carry traffic, and inference runtimes continue to generate responses. The Router coordinates the semantic work between them.",
+   "website": "https://vllm-sr.ai/",
+   "repoUrl": "https://github.com/vllm-project/semantic-router",
+   "sourceCodeUrl": null,
+   "tags": [
+    "AI",
+    "LLM",
+    "Go",
+    "Python"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/vllm-project",
+   "chatSource": "https://github.com/vllm-project/semantic-router#readme",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "vLLM Semantic Router Slack",
+     "joinUrl": "https://vllm-dev.slack.com/archives/C09CTGF8KCN"
+    }
+   ],
+   "logo": "/logos/programs/ospp/vllm-semantic-router.png"
+  },
+  {
+   "slug": "volclava",
+   "name": "volclava",
+   "tagline": null,
+   "description": null,
+   "website": "https://github.com/bytedance/volclava",
+   "repoUrl": "https://github.com/bytedance/volclava",
+   "sourceCodeUrl": null,
+   "tags": [
+    "Programming Language",
+    "Linux",
+    "GNU",
+    "GCC",
+    "GDB",
+    "pytest",
+    "TCP/IP",
+    "CentOS",
+    "Distributed Storage",
+    "C",
+    "Python",
+    "Shell"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/bytedance",
+   "chats": [],
+   "logo": "/logos/programs/ospp/volclava.png"
+  },
+  {
+   "slug": "vsag",
+   "name": "VSAG",
+   "tagline": null,
+   "description": null,
+   "website": "https://github.com/alipay/vsag",
+   "repoUrl": "https://github.com/alipay/vsag",
+   "sourceCodeUrl": null,
+   "tags": [
+    "AI",
+    "Vector Database",
+    "GPU",
+    "LLM",
+    "Quantization",
+    "SSD",
+    "Programming Language",
+    "C++"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "githubUrl": "https://github.com/alipay",
+   "chatSource": "https://github.com/alipay/vsag#readme",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "VSAG Discord",
+     "joinUrl": "https://discord.com/invite/JyDmUzuhrp"
+    }
+   ],
+   "logo": "/logos/programs/ospp/vsag.png"
+  },
+  {
+   "slug": "mindspore",
+   "name": "昇思MindSpore",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.mindspore.cn",
+   "repoUrl": null,
+   "sourceCodeUrl": null,
+   "tags": [
+    "AI",
+    "Deep Learning",
+    "Python"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "chats": [],
+   "logo": "/logos/programs/ospp/mindspore.png"
+  },
+  {
+   "slug": "losu",
+   "name": "洛书编程语言社区",
+   "tagline": null,
+   "description": null,
+   "website": "https://losu.tech",
+   "repoUrl": null,
+   "sourceCodeUrl": null,
+   "tags": [
+    "Programming Language",
+    "Compiler",
+    "C",
+    "C++"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
+   "chats": [],
+   "logo": "/logos/programs/ospp/losu.png"
+  }
+ ]
+}

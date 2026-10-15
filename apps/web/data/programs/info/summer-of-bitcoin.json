@@ -1,0 +1,59 @@
+{
+ "program": "summer-of-bitcoin",
+ "checked": "2026-10-15",
+ "status": "running",
+ "statusNote": "Applications for 2026 closed on February 15, 2026.",
+ "summary": "Summer of Bitcoin is a global, online summer internship that introduces university students to bitcoin open source development and design. Students spend 12 weeks contributing to an open source bitcoin project and earn bitcoin as their stipend.",
+ "runBy": "Summer of Bitcoin",
+ "stipend": {
+  "headline": "$3,000 – $6,600",
+  "detail": "Set by location (where your university is and/or where you live during the project) using Purchasing Power Parity. Amounts are in USD and paid in the equivalent amount of bitcoin (BTC) at the price on the day of payment.",
+  "currency": "USD",
+  "paidIn": "BTC",
+  "payments": [
+   { "label": "First evaluation", "share": "40%", "when": "Halfway point (June 29 – July 3, 2026)" },
+   { "label": "Final evaluation", "share": "60%", "when": "End of the project (Aug 16 – Aug 30, 2026)" }
+  ],
+  "table": "summer-of-bitcoin",
+  "tableNote": "Stipend for your country (USD, paid in bitcoin)."
+ },
+ "facts": [
+  { "label": "Length", "value": "12 weeks during the summer, full-time" },
+  { "label": "Tracks", "value": "Developer and designer" },
+  { "label": "Format", "value": "Online" },
+  { "label": "Before the internship", "value": "A challenge round bootcamp, then a project proposal" }
+ ],
+ "eligibility": [
+  "A student enrolled in a university or high school program.",
+  "Able to communicate clearly and respectfully in English.",
+  "Strong programming or design skills and experience with open source; Git experience for the developer track.",
+  "Available to work full-time for the 12 summer weeks, with no other job or major commitments.",
+  "Good internet connectivity and able to stay in regular contact with mentors."
+ ],
+ "timelineTitle": "Summer of Bitcoin 2026",
+ "timeline": [
+  { "label": "Last date to apply", "date": "2026-02-15" },
+  { "label": "Challenge round / bootcamp", "date": "2026-02-16 to 2026-03-20" },
+  { "label": "Participating organizations published", "date": "By 2026-03-31" },
+  { "label": "Project proposals due", "date": "2026-04-20" },
+  { "label": "Mid-point evaluation", "date": "2026-06-29 to 2026-07-03" },
+  { "label": "Final evaluation", "date": "2026-08-16 to 2026-08-30" }
+ ],
+ "howToApply": [
+  "Apply on summerofbitcoin.org to the developer or designer track.",
+  "Qualified applicants join the challenge round bootcamp and solve weekly challenges.",
+  "Pick a project idea from a participating organization and submit a proposal on the Summer of Bitcoin portal.",
+  "Selection is based on the proposal, the bootcamp challenges and contributions to the project."
+ ],
+ "links": [
+  { "label": "Summer of Bitcoin", "url": "https://www.summerofbitcoin.org/" },
+  { "label": "Student guide", "url": "https://guide.summerofbitcoin.org/" },
+  { "label": "Stipend details", "url": "https://guide.summerofbitcoin.org/about/is-it-a-paid-internship" }
+ ],
+ "sources": [
+  { "label": "What is Summer of Bitcoin?", "url": "https://guide.summerofbitcoin.org/about/what-is-summer-of-bitcoin", "file": "summer-of-bitcoin/what-is-summer-of-bitcoin.md" },
+  { "label": "Am I eligible?", "url": "https://guide.summerofbitcoin.org/about/am-i-eligible", "file": "summer-of-bitcoin/am-i-eligible.md" },
+  { "label": "How it works", "url": "https://guide.summerofbitcoin.org/about/how-it-works", "file": "summer-of-bitcoin/how-it-works.md" },
+  { "label": "Is it a paid internship?", "url": "https://guide.summerofbitcoin.org/about/is-it-a-paid-internship", "file": "summer-of-bitcoin/is-it-a-paid-internship.md" }
+ ]
+}

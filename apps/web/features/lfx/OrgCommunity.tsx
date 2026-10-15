@@ -5,6 +5,10 @@ const PLATFORM: Record<ChatPlatform, { label: string; verb: string }> = {
   discord: { label: "Discord", verb: "Join Discord" },
   matrix: { label: "Matrix", verb: "Join on Matrix" },
   irc: { label: "IRC", verb: "Open IRC chat" },
+  zulip: { label: "Zulip", verb: "Join Zulip" },
+  gitter: { label: "Gitter", verb: "Join Gitter" },
+  telegram: { label: "Telegram", verb: "Join Telegram" },
+  other: { label: "Community chat", verb: "Open chat" },
 };
 
 function PlatformIcon({ platform }: { platform: ChatPlatform }) {
@@ -54,6 +58,14 @@ function howTo(chat: OrgChat, orgName: string): string {
       return `${orgName} developers chat on Matrix in ${where}. Any Matrix client works, including the web client.`;
     case "irc":
       return `${orgName} developers chat on ${chat.workspace} in ${where}. The link opens a web client, no install needed.`;
+    case "zulip":
+      return `${orgName} uses Zulip for project chat. Sign up on the ${chat.workspace} server, then follow the streams for the areas you want to work on.`;
+    case "gitter":
+      return `${orgName} chats on Gitter. Sign in with GitHub or GitLab to join the room and talk with maintainers.`;
+    case "telegram":
+      return `${orgName} runs a Telegram group for contributors. Open the invite in Telegram to join.`;
+    case "other":
+      return `This is the chat link ${orgName} publishes for new contributors. Open it to find where the community talks.`;
   }
 }
 
@@ -73,14 +85,19 @@ export function OrgCommunity({ community, orgName }: { community: Community; org
       {chats.length === 0 ? (
         <div className="card org-chat org-chat-none">
           <p style={{ margin: 0 }}>
-            {orgName} does not list a public Slack or Discord channel in its repository. The best
-            place to reach maintainers is the issue tracker on the repository.
+            {orgName} does not list a public Slack, Discord or other chat channel in its
+            {community.repoUrl ? " repository" : " published sources"}.
+            {community.repoUrl
+              ? " The best place to reach maintainers is the issue tracker on the repository."
+              : ""}
           </p>
-          <div className="actions" style={{ marginTop: 14 }}>
-            <a className="btn" href={`${community.repoUrl}/issues`} target="_blank" rel="noreferrer noopener">
-              Open issues ↗
-            </a>
-          </div>
+          {community.repoUrl && /github\.com\/[^/]+\/[^/]+/.test(community.repoUrl) && (
+            <div className="actions" style={{ marginTop: 14 }}>
+              <a className="btn" href={`${community.repoUrl}/issues`} target="_blank" rel="noreferrer noopener">
+                Open issues ↗
+              </a>
+            </div>
+          )}
         </div>
       ) : (
         <div className="org-chat-grid">
@@ -129,12 +146,14 @@ export function OrgCommunity({ community, orgName }: { community: Community; org
         </div>
       )}
 
-      <p className="dim org-community-src">
-        Source:{" "}
-        <a href={community.source} target="_blank" rel="noreferrer noopener">
-          {prettySource(community.source)}
-        </a>
-      </p>
+      {community.source && (
+        <p className="dim org-community-src">
+          Source:{" "}
+          <a href={community.source} target="_blank" rel="noreferrer noopener">
+            {prettySource(community.source)}
+          </a>
+        </p>
+      )}
     </section>
   );
 }

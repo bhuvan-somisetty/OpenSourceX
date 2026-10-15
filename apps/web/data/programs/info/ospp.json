@@ -1,0 +1,122 @@
+{
+ "program": "ospp",
+ "checked": "2026-10-15",
+ "status": "running",
+ "statusNote": "The figures and dates below are from the OSPP 2025 student guide and timeline; OSPP 2026 communities are being approved.",
+ "summary": "The Open Source Promotion Plan (OSPP, 开源之夏) is a summer program organized by the Institute of Software, Chinese Academy of Sciences. It encourages university students worldwide to develop and maintain open source software with mentors from participating communities.",
+ "runBy": "Institute of Software, Chinese Academy of Sciences",
+ "stipend": {
+  "headline": "¥8,000 – ¥12,000",
+  "detail": "Completion bonus per project, before tax: 8,000 RMB for a basic project and 12,000 RMB for an advanced project. International students are paid by SWIFT bank transfer, converted to USD at the exchange rate on the transfer date.",
+  "currency": "RMB",
+  "ranges": [
+   {
+    "label": "Basic project",
+    "value": "8,000 RMB"
+   },
+   {
+    "label": "Advanced project",
+    "value": "12,000 RMB"
+   }
+  ],
+  "payments": [
+   {
+    "label": "After the final evaluation",
+    "share": "100%",
+    "when": "Once the organizing committee's final review is passed"
+   }
+  ],
+  "yearNote": "OSPP 2025"
+ },
+ "facts": [
+  {
+   "label": "Development period",
+   "value": "July 1 – September 30 (three months)"
+  },
+  {
+   "label": "Projects",
+   "value": "One application per student; one student per project"
+  },
+  {
+   "label": "Format",
+   "value": "Online, with a community mentor"
+  },
+  {
+   "label": "Certificate",
+   "value": "For students who pass the final evaluation"
+  }
+ ],
+ "eligibility": [
+  "Aged 18 or older.",
+  "A currently enrolled university student (enrolled through September 30), from anywhere in the world.",
+  "Chinese students verify with ID and enrollment documents; international students with a passport and proof of admission."
+ ],
+ "timelineTitle": "OSPP 2025 timeline (UTC+8)",
+ "timeline": [
+  {
+   "label": "Community registration",
+   "date": "Mar 11 – Mar 31"
+  },
+  {
+   "label": "Communities publish projects",
+   "date": "Apr 4 – May 4"
+  },
+  {
+   "label": "Student registration and applications",
+   "date": "May 9 – Jun 16"
+  },
+  {
+   "label": "Selected projects announced",
+   "date": "Jun 28"
+  },
+  {
+   "label": "Project development",
+   "date": "Jul 1 – Sep 30"
+  },
+  {
+   "label": "Final reviews",
+   "date": "Oct 1 – Nov 8"
+  },
+  {
+   "label": "Completed projects announced",
+   "date": "Nov 9"
+  }
+ ],
+ "howToApply": [
+  "Register on the OSPP website as a student.",
+  "Choose one project, talk to its mentor and submit your application materials.",
+  "If selected, sign the agreement and develop the project from July to September.",
+  "Pass the mentor and organizing committee final reviews to receive the bonus and certificate."
+ ],
+ "links": [
+  {
+   "label": "OSPP website",
+   "url": "https://summer.ospp.ac.cn/"
+  },
+  {
+   "label": "Student guide",
+   "url": "https://blog-en.summer-ospp.ac.cn/archives/student-guide"
+  },
+  {
+   "label": "Timeline",
+   "url": "https://blog-en.summer-ospp.ac.cn/archives/timeline"
+  }
+ ],
+ "sources": [
+  {
+   "label": "OSPP student guide (2025)",
+   "url": "https://blog-en.summer-ospp.ac.cn/archives/student-guide",
+   "file": "ospp/student-guide.txt"
+  },
+  {
+   "label": "OSPP timeline (2025)",
+   "url": "https://blog-en.summer-ospp.ac.cn/archives/timeline",
+   "file": "ospp/timeline.txt"
+  },
+  {
+   "label": "OSPP FAQ",
+   "url": "https://blog-en.summer-ospp.ac.cn/archives/FAQ",
+   "file": "ospp/faq.txt"
+  }
+ ]
+}

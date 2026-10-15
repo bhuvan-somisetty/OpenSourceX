@@ -1,0 +1,629 @@
+{
+ "program": "summer-of-bitcoin",
+ "name": "Summer of Bitcoin",
+ "generatedAt": "2026-10-15",
+ "years": [
+  2026
+ ],
+ "note": "Organizations participating in Summer of Bitcoin 2026. Earlier years are not published as an organization list.",
+ "sources": [
+  {
+   "label": "Summer of Bitcoin 2026 organizations",
+   "url": "https://www.summerofbitcoin.org/organizations"
+  }
+ ],
+ "orgs": [
+  {
+   "slug": "asmap",
+   "name": "asmap",
+   "tagline": null,
+   "description": "Provides the ability to generate maps of IP address ranges to the Autonomous System they belong to, and use these ASmaps in Bitcoin Core.",
+   "website": "https://asmap.org",
+   "repoUrl": "https://github.com/asmap",
+   "tags": [
+    "Python",
+    "Networking"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/asmap",
+   "chats": [],
+   "logo": "/logos/programs/summer-of-bitcoin/asmap.png"
+  },
+  {
+   "slug": "bdk",
+   "name": "BDK",
+   "tagline": null,
+   "description": "A library that allows you to seamlessly build cross-platform Bitcoin wallets without worrying about bitcoin internals.",
+   "website": "https://bitcoindevkit.org",
+   "repoUrl": "https://github.com/bitcoindevkit/bdk",
+   "tags": [
+    "Rust",
+    "SQLite",
+    "MCP"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/bitcoindevkit",
+   "chatSource": "https://github.com/bitcoindevkit/bdk#readme",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "BDK Discord",
+     "joinUrl": "https://discord.gg/d7NkDKm"
+    }
+   ],
+   "logo": "/logos/programs/summer-of-bitcoin/bdk.png"
+  },
+  {
+   "slug": "bitcoin-core",
+   "name": "Bitcoin Core",
+   "tagline": null,
+   "description": "Bitcoin Core is the reference implementation of the Bitcoin protocol, including node, wallet, and peer-to-peer network functionality.",
+   "website": "https://bitcoincore.org",
+   "repoUrl": "https://github.com/bitcoin/bitcoin",
+   "tags": [
+    "C++",
+    "Bitcoin P2P"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/bitcoin",
+   "chats": [],
+   "logo": "/logos/programs/summer-of-bitcoin/bitcoin-core.png"
+  },
+  {
+   "slug": "bitcoin-design",
+   "name": "Bitcoin Design",
+   "tagline": null,
+   "description": "A open community of designers focused on improving the user experience of Bitcoin.",
+   "website": "https://bitcoin.design",
+   "repoUrl": "https://github.com/BitcoinDesign/Guide",
+   "tags": [
+    "Design",
+    "UX research",
+    "Copywriting"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/BitcoinDesign",
+   "chatSource": "https://github.com/BitcoinDesign/Guide#readme",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "Bitcoin Design Discord",
+     "joinUrl": "https://discord.gg/K7aQ5PErht"
+    }
+   ],
+   "logo": "/logos/programs/summer-of-bitcoin/bitcoin-design.svg"
+  },
+  {
+   "slug": "bitcoin-fuzz",
+   "name": "Bitcoin-Fuzz",
+   "tagline": null,
+   "description": "A project which applies differential fuzzing between Bitcoin protocol implementations and libraries.",
+   "website": null,
+   "repoUrl": "https://github.com/bitcoinfuzz/bitcoinfuzz",
+   "tags": [
+    "C++",
+    "Python",
+    "Docker"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/bitcoinfuzz",
+   "chats": [],
+   "logo": "/logos/programs/summer-of-bitcoin/bitcoin-fuzz.jpg"
+  },
+  {
+   "slug": "braidpool",
+   "name": "braidpool",
+   "tagline": null,
+   "description": "A scalable peer to peer bitcoin mining pool with support for hashrate futures.",
+   "website": null,
+   "repoUrl": "https://github.com/braidpool/braidpool",
+   "tags": [
+    "Javascript",
+    "Typescript",
+    "Rust",
+    "React",
+    "Python",
+    "NodeJS"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/braidpool",
+   "chatSource": "https://github.com/braidpool/braidpool#readme",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "braidpool Discord",
+     "joinUrl": "https://discord.gg/pZYUDwkpPv"
+    }
+   ],
+   "logo": "/logos/programs/summer-of-bitcoin/braidpool.png"
+  },
+  {
+   "slug": "coinswap",
+   "name": "Coinswap",
+   "tagline": null,
+   "description": "Functioning, minimal-viable binaries and libraries to perform a trustless, p2p Maxwell-Belcher Coinswap Protocol",
+   "website": "https://openswap.live/",
+   "repoUrl": "https://github.com/citadel-foss/openswap",
+   "tags": [
+    "Rust"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/citadel-foss",
+   "chatSource": "https://github.com/citadel-foss/openswap#readme",
+   "chats": [
+    {
+     "platform": "matrix",
+     "workspace": "Coinswap Matrix",
+     "joinUrl": "https://matrix.to/#/#citadel-foss:matrix.org"
+    }
+   ],
+   "logo": "/logos/programs/summer-of-bitcoin/coinswap.png"
+  },
+  {
+   "slug": "contextvm",
+   "name": "ContextVM",
+   "tagline": null,
+   "description": "A transport layer for MCP over the Nostr network",
+   "website": "https://docs.contextvm.org",
+   "repoUrl": "https://github.com/ContextVM",
+   "tags": [
+    "Rust",
+    "TypeScript",
+    "Nostr",
+    "Design",
+    "UX research"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/ContextVM",
+   "chats": [],
+   "logo": "/logos/programs/summer-of-bitcoin/contextvm.jpg"
+  },
+  {
+   "slug": "cove",
+   "name": "Cove",
+   "tagline": null,
+   "description": "A simple to use yet powerful Bitcoin mobile wallet built on top of BDK.",
+   "website": "https://covebitcoin.com",
+   "repoUrl": "https://github.com/bitcoinppl/cove",
+   "tags": [
+    "Rust"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/bitcoinppl",
+   "chats": [],
+   "logo": "/logos/programs/summer-of-bitcoin/cove.jpg"
+  },
+  {
+   "slug": "demand",
+   "name": "Demand",
+   "tagline": null,
+   "description": "The first fully StratumV2 Bitcoin Mining Pool.",
+   "website": null,
+   "repoUrl": "https://github.com/dmnd-pool",
+   "tags": [
+    "Figma",
+    "React",
+    "TypeScript",
+    "Design"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/dmnd-pool",
+   "chats": [],
+   "logo": "/logos/programs/summer-of-bitcoin/demand.jpg"
+  },
+  {
+   "slug": "fedimint",
+   "name": "Fedimint",
+   "tagline": null,
+   "description": "Fedimint is an open-source federated Chaumian ecash protocol and SDK for building privacy-preserving Bitcoin applications.",
+   "website": "https://fedimint.org/",
+   "repoUrl": "https://github.com/fedimint/fedimint",
+   "tags": [
+    "Rust",
+    "Android",
+    "Swift"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/fedimint",
+   "chatSource": "https://github.com/fedimint/fedimint#readme",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "Fedimint Discord",
+     "joinUrl": "https://discord.gg/cEVEmqCgWG"
+    }
+   ],
+   "logo": "/logos/programs/summer-of-bitcoin/fedimint.png"
+  },
+  {
+   "slug": "floresta",
+   "name": "Floresta",
+   "tagline": null,
+   "description": "A lightweight Bitcoin full node implementation written in Rust, powered by Utreexo.",
+   "website": "https://getfloresta.org",
+   "repoUrl": "https://github.com/getfloresta/Floresta",
+   "tags": [
+    "Rust",
+    "Bitcoin P2P",
+    "property testing"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/getfloresta",
+   "chatSource": "https://github.com/getfloresta/Floresta#readme",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "Floresta Discord",
+     "joinUrl": "https://discord.gg/5Wj8fjjS93"
+    }
+   ],
+   "logo": "/logos/programs/summer-of-bitcoin/floresta.jpg"
+  },
+  {
+   "slug": "flotilla",
+   "name": "Flotilla",
+   "tagline": null,
+   "description": "A discord-like nostr client based on the idea of \"relays as groups\".",
+   "website": "https://flotilla.social",
+   "repoUrl": "https://github.com/coracle-social/flotilla",
+   "tags": [
+    "TypeScript",
+    "Svelte",
+    "Tailwind CSS",
+    "Design",
+    "UX research"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/coracle-social",
+   "chats": [],
+   "logo": "/logos/programs/summer-of-bitcoin/flotilla.png"
+  },
+  {
+   "slug": "formstr",
+   "name": "Formstr",
+   "tagline": null,
+   "description": "A forms application, built on top of nostr",
+   "website": "https://formstr.app",
+   "repoUrl": "https://github.com/formstr-hq/nostr-forms",
+   "tags": [
+    "WebAssembly",
+    "Nostr",
+    "Yggdrasil"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/formstr-hq",
+   "chats": [],
+   "logo": "/logos/programs/summer-of-bitcoin/formstr.png"
+  },
+  {
+   "slug": "jam",
+   "name": "Jam",
+   "tagline": null,
+   "description": "Jam is a front-end for JoinMarket, a privacy-focused bitcoin software that uses a peer-to-peer marketplace to facilitate collaborative transactions.",
+   "website": "https://joinmarket-webui.github.io/jamdocs",
+   "repoUrl": "https://github.com/joinmarket-webui/jam",
+   "tags": [
+    "Typescript",
+    "React"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/joinmarket-webui",
+   "chatSource": "https://github.com/joinmarket-webui/jam#readme",
+   "chats": [
+    {
+     "platform": "matrix",
+     "workspace": "Jam Matrix",
+     "joinUrl": "https://matrix.to/#/%23jam:bitcoin.kyoto"
+    }
+   ],
+   "logo": "/logos/programs/summer-of-bitcoin/jam.jpg"
+  },
+  {
+   "slug": "kern",
+   "name": "Kern",
+   "tagline": null,
+   "description": "An experimental project that explores the capabilities of the ESP32-P4 as a platform to perform air-gapped Bitcoin signatures and cryptography.",
+   "website": null,
+   "repoUrl": "https://github.com/odudex/Kern",
+   "tags": [
+    "Design",
+    "C"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/odudex",
+   "chatSource": "https://github.com/odudex/Kern#readme",
+   "chats": [
+    {
+     "platform": "telegram",
+     "workspace": "Kern Telegram",
+     "joinUrl": "https://t.me/kern_custody"
+    }
+   ],
+   "logo": "/logos/programs/summer-of-bitcoin/kern.png"
+  },
+  {
+   "slug": "krux",
+   "name": "Krux",
+   "tagline": null,
+   "description": "An open-source signing device firmware for Bitcoin",
+   "website": "https://selfcustody.github.io/krux/",
+   "repoUrl": "https://github.com/selfcustody/krux",
+   "tags": [
+    "Design",
+    "UX research"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/selfcustody",
+   "chatSource": "https://github.com/selfcustody/krux#readme",
+   "chats": [
+    {
+     "platform": "telegram",
+     "workspace": "Krux Telegram",
+     "joinUrl": "https://t.me/KruxDIY"
+    }
+   ],
+   "logo": "/logos/programs/summer-of-bitcoin/krux.png"
+  },
+  {
+   "slug": "nostr-components",
+   "name": "Nostr Components",
+   "tagline": null,
+   "description": "Take Nostr content beyond Nostr clients - embed it anywhere on the internet.",
+   "website": null,
+   "repoUrl": "https://github.com/saiy2k/nostr-components",
+   "tags": [
+    "Next.js",
+    "Firebase",
+    "browser extensions"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/saiy2k",
+   "chats": [],
+   "logo": "/logos/programs/summer-of-bitcoin/nostr-components.png"
+  },
+  {
+   "slug": "nostream",
+   "name": "nostream",
+   "tagline": null,
+   "description": "A Nostr Relay written in TypeScript",
+   "website": null,
+   "repoUrl": "https://github.com/cameri/nostream",
+   "tags": [
+    "Typescript"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/cameri",
+   "chatSource": "https://github.com/cameri/nostream#readme",
+   "chats": [
+    {
+     "platform": "telegram",
+     "workspace": "nostream Telegram",
+     "joinUrl": "https://t.me/nostream_dev"
+    }
+   ],
+   "logo": null
+  },
+  {
+   "slug": "seedsigner",
+   "name": "SeedSigner",
+   "tagline": null,
+   "description": "A powerful, air-gapped, DIY Bitcoin hardware wallet project focused on sovereignty and verifiability",
+   "website": "https://seedsigner.com",
+   "repoUrl": "https://github.com/SeedSigner/seedsigner",
+   "tags": [
+    "Python",
+    "C",
+    "MicroPython"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/SeedSigner",
+   "chatSource": "https://github.com/SeedSigner/seedsigner#readme",
+   "chats": [
+    {
+     "platform": "telegram",
+     "workspace": "SeedSigner Telegram",
+     "joinUrl": "https://t.me/joinchat"
+    }
+   ],
+   "logo": "/logos/programs/summer-of-bitcoin/seedsigner.jpg"
+  },
+  {
+   "slug": "shopstr",
+   "name": "Shopstr",
+   "tagline": null,
+   "description": "A global, decentralized Nostr marketplace to buy and sell anything, anywhere, anytime, anonymously with Bitcoin.",
+   "website": "https://shopstr.market",
+   "repoUrl": "https://github.com/shopstr-eng/shopstr",
+   "tags": [
+    "TypeScript",
+    "React",
+    "Tailwind CSS",
+    "Design",
+    "Figma"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/shopstr-eng",
+   "chats": [],
+   "logo": "/logos/programs/summer-of-bitcoin/shopstr.png"
+  },
+  {
+   "slug": "smite",
+   "name": "smite",
+   "tagline": null,
+   "description": "A coverage-guided fuzzing framework for Lightning Network implementations, derived from fuzzamoto.",
+   "website": null,
+   "repoUrl": "https://github.com/lnfuzz/smite",
+   "tags": [
+    "Rust",
+    "AFL++",
+    "Docker"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/lnfuzz",
+   "chats": [],
+   "logo": "/logos/programs/summer-of-bitcoin/smite.png"
+  },
+  {
+   "slug": "stable-channels",
+   "name": "Stable Channels",
+   "tagline": null,
+   "description": "p2p stable channels on the Bitcoin Lightning Network",
+   "website": null,
+   "repoUrl": "https://github.com/toneloc/stable-channels",
+   "tags": [
+    "Rust",
+    "Android",
+    "Swift"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/toneloc",
+   "chats": [],
+   "logo": "/logos/programs/summer-of-bitcoin/stable-channels.png"
+  },
+  {
+   "slug": "strfry",
+   "name": "strfry",
+   "tagline": null,
+   "description": "A relay for the nostr protocol",
+   "website": null,
+   "repoUrl": "https://github.com/hoytech/strfry",
+   "tags": [
+    "C++"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/hoytech",
+   "chatSource": "https://github.com/hoytech/strfry#readme",
+   "chats": [
+    {
+     "platform": "telegram",
+     "workspace": "strfry Telegram",
+     "joinUrl": "https://t.me/strfry_users"
+    }
+   ],
+   "logo": "/logos/programs/summer-of-bitcoin/strfry.svg"
+  },
+  {
+   "slug": "vls",
+   "name": "VLS",
+   "tagline": null,
+   "description": "Improving Lightning security with fully validated remote signing.",
+   "website": "https://vls.tech",
+   "repoUrl": "https://gitlab.com/lightning-signer/validating-lightning-signer",
+   "tags": [
+    "Rust",
+    "AWS",
+    "Nitro Enclave"
+   ],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "chatSource": "https://vls.tech",
+   "chats": [
+    {
+     "platform": "matrix",
+     "workspace": "VLS Matrix",
+     "joinUrl": "https://matrix.to/#/#vls:matrix.org"
+    }
+   ],
+   "logo": "/logos/programs/summer-of-bitcoin/vls.png"
+  }
+ ]
+}

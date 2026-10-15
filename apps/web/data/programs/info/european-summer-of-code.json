@@ -1,0 +1,48 @@
+{
+ "program": "european-summer-of-code",
+ "checked": "2026-10-15",
+ "status": "running",
+ "statusNote": "2026 projects were released in two batches (Feb 18 and Apr 1) and on a rolling basis.",
+ "summary": "European Summer of Code (ESoC) funds stipends for contributors new to open source, and matches open source projects with applied AI projects throughout Europe. It is run by hubs, currently in France (probabl) and Germany (German Center for Open Source AI).",
+ "runBy": "ESoC hubs: probabl (France) and the German Center for Open Source AI (Germany)",
+ "stipend": {
+  "headline": "€4,800",
+  "detail": "Unless a project says otherwise, a flat stipend of €4,800 for 3 months full-time equivalent, pro-rated, paid through the ESoC hub.",
+  "currency": "EUR",
+  "payments": [{ "label": "Disbursement", "share": "Pro-rated", "when": "Paid as a stipend through the ESoC hub" }]
+ },
+ "facts": [
+  { "label": "Length", "value": "12 calendar weeks full-time, excluding 5 working days of pause" },
+  { "label": "Format", "value": "Virtual via GitHub and Discord; some partners offer hybrid or in-person" },
+  { "label": "Employment", "value": "Not formal employment; no delivery expectations" },
+  { "label": "Applications", "value": "No limit, but focusing on at most 3 projects is recommended" }
+ ],
+ "eligibility": [
+  "Contributors new to open source, from anywhere in the world.",
+  "Three months of continuous full-time availability is normally expected.",
+  "Some applied projects may require a data sharing agreement, shown before you accept."
+ ],
+ "timelineTitle": "ESoC 2026",
+ "timeline": [
+  { "label": "Information event", "date": "2026-01-30" },
+  { "label": "Batch 1 applications open", "date": "2026-02-18" },
+  { "label": "Batch 1 deadline", "date": "2026-03-19" },
+  { "label": "Batch 1 projects start", "date": "2026-04-15" },
+  { "label": "Batch 2 applications open", "date": "2026-04-01" },
+  { "label": "Batch 2 deadline", "date": "2026-04-30" },
+  { "label": "Batch 2 projects start", "date": "2026-05-25" }
+ ],
+ "howToApply": [
+  "Register through the ESoC applicant registration form.",
+  "Follow the \"how to apply\" steps on the project card of each project you want (some need a form or a pull request).",
+  "You get a letter within 6 weeks of the project deadline: accepted, waitlisted or rejected.",
+  "Reply within 1 week to accept; accepting one offer withdraws your other 2026 applications."
+ ],
+ "links": [
+  { "label": "ESoC website", "url": "https://www.esoc.dev/" },
+  { "label": "ESoC 2026 information and projects", "url": "https://github.com/european-summer-of-code/esoc2026" }
+ ],
+ "sources": [
+  { "label": "ESoC 2026 README", "url": "https://github.com/european-summer-of-code/esoc2026", "file": "european-summer-of-code/esoc2026-readme.md" }
+ ]
+}

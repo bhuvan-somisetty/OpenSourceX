@@ -7,7 +7,15 @@
  * names it, and orgs whose sources list no chat have `chats: []`.
  */
 
-export type ChatPlatform = "slack" | "discord" | "matrix" | "irc";
+export type ChatPlatform =
+  | "slack"
+  | "discord"
+  | "matrix"
+  | "irc"
+  | "zulip"
+  | "gitter"
+  | "telegram"
+  | "other";
 
 export interface OrgChat {
   platform: ChatPlatform;
@@ -22,10 +30,10 @@ export interface OrgChat {
 }
 
 export interface OrgCommunity {
-  repoUrl: string;
+  repoUrl: string | null;
   chats: OrgChat[];
   /** Where the chat details were taken from. */
-  source: string;
+  source: string | null;
 }
 
 const CNCF_JOIN = "https://slack.cncf.io";

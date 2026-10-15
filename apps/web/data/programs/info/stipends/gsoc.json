@@ -1,0 +1,1176 @@
+{
+ "source": "https://developers.google.com/open-source/gsoc/help/student-stipends?hl=en",
+ "retrieved": "2026-10-15",
+ "currency": "USD",
+ "columns": [
+  "small",
+  "medium",
+  "large"
+ ],
+ "rows": [
+  {
+   "country": "Afghanistan",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Albania",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Algeria",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Andorra",
+   "small": 1050,
+   "medium": 2100,
+   "large": 4200
+  },
+  {
+   "country": "Angola",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Antigua and Barbuda",
+   "small": 1200,
+   "medium": 2400,
+   "large": 4800
+  },
+  {
+   "country": "Argentina",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Armenia",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Australia",
+   "small": 1650,
+   "medium": 3300,
+   "large": 6600
+  },
+  {
+   "country": "Austria",
+   "small": 1350,
+   "medium": 2700,
+   "large": 5400
+  },
+  {
+   "country": "Azerbaijan",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Bahamas, The",
+   "small": 1200,
+   "medium": 2400,
+   "large": 4800
+  },
+  {
+   "country": "Bahrain",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Bangladesh",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Barbados",
+   "small": 1650,
+   "medium": 3300,
+   "large": 6600
+  },
+  {
+   "country": "Belarus",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Belgium",
+   "small": 1350,
+   "medium": 2700,
+   "large": 5400
+  },
+  {
+   "country": "Belize",
+   "small": 900,
+   "medium": 1800,
+   "large": 3600
+  },
+  {
+   "country": "Benin",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Bermuda",
+   "small": 1650,
+   "medium": 3300,
+   "large": 6600
+  },
+  {
+   "country": "Bhutan",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Bolivia",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Bosnia-Herzegovina",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Botswana",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Brazil",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Brunei Darussalam",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Bulgaria",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Burkina Faso",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Burundi",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Cabo Verde",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Cambodia",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Cameroon",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "*Canada",
+   "small": 1500,
+   "medium": 3000,
+   "large": 6000
+  },
+  {
+   "country": "Central African Republic",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Chad",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Chile",
+   "small": 900,
+   "medium": 1800,
+   "large": 3600
+  },
+  {
+   "country": "China",
+   "small": 900,
+   "medium": 1800,
+   "large": 3600
+  },
+  {
+   "country": "Colombia",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Comoros",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Congo, Dem. Rep.",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Congo, Rep.",
+   "small": 900,
+   "medium": 1800,
+   "large": 3600
+  },
+  {
+   "country": "Costa Rica",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Cote d'Ivoire",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Croatia",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Cyprus",
+   "small": 1050,
+   "medium": 2100,
+   "large": 4200
+  },
+  {
+   "country": "Czech Republic",
+   "small": 900,
+   "medium": 1800,
+   "large": 3600
+  },
+  {
+   "country": "Denmark",
+   "small": 1500,
+   "medium": 3000,
+   "large": 6000
+  },
+  {
+   "country": "Djibouti",
+   "small": 900,
+   "medium": 1800,
+   "large": 3600
+  },
+  {
+   "country": "Dominica",
+   "small": 900,
+   "medium": 1800,
+   "large": 3600
+  },
+  {
+   "country": "Dominican Republic",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Ecuador",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Egypt",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "El Salvador",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Equatorial Guinea",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Eritrea",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Estonia",
+   "small": 900,
+   "medium": 1800,
+   "large": 3600
+  },
+  {
+   "country": "Eswatini",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Ethiopia",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Fiji",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Finland",
+   "small": 1500,
+   "medium": 3000,
+   "large": 6000
+  },
+  {
+   "country": "France",
+   "small": 1350,
+   "medium": 2700,
+   "large": 5400
+  },
+  {
+   "country": "Gabon",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Gambia, The",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Georgia",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Germany",
+   "small": 1350,
+   "medium": 2700,
+   "large": 5400
+  },
+  {
+   "country": "Ghana",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Greece",
+   "small": 900,
+   "medium": 1800,
+   "large": 3600
+  },
+  {
+   "country": "Grenada",
+   "small": 900,
+   "medium": 1800,
+   "large": 3600
+  },
+  {
+   "country": "Guatemala",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Guinea",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Guinea-Bissau",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Guyana",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Haiti",
+   "small": 900,
+   "medium": 1800,
+   "large": 3600
+  },
+  {
+   "country": "Honduras",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Hong Kong",
+   "small": 1200,
+   "medium": 2400,
+   "large": 4800
+  },
+  {
+   "country": "Hungary",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Iceland",
+   "small": 1650,
+   "medium": 3300,
+   "large": 6600
+  },
+  {
+   "country": "India",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Indonesia",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Iraq",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Ireland",
+   "small": 1350,
+   "medium": 2700,
+   "large": 5400
+  },
+  {
+   "country": "Israel",
+   "small": 1650,
+   "medium": 3300,
+   "large": 6600
+  },
+  {
+   "country": "Italy",
+   "small": 1200,
+   "medium": 2400,
+   "large": 4800
+  },
+  {
+   "country": "Jamaica",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Japan",
+   "small": 1350,
+   "medium": 2700,
+   "large": 5400
+  },
+  {
+   "country": "Jordan",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Kazakhstan",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Kenya",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Kiribati",
+   "small": 1050,
+   "medium": 2100,
+   "large": 4200
+  },
+  {
+   "country": "Kosovo",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Kuwait",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Kyrgyz Republic",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Lao PDR",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Latvia",
+   "small": 900,
+   "medium": 1800,
+   "large": 3600
+  },
+  {
+   "country": "Lebanon",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Lesotho",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Liberia",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Libya",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Lithuania",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Luxembourg",
+   "small": 1500,
+   "medium": 3000,
+   "large": 6000
+  },
+  {
+   "country": "Macao SAR, China",
+   "small": 900,
+   "medium": 1800,
+   "large": 3600
+  },
+  {
+   "country": "Madagascar",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Malawi",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Malaysia",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Maldives",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Mali",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Malta",
+   "small": 1050,
+   "medium": 2100,
+   "large": 4200
+  },
+  {
+   "country": "Marshall Islands",
+   "small": 1500,
+   "medium": 3000,
+   "large": 6000
+  },
+  {
+   "country": "Mauritania",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Mauritius",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Mexico",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Micronesia, Fed. Sts.",
+   "small": 1500,
+   "medium": 3000,
+   "large": 6000
+  },
+  {
+   "country": "Moldova",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Mongolia",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Montenegro",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Morocco",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Mozambique",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Myanmar",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Namibia",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Nepal",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Netherlands",
+   "small": 1350,
+   "medium": 2700,
+   "large": 5400
+  },
+  {
+   "country": "New Zealand",
+   "small": 1650,
+   "medium": 3300,
+   "large": 6600
+  },
+  {
+   "country": "Nicaragua",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Niger",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Nigeria",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "North Macedonia",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Norway",
+   "small": 1650,
+   "medium": 3300,
+   "large": 6600
+  },
+  {
+   "country": "Oman",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Pakistan",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Palau",
+   "small": 1350,
+   "medium": 2700,
+   "large": 5400
+  },
+  {
+   "country": "Panama",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Papua New Guinea",
+   "small": 1050,
+   "medium": 2100,
+   "large": 4200
+  },
+  {
+   "country": "Paraguay",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Peru",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Philippines",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Poland",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Portugal",
+   "small": 1050,
+   "medium": 2100,
+   "large": 4200
+  },
+  {
+   "country": "Puerto Rico",
+   "small": 1350,
+   "medium": 2700,
+   "large": 5400
+  },
+  {
+   "country": "Qatar",
+   "small": 1050,
+   "medium": 2100,
+   "large": 4200
+  },
+  {
+   "country": "Romania",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Russian Federation",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Rwanda",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Samoa",
+   "small": 900,
+   "medium": 1800,
+   "large": 3600
+  },
+  {
+   "country": "Sao Tome and Principe",
+   "small": 900,
+   "medium": 1800,
+   "large": 3600
+  },
+  {
+   "country": "Saudi Arabia",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Senegal",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Serbia",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Seychelles",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Sierra Leone",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Singapore",
+   "small": 900,
+   "medium": 1800,
+   "large": 3600
+  },
+  {
+   "country": "Slovak Republic",
+   "small": 900,
+   "medium": 1800,
+   "large": 3600
+  },
+  {
+   "country": "Slovenia",
+   "small": 1050,
+   "medium": 2100,
+   "large": 4200
+  },
+  {
+   "country": "Solomon Islands",
+   "small": 1350,
+   "medium": 2700,
+   "large": 5400
+  },
+  {
+   "country": "Somalia",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "South Africa",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "South Korea",
+   "small": 1050,
+   "medium": 2100,
+   "large": 4200
+  },
+  {
+   "country": "South Sudan",
+   "small": 1350,
+   "medium": 2700,
+   "large": 5400
+  },
+  {
+   "country": "Spain",
+   "small": 1050,
+   "medium": 2100,
+   "large": 4200
+  },
+  {
+   "country": "Sri Lanka",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "St. Kitts and Nevis",
+   "small": 1050,
+   "medium": 2100,
+   "large": 4200
+  },
+  {
+   "country": "St. Lucia",
+   "small": 1050,
+   "medium": 2100,
+   "large": 4200
+  },
+  {
+   "country": "St. Vincent and the Grenadines",
+   "small": 900,
+   "medium": 1800,
+   "large": 3600
+  },
+  {
+   "country": "Sudan",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Suriname",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Swaziland",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Sweden",
+   "small": 1500,
+   "medium": 3000,
+   "large": 6000
+  },
+  {
+   "country": "Switzerland",
+   "small": 1650,
+   "medium": 3300,
+   "large": 6600
+  },
+  {
+   "country": "Taiwan",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Tajikistan",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Tanzania",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Thailand",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Timor-Leste",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Togo",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Tonga",
+   "small": 1050,
+   "medium": 2100,
+   "large": 4200
+  },
+  {
+   "country": "Trinidad and Tobago",
+   "small": 900,
+   "medium": 1800,
+   "large": 3600
+  },
+  {
+   "country": "Tunisia",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Turkey",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Turkmenistan",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Turks and Caicos Islands",
+   "small": 1500,
+   "medium": 3000,
+   "large": 6000
+  },
+  {
+   "country": "Tuvalu",
+   "small": 1500,
+   "medium": 3000,
+   "large": 6000
+  },
+  {
+   "country": "Uganda",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Ukraine",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "United Arab Emirates",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "United Kingdom",
+   "small": 1500,
+   "medium": 3000,
+   "large": 6000
+  },
+  {
+   "country": "United States",
+   "small": 1500,
+   "medium": 3000,
+   "large": 6000
+  },
+  {
+   "country": "Uruguay",
+   "small": 1050,
+   "medium": 2100,
+   "large": 4200
+  },
+  {
+   "country": "Uzbekistan",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Vanuatu",
+   "small": 1500,
+   "medium": 3000,
+   "large": 6000
+  },
+  {
+   "country": "Venezuela",
+   "small": 900,
+   "medium": 1800,
+   "large": 3600
+  },
+  {
+   "country": "Vietnam",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "West Bank and Gaza",
+   "small": 900,
+   "medium": 1800,
+   "large": 3600
+  },
+  {
+   "country": "Yemen, Rep.",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Zambia",
+   "small": 750,
+   "medium": 1500,
+   "large": 3000
+  },
+  {
+   "country": "Zimbabwe",
+   "small": 1050,
+   "medium": 2100,
+   "large": 4200
+  }
+ ]
+}

@@ -1,0 +1,90 @@
+Source: https://blog-en.summer-ospp.ac.cn/archives/FAQ
+Retrieved: 2026-10-15
+
+🔥 Frequently Asked - OSPP
+OSPP
+登录
+🔥 Frequently Asked
+OSPP
+发布于 2025-02-26
+/
+4068 阅读
+139
+分享
+🔥 Frequently Asked
+Event Overview
+☀️ What is OSPP
+The Open Source Promotion Plan is a summer program organized by the Open Source Software Supply Chain Promotion Plan of the Institute of Software Chinese Academy of Sciences in 2020. It aims to encourage university students to actively participate in the development and maintenance of open source software, cultivate and discover more outstanding developers, promote the vigorous development of excellent open source software communities, and assist in the construction of open source software supply chains.
+The program collaborates with various open source communities , providing project development tasks for the development and maintenance of important open source software, and is open for registration to university students worldwide . Students can independently choose projects they are interested in, apply, and after selection, carry out development under the guidance of project developers (community mentors). Based on the project's difficulty and completion, participants will receive a bonus and a completion certificate.
+👉 The current event is the sixth edition. For information on previous events, please refer to the following links:
+OSPP 2024
+OSPP 2023
+OSPP 2022
+OSPP 2021
+OSPP 2020
+💁 Organizers
+This program is hosted by the Institute of Software at the Chinese Academy of Sciences, and Huawei Technologies Co., Ltd.
+🎭 Roles
+🔵 Organizing Committee: The committee consists of staff arranged by the organizers, responsible for organizing and managing the program.
+🟢 Community: Provides project lists and descriptions, assigns mentors for corresponding projects, and advances related processes according to event rules.
+🟡 Mentor: Each project is assigned a mentor by the community. Mentors guide students in developing a suitable development plan and completing the development according to the plan.
+🟣 Student Developers: Students choose projects freely, communicate with community mentors to realize plans, and submit project applications. Selected students will complete development under the guidance of community mentors and contribute to the community. Successful participants will receive bonus and certificates.
+📍 Key Dates
+Project Release: April 5 - May 4
+Student Registration and Application: May 9 - June 16
+Application Review: June 17 - June 28
+Project Development: July 1 - September 30
+Project Review: October 1 - November 8
+🟢 About Communities - Which open source communities can participate?
+Community repositories adopt OSI-approved open source licenses or OKF recommended Open Knowledge License.
+Communities must have been publicly operational for more than six months .
+For specifics, refer to the Community Guide .
+🟡 About Mentors - How to become a project mentor?
+Each project must have a designated mentor from the community, who should generally be a developer related to the project (Maintainer, Committer, Contributor). Each mentor can guide only one project .
+OSPP 2025 will no longer provide project completion remuneration to mentors.
+🚫 Mentors cannot participate in this event as student developers. If this situation is discovered during the event, the committee will cancel their eligibility and will not issue bonuses or certificates for either role.
+For specifics, refer to the Mentor Guide .
+🟣 About Students
+🧑‍🎓 Who can register?
+This program is open to university students aged 18+ .
+Students must maintain their status as enrolled students until the end of development on September 30. If they have received an offer for postgraduate or doctoral studies, they can provide the acceptance letter along with relevant explanatory materials.
+🚫 Student developers cannot participate as mentors. If this situation is discovered during the event, the committee will cancel their eligibility and will not issue bonuses or certificates for either role.
+For specifics, refer to the Student Guide .
+🧐 How many projects can a student undertake?
+Each student can apply for a maximum of one project .
+💰 What is the project remuneration amount?
+Project difficulty is divided into basic and advanced levels. The corresponding remuneration for successful project completion is 8000 RMB (pre-tax) and 12000 RMB (pre-tax) respectively. (Note: All remuneration amounts are in pre-tax RMB).
+Students who pass the final project review will receive the remuneration.
+🗣️Contact Us
+🌍 Official Website： https://summer-ospp.ac.cn
+📱 WeChat Public Account：ospp-summer
+📹 Bilibili Homepage： https://space.bilibili.com/2010658923
+🤫 Tips for Proje...
+目录
+热门文章
+🔥 Frequently Asked
+2025-02-26 发布
+4068
+🤫 Tips for Project Applications
+2025-02-26 发布
+2748
+🟢 Community Guide
+2025-02-26 发布
+2187
+🟡 Mentor Guide
+2025-02-26 发布
+2095
+🟣 Student Guide
+2025-02-26 发布
+4817
+🗓️ Timeline
+2025-02-26 发布
+3678
+🤝 Collaborative Promotion
+2025-02-26 发布
+1784
+OSPP
+©
+2026
+OSPP . All Rights Reserved. Powered by
+Halo .

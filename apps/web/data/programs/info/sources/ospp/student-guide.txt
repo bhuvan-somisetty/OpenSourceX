@@ -1,0 +1,208 @@
+Source: https://blog-en.summer-ospp.ac.cn/archives/student-guide
+Retrieved: 2026-10-15
+
+🟣 Student Guide - OSPP
+OSPP
+登录
+🟣 Student Guide
+OSPP
+发布于 2025-02-26
+/
+4817 阅读
+125
+分享
+🟣 Student Guide
+This page serves as the participation guide for the OSPP. Before registering, students are required to thoroughly read and understand this guide.
+By registering to participate in the event, you agree to the OSPP Participation Agreement .
+Please note that students are not allowed to simultaneously participate in the event as mentors. If this issue is discovered during the event, the organizing committee will revoke their participation qualifications and will not grant any prizes or certificates they may have earned as either mentors or students.
+If you have any questions, please contact the organizing committee: org@summer-ospp.ac.cn
+1. What is OSPP
+☀️ Introduction to the Open Source Promotion Plan
+The Open Source Promotion Plan is a summer program organized by the Open Source Software Supply Chain Promotion Plan of the Institute of Software Chinese Academy of Sciences in 2020. It aims to encourage university students to actively participate in the development and maintenance of open source software, cultivate and discover more outstanding developers, promote the vigorous development of excellent open source software communities, and assist in the construction of open source software supply chains.
+The program collaborates with various open source communities , providing project development tasks for the development and maintenance of important open source software, and is open for registration to university students worldwide. Students can independently choose projects they are interested in, apply, and after selection, carry out development under the guidance of project developers (community mentors). Based on the project's difficulty and completion, participants will receive remuneration and a completion certificate.
+🔍 To explore open source communities, refer to the Community List .
+🔍 To explore project tasks, refer to the Project List .
+2. What Can Participating Students Gain？
+🤝 Network with open-source enthusiasts and tech experts
+🧑‍💻 Receive mentorship and collaborate with developers
+🆙 Elevate your technical skills through hands-on experience
+📑 Strengthen your academic and career profile
+💰 Earn rewards and recognition
+3. Who Can Participate?
+The event is open to currently enrolled university students aged 18+ .
+Students must maintain their status as enrolled students until the end of development on September 30. If they have received an offer for postgraduate or doctoral studies, they can provide the acceptance letter along with relevant explanatory materials.
+Chinese students participating in the event must provide a valid ID card, student ID, the Ministry of Education's online enrollment verification report (accessible via the Xuexin website), or proof of current enrollment.
+Foreign students participating in the event must provide a passport along with admission letters, a valid student ID, enrollment verification, or other relevant documents.
+4. Participation Process
+📖 Thoroughly read and understand this participation guide.
+📆 Familiarize yourself with the event process
+⚠️ All stages and operations will be conducted within the system, with the default time zone set to Beijing Time (UTC+8).
+| Date
+| Process Details
+| Notes
+| 03/11-03/31
+| Community Registration and Review
+| Communities that pass the review will be listed on the official website progressively.
+| 04/01
+| Community List Announcement
+| Some community videos will be showcased on the OSPP website.
+| 04/04-05/09
+| Project Announcement
+| Approved project tasks will be progressively listed on the website. Students can communicate with mentors via the mentor’s email provided in the project details.
+| 05/09-06/16
+| Student Registration and Application Submission
+| Students select projects, communicate with mentors, prepare project application materials, and submit project applications. Each student can apply for one project.
+Starting from 04/30, students can register accounts in the system and submit their personal information for review. Students who pass the review can submit their project applications in the system from 05/09.
+Deadline: 06/16 18:00 UTC+8
+| 06/17-06/28
+| Project Application Review
+| 06/17-06/20 Mentor Review
+06/21-06/24 Community Review
+06/25-06/27 Committee Review
+The quality of the application is a key criterion for approval.
+| 06/28
+| Selection Announcement
+| Selection results can be viewed on the official website and system.
+The selected students are required to sign the contract through the system.
+| 06/28-06/30
+| Sign Agreement and Community Bonding
+|
+| 07/01-09/30
+| Project Development
+| Students must not start project development in advance and must complete the project development independently.
+Deadline for submitting reports and PR/MR links: 09/30 24:00 UTC+8
+| 10/01-10/31
+| Mentor Final Review - PR/MR Merge
+| During this time, student developers can still improve submitted PRs/MRs until they are merged. New PRs/MRs will not count towards project completion.
+| 11/01-11/08
+| Committee Final Review - Review Stage
+|
+| 11/09
+| Final Project Announcement
+| Completion results can be viewed on the official website and system. Students who successfully complete their projects upload a signed version of the participation agreement and submit bank card information in the system.
+| November
+| Outstanding Student Selection
+| The selection is open after the completion review, with recommendations from mentors and communities.
+🧑🏻‍💻 Student Participation Process
+1. System Registration + Project Exploration
+®️ Register and Log in to the System
+Students should create a student account via the student login portal on the OSPP website, register and log into the system, and fill out their personal information as required. Once the organizing committee approves the information, the registration is successful.
+Previous participants can log into their existing accounts, update their information, and register again.
+The git email submitted to the community's open-source repository must match the git email provided during registration.
+🚨 Note: Students are not allowed to simultaneously participate in this event as mentors. If such cases are discovered during the event, the organizing committee will cancel their participation qualification and will not issue any prizes or certificates earned as either a mentor or a student.
+🫵 Select a Project
+Visit the project list at "Homepage > View Projects" on the official event website.
+Choose a project of interest and familiarize yourself with its details and requirements.
+✉️ Communicate with Mentor
+The mentor’s name and contact email are provided in the project descriptions on the official website. Students can reach out to mentors via email to communicate.
+Email communication is a principal way to participate in community activities. Students should observe basic email etiquette when contacting mentors. Mentors only provide guidance and suggestions; the application, design, and development tasks must be carried out independently by the students.
+This phase is not only for understanding project details but also for learning about the community's operations and etiquette.
+2. Project Application
+✍️ Prepare Project Application Materials
+Refer to the Project Application Tips for guidance.
+Prepare the required materials based on the project requirements, using the Project Application Template as a reference.
+The quality of the project application is the primary criterion for determining whether a student’s application is approved.
+The project applications of selected students will be published on the official website.
+✅ Submit the Project Application
+Submit the project application materials through the system.
+Starting from this edition of the event, each student can submit an application for only one project. Additionally, a maximum of one student can be assigned to each project.
+3. Selection Announcement
+Students whose project applications pass the mentor , community , and organizing committee reviews will be considered selected participants.
+Students can view their application results on the official website and within the system.
+4. Project Development and Deliverable Submission
+Timeline: The project development phase runs from July to September. Students must not begin project development early, and mentors may not require students to start development in advance.
+The repository for project development will be listed in the project description.
+Students must submit a Pull Request (PR) / Merge Request (MR) to the specified project repository before the end of the development phase (September 30, UTC+8). They must also upload their final project report and fill in the PR/MR link in the system. The final report format can be referenced using the Project Report Template .
+After the development period ends, there will be a one-month period (October 1 - October 31, UTC+8) for PR/MR integration. All previously submitted PRs/MRs must be merged within this period.
+Students should independently complete project development. PRs/MRs must not be submitted or modified by the mentor or others on the student’s behalf. Mentors may guide students in planning, provide related documentation links, suggest directions for improving implementation plans, and teach students how to participate in the community.
+There is no unified midterm evaluation. Communities and mentors can conduct their own periodic evaluations of student progress. If substantial discrepancies between expectations and actual progress are identified, mentors may apply to the organizing committee for project termination. Students unable to continue their projects for special reasons must submit a termination request to the mentor, community, and organizing committee.
+5. Project Report
+📝 The final report must include the following:
+Completed Work: Describe the project output and process based on the original plan and timeline, ensuring it aligns with the content outlined in the project proposal.
+Issues and Solutions: Summarize problems encountered and how they were resolved, including personal insights.
+Test Cases: Provide corresponding test results for verification.
+Future Work: Include plans for adjustments or further development, if needed.
+📋 The specific format and content can be referenced using the Project Report Template .
+6. Final Evaluation
+🧑‍🏫 Mentors will evaluate the student’s project outcome based on the following:
+Projects must be submitted to the open-source community repository as PRs/MRs and be successfully merged.
+All PRs/MRs must be completed by students within the event’s specified timeline. The git email used for these submissions must match the one provided during registration.
+Comparison of the project progress and outcomes with the plans outlined in the project proposal.
+Whether the project outputs meet the established goals, requirements, and performance criteria.
+For development projects, whether the final report includes corresponding test results.
+Assessment of the contribution list submitted to the community.
+Evaluation of project documentation completeness.
+Other aspects deemed necessary by the community and mentor.
+💯 Organizing Committee Review: The committee will organize evaluation experts to assess project deliverables comprehensively, incorporating mentor reviews to arrive at a final result (pass or fail).
+7. Final Results Announcement
+Students can view the results of the final evaluation on the official website and the system.
+Students who successfully pass the final evaluation must download, sign, and upload a scanned version of the signed Student Participation Agreement within the system. They must also provide their bank account information in the system.
+Students who pass the final evaluation will receive completion remuneration and certificates and may have the opportunity to participate in the Outstanding Student Selection .
+8. Annual Outstanding Student Selection
+🤩 Communities and mentors will recommend students for the Outstanding Student award based on their participation. The organizing committee will conduct a re-evaluation and confirm the final list of outstanding students.
+5. Important Notes
+🙋 C an students who are already community members apply for community projects?
+Yes, they can apply. However, the applicant cannot simultaneously participate as a mentor for any project within this event.
+🗓️ When can students start project development? Is early development allowed?
+Selected students may start project development once the organizing committee officially announces their selection.
+Only those students who have passed through mentor, community, and committee reviews are recognized as selected students. Before the official announcement of selected students, their status remains uncertain. Mentors are not permitted to pre-select students, make private promises regarding selection results, or request students to begin development early. Development or PR/MR submissions made before the selection announcement are not recognized for final evaluation as they do not meet the time requirements.
+Before the selection results are announced, students should focus on refining their project applications and proposals. Proper planning and design are crucial for both this event's projects and any future projects in a professional setting.
+💻 What programming language should students use for project development?
+Students should choose a programming language according to the project's requirements and align with the one predominantly used by the community for consistency.
+6. Student Remuneration Details
+✔️ What is the project remuneration amount?
+Project difficulty is divided into two categories: Basic and Advanced, with corresponding completion remuneration of 8,000 RMB and 12,000 RMB, respectively, before taxes.
+💱 How is remuneration for foreign students disbursed?
+The committee currently uses the SWIFT system for foreign currency transfers. Remuneration is converted from RMB to USD at the real-time exchange rate on the transfer date. If the provided bank account is restricted by the SWIFT system, the prize cannot be received.
+According to tax authority requirements, foreign students must provide a scanned copy of their passport for remuneration disbursement.
+Remuneration are transferred via bank transfer, and the bank card must be in the student's name. Students passing the final evaluation should provide the following bank information for transfers and tax auditing purposes:
+Payee's Full Name
+Gender
+Passport Number
+Nationality
+Date of Birth
+Telephone Number
+Payee's Address
+Payee's Bank Name and Address
+Payee's Bank Account
+SWIFT Code
+Scanned Copy of Passport
+These data are required per current international settlement policy requirements, and the organizing committee will take reasonable steps to protect privacy data, personal identity information, and other sensitive information.
+7. Organizer Statement
+The organizers hold no claims to intellectual property rights over student-developed outcomes during the event.
+Intellectual property outcomes are determined by the community based on the community's development contribution guidelines with students (e.g., signing a Contributor License Agreement).
+Privacy Rights:
+The organizing body will process personal information provided during registration and subsequent event interactions to manage the event (including verifying eligibility, participating in the event, and sending notifications related to the event).
+Non-personally identifiable information will be used in aggregate for statistical purposes; the activity participation names created during registration will be publicly displayed on related websites, documents, and materials, and will be shared with the organizers to facilitate communication, answering questions, and review processes. Student submissions and contact information (email and activity participation name) will be shared by the organizers to manage the event.
+The organizing body may publicly disclose your participation in the event and the event's outcomes, including the names and content of accepted projects and the code you generated during project work. The organizing body may display your information, including activity participation name, project summary, and final project materials, on related websites (including but not limited to the OSPP official website, WeChat official account, etc.).
+During the event, participants can access, update, delete, and restrict the processing of their personal information in their project documents. If you wish to edit such information after the event concludes or oppose processing or exporting it, contact the organizing body through official contact channels (website, email, WeChat official account).
+🟡 Mentor Guide
+🗓️ Timeline
+目录
+热门文章
+🔥 Frequently Asked
+2025-02-26 发布
+4068
+🤫 Tips for Project Applications
+2025-02-26 发布
+2748
+🟢 Community Guide
+2025-02-26 发布
+2187
+🟡 Mentor Guide
+2025-02-26 发布
+2095
+🟣 Student Guide
+2025-02-26 发布
+4817
+🗓️ Timeline
+2025-02-26 发布
+3678
+🤝 Collaborative Promotion
+2025-02-26 发布
+1784
+OSPP
+©
+2026
+OSPP . All Rights Reserved. Powered by
+Halo .

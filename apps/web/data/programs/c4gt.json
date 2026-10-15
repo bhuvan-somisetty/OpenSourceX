@@ -1,0 +1,796 @@
+{
+ "program": "c4gt",
+ "name": "Code for GovTech",
+ "generatedAt": "2026-10-15",
+ "years": [
+  2025
+ ],
+ "note": "Organizations named on Dedicated Mentoring Program 2025 tickets.",
+ "sources": [
+  {
+   "label": "C4GT DMP 2025 tickets",
+   "url": "https://github.com/Code4GovTech/C4GT/issues?q=label%3A%22DMP+2025%22"
+  }
+ ],
+ "orgs": [
+  {
+   "slug": "adc-karnal",
+   "name": "ADC Karnal",
+   "tagline": null,
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2025
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Tackling child stunting by Poshan Tracker Augmentation in a district",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/472",
+     "product": "Poshan Tracker Augmentation"
+    },
+    {
+     "year": 2025,
+     "title": "Extending Education MIS systems to design student-level interventions in a district",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/471",
+     "product": "Education MIS -Auxiliary Extension"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/472",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "adc-mahendragarh",
+   "name": "ADC Mahendragarh",
+   "tagline": null,
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2025
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Municipal Road Taxonomy & Infra Tracker",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/493",
+     "product": "Road Nomenclature & Infra Monitoring Dashboard"
+    },
+    {
+     "year": 2025,
+     "title": "Strengthening property management database in district ",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/492",
+     "product": "Land Demarcation Tracker"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/493",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "adc-rohtak",
+   "name": "ADC Rohtak",
+   "tagline": null,
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2025
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Skill Development Course Tracker for Students",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/513",
+     "product": "Rohtak Guided Learning Tracker"
+    },
+    {
+     "year": 2025,
+     "title": "District-Level Chatbot for Grievance Redressal",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/512",
+     "product": "Rohtak Grievance Redressal Chatbot"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/513",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "armman",
+   "name": "Armman",
+   "tagline": null,
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2025
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Design of Pregnancy & Infant Care Chatbot",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/459",
+     "product": "Kilkari"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/459",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "avanti-fellows",
+   "name": "Avanti Fellows",
+   "tagline": null,
+   "description": null,
+   "website": "http://www.avantifellows.org/",
+   "repoUrl": "https://github.com/avantifellows/college-predictor",
+   "tags": [],
+   "years": [
+    2025
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Futures",
+     "url": "https://github.com/avantifellows/college-predictor/issues/59",
+     "product": "AF Futures"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/avantifellows/college-predictor/issues/59",
+   "githubUrl": "https://github.com/avantifellows",
+   "chats": [],
+   "logo": "/logos/programs/c4gt/avanti-fellows.png"
+  },
+  {
+   "slug": "bandhu",
+   "name": "Bandhu",
+   "tagline": null,
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2025
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "AI-First Transformation for TAP Operations",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/725",
+     "product": "AI-First Transformation Suite"
+    },
+    {
+     "year": 2025,
+     "title": "Hand Gesture Occlusion - 3D Hand Landmark Extraction and Gesture Similarity Pipeline",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/724",
+     "product": "Hand Point Cloud Comparison Pipeline"
+    },
+    {
+     "year": 2025,
+     "title": "Week 4 updates",
+     "url": "https://github.com/seetadev/stark-schedule/issues/5",
+     "product": "STRK Schedule"
+    },
+    {
+     "year": 2025,
+     "title": "AI-Augmented VaccineLedger for Smarter Supply Chains",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/555",
+     "product": "VaccineLedger"
+    },
+    {
+     "year": 2025,
+     "title": "Scalable, Decoupled Data Ingestion Framework for Real-Time and Batch Integration",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/544",
+     "product": "Unified Data Ingestion Framework"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/725",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "cmc-ambala",
+   "name": "CMC Ambala",
+   "tagline": null,
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2025
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "WhatsApp Chatbot for Property Record Verification & Compliance",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/511",
+     "product": "Property Record Compliance Chatbot"
+    },
+    {
+     "year": 2025,
+     "title": "Improving Sanitation outcomes in a district by geo-tagged tracking and monitoring resources",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/496",
+     "product": "Sanitation service tracker"
+    },
+    {
+     "year": 2025,
+     "title": "Improving ULB Governance by tagging municipal infrastructure and tender management in a district",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/494",
+     "product": "Geo-linked Road Project Tracker"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/511",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "coss",
+   "name": "COSS",
+   "tagline": null,
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2025
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Integrating Model Context (AI) Protocol in Sunbird Ed",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/515",
+     "product": "Sunbird AI Assistant"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/515",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "education-initiative",
+   "name": "Education Initiative",
+   "tagline": null,
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2025
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Storybook Setup for UI Component Documentation & Testing",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/510",
+     "product": "UI Component Library"
+    },
+    {
+     "year": 2025,
+     "title": "Storybook Setup for Isolated UI Component Development & Documentation",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/502",
+     "product": "Component Documentation & Preview System"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/510",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "egov",
+   "name": "eGov Foundation",
+   "tagline": null,
+   "description": null,
+   "website": "https://egov.org.in",
+   "repoUrl": "https://github.com/egovernments",
+   "tags": [],
+   "years": [
+    2025
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Full-Stack Contribution to Karmayogi Asset Registry (Node.js, React, PostgreSQL)",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/613",
+     "product": "InfraTrack"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/613",
+   "githubUrl": "https://github.com/egovernments",
+   "chats": [],
+   "logo": "/logos/programs/c4gt/egov.jpg"
+  },
+  {
+   "slug": "haqdarshak",
+   "name": "Haqdarshak",
+   "tagline": null,
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2025
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Scheme Training Discovery Microservices for Open Networks",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/554",
+     "product": "Schemes Training Services"
+    },
+    {
+     "year": 2025,
+     "title": "AI-based “Stackoverflow” community for Scheme Agents",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/553",
+     "product": "Knowledge community for agents"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/554",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "idinsight",
+   "name": "IDInsight",
+   "tagline": null,
+   "description": null,
+   "website": "https://idinsight.org",
+   "repoUrl": "https://github.com/IDinsight",
+   "tags": [],
+   "years": [
+    2025
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Experiment Dashboard & Reporting Enhancements",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/552",
+     "product": "Unified dashboard for experiments"
+    },
+    {
+     "year": 2025,
+     "title": "AI-Powered Assistant for Guided Experiment Creation",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/551",
+     "product": "Experiment Setup Agent"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/552",
+   "githubUrl": "https://github.com/IDinsight",
+   "chats": [],
+   "logo": "/logos/programs/c4gt/idinsight.jpg"
+  },
+  {
+   "slug": "if-me",
+   "name": "If Me",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.if-me.org/",
+   "repoUrl": "https://github.com/ifmeorg/ifme",
+   "tags": [],
+   "years": [
+    2025
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Gaurav Singh | OpenNyAI",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/732",
+     "product": "AI for Legal Justice ( OpenNyAI )"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/732",
+   "githubUrl": "https://github.com/ifmeorg",
+   "chats": [],
+   "logo": "/logos/programs/c4gt/if-me.jpg"
+  },
+  {
+   "slug": "iiit-delhi",
+   "name": "IIIT-Delhi",
+   "tagline": null,
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2025
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Pattern Estimation Framework for Urban Transport Planning",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/514",
+     "product": "OD Pattern Estimation Framework"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/514",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "medplat",
+   "name": "MedPlat",
+   "tagline": null,
+   "description": null,
+   "website": null,
+   "repoUrl": "https://github.com/ArgusoftOpen/medplat",
+   "tags": [],
+   "years": [
+    2025
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "AI Powered Chatbot System For Field Workers",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/543",
+     "product": "AI Support Chatbot for Health Workers"
+    },
+    {
+     "year": 2025,
+     "title": "AI-Enabled Dynamic Dashboard Builder for MEDPlat",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/542",
+     "product": "AI-Enabled Dashboard Builder"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/543",
+   "githubUrl": "https://github.com/ArgusoftOpen",
+   "chats": [],
+   "logo": "/logos/programs/c4gt/medplat.png"
+  },
+  {
+   "slug": "meity",
+   "name": "MeitY",
+   "tagline": null,
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2025
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Asset Registries & Discovery Protocol for Govt Training Infra",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/481",
+     "product": "Karmayogi"
+    },
+    {
+     "year": 2025,
+     "title": "AI-based Course Recommendations for Learners",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/479",
+     "product": "Karmayogi"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/481",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "national-health-authority",
+   "name": "National Health Authority",
+   "tagline": null,
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2025
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "FHIR-based Sandbox for health claims",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/539",
+     "product": "HCX Integration Toolkit"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/539",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "nsut-in-collaboration-with-c4gt-seeta-and-aic",
+   "name": "NSUT in collaboration with C4GT, SEETA and AIC",
+   "tagline": null,
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2025
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Enabling Safer Roads Through AI and Blockchain - A Scalable Government Solution",
+     "url": "https://github.com/seetadev/RoadICM/issues/1",
+     "product": "Near Transport Intel"
+    },
+    {
+     "year": 2025,
+     "title": "STRK Schedule - Blockchain-Enabled Diabetes Management for Government Healthcare Systems",
+     "url": "https://github.com/seetadev/stark-schedule/issues/3",
+     "product": "STRK Schedule - Blockchain-Enabled Diabetes Management for Government Healthcare Systems"
+    },
+    {
+     "year": 2025,
+     "title": "National Vehicle Maintenance & Mobility Infrastructure System using Web3 Technologies",
+     "url": "https://github.com/seetadev/EthGarage/issues/1",
+     "product": "National Vehicle Maintenance & Mobility Infrastructure System using Web3 Technologies"
+    },
+    {
+     "year": 2025,
+     "title": "Web3 Maintainer Suite: Cross-Chain Developer Tools for Predictive & Reactive Industrial Maintenance on Filecoin",
+     "url": "https://github.com/seetadev/Eth-Maintenance/issues/5",
+     "product": "Eth Maintenance"
+    },
+    {
+     "year": 2025,
+     "title": "Eth GovOps: Blockchain-Powered Incident, Workforce & Asset Management",
+     "url": "https://github.com/seetadev/Eth-Operations/issues/1",
+     "product": "Eth Gov Ops"
+    },
+    {
+     "year": 2025,
+     "title": "Decentralized Smart Mobility & Road Safety Platform using Near, Filecoin, IPFS, GHO Stablecoin, Aave, Polygon, Chainlink CCIP & Functions with QR-Based DApp and EtherCalc Integration",
+     "url": "https://github.com/seetadev/ParkGHO-Family/issues/21",
+     "product": "zk Transport Monitor for Safer Mobility"
+    },
+    {
+     "year": 2025,
+     "title": "Web3 ZK Medical Billing Platform with NFT-Based Governance",
+     "url": "https://github.com/seetadev/ZKMedical-Billing/issues/28",
+     "product": "ZK Medical Billing Platform for Government Universities"
+    },
+    {
+     "year": 2025,
+     "title": "Engineering and deployment of Invoice and Billing system for Government Universities",
+     "url": "https://github.com/seetadev/GovtInvoice/issues/22",
+     "product": "Invoicing and ZK Billing Platform for Government Universities"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/seetadev/RoadICM/issues/1",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "opennyai",
+   "name": "OpenNyAI",
+   "tagline": null,
+   "description": null,
+   "website": "https://opennyai.org/",
+   "repoUrl": "https://github.com/OpenNyAI",
+   "tags": [],
+   "years": [
+    2025
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "OpenNyAI Residency - AI for Access to Justice",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/465",
+     "product": "OpenNyAI Residency"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/465",
+   "githubUrl": "https://github.com/OpenNyAI",
+   "chats": [],
+   "logo": "/logos/programs/c4gt/opennyai.png"
+  },
+  {
+   "slug": "protean",
+   "name": "Protean",
+   "tagline": null,
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2025
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "AI-Powered Analytics Chatbot for Natural Language KPI Insights",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/556",
+     "product": "Protean Plus Insight Chatbot"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/556",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "sampatti-card",
+   "name": "Sampatti Card",
+   "tagline": null,
+   "description": null,
+   "website": null,
+   "repoUrl": null,
+   "tags": [],
+   "years": [
+    2025
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "AI-Powered Middleware for ONDC/OCEN API Compliance",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/549",
+     "product": "Harborlink"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/549",
+   "chats": [],
+   "logo": null
+  },
+  {
+   "slug": "sugar-labs",
+   "name": "Sugar Labs",
+   "tagline": null,
+   "description": null,
+   "website": "https://sugarlabs.org",
+   "repoUrl": "https://github.com/sugarlabs/musicblocks",
+   "tags": [],
+   "years": [
+    2025
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "AI Code generation for lesson plans and model abstraction layer",
+     "url": "https://github.com/sugarlabs/musicblocks/issues/4671",
+     "product": "Music Blocks AI Composer"
+    },
+    {
+     "year": 2025,
+     "title": "Proposal for AI-powered Debugger Prototype for Music Blocks | GSoC 2025",
+     "url": "https://github.com/sugarlabs/musicblocks/issues/4618",
+     "product": "AI-powered Debugger for Music Blocks"
+    },
+    {
+     "year": 2025,
+     "title": "AI tools for reflection",
+     "url": "https://github.com/sugarlabs/musicblocks/issues/4542",
+     "product": "Music Blocks, Sugarizer"
+    },
+    {
+     "year": 2025,
+     "title": "AI Code generation for lesson plans and model abstraction layer",
+     "url": "https://github.com/sugarlabs/musicblocks/issues/4541",
+     "product": "Music Blocks"
+    },
+    {
+     "year": 2025,
+     "title": "Generative AI Instrument Sample Generation for Music Blocks",
+     "url": "https://github.com/sugarlabs/musicblocks/issues/4540",
+     "product": "Music Blocks"
+    },
+    {
+     "year": 2025,
+     "title": "AI-powered Debugger for Music Blocks",
+     "url": "https://github.com/sugarlabs/musicblocks/issues/4538",
+     "product": "Music Blocks"
+    },
+    {
+     "year": 2025,
+     "title": "Color sensor for Music Blocks for photos and real-time video",
+     "url": "https://github.com/sugarlabs/musicblocks/issues/4537",
+     "product": "Music Blocks"
+    },
+    {
+     "year": 2025,
+     "title": "Git backend for Turtle Blocks and Music Blocks",
+     "url": "https://github.com/sugarlabs/musicblocks/issues/4534",
+     "product": "Music Blocks and Turtle Blocks"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/sugarlabs/musicblocks/issues/4671",
+   "chats": [
+    {
+     "platform": "matrix",
+     "workspace": "Sugar Labs Matrix",
+     "joinUrl": "https://matrix.to/#/#sugar:matrix.org"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/sugar-labs",
+   "githubUrl": "https://github.com/sugarlabs",
+   "logo": "/logos/programs/c4gt/sugar-labs.png"
+  },
+  {
+   "slug": "the-apprentice-project",
+   "name": "The Apprentice project",
+   "tagline": null,
+   "description": null,
+   "website": "https://theapprenticeproject.org",
+   "repoUrl": "https://github.com/theapprenticeproject",
+   "tags": [],
+   "years": [
+    2025
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "LLM-based Data Assistant for TAP",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/468",
+     "product": "Internal AI-For Everyone"
+    },
+    {
+     "year": 2025,
+     "title": "TAP: AI-Powered Video Translation & Localization",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/467",
+     "product": "Video Translation & Localization"
+    },
+    {
+     "year": 2025,
+     "title": "TAP: AI-Powered Video Creation Automation",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/466",
+     "product": "Video Creation Automation"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/468",
+   "githubUrl": "https://github.com/theapprenticeproject",
+   "chats": [],
+   "logo": "/logos/programs/c4gt/the-apprentice-project.png"
+  },
+  {
+   "slug": "the-metabrainz-foundation-inc",
+   "name": "The MetaBrainz Foundation Inc.",
+   "tagline": null,
+   "description": null,
+   "website": "https://metabrainz.org",
+   "repoUrl": "https://github.com/metabrainz",
+   "tags": [],
+   "years": [
+    2025
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "BrainzPlayer Internet Archive Integration",
+     "url": "https://github.com/CodeForGoodTech/C4GT/issues/499",
+     "product": "BrainzPlayer Internet Archive Integration"
+    }
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/499",
+   "chats": [
+    {
+     "platform": "other",
+     "workspace": "MetaBrainz Foundation Inc Chat",
+     "joinUrl": "https://metabrainz.org/contact"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/metabrainz-foundation-inc",
+   "githubUrl": "https://github.com/metabrainz",
+   "logo": "/logos/programs/c4gt/the-metabrainz-foundation-inc.png"
+  }
+ ]
+}

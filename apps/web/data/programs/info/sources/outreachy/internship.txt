@@ -1,0 +1,175 @@
+Source: https://www.outreachy.org/docs/internship/
+Retrieved: 2026-10-15
+
+Internship Guide | Outreachy Documentation
+Log In
+Applicants
+Applicant Guide
+Internship Guide
+Apply to Outreachy
+My Application
+Current Projects
+Past Projects
+Communities
+Community Guide
+Volunteering FAQ
+Community Sign-up
+Mentor Sign-up
+My Mentored Projects
+All Projects
+Interns
+Internship Guide
+My Internship
+Past Interns
+Donors
+Sponsor Outreachy
+Individual Donations
+About Us
+Contact Us
+Promote Outreachy
+Blog
+← back to Outreachy documentation
+Outreachy Internship Guide
+Table of Contents
+Internship Time Commitment
+Generative AI policy
+Mentor Expectations
+Career Development
+Payments
+Blogging
+Report #1: Introduce yourself
+Report #2: Mid-point check-in
+Report #3: Wrapping up
+Blogging FAQ
+Chats with interns, mentors, and alums
+Internship Time Commitment
+Your project should be your primary focus during your internship. Unless contrary to any laws where you are located, you should dedicate 30 hours per week to your project for at least 12 weeks of the Outreachy internship's 13 week duration.
+Outreachy understands that interns may be temporarily interrupted from working on their project. You may get sick or have to deal with extreme weather. You may have a power outage or internet outage. Your computer may break down. You may want to spend time with your family on during a holiday or vacation.
+As stated above, we expect interns to work 30 hours a week for at least 12 weeks of the 13 week internship. Please let your mentor know if you are not working on the project for a short period of time.
+Rarely, interns work less than full-time, or cannot work for all 12 weeks. In that case, interns will need to arrange an internship extension with their mentor. Mentors recommend interns for extensions at the initial, mid-point, and final feedback dates. Outreachy organizers will confirm the extension with interns and mentors via email.
+Internships can be extended for up to five weeks. Internships cannot be extended for more than 5 weeks. We cannot allow an internship to be stopped and then later restarted.
+When an internship is extended, the feedback dates and payment dates will be shifted by the amount of the internship extension.
+↑ table of contents
+Generative AI policy
+As a general policy, Outreachy strongly discourages the use of generative AI tools. These tools should be only used after an explicit conversation with your mentor. Applicants who submit unedited AI-generated contributions that they cannot explain or correct will NOT be accepted for Outreachy internships. Outreachy interns who over-rely on having AI generate their contributions may have their internship terminated.
+Each Outreachy mentor will set a policy on whether they allow applicants and interns to use generative AI in their project contributions.
+Outreachy applicants should check the project description to understand the mentor's generative AI policy. If no description is provided, applicants should check with their mentor before submitting any AI generated project contributions.
+Outreachy interns should talk with their mentor at the beginning of the internship to understand what parts of the project they can use generative AI with, if any.
+Generative AI is well known for "AI hallucinations". Generative AI is well known to output incorrect facts or make up concepts.
+When generative AI is used in programming, it can create buggy code and make up function or API calls that don't exist. AI generated code often looks correct at first glance. It can take Outreachy mentors a long time to identify the issues.
+Many experienced Outreachy mentors have commented that AI generative code is both poor in quality and difficult to review. Mentors are also concerned that applicants may not understand the code that is being generated. Outreachy mentors fear that using generative AI can slow down or interfere with the learning process of applicants and interns.
+At the same time, there may be use cases where generative AI is helpful. For example, some people may use generative AI to find information about a technical topic in project documentation. Non-native English speakers may use generative AI to polish their commit messages to sound more professional. Generative AI is also helpful in extracting data or numbers from text into tables or charts. However, even these use cases require very careful checking to ensure there are no mistakes or made-up information.
+A few open source projects are experimenting with allowing or even encouraging code contributions using generative AI or other AI programming tools. Each Outreachy project will have a different policy about whether they will accept project contributions generated with AI.
+Please check the internship project description to understand whether you can use generative AI in your project contributions. Please talk with your mentor to understand whether you can use generative AI, and how best to use it.
+Regardless of project generative AI policy, Outreachy expects applicants and interns to use generative AI in a deliberate, documented, and precise manner. Using the tips below will ensure that applicants and interns respect Outreachy mentor's time and expertise.
+Using generative AI respectfully:
+Document how you used generative AI in your project contribution. In your pull request or contribution description, mention you used generative AI. Make sure to note the name and version of the generative AI tool you used. Share the steps you took or prompts you wrote to ask the generative AI tool to create or edit your contribution.
+Understand what the AI generated contribution is doing. It's important to understand the output of any software tool. This especially true of contributions generated with AI. Outreachy applicants and interns should be able to explain why the AI generated contribution is related to the problem they are trying to solve. You should be able to explain in detail what the generated contribution does. You should be able to correct any mistakes and create additional content to improve the contribution.
+Make sure the AI generated contribution is correct. All contributions, including AI generated ones, must meet the testing, documentation, style and quality guidelines of the open source community. Make sure your code compiles and passes the project test suite. Make sure your contribution meets the documentation and style guidelines of the open source community. Additionally, AI generated code must be very carefully checked to make sure the tool hasn't made up functions, API calls, references, or documentation sections that don't exist.
+↑ table of contents
+Mentor Expectations
+Outreachy mentors should provide:
+A project for the intern to work on
+5 hours per week of mentoring - including answering questions, reviewing contributions, and meeting with interns
+A real-time meeting at least once a week - either through real-time chat, video conference, or phone
+Detailed and timely review of contributions - if a mentor is unable to provide contribution review, they are responsible for finding community members who can
+Guidance to interns about how to work in an open source community
+Guidance to interns about time management
+If your mentor is not meeting the above expectations, please contact the Outreachy organizers .
+Outreachy mentors are focused on helping interns complete their project. Some mentors provide career advice or help connecting to the larger open source community, but it is not required for mentors to do so. Please see the career development section below.
+↑ table of contents
+Career Development
+Outreachy is working to improve the career development services we offer interns. We currently offer a very limited set of career development opportunities:
+Encouragement to conduct informational chats with open source professionals during week 9 of the internship
+An Outreachy internship is not a guarantee that you will find a job with an Outreachy sponsor. Some applicants pick their internship because they want to network with open source contributors who work for a particular company. However, you may end up working with open source contributors who are volunteers or work for other companies. Outreachy interns should be open to networking and working with all open source contributors, regardless of who they work for.
+↑ table of contents
+Payments
+Outreachy interns are paid $7,000 USD total for three months of work. The stipend is paid in two payments:
+$3,000 initial stipend
+$4,000 final stipend
+The stipend is paid after organizers receive successful feedback from the project mentor. Interns will be required to fill out tax forms (either a W8-BEN or a W-9) in order to be paid. If tax forms or payment routing information are turned in after the tax form deadline, the initial payment may be delayed.
+Dec 2026 internships payment schedule:
+| Dec. 7, 2026 | Internships starts
+| Dec. 11, 2026 | Feedback #1 due
+| Jan. 11, 2027 | Feedback #2 due
+| Jan. 20, 2027 | $3000 stipend will be issued to interns with successful feedback #1
+| Feb. 1, 2027 | Feedback #3 feedback due
+| March 2, 2027 | $4000 stipend will be issued to interns with successful feedback #3
+| March 1, 2027 | Feedback #4 feedback due
+| March 8, 2027 | Internships end
+↑ table of contents
+Blogging
+Interns are required to publish at least three reports about their internship. See the blog FAQ for suggested blog post length.
+Blogging schedule
+The Outreachy organizers will send blog prompts on the following dates:
+| Start of June
+or mid-December | Blog prompt: Introduce yourself
+| End of June or
+end of January | Blog prompt: Mid-point check-in
+| Start of August or
+start of March | Blog prompt: Wrapping up
+Report #1: Introduce yourself
+Blog prompt
+Welcome to Outreachy! In your first internship report, you should:
+Introduce yourself, your community and your project.
+Tell people what motivated you to apply to Outreachy and what kept you going during all application stages.
+Describe your experience during the contribution period and everything you've learned during that stage.
+List your proudest contributions.
+Talk about what you expect from your internship experience.
+↑ table of contents
+Report #2: Mid-point check-in
+Blog prompt
+You're halfway done! In your second internship report, you should:
+Describe your progress, providing descriptions, images and/or links to contributions you've created or submitted.
+Highlight what you've learned from other interns, mentors and your community.
+Tell people what you're most proud of building so far.
+Talk about adjustments to project scope, timeline or tasks, if any.
+↑ table of contents
+Report #3: Wrapping up
+Blog prompt
+You're almost done! In your third and last internship report, you should:
+Present the results of your work, providing descriptions, images and/or links to contributions you've created or submitted.
+Tell people if there's any way someone can help you or your community expand or continue your work.
+Talk about everything you've learned throughout the internship.
+Describe your career prospects and post-internship plans.
+↑ table of contents
+Blogging FAQ
+Where should I create a blog?
+Outreachy organizers recommend creating a blog that runs on free software. Our recommendations is to use Wordpress or Dreamwidth .
+It can be tempting to use static site generators to create your own blog. However, interns often spend too much time configuring their blog than working on their project.
+Outreachy organizers do not recommend using proprietary social media blogs, such as Medium or Tumblr. If your community already has a blog on Medium and wants you to post progress reports to that blog, that's is okay. However, you will still need your own blog to publish other posts on.
+Please update your profile https://www.outreachy.org/account/ with a link to both the URL for your blog, and the RSS feed for your blog. For the RSS feed, you can specify either the entire blog feed, or a specific feed you want to be aggregated. Some interns add the RSS feed for their "outreachy" tag on their blog, so they can also blog about personal things.
+How long should a blog post take to write?
+Blog posts don't need to be perfect! You shouldn't spend more than 1-3 hours on the post. Your mid-point and final project progress blog post may take longer than your other blog posts. Blogging shouldn't take priority over working on your internship project.
+How much should I write?
+A good rule of thumb is that blog posts should take about 3 to 5 minutes to read. If it takes longer than that, you may want to break up it up into multiple blog posts.
+What if I don't want to use the blog post prompt?
+That's fine! The blog post prompts are designed to give inspiration for interns to write. If you don't like the blog post prompt, or it doesn't apply to you, write something else. You can give a status update on your project instead. Or you could talk about something you're stuck on. Or you could introduce a new tool or skill you learned. Or you could talk about what it's like to work in your free software community.
+If your mentor has a different topic in mind, you can blog about that instead of using the blog post prompts.
+You're still required to blog every two weeks. The goal is to share your experiences during the internship, and your progress on your project. Even a short update (a paragraph or two) is good.
+Do I have to answer all the blog post prompt questions?
+The blog post prompts often include a series of questions. You don't have to answer every question in the prompt. You can pick and choose which questions are most interesting to you. The goal is to inspire you to write a blog post, not to dictate exactly what you should talk about.
+How should I promote my blog?
+You're welcome to post a link to your blog on social media. Outreachy is present on Mastodon (@outreachy@hachyderm.io) and LinkedIn. If you tag us, we'll reshare your post. . It's best if you include a description of your blog post that would make sense to someone who isn't familiar with Outreachy.
+Examples:
+"Want a remote internship working on free software? Read my blog post on how I got an @outreachy internship with Public Lab: URL".
+"I'm an @outreachy intern with Wikimedia on PROJECT. Read more about my challenges during my first 3 weeks: URL"
+"My @outreachy internship with Debian is half-way done! Read about the progress I've made on PROJECT: URL".
+Ask your mentor if there are other community forums you should post your blog entries to. Some communities aggregate member's blog posts into one page. Your blog may need to have an RSS feed to be included in the community blog aggregate page.
+↑ table of contents
+Chats with interns, mentors, and alums
+Outreachy interns, mentors, and alums will have an informal chat on a BigBlueButton room three times throughout the internship. The goal of these chats is to encourage the interns to connect with each other.
+We encourage you to honestly share your experiences. We are all learning, and no one will judge you. We especially encourage you to participate if you're shy. You may make some new friends or find a new support group!
+Chat schedule
+| End of May or
+mid-December | Chat #1: Working remotely & Conferences
+| End of June or
+end of January | Chat #2: Careers in open source & Informal chats
+| Start of August or
+start of March | Chat #3: Continuing your open source journey
+↑ table of contents
+Copyright &copy; 2026 Outreachy
+Free to share and remix: Creative Commons CC-BY , except for the individual organization logos, which are property of their respective owners, and any pictures with additional creative commons attributions.
+The Outreachy website is built with Django , Wagtail , bootstrap and deployed with Dokku . The code is licensed GPL v3 and can be found in the Outreachy website GitHub repo. There is a separate GitHub repo for creative works
+This program and all offers related to it are void where prohibited or restricted by law or where operation of the program would violate any law or right. All participants in the program must agree to the terms and conditions of the program which will be provided to the selected applicants.
+Outreachy privacy policy .

@@ -1,0 +1,48 @@
+{
+ "program": "processing-foundation",
+ "checked": "2026-10-15",
+ "status": "open",
+ "statusNote": "Nominations for the 2027 Fellowship are open until November 1, 2026.",
+ "summary": "Since 2013, the Processing Foundation Fellowship has supported emerging artists, educators and coders in imagining more just and equitable relationships with technology. Fellows build on Processing Foundation open source projects such as p5.js and Processing.",
+ "runBy": "Processing Foundation",
+ "stipend": {
+  "headline": "$10,000",
+  "detail": "A $10,000 stipend over the 8-month 2027 fellowship, together with mentorship, workshops and public presentations.",
+  "currency": "USD",
+  "yearNote": "2027 Fellowship"
+ },
+ "facts": [
+  { "label": "Length", "value": "About 8 months: January 25 to September 26, 2027" },
+  { "label": "Final presentations", "value": "October 2, 2027" },
+  { "label": "Selection", "value": "By nomination (self-nomination allowed), then proposals and interviews" },
+  { "label": "Location", "value": "U.S.-based fellows only" }
+ ],
+ "eligibility": [
+  "Must be based in the United States.",
+  "Collective Intelligence track: based anywhere in the U.S., with software development, machine learning or AI experience.",
+  "Gaming the System track: based in Los Angeles.",
+  "DIY Computing track: based in New York City with hardware prototyping experience; not open to full-time, part-time or low-residency students, or tenured faculty."
+ ],
+ "timelineTitle": "2027 Fellowship",
+ "timeline": [
+  { "label": "Nominations open", "date": "2026-10-07" },
+  { "label": "Nominations close", "date": "2026-11-01" },
+  { "label": "Proposals due (invited nominees)", "date": "2026-11-23" },
+  { "label": "Video interviews", "date": "Week of 2026-12-07" },
+  { "label": "Fellows notified", "date": "Week of 2026-12-14" },
+  { "label": "Fellowship runs", "date": "2027-01-25 to 2027-09-26" }
+ ],
+ "howToApply": [
+  "Nominate yourself or someone else through the nomination form.",
+  "Selected nominees are invited to submit proposals.",
+  "Finalists are interviewed; fellows are selected on their proposal, its fit with the Foundation's mission and its impact on the creative coding community."
+ ],
+ "links": [
+  { "label": "2027 Fellowship", "url": "https://processingfoundation.org/programs/fellowships/fellowship-2027" },
+  { "label": "Past fellowships", "url": "https://processingfoundation.org/fellowships" }
+ ],
+ "sources": [
+  { "label": "2027 Processing Foundation Fellowship", "url": "https://processingfoundation.org/programs/fellowships/fellowship-2027", "file": "processing-foundation/fellowship-2027.txt" },
+  { "label": "Fellowships", "url": "https://processingfoundation.org/fellowships", "file": "processing-foundation/fellowships.txt" }
+ ]
+}

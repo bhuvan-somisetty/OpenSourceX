@@ -1,0 +1,102 @@
+Source: https://developers.google.com/season-of-docs?hl=en
+Retrieved: 2026-10-15
+
+Google Season of Docs | Google for Developers
+Skip to main content
+Google
+Season of Docs
+/
+English
+Deutsch
+Español
+Español – América Latina
+Français
+Indonesia
+Italiano
+Polski
+Português – Brasil
+Tiếng Việt
+Türkçe
+Русский
+עברית
+العربيّة
+فارسی
+हिंदी
+বাংলা
+ภาษาไทย
+中文 – 简体
+中文 – 繁體
+日本語
+한국어
+Sign in
+Supporting open source collaboration with technical writers, 2019-2024.
+Home
+Participants
+About
+Resources
+Google
+Season of Docs
+Home
+Participants
+About
+Resources
+Home
+Products
+Google Season of Docs
+Stay organized with collections
+Save and categorize content based on your preferences.
+The Google Season of Docs program has concluded after six great years. Thank you to all participants for your invaluable contributions to open source documentation. Information and case studies from past participants are available on the Participants page. For more open source documentation materials and resources, please visit the Open Docs Repo on GitHub.
+[[["Easy to understand","easyToUnderstand","thumb-up"],["Solved my problem","solvedMyProblem","thumb-up"],["Other","otherUp","thumb-up"]],[["Missing the information I need","missingTheInformationINeed","thumb-down"],["Too complicated / too many steps","tooComplicatedTooManySteps","thumb-down"],["Out of date","outOfDate","thumb-down"],["Samples / code issue","samplesCodeIssue","thumb-down"],["Other","otherDown","thumb-down"]],[],[],[]]
+Engage
+Google Developer Program
+Google Developer Groups
+Google Developer Experts
+Accelerators
+Google Cloud & NVIDIA
+Connect
+Blog
+Bluesky
+Instagram
+LinkedIn
+X (Twitter)
+YouTube
+Build
+Android
+Chrome
+Firebase
+Google AI Studio
+Google Antigravity
+Google Cloud
+Google Play
+View all
+Android
+Chrome
+Firebase
+Google Cloud Platform
+Google AI
+All products
+Terms
+Privacy
+Manage cookies
+English
+Deutsch
+Español
+Español – América Latina
+Français
+Indonesia
+Italiano
+Polski
+Português – Brasil
+Tiếng Việt
+Türkçe
+Русский
+עברית
+العربيّة
+فارسی
+हिंदी
+বাংলা
+ภาษาไทย
+中文 – 简体
+中文 – 繁體
+日本語
+한국어

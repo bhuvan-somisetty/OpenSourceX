@@ -1,0 +1,163 @@
+Source: https://processingfoundation.org/programs/fellowships/fellowship-2027
+Retrieved: 2026-10-15
+
+Fellowships
+Software What is Processing?
+Showcase
+Tools
+Programs Fellowships
+Grants
+Processing Community Day
+Partnerships
+Open Calls
+Community Ways to Contribute
+Education
+Support Donate
+Impact
+About Mission & Values
+History
+People
+Reports & Plans
+Governance
+Blog
+Donate
+Software What is Processing?
+Showcase
+Tools
+Programs Fellowships
+Grants
+Processing Community Day
+Partnerships
+Open Calls
+Community Ways to Contribute
+Education
+Support Donate
+Impact
+About Mission & Values
+History
+People
+Reports & Plans
+Governance
+Blog
+Donate
+Programs / Fellowships / 2027
+2027 Processing Foundation Fellowship
+The Processing Foundation Fellowship Program returns in 2027 with a renewed focus: technological innovation through community participation.
+For the 2027 Fellowship, please nominate artists, educators, and engineers working across AI, games, and hardware to propose projects that extend the impact of Processing.
+Fellows will receive support through a $10,000 stipend, mentorship, workshops, public programs, and community engagement opportunities.
+Nominations are open October 7 through November 1, 2026. Nominate someone you know, or nominate yourself.
+Nominate someone
+Explore the tracks
+About the Fellowship
+Since 2013, the Processing Foundation Fellowship has supported artists and creative technologists in imagining more just and equitable relationships with technology. The eight-month program offers financial support, mentorship, and collaborative learning to early- and mid-career artists, coders, and educators building open-source creative tools and socially engaged projects. Rooted in the Foundation's commitment to access to the cultural commons, it gives fellows sustained time and guidance to turn artistic and technical ideas into software, learning resources, and creative systems shared with the public.
+Fellowship projects respond to real artistic and social needs. Fellows are paired with community partners and supported through participatory design, so the tools they build stay grounded in real-world contexts. Working as a cohort, they experiment, share knowledge openly, and publish their work through presentations and open repositories that others can adapt and extend.
+For more than a decade, the Fellowship has incubated projects that continue to shape the creative coding ecosystem. p5.js and the p5.js Editor, now used by millions worldwide, both began with Fellowship support. By investing in people who build open-source tools and share what they know, the Fellowship helps make creative technology more accessible across disciplines and communities.
+Starting in 2027, each fellow will receive
+A $10,000 stipend throughout an 8-month fellowship period
+Open-source software mentorship from the Processing Foundation team and collaborators
+A cohort of fellows to work, share, and check in with
+Professional development
+Public opportunities to share the work, from talks and workshops to published documentation
+Connection to the wider Processing community of artists, educators, and contributors
+Opportunity to join the Processing Foundation Fellowship Alum Network
+What's new in 2027
+After more than a decade as a fully remote, international program, the Fellowship is entering a new chapter. Starting in 2027, the Fellowship Program will concentrate on building open-source tools and resources for the arts. This also means technological innovations will always incorporate community participation.
+That focus brings fellows and the Foundation team closer together. For the 2027 fellowships that are hybrid, they're rooted in New York and Los Angeles, where staff can support fellows in person.
+The Processing community spans the world, and there are numerous ways to get involved. If you're based outside the U.S., take a look at Processing Foundation Microgrants and Processing Community Day .
+The 2027 tracks
+Collective Intelligence
+What would AI education become if young people helped design it?
+Remote, anywhere in the U.S.
+AI tools are arriving in classrooms faster than anyone can explain how they work, and most are designed without young people's inputs. What would it take for young people to understand AI well enough to shape it, not just use it?
+Fellows will spend eight months working with Mark Cuban Foundation's youth community to co-design creative AI education tools. Informed by Creative Software for Teaching AI and mentored by leading voices in AI and creative technology, they will prototype open-source tools others can teach with, adapt, and extend.
+Depending on what the youth community wants to explore, the result might be a tool for training a model by hand, a visual way to see how AI makes decisions, a creative coding environment for working with AI, or a set of classroom-ready experiments.
+Who it's for: people with a passion for education and experience in software development, machine learning, or artificial intelligence, based anywhere in the U.S.
+Gaming the System
+Who gets to shape the tools for game design?
+Hybrid, Los Angeles
+Games are one of the most powerful ways artists tell stories and build worlds. But the tools for making them often assume experience, resources, and access many young people in Los Angeles don't have. What would game design look like if it started with the young people least often invited in?
+The fellow will spend eight months developing an open-source toolkit for video game design, co-designed with underserved communities in Los Angeles. Guided by the fellow, students will give feedback that makes game design more accessible to beginners.
+Working with the Processing Foundation team and gaming professionals, the fellow will also create open-access tutorials and templates, and support students through online workshops and an in-person summer intensive in Los Angeles.
+Who it's for: game makers, creative coders, and educators based in Los Angeles.
+DIY Computing
+What does it mean to reclaim computers in 2027?
+Hybrid, New York City
+Custom-built portable computers, or cyberdecks, are trending on social media right now, as part of a wider urge to open up the personal computer, rebuild it, and take it back from mass production. But what exactly is being built? A tool, a style, or nostalgia for a future that never shipped?
+Fellows will spend eight months working with a NYC in-person community they're a part of to build open-source hardware and software environments. Taking inputs from the community, they will build an open-source toolkit others can build, remix, and repair.
+Depending on the community's interests, the result might be an open-source cyberdeck, a new instrument, a family of experiments, or a personal computer for drawing, sound, performance, or generative art. Fellows push into handmade interfaces, portable studios, and new ways of working with code physically.
+Who it's for: early-career artists with experience in hardware prototyping based in New York City. Artists are not eligible if they are a full-time, part-time, or low-residency student in any degree-granting program or a tenured faculty.
+Project requirement
+Every 2027 fellowship project must build on one of Processing Foundation's open-source projects:
+p5.js
+View on GitHub
+p5.js Editor
+View on GitHub
+Processing 4.x
+View on GitHub
+Processing Development Environment
+View on GitHub
+Processing 5.0 Rust R&D
+View on GitHub
+Experimental Python Package
+Built on Processing 5.0 Rust R&D
+View on GitHub
+Who can be nominated
+Anyone can nominate an artist, engineer, educator, including themselves. Nominees must be based in the U.S. and meet the requirements of the track they're nominated for.
+How it works
+The Fellowship starts with a nomination and moves through two rounds of review.
+The panel brings together the Processing Foundation team and external reviewers. Proposals are considered for the strength of the project, its fit with the Foundation's mission, and its potential impact on the creative coding community.
+1. Nominate
+Submit the nomination form, choosing one track.
+2. Propose
+A review panel reads every nomination and invites selected nominees to submit a project proposal.
+3. Interview
+The panel reviews proposals and meets finalists for a video interview.
+4. Begin
+Selected fellows are notified and the Fellowship begins.
+Key dates
+October 7, 2026: Nominations open
+November 1, 2026, 11:59PM PST: Nominations close
+November 2, 2026: Selected nominees invited to submit proposals
+November 7, 2026, 10:00AM PST: Info session for invited nominees
+November 23, 2026, 11:59PM PST: Proposals due
+Week of December 7, 2026: Video interviews with finalists
+Week of December 14, 2026: Fellows notified
+January 25, 2027: Fellowship program begins
+September 26, 2027: Fellowship program ends
+October 2, 2027: Final presentations and documentation
+Nominate
+Know someone who should be a 2027 fellow? Nominate them, or nominate yourself, by November 1, 2026.
+Open the nomination form
+Supporters
+The 2027 Fellowship is made possible by the partners below. Thank you for investing in open-source software for the arts, and in the communities shaping its future.
+Mark Cuban Foundation
+Riot Games
+Jerome Foundation
+FAQ
+Can I nominate myself? Yes, please check the box on the form indicating that you are nominating yourself.
+Once my nomination gets accepted, can I submit more than one proposal? We can only review one proposal per applicant, so please submit the idea you're most excited about.
+What is the selection process for the Fellowship Program? The selection process for the Fellowship Program is based on a thorough review of all applications by the Processing Foundation team and a panel of external reviewers. The evaluation is based on the applicant's proposed project, its alignment with the Foundation's mission, and its potential impact on the creative coding community.
+How long is the Fellowship Program? The Processing Foundation Fellowship Program runs for approximately eight months. During this time, fellows are expected to work on their projects, and participate in mentorship sessions, and cohort check-ins.
+Do I need to be proficient in creative coding or software/hardware engineering to apply? Your creative coding or software/hardware engineering experience should be sufficient enough to complete your project proposals.
+Can I apply if I am not based in the United States? No. For the 2027 round of applications, we are only accepting U.S. applicants. For the hybrid fellowships, fellows must be located in either New York, NY or Los Angeles, CA. For fully remote fellowships, fellows must be US-based due to collaborations with U.S.-based students.
+Have a question about the fellowship program? Contact us.
+Submit this form
+First name
+Last name
+Email
+Topic
+Fellowships Fellowships
+Tell us more
+Send
+Celebrating 25 years of free and open-source creativity
+Join the mailing list to stay up to date
+Subscribe
+GitHub Instagram LinkedIn YouTube RSS
+© 2026 Processing Foundation, a 501(c)(3) non-profit stewarding creative coding software since 2012. EIN 46-0830259. Site content licensed under CC BY-NC-SA 4.0 .
+Terms of Service Privacy Policy
+Celebrating 25 years of free and open-source creativity
+Support our work
+© 2026 Processing Foundation, a 501(c)(3) non-profit stewarding creative coding software since 2012. EIN 46-0830259. Site content licensed under CC BY-NC-SA 4.0 .
+Terms of Service Privacy Policy
+Join the mailing list to stay up to date
+Subscribe

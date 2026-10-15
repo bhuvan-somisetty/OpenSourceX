@@ -1,0 +1,43 @@
+{
+ "program": "igalia",
+ "checked": "2026-10-15",
+ "status": "running",
+ "statusNote": "Selection for 2026 is complete; the 2026 page does not state a compensation amount.",
+ "summary": "The Igalia Coding Experience is a grant program for people studying Computer Science, Information Technology or Free Software, formally or self-taught. Participants get their first professional experience working hand in hand with Igalia programmers.",
+ "runBy": "Igalia",
+ "stipend": {
+  "headline": "€7,000",
+  "detail": "Compensation for the 2025 program was €7,000 for 450 hours. Igalia's 2026 page does not publish an amount.",
+  "currency": "EUR",
+  "yearNote": "2025 program"
+ },
+ "facts": [
+  { "label": "Hours", "value": "450 hours" },
+  { "label": "Usual timetable", "value": "3 months full-time or 6 months part-time" },
+  { "label": "Format", "value": "Remote-friendly; participate wherever you live" },
+  { "label": "2026 areas", "value": "Linux packaging, Graphics (Mesa), JavaScript devtools, Multimedia and GStreamer, Web standards" }
+ ],
+ "eligibility": [
+  "People learning and wanting initial professional experience in free/open source development: students or self-learners.",
+  "Also open to people later in their career who want to move into computer science.",
+  "Igalia expressly invites women (cis and trans), trans men and genderqueer people, and prioritizes applicants from groups underrepresented in technology.",
+  "Previous free software contributions help but are not required."
+ ],
+ "timelineTitle": "Igalia Coding Experience 2026",
+ "timeline": [
+  { "label": "Applications open", "date": "2026-02-23" },
+  { "label": "Applications close", "date": "2026-04-03" },
+  { "label": "Participants selected", "date": "Mid-May 2026" },
+  { "label": "Start", "date": "From June 2026, finishing before the end of 2026" }
+ ],
+ "howToApply": [
+  "Choose one or more areas listed on the Coding Experience page.",
+  "Fill in the application form with a cover letter and a CV (PDF).",
+  "Selected participants agree a start date with Igalia."
+ ],
+ "links": [{ "label": "Igalia Coding Experience", "url": "https://www.igalia.com/coding-experience/" }],
+ "sources": [
+  { "label": "Coding Experience page, 2026 application period (Internet Archive)", "url": "https://web.archive.org/web/20260227153651/https://www.igalia.com/coding-experience/", "file": "igalia/coding-experience-2026-02.txt" },
+  { "label": "Coding Experience page, 2025 application period (Internet Archive)", "url": "https://web.archive.org/web/20250315110705/https://www.igalia.com/coding-experience/", "file": "igalia/coding-experience-2025-03.txt" }
+ ]
+}

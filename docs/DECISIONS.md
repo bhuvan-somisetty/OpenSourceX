@@ -159,3 +159,29 @@ Format: Decision, Context, Options, Reason, Trade-offs, Date.
   source provides it (provider architecture, D-013); the product scope is unchanged.
 - Trade-offs: LFX term history beyond CNCF projects waits for permission or
   another licensed source.
+
+## D-020 Owner approves official program lists as sources (2026-10-15)
+
+- Context: Q2 left GSoC "pending" and the other programs unreviewed, so only LFX had
+  real data. The owner asked for real organization data, repository links, community
+  links and logos for every program.
+- Decision: the owner approves using each program's own public organization list as
+  the source: the GSoC organization archive (2022 to 2026), Season of Docs participants
+  page, Outreachy round pages (CC BY 3.0), Summer of Bitcoin's organization feed, the
+  ESoC GitHub README, the OSPP organization API, C4GT DMP 2025 tickets, the MLH
+  Fellowship partners page, and the Igalia and Processing Foundation program pages.
+  Repository, logo and chat links that a list does not carry come from the
+  organization's own GitHub account, README or website. Nothing is inferred: when a
+  match is not exact the field stays empty.
+- How: `scripts/programs/collect.mjs` fetches once and writes
+  `apps/web/data/programs/<program>.json` plus logos under
+  `apps/web/public/logos/programs/`. Both are committed, so the site never fetches
+  live and the data survives a lost working copy. Only organization-level fields are
+  stored; no personal data (emails, mentor or intern names) is kept.
+- Program details (stipend, payments, eligibility, timeline, how to apply) live in
+  `apps/web/data/programs/info/<program>.json`, written from each program's official
+  pages. `scripts/programs/snapshot-sources.mjs` saves text copies of those pages under
+  `info/sources/` and the published per-country stipend tables under `info/stipends/`,
+  so every figure can be checked even if a program site changes.
+- Trade-offs: data is a snapshot dated in each file and must be re-collected to stay
+  current; organizations can ask for removal, which is honored.

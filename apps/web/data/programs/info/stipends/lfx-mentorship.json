@@ -1,0 +1,758 @@
+{
+ "source": "https://docs.linuxfoundation.org/lfx/mentorship/mentee-stipends/total-stipend-amount",
+ "retrieved": "2026-10-15",
+ "currency": "USD",
+ "columns": [
+  "amount"
+ ],
+ "rows": [
+  {
+   "country": "Afghanistan",
+   "amount": 1400
+  },
+  {
+   "country": "Albania",
+   "amount": 3000
+  },
+  {
+   "country": "Algeria",
+   "amount": 2000
+  },
+  {
+   "country": "Andorra",
+   "amount": 4300
+  },
+  {
+   "country": "Angola",
+   "amount": 1800
+  },
+  {
+   "country": "Antigua and Barbuda",
+   "amount": 4300
+  },
+  {
+   "country": "Argentina",
+   "amount": 1900
+  },
+  {
+   "country": "Armenia",
+   "amount": 2400
+  },
+  {
+   "country": "Australia",
+   "amount": 5900
+  },
+  {
+   "country": "Austria",
+   "amount": 5100
+  },
+  {
+   "country": "Azerbaijan",
+   "amount": 1800
+  },
+  {
+   "country": "Bahamas, The",
+   "amount": 6000
+  },
+  {
+   "country": "Bahrain",
+   "amount": 2800
+  },
+  {
+   "country": "Bangladesh",
+   "amount": 1500
+  },
+  {
+   "country": "Barbados",
+   "amount": 6500
+  },
+  {
+   "country": "Belgium",
+   "amount": 5000
+  },
+  {
+   "country": "Belize",
+   "amount": 3300
+  },
+  {
+   "country": "Benin",
+   "amount": 2200
+  },
+  {
+   "country": "Bermuda",
+   "amount": 6600
+  },
+  {
+   "country": "Bhutan",
+   "amount": 3000
+  },
+  {
+   "country": "Bolivia",
+   "amount": 2100
+  },
+  {
+   "country": "Bosnia-Herzegovina",
+   "amount": 2500
+  },
+  {
+   "country": "Botswana",
+   "amount": 2300
+  },
+  {
+   "country": "Brazil",
+   "amount": 3100
+  },
+  {
+   "country": "Brunei Darussalam",
+   "amount": 2300
+  },
+  {
+   "country": "Bulgaria",
+   "amount": 2900
+  },
+  {
+   "country": "Burkina Faso",
+   "amount": 2200
+  },
+  {
+   "country": "Burundi",
+   "amount": 1800
+  },
+  {
+   "country": "Cabo Verde",
+   "amount": 3100
+  },
+  {
+   "country": "Cambodia",
+   "amount": 2100
+  },
+  {
+   "country": "Cameroon",
+   "amount": 2200
+  },
+  {
+   "country": "Canada",
+   "amount": 5100
+  },
+  {
+   "country": "Central African Republic",
+   "amount": 2700
+  },
+  {
+   "country": "Chad",
+   "amount": 2300
+  },
+  {
+   "country": "Chile",
+   "amount": 3100
+  },
+  {
+   "country": "China",
+   "amount": 3100
+  },
+  {
+   "country": "Colombia",
+   "amount": 2500
+  },
+  {
+   "country": "Comoros",
+   "amount": 2800
+  },
+  {
+   "country": "Congo, Dem. Rep.",
+   "amount": 2700
+  },
+  {
+   "country": "Congo, Rep.",
+   "amount": 2300
+  },
+  {
+   "country": "Costa Rica",
+   "amount": 4000
+  },
+  {
+   "country": "Cote d'Ivoire",
+   "amount": 3000
+  },
+  {
+   "country": "Croatia",
+   "amount": 3000
+  },
+  {
+   "country": "Cyprus",
+   "amount": 4000
+  },
+  {
+   "country": "Czech Republic",
+   "amount": 3800
+  },
+  {
+   "country": "Denmark",
+   "amount": 5800
+  },
+  {
+   "country": "Djibouti",
+   "amount": 2800
+  },
+  {
+   "country": "Dominica",
+   "amount": 3000
+  },
+  {
+   "country": "Dominican Republic",
+   "amount": 2400
+  },
+  {
+   "country": "Ecuador",
+   "amount": 2600
+  },
+  {
+   "country": "Egypt",
+   "amount": 1000
+  },
+  {
+   "country": "El Salvador",
+   "amount": 2600
+  },
+  {
+   "country": "Equatorial Guinea",
+   "amount": 2500
+  },
+  {
+   "country": "Estonia",
+   "amount": 4100
+  },
+  {
+   "country": "Ethiopia",
+   "amount": 1100
+  },
+  {
+   "country": "Fiji",
+   "amount": 2600
+  },
+  {
+   "country": "Finland",
+   "amount": 5300
+  },
+  {
+   "country": "France",
+   "amount": 4800
+  },
+  {
+   "country": "Gabon",
+   "amount": 2500
+  },
+  {
+   "country": "Gambia, The",
+   "amount": 1400
+  },
+  {
+   "country": "Georgia",
+   "amount": 2000
+  },
+  {
+   "country": "Germany",
+   "amount": 5000
+  },
+  {
+   "country": "Ghana",
+   "amount": 2300
+  },
+  {
+   "country": "Greece",
+   "amount": 3700
+  },
+  {
+   "country": "Grenada",
+   "amount": 3500
+  },
+  {
+   "country": "Guatemala",
+   "amount": 2700
+  },
+  {
+   "country": "Guinea",
+   "amount": 2200
+  },
+  {
+   "country": "Guinea-Bissau",
+   "amount": 2100
+  },
+  {
+   "country": "Guyana",
+   "amount": 2300
+  },
+  {
+   "country": "Haiti",
+   "amount": 4100
+  },
+  {
+   "country": "Honduras",
+   "amount": 2600
+  },
+  {
+   "country": "Hong Kong",
+   "amount": 4300
+  },
+  {
+   "country": "Hungary",
+   "amount": 3600
+  },
+  {
+   "country": "Iceland",
+   "amount": 6600
+  },
+  {
+   "country": "India",
+   "amount": 1300
+  },
+  {
+   "country": "Indonesia",
+   "amount": 1700
+  },
+  {
+   "country": "Iraq",
+   "amount": 2600
+  },
+  {
+   "country": "Ireland",
+   "amount": 5300
+  },
+  {
+   "country": "Israel",
+   "amount": 6600
+  },
+  {
+   "country": "Italy",
+   "amount": 4300
+  },
+  {
+   "country": "Jamaica",
+   "amount": 3600
+  },
+  {
+   "country": "Japan",
+   "amount": 3700
+  },
+  {
+   "country": "Jordan",
+   "amount": 2600
+  },
+  {
+   "country": "Kazakhstan",
+   "amount": 2200
+  },
+  {
+   "country": "Kenya",
+   "amount": 2100
+  },
+  {
+   "country": "Kiribati",
+   "amount": 4100
+  },
+  {
+   "country": "Kosovo",
+   "amount": 2600
+  },
+  {
+   "country": "Kuwait",
+   "amount": 3800
+  },
+  {
+   "country": "Kyrgyz Republic",
+   "amount": 1900
+  },
+  {
+   "country": "Lao PDR",
+   "amount": 1200
+  },
+  {
+   "country": "Latvia",
+   "amount": 3600
+  },
+  {
+   "country": "Lebanon",
+   "amount": 1600
+  },
+  {
+   "country": "Lesotho",
+   "amount": 2200
+  },
+  {
+   "country": "Liberia",
+   "amount": 3600
+  },
+  {
+   "country": "Libya",
+   "amount": 2100
+  },
+  {
+   "country": "Lithuania",
+   "amount": 3600
+  },
+  {
+   "country": "Luxembourg",
+   "amount": 5900
+  },
+  {
+   "country": "Macao SAR, China",
+   "amount": 3400
+  },
+  {
+   "country": "Macedonia",
+   "amount": 2300
+  },
+  {
+   "country": "Madagascar",
+   "amount": 1900
+  },
+  {
+   "country": "Malawi",
+   "amount": 1700
+  },
+  {
+   "country": "Malaysia",
+   "amount": 2200
+  },
+  {
+   "country": "Maldives",
+   "amount": 3100
+  },
+  {
+   "country": "Mali",
+   "amount": 2200
+  },
+  {
+   "country": "Malta",
+   "amount": 4100
+  },
+  {
+   "country": "Marshall Islands",
+   "amount": 5700
+  },
+  {
+   "country": "Mauritania",
+   "amount": 1800
+  },
+  {
+   "country": "Mauritius",
+   "amount": 2300
+  },
+  {
+   "country": "Mexico",
+   "amount": 3500
+  },
+  {
+   "country": "Micronesia, Fed. Sts.",
+   "amount": 5800
+  },
+  {
+   "country": "Moldova",
+   "amount": 2600
+  },
+  {
+   "country": "Mongolia",
+   "amount": 2000
+  },
+  {
+   "country": "Montenegro",
+   "amount": 2600
+  },
+  {
+   "country": "Morocco",
+   "amount": 2600
+  },
+  {
+   "country": "Mozambique",
+   "amount": 2400
+  },
+  {
+   "country": "Myanmar",
+   "amount": 1400
+  },
+  {
+   "country": "Namibia",
+   "amount": 2500
+  },
+  {
+   "country": "Nepal",
+   "amount": 1400
+  },
+  {
+   "country": "Netherlands",
+   "amount": 5200
+  },
+  {
+   "country": "New Zealand",
+   "amount": 5300
+  },
+  {
+   "country": "Nicaragua",
+   "amount": 2000
+  },
+  {
+   "country": "Niger",
+   "amount": 2400
+  },
+  {
+   "country": "Nigeria",
+   "amount": 1000
+  },
+  {
+   "country": "Norway",
+   "amount": 5900
+  },
+  {
+   "country": "Oman",
+   "amount": 3000
+  },
+  {
+   "country": "Pakistan",
+   "amount": 1500
+  },
+  {
+   "country": "Palau",
+   "amount": 5200
+  },
+  {
+   "country": "Panama",
+   "amount": 2800
+  },
+  {
+   "country": "Papua New Guinea",
+   "amount": 3300
+  },
+  {
+   "country": "Paraguay",
+   "amount": 2500
+  },
+  {
+   "country": "Peru",
+   "amount": 3100
+  },
+  {
+   "country": "Philippines",
+   "amount": 1900
+  },
+  {
+   "country": "Poland",
+   "amount": 3300
+  },
+  {
+   "country": "Portugal",
+   "amount": 3800
+  },
+  {
+   "country": "Puerto Rico",
+   "amount": 4700
+  },
+  {
+   "country": "Qatar",
+   "amount": 3700
+  },
+  {
+   "country": "Romania",
+   "amount": 2300
+  },
+  {
+   "country": "Rwanda",
+   "amount": 1700
+  },
+  {
+   "country": "Samoa",
+   "amount": 4000
+  },
+  {
+   "country": "Sao Tome and Principe",
+   "amount": 3500
+  },
+  {
+   "country": "Saudi Arabia",
+   "amount": 3000
+  },
+  {
+   "country": "Senegal",
+   "amount": 2300
+  },
+  {
+   "country": "Serbia",
+   "amount": 2600
+  },
+  {
+   "country": "Seychelles",
+   "amount": 3500
+  },
+  {
+   "country": "Sierra Leone",
+   "amount": 1400
+  },
+  {
+   "country": "Singapore",
+   "amount": 3800
+  },
+  {
+   "country": "Slovak Republic",
+   "amount": 3600
+  },
+  {
+   "country": "Slovenia",
+   "amount": 3900
+  },
+  {
+   "country": "Solomon Islands",
+   "amount": 4700
+  },
+  {
+   "country": "South Africa",
+   "amount": 2700
+  },
+  {
+   "country": "South Korea",
+   "amount": 3700
+  },
+  {
+   "country": "South Sudan",
+   "amount": 1000
+  },
+  {
+   "country": "Spain",
+   "amount": 4000
+  },
+  {
+   "country": "Sri Lanka",
+   "amount": 1700
+  },
+  {
+   "country": "St. Kitts and Nevis",
+   "amount": 4200
+  },
+  {
+   "country": "St. Lucia",
+   "amount": 6600
+  },
+  {
+   "country": "St. Vincent and the Grenadines",
+   "amount": 3300
+  },
+  {
+   "country": "Suriname",
+   "amount": 1700
+  },
+  {
+   "country": "Swaziland",
+   "amount": 2200
+  },
+  {
+   "country": "Sweden",
+   "amount": 5500
+  },
+  {
+   "country": "Switzerland",
+   "amount": 6600
+  },
+  {
+   "country": "Taiwan",
+   "amount": 3900
+  },
+  {
+   "country": "Tajikistan",
+   "amount": 1800
+  },
+  {
+   "country": "Tanzania",
+   "amount": 1700
+  },
+  {
+   "country": "Thailand",
+   "amount": 2000
+  },
+  {
+   "country": "Timor-Leste",
+   "amount": 1800
+  },
+  {
+   "country": "Togo",
+   "amount": 2200
+  },
+  {
+   "country": "Tonga",
+   "amount": 4400
+  },
+  {
+   "country": "Trinidad and Tobago",
+   "amount": 3100
+  },
+  {
+   "country": "Tunisia",
+   "amount": 1900
+  },
+  {
+   "country": "Turkey",
+   "amount": 2100
+  },
+  {
+   "country": "Turkmenistan",
+   "amount": 2600
+  },
+  {
+   "country": "Tuvalu",
+   "amount": 6600
+  },
+  {
+   "country": "Uganda",
+   "amount": 2100
+  },
+  {
+   "country": "Ukraine",
+   "amount": 1600
+  },
+  {
+   "country": "United Arab Emirates",
+   "amount": 3900
+  },
+  {
+   "country": "United Kingdom",
+   "amount": 5500
+  },
+  {
+   "country": "United States",
+   "amount": 6000
+  },
+  {
+   "country": "Uruguay",
+   "amount": 4000
+  },
+  {
+   "country": "Uzbekistan",
+   "amount": 1800
+  },
+  {
+   "country": "Vanuatu",
+   "amount": 5800
+  },
+  {
+   "country": "Venezuela",
+   "amount": 4200
+  },
+  {
+   "country": "Vietnam",
+   "amount": 1600
+  },
+  {
+   "country": "West Bank and Gaza",
+   "amount": 1300
+  },
+  {
+   "country": "Yemen, Rep.",
+   "amount": 2400
+  },
+  {
+   "country": "Zambia",
+   "amount": 2400
+  },
+  {
+   "country": "Zimbabwe",
+   "amount": 3000
+  }
+ ]
+}

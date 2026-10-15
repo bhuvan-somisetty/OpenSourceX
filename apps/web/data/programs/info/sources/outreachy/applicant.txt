@@ -1,0 +1,546 @@
+Source: https://www.outreachy.org/docs/applicant/
+Retrieved: 2026-10-15
+
+Applicant Guide | Outreachy Documentation
+Log In
+Applicants
+Applicant Guide
+Internship Guide
+Apply to Outreachy
+My Application
+Current Projects
+Past Projects
+Communities
+Community Guide
+Volunteering FAQ
+Community Sign-up
+Mentor Sign-up
+My Mentored Projects
+All Projects
+Interns
+Internship Guide
+My Internship
+Past Interns
+Donors
+Sponsor Outreachy
+Individual Donations
+About Us
+Contact Us
+Promote Outreachy
+Blog
+← back to Outreachy documentation
+Outreachy Applicant Guide
+Table of Contents
+What is Outreachy?
+What is free software and open source?
+Eligibility
+Am I experienced enough?
+Do I have to be a programmer to apply?
+Do you have the type of project I'm interested in?
+Outreachy schedule
+Application period overview
+Initial application
+Legal names in Outreachy
+Preparing for the contribution period
+Finding a Mentor and an Internship Project
+Making Contributions
+Policy on AI generated contributions
+How are contributions evaluated?
+Estimated number of interns
+Final application
+Intern announcement
+Internship
+What is Outreachy?
+Outreachy is a paid, remote internship program. Outreachy's goal is to support people from groups underrepresented in tech. We help newcomers to free software and open source make their first contributions.
+Outreachy provides internships to work open source. People apply from all around the world. Interns work remotely, and are not required to move. Interns are paid a stipend of $7,000 USD for the three month internship.
+Interns work with experienced mentors from open source communities. Outreachy internship projects may include programming, user experience, documentation, illustration, graphical design, or data science. Interns often find employment after their internship with Outreachy sponsors or in jobs that use the skills they learned during their internship.
+↑ table of contents
+What is free software and open source?
+Free and Open Source Software (FOSS) is software that gives the user the freedom to use, copy, study, change, and improve it. We encourage you to read an introduction article about open source software .
+Open source projects are built collaboratively. Open source contributors work together publicly. Working publicly creates a fun collaborative community around a project. It allows anyone to make innovative changes that reach many people.
+Open source contributors work on a lot of different things! You can contribute by developing software. Or you might want to improve user experience by contributing design work. You can help with documentation, community management, marketing, identifying issues and reporting bugs, helping users, event organization, graphic design, and translations.
+Sometimes people work on open source in their spare time. Many contributors are employed by companies and non-profit organizations to work on open source. That includes the companies that are sponsoring Outreachy! Experience with open source is highly valuable in the professional world. Your contributions to open source provide a public portfolio for you. Employers can see your history of public collaboration, which will give them confidence when making hiring decisions.
+↑ table of contents
+Eligibility
+Photo CC BY 2.0 WOCinTech Chat
+Outreachy is open to applicants around the world.
+We invite anyone from any background who faces under-representation, systemic bias, or discrimination in the technology industry of their country to apply.
+Outreachy openly welcomes applicants who are women (both cis and trans), trans men, non-binary people, and genderqueer people to apply.
+We also openly welcome applications who are residents and nationals of the United States of America of any gender who are Black/African American, Hispanic/Latin@, Native American/American Indian, Alaska Native, Native Hawaiian, or Pacific Islander.
+Past Outreachy interns are:
+92% women, 4% men
+4% transgender, genderqueer, or non-binary people
+64% people of color, 36% white
+12% people from a historically disadvantaged caste or tribe
+Statistics are based on responses to the 2019 longitudinal study of Outreachy alums, and they're based on self-identification. There is no list of groups that are eligible or ineligible for Outreachy. Outreachy interns have been from countless backgrounds and identities. Check our alums page to learn more about them.
+Outreachy Eligibility Rules
+These eligibility rules apply to the December 2026 Outreachy internship cohort round. Dates may change for future rounds.
+Outreachy is open to applicants around the world. You will need to meet the following requirements:
+1. General eligibility
+You must be 18 years of age or older by Dec. 7, 2026
+You must be available for a full-time internship. Outreachy interns work 30 hours per week. The internship runs from Dec. 7, 2026 to March 8, 2027.
+2. Past internships
+You are welcome to apply to Outreachy multiple times. However, you can only be accepted as an Outreachy intern once.
+You must not be a past Outreachy intern.
+You must not be a past Outreach Program for Women intern.
+You must not be a past Google Summer of Code intern. All Google Summer of Code interns are ineligible for Outreachy. This includes people who did not successfully finish their Google Summer of Code internship.
+3. Current or future internships
+The Outreachy internship runs from Dec. 7, 2026 to March 8, 2027.
+You must not have another internship during the Outreachy internship period. This includes unpaid internships.
+Applicants are required to list their current internships on their initial application. We understand you may be applying to many jobs. If you receive a job or internship offer, please notify Outreachy organizers immediately.
+4. Rules for people with jobs
+The Outreachy internship runs from Dec. 7, 2026 to March 8, 2027.
+You must not have a full-time job during the Outreachy internship.
+You must not have a full-time contracting position during the Outreachy internship period.
+You must not be on a leave of absence from a full-time job during the Outreachy internship.
+If you are willing to quit your full-time job, you are welcome to apply to Outreachy. If you cannot quit your full-time job, you are not eligible for Outreachy.
+If you have a part-time job, you are welcome to apply to Outreachy. Part-time jobs must be approved by Outreachy organizers.
+Applicants are required to list their current jobs on their initial application. We understand you may be applying to many jobs. If you receive a job or internship offer, please notify Outreachy organizers immediately.
+5. Rules for people who are not students
+People who are not students are welcome to apply to Outreachy.
+Outreachy has two internship cohorts: May to August, and December to March. If you are not a student, you may apply to either internship cohort.
+6. Rules for students
+Both students and people who are not students are welcome to apply to Outreachy.
+University students must have 42 consecutive days free from school and exams during the internship period.
+Students must apply to the correct internship cohort (see rules below).
+Outreachy internships run twice a year, May to August and December to March. We have some rules around which internship round you can apply to:
+If you are a student of a university in the Northern Hemisphere , you will only be eligible for the May to August internship cohort. Students in India are considered to be in the northern hemisphere, regardless of where their university is located.
+If you are a student of a university in the Southern Hemisphere , you will only be eligible for the December to March internship cohort.
+Otherwise, if your university is near the equator, you may apply to any internship cohort. We will review university term schedules on a case-by-case basis.
+If you are completing your last term for your degree, you are only eligible for the internship cohort specified for students of the hemisphere where your school is located. For example, if you are completing your last term in December, but your school is located in the Northern Hemisphere, you are not eligible for the December cohort. After your graduation, you may be eligible for both cohorts.
+When determining student eligibility, Outreachy looks at the school's academic calendar dates. We do not consider the individual student's course load. We do not consider special arrangements students have made with their university. Students who plan on taking a school term off to pursue an internship are not eligible for Outreachy. We cannot accept letters from universities about pausing classes or joining classes at a later date.
+7. Rules for students on visas
+Your visa must allow you to work 30 hours per week. If you cannot work 30 hours per week, you are not eligible for Outreachy.
+If you are on a student visa in the United States of America, you might have limited dates when you can work 30 hours a week. We will work with you to shift your internship dates by up to five weeks. However, we cannot accommodate shortening the 13 week internship.
+If you are a student on an F-1 visa, you may need to apply for CPT with your university. Outreachy organizers can provide you documentation for your CPT application once you are selected as an intern.
+↑ table of contents
+Am I experienced enough?
+Outreachy organizers often get questions from applicants like:
+"I'm a second year university student. I have done some projects in X programming language. Am I experienced enough for this internship?"
+"I'm learning Y through online courses. But I haven't worked on a big project with those skills. Am I experienced enough for this internship?"
+The answer is "You should fill out an initial application, regardless of your experience level."
+Outreachy has many different internship projects. Each project will have different skill requirements. It is likely there will be at least one project that fits your skills.
+Project skill preferences
+Each project will list the required, preferred, and bonus skills:
+| Required
+| Mentors will only select you as an intern if you have this skill
+| Preferred
+| Mentors prefer to select an intern who has this skill, but they may select you if you don't have this skill
+| Nice to have
+| Mentors will select you, even if you don't have this skill
+When deciding whether to apply to a project, you should focus on looking at the required skills. If you have experience in at least 1 or 2 required skills for a project, you are welcome to apply to it. If you do not have the preferred or bonus skills, it is okay to apply. However, if another applicant has the preferred skills, they may be selected over you.
+Applicants show mentors they have the required project skills by completing project tasks during the contribution period. You are more likely to be accepted as an intern if you make high-quality contributions .
+↑ table of contents
+Do I have to be a programmer to apply?
+No, you do not need to be a programmer to apply to Outreachy. Some Outreachy projects are focused on non-programming work. Those projects may involve design, documentation, user experience, marketing, or event planning.
+However, the majority of Outreachy projects will require that you have some programming skills. You will need experience programming to apply for those projects.
+Sometimes mentors are willing to teach you a new programming language if you know at least one other programming language. Check the project skills list for an experience level listing of '1 - No knowledge required'.
+↑ table of contents
+Do you have the type of project I'm interested in?
+Some applicants are looking for a specific type of project. They may want to find a project that fits their current skills. Or they may want to find a project that will challenge them to learn new skills.
+Outreachy organizers often get asked:
+"I'm interested in internships involving X. Will you have internship projects involving X?"
+"I know Y programming language. Will you have Y internship projects?"
+The answer is "You should fill out an initial application, regardless of whether you see a project you're interested in."
+Some applicants want to wait until a project appears on the project list before they fill out an initial application. However, mentors often list their project after the initial application deadline. It's important you fill out an initial application, even if you don't see a project you're interested in.
+↑ table of contents
+Outreachy yearly schedule
+Outreachy internships run twice a year. Here is our general schedule for each year:
+| Important Round Dates
+| Mid-year Internships
+| End of year Internships
+| Call for mentoring communities opens
+| early January
+| early August
+| Initial applications open
+| early February
+| late August
+| Initial applications due
+| end of February
+| early September
+| Contribution period opens
+| mid March
+| early October
+| Contribution period ends
+| mid April
+| end of October
+| Interns announced
+| mid May
+| late November
+| Internships start
+| May
+| December
+| Internships end
+| August
+| March
+December 2026 Outreachy internship cohort round schedule
+| Aug. 24, 2026 at 4pm UTC | Initial applications open
+| Aug. 31, 2026 at 4pm UTC | Initial application deadline
+| Oct. 2, 2026 | Project list finalized
+| Oct. 12, 2026 at 4pm UTC | Initial application results available
+| Oct. 12, 2026 to Nov. 9, 2026 | Contribute to projects
+| Nov. 9, 2026
+at 4pm UTC | Final application deadline
+| Nov. 30, 2026 at 4pm UTC | Accepted interns announced
+| Dec. 7, 2026
+to March 8, 2027 | Internships period
+↑ table of contents
+Application period overview
+There are three parts to the Outreachy application process:
+Initial application period
+Contribution period
+Intern selection period
+Initial application period:
+Aug. 24, 2026 to Aug. 31, 2026
+During this period, applicants fill out an initial application form
+Outreachy organizers review initial applications and their essays
+Initial applications are due on Aug. 31, 2026
+Application results will be available on Oct. 12, 2026 at 4pm UTC. Accepted applicants will be notified via email. Applicants who are not accepted will not receive an email. You can check your initial application status on the eligibility results page .
+Projects will be added to the project list until Oct. 12, 2026. Outreachy typically has over 60 projects to choose from. Applicants will not be able to see the full details of the projects until the contribution period opens.
+Contribution period:
+Oct. 12, 2026 to Nov. 9, 2026
+Applicants with an approved initial application will move onto the contribution period
+During this period, applicants contact mentors and make contributions
+Applicants are required to record a contribution
+Applicants are required to fill out a final application
+Contributions and final applications are due on Nov. 9, 2026
+Intern selection period:
+Nov. 9, 2026 to Nov. 30, 2026
+Mentors tell Outreachy organizers which interns they want to select
+Applicants may be asked to verify their time commitment details
+Intern selections are not shared with applicants until interns are announced on Nov. 30, 2026
+↑ table of contents
+Initial Application
+The initial application has many pages of questions. Some questions determine whether you meet our eligibility criteria . It's important to take your time.
+You cannot save your initial application. You have to fill it out all at once. Make sure you have a stable internet connection.
+Documentation needed
+Before you fill out your application, please have the following information:
+If you are a university student: Find your academic calendar. You will need your academic calendar for this year. You will need your academic calendar for future school terms. If they are not available, use the term start and end dates from the previous year
+If you are taking online courses: Find the calendar for your online courses
+If you are participating in a coding school: Find the calendar for your coding school cohort
+If you are (or will be) employed: Find your employment contract. Find the number of hours per week your employment contract requires. Know your employment start date and end date.
+If you are a self-employed contractor: Find the average number of invoiced hours over the past six months
+Initial Application Essays
+Before you fill out the initial application, write answers to the five essay questions. Keep your answers in a personal document for future applications.
+No generative AI allowed for initial application essays
+Applicants should not use generative AI to create or edit their initial application essays.
+We know some applicants may want to use generative AI (also called Large Language Models or LLMs). You may feel pressured to use generative AI to polish your initial application essays. However, Outreachy organizers do not judge the writing style, grammar or spelling used in essays. Instead, we look for essays that reflect your lived experience with underrepresentation, discrimination, and systemic bias.
+Only you can accurately and authentically write about your own lived experiences. Using generative AI, even to polish your essay's writing, can introduce inaccuracies and an inauthentic writing style. Generative AI tools tend to produce wordy writing with little substance. Using generative AI to polish your essay may actually remove or downplay your strong personal experiences. This may prevent the reviewers from understanding your personal perspective. Applicants who use generative AI may not have their initial application accepted.
+Essay questions
+The initial application includes five essay questions:
+What country will you be living in from December 07, 2026 to March 08, 2027? If you will be living in multiple countries, list the country you will spend the most time in.
+Are you part of an underrepresented group (in the technology industry of the country listed above)? How are you underrepresented?
+Think about the technology industry in the country listed above.
+Are there few people who share your identity or background in that technology industry?
+Please tell us which underrepresented groups you are a part of.
+You may want to consider your:
+age
+body size
+caste
+disabilities
+ethnicity
+gender identity and expression
+socio-economic status
+nationality
+personal appearance
+race
+religion
+sexual identity and orientation
+What systemic bias or discrimination would you face if you applied for a job in the technology industry of your country? Think about when you have applied for a job in the technology industry of your country. Do you think you have faced discrimination on the basis of your background or identity? If you have not applied for a job yet, do you think you may be discriminated against on the basis of your background or identity? Please provide specific examples and (optionally) statistics. Outreachy Organizers strongly encourage you to write your personal stories. We want you to know that we won't judge your writing style, grammar or spelling.
+Does your learning environment have few people who share your identity or background? Please provide details. Contributing to free and open source software takes some skill. You may have already learned some basic skills through university or college classes, specialized schools, online classes, online resources, or with a mentor, friend, family member or co-worker. Does any of your learning environments have few people who share your identity or background? How did your identity or background differ from the majority of people in this learning environment? Outreachy Organizers strongly encourage you to write your personal stories. We want you to know that we won't judge your writing style, grammar or spelling.
+What systemic bias or discrimination have you faced while building your skills? Outreachy projects often require applicants to know some basic skills. Those skills might include programming, user experience, documentation, illustration and graphical design, or data science. You may have already learned some basic skills through university or college classes, specialized schools, online classes, online resources, or with a mentor, friend, family member or co-worker. In these settings, have you faced systemic bias or discrimination? Have you been discouraged from accessing these resources because of your identity or background? Please provide specific examples and (optionally) statistics. Outreachy Organizers strongly encourage you to write your personal stories. We want you to know that we won't judge your writing style, grammar or spelling.
+Tell us about a technical task or project you've worked on. It could be anything from a class assignment or a personal project. What did you enjoy about it and what was challenging? You are welcome to share links to your work if you have them. If you're very early in your career journey, tell us something technical you'd like to work on and what you have already done to start exploring it.
+(Optional) Content warnings. Some essays may talk about very harsh or hard things. That's okay. There's no need to change your essay. It can help us to know what harsh or hard topics are in your essay. These are called "content warnings". Content warnings can be one or two words. Examples include: "violence", "sexual assault", or "war". Content warnings help reviewers mentally prepare to read your essay. Thank you for your help! If you do not talk about harsh or hard things in your essays, leave this field blank.
+Essay tips
+Please review the essay questions carefully.
+Make sure to review the help text below the question.
+Essay length
+Applicants often ask, "How much should I write?"
+You should write enough to answer the essay question.
+We prefer essays with detailed examples or stories from your life.
+Essay answers are limited to 1000 characters. 1000 characters is about 200 words.
+Applicants who are accepted usually write around 500 to 900 characters per essay.
+Essay content
+One question asks about discrimination in your learning environment.
+We are not asking you to provide details about your completed classes, your educational background, or what skills you have.
+We are asking you to talk about about the discrimination you face in your learning environment or while building your skills.
+One essay question refers to "the technology industry of your country".
+We want to know about the technology industry in the country you will be living in during the internship.
+Talk about the discrimination you face in that country's technology industry. Do not talk about the discrimination you will face in the international technology industry.
+Assume readers live in a different culture
+When talking about the discrimination you face, assume the reader lives in a different culture than you.
+Provide background about your culture. You may need to include links to statistics, articles, or blogs posts.
+If you mention that you face discrimination, say which marginalized group(s) you are a part of.
+You may need to mention the university, town, region, or country where you live or went to school.
+You may need to provide statistics about why your group is in the minority in that area.
+Unclear: "I face religious discrimination"
+Clear: "I am a Muslim in France. Muslims make up less than 2.3% of France's population. I face religious discrimination."
+Provide specific examples of the discrimination you have faced.
+Provide a short summary of what happened.
+Talk about how the discrimination you faced impacts your education or career.
+Talk about how discrimination impacts you in the past and today.
+Talk about how you fear discrimination will impact you in the future.
+Talking about violence
+Some applicants may have experienced violence.
+It may be hard for them to talk about their experiences.
+You do not need to share detailed descriptions of violence, such as:
+sexual assault or physical sexual harassment
+government or police violence
+violence against refugees
+genocide
+Instead, say that you face this type of violence. Tell us how it impacts your education or career.
+If you talk about violence, please include a content warning in the last field. This helps our applicant reviewers mentally prepare to read your essay.
+No resumes or references
+Please do not put personal contact information in your essays.
+We do not require reference contact information.
+We will not follow up with references.
+Please do not put links to your resume in your essays.
+We do not read resumes.
+↑ table of contents
+Legal names in Outreachy
+Outreachy interns must fill out three forms:
+Outreachy Code of Conduct
+W-9 or W8-BEN tax form
+Payment information
+Interns must put their legal names on these forms. Some interns may be worried about using their legal name. Outreachy organizers understand your worries. Outreachy supports transgender and non-binary people. Outreachy supports domestic violence survivors. Outreachy supports people who wish to avoid using their legal name on the internet.
+Outreachy supports intern privacy. Mentors and coordinators will not know your legal name. Forms that require your legal name will not be shared with mentors and coordinators.
+The Outreachy website account preferences will allow you to set a "public name". This public name will be displayed to mentors and coordinators. It will also be displayed on the alums page if you are selected as an intern. You can set your "public name" to a shortened name, a pseudonym, or your name that affirms your gender identity.
+↑ table of contents
+Preparing for the contribution period
+You can read about what it's like to apply to Outreachy:
+December 2018 Outreachy interns talk about the application process
+Read past Outreachy intern's blogs
+Get the most out of your Outreachy intern application process
+How I got into the Outreachy open source internship program
+Application tips from an Outreachy intern who just completed their internship
+Getting into Summer of Code Programs
+The end of my internship - note that Outreachy used to be called OPW
+Suggestions for Outreachy Applicants
+Outreachy recommends the following resources for learning about contributing to free and open source software projects:
+"What is open source?" an article by opensource.com
+"Forge Your Future With Open Source" an introductory book for open source newcomers
+GitHub Lab a free resource for learning git
+FreeCodeCamp a free resource for learning programming skills
+Up for Grabs (unaffiliated with Outreachy) - find projects to volunteer your time with
+You may want to brush up on your skills for contributing to free and open source software communities. Each project will use a different set of skills, and some mentors may be willing to teach you skills. Projects and the skills they use change each round. The most common skills used in projects last round were:
+Git - 6 projects
+C programming - 4 projects
+Rust - 3 projects
+Python - 3 projects
+Shell scripting - 3 projects
+↑ table of contents
+Finding a Mentor and an Internship Project
+Once your initial application is approved, the contribution period will open.
+The next step in the Outreachy application process is to look through the list of
+participating communities and internship projects. Pick one
+or two projects that look interesting to you.
+We don't recommend applying to more than two projects.
+Many people want to increase their chances of getting accepted.
+They see some communities that are accepting many interns,
+and some communities that are accepting one or two interns.
+Their instinct is to apply to the communities that are accepting more interns.
+However, when all the applicants think that way, it means
+projects that are only accepting one intern don't get a lot of
+applicants. It might be better to apply to a community who is accepting a small number of interns.
+Projects will list the skills they want applicants to have.
+Project skills are listed with two different indicators:
+how much experience you need in a skill, and whether
+you are required to have that skill in order to apply.
+Please
+see the project skills key
+on the project list for more information.
+Many people get overwhelmed with the list of projects and don't
+know how to choose a project! Our advice is to pick a community
+that has a mission that you're passionate about.
+Once you've narrowed down your list of projects,
+you can decide whether the project is right for you by:
+Introducing yourself to the project's mentor via email
+Joining the project's chat, forums, or mailing list and introducing yourself
+Using or installing the project
+Reading the project's documentation
+Looking at the open issues or feature requests for the project
+Reading Outreachy alums' blogs who worked with that community
+You'll need to contact the project mentor. All applicants need to be the first one to reach out to mentors. Mentors will not be assigned to you.
+The mentors listed on the project will be the mentors who you are working with during the internship period.
+Mentors will evaluate applicants on their communication skills and the quality of the contributions they make during the contribution period. They'll pick the strongest applicant as their intern. Therefore, it's important that you reach out to mentors early during the contribution period.
+Applicants ask all sorts of questions of their mentors! Mentors are friendly and patient, and it's okay to ask questions multiple times, or multiple times a day! Read the project description, and ask your mentor questions about anything that's unclear. Ask you mentor if you get stuck setting up your contribution environment. Look for a list of project tasks under the 'Project Contribution Information' and ask questions if you have trouble getting started on your contributions. If you're stuck for more than a couple of hours at any time, reach out to your mentor for help.
+↑ table of contents
+Making Contributions
+What is a Contribution?
+To 'contribute' means 'To give to a common cause, often along with other people'.
+In free software and open source, we talk about 'contributing' to a project or community.
+That means people working together to improve an open source project.
+People who regularly work on open source are often called 'open source contributors'.
+Outreachy applicants will become open source contributors during the contribution period!
+When you work on an Outreachy project task, you're making a 'contribution' to that project.
+A contribution can be something small, like a bug fix or a documentation improvement.
+Applicants are required to make a contribution.
+Outreachy applicants are required to make at least one contribution to an Outreachy project.
+Only applicants who make a contribution will be eligible to be selected as an intern.
+Applicants are required to record their contributions in the Outreachy website.
+You can't submit a final application until you record a contribution.
+Start your contributions early!
+Many applicants under-estimate the time it will take to complete a contribution.
+Most applicants take 5 to 10 days to complete their first contribution.
+Some project mentors find that they have many promising applicants.
+They may choose to close their project to new applicants.
+If you wait too long to start, your project may be closed to new applicants.
+Don't try to make a big, last minute contribution.
+Keep in contact with your mentors throughout the whole contribution period.
+Ask questions and send contributions at a steady pace.
+Start with a smaller contribution.
+Then try a more complex contribution.
+The end goal is to show you have the skills to be a successful intern.
+How do I find a contribution to work on?
+Project mentors have a list of tasks for applicants to work on.
+You can find the task list in the project details page, which is linked from the project selection page .
+The project description should include a section called 'Project Contribution Information'.
+That should have information about how to find a contribution to work on.
+Some projects, like the Linux Kernel, want people to contribute in a specific way.
+They may have a tutorial for setting up your environment and creating your first contribution.
+The project description or community description should mention a tutorial.
+Some mentors have each applicant work on different tasks.
+Other mentors have each applicant complete the same task.
+Some project issue trackers have a tagging system.
+Mentors may tag tasks that are good for newcomers to the project.
+Some common tag names are "first patch" or "newcomers welcome" or "newcomer friendly".
+When in doubt, ask the project mentor!
+It's good to ask for suggestions when looking for a suitable contribution.
+Make sure to describe what your skills are and what you want to learn more about.
+Policy on AI generated contributions
+As a general policy, Outreachy strongly discourages the use of generative AI tools. These tools should be only used after an explicit conversation with your mentor. Applicants who submit unedited AI-generated contributions that they cannot explain or correct will NOT be accepted for Outreachy internships. Outreachy interns who over-rely on having AI generate their contributions may have their internship terminated.
+Each Outreachy mentor will set a policy on whether they allow applicants and interns to use generative AI in their project contributions.
+Outreachy applicants should check the project description to understand the mentor's generative AI policy. If no description is provided, applicants should check with their mentor before submitting any AI generated project contributions.
+Outreachy interns should talk with their mentor at the beginning of the internship to understand what parts of the project they can use generative AI with, if any.
+Generative AI is well known for "AI hallucinations". Generative AI is well known to output incorrect facts or make up concepts.
+When generative AI is used in programming, it can create buggy code and make up function or API calls that don't exist. AI generated code often looks correct at first glance. It can take Outreachy mentors a long time to identify the issues.
+Many experienced Outreachy mentors have commented that AI generative code is both poor in quality and difficult to review. Mentors are also concerned that applicants may not understand the code that is being generated. Outreachy mentors fear that using generative AI can slow down or interfere with the learning process of applicants and interns.
+At the same time, there may be use cases where generative AI is helpful. For example, some people may use generative AI to find information about a technical topic in project documentation. Non-native English speakers may use generative AI to polish their commit messages to sound more professional. Generative AI is also helpful in extracting data or numbers from text into tables or charts. However, even these use cases require very careful checking to ensure there are no mistakes or made-up information.
+A few open source projects are experimenting with allowing or even encouraging code contributions using generative AI or other AI programming tools. Each Outreachy project will have a different policy about whether they will accept project contributions generated with AI.
+Please check the internship project description to understand whether you can use generative AI in your project contributions. Please talk with your mentor to understand whether you can use generative AI, and how best to use it.
+Regardless of project generative AI policy, Outreachy expects applicants and interns to use generative AI in a deliberate, documented, and precise manner. Using the tips below will ensure that applicants and interns respect Outreachy mentor's time and expertise.
+Using generative AI respectfully:
+Document how you used generative AI in your project contribution. In your pull request or contribution description, mention you used generative AI. Make sure to note the name and version of the generative AI tool you used. Share the steps you took or prompts you wrote to ask the generative AI tool to create or edit your contribution.
+Understand what the AI generated contribution is doing. It's important to understand the output of any software tool. This especially true of contributions generated with AI. Outreachy applicants and interns should be able to explain why the AI generated contribution is related to the problem they are trying to solve. You should be able to explain in detail what the generated contribution does. You should be able to correct any mistakes and create additional content to improve the contribution.
+Make sure the AI generated contribution is correct. All contributions, including AI generated ones, must meet the testing, documentation, style and quality guidelines of the open source community. Make sure your code compiles and passes the project test suite. Make sure your contribution meets the documentation and style guidelines of the open source community. Additionally, AI generated code must be very carefully checked to make sure the tool hasn't made up functions, API calls, references, or documentation sections that don't exist.
+Recording your contributions
+Applicants are required to record their contributions in the Outreachy website.
+Only applicants who have recorded a contribution will be allowed to submit a final application.
+You can record a contribution as soon as you start working on it.
+You can go back and edit your recorded contribution at any time.
+You can find a link to record a contribution on the project details page.
+Go to the Outreachy project list ,
+and click the link for your project.
+On the page with project details, you should see a link to
+'record your contributions and create a final application'.
+Getting help on a contribution
+Working on contributions can be confusing at times!
+It is expected and perfectly normal to have questions.
+Mentors are here to help.
+If you get stuck for more than a couple hours, ask the project mentors or community for help.
+If you ask for help privately and don't get an answer, try asking on the public community channels as well.
+If you ask for help publicly and don't get an answer, try emailing the mentor.
+Contributions to open source communities are submitted and reviewed in the public.
+That can feel intimidating at first, but remember that mentors are here to help you!
+Contribution review and revisions
+After you submit a contribution, your mentor or another community member will review it.
+They will often have feedback and changes you'll need to make.
+This is not a criticism of your work or skills.
+You should view it as a chance to learn something new and improve your skills.
+Please be sure to follow up on the reviewer's feedback.
+You may need to submit your contribution several times.
+Keep working on it with your mentor until it is ready to be included in the project.
+It's best to allocate time over several weeks for this process.
+Try to start you contributions as soon as possible.
+How Much Should I Contribute?
+Applicants are only required to make one contribution.
+However, we find that the strongest applicants make multiple contributions.
+Start with a small contribution and work your way up to more complex contributions.
+The strongest applicants are consistent about working on the project.
+They communicate regularly with their mentor to discuss what they're working on.
+Applicants are encouraged, but not required, to contribute after the contribution period ends.
+↑ table of contents
+How are contributions evaluated?
+Each Outreachy mentor will evaluate contributions in a different way.
+It depends on what skills the applicant needs to be successful for their project.
+A programming project might want applicants to add code.
+A design project might want applicants to create graphics or art.
+This applicant guide will generalize for all projects.
+When in doubt, ask your mentor how they evaluate contributions.
+Ask your mentor how they decide which applicant to accept as an intern.
+Any guidance your mentor provides should be followed, even if it differs from the Outreachy applicant guide.
+Here are some example questions that mentors may use to evaluate your contributions:
+Do your contributions show you have the required skills for the project?
+Have your contributions shown you can complete complex work?
+Have you worked on contributions that your mentor asked you to work on? Have you worked on contributions that are on the community's task list for Outreachy interns?
+Have you tried using new tools or techniques? Your mentor may have some suggestions for tools, or you may find new open source tools on your own.
+Have you communicated with your mentor via the public community chat?
+Do you communicate in a clear, welcoming, and professional manner?
+Have you asked for help when stuck in a timely manner?
+Do you share your knowledge and help other applicants when they get stuck? Open source is about collaborating with other community members, and that includes other applicants and interns.
+↑ table of contents
+Estimated number of interns
+On the project list , each community has an estimate of the number of interns it expects to accept.
+The estimated number of interns is the total number of interns that will be accepted for the whole community.
+It is not the number of interns per project.
+The estimated number of interns is based on the amount of sponsorship for the community and the number of mentors a community has.
+The number of interns per community is an estimate, not a hard-and-fast rule.
+It may increase or decrease during the intern selection period.
+The reasons for changing are community-specific.
+Communities accepting more interns
+Some communities will accept more interns than they estimated.
+This typically means the community has found more funding to pay intern stipends,
+and has enough mentors to support additional interns.
+Some times communities find additional sponsors, or they ask current sponsors for more money.
+Other times communities request funding from the Outreachy general fund.
+Communities accepting less interns
+Some communities may accept less interns than they expected.
+Some communities may accept no interns at all.
+Some times communities accept less interns because of a change in mentor free time.
+Mentors may decide they do not have enough free time during the internship.
+This could be because of personal reasons, like burn out, a medical condition, or a death in the family.
+Or mentors could find they simply over-estimated the amount of free time they have.
+Some times project mentors evaluated the contributions and decided not to accept any applicants.
+Some times community coordinators make decisions about which applicants to accept.
+They may prioritize a stronger applicant for one project over a weaker applicant for a different project.
+Please show mentors respect who decide not to accept an intern.
+Mentors may not have time to provide individual feedback to all applicants who were not accepted, although some do.
+You are welcome to ask a mentor for feedback to improve your contributions next time.
+Please make sure you are asking for feedback in a constructive manner, and not trying to appeal the decision.
+Please don't ask Outreachy organizers why you were not accepted as an intern.
+They do not work directly with applicants, and often do not know why mentors did not accept an intern.
+↑ table of contents
+Final application
+Applicants are required to create a final application for each Outreachy project they apply to.
+Only applicants that record a contribution to a project will be able to create a final application for that project.
+We encourage applicants to submit their final application at least a day before the deadline (Nov. 9, 2026 at 4pm UTC).
+You can edit your final application until the deadline.
+You will need to submit your final application through the Outreachy website.
+Go to the Outreachy project list ,
+and click the link for your project.
+On the page with project details, you should see a link to
+'record your contributions and create a final application'.
+The final application asks four questions:
+Past experience with this community. Please describe your experience before this Outreachy application period with this free software community. You can describe your prior experiences as both a user and a contributor.
+Past experience with other communities. Please describe your experience before this Outreachy application period with any other free software communities. You can describe your prior experiences as both a user and a contributor.
+Relevant Projects Please describe any relevant projects (either personal, work, or school projects) that helped you gain skills you will use in this project. Talk about what knowledge you gained from working on them. Include links where possible.
+(Optional) Please describe which Google Summer of Code communities and projects you are applying for, and provide mentor contact information. If you are a student at an accredited university or college, we highly encourage you to also apply to Google Summer of Code during the May to August internship round. Many Outreachy communities participate in both programs, and applying to Google Summer of Code increases your chances of being accepted as an intern. Please note that Google Summer of Code has stipend amounts that vary per country . Please keep the list of communities and projects you are applying to under Google Summer of Code up-to-date, since we often try to coordinate with Google Summer of Code mentors during the intern selection period. If this application is for the December to March internship period, or you are not applying to Google Summer of Code, please leave this question blank.
+Outreachy internship project timeline.
+When working on your project timeline, it is essential to break down your project into smaller tasks that can be worked on over the course of the internship.
+Carefully review the project description to familiarize yourself with the provided tasks and milestones. Once you have a clear understanding of the project, create a timeline outlining the tasks you plan to work on during the internship. Some interns have found it helpful to break down their project tasks by weeks.
+Be prepared to adjust your timeline as needed to accommodate unexpected developments or changes in project scope. Make sure to take into account any time commitments you have during the Outreachy internship round.
+If you are still working on your contributions and need more time, you can leave this blank and edit your application later.
+In addition to your project timeline, plan to incorporate milestones where you share drafts of your work with your mentors and the community.
+These milestones should occur at least every two weeks. This will not only help you stay on track but also help you get valuable feedback about your project.
+↑ table of contents
+Intern announcement
+Intern selections are not shared with applicants until interns are announced on Nov. 30, 2026 at 4pm UTC.
+If you want more details about the internship, please read our Internship guide .
+↑ table of contents
+Internship
+Applicants are encouraged to read the Internship Guide . The Internship Guide talks about what we expect from interns. It also talks about what interns can expect of mentors and what to expect in terms of career development opportunities.
+Copyright &copy; 2026 Outreachy
+Free to share and remix: Creative Commons CC-BY , except for the individual organization logos, which are property of their respective owners, and any pictures with additional creative commons attributions.
+The Outreachy website is built with Django , Wagtail , bootstrap and deployed with Dokku . The code is licensed GPL v3 and can be found in the Outreachy website GitHub repo. There is a separate GitHub repo for creative works
+This program and all offers related to it are void where prohibited or restricted by law or where operation of the program would violate any law or right. All participants in the program must agree to the terms and conditions of the program which will be provided to the selected applicants.
+Outreachy privacy policy .

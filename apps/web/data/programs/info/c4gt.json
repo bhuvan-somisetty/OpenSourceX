@@ -1,0 +1,72 @@
+{
+ "program": "c4gt",
+ "checked": "2026-10-15",
+ "status": "running",
+ "statusNote": "DMP 2025 applications closed on May 5, 2025.",
+ "summary": "Code for GovTech (C4GT) is India's first dedicated mentoring program for building and contributing to Digital Public Goods. Its Dedicated Mentoring Program (DMP) connects contributors with Tech-for-Good organizations to build production-ready solutions with experienced mentors.",
+ "runBy": "Code for GovTech (C4GT)",
+ "stipend": {
+  "headline": "₹1,00,000",
+  "detail": "DMP contributors earn a stipend of Rs. 1 lakh over the 3-month program. C4GT co-funds 50% of the stipend with the participating organization.",
+  "currency": "INR",
+  "yearNote": "DMP 2025"
+ },
+ "facts": [
+  {
+   "label": "Length",
+   "value": "3 months"
+  },
+  {
+   "label": "Mentoring",
+   "value": "1:1 mentorship from domain experts at partner organizations"
+  },
+  {
+   "label": "Domain",
+   "value": "Digital Public Goods, Digital Public Infrastructure and Tech for Good"
+  },
+  {
+   "label": "Applications",
+   "value": "Through Apna (DMP 2025)"
+  }
+ ],
+ "eligibility": [
+  "Open to talent interested in Tech for Good, particularly students and young professionals.",
+  "Pick a listed DMP project and meet the skills it asks for."
+ ],
+ "howToApply": [
+  "Go through the DMP project list on the C4GT GitHub wiki.",
+  "Follow the instructions on Apna to apply before the deadline.",
+  "If your proposal is shortlisted, the organization may invite you to an interview."
+ ],
+ "links": [
+  {
+   "label": "DMP 2025 project list",
+   "url": "https://github.com/Code4GovTech/C4GT/wiki/Dedicated-Mentoring-Program-2025-%E2%80%90-Project-List"
+  },
+  {
+   "label": "DMP 2025 on Apna",
+   "url": "https://apna.co/contests/dmp_2025"
+  },
+  {
+   "label": "C4GT on GitHub",
+   "url": "https://github.com/Code4GovTech/C4GT"
+  }
+ ],
+ "sources": [
+  {
+   "label": "DMP 2025 project list",
+   "url": "https://github.com/Code4GovTech/C4GT/wiki/Dedicated-Mentoring-Program-2025-%E2%80%90-Project-List",
+   "file": "c4gt/dmp-2025-project-list.md"
+  },
+  {
+   "label": "C4GT wiki home",
+   "url": "https://github.com/Code4GovTech/C4GT/wiki",
+   "file": "c4gt/home.md"
+  },
+  {
+   "label": "C4GT Mentoring Program",
+   "url": "https://github.com/Code4GovTech/C4GT/wiki/C4GT-Mentoring-Program",
+   "file": "c4gt/c4gt-mentoring-program.md"
+  }
+ ]
+}

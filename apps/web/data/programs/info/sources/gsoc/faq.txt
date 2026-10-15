@@ -1,0 +1,229 @@
+Source: https://developers.google.com/open-source/gsoc/faq?hl=en
+Retrieved: 2026-10-15
+
+Frequently Asked Questions | Google Summer of Code | Google for Developers
+Skip to main content
+Google
+Summer of Code
+/
+English
+Deutsch
+Español
+Español – América Latina
+Français
+Indonesia
+Italiano
+Polski
+Português – Brasil
+Tiếng Việt
+Türkçe
+Русский
+עברית
+العربيّة
+فارسی
+हिंदी
+বাংলা
+ภาษาไทย
+中文 – 简体
+中文 – 繁體
+日本語
+한국어
+Sign in
+Home
+Resources
+History
+Rules
+Google
+Summer of Code
+Home
+Resources
+History
+Rules
+FAQ
+Videos
+Glossary
+Guides
+Mailing Lists
+Marketing
+Resources
+Roles and Responsibilities
+Timeline
+Contact Us
+Home
+Products
+Open Source Programs Office
+Google Summer of Code
+Resources
+Frequently Asked Questions
+Stay organized with collections
+Save and categorize content based on your preferences.
+Page Summary
+outlined_flag
+Google Summer of Code (GSoC) is a global, online program focused on introducing new contributors to open source software development by connecting them with experienced mentors within established organizations.
+To be eligible, contributors must be at least 18 years old, reside in a non-embargoed country, and have limited prior open source experience, while organizations must have an active open source project and at least two mentors.
+Accepted contributors receive a stipend for completing a coding project over a flexible timeframe of 8-22 weeks, with the possibility of adjusting project scope and timelines in collaboration with their mentor.
+Though Google facilitates the program, GSoC is not a recruitment program and participation does not guarantee employment with Google; the primary goal is to foster growth and sustainability within the open source community.
+Further details about eligibility, timelines, program rules, and frequently asked questions can be found within the Contributor Guide, program website, or through direct contact with the GSoC team.
+General
+What is the goal of Google Summer of Code (GSoC)?
+To bring new contributors into open source communities to foster long-term involvement in the open source ecosystem.
+When does it happen?
+Refer to the official program timeline .
+What happens during the program?
+Participants write code for an open source organization under the guidance of mentors.
+Why does Google run GSoC?
+Since 2005, Google has been committed to grow and sustain the global open source ecosystem.The more open source developers there are in the world, the healthier and more sustainable the entire community will be.
+Is GSoC a recruiting program?
+No. For jobs at Google, visit the Google careers site .
+Is GSoC an internship or employment?
+No. Participants are independent developers receiving a stipend, not Google employees or interns or employees of the participating mentoring organizations.
+Must organizations use the produced code?
+No, though it is encouraged.
+Where does GSoC occur?
+Entirely online; no travel is required.
+How can I spread the word about GSoC?
+Use official flyers , social media, or host a meetup.
+How do I host an info session?
+You can schedule sessions at your convenience using the presentation template and following the Program Rules .
+Eligibility
+What are the eligibility requirements?
+18+ years old at registration
+Eligible to work in your country of residence
+Student or Open source beginner
+Accepted into GSoC no more than once previously
+Not residing in a U.S. embargoed country
+Who is considered a "beginner"?
+Someone with minimal open source experience. You would still be considered a beginner if your experience only includes:
+Personal or class projects, including boot camp projects.
+Open source projects that are only used at a single institution. (example: a club website or research that happened to be published as open source at your old university)
+Opening a small number (<10) of issues or pull requests against various open source packages.
+Continued involvement in an open source project that you joined as part of GSoC preparation.
+Regular contributors to an open source project are not beginners.
+Are professional engineers eligible?
+While open to various backgrounds, GSoC targets newcomers. Professionals often find the required time commitment difficult to balance.
+What if I turn 18 after registration?
+You are ineligible for the current year.
+Can current open source contributors participate?
+Only if they are beginners. GSoC is not for experienced open source developers.
+Can groups submit a proposal?
+No, proposals must be submitted by individuals only.
+Will Google make exceptions?
+No. Requirements are strictly enforced to ensure fairness.
+Can I be both a mentor and a contributor?
+No. You must choose one role. Once you have been a Mentor or Org Admin in GSoC you can not go back to being a GSoC contributor.
+Are participants from Ukraine, Russia, or Belarus allowed?
+Currently, participants from Russia, Belarus, and the DNR/LNR regions are ineligible. There are no restrictions for those in Ukraine outside of DNR/LNR.
+What if I have more questions?
+Consult the Contributor Guide or Contact Us .
+GSoC Contributor Applicants
+When can I apply?
+During the specific Contributor application window noted on the timeline .
+What programming languages should I know?
+Requirements vary by organization; you should be proficient in the languages used by your chosen project.
+How do I improve my chances?
+Engage with organizations early, discuss project ideas with mentors, and submit your proposal well before the deadline for feedback.
+Can I submit multiple proposals?
+Yes, up to three, but only one can be accepted.
+Should I send proposals directly to organizations?
+No. All proposals must be submitted via the GSoC site. You are * strongly encouraged * to reach out to the mentoring organization early to discuss your ideas and get feedback and a better understanding of the work they do before submitting your final proposal.
+What makes a good proposal?
+Detailed goals, methodology, and a clear timeline. Prior interaction with the mentor is the most critical factor. Review the Contributor Guide for details.
+Can I use AI-generated text or code?
+Always check an organization's specific AI policy before applying. Please be aware that using AI to write your GSoC proposal could result in an automatic rejection by the organization, depending on their individual guidance. Always ensure your proposal is your original work and adheres to the organization's standards for authorship. AI general guidance for GSoC applicants .
+What forms are required?
+Accepted participants must provide tax forms and proof of residency.
+Do I get paid?
+Yes, Google provides a stipend for participants who pass their evaluations and are eligible to receive stipends.
+Will I get paid if my code isn't used?
+Yes, stipend payments are based on passing the evaluation, not code implementation.
+How much time does it take?
+Projects are scoped for ~90 hours (Small), ~175 hours (Medium), or ~350 hours (Large). Depending on your skills and the difficulty of your project it may take you more or less time to meet the goals of your project. If it becomes apparent that your project was underscoped or overscoped you and your mentor will work together to adjust accordingly.
+I am an F1 student in the US; how do I get authorization?
+Consult your school’s International Student office. Google cannot provide CPT/OPT authorization or specialized letters. All accepted participants will receive an email confirmation of acceptance.
+Can community/junior college students participate?
+Yes.
+Can I participate if I graduate mid-program?
+Yes.
+Can I earn course credit?
+This depends on your school; Google does not provide extra paperwork for credit.
+Can the schedule be adjusted?
+Start dates are fixed, but end dates can be extended (up to 22 weeks total) if agreed upon by the mentor and contributor. Discuss this early during the application period.
+I was accepted into GSoC. How can I describe my participation in the program publicly?
+Until you have successfully passed the program, you cannot claim the GSoC Contributor title or add it to your resume. If you wish to share your acceptance on social media, you can state you were accepted into the program with your specific mentoring organization. Claiming the title before completion is inaccurate, similar to a medical student calling themselves a doctor before graduating from med school.
+How do I describe my GSoC participation after successfully passing the program?
+Once you have successfully completed the program, accuracy regarding your professional relationship with Google and your mentoring organization is critical for fact-checking by recruiters and employers. Please adhere to the following guidelines:
+You were not an employee or intern of Google, GSoC, or your mentoring organization. You can not add Google as your employer, as you were not an employee with Google (or your mentoring org) during GSoC.
+State that you participated as a contributor with the open source organization.
+Always write Google Summer of Code 2025 contributor followed by the organization name you worked with. (Example: Google Summer of Code 2025 contributor, The Python Software Foundation).
+Check with your organization if they have a preferred way to describe your time with them.
+Mentors
+Where can I find mentor information?
+See the Mentor Guide and Roles/Responsibilities .
+What are the requirements for mentoring organizations?
+Must be an active open source project with a solid community that has already released software under an OSI-approved license .
+Do organizations receive funds?
+Yes, a small stipend per accepted contributor is provided to organizations in good standing (excluding Google-led or government-affiliated orgs).
+Archive
+How do I remove my info from the archive?
+Use Contact Us or Contact GSoC support to request removal.
+Will you update my project URL?
+No. We can only remove old URLs, not update them.
+Where are my uploaded files?
+Previously uploaded files are no longer available for download.
+Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License . For details, see the Google Developers Site Policies . Java is a registered trademark of Oracle and/or its affiliates.
+Last updated 2026-02-20 UTC.
+[[["Easy to understand","easyToUnderstand","thumb-up"],["Solved my problem","solvedMyProblem","thumb-up"],["Other","otherUp","thumb-up"]],[["Missing the information I need","missingTheInformationINeed","thumb-down"],["Too complicated / too many steps","tooComplicatedTooManySteps","thumb-down"],["Out of date","outOfDate","thumb-down"],["Samples / code issue","samplesCodeIssue","thumb-down"],["Other","otherDown","thumb-down"]],["Last updated 2026-02-20 UTC."],[],["Google Summer of Code (GSoC) integrates new open-source contributors through coding projects with mentoring. Participants, aged 18+, work independently on projects for a stipend, submitting up to three proposals during the application period, but they can only accept one. Projects vary in size, with corresponding time commitments. Accepted contributors must provide tax forms. Mentors guide the contributors, and organizations get a small stipend. GSoC is online, has a fixed start date, and only accepts individuals, not groups.\n"]]
+Blog
+Engage
+Google Developer Program
+Google Developer Groups
+Google Developer Experts
+Accelerators
+Google Cloud & NVIDIA
+Connect
+Blog
+Bluesky
+Instagram
+LinkedIn
+X (Twitter)
+YouTube
+Build
+Android
+Chrome
+Firebase
+Google AI Studio
+Google Antigravity
+Google Cloud
+Google Play
+View all
+Android
+Chrome
+Firebase
+Google Cloud Platform
+Google AI
+All products
+Terms
+Privacy
+Manage cookies
+English
+Deutsch
+Español
+Español – América Latina
+Français
+Indonesia
+Italiano
+Polski
+Português – Brasil
+Tiếng Việt
+Türkçe
+Русский
+עברית
+العربيّة
+فارسی
+हिंदी
+বাংলা
+ภาษาไทย
+中文 – 简体
+中文 – 繁體
+日本語
+한국어

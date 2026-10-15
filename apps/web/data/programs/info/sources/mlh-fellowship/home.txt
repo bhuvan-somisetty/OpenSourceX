@@ -1,0 +1,71 @@
+Source: https://fellowship.mlh.io/
+Retrieved: 2026-10-15
+
+Learn by Doing | MLH Fellowship Open Menu
+Programs FAQ Partners Apply Now
+Learn software engineering through open source projects.
+A fully remote, 12-week internship alternative where participants earn a stipend and learn to collaborate on real open source projects with peers and engineers from top companies.
+Apply Now Learn More →
+Collaborate with engineers from
+Learn by doing, not by watching.
+We pair fun, educational curriculum with real-world practical experience. It's collaborative, remote, & happens under the guidance of expert mentors.
+Gain Real-World Experience.
+Contribute to projects that people depend on, not a side project that never sees the light of day.
+You'll collaborate on projects that are sourced directly from our corporate partners. Whether you're contributing to a major Open Source technology or a new greenfield project, you'll be solving a real-world need with technologies that employers care about.
+Learn while you Earn.
+Invest in yourself & your future career today.
+We offer fellows an educational stipend to help offset expenses while they participate in the program. You'll be able to focus on putting what you learn into practice so you can launch your career in Software Engineering once you graduate.
+Join a Community.
+Don't go alone. You'll join a network of other talented builders & professional mentors.
+You'll join a small group of other aspiring software engineers who will become your day-to-day support network. When you need help, you'll have direct access to a team of professional mentors who can get you back on track.
+Learning to code is like getting from zero to one.
+MLH helps developers get from one to a job .
+The things you learn in a classroom aren't the things you need to know to launch a career in tech. During the MLH Fellowship, you'll gain the type of applied experience that employers want to see.
+Read Fellow Reviews →
+Yashika Sharma
+@yashika51
+The MLH Fellowship is the best thing that happened to me and my career ❤️
+Brandon Barker
+@projectbarks
+MLH helped me become a better engineer than any internship or school ever could.
+Emily Huang
+@huang-emily
+MLH taught me skills that set me apart from my peers & led to an amazing job at Microsoft!
+Jessie Nguyen
+@jessie_anh_ng
+Summer 2020 was one of the most life changing experiences for me thanks to MLH.
+Explore Fellowship Tracks
+Select a program track that fits your career goals & interests.
+Fellowship Track
+Software Engineering
+For aspiring Software Engineers who want to experience what it's like to collaborate on real-world projects from our partners.
+Learn More →
+Fellowship Track
+Production Engineering
+For aspiring SREs who want to learn the skills required to keep systems running at scale.
+Learn More →
+Fellowship Track
+Web3 Engineering
+For hackers who want to dive deep into blockchain technology.
+Learn More →
+Ready to Level Up ?
+Apply today to be considered for our upcoming start dates.
+Apply Now Read the FAQ
+Footer
+We empower hackers.
+Facebook Instagram Twitter GitHub LinkedIn
+Company
+About
+Careers
+Partners
+Blog
+Resources
+Code of Conduct
+Contact Us
+Programs
+Software Engineering
+Production Engineering (Site Reliability)
+Web3 Engineering
+Legal
+Privacy
+© 2013 - 2026 Major League Hacking PBC, Inc. All rights reserved.

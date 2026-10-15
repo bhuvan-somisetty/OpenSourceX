@@ -14,6 +14,10 @@ import { ProgramMark, LinuxFoundationFullLogo } from "@/components/ui/ProgramMar
 import { ProjectRow } from "@/features/projects/ProjectRow";
 import { Pager, pageOf, pageSlice } from "@/features/projects/Pager";
 import { LfxOrgDirectory } from "@/features/lfx/LfxOrgDirectory";
+import { ProgramOrgDirectory } from "@/features/programs/ProgramOrgDirectory";
+import { programData } from "@/lib/program-data";
+import { programInfo } from "@/lib/program-info";
+import { ProgramInfoBox } from "@/features/programs/ProgramInfoBox";
 
 export const dynamic = "force-dynamic";
 
@@ -40,6 +44,69 @@ export default async function ProgramDetail({
   if (!def) notFound();
 
   const isLfx = def.slug === "lfx-mentorship";
+
+  const info = await programInfo(def.slug);
+  const staticData = isLfx ? null : await programData(def.slug);
+  if (staticData) {
+    return (
+      <div className="wrap">
+        <section className="page-hero" data-testid="program-hero">
+          <div className="spine">
+            <Link href="/programs">Programs</Link>›
+            <span className="pill" aria-current="page">
+              {def.short}
+            </span>
+          </div>
+          <div style={{ display: "flex", gap: 18, alignItems: "center", marginTop: 20 }}>
+            <ProgramMark slug={def.slug} />
+            <div className="eyebrow">
+              {staticData.years.length
+                ? `${staticData.years[0]}${staticData.years.length > 1 ? `–${staticData.years[staticData.years.length - 1]}` : ""} · ${staticData.orgs.length} organization${staticData.orgs.length === 1 ? "" : "s"}`
+                : `${staticData.orgs.length} organization${staticData.orgs.length === 1 ? "" : "s"}`}
+            </div>
+          </div>
+          <h1 className="page" style={{ marginTop: 14 }}>
+            {def.name}
+          </h1>
+          <p className="sub">{staticData.note}</p>
+        </section>
+
+        {info && (
+          <div style={{ marginTop: 24 }}>
+            <ProgramInfoBox info={info} />
+          </div>
+        )}
+
+        <section className="block" style={{ marginTop: 28 }} aria-label="Organizations">
+          <ProgramOrgDirectory
+            data={staticData}
+            filter={{ q: first(sp.q), tech: first(sp.tech), year: first(sp.year) }}
+            page={first(sp.page)}
+            basePath={`/programs/${def.slug}`}
+          />
+        </section>
+
+        <section className="block" aria-labelledby="src-h" style={{ marginTop: 40 }}>
+          <h2 id="src-h" style={{ fontSize: 20 }}>
+            Sources
+          </h2>
+          <ul className="porg-sources">
+            {staticData.sources.map((x) => (
+              <li key={x.url}>
+                <a href={x.url} target="_blank" rel="noreferrer noopener">
+                  {x.label} ↗
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p className="hint" style={{ marginTop: 10 }}>
+            Collected {staticData.generatedAt}. Repository, logo and chat links come from the program
+            listing or from each organization&apos;s own GitHub and website.
+          </p>
+        </section>
+      </div>
+    );
+  }
 
   const tabs = isLfx
     ? ([
@@ -165,6 +232,12 @@ export default async function ProgramDetail({
           </>
         )}
       </section>
+
+      {info && (
+        <div style={{ marginTop: 24, marginBottom: 20 }}>
+          <ProgramInfoBox info={info} />
+        </div>
+      )}
 
       <div style={{ display: "grid", gap: 12 }}>
         {prog.kind === "gsoc" ? (

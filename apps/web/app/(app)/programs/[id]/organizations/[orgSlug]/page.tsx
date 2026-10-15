@@ -14,6 +14,8 @@ import { SaveButton } from "@/features/saved/SaveButton";
 import { LfxProjectCard } from "@/features/lfx/LfxProjectCard";
 import { OrgCommunity } from "@/features/lfx/OrgCommunity";
 import { orgCommunity } from "@/lib/org-community";
+import { programOrg } from "@/lib/program-data";
+import { ProgramOrgPage } from "@/features/programs/ProgramOrgPage";
 
 export const dynamic = "force-dynamic";
 
@@ -22,7 +24,12 @@ export async function generateMetadata({
 }: {
   params: Promise<{ id: string; orgSlug: string }>;
 }): Promise<Metadata> {
-  const { orgSlug } = await params;
+  const { id, orgSlug } = await params;
+  const def = resolveProgram(id);
+  if (def && def.slug !== "lfx-mentorship") {
+    const r = await programOrg(def.slug, orgSlug);
+    return { title: r ? `${r.org.name} · ${def.short}` : def.name };
+  }
   const decoded = decodeURIComponent(orgSlug);
   return {
     title: `${decoded.charAt(0).toUpperCase() + decoded.slice(1)} · LFX Mentorship`,
@@ -40,6 +47,12 @@ export default async function LfxOrgDetailPage({
   const sp = await searchParams;
   const def = resolveProgram(id);
   if (!def) notFound();
+
+  if (def.slug !== "lfx-mentorship") {
+    const r = await programOrg(def.slug, orgSlug);
+    if (!r) notFound();
+    return <ProgramOrgPage data={r.data} org={r.org} programSlug={def.slug} programShort={def.short} />;
+  }
 
   const q = first(sp.q)?.trim().toLowerCase();
   const tech = first(sp.tech)?.trim().toLowerCase();

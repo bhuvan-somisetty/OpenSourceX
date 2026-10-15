@@ -1,0 +1,142 @@
+{
+ "program": "mlh-fellowship",
+ "name": "MLH Fellowship",
+ "generatedAt": "2026-10-15",
+ "years": [],
+ "note": "Partners shown on the MLH Fellowship partners page. MLH does not publish a list of fellowship projects.",
+ "sources": [
+  {
+   "label": "MLH Fellowship partners",
+   "url": "https://fellowship.mlh.io/partners"
+  }
+ ],
+ "orgs": [
+  {
+   "slug": "amazon-web-services",
+   "name": "Amazon Web Services",
+   "tagline": "MLH Fellowship partner",
+   "description": null,
+   "website": "https://aws.amazon.com/",
+   "repoUrl": "https://github.com/aws",
+   "tags": [],
+   "years": [],
+   "links": [],
+   "sourceUrl": "https://fellowship.mlh.io/partners",
+   "githubUrl": "https://github.com/aws",
+   "chats": [],
+   "logo": "/logos/programs/mlh-fellowship/amazon-web-services.svg"
+  },
+  {
+   "slug": "g-research",
+   "name": "G-Research",
+   "tagline": "MLH Fellowship partner",
+   "description": null,
+   "website": "https://www.gresearch.com",
+   "repoUrl": "https://github.com/G-Research",
+   "tags": [],
+   "years": [],
+   "links": [],
+   "sourceUrl": "https://fellowship.mlh.io/partners",
+   "githubUrl": "https://github.com/G-Research",
+   "chats": [],
+   "logo": "/logos/programs/mlh-fellowship/g-research.svg"
+  },
+  {
+   "slug": "github",
+   "name": "GitHub",
+   "tagline": "MLH Fellowship partner",
+   "description": null,
+   "website": "https://github.com/about",
+   "repoUrl": "https://github.com/github",
+   "tags": [],
+   "years": [],
+   "links": [],
+   "sourceUrl": "https://fellowship.mlh.io/partners",
+   "githubUrl": "https://github.com/github",
+   "chats": [],
+   "logo": "/logos/programs/mlh-fellowship/github.svg"
+  },
+  {
+   "slug": "google",
+   "name": "Google",
+   "tagline": "MLH Fellowship partner",
+   "description": null,
+   "website": "https://opensource.google/",
+   "repoUrl": "https://github.com/google",
+   "tags": [],
+   "years": [],
+   "links": [],
+   "sourceUrl": "https://fellowship.mlh.io/partners",
+   "githubUrl": "https://github.com/google",
+   "chats": [],
+   "logo": "/logos/programs/mlh-fellowship/google.svg"
+  },
+  {
+   "slug": "memorial-sloan-kettering",
+   "name": "Memorial Sloan Kettering",
+   "tagline": "MLH Fellowship partner",
+   "description": null,
+   "website": "https://www.mskcc.org",
+   "repoUrl": "https://github.com/mskcc",
+   "tags": [],
+   "years": [],
+   "links": [],
+   "sourceUrl": "https://fellowship.mlh.io/partners",
+   "githubUrl": "https://github.com/mskcc",
+   "chats": [],
+   "logo": "/logos/programs/mlh-fellowship/memorial-sloan-kettering.svg"
+  },
+  {
+   "slug": "meta",
+   "name": "Meta",
+   "tagline": "MLH Fellowship partner",
+   "description": null,
+   "website": "https://opensource.fb.com",
+   "repoUrl": "https://github.com/facebook",
+   "tags": [],
+   "years": [],
+   "links": [],
+   "sourceUrl": "https://fellowship.mlh.io/partners",
+   "githubUrl": "https://github.com/facebook",
+   "chats": [],
+   "logo": "/logos/programs/mlh-fellowship/meta.svg"
+  },
+  {
+   "slug": "royal-bank-of-canada",
+   "name": "Royal Bank of Canada",
+   "tagline": "MLH Fellowship partner",
+   "description": null,
+   "website": "https://www.rbc.com",
+   "repoUrl": "https://github.com/RBC",
+   "tags": [],
+   "years": [],
+   "links": [],
+   "sourceUrl": "https://fellowship.mlh.io/partners",
+   "githubUrl": "https://github.com/RBC",
+   "chats": [],
+   "logo": "/logos/programs/mlh-fellowship/royal-bank-of-canada.svg"
+  },
+  {
+   "slug": "solana-labs",
+   "name": "Solana Labs",
+   "tagline": "MLH Fellowship partner",
+   "description": null,
+   "website": "https://solanalabs.com",
+   "repoUrl": "https://github.com/solana-labs",
+   "tags": [],
+   "years": [],
+   "links": [],
+   "sourceUrl": "https://fellowship.mlh.io/partners",
+   "githubUrl": "https://github.com/solana-labs",
+   "chatSource": "https://solanalabs.com",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "Solana Labs Discord",
+     "joinUrl": "https://discord.com/invite/solanamobile"
+    }
+   ],
+   "logo": "/logos/programs/mlh-fellowship/solana-labs.svg"
+  }
+ ]
+}

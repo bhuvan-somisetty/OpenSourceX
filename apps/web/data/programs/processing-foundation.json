@@ -1,0 +1,305 @@
+{
+ "program": "processing-foundation",
+ "name": "Processing Foundation",
+ "generatedAt": "2026-10-15",
+ "years": [
+  2013,
+  2016,
+  2017,
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025
+ ],
+ "note": "The Fellowship is run by the Processing Foundation. Fellowship project titles are listed by year; fellows' names are not stored.",
+ "sources": [
+  {
+   "label": "Processing Foundation Fellowships",
+   "url": "https://processingfoundation.org/fellowships"
+  }
+ ],
+ "orgs": [
+  {
+   "slug": "processing-foundation",
+   "name": "Processing Foundation",
+   "tagline": null,
+   "description": "Since 2013, the Processing Foundation Fellowship has supported emerging artists, educators, and coders in imagining more just and equitable relationships with technology.",
+   "website": "https://processingfoundation.org/",
+   "repoUrl": "https://github.com/processing/",
+   "tags": [],
+   "years": [
+    2013,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "projects": [
+    {
+     "year": 2025,
+     "title": "Body as Data: Enhancing the Luna Library for Real-Time Storytelling in Live Performances"
+    },
+    {
+     "year": 2025,
+     "title": "Call / Code / Response"
+    },
+    {
+     "year": 2025,
+     "title": "Network Gong Ensemble Archive"
+    },
+    {
+     "year": 2025,
+     "title": "p5.score"
+    },
+    {
+     "year": 2025,
+     "title": "The Future Protest"
+    },
+    {
+     "year": 2025,
+     "title": "Where Has the Lake Gone?"
+    },
+    {
+     "year": 2024,
+     "title": "Aligning an Open Source Ethos"
+    },
+    {
+     "year": 2024,
+     "title": "Applying Restorative Practices to Develop an Openly Licensed Conflict Resolution System for Self-Organized Communities"
+    },
+    {
+     "year": 2024,
+     "title": "Ephemeral Experiments: Decoding Tendencies in Live Coding"
+    },
+    {
+     "year": 2024,
+     "title": "How do We Care for Each Other (Vì Mình Thương Nhau)"
+    },
+    {
+     "year": 2024,
+     "title": "p5.js in Brazilian Sign Language"
+    },
+    {
+     "year": 2024,
+     "title": "Palestine Online"
+    },
+    {
+     "year": 2024,
+     "title": "Screen-to-Soundscape"
+    },
+    {
+     "year": 2024,
+     "title": "Synthetic Moans"
+    },
+    {
+     "year": 2023,
+     "title": "4LoveandScience: An inclusive STEM pedagogy toolkit"
+    },
+    {
+     "year": 2023,
+     "title": "Black Life in the Age of AI"
+    },
+    {
+     "year": 2023,
+     "title": "CodeSurfing (CLB Lướt Code)"
+    },
+    {
+     "year": 2023,
+     "title": "CYBERNETIC THEATER COMPANY-IN-A-BOX"
+    },
+    {
+     "year": 2023,
+     "title": "freedom is a durational practice"
+    },
+    {
+     "year": 2023,
+     "title": "p5.Sound Library Curriculum Development"
+    },
+    {
+     "year": 2023,
+     "title": "Sketching Access"
+    },
+    {
+     "year": 2023,
+     "title": "The Data Garden Project"
+    },
+    {
+     "year": 2022,
+     "title": "Art Teachers’ Guide to Artificial Intelligence"
+    },
+    {
+     "year": 2022,
+     "title": "Begin Contour: A Critical, Anticolonial, and Intersectional Pedagogy to Taiwanese Creative Technology Education"
+    },
+    {
+     "year": 2022,
+     "title": "Chrysalis Corpus"
+    },
+    {
+     "year": 2022,
+     "title": "Data science whiteboard"
+    },
+    {
+     "year": 2022,
+     "title": "Developing a Creative Coding Syllabus for a First-Year Liberal Arts Computing Course"
+    },
+    {
+     "year": 2022,
+     "title": "Interactive resource guide for CS teachers"
+    },
+    {
+     "year": 2022,
+     "title": "Jakarta Design+Coding Club"
+    },
+    {
+     "year": 2022,
+     "title": "P5 in the Park"
+    },
+    {
+     "year": 2022,
+     "title": "Processing in Kuna Language"
+    },
+    {
+     "year": 2022,
+     "title": "Refactoring and development for p5-serial"
+    },
+    {
+     "year": 2022,
+     "title": "Rural Technological Ecologies (rural tech-ecologies)"
+    },
+    {
+     "year": 2022,
+     "title": "Un/Drowned: Visualizing Submerged Black Towns, New Deal Infrastructure, and American ‘Progress’"
+    },
+    {
+     "year": 2021,
+     "title": "Akeltye-antheme awetyeke"
+    },
+    {
+     "year": 2021,
+     "title": "Coding with Friends"
+    },
+    {
+     "year": 2021,
+     "title": "Developh p5.js Camp"
+    },
+    {
+     "year": 2021,
+     "title": "P5LIVE"
+    },
+    {
+     "year": 2021,
+     "title": "Pê Cinco: Internationalization and Popularization for Portuguese Speakers"
+    },
+    {
+     "year": 2021,
+     "title": "PORTAL.WEB"
+    },
+    {
+     "year": 2021,
+     "title": "Starter Kit for Teaching Creative Coding with p5.js"
+    },
+    {
+     "year": 2020,
+     "title": "Previous"
+    },
+    {
+     "year": 2020,
+     "title": "Cozy Coding"
+    },
+    {
+     "year": 2020,
+     "title": "DIY AI: ML5 Community Starter Kit"
+    },
+    {
+     "year": 2020,
+     "title": "knowyourrights.com"
+    },
+    {
+     "year": 2020,
+     "title": "p5 to 50+ (50 and beyond)"
+    },
+    {
+     "year": 2019,
+     "title": "p5.js 1.0"
+    },
+    {
+     "year": 2019,
+     "title": "SuaCode"
+    },
+    {
+     "year": 2018,
+     "title": "Education Outreach Manager Role"
+    },
+    {
+     "year": 2018,
+     "title": "Introduction to Computational Media"
+    },
+    {
+     "year": 2018,
+     "title": "Justice Factory"
+    },
+    {
+     "year": 2018,
+     "title": "p5-accessibility"
+    },
+    {
+     "year": 2018,
+     "title": "SuaCode"
+    },
+    {
+     "year": 2017,
+     "title": "p5.js Web Editor"
+    },
+    {
+     "year": 2017,
+     "title": "Previous"
+    },
+    {
+     "year": 2016,
+     "title": "Coding Comic"
+    },
+    {
+     "year": 2016,
+     "title": "Friendly Error System"
+    },
+    {
+     "year": 2016,
+     "title": "Python Mode"
+    },
+    {
+     "year": 2013,
+     "title": "OpenCV Library"
+    },
+    {
+     "year": 2013,
+     "title": "p5.js"
+    },
+    {
+     "year": 2013,
+     "title": "Sound Library"
+    }
+   ],
+   "links": [
+    {
+     "label": "Fellowships",
+     "url": "https://processingfoundation.org/fellowships"
+    }
+   ],
+   "sourceUrl": "https://processingfoundation.org/fellowships",
+   "githubUrl": "https://github.com/processing",
+   "chats": [],
+   "logo": "/logos/programs/processing-foundation/processing-foundation.png"
+  }
+ ]
+}

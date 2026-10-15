@@ -1,0 +1,139 @@
+{
+ "program": "gsoc",
+ "checked": "2026-10-15",
+ "status": "running",
+ "statusNote": "GSoC 2026 is in its project work phase.",
+ "summary": "Google Summer of Code is a global, online program that brings new contributors into open source. Contributors work with an open source organization on a 12+ week programming project under the guidance of mentors.",
+ "runBy": "Google Open Source",
+ "stipend": {
+  "headline": "$750 – $6,600",
+  "detail": "Paid by Google, adjusted for the contributor's country with Purchasing Power Parity (PPP). Base amounts are $1,500 for a small project, $3,000 for a medium project and $6,000 for a large project.",
+  "currency": "USD",
+  "ranges": [
+   {
+    "label": "Small project (~90 hours)",
+    "value": "$750 – $1,650"
+   },
+   {
+    "label": "Medium project (~175 hours)",
+    "value": "$1,500 – $3,300"
+   },
+   {
+    "label": "Large project (~350 hours)",
+    "value": "$3,000 – $6,600"
+   }
+  ],
+  "payments": [
+   {
+    "label": "First evaluation",
+    "share": "45%",
+    "when": "Paid July 11 (standard 12-week project)"
+   },
+   {
+    "label": "Final evaluation",
+    "share": "55%",
+    "when": "Paid September 1 (standard 12-week project)"
+   }
+  ],
+  "method": "Payoneer, which serves 190+ countries. From 2026 Payoneer cannot pay account holders in Quebec, Canada.",
+  "table": "gsoc",
+  "tableNote": "Amount for your country, by project size (GSoC 2026 table)."
+ },
+ "facts": [
+  {
+   "label": "Project sizes",
+   "value": "~90, ~175 or ~350 hours"
+  },
+  {
+   "label": "Length",
+   "value": "8 to 22 weeks; start dates are fixed, end dates can be extended up to 22 weeks"
+  },
+  {
+   "label": "Format",
+   "value": "Online, with mentors from the organization"
+  },
+  {
+   "label": "Proposals",
+   "value": "Up to three per contributor; only one can be accepted"
+  }
+ ],
+ "eligibility": [
+  "18 years or older at registration.",
+  "A student, or an open source beginner (for example, fewer than 10 pull requests to open source packages).",
+  "Eligible to work in your country of residence.",
+  "Accepted into GSoC no more than once before.",
+  "Not living in a U.S. embargoed country; people in Russia, Belarus and the DNR/LNR regions are currently not eligible."
+ ],
+ "timelineTitle": "GSoC 2026 timeline (UTC)",
+ "timeline": [
+  {
+   "label": "Program announced",
+   "date": "2025-12-03"
+  },
+  {
+   "label": "Organization applications open",
+   "date": "2026-01-19"
+  },
+  {
+   "label": "Accepted organizations announced",
+   "date": "2026-02-19"
+  },
+  {
+   "label": "Contributor proposals open",
+   "date": "2026-03-16"
+  },
+  {
+   "label": "Proposal deadline",
+   "date": "2026-03-31"
+  },
+  {
+   "label": "Accepted projects announced",
+   "date": "2026-04-30"
+  },
+  {
+   "label": "Project work starts",
+   "date": "2026-05-25"
+  },
+  {
+   "label": "Program ends",
+   "date": "2026-11-11"
+  }
+ ],
+ "howToApply": [
+  "Pick organizations from the accepted list and read their project ideas.",
+  "Talk to the organization's mentors in their chat or mailing list before writing a proposal.",
+  "Submit up to three proposals on summerofcode.withgoogle.com before the proposal deadline.",
+  "Organizations rank proposals; accepted contributors are announced publicly."
+ ],
+ "links": [
+  {
+   "label": "GSoC website",
+   "url": "https://summerofcode.withgoogle.com/"
+  },
+  {
+   "label": "Contributor stipends",
+   "url": "https://developers.google.com/open-source/gsoc/help/student-stipends"
+  },
+  {
+   "label": "FAQ",
+   "url": "https://developers.google.com/open-source/gsoc/faq"
+  }
+ ],
+ "sources": [
+  {
+   "label": "GSoC contributor stipends (updated 2026-02-17)",
+   "url": "https://developers.google.com/open-source/gsoc/help/student-stipends",
+   "file": "gsoc/stipends.txt"
+  },
+  {
+   "label": "GSoC FAQ",
+   "url": "https://developers.google.com/open-source/gsoc/faq",
+   "file": "gsoc/faq.txt"
+  },
+  {
+   "label": "GSoC 2026 program milestones",
+   "url": "https://summerofcode.withgoogle.com/api/program/2026/",
+   "file": "gsoc/program-2026.json"
+  }
+ ]
+}

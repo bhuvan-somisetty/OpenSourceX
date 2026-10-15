@@ -1,0 +1,113 @@
+Source: https://web.archive.org/web/20260227153651id_/https://www.igalia.com/coding-experience/
+Retrieved: 2026-10-15
+
+Igalia Coding Experience | Igalia - Open Source Consultancy and Development
+About Us
+Technologies
+Services
+Industries
+24/7
+Jobs
+Contact
+Feder
+Toggle menu
+About Us
+Technologies
+Services
+Industries
+24/7
+Jobs
+Contact
+Feder
+Working at Igalia
+Open Positions
+Igalia Coding Experience
+Igalia Coding Experience
+Learn more
+Application form
+The Igalia Coding Experience is a grant program for people studying
+Computer Science, Information Technology or Free Software, whether in a
+formal setting (for example, a college or university) or an informal one
+(self-teaching). The purpose of the program is to give participants their
+first exposure to the professional world, working hand in hand with Igalia
+programmers and learning with them.
+Coding Experience Positions
+The areas where people can apply for the 2026 Coding Experience program
+are the following:
+Linux Packaging
+Flatpak is a utility for packaging and distributing Linux desktop applications, which run in sandboxed environments with access limited by configurable permissions that users can modify. Flatseal is a graphical tool that enables user-friendly management of those permissions.
+The participant will work on addressing existing limitations and implementing features needed for Flatseal to keep pace with recent Flatpak changes. Work may include, for example, redesigning or refactoring parts of the permissions backend, improving support for newly introduced permission models, enabling system-level overrides, enhancing handling of USB devices and conditional permissions, and strengthening support for commonly used portals.
+Graphics
+The participant will contribute to the development and maintenance of the Raspberry Pi driver stack in Mesa. Areas of work may include implementing OpenGL features already supported in the Vulkan driver, porting components of the Vulkan driver to the common Mesa Vulkan runtime, contributing to new driver features, and identifying and fixing test failures and regressions.
+JavaScript devtools
+JavaScript projects often require debugging across multiple tools that work together to support developers. The participant will become familiar with these tools and contribute improvements to enhance the overall debugging experience and workflow quality.
+Multimedia and GStreamer
+GStreamer is a leading open-source multimedia framework. The participant will contribute to various multimedia areas, including video editing support in GStreamer (specifically GES and NLE), WebRTC, VAAPI/Vulkan, and WebKit Multimedia. Tasks may include implementing new features and fixing bugs in GStreamer, GStreamer Editing Services, and the Pitivi video editor.
+Web Standards
+Igalia works on the implementation of web standards across the different open source web rendering engines (Blink, Gecko, Servo, WebKit). The goal for the CE participant will be to become familiar with and contribute to the implementation of W3C and WHATWG standards in some of these browser engines.
+Selection Process
+The Igalia Coding Experience in 2026 will be organized into a single
+enrollment window.
+The submission period will be open from
+February 23rd until April 3rd . Participants will be
+selected in mid May.
+We will work with the participant to arrange a suitable starting date
+during 2026,
+from June onwards, and finishing before the end of the 2026.
+Apply Now!
+If you are interested in the above position, please fill in the form below.
+If you have any further questions, please feel free to contact us .
+Personal information
+Name:
+Email:
+Phone number:
+Time zone:
+Area
+Linux Packaging
+Graphics
+JavaScript devtools
+Multimedia and GStreamer
+Web Standards
+You can select more than one.
+Professional information
+Cover letter & introduction:
+Your cover letter is a chance to introduce yourself to us and explain a little bit about your background
+and what makes you interested in working on free/open-source software. You can discuss any contributions
+to free or open-source software projects you have made (previous contributions are not a requirement,
+but can help). We are also interested in whether you belong to any group or groups that are subject to
+underrepresentation and/or discrimination in the technology industry or free/open-source software.
+Disclosing this information is optional, but helps us evaluate your application. Finally, we would
+appreciate it if you let us know how we should refer to you (what pronouns you use).
+Curriculum vitae (1MB max, PDF format):
+Additional comments:
+Other documents (1MB max, PDF format):
+How did you discover this position:
+Please prove you’re not a robot by entering the sum of 3 + 5
+I want to receive a copy of my
+application in my inbox.
+I have read and
+accept the privacy policy .
+Send application
+Igalia.com
+About Us
+Technologies
+Services
+Industries
+24/7
+Jobs
+Contact
+Igalia, S.L. © 2026. All rights reserved.
+Code of Conduct
+Legal Terms
+Press
+Privacy Policy
+Public funding (Fondos públicos)
+Headquarters
+Bugallal Marchesi, 22, 1º
+15008 A Coruña
+Galicia (Spain)
+Pho.: +34 981 913991
+linkedin
+bluesky
+mastodon
+youtube

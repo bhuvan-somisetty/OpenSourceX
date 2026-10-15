@@ -1,0 +1,315 @@
+{
+ "program": "european-summer-of-code",
+ "name": "European Summer of Code",
+ "generatedAt": "2026-10-15",
+ "years": [
+  2026
+ ],
+ "note": "Open source projects affiliated with European Summer of Code 2026.",
+ "sources": [
+  {
+   "label": "ESoC 2026 affiliated open source projects",
+   "url": "https://github.com/european-summer-of-code/esoc2026"
+  }
+ ],
+ "orgs": [
+  {
+   "slug": "ai-on-demand",
+   "name": "AI-on-Demand",
+   "tagline": null,
+   "description": null,
+   "website": "https://aiod.eu",
+   "repoUrl": "https://github.com/aiondemand",
+   "tags": [],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/european-summer-of-code/esoc2026#affiliated-open-source-projects",
+   "githubUrl": "https://github.com/aiondemand",
+   "chats": [],
+   "logo": "/logos/programs/european-summer-of-code/ai-on-demand.png"
+  },
+  {
+   "slug": "openml",
+   "name": "openML",
+   "tagline": null,
+   "description": null,
+   "website": "http://www.openml.org",
+   "repoUrl": "https://github.com/openml",
+   "tags": [],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/european-summer-of-code/esoc2026#affiliated-open-source-projects",
+   "githubUrl": "https://github.com/openml",
+   "chatSource": "https://github.com/openml",
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "openML Slack",
+     "joinUrl": "https://join.slack.com/t/openml/shared_invite/enQtODg4NjgzNTE4NjU3LTYwZDFhNzQ5NmE0NjIyNmM3NDMyMjFkZDQ0YWZkYWYxMTIxODFmMDhhMTUzMGYzMmM4NjIzYTZlYjBkOGE5MTQ"
+    }
+   ],
+   "logo": "/logos/programs/european-summer-of-code/openml.png"
+  },
+  {
+   "slug": "pgmpy",
+   "name": "pgmpy",
+   "tagline": null,
+   "description": null,
+   "website": "http://pgmpy.org/",
+   "repoUrl": "https://github.com/pgmpy/pgmpy",
+   "tags": [],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/european-summer-of-code/esoc2026#affiliated-open-source-projects",
+   "githubUrl": "https://github.com/pgmpy",
+   "chatSource": "https://github.com/pgmpy/pgmpy#readme",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "pgmpy Discord",
+     "joinUrl": "https://discord.gg/DRkdKaumBs"
+    }
+   ],
+   "logo": "/logos/programs/european-summer-of-code/pgmpy.png"
+  },
+  {
+   "slug": "pixi",
+   "name": "pixi",
+   "tagline": null,
+   "description": null,
+   "website": "https://prefix.dev",
+   "repoUrl": "https://github.com/prefix-dev/pixi",
+   "tags": [],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/european-summer-of-code/esoc2026#affiliated-open-source-projects",
+   "githubUrl": "https://github.com/prefix-dev",
+   "chatSource": "https://github.com/prefix-dev/pixi#readme",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "pixi Discord",
+     "joinUrl": "https://discord.gg/kKV8ZxyzY4"
+    }
+   ],
+   "logo": "/logos/programs/european-summer-of-code/pixi.png"
+  },
+  {
+   "slug": "pyaptamer",
+   "name": "pyaptamer",
+   "tagline": null,
+   "description": null,
+   "website": "https://gcos.ai",
+   "repoUrl": "https://github.com/gc-os-ai/pyaptamer",
+   "tags": [],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/european-summer-of-code/esoc2026#affiliated-open-source-projects",
+   "githubUrl": "https://github.com/gc-os-ai",
+   "chatSource": "https://github.com/gc-os-ai/pyaptamer#readme",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "pyaptamer Discord",
+     "joinUrl": "https://discord.gg/7uKdHfdcJG"
+    }
+   ],
+   "logo": "/logos/programs/european-summer-of-code/pyaptamer.png"
+  },
+  {
+   "slug": "pykalman",
+   "name": "pykalman",
+   "tagline": null,
+   "description": null,
+   "website": null,
+   "repoUrl": "https://github.com/pykalman/pykalman",
+   "tags": [],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/european-summer-of-code/esoc2026#affiliated-open-source-projects",
+   "githubUrl": "https://github.com/pykalman",
+   "chatSource": "https://github.com/pykalman/pykalman#readme",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "pykalman Discord",
+     "joinUrl": "https://discord.com/invite/54ACzaFsn7"
+    }
+   ],
+   "logo": "/logos/programs/european-summer-of-code/pykalman.png"
+  },
+  {
+   "slug": "pytorch-forecasting",
+   "name": "pytorch-forecasting",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.sktime.net",
+   "repoUrl": "https://github.com/sktime/pytorch-forecasting",
+   "tags": [],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/european-summer-of-code/esoc2026#affiliated-open-source-projects",
+   "githubUrl": "https://github.com/sktime",
+   "chatSource": "https://github.com/sktime/pytorch-forecasting#readme",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "pytorch-forecasting Discord",
+     "joinUrl": "https://discord.com/invite/54ACzaFsn7"
+    }
+   ],
+   "logo": "/logos/programs/european-summer-of-code/pytorch-forecasting.jpg"
+  },
+  {
+   "slug": "pytorch-tabular",
+   "name": "pytorch-tabular",
+   "tagline": null,
+   "description": null,
+   "website": null,
+   "repoUrl": "https://github.com/pytorch-tabular/pytorch_tabular",
+   "tags": [],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/european-summer-of-code/esoc2026#affiliated-open-source-projects",
+   "githubUrl": "https://github.com/pytorch-tabular",
+   "chatSource": "https://github.com/pytorch-tabular/pytorch_tabular#readme",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "pytorch-tabular Discord",
+     "joinUrl": "https://discord.com/invite/54ACzaFsn7"
+    }
+   ],
+   "logo": "/logos/programs/european-summer-of-code/pytorch-tabular.png"
+  },
+  {
+   "slug": "rattler",
+   "name": "rattler",
+   "tagline": null,
+   "description": null,
+   "website": "https://conda.org",
+   "repoUrl": "https://github.com/conda/rattler",
+   "tags": [],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/european-summer-of-code/esoc2026#affiliated-open-source-projects",
+   "githubUrl": "https://github.com/conda",
+   "chatSource": "https://github.com/conda/rattler#readme",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "rattler Discord",
+     "joinUrl": "https://discord.gg/kKV8ZxyzY4"
+    }
+   ],
+   "logo": "/logos/programs/european-summer-of-code/rattler.png"
+  },
+  {
+   "slug": "scikit-base",
+   "name": "scikit-base",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.sktime.net",
+   "repoUrl": "https://github.com/sktime/skbase",
+   "tags": [],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/european-summer-of-code/esoc2026#affiliated-open-source-projects",
+   "githubUrl": "https://github.com/sktime",
+   "chatSource": "https://www.sktime.net",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "scikit-base Discord",
+     "joinUrl": "https://discord.com/invite/54ACzaFsn7"
+    }
+   ],
+   "logo": "/logos/programs/european-summer-of-code/scikit-base.jpg"
+  },
+  {
+   "slug": "shap",
+   "name": "shap",
+   "tagline": null,
+   "description": null,
+   "website": null,
+   "repoUrl": "https://github.com/shap/shap",
+   "tags": [],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/european-summer-of-code/esoc2026#affiliated-open-source-projects",
+   "githubUrl": "https://github.com/shap",
+   "chats": [],
+   "logo": "/logos/programs/european-summer-of-code/shap.png"
+  },
+  {
+   "slug": "skpro",
+   "name": "skpro",
+   "tagline": null,
+   "description": null,
+   "website": "https://www.sktime.net",
+   "repoUrl": "https://github.com/sktime/skpro",
+   "tags": [],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/european-summer-of-code/esoc2026#affiliated-open-source-projects",
+   "githubUrl": "https://github.com/sktime",
+   "chatSource": "https://github.com/sktime/skpro#readme",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "skpro Discord",
+     "joinUrl": "https://discord.com/invite/54ACzaFsn7"
+    }
+   ],
+   "logo": "/logos/programs/european-summer-of-code/skpro.jpg"
+  },
+  {
+   "slug": "sktime",
+   "name": "sktime",
+   "tagline": null,
+   "description": null,
+   "website": "https://gcos.ai",
+   "repoUrl": "https://github.com/sktime/sktime",
+   "tags": [],
+   "years": [
+    2026
+   ],
+   "links": [],
+   "sourceUrl": "https://github.com/european-summer-of-code/esoc2026#affiliated-open-source-projects",
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "sktime Discord",
+     "joinUrl": "https://discord.gg/7uKdHfdcJG"
+    }
+   ],
+   "chatSource": "https://summerofcode.withgoogle.com/programs/2024/organizations/sktime",
+   "githubUrl": "https://github.com/sktime",
+   "logo": "/logos/programs/european-summer-of-code/sktime.png"
+  }
+ ]
+}

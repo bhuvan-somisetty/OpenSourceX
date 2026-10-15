@@ -1,0 +1,131 @@
+Source: https://web.archive.org/web/20250315110705id_/https://www.igalia.com/coding-experience/
+Retrieved: 2026-10-15
+
+Igalia Coding Experience | Igalia - Open Source Consultancy and Development
+About Us
+Technologies
+Services
+Industries
+24/7
+Jobs
+Contact
+Feder
+Toggle menu
+About Us
+Technologies
+Services
+Industries
+24/7
+Jobs
+Contact
+Feder
+Working at Igalia
+Open Positions
+Igalia Coding Experience
+Igalia Coding Experience
+Learn more
+Application form
+The Igalia Coding Experience is a grant program for people studying Computer Science, Information Technology or
+Free Software, whether in a formal setting (for example, a college or university) or an informal one
+(self-teaching). The purpose of the program is to give participants their first exposure to the professional
+world, working hand in hand with Igalia programmers and learning with them.
+Coding Experience Positions
+The areas where people can apply for the 2025 Coding Experience program are the following:
+Compiler Construction & Programming Language Implementation
+The participant will have the opportunity to work on the implementation of programming language toolchains and compilers, with a focus on WebAssembly (Wasm) and JavaScript (JS) engines. Example topics include improving the LLVM toolchain for Wasm, exploring novel compilers that target Wasm, and contributing to JS engines such as JavaScriptCore.
+Chromium
+Chromium is the open source basis for the well-known Chrome web browser. The participant will help with code improvements, refactorings, bug-fixing, and specific feature development. Possible areas of work include Chromium's Wayland support or the Electron desktop framework. The participant must be able to program in C++. Familiarity both with Chromium development and Open Source software development in general is a plus, but is not required.
+Multimedia and GStreamer
+GStreamer is a leading open-source multimedia framework. The participant's goal is to contribute to various multimedia areas, such as video editing support in GStreamer (specifically GES and NLE), WebRTC, VAAPI/Vulkan, and WebKit Multimedia. For video editing, tasks involve adding new features and fixing bugs in GStreamer, GStreamer Editing Services, and the Pitivi video editor.
+Implementation of Web Standards
+The participant's goal is to gain familiarity with and contribute to the implementation of W3C and WHATWG standards in open-source browser engines.
+Webkit
+WebKit is one of the most important open-source browser engines, powering browsers like Apple's Safari and GNOME's Epiphany, and embedded devices like set-top boxes.
+The goal for the participant is to have the opportunity to join its community and help with tasks related to maintenance, or contributing to the development of new features, in the Linux WebKit ports WebKitGTK and WPE .
+Wolvic
+Wolvic is a free, open-source Web browser designed for Virtual Reality systems. Participants will focus on designing and implementing specific user interface components, in addition to conducting quality assurance and user testing. The primary technologies used will be Java and Android.
+Conditions & Compensation
+This program is mainly for people who are learning and wishing to gain initial professional experience in the
+area of free/open-source software development. They can be either students enrolled in a official education
+program or involved in alternative learning itineraries (e.g. self-learning). It is also open to people who are
+in a later stage of their professional career but who do not have experience working in computer science and are
+willing to refocus.
+Igalia expressly invites women (both cis and trans), trans men, and genderqueer people to apply. The Coding
+Experience program prioritizes applicants coming from groups that are underrepresented in technology.
+Our ideal candidates are highly motivated to work on Free Software projects; bonus points for
+existing contributions to any Free Software or open-source project related to our areas of specialization,
+including participation in its community.
+The specific conditions of our Coding Experience program are:
+Mentorship by one of Igalia’s outstanding open source contributors in the field.
+It is remote-friendly. People can participate wherever they
+live.
+Hours: 450h
+Usual timetables:
+3 months full-time
+6 months part-time
+Compensation for the 2025 program: 7,000€
+Selection Process
+The Igalia Coding Experience in 2025 will be organized into a single enrollment window.
+The submission period will be open from February 21st until April 4th . Participants will be
+selected in mid May.
+We will work with the participant to arrange a suitable starting date during 2025, from June onwards,
+and finishing before the end of 2025.
+Apply Now!
+If you are interested in the above position, please fill in the form below.
+If you have any further questions, please feel free to contact us .
+Personal information
+Name:
+Email:
+Phone number:
+Time zone:
+Area
+Compiler Construction & Programming Language Implementation
+Chromium
+Multimedia and GStreamer
+Implementation of Web Standards
+Webkit
+Wolvic
+You can select more than one.
+Professional information
+Cover letter & introduction:
+Your cover letter is a chance to introduce yourself to us and explain a little bit about your background
+and what makes you interested in working on free/open-source software. You can discuss any contributions
+to free or open-source software projects you have made (previous contributions are not a requirement,
+but can help). We are also interested in whether you belong to any group or groups that are subject to
+underrepresentation and/or discrimination in the technology industry or free/open-source software.
+Disclosing this information is optional, but helps us evaluate your application. Finally, we would
+appreciate it if you let us know how we should refer to you (what pronouns you use).
+Curriculum vitae (1MB max, PDF format):
+Additional comments:
+Other documents (1MB max, PDF format):
+How did you discover this position:
+Please prove you’re not a robot by entering the sum of 3 + 5
+I want to receive a copy of my
+application in my inbox.
+I have read and
+accept the privacy policy .
+Send application
+Igalia.com
+About Us
+Technologies
+Services
+Industries
+24/7
+Jobs
+Contact
+Igalia, S.L. © 2025. All rights reserved.
+Code of Conduct
+Legal Terms
+Press
+Privacy Policy
+Public funding (Fondos públicos)
+Headquarters
+Bugallal Marchesi, 22, 1º
+15008 A Coruña
+Galicia (Spain)
+Pho.: +34 981 913991
+info(at)igalia.com
+linkedin
+bluesky
+mastodon
+youtube
