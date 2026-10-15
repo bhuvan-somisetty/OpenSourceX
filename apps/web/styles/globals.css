@@ -4609,3 +4609,95 @@ th {
     opacity: 1;
   }
 }
+
+/* organization page: repository button on the hero, community channels below */
+.org-repo-btn {
+  margin-left: auto;
+  align-self: flex-start;
+  gap: 8px;
+}
+@media (max-width: 640px) {
+  .org-repo-btn {
+    margin-left: 0;
+  }
+  .org-chat-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.org-community {
+  margin-top: 28px;
+}
+.org-chat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+.org-chat-none {
+  margin-top: 16px;
+}
+.org-chat {
+  display: flex;
+  flex-direction: column;
+}
+.org-chat-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.org-chat-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  flex: none;
+}
+.chat-slack .org-chat-icon {
+  background: rgba(74, 21, 75, 0.45);
+  border-color: rgba(224, 30, 90, 0.35);
+}
+.chat-discord .org-chat-icon {
+  background: rgba(88, 101, 242, 0.18);
+  border-color: rgba(88, 101, 242, 0.45);
+}
+.org-chat-title {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.org-chat-title strong {
+  font-size: 16px;
+}
+.org-chat-title .dim {
+  font-size: 13px;
+}
+.org-chat-channel {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(125, 155, 255, 0.12);
+  border: 1px solid rgba(125, 155, 255, 0.3);
+  color: #c9d4ff;
+}
+.org-chat-desc {
+  margin: 12px 0 16px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  flex: 1;
+}
+.org-chat .actions {
+  flex-wrap: wrap;
+}
+.org-community-src {
+  margin: 12px 0 0;
+  font-size: 12px;
+}
+.org-community-src a {
+  color: inherit;
+}
