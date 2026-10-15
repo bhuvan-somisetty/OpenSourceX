@@ -79,10 +79,19 @@ export default async function ProgramDetail({
 
         <section className="block" style={{ marginTop: 28 }} aria-label="Organizations">
           <ProgramOrgDirectory
-            data={staticData}
-            filter={{ q: first(sp.q), tech: first(sp.tech), year: first(sp.year) }}
-            page={first(sp.page)}
+            orgs={staticData.orgs.map((o) => ({
+              slug: o.slug,
+              name: o.name,
+              blurb: o.tagline ?? (o.description ? o.description.slice(0, 220) : null),
+              tags: o.tags,
+              years: o.years,
+              logo: o.logo,
+              chats: [...new Set(o.chats.map((c) => c.platform))],
+            }))}
+            programName={staticData.name}
+            years={staticData.years}
             basePath={`/programs/${def.slug}`}
+            initial={{ q: first(sp.q), tech: first(sp.tech), year: first(sp.year) }}
           />
         </section>
 
