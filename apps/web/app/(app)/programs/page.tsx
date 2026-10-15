@@ -1,7 +1,6 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import { PROGRAM_CATALOG } from "@/lib/programs";
-import { ProgramMark } from "@/components/ui/ProgramMark";
+import { ProgramGrid } from "@/features/programs/ProgramGrid";
 
 export const metadata: Metadata = { title: "Programs" };
 export const dynamic = "force-dynamic";
@@ -20,21 +19,7 @@ export default function Programs() {
       </section>
 
       <section className="block" style={{ marginBottom: 40 }}>
-        <div className="program-square-grid">
-          {PROGRAM_CATALOG.slice(0, 10).map((d) => (
-            <Link
-              key={d.slug}
-              href={`/programs/${d.slug}`}
-              className="card hover program-card"
-            >
-              <ProgramMark slug={d.slug} />
-              <div className="program-card-meta">
-                <strong className="program-card-title">{d.name}</strong>
-                <span className="dim program-card-tagline">{d.tagline}</span>
-              </div>
-            </Link>
-          ))}
-        </div>
+        <ProgramGrid programs={PROGRAM_CATALOG.slice(0, 10)} />
       </section>
     </div>
   );
