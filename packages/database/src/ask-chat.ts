@@ -1,7 +1,7 @@
 import type { Db } from "./client";
 
 /** Ask chat history per user. Every query is scoped by user id; all inputs are parameterized. */
-export type AskEngine = "gateway" | "anthropic" | "openai" | "offline";
+export type AskEngine = "google" | "groq" | "gateway" | "anthropic" | "openai" | "offline";
 
 export interface AskConversation {
   id: string;

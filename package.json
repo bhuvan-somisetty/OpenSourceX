@@ -19,6 +19,7 @@
     "test:integration": "vitest run --project integration",
     "db:migrate": "tsx packages/database/src/migrate-cli.ts",
     "db:seed": "tsx services/ingestion/src/seed-cli.ts",
+    "db:knowledge": "tsx packages/database/src/knowledge-cli.ts",
     "dev:web": "pnpm --filter @opensourcex/web dev",
     "test:e2e": "playwright test",
     "db:reseed": "tsx services/ingestion/src/seed-cli.ts --reset"

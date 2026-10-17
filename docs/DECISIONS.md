@@ -200,3 +200,16 @@ Format: Decision, Context, Options, Reason, Trade-offs, Date.
   fails, the offline engine answers. Models see OpenSourceX data only through
   read-only tools, and links to organizations come only from recorded data.
 - Chat history is stored per session user in Postgres (migration 007).
+
+## D-022 Free AI providers and an open source knowledge base for Ask (2026-10-17)
+
+- Context: in production almost every Ask answer was off-topic. Vercel AI Gateway refuses
+  requests until a credit card is on file, so every question fell back to the offline engine,
+  which only knew organization and program data. The owner asked for complete, relevant answers
+  at zero cost, using four reference proposals they provided.
+- Decision: add Google Gemini and Groq, whose free API keys need no card, tried before the
+  Gateway. A provider that fails is skipped for five minutes. Add a knowledge base (migration 008,
+  `pnpm db:knowledge`) of curated guides written from official program documentation (LFX, CNCF,
+  GSoC, Outreachy) and the four reference proposals, with names, emails, handles, schools and
+  mentor names removed. It is searched with Postgres full-text search, so no paid embeddings
+  are needed. Both the AI (searchKnowledge tool) and the offline engine answer from it.

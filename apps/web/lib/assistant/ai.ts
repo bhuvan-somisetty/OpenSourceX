@@ -1,4 +1,6 @@
 import { createAnthropic } from "@ai-sdk/anthropic";
+import { createGoogleGenerativeAI } from "@ai-sdk/google";
+import { createGroq } from "@ai-sdk/groq";
 import { createOpenAI } from "@ai-sdk/openai";
 import {
   createGateway,
@@ -9,7 +11,8 @@ import {
   type ModelMessage,
 } from "ai";
 import { z } from "zod";
-import type { AskEngine } from "@opensourcex/database";
+import { createLogger } from "@opensourcex/shared";
+import type { AskEngine, KnowledgeHit } from "@opensourcex/database";
 import { answerQuestion } from "@/lib/ask";
 import {
   findOrg,
@@ -21,11 +24,11 @@ import {
 } from "./knowledge";
 
 /**
- * AI answer engine. Providers are tried in order (Vercel AI Gateway, Anthropic, OpenAI); any that
- * is not configured is skipped, and a failure falls through to the next one and finally to the
- * offline engine. Defaults are low-cost models so the free AI Gateway allowance lasts; each can be
- * changed with an env var. The model reaches OpenSourceX data only through the read-only tools
- * below, so organization links always come from recorded data.
+ * AI answer engine. Providers are tried in order: Google Gemini and Groq (free API keys, no card),
+ * Vercel AI Gateway (free credits, but it needs a card on file), then Anthropic and OpenAI (paid).
+ * Any provider without a key is skipped; a failing one is skipped for a few minutes and the next is
+ * tried, and finally the offline engine answers. The model reaches OpenSourceX data only through
+ * the read-only tools below, so organization links always come from recorded data.
  */
 export interface Provider {
   engine: Exclude<AskEngine, "offline">;
@@ -33,15 +36,37 @@ export interface Provider {
   model: LanguageModel;
 }
 
+const log = createLogger("ask");
 const env = (k: string) => process.env[k]?.trim() || undefined;
 
 export function aiEnabled(): boolean {
   return env("AI_ENABLED") === "true";
 }
 
-export function configuredProviders(): Provider[] {
+const COOLDOWN_MS = 5 * 60_000;
+const cooling = new Map<string, number>();
+
+/** A provider that just failed (no credits, bad key, outage) is skipped for a few minutes. */
+export function markFailed(engine: string, now = Date.now()) {
+  cooling.set(engine, now + COOLDOWN_MS);
+}
+
+export function configuredProviders(now = Date.now()): Provider[] {
   if (!aiEnabled()) return [];
   const out: Provider[] = [];
+  const google = env("GOOGLE_GENERATIVE_AI_API_KEY") ?? env("GEMINI_API_KEY");
+  if (google) {
+    const id = env("ASK_GOOGLE_MODEL") ?? "gemini-2.5-flash";
+    out.push({
+      engine: "google",
+      label: id,
+      model: createGoogleGenerativeAI({ apiKey: google })(id),
+    });
+  }
+  if (env("GROQ_API_KEY")) {
+    const id = env("ASK_GROQ_MODEL") ?? "openai/gpt-oss-120b";
+    out.push({ engine: "groq", label: id, model: createGroq({ apiKey: env("GROQ_API_KEY") })(id) });
+  }
   if (env("AI_GATEWAY_API_KEY") || env("VERCEL_OIDC_TOKEN") || env("VERCEL")) {
     const id = env("ASK_GATEWAY_MODEL") ?? "google/gemini-3.1-flash-lite";
     out.push({
@@ -73,7 +98,7 @@ export function configuredProviders(): Provider[] {
     out.sort(
       (a, b) => ((order.indexOf(a.engine) + 99) % 99) - ((order.indexOf(b.engine) + 99) % 99),
     );
-  return out;
+  return out.filter((p) => (cooling.get(p.engine) ?? 0) <= now);
 }
 
 /** Free-tier guard rails: AI answers per user and for the whole site in any 24 hours. */
@@ -86,18 +111,40 @@ export const AI_LIMITS = {
 const INSTRUCTIONS = `You are OpenSourceX Ask, a friendly expert assistant for everything about open source: contributing, Git and GitHub, licences, maintainership, open source careers, mentorship programs (Google Summer of Code, LFX Mentorship, Outreachy, Season of Docs, Summer of Bitcoin, European Summer of Code, OSPP, C4GT, MLH Fellowship, Igalia Coding Experience, Processing Foundation) and the organizations in them.
 
 How to answer:
-- For any question about a specific organization, program, repository, chat link (Slack, Discord, Matrix...), website, stipend, eligibility, timeline, mentors, or which organizations repeat, CALL THE TOOLS first. Combine several tool calls when needed.
+- For any "how / what / why / should I" question about applying, prerequisites, resumes, cover letters, proposals, timelines, choosing a program, contributing, Git, licences or communities, CALL searchKnowledge FIRST and base the answer on what it returns. The knowledge base was written from official program documentation, so prefer it over your own memory, and cite its sources.
+- For any question about a specific organization, program, repository, chat link (Slack, Discord, Matrix...), website, stipend, eligibility, timeline, mentors, or which organizations repeat, CALL THE DATA TOOLS. Combine several tool calls when needed (for example searchKnowledge plus programDetails).
+- searchKnowledge also returns excerpts of real reference proposals (kind "reference"). Use them to show what a strong proposal looks like and to give concrete examples of structure, timelines and PR tables. Personal details were removed; never try to identify the applicant, and never present a reference as the user's own work or tell users to copy it.
+- Answer the exact question first, directly and completely, then add useful detail. If the question is about one program, do not drift into others.
 - Links to organizations, repositories, chats and program pages must come from tool results. Never invent or guess a URL. If a tool has no link, say it is not recorded and suggest where to look (the org's website or GitHub README).
 - Internal page links in tool results start with "/" (for example /programs/gsoc/organizations/x); keep them as Markdown links, they open inside OpenSourceX.
-- General open source knowledge (what is a PR, how to write a proposal, how to start) you may answer from your own knowledge.
+- If the tools return nothing relevant, answer from your general open source knowledge, and say when something should be checked on the official page.
 - Write clear Markdown: short paragraphs, bullet lists, and tables for lists of organizations. Be concise and direct, like a helpful senior contributor.
 - Recorded LFX Mentorship data covers CNCF projects only. Program data was collected from official sources; mention the date or source when a fact may change (stipends, deadlines).
 - Today's date is ${new Date().toISOString().slice(0, 10)}.`;
 
 const MAX_LIST = 40;
 
-export function buildTools(k: Knowledge) {
+export type GuideSearch = (query: string) => Promise<KnowledgeHit[]>;
+
+export function buildTools(k: Knowledge, searchGuides: GuideSearch = async () => []) {
   return {
+    searchKnowledge: tool({
+      description:
+        "Search the OpenSourceX open source knowledge base: how to apply to LFX Mentorship (prerequisites, resume, cover letter, certificates, limits), GSoC and Outreachy, writing proposals and cover letters (with real reference proposals), resumes, choosing a program, first contributions, Git/PR/DCO, licences, community etiquette, succeeding in a mentorship. Pass the user's question or focused keywords.",
+      inputSchema: z.object({ query: z.string() }),
+      execute: async ({ query }) => {
+        const hits = await searchGuides(query);
+        return hits.length
+          ? hits.map((h) => ({
+              document: h.title,
+              kind: h.kind,
+              section: h.heading,
+              content: h.content.slice(0, h.kind === "reference" ? 1500 : 3000),
+              sources: h.sources,
+            }))
+          : { found: false };
+      },
+    }),
     findOrganization: tool({
       description:
         "Look up one organization by name (any program). Returns its repository, GitHub, website, chat links (Slack/Discord/Matrix with channels), technologies, and every program and year it took part in, with recent projects and idea-list links.",
@@ -238,8 +285,9 @@ export async function* streamAnswer(
   messages: ModelMessage[],
   k: Knowledge,
   signal?: AbortSignal,
+  searchGuides?: GuideSearch,
 ): AsyncGenerator<StreamEvent, { engine: Provider["engine"]; label: string }> {
-  const tools = buildTools(k);
+  const tools = buildTools(k, searchGuides);
   let lastError: unknown = null;
   for (const p of providers) {
     let wrote = false;
@@ -272,7 +320,13 @@ export async function* streamAnswer(
         yield { type: "text", text: "\n\n_The answer was cut off by the AI provider._" };
         return { engine: p.engine, label: p.label };
       }
+      if (signal?.aborted) throw e;
       lastError = e;
+      markFailed(p.engine);
+      log.warn(
+        { engine: p.engine, model: p.label, err: String((e as Error)?.message ?? e).slice(0, 300) },
+        "ask provider failed",
+      );
     }
   }
   throw lastError ?? new Error("no AI provider configured");
