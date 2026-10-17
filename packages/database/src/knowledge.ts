@@ -25,13 +25,18 @@ export interface KnowledgeHit {
   matched: number;
 }
 
-/** Replaces every document in one transaction, so the table always matches the files. */
+/**
+ * Replaces documents in one transaction. Only the kinds present in `docs` are replaced, so
+ * loading the public guides alone never removes reference proposals that were loaded from a
+ * private folder (they are kept out of the public repository).
+ */
 export async function replaceKnowledge(db: Db, docs: KnowledgeDocInput[]): Promise<number> {
   const client = await db.connect();
   let n = 0;
   try {
     await client.query("BEGIN");
-    await client.query("DELETE FROM knowledge_doc");
+    const kinds = [...new Set(docs.map((d) => d.kind))];
+    await client.query("DELETE FROM knowledge_doc WHERE kind = ANY($1)", [kinds]);
     for (const d of docs) {
       await client.query(
         "INSERT INTO knowledge_doc(id, kind, title, tags, sources) VALUES ($1,$2,$3,$4,$5)",

@@ -20,7 +20,24 @@ describe.skipIf(!url)("knowledge base answers", () => {
     answerOffline(q, k, { previous, guides: await searchKnowledge(pool, q, { limit: 8 }) });
 
   beforeAll(async () => {
-    await replaceKnowledge(pool, await readKnowledgeDir(dir));
+    // real reference proposals live outside the public repo; tests use a synthetic one
+    await replaceKnowledge(pool, [
+      ...(await readKnowledgeDir(dir)),
+      {
+        id: "reference-test-integration-testing",
+        kind: "reference",
+        title: "Example LFX proposal: integration testing framework (test fixture)",
+        tags: ["kyverno", "testing", "integration tests", "proposal example"],
+        sources: [{ label: "Test fixture", url: null }],
+        sections: [
+          {
+            heading: "Phase 1: Framework Foundation (Weeks 1-3)",
+            content:
+              "Set up the integration test framework with envtest, install the CRDs, and add a make test-integration target. Milestone: tests pass in under 10 seconds with no cluster.",
+          },
+        ],
+      },
+    ]);
     k = await buildKnowledge(null);
   });
   afterAll(() => pool.end());

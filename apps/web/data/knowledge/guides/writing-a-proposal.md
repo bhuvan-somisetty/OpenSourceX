@@ -2,7 +2,7 @@
 id: writing-a-proposal
 title: Writing a mentorship proposal (LFX, GSoC, Summer of Bitcoin)
 tags: proposal, project proposal, gsoc proposal, lfx proposal, timeline, milestones, technical plan, template, structure
-sources: OpenSourceX reference proposals (four accepted-style LFX proposals, personal details removed)
+sources: OpenSourceX reference proposals (four LFX proposals, personal details removed, kept private)
 ---
 
 ## How to write a good mentorship proposal: the structure strong proposals share
