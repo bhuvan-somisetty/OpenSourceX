@@ -56,7 +56,7 @@ export function configuredProviders(now = Date.now()): Provider[] {
   const out: Provider[] = [];
   const google = env("GOOGLE_GENERATIVE_AI_API_KEY") ?? env("GEMINI_API_KEY");
   if (google) {
-    const id = env("ASK_GOOGLE_MODEL") ?? "gemini-2.5-flash";
+    const id = env("ASK_GOOGLE_MODEL") ?? "gemini-3.5-flash";
     out.push({
       engine: "google",
       label: id,
