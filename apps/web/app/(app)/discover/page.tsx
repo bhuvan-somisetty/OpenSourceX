@@ -81,11 +81,11 @@ export default async function Discover({ searchParams }: { searchParams: Promise
     };
   };
 
-  const allOrgs = k.orgs.map(toCard);
+  const cards = k.orgs.map(toCard);
 
   // interest facets: one entry per technology/topic, case-insensitive, most common first
   const freq = new Map<string, { label: string; n: number }>();
-  for (const org of allOrgs)
+  for (const org of cards)
     for (const t of [...org.technologies, ...org.topics]) {
       const key = t.toLowerCase().trim();
       if (!key || key.length > 40) continue;
@@ -101,6 +101,11 @@ export default async function Discover({ searchParams }: { searchParams: Promise
     .sort((a, b) => b.n - a.n || a.label.localeCompare(b.label))
     .map((f) => f.label);
   const savedArr = [...saved].filter((s) => s.startsWith("ORGANIZATION:"));
+  // send only matching organizations to the browser (the page re-renders when interests change)
+  const wanted = new Set(interests.map((i) => i.toLowerCase()));
+  const allOrgs = wanted.size
+    ? cards.filter((c) => [...c.technologies, ...c.topics].some((t) => wanted.has(t.toLowerCase())))
+    : [];
 
   return (
     <div className="wrap">
