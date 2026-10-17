@@ -6055,8 +6055,17 @@ mark.porg-hit {
   line-height: 1.6;
   color: var(--text-muted);
 }
-.home-search {
+.home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
   margin-top: 32px;
+}
+.home-action {
+  padding: 14px 24px;
+  font-size: 15px;
+  border-radius: 999px;
+  gap: 8px;
 }
 .home-stats {
   display: flex;

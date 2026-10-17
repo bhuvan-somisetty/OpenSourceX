@@ -17,7 +17,6 @@ export const metadata: Metadata = { title: "Home" };
 export const dynamic = "force-dynamic";
 
 const PROGRAMS = PROGRAM_CATALOG.slice(0, 10);
-const TRENDING = ["Kubernetes", "PyTorch", "Rust", "Go", "TypeScript", "Cloud Native"];
 const fmt = (n: number) => (n >= 1000 ? `${(n / 1000).toFixed(1).replace(/\.0$/, "")}k` : `${n}`);
 
 const Arrow = () => (
@@ -181,48 +180,13 @@ export default async function AppHome() {
               Find where you fit, then make your first contribution count.
             </p>
 
-            <form action="/projects" role="search" className="hero-search home-search">
-              <div className="hero-search-icon" aria-hidden="true">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <circle cx="11" cy="11" r="8" />
-                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                </svg>
-              </div>
-              <label htmlFor="app-q" className="skip">
-                Search open source
-              </label>
-              <input
-                id="app-q"
-                type="search"
-                name="q"
-                placeholder="Search technologies, organizations, repositories..."
-              />
-              <button className="btn primary hero-search-btn" type="submit">
-                <span>Search</span>
-                <Arrow />
-              </button>
-            </form>
-
-            <div className="hero-search-hints">
-              <span className="hero-hints-label">Trending:</span>
-              {TRENDING.map((tag) => (
-                <Link
-                  key={tag}
-                  href={`/projects?q=${encodeURIComponent(tag)}`}
-                  className="hero-hint-chip"
-                >
-                  {tag}
-                </Link>
-              ))}
+            <div className="home-actions">
+              <Link href="/ask" className="btn primary home-action">
+                Ask the AI guide <Arrow />
+              </Link>
+              <Link href="/discover" className="btn home-action">
+                Discover organizations
+              </Link>
             </div>
 
             <dl className="home-stats">
