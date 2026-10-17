@@ -2,7 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { DiscoveryOrgCard, type DiscoverOrg, type Why } from "@/features/discovery/DiscoveryOrgCard";
+import {
+  DiscoveryOrgCard,
+  type DiscoverOrg,
+  type Why,
+} from "@/features/discovery/DiscoveryOrgCard";
 import { Notice } from "@/components/feedback/Notice";
 
 const norm = (s: string) => s.toLowerCase();
@@ -48,6 +52,8 @@ export function DiscoverClient({
         .sort(
           (a, b) =>
             b.hits.length - a.hits.length ||
+            (b.org.programs?.length ?? 1) - (a.org.programs?.length ?? 1) ||
+            b.org.yearCount - a.org.yearCount ||
             b.org.projectCount - a.org.projectCount ||
             a.org.name.localeCompare(b.org.name),
         )
@@ -58,20 +64,29 @@ export function DiscoverClient({
       ok: true as const,
       text: `Matches "${h}" in recorded organization technologies`,
     })),
-    {
-      ok: Boolean(org.latestTerm),
-      text: org.latestTerm
-        ? `${org.programName} track: Latest ${org.latestTerm} (${org.projectCount} recorded project${org.projectCount === 1 ? "" : "s"})`
-        : `${org.programName} active organization`,
-    },
+    ...(org.programs?.length
+      ? org.programs.slice(0, 3).map((p) => ({
+          ok: true as const,
+          text:
+            p.slug === "lfx-mentorship"
+              ? `${p.name} Mentorship: latest ${org.latestTerm} (${org.projectCount} recorded project${org.projectCount === 1 ? "" : "s"})`
+              : `Took part in ${p.name}${p.years ? ` (${p.years})` : ""}`,
+        }))
+      : [{ ok: Boolean(org.latestTerm), text: `${org.programName} organization` }]),
     {
       ok: Boolean(org.repoUrl),
-      text: org.repoUrl ? "Official repository available" : "Repository linked via program directory",
+      text: org.repoUrl
+        ? "Official repository available"
+        : "Repository linked via program directory",
     },
-    {
-      ok: true,
-      text: "Recurring organization (offers mentorship tracks across terms)",
-    },
+    ...(org.yearCount > 1
+      ? [
+          {
+            ok: true as const,
+            text: `Recurring organization (${org.yearCount} years of participation)`,
+          },
+        ]
+      : []),
   ];
 
   function openPicker() {
@@ -114,7 +129,9 @@ export function DiscoverClient({
   return (
     <>
       {/* Action bar below the hero text (after track and reasons) */}
-      <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap", marginTop: 14 }}>
+      <div
+        style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap", marginTop: 14 }}
+      >
         <button
           type="button"
           className="btn primary"
@@ -135,9 +152,7 @@ export function DiscoverClient({
           >
             <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
           </svg>
-          {interests.length > 0
-            ? `Interests (${interests.length})`
-            : "Select your interests"}
+          {interests.length > 0 ? `Interests (${interests.length})` : "Select your interests"}
         </button>
 
         {interests.length > 0 && (
@@ -218,8 +233,13 @@ export function DiscoverClient({
             </div>
           ) : (
             <>
-              <p className="muted" style={{ margin: "0 0 18px", fontSize: 14 }} data-testid="match-count">
-                {matched.length} organization{matched.length > 1 ? "s" : ""} match your selected interests. Ordered by coverage and participation depth.
+              <p
+                className="muted"
+                style={{ margin: "0 0 18px", fontSize: 14 }}
+                data-testid="match-count"
+              >
+                {matched.length} organization{matched.length > 1 ? "s" : ""} match your selected
+                interests. Ordered by coverage and participation depth.
               </p>
               <div className="grid g2e" data-testid="results">
                 {matched.map(({ org, hits }) => (
@@ -236,7 +256,8 @@ export function DiscoverClient({
           )}
           <div style={{ marginTop: 24 }}>
             <Notice kind="dev">
-              <strong>Development data.</strong> Matches reflect verified organization records across open source programs.
+              <strong>About these matches.</strong> They come from the organization lists of every
+              program OpenSourceX tracks, matched on recorded technologies and topics.
             </Notice>
           </div>
         </section>
@@ -286,7 +307,8 @@ export function DiscoverClient({
               Select your interests
             </h2>
             <p className="modal-description" style={{ marginBottom: 14 }}>
-              Choose up to 8 programming languages and technologies to filter matching organizations.
+              Choose up to 8 programming languages and technologies to filter matching
+              organizations.
             </p>
 
             {/* Quick search input */}
@@ -416,9 +438,7 @@ export function DiscoverClient({
                 onClick={applyInterests}
                 data-testid="apply-interests"
               >
-                {pendingInterests.length > 0
-                  ? `Apply (${pendingInterests.length})`
-                  : "Apply"}
+                {pendingInterests.length > 0 ? `Apply (${pendingInterests.length})` : "Apply"}
               </button>
             </div>
           </div>

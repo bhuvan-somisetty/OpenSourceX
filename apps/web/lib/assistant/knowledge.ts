@@ -32,6 +32,12 @@ export interface KnowledgeOrg {
   tags: string[];
   chats: OrgChat[];
   chatSource: string | null;
+  /** logo file under public/logos (program orgs), null when none was published */
+  logo?: string | null;
+  logoOnDark?: boolean;
+  categories?: string[];
+  /** LFX/CNCF organization slug, used by the existing LFX logo set */
+  lfxSlug?: string;
   programs: OrgProgramEntry[];
 }
 
@@ -104,6 +110,10 @@ export async function buildKnowledge(lfx: LfxHistory | null): Promise<Knowledge>
     cur.repoUrl ??= patch.repoUrl;
     cur.githubUrl ??= patch.githubUrl;
     cur.chatSource ??= patch.chatSource;
+    cur.logo ??= patch.logo;
+    cur.logoOnDark ??= patch.logoOnDark;
+    cur.lfxSlug ??= patch.lfxSlug;
+    cur.categories = uniq([...(cur.categories ?? []), ...(patch.categories ?? [])]);
     cur.tags = uniq([...cur.tags, ...patch.tags]);
     cur.chats = mergeChats(cur.chats, patch.chats);
     cur.programs.push(entry);
@@ -124,6 +134,9 @@ export async function buildKnowledge(lfx: LfxHistory | null): Promise<Knowledge>
             tags: o.tags ?? [],
             chats: o.chats ?? [],
             chatSource: o.chatSource ?? null,
+            logo: o.logo ?? null,
+            logoOnDark: o.logoOnDark,
+            categories: o.categories ?? [],
           },
           {
             program: def.slug,
@@ -164,6 +177,7 @@ export async function buildKnowledge(lfx: LfxHistory | null): Promise<Knowledge>
             tags: uniq(ps.flatMap((p) => p.skills)).slice(0, 25),
             chats: community?.chats ?? [],
             chatSource: community?.source ?? null,
+            lfxSlug: slug,
           },
           {
             program: def.slug,

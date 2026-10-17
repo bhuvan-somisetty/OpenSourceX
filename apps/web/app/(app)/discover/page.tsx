@@ -1,109 +1,106 @@
 import type { Metadata } from "next";
-import { listProjects, listLfxOrganizations } from "@opensourcex/database";
+import { listLfxOrganizations } from "@opensourcex/database";
 import { load } from "@/lib/data";
 import { currentSaved } from "@/lib/saved";
 import { many, type Params } from "@/lib/url";
-import { DbDown } from "@/components/feedback/Notice";
+import { programDef } from "@/lib/programs";
+import { knowledge } from "@/lib/assistant/engine";
+import { normalize, type KnowledgeOrg } from "@/lib/assistant/knowledge";
 import { DiscoverClient } from "@/features/discovery/DiscoverClient";
 import type { DiscoverOrg } from "@/features/discovery/DiscoveryOrgCard";
 
 export const metadata: Metadata = { title: "Discover" };
 export const dynamic = "force-dynamic";
 
-/** Discover: intent -> filter -> exploration of active participating organizations */
+const yearsLabel = (ys: number[]) => {
+  const s = [...new Set(ys)].sort();
+  if (!s.length) return "";
+  return s.length > 1 ? `${s[0]}–${s.at(-1)}` : String(s[0]);
+};
+
+/**
+ * Discover: pick interests, see matching organizations from every program OpenSourceX records
+ * (GSoC, LFX Mentorship, Outreachy, Summer of Bitcoin and the rest). An organization that took
+ * part in several programs is one card listing all of them.
+ */
 export default async function Discover({ searchParams }: { searchParams: Promise<Params> }) {
-  const sp = await searchParams;
-  const interests = many(sp.i).slice(0, 8);
-  const res = await load(async (d) => ({
-    all: await listProjects(d),
-    lfxOrgs: await listLfxOrganizations(d),
-  }));
+  const interests = many((await searchParams).i).slice(0, 8);
+  const k = await knowledge();
+  // LFX organizations keep their richer database details (terms, sources, saving)
+  const lfx = await load((d) => listLfxOrganizations(d));
+  const lfxByName = new Map(
+    (lfx.ok ? lfx.data.organizations : []).map((o) => [normalize(o.name), o]),
+  );
   const saved = await currentSaved();
 
-  if (!res.ok) {
-    return (
-      <div className="wrap">
-        <DbDown />
-      </div>
-    );
-  }
-
-  // Build organization list
-  const lfxList: DiscoverOrg[] = res.data.lfxOrgs.organizations.map((org) => ({
-    id: `lfx-${org.slug}`,
-    name: org.name,
-    slug: org.slug,
-    programSlug: "lfx-mentorship",
-    programName: "LFX Mentorship",
-    description: org.description,
-    technologies: org.technologies,
-    topics: [],
-    latestTerm: org.latestTerm,
-    projectCount: org.projectCount,
-    yearCount: org.yearCount,
-    years: org.years,
-    repoUrl: org.sampleRepoUrl,
-    href: `/programs/lfx-mentorship/organizations/${org.slug}`,
-    source: org.sources[0],
-  }));
-
-  const gsocList: DiscoverOrg[] = res.data.all.items
-    .filter((p) => p.kind === "organization")
-    .map((p) => {
-      const slug = p.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
-      return {
-        id: p.id,
-        name: p.name,
+  const toCard = (o: KnowledgeOrg): DiscoverOrg => {
+    const l = lfxByName.get(o.key);
+    const programs = o.programs
+      .map((e) => {
+        const def = programDef(e.program);
+        const latest = e.terms?.length ? e.terms.at(-1)! : String(Math.max(...e.years, 0) || "");
+        return {
+          slug: e.program,
+          name: def?.short ?? e.programName,
+          fullName: def?.name ?? e.programName,
+          href: e.pageUrl,
+          years: e.years,
+          latest,
+        };
+      })
+      .sort((a, b) => b.latest.localeCompare(a.latest));
+    const primary = programs.find((p) => p.slug === "lfx-mentorship") ?? programs[0]!;
+    const years = [...new Set(o.programs.flatMap((e) => e.years))];
+    const projectCount = o.programs.reduce((n, e) => n + e.projectCount, 0);
+    return {
+      id: l ? `lfx-${l.slug}` : `${primary.slug}:${o.key.replace(/ /g, "-")}`,
+      name: o.name,
+      slug: l?.slug ?? o.lfxSlug ?? o.key.replace(/ /g, "-"),
+      programSlug: primary.slug,
+      programName: primary.fullName,
+      programs: programs.map(({ slug, name, href, latest, years: ys }) => ({
         slug,
-        programSlug: p.program.slug,
-        programName: p.program.name,
-        description: p.summary,
-        technologies: p.technologies,
-        topics: p.topics,
-        latestTerm: p.terms[p.terms.length - 1] ?? p.terms[0] ?? "",
-        projectCount: p.terms.length,
-        yearCount: p.terms.length,
-        years: p.terms.map((t) => parseInt(t, 10)).filter((n) => !isNaN(n)),
-        repoUrl: p.repoUrl,
-        href: `/projects/${p.id}`,
-        source: p.source,
-      };
-    });
+        name,
+        href,
+        latest,
+        years: yearsLabel(ys),
+      })),
+      description: (o.description ?? l?.description ?? null)?.slice(0, 240) ?? null,
+      technologies: [...new Set([...(l?.technologies ?? []), ...o.tags])].slice(0, 24),
+      topics: (o.categories ?? []).slice(0, 8),
+      latestTerm: l?.latestTerm ?? primary.latest,
+      projectCount: l?.projectCount ?? projectCount,
+      yearCount: years.length,
+      years,
+      repoUrl: o.repoUrl ?? o.githubUrl ?? l?.sampleRepoUrl ?? null,
+      href: primary.href,
+      logo: o.logo ?? null,
+      logoOnDark: o.logoOnDark ?? false,
+      saveable: Boolean(l),
+      source: l?.sources[0],
+    };
+  };
 
-  const seenSlugs = new Set<string>();
-  const allOrgs: DiscoverOrg[] = [];
-  for (const org of [...lfxList, ...gsocList]) {
-    if (!seenSlugs.has(org.slug)) {
-      seenSlugs.add(org.slug);
-      allOrgs.push(org);
-    }
-  }
+  const allOrgs = k.orgs.map(toCard);
 
-  // Collect all unique technologies and topics across all organizations
-  const techFreq = new Map<string, number>();
-  for (const org of allOrgs) {
-    for (const t of org.technologies) {
-      techFreq.set(t, (techFreq.get(t) ?? 0) + 1);
-    }
-  }
-  const allTechs = [...techFreq.entries()]
-    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
-    .map(([name]) => name);
-
-  const topicFreq = new Map<string, number>();
-  for (const org of allOrgs) {
-    for (const t of org.topics) {
-      if (!techFreq.has(t)) {
-        topicFreq.set(t, (topicFreq.get(t) ?? 0) + 1);
+  // interest facets: one entry per technology/topic, case-insensitive, most common first
+  const freq = new Map<string, { label: string; n: number }>();
+  for (const org of allOrgs)
+    for (const t of [...org.technologies, ...org.topics]) {
+      const key = t.toLowerCase().trim();
+      if (!key || key.length > 40) continue;
+      const cur = freq.get(key);
+      if (!cur) freq.set(key, { label: t, n: 1 });
+      else {
+        cur.n++;
+        // prefer a spelling with capitals ("TypeScript" over "typescript")
+        if (cur.label === cur.label.toLowerCase() && t !== t.toLowerCase()) cur.label = t;
       }
     }
-  }
-  const allTopics = [...topicFreq.entries()]
-    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
-    .map(([name]) => name);
-
-  const facets = [...allTechs, ...allTopics];
-  const savedArr = [...saved].filter((k) => k.startsWith("ORGANIZATION:"));
+  const facets = [...freq.values()]
+    .sort((a, b) => b.n - a.n || a.label.localeCompare(b.label))
+    .map((f) => f.label);
+  const savedArr = [...saved].filter((s) => s.startsWith("ORGANIZATION:"));
 
   return (
     <div className="wrap">
@@ -113,8 +110,9 @@ export default async function Discover({ searchParams }: { searchParams: Promise
           What are you interested in?
         </h1>
         <p className="sub">
-          Pick your preferred languages and technologies. We suggest active open source organizations
-          that match, showing their participation track and reasons.
+          Pick your preferred languages and technologies. We suggest open source organizations from
+          every program we track (GSoC, LFX Mentorship, Outreachy, Summer of Bitcoin and more), with
+          the reasons they match.
         </p>
       </section>
 

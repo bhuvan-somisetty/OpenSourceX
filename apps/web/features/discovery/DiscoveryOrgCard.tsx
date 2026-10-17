@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { OrgLogo } from "@/components/ui/OrgLogo";
+import { ProgramOrgLogo } from "@/features/programs/ProgramOrgLogo";
 import { SaveButton } from "@/features/saved/SaveButton";
 import { SourceBadge } from "@/components/source/SourceBadge";
 import type { SourceInfo } from "@opensourcex/database";
@@ -15,6 +16,8 @@ export interface DiscoverOrg {
   slug: string;
   programSlug: string;
   programName: string;
+  /** every program this organization took part in, newest first */
+  programs?: { slug: string; name: string; href: string; latest: string; years: string }[];
   description: string | null;
   technologies: string[];
   topics: string[];
@@ -24,6 +27,11 @@ export interface DiscoverOrg {
   years: number[];
   repoUrl: string | null;
   href: string;
+  /** logo file for organizations from program lists (LFX ones use OrgLogo by slug) */
+  logo?: string | null;
+  logoOnDark?: boolean;
+  /** only database organizations (LFX) can be saved for now */
+  saveable?: boolean;
   source?: SourceInfo;
 }
 
@@ -66,12 +74,43 @@ export function DiscoveryOrgCard({
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: 14, minWidth: 0 }}>
-            <OrgLogo slug={org.slug} name={org.name} size={48} />
+            {org.logo ? (
+              <ProgramOrgLogo src={org.logo} name={org.name} size={48} dark={org.logoOnDark} />
+            ) : (
+              <OrgLogo slug={org.slug} name={org.name} size={48} />
+            )}
             <div style={{ minWidth: 0 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-                <span className="tag" style={{ fontSize: 11, fontWeight: 600 }}>
-                  {org.programName}
-                </span>
+                {(org.programs?.length
+                  ? org.programs
+                  : [
+                      {
+                        slug: org.programSlug,
+                        name: org.programName,
+                        href: org.href,
+                        latest: "",
+                        years: "",
+                      },
+                    ]
+                )
+                  .slice(0, 4)
+                  .map((p) => (
+                    <Link
+                      key={p.slug}
+                      href={p.href}
+                      className="tag"
+                      title={p.years ? `${p.name}: ${p.years}` : p.name}
+                      style={{ fontSize: 11, fontWeight: 600, textDecoration: "none" }}
+                      data-testid="discover-program"
+                    >
+                      {p.name}
+                    </Link>
+                  ))}
+                {(org.programs?.length ?? 0) > 4 && (
+                  <span className="dim" style={{ fontSize: 11 }}>
+                    +{org.programs!.length - 4}
+                  </span>
+                )}
                 {org.latestTerm && (
                   <span
                     className="pill"
@@ -111,13 +150,15 @@ export function DiscoveryOrgCard({
               </h3>
             </div>
           </div>
-          <SaveButton
-            entityType="ORGANIZATION"
-            entityId={org.id}
-            initialSaved={saved}
-            compact
-            label={org.name}
-          />
+          {org.saveable !== false && (
+            <SaveButton
+              entityType="ORGANIZATION"
+              entityId={org.id}
+              initialSaved={saved}
+              compact
+              label={org.name}
+            />
+          )}
         </div>
 
         {org.description ? (
@@ -194,7 +235,10 @@ export function DiscoveryOrgCard({
             </strong>
             <ul className="crit" data-testid="why-matches" style={{ marginTop: 8 }}>
               {why.map((w, i) => (
-                <li key={i} style={{ fontSize: 13, display: "flex", gap: 8, alignItems: "flex-start" }}>
+                <li
+                  key={i}
+                  style={{ fontSize: 13, display: "flex", gap: 8, alignItems: "flex-start" }}
+                >
                   <span
                     className={w.ok ? "c-ok" : "c-unk"}
                     aria-hidden="true"
@@ -221,8 +265,18 @@ export function DiscoveryOrgCard({
           }}
         >
           <div style={{ fontSize: 12, color: "var(--text-dim, #94a3b8)" }}>
-            <strong>{org.projectCount}</strong> recorded project{org.projectCount === 1 ? "" : "s"}
-            {org.yearCount > 1 && ` · ${org.yearCount} terms`}
+            {org.projectCount > 0 ? (
+              <>
+                <strong>{org.projectCount}</strong> recorded project
+                {org.projectCount === 1 ? "" : "s"}
+              </>
+            ) : (
+              <>
+                <strong>{org.programs?.length ?? 1}</strong> program
+                {(org.programs?.length ?? 1) === 1 ? "" : "s"}
+              </>
+            )}
+            {org.yearCount > 1 && ` · ${org.yearCount} years`}
           </div>
 
           <Link
