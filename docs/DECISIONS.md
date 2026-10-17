@@ -185,3 +185,18 @@ Format: Decision, Context, Options, Reason, Trade-offs, Date.
   so every figure can be checked even if a program site changes.
 - Trade-offs: data is a snapshot dated in each file and must be re-collected to stay
   current; organizations can ask for removal, which is honored.
+
+## D-021 Ask becomes an open source chat with free AI providers (2026-10-17)
+
+- Context: the owner asked for Ask to work like ChatGPT and Claude: one composer,
+  chat history, and answers to any open source question, including organization
+  repositories, chat links and organizations that repeat across every program.
+  This resolves Q5 and Q26 (provider and budget).
+- Decision: Ask supports four engines, tried in order: Vercel AI Gateway, Anthropic
+  API, OpenAI API (each used only when configured) and an offline engine that needs
+  no AI. The budget is zero: defaults are low-cost models on the free AI Gateway
+  allowance, capped at 25 AI answers per user and 200 site-wide in any 24 hours
+  (ASK_AI_PER_USER_DAY, ASK_AI_GLOBAL_DAY). Past the caps, or when every provider
+  fails, the offline engine answers. Models see OpenSourceX data only through
+  read-only tools, and links to organizations come only from recorded data.
+- Chat history is stored per session user in Postgres (migration 007).

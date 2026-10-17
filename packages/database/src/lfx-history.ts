@@ -19,6 +19,8 @@ export interface HistoryProgram {
   id: string;
   title: string;
   cncfProject: string;
+  /** slug used by /programs/lfx/organizations/<slug> and the community table */
+  cncfProjectSlug?: string | null;
   /** keys of HistoryTerm, e.g. "2025-T3"; "2019" for the pre-term pilot year */
   terms: string[];
   skills: string[];
@@ -56,7 +58,7 @@ export async function loadLfxHistory(db: Db): Promise<LfxHistory> {
   }));
   const rows = (
     await db.query(`
-      SELECT m.id, m.title, m.cncf_project_name, m.technologies, m.summary, m.upstream_key, m.raw_repo_link,
+      SELECT m.id, m.title, m.cncf_project_name, m.cncf_project_slug, m.technologies, m.summary, m.upstream_key, m.raw_repo_link,
              m.lfx_project_uuid,
              COALESCE(array_agg(DISTINCT CASE WHEN pt.id IS NOT NULL THEN pt.year || '-' || pt.term_code
                                               ELSE t.raw_term_name END) FILTER (WHERE t.id IS NOT NULL), '{}') AS terms
@@ -88,6 +90,7 @@ export async function loadLfxHistory(db: Db): Promise<LfxHistory> {
       id: `mp-${r.id}`,
       title: r.title,
       cncfProject: r.cncf_project_name,
+      cncfProjectSlug: r.cncf_project_slug ?? null,
       terms: [...r.terms].sort(),
       skills: r.technologies ?? [],
       summary: r.summary,

@@ -356,32 +356,41 @@ test("health API reports recorded mode with live and AI off", async ({ request }
   });
 });
 
-test("ask: answers about CNCF in LFX Mentorship come from the term READMEs, with sources", async ({
-  page,
-}) => {
+test("ask: a chat about open source that keeps its history per session", async ({ page }) => {
   await page.goto("/ask");
-  await page.getByLabel("Your question").fill("Which CNCF projects repeat in every LFX term?");
-  await page.getByRole("button", { name: "Ask", exact: true }).click();
-  await expect(page).toHaveURL(/\/ask\?q=/);
-  const answer = page.getByTestId("ask-answer");
-  await expect(answer).toHaveAttribute("data-kind", "recurring");
-  await expect(page.getByTestId("ask-summary")).toContainText("CNCF projects have taken part");
-  await expect(page.getByTestId("ask-table").locator("tbody tr").first()).toBeVisible();
-  await expect(page.getByTestId("ask-sources").getByRole("link").first()).toHaveAttribute(
-    "href",
-    /github\.com\/cncf\/mentoring/,
+  await expect(page.getByRole("heading", { name: /about open source/ })).toBeVisible();
+  const input = page.getByLabel("Ask anything about open source");
+  await input.fill("Which CNCF projects repeat in every LFX term?");
+  await input.press("Enter");
+
+  // a new chat gets its own URL and appears in the sidebar
+  await expect(page).toHaveURL(/\/ask\/[0-9a-f-]{36}$/);
+  const answer = page.getByTestId("ask-answer").last();
+  await expect(answer).toHaveAttribute("data-engine", /.+/, { timeout: 30_000 });
+  await expect(answer).toContainText("CNCF projects have taken part");
+  await expect(
+    answer.getByRole("link", { name: /CNCF mentoring repository/ }).first(),
+  ).toHaveAttribute("href", /github\.com\/cncf\/mentoring/);
+  await expect(page.getByTestId("ask-history").getByRole("link").first()).toContainText(
+    "Which CNCF projects repeat",
   );
 
-  // a term timeline links that term's README
-  await page.goto(`/ask?q=${encodeURIComponent("What is the timeline for 2026 Term 3?")}`);
-  await expect(answer).toHaveAttribute("data-kind", "timeline");
-  await expect(page.getByTestId("ask-table")).toContainText("Mentee Applications Open");
-  await expect(page.getByTestId("ask-sources").getByRole("link").first()).toHaveAttribute(
-    "href",
-    /2026\/03-Sep-Nov\/README\.md$/,
-  );
+  // follow-up in the same chat, then the chat reloads from the database
+  await input.fill("What is the timeline for 2026 Term 3?");
+  await input.press("Enter");
+  await expect(page.getByTestId("ask-answer")).toHaveCount(2);
+  await expect(page.getByTestId("ask-answer").last()).toContainText("Mentee Applications Open", {
+    timeout: 30_000,
+  });
+  await page.reload();
+  await expect(page.getByTestId("ask-user-message")).toHaveCount(2);
 
-  // the API gives the same grounded answer, and never invents one
+  // a new chat starts empty
+  await page.getByTestId("ask-new-chat").click();
+  await expect(page).toHaveURL(/\/ask$/);
+  await expect(page.getByTestId("ask-thread")).toHaveCount(0);
+
+  // the legacy API still never invents an answer
   const res = await page.request.get(`/api/v1/ask?q=${encodeURIComponent("what is the weather")}`);
   expect((await res.json()).answer.kind).toBe("none");
   expect(JSON.stringify(await (await page.request.get("/api/v1/ask?q=jaeger")).json())).not.toMatch(
