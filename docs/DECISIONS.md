@@ -213,3 +213,15 @@ Format: Decision, Context, Options, Reason, Trade-offs, Date.
   GSoC, Outreachy) and the four reference proposals, with names, emails, handles, schools and
   mentor names removed. It is searched with Postgres full-text search, so no paid embeddings
   are needed. Both the AI (searchKnowledge tool) and the offline engine answer from it.
+
+## D-023 Ask uses free public APIs live (2026-10-17)
+
+- Context: the owner asked to use the free APIs catalogued in github.com/public-apis/public-apis.
+- Decision: Ask calls no-key APIs from that catalog live, at answer time and read-only: GitHub
+  REST and search (repo stats, good first issues, repo search), npm, PyPI, crates.io, RubyGems,
+  Packagist, NuGet, the Go module proxy, OSV.dev, Hacker News (Algolia search), Stack Exchange and
+  Wikipedia. Results are never stored. They are cached for ten minutes, time out after eight
+  seconds, and are stripped of email addresses, and every answer names the live source.
+  `ASK_LIVE_APIS=false` turns them off. This is question-time lookup, not ingestion:
+  `DATA_MODE` and source-ingestion rules (D-019) are unchanged. Unrelated catalog entries
+  (weather, games, finance and so on) are not integrated.

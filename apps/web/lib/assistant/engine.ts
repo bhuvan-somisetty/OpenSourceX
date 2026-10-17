@@ -11,6 +11,7 @@ import {
 import { db } from "@/lib/data";
 import { AI_LIMITS, configuredProviders, streamAnswer } from "./ai";
 import { buildKnowledge, type Knowledge } from "./knowledge";
+import { liveOfflineAnswer } from "./live-offline";
 import { answerOffline } from "./offline";
 
 /** Glue between the chat API and the two engines: knowledge loading, free-tier caps, fallback. */
@@ -93,8 +94,12 @@ export async function* respond(
     }
   }
 
-  const guides = await searchGuides(question, 8);
-  const text = answerOffline(question, k, { previous, aiNote, guides });
+  const live = await liveOfflineAnswer(question, k);
+  const text = live
+    ? aiNote
+      ? `${live}\n\n_${aiNote}_`
+      : live
+    : answerOffline(question, k, { previous, aiNote, guides: await searchGuides(question, 8) });
   yield { t: "d", v: text };
   yield { t: "done", engine: "offline" };
   return { text, engine: "offline" };

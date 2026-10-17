@@ -22,6 +22,20 @@ import {
   searchOrgs,
   type Knowledge,
 } from "./knowledge";
+import {
+  ECOSYSTEMS,
+  githubGoodFirstIssues,
+  githubRepo,
+  githubSearchRepos,
+  hackerNews,
+  liveApisEnabled,
+  packageInfo,
+  safely,
+  stackOverflow,
+  vulnerabilities,
+  wikipedia,
+  type Ecosystem,
+} from "./live";
 
 /**
  * AI answer engine. Providers are tried in order: Google Gemini and Groq (free API keys, no card),
@@ -120,6 +134,7 @@ How to answer:
 - If the tools return nothing relevant, answer from your general open source knowledge, and say when something should be checked on the official page.
 - Write clear Markdown: short paragraphs, bullet lists, and tables for lists of organizations. Be concise and direct, like a helpful senior contributor.
 - Recorded LFX Mentorship data covers CNCF projects only. Program data was collected from official sources; mention the date or source when a fact may change (stipends, deadlines).
+- For CURRENT facts use the live tools: repository stats and open good first issues (githubRepoStats, githubGoodFirstIssues), popular projects (githubSearchRepositories), package versions and licences (packageInfo), vulnerabilities (packageVulnerabilities), news (hackerNewsSearch), coding errors (stackOverflowSearch) and short explanations (wikipediaSummary). For an organization, get its recorded repository with findOrganization first, then call githubRepoStats on it. Say the numbers are live from that API, and give its links. If a live tool returns an error, say so briefly and link the site instead.
 - Today's date is ${new Date().toISOString().slice(0, 10)}.`;
 
 const MAX_LIST = 40;
@@ -270,6 +285,80 @@ export function buildTools(k: Knowledge, searchGuides: GuideSearch = async () =>
           programs: a.programs?.slice(0, 25).map((p) => ({ ...p, page: `/projects/${p.id}` })),
         };
       },
+    }),
+    ...(liveApisEnabled() ? liveTools() : {}),
+  };
+}
+
+const ecosystem = z.enum(ECOSYSTEMS as [Ecosystem, ...Ecosystem[]]);
+
+/** Live public-API tools (free, no key). Results are current, so say they are live. */
+function liveTools() {
+  return {
+    githubRepoStats: tool({
+      description:
+        "LIVE GitHub data for one repository: stars, forks, watchers, open issues, number of open good first issues, language, topics, licence, last push, archived. Pass owner/repo or a GitHub URL (use findOrganization first to get an org's recorded repository URL).",
+      inputSchema: z.object({
+        repo: z.string().describe("owner/repo or https://github.com/owner/repo"),
+      }),
+      execute: async ({ repo }) => safely("GitHub", () => githubRepo(repo)),
+    }),
+    githubGoodFirstIssues: tool({
+      description:
+        "LIVE open, unassigned GitHub issues labelled 'good first issue' (or another label such as 'help wanted'), for one repository (owner/repo), one GitHub organization (owner), and/or a language. Use for 'give me good first issues in X' or 'beginner issues in Go'.",
+      inputSchema: z.object({
+        repo: z
+          .string()
+          .optional()
+          .describe("owner/repo, a GitHub URL, or a GitHub organization login"),
+        language: z.string().optional(),
+        label: z.string().optional().describe("default: good first issue"),
+        limit: z.number().int().min(1).max(20).optional(),
+      }),
+      execute: async (o) => safely("GitHub issues", () => githubGoodFirstIssues(o)),
+    }),
+    githubSearchRepositories: tool({
+      description:
+        "LIVE GitHub repository search sorted by stars. Use for 'popular open source X projects', 'top Rust CLI tools', 'alternatives to Y'. GitHub search syntax works (topic:, stars:>1000).",
+      inputSchema: z.object({
+        query: z.string(),
+        language: z.string().optional(),
+        limit: z.number().int().min(1).max(20).optional(),
+      }),
+      execute: async ({ query, ...o }) =>
+        safely("GitHub search", () => githubSearchRepos(query, o)),
+    }),
+    packageInfo: tool({
+      description:
+        "LIVE package registry data: latest version, description, licence, repository and homepage. Ecosystems: npm, pypi, crates (Rust), rubygems, packagist (PHP), nuget (.NET), go (module path like github.com/spf13/cobra).",
+      inputSchema: z.object({ ecosystem, name: z.string() }),
+      execute: async ({ ecosystem: e, name }) =>
+        safely(`${e} registry`, () => packageInfo(e, name)),
+    }),
+    packageVulnerabilities: tool({
+      description:
+        "LIVE known security vulnerabilities (CVE/GHSA) for a package from OSV.dev, optionally for one version.",
+      inputSchema: z.object({ ecosystem, name: z.string(), version: z.string().optional() }),
+      execute: async ({ ecosystem: e, name, version }) =>
+        safely("OSV", () => vulnerabilities(e, name, version)),
+    }),
+    hackerNewsSearch: tool({
+      description:
+        "LIVE Hacker News stories matching a query, with links and discussion threads. Use for recent open source news, launches and discussions.",
+      inputSchema: z.object({ query: z.string() }),
+      execute: async ({ query }) => safely("Hacker News", () => hackerNews(query)),
+    }),
+    stackOverflowSearch: tool({
+      description:
+        "LIVE Stack Overflow questions matching an error message or how-to, best match first, with links. Use for coding errors, Git problems and build failures.",
+      inputSchema: z.object({ query: z.string() }),
+      execute: async ({ query }) => safely("Stack Exchange", () => stackOverflow(query)),
+    }),
+    wikipediaSummary: tool({
+      description:
+        "LIVE short Wikipedia summary of a topic, for example a project (Kubernetes), a foundation (Apache Software Foundation) or a concept (copyleft).",
+      inputSchema: z.object({ topic: z.string() }),
+      execute: async ({ topic }) => safely("Wikipedia", () => wikipedia(topic)),
     }),
   };
 }
