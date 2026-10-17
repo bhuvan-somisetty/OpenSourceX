@@ -2,6 +2,7 @@ import { createAnthropic } from "@ai-sdk/anthropic";
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { createGroq } from "@ai-sdk/groq";
 import { createOpenAI } from "@ai-sdk/openai";
+import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
 import {
   createGateway,
   isStepCount,
@@ -38,8 +39,9 @@ import {
 } from "./live";
 
 /**
- * AI answer engine. Providers are tried in order: Google Gemini and Groq (free API keys, no card),
- * Vercel AI Gateway (free credits, but it needs a card on file), then Anthropic and OpenAI (paid).
+ * AI answer engine. Providers are tried in order: Google Gemini, Groq, Cerebras and OpenRouter
+ * free models (free API keys, no card), an optional OpenAI-compatible endpoint, Vercel AI Gateway
+ * (free credits, but it needs a card on file), then Anthropic and OpenAI (paid).
  * Any provider without a key is skipped; a failing one is skipped for a few minutes and the next is
  * tried, and finally the offline engine answers. The model reaches OpenSourceX data only through
  * the read-only tools below, so organization links always come from recorded data.
@@ -80,6 +82,36 @@ export function configuredProviders(now = Date.now()): Provider[] {
   if (env("GROQ_API_KEY")) {
     const id = env("ASK_GROQ_MODEL") ?? "openai/gpt-oss-120b";
     out.push({ engine: "groq", label: id, model: createGroq({ apiKey: env("GROQ_API_KEY") })(id) });
+  }
+  if (env("CEREBRAS_API_KEY")) {
+    const id = env("ASK_CEREBRAS_MODEL") ?? "gpt-oss-120b";
+    const cerebras = createOpenAICompatible({
+      name: "cerebras",
+      baseURL: "https://api.cerebras.ai/v1",
+      apiKey: env("CEREBRAS_API_KEY"),
+    });
+    out.push({ engine: "cerebras", label: id, model: cerebras(id) });
+  }
+  if (env("OPENROUTER_API_KEY")) {
+    const id = env("ASK_OPENROUTER_MODEL") ?? "meta-llama/llama-3.3-70b-instruct:free";
+    const openrouter = createOpenAICompatible({
+      name: "openrouter",
+      baseURL: "https://openrouter.ai/api/v1",
+      apiKey: env("OPENROUTER_API_KEY"),
+      headers: { "HTTP-Referer": "https://opensource-x.vercel.app", "X-Title": "OpenSourceX" },
+    });
+    out.push({ engine: "openrouter", label: id, model: openrouter(id) });
+  }
+  // Any OpenAI-compatible endpoint (Ollama, LM Studio, vLLM, or a personal FreeLLMAPI router for
+  // local development). Never point production at a personal, single-user router.
+  if (env("ASK_COMPAT_BASE_URL")) {
+    const id = env("ASK_COMPAT_MODEL") ?? "auto";
+    const compat = createOpenAICompatible({
+      name: "compat",
+      baseURL: env("ASK_COMPAT_BASE_URL")!,
+      apiKey: env("ASK_COMPAT_API_KEY"),
+    });
+    out.push({ engine: "compat", label: id, model: compat(id) });
   }
   if (env("AI_GATEWAY_API_KEY") || env("VERCEL_OIDC_TOKEN") || env("VERCEL")) {
     const id = env("ASK_GATEWAY_MODEL") ?? "google/gemini-3.1-flash-lite";

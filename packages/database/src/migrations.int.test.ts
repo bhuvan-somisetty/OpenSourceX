@@ -21,6 +21,7 @@ describe.skipIf(!url)("migrations from an empty database", () => {
         "006_cncf_lfx_history.sql",
         "007_ask_chat.sql",
         "008_knowledge.sql",
+        "009_ask_more_engines.sql",
       ]);
       expect(await migrate(fresh)).toEqual([]);
       const t = (

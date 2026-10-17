@@ -1,7 +1,7 @@
 import { simulateReadableStream } from "ai";
 import { MockLanguageModelV4 } from "ai/test";
-import { beforeAll, describe, expect, it } from "vitest";
-import { buildTools, streamAnswer, type Provider } from "./ai";
+import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
+import { buildTools, configuredProviders, markFailed, streamAnswer, type Provider } from "./ai";
 import { buildKnowledge, type Knowledge } from "./knowledge";
 
 const usage = {
@@ -80,5 +80,50 @@ describe("AI tools", () => {
       messages: [],
     } as never)) as { found: boolean };
     expect(miss.found).toBe(false);
+  });
+});
+
+describe("provider configuration", () => {
+  afterEach(() => vi.unstubAllEnvs());
+  const clear = () => {
+    for (const k of [
+      "GOOGLE_GENERATIVE_AI_API_KEY",
+      "GEMINI_API_KEY",
+      "GROQ_API_KEY",
+      "CEREBRAS_API_KEY",
+      "OPENROUTER_API_KEY",
+      "ASK_COMPAT_BASE_URL",
+      "AI_GATEWAY_API_KEY",
+      "VERCEL_OIDC_TOKEN",
+      "VERCEL",
+      "ANTHROPIC_API_KEY",
+      "OPENAI_API_KEY",
+      "ASK_PROVIDER_ORDER",
+    ])
+      vi.stubEnv(k, "");
+  };
+
+  it("uses only providers that have a key, free ones first", () => {
+    clear();
+    vi.stubEnv("AI_ENABLED", "true");
+    vi.stubEnv("CEREBRAS_API_KEY", "test");
+    vi.stubEnv("OPENROUTER_API_KEY", "test");
+    vi.stubEnv("ASK_COMPAT_BASE_URL", "http://localhost:3001/v1");
+    expect(configuredProviders().map((p) => p.engine)).toEqual([
+      "cerebras",
+      "openrouter",
+      "compat",
+    ]);
+  });
+
+  it("is off when AI is disabled, and skips a provider that just failed", () => {
+    clear();
+    vi.stubEnv("CEREBRAS_API_KEY", "test");
+    vi.stubEnv("AI_ENABLED", "false");
+    expect(configuredProviders()).toEqual([]);
+    vi.stubEnv("AI_ENABLED", "true");
+    markFailed("cerebras", 1_000);
+    expect(configuredProviders(2_000)).toEqual([]);
+    expect(configuredProviders(1_000 + 6 * 60_000).map((p) => p.engine)).toEqual(["cerebras"]);
   });
 });
