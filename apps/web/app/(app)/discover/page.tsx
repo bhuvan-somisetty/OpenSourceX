@@ -4,6 +4,7 @@ import { load } from "@/lib/data";
 import { currentSaved } from "@/lib/saved";
 import { many, type Params } from "@/lib/url";
 import { programDef } from "@/lib/programs";
+import { orgEntityId } from "@/lib/org-ids";
 import { knowledge } from "@/lib/assistant/engine";
 import { normalize, type KnowledgeOrg } from "@/lib/assistant/knowledge";
 import { DiscoverClient } from "@/features/discovery/DiscoverClient";
@@ -41,6 +42,7 @@ export default async function Discover({ searchParams }: { searchParams: Promise
         const latest = e.terms?.length ? e.terms.at(-1)! : String(Math.max(...e.years, 0) || "");
         return {
           slug: e.program,
+          orgSlug: e.orgSlug,
           name: def?.short ?? e.programName,
           fullName: def?.name ?? e.programName,
           href: e.pageUrl,
@@ -53,7 +55,8 @@ export default async function Discover({ searchParams }: { searchParams: Promise
     const years = [...new Set(o.programs.flatMap((e) => e.years))];
     const projectCount = o.programs.reduce((n, e) => n + e.projectCount, 0);
     return {
-      id: l ? `lfx-${l.slug}` : `${primary.slug}:${o.key.replace(/ /g, "-")}`,
+      id: orgEntityId(primary.slug, primary.orgSlug),
+      saveIds: programs.map((p) => orgEntityId(p.slug, p.orgSlug)),
       name: o.name,
       slug: l?.slug ?? o.lfxSlug ?? o.key.replace(/ /g, "-"),
       programSlug: primary.slug,
@@ -76,7 +79,6 @@ export default async function Discover({ searchParams }: { searchParams: Promise
       href: primary.href,
       logo: o.logo ?? null,
       logoOnDark: o.logoOnDark ?? false,
-      saveable: Boolean(l),
       source: l?.sources[0],
     };
   };

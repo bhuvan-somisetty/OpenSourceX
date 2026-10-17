@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { SaveButton } from "@/features/saved/SaveButton";
+import { orgEntityId } from "@/lib/org-ids";
 import { Notice } from "@/components/feedback/Notice";
 import { OrgCommunity } from "@/features/lfx/OrgCommunity";
 import { ProgramOrgLogo } from "@/features/programs/ProgramOrgLogo";
@@ -18,11 +20,13 @@ export function ProgramOrgPage({
   org,
   programSlug,
   programShort,
+  saved = false,
 }: {
   data: ProgramData;
   org: ProgramOrg;
   programSlug: string;
   programShort: string;
+  saved?: boolean;
 }) {
   const repo = org.repoUrl ?? org.sourceCodeUrl ?? null;
   const range = yearRange(org.years);
@@ -48,18 +52,26 @@ export function ProgramOrgPage({
                 {org.name}
               </h1>
             </div>
-            {repo && (
-              <a
-                className="btn primary org-repo-btn"
-                href={repo}
-                target="_blank"
-                rel="noreferrer noopener"
-                data-testid="open-org-repo"
-              >
-                <GithubIcon />
-                {/github\.com\/[^/]+\/?$/.test(repo) ? "Open GitHub ↗" : "Open repository ↗"}
-              </a>
-            )}
+            <div className="org-hero-actions">
+              <SaveButton
+                entityType="ORGANIZATION"
+                entityId={orgEntityId(programSlug, org.slug)}
+                initialSaved={saved}
+                label={org.name}
+              />
+              {repo && (
+                <a
+                  className="btn primary org-repo-btn"
+                  href={repo}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  data-testid="open-org-repo"
+                >
+                  <GithubIcon />
+                  {/github\.com\/[^/]+\/?$/.test(repo) ? "Open GitHub ↗" : "Open repository ↗"}
+                </a>
+              )}
+            </div>
           </div>
 
           {(org.tagline || org.description) && (
@@ -76,12 +88,14 @@ export function ProgramOrgPage({
           <div className="chips" style={{ marginTop: 16 }}>
             {range && (
               <span className="pill">
-                <strong>{org.years.length}</strong> year{org.years.length === 1 ? "" : "s"} in {programShort} ({range})
+                <strong>{org.years.length}</strong> year{org.years.length === 1 ? "" : "s"} in{" "}
+                {programShort} ({range})
               </span>
             )}
             {projects.length > 0 && (
               <span className="pill">
-                <strong>{projects.length}</strong> recorded project{projects.length === 1 ? "" : "s"}
+                <strong>{projects.length}</strong> recorded project
+                {projects.length === 1 ? "" : "s"}
               </span>
             )}
             {org.tags.slice(0, 8).map((t) => (

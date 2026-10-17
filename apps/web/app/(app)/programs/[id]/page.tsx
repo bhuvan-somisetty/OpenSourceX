@@ -48,6 +48,9 @@ export default async function ProgramDetail({
   const info = await programInfo(def.slug);
   const staticData = isLfx ? null : await programData(def.slug);
   if (staticData) {
+    const savedOrgIds = [...(await currentSaved())].filter((k) =>
+      k.startsWith("ORGANIZATION:org:"),
+    );
     return (
       <div className="wrap">
         <section className="page-hero" data-testid="program-hero">
@@ -93,6 +96,8 @@ export default async function ProgramDetail({
             years={staticData.years}
             basePath={`/programs/${def.slug}`}
             initial={{ q: first(sp.q), tech: first(sp.tech), year: first(sp.year) }}
+            programSlug={def.slug}
+            savedIds={savedOrgIds}
           />
         </section>
 
@@ -110,8 +115,8 @@ export default async function ProgramDetail({
             ))}
           </ul>
           <p className="hint" style={{ marginTop: 10 }}>
-            Collected {staticData.generatedAt}. Repository, logo and chat links come from the program
-            listing or from each organization&apos;s own GitHub and website.
+            Collected {staticData.generatedAt}. Repository, logo and chat links come from the
+            program listing or from each organization&apos;s own GitHub and website.
           </p>
         </section>
       </div>
@@ -149,9 +154,7 @@ export default async function ProgramDetail({
           term,
         })
       : null;
-    const lfxAllOrgs = isLfx
-      ? (await listLfxOrganizations(d, {})).organizations
-      : [];
+    const lfxAllOrgs = isLfx ? (await listLfxOrganizations(d, {})).organizations : [];
     const items = await listProjects(d, { program: def.slug, q, tech });
     const all = await listProjects(d, { program: def.slug });
     return { prog, lfxData, lfxAllOrgs, items, all };
@@ -213,7 +216,16 @@ export default async function ProgramDetail({
         </div>
 
         {isLfx ? (
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", margin: "28px auto 0" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              textAlign: "center",
+              margin: "28px auto 0",
+            }}
+          >
             <LinuxFoundationFullLogo height={140} />
             <div className="eyebrow" style={{ marginTop: 18 }}>
               {latest ? `${latest} · recorded` : "Program"}
@@ -293,6 +305,7 @@ export default async function ProgramDetail({
             facets={lfxData.facets}
             params={{ q, tech, year, term }}
             basePath={`/programs/${def.slug}`}
+            savedIds={[...saved].filter((k) => k.startsWith("ORGANIZATION:org:"))}
           />
         </section>
       )}

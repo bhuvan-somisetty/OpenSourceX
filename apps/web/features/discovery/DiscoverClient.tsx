@@ -2,11 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import {
-  DiscoveryOrgCard,
-  type DiscoverOrg,
-  type Why,
-} from "@/features/discovery/DiscoveryOrgCard";
+import { DiscoveryOrgCard, type DiscoverOrg } from "@/features/discovery/DiscoveryOrgCard";
 import { Notice } from "@/components/feedback/Notice";
 
 const norm = (s: string) => s.toLowerCase();
@@ -58,36 +54,6 @@ export function DiscoverClient({
             a.org.name.localeCompare(b.org.name),
         )
     : [];
-
-  const why = (org: DiscoverOrg, hits: string[]): Why[] => [
-    ...hits.map((h) => ({
-      ok: true as const,
-      text: `Matches "${h}" in recorded organization technologies`,
-    })),
-    ...(org.programs?.length
-      ? org.programs.slice(0, 3).map((p) => ({
-          ok: true as const,
-          text:
-            p.slug === "lfx-mentorship"
-              ? `${p.name} Mentorship: latest ${org.latestTerm} (${org.projectCount} recorded project${org.projectCount === 1 ? "" : "s"})`
-              : `Took part in ${p.name}${p.years ? ` (${p.years})` : ""}`,
-        }))
-      : [{ ok: Boolean(org.latestTerm), text: `${org.programName} organization` }]),
-    {
-      ok: Boolean(org.repoUrl),
-      text: org.repoUrl
-        ? "Official repository available"
-        : "Repository linked via program directory",
-    },
-    ...(org.yearCount > 1
-      ? [
-          {
-            ok: true as const,
-            text: `Recurring organization (${org.yearCount} years of participation)`,
-          },
-        ]
-      : []),
-  ];
 
   function openPicker() {
     setPendingInterests([...interests]);
@@ -241,14 +207,16 @@ export function DiscoverClient({
                 {matched.length} organization{matched.length > 1 ? "s" : ""} match your selected
                 interests. Ordered by coverage and participation depth.
               </p>
-              <div className="grid g2e" data-testid="results">
+              <div className="lfx-org-grid" data-testid="results">
                 {matched.map(({ org, hits }) => (
                   <DiscoveryOrgCard
                     key={org.id}
                     org={org}
                     hits={hits}
-                    why={why(org, hits)}
-                    saved={saved.has(`ORGANIZATION:${org.id}`)}
+                    savedId={
+                      (org.saveIds ?? [org.id]).find((id) => saved.has(`ORGANIZATION:${id}`)) ??
+                      null
+                    }
                   />
                 ))}
               </div>

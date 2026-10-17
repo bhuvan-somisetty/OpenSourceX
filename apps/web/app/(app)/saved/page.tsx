@@ -14,6 +14,9 @@ import { DbDown, EmptyState } from "@/components/feedback/Notice";
 import { ProjectRow } from "@/features/projects/ProjectRow";
 import { SaveButton } from "@/features/saved/SaveButton";
 import { StatusChip } from "@/components/status/StatusChip";
+import { SavedOrgCard } from "@/features/saved/SavedOrgCard";
+import { parseOrgEntityId } from "@/lib/org-ids";
+import { resolveSavedOrg, type SavedOrg } from "@/lib/saved-orgs";
 
 export const metadata: Metadata = { title: "Saved" };
 export const dynamic = "force-dynamic";
@@ -35,6 +38,16 @@ export default async function Saved({ searchParams }: { searchParams: Promise<Pa
     rows: await listSaved(d, session.userId),
     cards: (await listProjects(d)).items,
   }));
+  // organizations from any program (`org:<program>/<slug>`), resolved from recorded data
+  const orgs = new Map<string, SavedOrg | null>();
+  if (res.ok)
+    await Promise.all(
+      res.data.rows
+        .filter((r) => r.entityType === "ORGANIZATION" && parseOrgEntityId(r.entityId))
+        .map(async (r) =>
+          orgs.set(r.entityId, await resolveSavedOrg(r.entityId).catch(() => null)),
+        ),
+    );
 
   return (
     <div className="wrap">
@@ -70,13 +83,13 @@ export default async function Saved({ searchParams }: { searchParams: Promise<Pa
               <EmptyState
                 title="You haven't saved anything yet."
                 action={
-                  <Link className="btn primary" href="/projects" data-testid="saved-empty-cta">
-                    Explore Projects
+                  <Link className="btn primary" href="/programs" data-testid="saved-empty-cta">
+                    Explore Programs
                   </Link>
                 }
               >
-                Save a project, repository or organization and it will live here, organized by
-                program.
+                Save an organization, project or repository from any program and it will live here,
+                organized by program.
               </EmptyState>
             );
           }
@@ -184,56 +197,66 @@ export default async function Saved({ searchParams }: { searchParams: Promise<Pa
                         {items.length} saved
                       </span>
                     </div>
+                    {items.some((r) => orgs.get(r.entityId)) && (
+                      <div className="lfx-org-grid" style={{ marginTop: 14 }}>
+                        {items.map((r) => {
+                          const o = orgs.get(r.entityId);
+                          return o ? <SavedOrgCard key={r.id} org={o} /> : null;
+                        })}
+                      </div>
+                    )}
                     <div style={{ marginTop: 14 }}>
-                      {items.map((r) => {
-                        if (r.entityType === "REPOSITORY") {
-                          return (
-                            <div className="prow" key={r.id} data-testid="saved-item">
-                              <div className="t">
-                                <a
-                                  href={r.entityId}
-                                  target="_blank"
-                                  rel="noreferrer noopener"
-                                  className="mono"
-                                  style={{ fontSize: 15 }}
-                                >
-                                  {r.entityId.replace("https://", "")}
-                                </a>
-                                <div className="dim" style={{ fontSize: 13 }}>
-                                  Repository
+                      {items
+                        .filter((r) => !orgs.get(r.entityId))
+                        .map((r) => {
+                          if (r.entityType === "REPOSITORY") {
+                            return (
+                              <div className="prow" key={r.id} data-testid="saved-item">
+                                <div className="t">
+                                  <a
+                                    href={r.entityId}
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                    className="mono"
+                                    style={{ fontSize: 15 }}
+                                  >
+                                    {r.entityId.replace("https://", "")}
+                                  </a>
+                                  <div className="dim" style={{ fontSize: 13 }}>
+                                    Repository
+                                  </div>
                                 </div>
+                                <div className="m">
+                                  <StatusChip status="UNKNOWN" label="Not analyzed" />
+                                </div>
+                                <SaveButton
+                                  entityType="REPOSITORY"
+                                  entityId={r.entityId}
+                                  initialSaved
+                                  compact
+                                  label="repository"
+                                />
                               </div>
-                              <div className="m">
-                                <StatusChip status="UNKNOWN" label="Not analyzed" />
-                              </div>
+                            );
+                          }
+                          const c = byId.get(r.entityId);
+                          return c ? (
+                            <div key={r.id} data-testid="saved-item">
+                              <ProjectRow p={c} saved />
+                            </div>
+                          ) : (
+                            <div className="prow" key={r.id}>
+                              <div className="t dim">No longer in the dataset ({r.entityId})</div>
+                              <div />
                               <SaveButton
-                                entityType="REPOSITORY"
+                                entityType={r.entityType}
                                 entityId={r.entityId}
                                 initialSaved
                                 compact
-                                label="repository"
                               />
                             </div>
                           );
-                        }
-                        const c = byId.get(r.entityId);
-                        return c ? (
-                          <div key={r.id} data-testid="saved-item">
-                            <ProjectRow p={c} saved />
-                          </div>
-                        ) : (
-                          <div className="prow" key={r.id}>
-                            <div className="t dim">No longer in the dataset ({r.entityId})</div>
-                            <div />
-                            <SaveButton
-                              entityType={r.entityType}
-                              entityId={r.entityId}
-                              initialSaved
-                              compact
-                            />
-                          </div>
-                        );
-                      })}
+                        })}
                     </div>
                   </section>
                 ))

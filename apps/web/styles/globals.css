@@ -5929,3 +5929,56 @@ mark.porg-hit {
     display: none;
   }
 }
+
+/* organization cards: save button pinned to the top-right corner of every card */
+.org-card-wrap {
+  position: relative;
+  display: flex;
+  min-width: 0;
+}
+.org-card-wrap > .lfx-org-card {
+  flex: 1;
+  min-width: 0;
+}
+.org-card-wrap .lfx-org-card-top {
+  padding-right: 48px;
+}
+.org-card-save {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 2;
+}
+.discover-programs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-size: 12px;
+}
+.discover-programs .lfx-org-latest-pill {
+  margin: 0;
+}
+.tag.discover-hit {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  font-weight: 700;
+}
+.org-hero-actions {
+  margin-left: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 10px;
+}
+@media (max-width: 640px) {
+  .org-hero-actions {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+.org-hero-actions .org-repo-btn {
+  margin-left: 0;
+}

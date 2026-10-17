@@ -2,12 +2,16 @@
 
 import React, { useState, useRef, useEffect, useMemo } from "react";
 import Link from "next/link";
+import { SaveButton } from "@/features/saved/SaveButton";
+import { orgEntityId } from "@/lib/org-ids";
 import { useRouter } from "next/navigation";
 import type { LfxOrgSummary } from "@opensourcex/database";
 import { OrgLogo } from "@/components/ui/OrgLogo";
 import { EmptyState } from "@/components/feedback/Notice";
 
 interface LfxOrgDirectoryProps {
+  /** saved-item keys of this session, e.g. "ORGANIZATION:org:lfx-mentorship/volcano" */
+  savedIds?: string[];
   organizations: LfxOrgSummary[];
   allOrganizations?: LfxOrgSummary[];
   total: number;
@@ -68,9 +72,11 @@ export function LfxOrgDirectory({
   facets,
   params,
   basePath = "/programs/lfx-mentorship",
+  savedIds = [],
 }: LfxOrgDirectoryProps) {
   const router = useRouter();
-  const searchSource = allOrganizations && allOrganizations.length > 0 ? allOrganizations : organizations;
+  const searchSource =
+    allOrganizations && allOrganizations.length > 0 ? allOrganizations : organizations;
 
   const [query, setQuery] = useState(params.q ?? "");
   const [isOpen, setIsOpen] = useState(false);
@@ -123,10 +129,7 @@ export function LfxOrgDirectory({
   // Click outside listener to dismiss dropdown
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
-      if (
-        searchContainerRef.current &&
-        !searchContainerRef.current.contains(e.target as Node)
-      ) {
+      if (searchContainerRef.current && !searchContainerRef.current.contains(e.target as Node)) {
         setIsOpen(false);
       }
     }
@@ -304,12 +307,8 @@ export function LfxOrgDirectory({
                         gap: 12,
                         padding: "10px 14px",
                         cursor: "pointer",
-                        background: isSelected
-                          ? "rgba(0, 153, 255, 0.14)"
-                          : "transparent",
-                        borderLeft: isSelected
-                          ? "3px solid #0099ff"
-                          : "3px solid transparent",
+                        background: isSelected ? "rgba(0, 153, 255, 0.14)" : "transparent",
+                        borderLeft: isSelected ? "3px solid #0099ff" : "3px solid transparent",
                         transition: "background 0.15s, border-color 0.15s",
                       }}
                       data-testid={`lfx-suggestion-${org.slug}`}
@@ -463,63 +462,70 @@ export function LfxOrgDirectory({
                   : "Recorded";
 
             return (
-              <Link
-                key={org.slug}
-                href={`${basePath}/organizations/${org.slug}`}
-                className="card hover lfx-org-card"
-                data-testid={`lfx-org-card-${org.slug}`}
-              >
-                <div className="lfx-org-card-top">
-                  <OrgLogo slug={org.slug} name={org.name} size={52} />
-                  <div className="lfx-org-card-title-wrap">
-                    <h3 className="lfx-org-card-title">{org.name}</h3>
-                    {org.latestTerm && (
-                      <span className="pill lfx-org-latest-pill">
-                        Latest: {org.latestTerm}
+              <div key={org.slug} className="org-card-wrap">
+                <Link
+                  href={`${basePath}/organizations/${org.slug}`}
+                  className="card hover lfx-org-card"
+                  data-testid={`lfx-org-card-${org.slug}`}
+                >
+                  <div className="lfx-org-card-top">
+                    <OrgLogo slug={org.slug} name={org.name} size={52} />
+                    <div className="lfx-org-card-title-wrap">
+                      <h3 className="lfx-org-card-title">{org.name}</h3>
+                      {org.latestTerm && (
+                        <span className="pill lfx-org-latest-pill">Latest: {org.latestTerm}</span>
+                      )}
+                    </div>
+                  </div>
+
+                  {org.description ? (
+                    <p className="muted lfx-org-card-desc">{org.description}</p>
+                  ) : (
+                    <p className="dim lfx-org-card-desc" style={{ fontStyle: "italic" }}>
+                      CNCF ecosystem mentorship participant
+                    </p>
+                  )}
+
+                  {org.technologies.length > 0 && (
+                    <div className="chips lfx-org-card-tech">
+                      {org.technologies.slice(0, 4).map((tech) => (
+                        <span key={tech} className="tag">
+                          {tech}
+                        </span>
+                      ))}
+                      {org.technologies.length > 4 && (
+                        <span className="dim" style={{ fontSize: 11, alignSelf: "center" }}>
+                          +{org.technologies.length - 4}
+                        </span>
+                      )}
+                    </div>
+                  )}
+
+                  <div className="lfx-org-card-footer">
+                    <div className="lfx-org-stats">
+                      <span className="lfx-org-stat-item">
+                        <strong>{org.projectCount}</strong> recorded project
+                        {org.projectCount === 1 ? "" : "s"}
                       </span>
+                      <span className="dim">·</span>
+                      <span className="lfx-org-stat-item dim">{yearRange}</span>
+                    </div>
+
+                    <span className="lfx-org-explore-link">Explore Organization →</span>
+                  </div>
+                </Link>
+                <div className="org-card-save">
+                  <SaveButton
+                    entityType="ORGANIZATION"
+                    entityId={orgEntityId("lfx-mentorship", org.slug)}
+                    initialSaved={savedIds.includes(
+                      `ORGANIZATION:${orgEntityId("lfx-mentorship", org.slug)}`,
                     )}
-                  </div>
+                    compact
+                    label={org.name}
+                  />
                 </div>
-
-                {org.description ? (
-                  <p className="muted lfx-org-card-desc">{org.description}</p>
-                ) : (
-                  <p className="dim lfx-org-card-desc" style={{ fontStyle: "italic" }}>
-                    CNCF ecosystem mentorship participant
-                  </p>
-                )}
-
-                {org.technologies.length > 0 && (
-                  <div className="chips lfx-org-card-tech">
-                    {org.technologies.slice(0, 4).map((tech) => (
-                      <span key={tech} className="tag">
-                        {tech}
-                      </span>
-                    ))}
-                    {org.technologies.length > 4 && (
-                      <span className="dim" style={{ fontSize: 11, alignSelf: "center" }}>
-                        +{org.technologies.length - 4}
-                      </span>
-                    )}
-                  </div>
-                )}
-
-                <div className="lfx-org-card-footer">
-                  <div className="lfx-org-stats">
-                    <span className="lfx-org-stat-item">
-                      <strong>{org.projectCount}</strong> recorded project{org.projectCount === 1 ? "" : "s"}
-                    </span>
-                    <span className="dim">·</span>
-                    <span className="lfx-org-stat-item dim">
-                      {yearRange}
-                    </span>
-                  </div>
-
-                  <span className="lfx-org-explore-link">
-                    Explore Organization →
-                  </span>
-                </div>
-              </Link>
+              </div>
             );
           })}
         </div>

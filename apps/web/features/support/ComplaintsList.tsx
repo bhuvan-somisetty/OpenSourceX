@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import type { Ticket } from "@opensourcex/database";
-import { ConfirmDialog } from "./ConfirmDialog";
+import { ConfirmDialog } from "@/components/feedback/ConfirmDialog";
 
 const CATEGORY: Record<string, string> = {
   bug: "Something is broken",

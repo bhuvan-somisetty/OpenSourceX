@@ -12,6 +12,8 @@ import { PROGRAM_CATALOG, type ProgramDef } from "@/lib/programs";
  */
 export interface OrgProgramEntry {
   program: string;
+  /** the organization's slug inside this program (its page is /programs/<program>/organizations/<orgSlug>) */
+  orgSlug: string;
   programName: string;
   years: number[];
   /** LFX only: term keys such as "2025-T3" */
@@ -140,6 +142,7 @@ export async function buildKnowledge(lfx: LfxHistory | null): Promise<Knowledge>
           },
           {
             program: def.slug,
+            orgSlug: o.slug,
             programName: def.name,
             years: o.years,
             projectCount: o.projects?.length ?? 0,
@@ -181,6 +184,7 @@ export async function buildKnowledge(lfx: LfxHistory | null): Promise<Knowledge>
           },
           {
             program: def.slug,
+            orgSlug: slug,
             programName: "LFX Mentorship (CNCF)",
             years: uniq(terms.map((t) => Number(t.slice(0, 4)))).sort(),
             terms,

@@ -5,6 +5,7 @@ import { getLfxOrganization, type LfxOrgProject } from "@opensourcex/database";
 import { load } from "@/lib/data";
 import { resolveProgram } from "@/lib/programs";
 import { currentSaved, isSaved } from "@/lib/saved";
+import { orgEntityId } from "@/lib/org-ids";
 import { first, type Params } from "@/lib/url";
 import { DbDown, EmptyState, Notice } from "@/components/feedback/Notice";
 import { SourceBadge } from "@/components/source/SourceBadge";
@@ -51,7 +52,16 @@ export default async function LfxOrgDetailPage({
   if (def.slug !== "lfx-mentorship") {
     const r = await programOrg(def.slug, orgSlug);
     if (!r) notFound();
-    return <ProgramOrgPage data={r.data} org={r.org} programSlug={def.slug} programShort={def.short} />;
+    const saved = (await currentSaved()).has(`ORGANIZATION:${orgEntityId(def.slug, r.org.slug)}`);
+    return (
+      <ProgramOrgPage
+        data={r.data}
+        org={r.org}
+        programSlug={def.slug}
+        programShort={def.short}
+        saved={saved}
+      />
+    );
   }
 
   const q = first(sp.q)?.trim().toLowerCase();
@@ -150,7 +160,13 @@ export default async function LfxOrgDetailPage({
                 rel="noreferrer noopener"
                 data-testid="open-org-repo"
               >
-                <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
                   <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
                 </svg>
                 Open repository ↗
@@ -167,10 +183,12 @@ export default async function LfxOrgDetailPage({
           <div className="chips" style={{ marginTop: 16 }}>
             <StatusChip status="RECORDED" label="CNCF Recorded Data" />
             <span className="pill">
-              <strong>{org.projectCount}</strong> recorded project{org.projectCount === 1 ? "" : "s"}
+              <strong>{org.projectCount}</strong> recorded project
+              {org.projectCount === 1 ? "" : "s"}
             </span>
             <span className="pill">
-              <strong>{org.yearCount}</strong> participation year{org.yearCount === 1 ? "" : "s"} ({yearRange})
+              <strong>{org.yearCount}</strong> participation year{org.yearCount === 1 ? "" : "s"} (
+              {yearRange})
             </span>
             {org.latestTerm && (
               <span className="pill">
@@ -182,8 +200,8 @@ export default async function LfxOrgDetailPage({
           <div className="actions" style={{ marginTop: 20 }}>
             <SaveButton
               entityType="ORGANIZATION"
-              entityId={`org-lfx-${org.slug}`}
-              initialSaved={savedSet.has(`ORGANIZATION:org-lfx-${org.slug}`)}
+              entityId={orgEntityId("lfx-mentorship", org.slug)}
+              initialSaved={savedSet.has(`ORGANIZATION:${orgEntityId("lfx-mentorship", org.slug)}`)}
               label={org.name}
             />
             <Link className="btn" href={`/programs/${def.slug}`}>
@@ -266,7 +284,8 @@ export default async function LfxOrgDetailPage({
 
         <div className="lfx-count-row" style={{ marginTop: 14 }}>
           <p className="muted" data-testid="project-filter-count">
-            Showing <strong>{filteredProjects.length}</strong> of {org.allProjects.length} recorded projects
+            Showing <strong>{filteredProjects.length}</strong> of {org.allProjects.length} recorded
+            projects
             {hasFilter && " (filtered)"}
           </p>
         </div>
@@ -290,7 +309,11 @@ export default async function LfxOrgDetailPage({
               const totalYearProjects = yg.terms.reduce((acc, t) => acc + t.projects.length, 0);
 
               return (
-                <div key={yg.year} className="lfx-year-block" data-testid={`year-section-${yg.year}`}>
+                <div
+                  key={yg.year}
+                  className="lfx-year-block"
+                  data-testid={`year-section-${yg.year}`}
+                >
                   <div className="lfx-year-header">
                     <div className="lfx-year-heading-wrap">
                       <h2 className="lfx-year-title">{yearTitle}</h2>

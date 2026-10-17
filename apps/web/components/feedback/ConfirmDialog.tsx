@@ -1,8 +1,12 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 
-/** Confirmation dialog in the same style as the sign-out confirmation. */
+/**
+ * Confirmation dialog in the same style as the sign-out confirmation. Rendered into <body> so a
+ * card that moves on hover (CSS transform) never traps it.
+ */
 export function ConfirmDialog({
   title,
   children,
@@ -23,14 +27,17 @@ export function ConfirmDialog({
   testId?: string;
 }) {
   const confirmRef = useRef<HTMLButtonElement>(null);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   useEffect(() => {
     confirmRef.current?.focus();
     const esc = (e: KeyboardEvent) => e.key === "Escape" && !busy && onCancel();
     document.addEventListener("keydown", esc);
     return () => document.removeEventListener("keydown", esc);
-  }, [busy, onCancel]);
+  }, [busy, onCancel, mounted]);
 
-  return (
+  if (!mounted) return null;
+  return createPortal(
     <div
       className="modal-backdrop"
       role="presentation"
@@ -65,6 +72,7 @@ export function ConfirmDialog({
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

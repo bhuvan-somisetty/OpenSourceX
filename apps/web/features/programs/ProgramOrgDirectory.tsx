@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { SaveButton } from "@/features/saved/SaveButton";
+import { orgEntityId } from "@/lib/org-ids";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { EmptyState } from "@/components/feedback/Notice";
@@ -64,13 +66,19 @@ export function ProgramOrgDirectory({
   years,
   basePath,
   initial,
+  programSlug,
+  savedIds = [],
 }: {
   orgs: DirectoryOrg[];
   programName: string;
   years: number[];
   basePath: string;
   initial: { q?: string; tech?: string; year?: string };
+  programSlug: string;
+  /** saved-item keys of this session, e.g. "ORGANIZATION:org:gsoc/alaska" */
+  savedIds?: string[];
 }) {
+  const savedSet = useMemo(() => new Set(savedIds), [savedIds]);
   const router = useRouter();
   const [query, setQuery] = useState(initial.q ?? "");
   const [tech, setTech] = useState(initial.tech ?? "");
@@ -90,7 +98,9 @@ export function ProgramOrgDirectory({
         cur.n++;
         m.set(k, cur);
       }
-    return [...m.values()].sort((a, b) => b.n - a.n || a.value.localeCompare(b.value)).slice(0, 150);
+    return [...m.values()]
+      .sort((a, b) => b.n - a.n || a.value.localeCompare(b.value))
+      .slice(0, 150);
   }, [orgs]);
 
   const q = query.trim().toLowerCase();
@@ -109,7 +119,10 @@ export function ProgramOrgDirectory({
       .map((x) => x.o);
   }, [orgs, q, tech, year]);
 
-  const suggestions = useMemo(() => (q ? results.filter((o) => rank(o, q) <= 3).slice(0, 10) : []), [results, q]);
+  const suggestions = useMemo(
+    () => (q ? results.filter((o) => rank(o, q) <= 3).slice(0, 10) : []),
+    [results, q],
+  );
 
   // keep the URL in step so a filtered view can be shared or reloaded
   useEffect(() => {
@@ -199,11 +212,14 @@ export function ProgramOrgDirectory({
             <div className="lfx-autocomplete-pop porg-suggest" role="listbox" id="porg-suggest">
               <div className="porg-suggest-head">
                 <span>Organizations matching &ldquo;{query.trim()}&rdquo;</span>
-                <span className="dim">{suggestions.length === 10 ? "10+" : suggestions.length}</span>
+                <span className="dim">
+                  {suggestions.length === 10 ? "10+" : suggestions.length}
+                </span>
               </div>
               {suggestions.length === 0 ? (
                 <div className="porg-suggest-empty">
-                  No organization name matches. The grid below also searches technologies and descriptions.
+                  No organization name matches. The grid below also searches technologies and
+                  descriptions.
                 </div>
               ) : (
                 suggestions.map((o, i) => (
@@ -222,7 +238,9 @@ export function ProgramOrgDirectory({
                     <span className="porg-suggest-name">
                       <Highlight text={o.name} q={q} />
                     </span>
-                    {range(o.years) && <span className="dim porg-suggest-years">{range(o.years)}</span>}
+                    {range(o.years) && (
+                      <span className="dim porg-suggest-years">{range(o.years)}</span>
+                    )}
                   </div>
                 ))
               )}
@@ -273,7 +291,9 @@ export function ProgramOrgDirectory({
       <div className="lfx-count-row">
         <p className="muted" data-testid="org-result-count" aria-live="polite">
           Showing <strong>{Math.min(shown, results.length)}</strong> of {results.length}
-          {filtered ? ` matching (${orgs.length} in total)` : ` organization${orgs.length === 1 ? "" : "s"}`}
+          {filtered
+            ? ` matching (${orgs.length} in total)`
+            : ` organization${orgs.length === 1 ? "" : "s"}`}
         </p>
       </div>
 
@@ -302,44 +322,69 @@ export function ProgramOrgDirectory({
             {results.slice(0, shown).map((org) => {
               const yr = range(org.years);
               return (
-                <Link key={org.slug} href={`${basePath}/organizations/${org.slug}`} className="card hover lfx-org-card">
-                  <div className="lfx-org-card-top">
-                    <ProgramOrgLogo src={org.logo} name={org.name} size={52} dark={org.logoOnDark} />
-                    <div className="lfx-org-card-title-wrap">
-                      <h3 className="lfx-org-card-title">
-                        <Highlight text={org.name} q={q} />
-                      </h3>
-                      {yr && <span className="pill lfx-org-latest-pill">{yr}</span>}
+                <div key={org.slug} className="org-card-wrap">
+                  <Link
+                    href={`${basePath}/organizations/${org.slug}`}
+                    className="card hover lfx-org-card"
+                  >
+                    <div className="lfx-org-card-top">
+                      <ProgramOrgLogo
+                        src={org.logo}
+                        name={org.name}
+                        size={52}
+                        dark={org.logoOnDark}
+                      />
+                      <div className="lfx-org-card-title-wrap">
+                        <h3 className="lfx-org-card-title">
+                          <Highlight text={org.name} q={q} />
+                        </h3>
+                        {yr && <span className="pill lfx-org-latest-pill">{yr}</span>}
+                      </div>
                     </div>
-                  </div>
-                  {org.blurb ? (
-                    <p className="muted lfx-org-card-desc">{org.blurb}</p>
-                  ) : (
-                    <p className="dim lfx-org-card-desc" style={{ fontStyle: "italic" }}>
-                      {programName} participant
-                    </p>
-                  )}
-                  {org.tags.length > 0 && (
-                    <div className="chips lfx-org-card-tech">
-                      {org.tags.slice(0, 4).map((t) => (
-                        <span key={t} className="tag">
-                          {t}
-                        </span>
-                      ))}
-                      {org.tags.length > 4 && (
-                        <span className="dim" style={{ fontSize: 11, alignSelf: "center" }}>
-                          +{org.tags.length - 4}
-                        </span>
+                    {org.blurb ? (
+                      <p className="muted lfx-org-card-desc">{org.blurb}</p>
+                    ) : (
+                      <p className="dim lfx-org-card-desc" style={{ fontStyle: "italic" }}>
+                        {programName} participant
+                      </p>
+                    )}
+                    {org.tags.length > 0 && (
+                      <div className="chips lfx-org-card-tech">
+                        {org.tags.slice(0, 4).map((t) => (
+                          <span key={t} className="tag">
+                            {t}
+                          </span>
+                        ))}
+                        {org.tags.length > 4 && (
+                          <span className="dim" style={{ fontSize: 11, alignSelf: "center" }}>
+                            +{org.tags.length - 4}
+                          </span>
+                        )}
+                      </div>
+                    )}
+                    <div className="lfx-org-card-footer">
+                      <div className="lfx-org-stats">
+                        {org.chats.length > 0 && (
+                          <span className="lfx-org-stat-item">
+                            {org.chats.map(cap).join(" · ")}
+                          </span>
+                        )}
+                      </div>
+                      <span className="lfx-org-explore-link">Explore Organization →</span>
+                    </div>
+                  </Link>
+                  <div className="org-card-save">
+                    <SaveButton
+                      entityType="ORGANIZATION"
+                      entityId={orgEntityId(programSlug, org.slug)}
+                      initialSaved={savedSet.has(
+                        `ORGANIZATION:${orgEntityId(programSlug, org.slug)}`,
                       )}
-                    </div>
-                  )}
-                  <div className="lfx-org-card-footer">
-                    <div className="lfx-org-stats">
-                      {org.chats.length > 0 && <span className="lfx-org-stat-item">{org.chats.map(cap).join(" · ")}</span>}
-                    </div>
-                    <span className="lfx-org-explore-link">Explore Organization →</span>
+                      compact
+                      label={org.name}
+                    />
                   </div>
-                </Link>
+                </div>
               );
             })}
           </div>

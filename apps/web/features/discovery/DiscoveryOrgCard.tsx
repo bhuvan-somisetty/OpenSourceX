@@ -1,9 +1,8 @@
 import Link from "next/link";
+import type { SourceInfo } from "@opensourcex/database";
 import { OrgLogo } from "@/components/ui/OrgLogo";
 import { ProgramOrgLogo } from "@/features/programs/ProgramOrgLogo";
 import { SaveButton } from "@/features/saved/SaveButton";
-import { SourceBadge } from "@/components/source/SourceBadge";
-import type { SourceInfo } from "@opensourcex/database";
 
 export interface Why {
   ok: boolean | null;
@@ -11,7 +10,10 @@ export interface Why {
 }
 
 export interface DiscoverOrg {
+  /** saved-item id (`org:<program>/<slug>`) of the organization's main program */
   id: string;
+  /** saved-item ids for every program the organization is in */
+  saveIds?: string[];
   name: string;
   slug: string;
   programSlug: string;
@@ -30,276 +32,123 @@ export interface DiscoverOrg {
   /** logo file for organizations from program lists (LFX ones use OrgLogo by slug) */
   logo?: string | null;
   logoOnDark?: boolean;
-  /** only database organizations (LFX) can be saved for now */
-  saveable?: boolean;
   source?: SourceInfo;
 }
 
+/**
+ * Compact Discover card, the same size and layout as the program directory cards (three per
+ * row), with every program the organization belongs to and a save button in the top-right corner.
+ */
 export function DiscoveryOrgCard({
   org,
   hits = [],
-  why,
-  saved = false,
+  savedId = null,
 }: {
   org: DiscoverOrg;
   hits?: string[];
-  why?: Why[];
-  saved?: boolean;
+  /** the saved-item id this session already saved for the organization, if any */
+  savedId?: string | null;
 }) {
-  const norm = (s: string) => s.toLowerCase();
-  const matchedHits = new Set(hits.map(norm));
+  const matched = new Set(hits.map((h) => h.toLowerCase()));
+  const tags = [
+    ...org.technologies.filter((t) => matched.has(t.toLowerCase())),
+    ...org.technologies.filter((t) => !matched.has(t.toLowerCase())),
+  ];
+  const programs = org.programs?.length
+    ? org.programs
+    : [{ slug: org.programSlug, name: org.programName, href: org.href, latest: "", years: "" }];
+  const years =
+    org.years.length > 1
+      ? `${Math.min(...org.years)}–${Math.max(...org.years)}`
+      : org.years.length === 1
+        ? String(org.years[0])
+        : "";
 
   return (
-    <article
-      className="card hover fade"
-      data-testid={`discovery-org-card-${org.slug}`}
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        padding: "22px",
-        borderRadius: "var(--radius, 12px)",
-        background: "var(--surface)",
-        border: "1px solid var(--border)",
-        transition: "transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease",
-      }}
-    >
-      <div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-start",
-            gap: 12,
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center", gap: 14, minWidth: 0 }}>
-            {org.logo ? (
-              <ProgramOrgLogo src={org.logo} name={org.name} size={48} dark={org.logoOnDark} />
-            ) : (
-              <OrgLogo slug={org.slug} name={org.name} size={48} />
-            )}
-            <div style={{ minWidth: 0 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-                {(org.programs?.length
-                  ? org.programs
-                  : [
-                      {
-                        slug: org.programSlug,
-                        name: org.programName,
-                        href: org.href,
-                        latest: "",
-                        years: "",
-                      },
-                    ]
-                )
-                  .slice(0, 4)
-                  .map((p) => (
-                    <Link
-                      key={p.slug}
-                      href={p.href}
-                      className="tag"
-                      title={p.years ? `${p.name}: ${p.years}` : p.name}
-                      style={{ fontSize: 11, fontWeight: 600, textDecoration: "none" }}
-                      data-testid="discover-program"
-                    >
-                      {p.name}
-                    </Link>
-                  ))}
-                {(org.programs?.length ?? 0) > 4 && (
-                  <span className="dim" style={{ fontSize: 11 }}>
-                    +{org.programs!.length - 4}
-                  </span>
-                )}
-                {org.latestTerm && (
-                  <span
-                    className="pill"
-                    style={{
-                      fontSize: 11,
-                      padding: "2px 8px",
-                      background: "rgba(0, 153, 255, 0.12)",
-                      color: "#0099ff",
-                      fontWeight: 600,
-                      borderRadius: 999,
-                    }}
-                  >
-                    Latest: {org.latestTerm}
-                  </span>
-                )}
-              </div>
-              <h3
-                style={{
-                  fontSize: 20,
-                  fontWeight: 700,
-                  margin: "6px 0 0",
-                  lineHeight: 1.25,
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                <Link
-                  href={org.href}
-                  style={{
-                    color: "var(--text)",
-                    textDecoration: "none",
-                  }}
+    <div className="org-card-wrap" data-testid={`discovery-org-card-${org.slug}`}>
+      <Link href={org.href} className="card hover lfx-org-card">
+        <div className="lfx-org-card-top">
+          {org.logo ? (
+            <ProgramOrgLogo src={org.logo} name={org.name} size={52} dark={org.logoOnDark} />
+          ) : (
+            <OrgLogo slug={org.slug} name={org.name} size={52} />
+          )}
+          <div className="lfx-org-card-title-wrap">
+            <h3 className="lfx-org-card-title">{org.name}</h3>
+            <div className="discover-programs">
+              {programs.slice(0, 3).map((p) => (
+                <span
+                  key={p.slug}
+                  className="pill lfx-org-latest-pill"
+                  title={p.years ? `${p.name}: ${p.years}` : p.name}
+                  data-testid="discover-program"
                 >
-                  {org.name}
-                </Link>
-              </h3>
+                  {p.name}
+                </span>
+              ))}
+              {programs.length > 3 && <span className="dim">+{programs.length - 3}</span>}
             </div>
           </div>
-          {org.saveable !== false && (
-            <SaveButton
-              entityType="ORGANIZATION"
-              entityId={org.id}
-              initialSaved={saved}
-              compact
-              label={org.name}
-            />
-          )}
         </div>
 
         {org.description ? (
-          <p
-            className="muted"
-            style={{
-              margin: "14px 0 0",
-              fontSize: 14,
-              lineHeight: 1.5,
-              display: "-webkit-box",
-              WebkitLineClamp: 2,
-              WebkitBoxOrient: "vertical",
-              overflow: "hidden",
-            }}
-          >
-            {org.description}
-          </p>
+          <p className="muted lfx-org-card-desc">{org.description}</p>
         ) : (
-          <p
-            className="dim"
-            style={{
-              margin: "14px 0 0",
-              fontSize: 13.5,
-              fontStyle: "italic",
-            }}
-          >
-            Active participating organization in open source mentorship programs.
+          <p className="dim lfx-org-card-desc" style={{ fontStyle: "italic" }}>
+            {org.programName} participant
           </p>
         )}
 
-        {/* Technologies with matching hits highlighted */}
-        {org.technologies.length > 0 && (
-          <div className="chips" style={{ marginTop: 14, gap: 6 }}>
-            {org.technologies.slice(0, 6).map((t) => {
-              const isMatch = matchedHits.has(norm(t));
+        {tags.length > 0 && (
+          <div className="chips lfx-org-card-tech">
+            {tags.slice(0, 4).map((t) => {
+              const hit = matched.has(t.toLowerCase());
               return (
-                <span
-                  key={t}
-                  className={isMatch ? "tag accent" : "tag"}
-                  style={
-                    isMatch
-                      ? {
-                          background: "rgba(0, 153, 255, 0.2)",
-                          color: "#38bdf8",
-                          border: "1px solid rgba(56, 189, 248, 0.4)",
-                          fontWeight: 700,
-                        }
-                      : undefined
-                  }
-                >
-                  {isMatch ? `✓ ${t}` : t}
+                <span key={t} className={hit ? "tag discover-hit" : "tag"}>
+                  {hit ? `✓ ${t}` : t}
                 </span>
               );
             })}
-            {org.technologies.length > 6 && (
+            {tags.length > 4 && (
               <span className="dim" style={{ fontSize: 11, alignSelf: "center" }}>
-                +{org.technologies.length - 6} more
+                +{tags.length - 4}
               </span>
             )}
           </div>
         )}
 
-        {why && why.length > 0 && (
-          <div style={{ marginTop: 16 }}>
-            <strong
-              style={{
-                fontSize: 11,
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                color: "var(--text-dim, #94a3b8)",
-              }}
-            >
-              Why this organization
-            </strong>
-            <ul className="crit" data-testid="why-matches" style={{ marginTop: 8 }}>
-              {why.map((w, i) => (
-                <li
-                  key={i}
-                  style={{ fontSize: 13, display: "flex", gap: 8, alignItems: "flex-start" }}
-                >
-                  <span
-                    className={w.ok ? "c-ok" : "c-unk"}
-                    aria-hidden="true"
-                    style={{ flexShrink: 0, fontWeight: "bold" }}
-                  >
-                    {w.ok ? "✓" : "?"}
-                  </span>
-                  <span>{w.text}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
-
-      <div style={{ marginTop: 20 }}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            paddingTop: 12,
-            borderTop: "1px solid var(--border-subtle, rgba(255, 255, 255, 0.08))",
-          }}
-        >
-          <div style={{ fontSize: 12, color: "var(--text-dim, #94a3b8)" }}>
-            {org.projectCount > 0 ? (
+        <div className="lfx-org-card-footer">
+          <div className="lfx-org-stats">
+            <span className="lfx-org-stat-item">
+              {org.projectCount > 0 ? (
+                <>
+                  <strong>{org.projectCount}</strong> project{org.projectCount === 1 ? "" : "s"}
+                </>
+              ) : (
+                <>
+                  <strong>{programs.length}</strong> program{programs.length === 1 ? "" : "s"}
+                </>
+              )}
+            </span>
+            {years && (
               <>
-                <strong>{org.projectCount}</strong> recorded project
-                {org.projectCount === 1 ? "" : "s"}
-              </>
-            ) : (
-              <>
-                <strong>{org.programs?.length ?? 1}</strong> program
-                {(org.programs?.length ?? 1) === 1 ? "" : "s"}
+                <span className="dim">·</span>
+                <span className="lfx-org-stat-item dim">{years}</span>
               </>
             )}
-            {org.yearCount > 1 && ` · ${org.yearCount} years`}
           </div>
-
-          <Link
-            href={org.href}
-            className="btn sm"
-            style={{
-              fontSize: 12,
-              padding: "6px 12px",
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 4,
-            }}
-          >
-            Explore Org →
-          </Link>
+          <span className="lfx-org-explore-link">Explore Organization →</span>
         </div>
-
-        {org.source && (
-          <div style={{ marginTop: 10 }}>
-            <SourceBadge source={org.source} />
-          </div>
-        )}
+      </Link>
+      <div className="org-card-save">
+        <SaveButton
+          entityType="ORGANIZATION"
+          entityId={savedId ?? org.id}
+          initialSaved={Boolean(savedId)}
+          compact
+          label={org.name}
+        />
       </div>
-    </article>
+    </div>
   );
 }

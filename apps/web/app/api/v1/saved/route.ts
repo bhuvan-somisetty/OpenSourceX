@@ -5,6 +5,8 @@ import { getSession } from "@/lib/auth";
 import { db } from "@/lib/data";
 import { route } from "@/lib/http";
 import { assertSameOrigin, parseSaveBody } from "@/lib/saved-api";
+import { parseOrgEntityId } from "@/lib/org-ids";
+import { resolveSavedOrg } from "@/lib/saved-orgs";
 
 export const dynamic = "force-dynamic";
 
@@ -33,7 +35,14 @@ export const POST = route(async (req) => {
   assertSameOrigin(req);
   const s = await user();
   const body = parseSaveBody(await json(req));
-  const target = await resolveEntity(db(), body.entityType, body.entityId);
+  // organizations from any program use `org:<program>/<slug>`; check them against recorded data
+  const org = body.entityType === "ORGANIZATION" && parseOrgEntityId(body.entityId);
+  const target = org
+    ? await resolveSavedOrg(body.entityId).then((o) => ({
+        exists: Boolean(o),
+        programSlug: o?.program ?? null,
+      }))
+    : await resolveEntity(db(), body.entityType, body.entityId);
   if (!target.exists) throw notFound("Item");
   const row = await addSaved(db(), s.userId, body.entityType, body.entityId, target.programSlug);
   return NextResponse.json({ item: row }, { status: 201 });

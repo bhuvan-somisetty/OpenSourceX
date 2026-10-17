@@ -1,11 +1,15 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
+import { ConfirmDialog } from "@/components/feedback/ConfirmDialog";
 
 export type SaveEntityType = "PROJECT" | "REPOSITORY" | "ORGANIZATION";
 
-/** Real, persisted save toggle: POST / DELETE /api/v1/saved with optimistic UI and rollback on failure. */
+/**
+ * Real, persisted save toggle: POST / DELETE /api/v1/saved with optimistic UI and rollback on
+ * failure. Unsaving asks for confirmation first.
+ */
 export function SaveButton({
   entityType,
   entityId,
@@ -22,11 +26,21 @@ export function SaveButton({
   const [saved, setSaved] = useState(initialSaved);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [confirming, setConfirming] = useState(false);
   const router = useRouter();
   const noun = label ?? "item";
 
-  async function toggle() {
+  function onClick(e: MouseEvent) {
+    // the button can sit on top of a card link; never follow it
+    e.preventDefault();
+    e.stopPropagation();
     if (busy) return;
+    if (saved) setConfirming(true);
+    else void toggle();
+  }
+
+  async function toggle() {
+    setConfirming(false);
     const next = !saved;
     setSaved(next);
     setBusy(true);
@@ -57,7 +71,7 @@ export function SaveButton({
         className={`save${compact ? " icon" : ""}`}
         aria-pressed={saved}
         aria-label={saved ? `Unsave ${noun}` : `Save ${noun}`}
-        onClick={toggle}
+        onClick={onClick}
         disabled={busy}
         data-testid="save-button"
         data-saved={saved}
@@ -70,6 +84,20 @@ export function SaveButton({
       <span role="status" aria-live="polite" className="hint" style={{ minHeight: 0 }}>
         {error}
       </span>
+      {confirming && (
+        <ConfirmDialog
+          title={`Remove ${label ?? "this item"} from saved?`}
+          confirmLabel="Unsave"
+          danger
+          onConfirm={() => void toggle()}
+          onCancel={() => setConfirming(false)}
+          testId="unsave-confirm"
+        >
+          <p style={{ margin: 0 }}>
+            Are you sure you want to unsave it? You can save it again any time.
+          </p>
+        </ConfirmDialog>
+      )}
     </span>
   );
 }

@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { ConfirmDialog } from "./ConfirmDialog";
+import { ConfirmDialog } from "@/components/feedback/ConfirmDialog";
 
 const CATEGORIES: [string, string][] = [
   ["bug", "Something is broken"],
