@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { requireSession } from "@/lib/auth";
 import { Header } from "@/components/layout/Header";
 import { DevBanner } from "@/components/layout/DevBanner";
+import { Footer } from "@/components/layout/Footer";
 
 export const dynamic = "force-dynamic";
 
@@ -14,6 +15,7 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
       {session.kind === "development" && <DevBanner session={session.kind} />}
       <Header userName={session.name} kind={session.kind} />
       <main id="main">{children}</main>
+      <Footer />
     </div>
   );
 }

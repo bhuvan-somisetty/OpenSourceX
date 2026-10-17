@@ -6517,3 +6517,212 @@ mark.porg-hit {
     padding-top: 10px;
   }
 }
+
+/* home: fade-in on scroll (classes added by HomeEffects, so no-JS pages stay visible) */
+.reveal-pending {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal-pending.revealed {
+  opacity: 1;
+  transform: none;
+}
+.home-bento > .reveal-pending:nth-child(2) {
+  transition-delay: 0.08s;
+}
+.home-bento > .reveal-pending:nth-child(3) {
+  transition-delay: 0.16s;
+}
+.home-bento > .reveal-pending:nth-child(4) {
+  transition-delay: 0.24s;
+}
+.home-bento > .reveal-pending:nth-child(5) {
+  transition-delay: 0.32s;
+}
+.home-hero-copy > *,
+.home-orbit {
+  animation: home-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.home-hero-copy > :nth-child(2) {
+  animation-delay: 0.08s;
+}
+.home-hero-copy > :nth-child(3) {
+  animation-delay: 0.16s;
+}
+.home-hero-copy > :nth-child(4) {
+  animation-delay: 0.24s;
+}
+.home-orbit {
+  animation-name: home-zoom;
+  animation-duration: 1.2s;
+}
+@keyframes home-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+@keyframes home-zoom {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+}
+
+/* home: clickable ring logos with a name label */
+.home-orbit-link {
+  position: relative;
+  display: block;
+  border-radius: 16px;
+  outline-offset: 4px;
+}
+.home-orbit-link .mark {
+  transition:
+    transform 0.25s,
+    box-shadow 0.25s,
+    border-color 0.25s;
+}
+.home-orbit-link:hover .mark,
+.home-orbit-link:focus-visible .mark {
+  transform: scale(1.12);
+  border-color: var(--border-strong);
+  box-shadow: 0 0 34px rgba(125, 155, 255, 0.45);
+}
+.home-orbit-label {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 10px);
+  transform: translate(-50%, 4px);
+  white-space: nowrap;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  background: rgba(14, 18, 28, 0.92);
+  border: 1px solid var(--border-strong);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.2s,
+    transform 0.2s;
+  z-index: 3;
+}
+.home-orbit-link:hover .home-orbit-label,
+.home-orbit-link:focus-visible .home-orbit-label {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+.home-orbit:hover .home-orbit-spin,
+.home-orbit:hover .home-orbit-counter,
+.home-orbit:focus-within .home-orbit-spin,
+.home-orbit:focus-within .home-orbit-counter {
+  animation-play-state: paused;
+}
+.home-orbit-item:hover {
+  z-index: 2;
+}
+[data-theme="light"] .home-orbit-label {
+  background: #fff;
+}
+
+/* home: ask box inside the Ask tile */
+.home-ask-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding: 6px 6px 6px 18px;
+  border-radius: 999px;
+  background: rgba(10, 13, 20, 0.7);
+  border: 1px solid var(--border-strong);
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+.home-ask-form:focus-within {
+  border-color: rgba(125, 155, 255, 0.6);
+  box-shadow: 0 0 0 4px rgba(125, 155, 255, 0.12);
+}
+.home-ask-form input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 15px;
+  padding: 10px 0;
+}
+.home-ask-form input::placeholder {
+  color: var(--text-dim);
+}
+.home-ask-send {
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+[data-theme="light"] .home-ask-form {
+  background: #fff;
+}
+
+/* site footer */
+.site-footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border);
+  margin-top: 24px;
+}
+.site-footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 28px;
+  padding-top: 22px;
+  padding-bottom: 22px;
+}
+.site-footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+.site-footer-copy {
+  font-weight: 400;
+  color: var(--text-dim);
+}
+.site-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+}
+.site-footer-links a {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.site-footer-links a:hover {
+  color: var(--text);
+}
+.app-shell:has(.chat) .site-footer {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-hero-copy > *,
+  .home-orbit {
+    animation: none;
+  }
+}

@@ -12,6 +12,7 @@ import { ProgramMark } from "@/components/ui/ProgramMark";
 import { ProjectRow } from "@/features/projects/ProjectRow";
 import { SavedOrgCard } from "@/features/saved/SavedOrgCard";
 import { resolveSavedOrg } from "@/lib/saved-orgs";
+import { HomeEffects } from "@/features/home/HomeEffects";
 
 export const metadata: Metadata = { title: "Home" };
 export const dynamic = "force-dynamic";
@@ -154,11 +155,13 @@ export default async function AppHome() {
   const savedCount = res.ok ? res.data.saved.length : 0;
 
   const first = session.kind === "guest" ? "" : (session.name.split(/\s+/)[0] ?? "");
-  const stats = [
-    [String(PROGRAMS.length), "programs"],
-    [k ? fmt(k.orgs.length) : "1k+", "organizations"],
-    [res.ok ? fmt(res.data.cards.length) : "—", "projects"],
-    ["24/7", "AI guide"],
+  const orgCount = k?.orgs.length ?? 0;
+  const projectCount = res.ok ? res.data.cards.length : 0;
+  const stats: [string, string, number][] = [
+    [String(PROGRAMS.length), "programs", PROGRAMS.length],
+    [orgCount ? fmt(orgCount) : "1k+", "organizations", orgCount],
+    [projectCount ? fmt(projectCount) : "—", "projects", projectCount],
+    ["24/7", "AI guide", 0],
   ];
 
   return (
@@ -187,35 +190,44 @@ export default async function AppHome() {
             </p>
 
             <dl className="home-stats">
-              {stats.map(([n, l]) => (
+              {stats.map(([n, l, c]) => (
                 <div key={l} className="home-stat">
-                  <dt>{n}</dt>
+                  <dt data-count={c || undefined}>{n}</dt>
                   <dd>{l}</dd>
                 </div>
               ))}
             </dl>
           </div>
 
-          <div className="home-orbit" aria-hidden="true">
-            <div className="home-orbit-ring r1" />
-            <div className="home-orbit-ring r2" />
-            <div className="home-orbit-core">
+          <nav className="home-orbit" aria-label="Programs">
+            <div className="home-orbit-ring r1" aria-hidden="true" />
+            <div className="home-orbit-ring r2" aria-hidden="true" />
+            <div className="home-orbit-core" aria-hidden="true">
               <LogoMark size={54} />
             </div>
             <div className="home-orbit-spin">
               {PROGRAMS.map((p, i) => (
                 <div key={p.slug} className="home-orbit-item" style={{ ["--i" as string]: i }}>
                   <div className="home-orbit-counter">
-                    <ProgramMark slug={p.slug} />
+                    <Link
+                      href={`/programs/${p.slug}`}
+                      className="home-orbit-link"
+                      aria-label={p.name}
+                    >
+                      <ProgramMark slug={p.slug} />
+                      <span className="home-orbit-label" aria-hidden="true">
+                        {p.name}
+                      </span>
+                    </Link>
                   </div>
                 </div>
               ))}
             </div>
-          </div>
+          </nav>
         </section>
 
         <section className="block home-bento" aria-label="Start here">
-          <Link href="/ask" className="home-tile home-tile-ask glow-ask">
+          <div className="home-tile home-tile-ask glow-ask" data-reveal>
             <div className="home-tile-icon tone-violet">{ICONS.spark}</div>
             <h2 className="home-tile-title">Ask anything about open source</h2>
             <p className="home-tile-text">
@@ -230,13 +242,32 @@ export default async function AppHome() {
                 mentors…
               </div>
             </div>
-            <span className="home-tile-cta">
-              Start a conversation <Arrow />
-            </span>
-          </Link>
+            <form action="/ask" className="home-ask-form" role="search">
+              <label htmlFor="home-ask" className="skip">
+                Ask a question about open source
+              </label>
+              <input
+                id="home-ask"
+                name="q"
+                type="text"
+                required
+                maxLength={2000}
+                autoComplete="off"
+                placeholder="Ask anything, e.g. Which LFX orgs use Go?"
+              />
+              <button type="submit" className="btn primary home-ask-send" aria-label="Ask">
+                <Arrow />
+              </button>
+            </form>
+          </div>
 
           {TILES.map((t) => (
-            <Link key={t.href} href={t.href} className={`home-tile tile-${t.size} glow-${t.tone}`}>
+            <Link
+              key={t.href}
+              href={t.href}
+              className={`home-tile tile-${t.size} glow-${t.tone}`}
+              data-reveal
+            >
               <div className={`home-tile-icon tone-${t.tone}`}>{t.icon}</div>
               <h2 className="home-tile-title">{t.title}</h2>
               <p className="home-tile-text">{t.text}</p>
@@ -250,7 +281,7 @@ export default async function AppHome() {
         {!res.ok ? (
           <DbDown />
         ) : (
-          <section className="block" aria-labelledby="cont-h">
+          <section className="block" aria-labelledby="cont-h" data-reveal>
             <div className="section-head">
               <h2 id="cont-h">Continue exploring</h2>
               {savedCount > 0 && (
@@ -296,7 +327,7 @@ export default async function AppHome() {
           </section>
         )}
 
-        <section className="block home-path-wrap" aria-labelledby="path-h">
+        <section className="block home-path-wrap" aria-labelledby="path-h" data-reveal>
           <div className="section-head">
             <h2 id="path-h">From first look to selected</h2>
           </div>
@@ -313,6 +344,7 @@ export default async function AppHome() {
           </ol>
         </section>
       </div>
+      <HomeEffects />
     </div>
   );
 }
