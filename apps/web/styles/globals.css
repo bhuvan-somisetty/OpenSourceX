@@ -6687,6 +6687,14 @@ mark.porg-hit {
   border-top: 1px solid var(--border);
   margin-top: 24px;
 }
+/* keep the footer at the very bottom, even on short pages */
+.app-shell {
+  display: flex;
+  flex-direction: column;
+}
+.app-shell > main {
+  flex: 1 0 auto;
+}
 .site-footer-inner {
   display: flex;
   flex-wrap: wrap;

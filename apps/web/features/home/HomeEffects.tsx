@@ -33,7 +33,7 @@ export function HomeEffects() {
       const final = el.textContent ?? "";
       if (!Number.isFinite(target) || target <= 0) return;
       const start = performance.now();
-      const duration = 1400;
+      const duration = 3200;
       const tick = (now: number) => {
         const t = Math.min(1, (now - start) / duration);
         const eased = 1 - Math.pow(1 - t, 3);
