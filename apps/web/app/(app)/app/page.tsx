@@ -88,6 +88,7 @@ const TILES = [
     title: "Programs",
     text: "GSoC, LFX, Summer of Bitcoin and more, side by side.",
     tone: "blue",
+    size: "wide",
   },
   {
     href: "/discover",
@@ -95,6 +96,7 @@ const TILES = [
     title: "Discover",
     text: "Organizations matched to the skills you already have.",
     tone: "violet",
+    size: "half",
   },
   {
     href: "/repositories/analyze",
@@ -102,6 +104,7 @@ const TILES = [
     title: "Analyze a repository",
     text: "Structure, guidelines and first issues of any GitHub repo.",
     tone: "teal",
+    size: "half",
   },
   {
     href: "/interview",
@@ -109,6 +112,7 @@ const TILES = [
     title: "Interview practice",
     text: "Explain a project in your own words and get feedback.",
     tone: "amber",
+    size: "banner",
   },
 ];
 
@@ -232,7 +236,7 @@ export default async function AppHome() {
           </Link>
 
           {TILES.map((t) => (
-            <Link key={t.href} href={t.href} className={`home-tile glow-${t.tone}`}>
+            <Link key={t.href} href={t.href} className={`home-tile tile-${t.size} glow-${t.tone}`}>
               <div className={`home-tile-icon tone-${t.tone}`}>{t.icon}</div>
               <h2 className="home-tile-title">{t.title}</h2>
               <p className="home-tile-text">{t.text}</p>

@@ -6147,8 +6147,45 @@ mark.porg-hit {
 /* bento */
 .home-bento {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 16px;
+}
+.home-bento > .home-tile-ask {
+  grid-column: 1 / span 6;
+  grid-row: 1 / span 2;
+}
+.home-bento > .tile-wide {
+  grid-column: 7 / span 6;
+}
+.home-bento > .tile-half {
+  grid-column: span 3;
+}
+.home-bento > .tile-banner {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas:
+    "icon title cta"
+    "icon text cta";
+  align-items: center;
+  column-gap: 20px;
+  row-gap: 2px;
+  padding: 22px 28px;
+}
+.tile-banner .home-tile-icon {
+  grid-area: icon;
+}
+.tile-banner .home-tile-title {
+  grid-area: title;
+  margin: 0;
+}
+.tile-banner .home-tile-text {
+  grid-area: text;
+}
+.tile-banner .home-tile-cta {
+  grid-area: cta;
+  margin: 0;
+  padding: 0;
 }
 .home-tile {
   position: relative;
@@ -6173,8 +6210,6 @@ mark.porg-hit {
   box-shadow: 0 24px 60px -24px rgba(125, 155, 255, 0.45);
 }
 .home-tile-ask {
-  grid-column: span 2;
-  grid-row: span 2;
   padding: 30px;
   background:
     radial-gradient(120% 90% at 100% 0%, rgba(155, 125, 255, 0.22), transparent 60%),
@@ -6373,10 +6408,6 @@ mark.porg-hit {
   .home-path {
     grid-template-columns: 1fr;
   }
-  .home-tile-ask {
-    grid-column: auto;
-    grid-row: auto;
-  }
   .home-stats {
     gap: 12px 24px;
   }
@@ -6389,42 +6420,42 @@ mark.porg-hit {
   }
 }
 
-/* colored corner lights on the home tiles */
+/* soft colored corner lights on the home cards */
 .home-tile::before,
 .home-tile::after,
 .home-step::before,
 .home-step::after {
   content: "";
   position: absolute;
-  width: 220px;
-  height: 220px;
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
-  filter: blur(46px);
-  opacity: 0.55;
+  filter: blur(50px);
   pointer-events: none;
   z-index: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.4s;
 }
 .home-tile::before,
 .home-step::before {
-  top: -110px;
-  right: -110px;
+  top: -90px;
+  right: -70px;
   background: var(--glow-a);
+  opacity: 0.22;
 }
 .home-tile::after,
 .home-step::after {
-  bottom: -120px;
-  left: -120px;
+  bottom: -110px;
+  left: -90px;
   background: var(--glow-b);
-  opacity: 0.35;
+  opacity: 0.08;
 }
 .home-tile:hover::before,
 .home-step:hover::before {
-  opacity: 0.85;
+  opacity: 0.36;
 }
 .home-tile:hover::after,
 .home-step:hover::after {
-  opacity: 0.55;
+  opacity: 0.14;
 }
 .home-tile > *,
 .home-step > * {
@@ -6432,28 +6463,57 @@ mark.porg-hit {
   z-index: 1;
 }
 .glow-ask {
-  --glow-a: rgba(255, 84, 112, 0.75);
-  --glow-b: rgba(125, 155, 255, 0.7);
+  --glow-a: #ff5470;
+  --glow-b: #7d9bff;
 }
 .glow-blue {
-  --glow-a: rgba(80, 130, 255, 0.8);
-  --glow-b: rgba(90, 209, 230, 0.6);
+  --glow-a: #5082ff;
+  --glow-b: #5ad1e6;
 }
 .glow-violet {
-  --glow-a: rgba(176, 110, 255, 0.8);
-  --glow-b: rgba(255, 92, 170, 0.6);
+  --glow-a: #b06eff;
+  --glow-b: #ff5caa;
 }
 .glow-teal {
-  --glow-a: rgba(40, 210, 190, 0.75);
-  --glow-b: rgba(80, 130, 255, 0.55);
+  --glow-a: #28d2be;
+  --glow-b: #5082ff;
 }
 .glow-amber {
-  --glow-a: rgba(255, 170, 50, 0.8);
-  --glow-b: rgba(255, 84, 84, 0.6);
+  --glow-a: #ffaa32;
+  --glow-b: #ff5454;
 }
 [data-theme="light"] .home-tile::before,
+[data-theme="light"] .home-step::before {
+  opacity: 0.12;
+}
 [data-theme="light"] .home-tile::after,
-[data-theme="light"] .home-step::before,
 [data-theme="light"] .home-step::after {
-  opacity: 0.25;
+  opacity: 0.05;
+}
+
+@media (max-width: 1080px) {
+  .home-bento > .home-tile-ask,
+  .home-bento > .tile-wide,
+  .home-bento > .tile-banner {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+  .home-bento > .tile-half {
+    grid-column: span 1;
+  }
+}
+@media (max-width: 620px) {
+  .home-bento > .tile-half {
+    grid-column: 1 / -1;
+  }
+  .home-bento > .tile-banner {
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+      "icon title"
+      "icon text"
+      "cta cta";
+  }
+  .tile-banner .home-tile-cta {
+    padding-top: 10px;
+  }
 }
