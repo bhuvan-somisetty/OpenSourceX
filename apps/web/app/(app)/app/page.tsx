@@ -5,6 +5,8 @@ import { requireSession } from "@/lib/auth";
 import { load } from "@/lib/data";
 import { DbDown } from "@/components/feedback/Notice";
 import { ProjectRow } from "@/features/projects/ProjectRow";
+import { SavedOrgCard } from "@/features/saved/SavedOrgCard";
+import { resolveSavedOrg } from "@/lib/saved-orgs";
 
 export const metadata: Metadata = { title: "Home" };
 export const dynamic = "force-dynamic";
@@ -16,6 +18,17 @@ export default async function AppHome() {
     saved: await listSaved(d, session.userId),
     cards: (await listProjects(d)).items,
   }));
+  // the newest saved organizations from any program (`org:<program>/<slug>`)
+  const recentOrgs = res.ok
+    ? (
+        await Promise.all(
+          res.data.saved
+            .filter((r) => r.entityId.startsWith("org:"))
+            .slice(0, 3)
+            .map((r) => resolveSavedOrg(r.entityId).catch(() => null)),
+        )
+      ).filter((o) => o !== null)
+    : [];
 
   return (
     <div className="wrap app-home">
@@ -94,13 +107,13 @@ export default async function AppHome() {
               <section className="block" aria-labelledby="cont-h">
                 <div className="section-head">
                   <h2 id="cont-h">Continue exploring</h2>
-                  {recent.length > 0 && (
+                  {recent.length + recentOrgs.length > 0 && (
                     <Link href="/saved" className="section-link">
                       Saved workspace ({res.data.saved.length}) →
                     </Link>
                   )}
                 </div>
-                {recent.length === 0 ? (
+                {recent.length + recentOrgs.length === 0 ? (
                   <div className="empty-saved-prompt card">
                     <div className="empty-saved-icon" aria-hidden="true">
                       ★
@@ -108,16 +121,22 @@ export default async function AppHome() {
                     <div className="empty-saved-content">
                       <strong>Nothing saved yet</strong>
                       <p className="muted" style={{ margin: "4px 0 0", fontSize: 14 }}>
-                        Save projects, organizations, or repositories while browsing to build your
-                        workspace.
+                        Save organizations from any program while browsing to build your workspace.
                       </p>
                     </div>
-                    <Link href="/discover" className="btn sm primary">
-                      Discover projects
+                    <Link href="/programs" className="btn sm primary">
+                      Explore Programs
                     </Link>
                   </div>
                 ) : (
                   <div style={{ marginTop: 14 }} data-testid="recent-saved">
+                    {recentOrgs.length > 0 && (
+                      <div className="lfx-org-grid" style={{ marginBottom: 14 }}>
+                        {recentOrgs.map((o) => (
+                          <SavedOrgCard key={o.id} org={o} />
+                        ))}
+                      </div>
+                    )}
                     {recent.map((c) => (
                       <ProjectRow key={c!.id} p={c!} saved />
                     ))}
