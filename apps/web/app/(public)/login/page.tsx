@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { developmentAuthAvailable, getSession, guestPreviewAvailable } from "@/lib/auth";
 import { OAUTH_PROVIDERS, oauthConfigured } from "@/lib/auth-config";
@@ -133,6 +134,11 @@ export default async function Login({
                 </p>
               )}
             </div>
+
+            <p className="hint" style={{ margin: "12px 0 0" }} data-testid="legal-links">
+              By continuing you agree to the <Link href="/terms">Terms of Service</Link> and{" "}
+              <Link href="/privacy">Privacy Policy</Link>.
+            </p>
 
             {(guest || dev) && <div className="divider">or</div>}
 
