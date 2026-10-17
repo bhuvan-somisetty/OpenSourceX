@@ -1,28 +1,77 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { developmentAuthAvailable, getSession, guestPreviewAvailable } from "@/lib/auth";
+import { OAUTH_PROVIDERS, oauthConfigured } from "@/lib/auth-config";
 import { LogoMark } from "@/components/ui/Logo";
 import { PublicNav } from "@/features/landing/PublicNav";
-import { continueAsGuest, continueInDevelopmentMode } from "@/features/auth/actions";
+import {
+  continueAsGuest,
+  continueInDevelopmentMode,
+  signInWithGitHub,
+  signInWithGoogle,
+} from "@/features/auth/actions";
 
 export const metadata: Metadata = { title: "Sign in" };
 export const dynamic = "force-dynamic";
 
 const POINTS = [
   "Programs, organizations, projects and repositories in one place",
-  "Evidence and provenance behind every fact, not a guess",
-  "A local preview session: no real account, no live data",
-];
-const GUEST_POINTS = [
-  POINTS[0],
-  POINTS[1],
-  "A guest preview session: no real account, no live data",
+  "Ask anything about open source, with your chat history saved",
+  "Evidence and sources behind every fact, not a guess",
 ];
 
-export default async function Login() {
-  if (await getSession()) redirect("/app");
+const ERRORS: Record<string, string> = {
+  OAuthAccountNotLinked: "That email is already linked to another sign-in method.",
+  AccessDenied: "Sign-in was cancelled.",
+  Configuration: "Sign-in is not set up correctly yet. Please continue as a guest for now.",
+};
+
+function GoogleIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+      <path
+        fill="#4285F4"
+        d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.9c1.7-1.56 2.7-3.87 2.7-6.62Z"
+      />
+      <path
+        fill="#34A853"
+        d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.9-2.26c-.8.54-1.84.86-3.06.86-2.35 0-4.34-1.59-5.05-3.72H.95v2.33A9 9 0 0 0 9 18Z"
+      />
+      <path
+        fill="#FBBC05"
+        d="M3.95 10.7A5.4 5.4 0 0 1 3.67 9c0-.59.1-1.16.28-1.7V4.97H.95A9 9 0 0 0 0 9c0 1.45.35 2.83.95 4.03l3-2.33Z"
+      />
+      <path
+        fill="#EA4335"
+        d="M9 3.58c1.32 0 2.51.45 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0A9 9 0 0 0 .95 4.97l3 2.33C4.66 5.17 6.65 3.58 9 3.58Z"
+      />
+    </svg>
+  );
+}
+
+function GitHubIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+      <path d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38l-.01-1.49c-2.01.44-2.43-.86-2.43-.86-.33-.83-.8-1.05-.8-1.05-.65-.45.05-.44.05-.44.72.05 1.1.74 1.1.74.64 1.1 1.68.78 2.09.6.06-.46.25-.78.46-.96-1.6-.18-3.28-.8-3.28-3.57 0-.79.28-1.43.74-1.94-.07-.18-.32-.92.07-1.92 0 0 .6-.19 1.98.74a6.9 6.9 0 0 1 3.6 0c1.38-.93 1.98-.74 1.98-.74.39 1 .14 1.74.07 1.92.46.51.74 1.15.74 1.94 0 2.78-1.69 3.39-3.3 3.57.26.22.49.66.49 1.33l-.01 1.97c0 .21.14.45.55.38A8 8 0 0 0 8 0Z" />
+    </svg>
+  );
+}
+
+export default async function Login({
+  searchParams,
+}: {
+  searchParams: Promise<{ error?: string }>;
+}) {
+  const current = await getSession();
+  // guests may come here to sign in for real; everyone else goes straight in
+  if (current && current.kind !== "guest") redirect("/app");
+  const error = (await searchParams).error;
   const dev = developmentAuthAvailable();
   const guest = !dev && guestPreviewAvailable();
+  const oauth = oauthConfigured();
+  const github = oauth && OAUTH_PROVIDERS.github;
+  const google = oauth && OAUTH_PROVIDERS.google;
+
   return (
     <div className="auth" data-testid="login-page">
       <div className="atmos" aria-hidden="true" />
@@ -37,127 +86,92 @@ export default async function Login() {
               Sign in to explore programs, save projects and prepare to contribute.
             </p>
             <ul className="auth-points">
-              {(guest ? GUEST_POINTS : POINTS).map((p) => (
+              {POINTS.map((p) => (
                 <li key={p}>{p}</li>
               ))}
             </ul>
           </div>
 
           <div className="auth-form">
-            <div className="auth-stack">
-              <button
-                className="btn oauth"
-                type="button"
-                disabled
-                aria-disabled="true"
-                data-testid="oauth-google"
-              >
-                <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
-                  <path
-                    fill="#4285F4"
-                    d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.9c1.7-1.56 2.7-3.87 2.7-6.62Z"
-                  />
-                  <path
-                    fill="#34A853"
-                    d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.9-2.26c-.8.54-1.84.86-3.06.86-2.35 0-4.34-1.59-5.05-3.72H.95v2.33A9 9 0 0 0 9 18Z"
-                  />
-                  <path
-                    fill="#FBBC05"
-                    d="M3.95 10.7A5.4 5.4 0 0 1 3.67 9c0-.59.1-1.16.28-1.7V4.97H.95A9 9 0 0 0 0 9c0 1.45.35 2.83.95 4.03l3-2.33Z"
-                  />
-                  <path
-                    fill="#EA4335"
-                    d="M9 3.58c1.32 0 2.51.45 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0A9 9 0 0 0 .95 4.97l3 2.33C4.66 5.17 6.65 3.58 9 3.58Z"
-                  />
-                </svg>
-                Continue with Google
-              </button>
-              <button
-                className="btn oauth"
-                type="button"
-                disabled
-                aria-disabled="true"
-                data-testid="oauth-github"
-              >
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 16 16"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38l-.01-1.49c-2.01.44-2.43-.86-2.43-.86-.33-.83-.8-1.05-.8-1.05-.65-.45.05-.44.05-.44.72.05 1.1.74 1.1.74.64 1.1 1.68.78 2.09.6.06-.46.25-.78.46-.96-1.6-.18-3.28-.8-3.28-3.57 0-.79.28-1.43.74-1.94-.07-.18-.32-.92.07-1.92 0 0 .6-.19 1.98.74a6.9 6.9 0 0 1 3.6 0c1.38-.93 1.98-.74 1.98-.74.39 1 .14 1.74.07 1.92.46.51.74 1.15.74 1.94 0 2.78-1.69 3.39-3.3 3.57.26.22.49.66.49 1.33l-.01 1.97c0 .21.14.45.55.38A8 8 0 0 0 8 0Z" />
-                </svg>
-                Continue with GitHub
-              </button>
-              <p className="hint" style={{ margin: 0 }}>
-                Google and GitHub sign-in are not connected{" "}
-                {guest ? "yet" : "in this development build"}.
+            {error && (
+              <p className="notice err" role="alert" style={{ margin: "0 0 14px" }}>
+                {ERRORS[error] ?? "Sign-in did not complete. Please try again."}
               </p>
-            </div>
-
-            <div className="divider">or</div>
-
-            <div className="field">
-              <label htmlFor="email">Email</label>
-              <input
-                id="email"
-                type="email"
-                name="email"
-                placeholder="you@example.com"
-                autoComplete="email"
-                aria-describedby="email-hint"
-              />
-              <span id="email-hint" className="hint">
-                You can type here, but email sign-in is not connected{" "}
-                {guest ? "yet" : "in this development build"}, so nothing is sent.
-              </span>
-            </div>
-
-            <div className="section-rule" aria-hidden="true" />
-
-            <div className="local-preview" data-testid="local-preview">
-              <div className="lp-head">
-                <span className="lp-tag">{guest ? "Guest preview" : "Local preview"}</span>
-                <span className="dim">{guest ? "no account needed" : "development only"}</span>
-              </div>
-              {guest ? (
-                <form action={continueAsGuest}>
-                  <button
-                    className="btn primary"
-                    type="submit"
-                    style={{ width: "100%" }}
-                    data-testid="guest-login"
-                  >
-                    Continue as guest
-                  </button>
-                  <p className="hint" style={{ margin: "10px 0 0" }}>
-                    Starts an anonymous guest session in this browser. No Google, GitHub or real
-                    account is used. Saved items stay with this browser for up to 7 days.
-                  </p>
-                </form>
-              ) : dev ? (
-                <form action={continueInDevelopmentMode}>
-                  <button
-                    className="btn primary"
-                    type="submit"
-                    style={{ width: "100%" }}
-                    data-testid="dev-login"
-                  >
-                    Continue in Local Preview
-                  </button>
-                  <p className="hint" style={{ margin: "10px 0 0" }}>
-                    Creates a temporary local development session for this machine. No Google,
-                    GitHub or real account is used, and this does not create a real OpenSourceX
-                    account.
-                  </p>
-                </form>
-              ) : (
-                <p className="notice err" role="alert" style={{ margin: 0 }}>
-                  Local preview is disabled in this environment and real sign-in is not connected.
+            )}
+            <div className="auth-stack">
+              <form action={signInWithGoogle}>
+                <button
+                  className="btn oauth"
+                  type="submit"
+                  disabled={!google}
+                  aria-disabled={!google}
+                  data-testid="oauth-google"
+                  style={{ width: "100%" }}
+                >
+                  <GoogleIcon />
+                  Continue with Google
+                </button>
+              </form>
+              <form action={signInWithGitHub}>
+                <button
+                  className="btn oauth"
+                  type="submit"
+                  disabled={!github}
+                  aria-disabled={!github}
+                  data-testid="oauth-github"
+                  style={{ width: "100%" }}
+                >
+                  <GitHubIcon />
+                  Continue with GitHub
+                </button>
+              </form>
+              {(!google || !github) && (
+                <p className="hint" style={{ margin: 0 }}>
+                  {!google && !github
+                    ? "Google and GitHub sign-in are coming soon."
+                    : `${!google ? "Google" : "GitHub"} sign-in is coming soon.`}
                 </p>
               )}
             </div>
+
+            {(guest || dev) && <div className="divider">or</div>}
+
+            {guest ? (
+              <form action={continueAsGuest} data-testid="local-preview">
+                <button
+                  className="btn"
+                  type="submit"
+                  style={{ width: "100%" }}
+                  data-testid="guest-login"
+                >
+                  Continue as guest
+                </button>
+                <p className="hint" style={{ margin: "10px 0 0" }}>
+                  No account needed. Your chats and saved items stay in this browser for up to 7
+                  days{oauth ? ", and move to your account if you sign in later" : ""}.
+                </p>
+              </form>
+            ) : dev ? (
+              <form action={continueInDevelopmentMode} data-testid="local-preview">
+                <button
+                  className="btn primary"
+                  type="submit"
+                  style={{ width: "100%" }}
+                  data-testid="dev-login"
+                >
+                  Continue in Local Preview
+                </button>
+                <p className="hint" style={{ margin: "10px 0 0" }}>
+                  Development only: a temporary local session on this machine, not a real account.
+                </p>
+              </form>
+            ) : (
+              !oauth && (
+                <p className="notice err" role="alert" style={{ margin: 0 }}>
+                  Sign-in is not available right now.
+                </p>
+              )
+            )}
           </div>
         </section>
       </div>

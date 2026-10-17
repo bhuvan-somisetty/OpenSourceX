@@ -19,8 +19,7 @@ export const NAV = [
 const active = (path: string, href: string) =>
   path.startsWith(href.split("/").slice(0, 2).join("/"));
 
-
-function ProfileMenu({ name, kind }: { name: string; kind: "development" | "guest" }) {
+function ProfileMenu({ name, kind }: { name: string; kind: "development" | "guest" | "oauth" }) {
   const [open, setOpen] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -62,8 +61,24 @@ function ProfileMenu({ name, kind }: { name: string; kind: "development" | "gues
         <div className="menu-pop" role="menu" data-testid="profile-menu">
           <div className="who">
             <strong>{name}</strong>
-            <div className="hint">Session active</div>
+            <div className="hint">
+              {kind === "oauth"
+                ? "Signed in"
+                : kind === "guest"
+                  ? "Guest: chats stay in this browser"
+                  : "Local development session"}
+            </div>
           </div>
+          {kind === "guest" && (
+            <Link
+              href="/login"
+              role="menuitem"
+              onClick={() => setOpen(false)}
+              data-testid="guest-sign-in"
+            >
+              Sign in to keep your chats
+            </Link>
+          )}
           <Link href="/saved" role="menuitem" onClick={() => setOpen(false)}>
             Saved
           </Link>
@@ -119,7 +134,8 @@ function ProfileMenu({ name, kind }: { name: string; kind: "development" | "gues
               Sign out of OpenSourceX?
             </h2>
             <p className="modal-description">
-              You are currently signed in as <strong>{name}</strong>. Are you sure you want to end your current session?
+              You are currently signed in as <strong>{name}</strong>. Are you sure you want to end
+              your current session?
             </p>
             <div className="modal-actions">
               <button
@@ -131,11 +147,7 @@ function ProfileMenu({ name, kind }: { name: string; kind: "development" | "gues
                 Cancel
               </button>
               <form action={signOut}>
-                <button
-                  type="submit"
-                  className="btn danger sm"
-                  data-testid="confirm-sign-out"
-                >
+                <button type="submit" className="btn danger sm" data-testid="confirm-sign-out">
                   Sign out
                 </button>
               </form>
@@ -147,7 +159,13 @@ function ProfileMenu({ name, kind }: { name: string; kind: "development" | "gues
   );
 }
 
-export function Header({ userName, kind }: { userName: string; kind: "development" | "guest" }) {
+export function Header({
+  userName,
+  kind,
+}: {
+  userName: string;
+  kind: "development" | "guest" | "oauth";
+}) {
   const path = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
   useEffect(() => setOpen(false), [path]);

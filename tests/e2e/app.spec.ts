@@ -39,22 +39,20 @@ anon(
 );
 
 anon(
-  "login: OAuth and email are honestly disabled; Local Preview signs in and is clearly labeled",
+  "login: OAuth is honestly disabled without credentials; Local Preview signs in and is clearly labeled",
   async ({ page }) => {
     await page.goto("/login");
     await expect(page.getByTestId("oauth-google")).toBeDisabled();
     await expect(page.getByTestId("oauth-github")).toBeDisabled();
-    await expect(page.getByText("not connected in this development build").first()).toBeVisible();
-    await expect(page.getByTestId("local-preview")).toContainText(
-      "No Google, GitHub or real account is used",
-    );
+    await expect(page.getByText("sign-in are coming soon").first()).toBeVisible();
+    await expect(page.getByTestId("local-preview")).toContainText("not a real account");
     await expect(page.getByTestId("dev-login")).toHaveText("Continue in Local Preview");
     await page.waitForLoadState("networkidle");
     await page.getByTestId("dev-login").click();
     await expect(page).toHaveURL(/\/app$/);
     await expect(page.getByTestId("dev-banner")).toContainText("development session");
     await page.getByTestId("profile-button").click();
-    await expect(page.getByTestId("profile-menu")).toContainText("not a real account");
+    await expect(page.getByTestId("profile-menu")).toContainText("Local development session");
     await page.getByTestId("sign-out").click();
     await expect(page).toHaveURL(/localhost:\d+\/$/);
   },

@@ -238,3 +238,15 @@ Format: Decision, Context, Options, Reason, Trade-offs, Date.
   `OPENROUTER_API_KEY`), after Gemini and Groq. A generic OpenAI-compatible endpoint
   (`ASK_COMPAT_BASE_URL`) lets a developer point a local build at their own FreeLLMAPI or Ollama.
   Migration 009 allows the new engine names.
+
+## D-025 Launch readiness: real sign-in, no preview banner, security contact (2026-10-17)
+
+- Context: the owner is preparing a public launch.
+- Decision: real sign-in with GitHub and Google through Auth.js v5 (JWT sessions, no new
+  tables). A provider is offered once its OAuth credentials and `AUTH_SECRET` are set. Accounts
+  are `app_user` rows with ids like `github:123` and kind `oauth`. A guest's chats and saved items
+  move to the account on first sign-in (`mergeGuestInto`). "Continue as guest" stays available.
+  Clerk was not used because its production mode needs an owned domain. The development/guest
+  preview banner now shows only for local development sessions. Security reports go to
+  `SECURITY_CONTACT_EMAIL`, published on /security and /.well-known/security.txt (RFC 9116). The
+  misleading email-sign-in field was removed from the login page.

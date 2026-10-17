@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { ensureUser } from "@opensourcex/database";
 import { loadEnv } from "@opensourcex/shared";
 import { db } from "@/lib/data";
+import { auth, oauthConfigured, signOut as oauthSignOut } from "@/lib/auth-config";
 
 /**
  * Auth-ready session layer. Two labeled, non-authenticated sessions exist today:
@@ -15,7 +16,9 @@ import { db } from "@/lib/data";
 export interface Session {
   userId: string;
   name: string;
-  kind: "development" | "guest";
+  /** oauth = a real GitHub or Google account (lib/auth-config.ts) */
+  kind: "development" | "guest" | "oauth";
+  image?: string | null;
 }
 
 export const SESSION_COOKIE = "osx_session";
@@ -55,7 +58,23 @@ function sessionFromCookie(value: string | undefined): Session | null {
   return null;
 }
 
+async function oauthSession(): Promise<Session | null> {
+  if (!oauthConfigured()) return null;
+  try {
+    const s = await auth();
+    if (!s?.user?.id) return null;
+    const name = s.user.name || "Member";
+    // idempotent: a reset database self-heals, like guest rows below
+    await ensureUser(db(), s.user.id, name.slice(0, 80), "oauth");
+    return { userId: s.user.id, name, kind: "oauth", image: s.user.image };
+  } catch {
+    return null;
+  }
+}
+
 export async function getSession(): Promise<Session | null> {
+  const signedIn = await oauthSession();
+  if (signedIn) return signedIn;
   const jar = await cookies();
   const s = sessionFromCookie(jar.get(SESSION_COOKIE)?.value);
   if (s) await ensureSessionUser(s);
@@ -103,4 +122,5 @@ export async function startGuestSession(): Promise<void> {
 
 export async function endSession(): Promise<void> {
   (await cookies()).delete(SESSION_COOKIE);
+  if (oauthConfigured()) await oauthSignOut({ redirect: false });
 }
