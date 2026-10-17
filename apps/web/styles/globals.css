@@ -6670,6 +6670,12 @@ mark.porg-hit {
   place-items: center;
   flex: none;
 }
+.home-ask-send svg {
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  flex: none;
+}
 [data-theme="light"] .home-ask-form {
   background: #fff;
 }
