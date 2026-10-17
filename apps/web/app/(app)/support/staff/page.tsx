@@ -9,7 +9,7 @@ import { isStaff, STATUS_LABELS } from "@/lib/support";
 import { DbDown } from "@/components/feedback/Notice";
 import { StaffList } from "@/features/support/StaffList";
 
-export const metadata: Metadata = { title: "All reports" };
+export const metadata: Metadata = { title: "Help & support" };
 export const dynamic = "force-dynamic";
 
 /** Staff only (SUPPORT_ADMIN_IDS): every report, with status changes and replies. */
