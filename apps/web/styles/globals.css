@@ -6616,10 +6616,10 @@ mark.porg-hit {
   opacity: 1;
   transform: translate(-50%, 0);
 }
-.home-orbit:hover .home-orbit-spin,
-.home-orbit:hover .home-orbit-counter,
-.home-orbit:focus-within .home-orbit-spin,
-.home-orbit:focus-within .home-orbit-counter {
+.home-orbit:has(.home-orbit-link:hover) .home-orbit-spin,
+.home-orbit:has(.home-orbit-link:hover) .home-orbit-counter,
+.home-orbit:has(.home-orbit-link:focus-visible) .home-orbit-spin,
+.home-orbit:has(.home-orbit-link:focus-visible) .home-orbit-counter {
   animation-play-state: paused;
 }
 .home-orbit-item:hover {
