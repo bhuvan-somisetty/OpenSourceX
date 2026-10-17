@@ -209,8 +209,7 @@ export default async function AppHome() {
         </section>
 
         <section className="block home-bento" aria-label="Start here">
-          <Link href="/ask" className="home-tile home-tile-ask">
-            <div className="home-tile-glow" aria-hidden="true" />
+          <Link href="/ask" className="home-tile home-tile-ask glow-ask">
             <div className="home-tile-icon tone-violet">{ICONS.spark}</div>
             <h2 className="home-tile-title">Ask anything about open source</h2>
             <p className="home-tile-text">
@@ -231,7 +230,7 @@ export default async function AppHome() {
           </Link>
 
           {TILES.map((t) => (
-            <Link key={t.href} href={t.href} className="home-tile">
+            <Link key={t.href} href={t.href} className={`home-tile glow-${t.tone}`}>
               <div className={`home-tile-icon tone-${t.tone}`}>{t.icon}</div>
               <h2 className="home-tile-title">{t.title}</h2>
               <p className="home-tile-text">{t.text}</p>

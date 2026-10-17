@@ -6386,3 +6386,63 @@ mark.porg-hit {
     animation: none;
   }
 }
+
+/* colored corner lights on the home tiles */
+.home-tile::before,
+.home-tile::after {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  filter: blur(46px);
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.3s;
+}
+.home-tile::before {
+  top: -110px;
+  right: -110px;
+  background: var(--glow-a);
+}
+.home-tile::after {
+  bottom: -120px;
+  left: -120px;
+  background: var(--glow-b);
+  opacity: 0.35;
+}
+.home-tile:hover::before {
+  opacity: 0.85;
+}
+.home-tile:hover::after {
+  opacity: 0.55;
+}
+.home-tile > * {
+  position: relative;
+  z-index: 1;
+}
+.glow-ask {
+  --glow-a: rgba(255, 84, 112, 0.75);
+  --glow-b: rgba(125, 155, 255, 0.7);
+}
+.glow-blue {
+  --glow-a: rgba(80, 130, 255, 0.8);
+  --glow-b: rgba(90, 209, 230, 0.6);
+}
+.glow-violet {
+  --glow-a: rgba(176, 110, 255, 0.8);
+  --glow-b: rgba(255, 92, 170, 0.6);
+}
+.glow-teal {
+  --glow-a: rgba(40, 210, 190, 0.75);
+  --glow-b: rgba(80, 130, 255, 0.55);
+}
+.glow-amber {
+  --glow-a: rgba(255, 170, 50, 0.8);
+  --glow-b: rgba(255, 84, 84, 0.6);
+}
+[data-theme="light"] .home-tile::before,
+[data-theme="light"] .home-tile::after {
+  opacity: 0.25;
+}
