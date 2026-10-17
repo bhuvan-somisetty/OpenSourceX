@@ -6,3 +6,5 @@ export * from "./saved";
 export * from "./lfx-history";
 export * from "./lfx-organizations";
 export * from "./ask-chat";
+export * from "./knowledge";
+export * from "./knowledge-files";

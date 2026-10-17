@@ -2,6 +2,8 @@ import type { ModelMessage } from "ai";
 import {
   aiAnswersToday,
   loadLfxHistory,
+  searchKnowledge,
+  type KnowledgeHit,
   type AskEngine,
   type AskMessage,
   type LfxHistory,
@@ -35,6 +37,15 @@ export type ChatEvent =
 
 const HISTORY_TURNS = 12;
 
+/** Knowledge-base search that never throws (a missing table or DB outage just means no hits). */
+export async function searchGuides(query: string, limit = 6): Promise<KnowledgeHit[]> {
+  try {
+    return await searchKnowledge(db(), query, { limit });
+  } catch {
+    return [];
+  }
+}
+
 export async function* respond(
   userId: string,
   question: string,
@@ -62,7 +73,7 @@ export async function* respond(
       { role: "user", content: question },
     ];
     let text = "";
-    const gen = streamAnswer(providers, messages, k, signal);
+    const gen = streamAnswer(providers, messages, k, signal, (q) => searchGuides(q));
     try {
       while (true) {
         const step = await gen.next();
@@ -78,13 +89,12 @@ export async function* respond(
         }
       }
     } catch {
-      // streamAnswer only throws before any text was written
-      aiNote =
-        "The AI providers could not answer right now, so this answer comes from the offline engine.";
+      // streamAnswer only throws before any text was written: fall through to offline
     }
   }
 
-  const text = answerOffline(question, k, { previous, aiNote });
+  const guides = await searchGuides(question, 8);
+  const text = answerOffline(question, k, { previous, aiNote, guides });
   yield { t: "d", v: text };
   yield { t: "done", engine: "offline" };
   return { text, engine: "offline" };

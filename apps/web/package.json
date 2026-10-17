@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^4.0.80",
+    "@ai-sdk/google": "^4.0.98",
+    "@ai-sdk/groq": "^4.0.62",
     "@ai-sdk/openai": "^4.0.94",
     "@opensourcex/database": "workspace:*",
     "@opensourcex/entity-resolution": "workspace:*",

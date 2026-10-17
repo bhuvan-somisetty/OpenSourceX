@@ -1,3 +1,4 @@
+import type { KnowledgeHit } from "@opensourcex/database";
 import { answerQuestion, type Answer } from "@/lib/ask";
 import {
   findProgram,
@@ -374,6 +375,70 @@ export interface OfflineContext {
   /** earlier user messages in this chat, oldest first, for follow-ups like "and its slack?" */
   previous: string[];
   aiNote?: string;
+  /** knowledge-base sections matching the question, best first */
+  guides?: KnowledgeHit[];
+}
+
+const GUIDE_INTENT =
+  /\b(how|what|why|which|should|can i|do i|tips?|steps?|guide|explain|prerequisites?|requirements?|required|documents?|resume|cv|cover letter|statement of purpose|proposal|apply|applying|application|select|selected|selection|interview|difference|differ|compare|vs|versus|better|license|licence|git|pull request|pr|fork|rebase|sign ?off|dco|cla|contribut\w*|beginner|first|start|example|sample|template|mistakes?|evaluation|after)\b/;
+const WANTS_EXAMPLE = /\b(example|examples|sample|reference|template|show me (a|an)?\s*proposal)\b/;
+
+function strong(h: KnowledgeHit | undefined) {
+  return !!h && (h.matched >= 2 || h.rank >= 1);
+}
+
+function sourcesLine(hits: KnowledgeHit[]) {
+  const seen = new Map<string, { label: string; url: string | null }>();
+  for (const h of hits) for (const s of h.sources) if (!seen.has(s.label)) seen.set(s.label, s);
+  const list = [...seen.values()].slice(0, 4);
+  return list.length
+    ? `_Sources: ${list.map((s) => (s.url ? md(s.label, s.url) : s.label)).join(" · ")}_`
+    : "";
+}
+
+function excerpt(text: string, max: number) {
+  if (text.length <= max) return text;
+  const cut = text.lastIndexOf("\n", max);
+  return `${text.slice(0, cut > max / 2 ? cut : max).trim()}\n\n_…excerpt shortened._`;
+}
+
+/** Answer from the knowledge base: the best section in full, plus a closely related one. */
+function guideAnswer(q: string, all: KnowledgeHit[]): string | null {
+  const wantsExample = WANTS_EXAMPLE.test(q);
+  const guides = all.filter((h) => h.kind === "guide");
+  const refs = all.filter((h) => h.kind === "reference");
+  const out: string[] = [];
+  const used: KnowledgeHit[] = [];
+  const top = guides[0];
+  if (strong(top)) {
+    out.push(`### ${top!.heading}`, top!.content);
+    used.push(top!);
+    const second = guides.find(
+      (h) => h !== top && h.matched >= top!.matched - 1 && h.rank >= top!.rank * 0.6,
+    );
+    if (second && !wantsExample) {
+      out.push(`### ${second.heading}`, second.content);
+      used.push(second);
+    }
+  }
+  if ((wantsExample || !used.length) && strong(refs[0])) {
+    const r = refs[0]!;
+    out.push(
+      `### Example from a reference proposal: ${r.title.replace(/^Example [^:]*: /, "")}`,
+      `_Section: ${r.heading}. Personal details removed; use it to learn the structure, not to copy._`,
+      excerpt(r.content, 1800),
+    );
+    used.push(r);
+  }
+  if (!used.length) return null;
+  const related = guides
+    .filter((h) => !used.includes(h))
+    .slice(0, 3)
+    .map((h) => `*${h.heading}*`);
+  const src = sourcesLine(used);
+  if (src) out.push(src);
+  if (related.length) out.push(`Related: ${related.join(" · ")}`);
+  return out.join("\n\n");
 }
 
 export function answerOffline(
@@ -419,6 +484,10 @@ export function answerOffline(
       /\bmentors?\b|mentored|who (mentors|guides)/.test(q) &&
       org.programs.some((e) => e.program === "lfx-mentorship");
     if (isLfxMentorQ && k.lfx) return withNote(lfxToMarkdown(answerQuestion(raw, k.lfx)));
+    if (!parts.length && GUIDE_INTENT.test(q)) {
+      const g = guideAnswer(q, ctx.guides ?? []);
+      if (g) return withNote(`${g}\n\n---\n\n${orgCard(org, ["repo", "chat"], q)}`);
+    }
     const body = orgCard(org, parts.length ? parts : ["all"], q);
     const others = mentioned.slice(1, 4);
     return withNote(
@@ -435,7 +504,17 @@ export function answerOffline(
     return withNote(recurringAnswer(k, program));
   }
 
-  // 3. stipend, eligibility, timeline, how to apply
+  // 3. how-to and knowledge questions (prerequisites, proposals, cover letters, Git, licences...)
+  const dataQ =
+    /stipend|paid|salary|how much|amount|timeline|deadline|dates?|when (does|do|is|will|are)|eligib|who can apply/.test(
+      q,
+    );
+  if (GUIDE_INTENT.test(q) && !(program && dataQ)) {
+    const g = guideAnswer(q, ctx.guides ?? []);
+    if (g) return withNote(g);
+  }
+
+  // 4. stipend, eligibility, timeline, how to apply
   if (
     program &&
     isProgramInfo &&
@@ -443,13 +522,13 @@ export function answerOffline(
   )
     return withNote(programAnswer(program, q));
 
-  // 4. CNCF LFX Mentorship history (terms, mentors, CNCF projects)
+  // 5. CNCF LFX Mentorship history (terms, mentors, CNCF projects)
   if (k.lfx && (lfxSpecific || program?.def.slug === "lfx-mentorship")) {
     const a = answerQuestion(raw, k.lfx);
     if (a.kind !== "none" && a.kind !== "search") return withNote(lfxToMarkdown(a));
   }
 
-  // 5. lists of organizations, by program and/or technology
+  // 6. lists of organizations, by program and/or technology
   const tech = techIn(q);
   const listIntent = /\b(orgs?|organi[sz]ations?|projects|communities|list|which|show|all)\b/.test(
     q,
@@ -460,11 +539,11 @@ export function answerOffline(
   }
   if (program) return withNote(programAnswer(program, q));
 
-  // 6. general open source questions with a known answer
+  // 7. general open source questions with a known answer
   const faq = FAQ.find((f) => f.test.test(q));
   if (faq) return withNote(faq.answer);
 
-  // 7. keyword search over organizations
+  // 8. keyword search over organizations
   const found = searchOrgs(k, { query: raw }).slice(0, 12);
   if (found.length && found.length < k.orgs.length)
     return withNote(

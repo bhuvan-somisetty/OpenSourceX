@@ -13,7 +13,7 @@ import {
 } from "react";
 import { Markdown } from "./Markdown";
 
-type Engine = "gateway" | "anthropic" | "openai" | "offline" | null;
+type Engine = "google" | "groq" | "gateway" | "anthropic" | "openai" | "offline" | null;
 
 export interface ChatMessage {
   id: string;
