@@ -151,6 +151,9 @@ importers:
       '@ai-sdk/openai':
         specifier: ^4.0.94
         version: 4.0.94(zod@4.6.5)
+      '@ai-sdk/openai-compatible':
+        specifier: ^3.0.70
+        version: 3.0.70(zod@4.6.5)
       '@opensourcex/database':
         specifier: workspace:*
         version: link:../../packages/database
@@ -284,6 +287,12 @@ packages:
 
   '@ai-sdk/groq@4.0.62':
     resolution: {integrity: sha512-0RylnxfFajAZzWTtqaiKTQltTbnf843pGjdZnF4v+S3vnP2SJ+TlWRLA7W4bk+vL8NQJ1g8iHadzIS4MxXqWZg==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      zod: ^3.25.76 || ^4.1.8
+
+  '@ai-sdk/openai-compatible@3.0.70':
+    resolution: {integrity: sha512-0TefLzj+V7aMLrIIKdk3CKRji+hOu3oOSHeLKJVzr0+q/7rsH4Q56w6RK7GX7csmAd9Urtt097XBTkBwJbpDjA==}
     engines: {node: '>=22'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -2087,6 +2096,12 @@ snapshots:
       zod: 4.6.5
 
   '@ai-sdk/groq@4.0.62(zod@4.6.5)':
+    dependencies:
+      '@ai-sdk/provider': 4.0.28
+      '@ai-sdk/provider-utils': 5.0.61(zod@4.6.5)
+      zod: 4.6.5
+
+  '@ai-sdk/openai-compatible@3.0.70(zod@4.6.5)':
     dependencies:
       '@ai-sdk/provider': 4.0.28
       '@ai-sdk/provider-utils': 5.0.61(zod@4.6.5)

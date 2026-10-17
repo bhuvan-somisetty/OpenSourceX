@@ -225,3 +225,16 @@ Format: Decision, Context, Options, Reason, Trade-offs, Date.
   `ASK_LIVE_APIS=false` turns them off. This is question-time lookup, not ingestion:
   `DATA_MODE` and source-ingestion rules (D-019) are unchanged. Unrelated catalog entries
   (weather, games, finance and so on) are not integrated.
+
+## D-024 More free AI providers; FreeLLMAPI stays out of production (2026-10-17)
+
+- Context: the owner asked to use FreeLLMAPI (github.com/tashfeenahmed/freellmapi), a self-hosted
+  router that stacks about 34 providers' free tiers behind one OpenAI-compatible endpoint.
+- Decision: its README and terms review limit it to personal, single-user use. They say not to
+  share the endpoint with other people and not to use free tiers as a production backend. It
+  also needs an always-on server with SQLite, which Vercel does not provide. So OpenSourceX
+  production does not route through it. Instead Ask calls two of the providers its review marks
+  "likely OK" directly, Cerebras and OpenRouter free models (`CEREBRAS_API_KEY`,
+  `OPENROUTER_API_KEY`), after Gemini and Groq. A generic OpenAI-compatible endpoint
+  (`ASK_COMPAT_BASE_URL`) lets a developer point a local build at their own FreeLLMAPI or Ollama.
+  Migration 009 allows the new engine names.
