@@ -8,3 +8,4 @@ export * from "./lfx-organizations";
 export * from "./ask-chat";
 export * from "./knowledge";
 export * from "./knowledge-files";
+export * from "./support";

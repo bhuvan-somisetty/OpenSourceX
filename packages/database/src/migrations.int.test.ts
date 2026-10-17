@@ -22,6 +22,7 @@ describe.skipIf(!url)("migrations from an empty database", () => {
         "007_ask_chat.sql",
         "008_knowledge.sql",
         "009_ask_more_engines.sql",
+        "010_support.sql",
       ]);
       expect(await migrate(fresh)).toEqual([]);
       const t = (
@@ -42,6 +43,8 @@ describe.skipIf(!url)("migrations from an empty database", () => {
         "ask_message",
         "knowledge_doc",
         "knowledge_chunk",
+        "support_ticket",
+        "support_attachment",
       ]) {
         expect(t).toContain(need);
       }

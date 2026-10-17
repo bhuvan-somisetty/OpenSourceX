@@ -13,7 +13,7 @@ export default function Privacy() {
     <LegalPage
       eyebrow="Privacy"
       title="Privacy Policy"
-      updated="17 October 2026"
+      updated="18 October 2026"
       testId="privacy-page"
     >
       <p>
@@ -36,6 +36,11 @@ export default function Privacy() {
         <li>
           <b>Your chats on Ask:</b> the questions you ask and the answers, so your chat history is
           there when you come back. You can delete any chat at any time from the chat sidebar.
+        </li>
+        <li>
+          <b>Problem reports (Help &amp; support):</b> the category, subject, description, page link
+          and any screenshots or photos you attach. Only you and OpenSourceX staff can see them.
+          Email addresses typed into a report are removed automatically.
         </li>
         <li>
           <b>Saved items:</b> the programs, projects, organizations and repositories you choose to
@@ -77,9 +82,10 @@ export default function Privacy() {
 
       <h2>How long we keep it</h2>
       <p>
-        Chats and saved items are kept until you delete them or ask us to delete your account. Guest
-        data can be removed after the guest session ends. If a guest signs in, their guest chats and
-        saved items move to the new account.
+        Chats and saved items are kept until you delete them or ask us to delete your account.
+        Problem reports, including withdrawn ones and their images, are kept so we can follow up,
+        until you ask us to delete them. Guest data can be removed after the guest session ends. If
+        a guest signs in, their guest chats and saved items move to the new account.
       </p>
 
       <h2>Your choices</h2>

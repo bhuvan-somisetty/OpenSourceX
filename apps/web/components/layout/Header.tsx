@@ -82,8 +82,13 @@ function ProfileMenu({ name, kind }: { name: string; kind: "development" | "gues
           <Link href="/saved" role="menuitem" onClick={() => setOpen(false)}>
             Saved
           </Link>
-          <Link href="/sources" role="menuitem" onClick={() => setOpen(false)}>
-            Sources and status
+          <Link
+            href="/support"
+            role="menuitem"
+            onClick={() => setOpen(false)}
+            data-testid="help-support"
+          >
+            Help &amp; support
           </Link>
           <button
             type="button"

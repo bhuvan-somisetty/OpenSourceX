@@ -250,3 +250,16 @@ Format: Decision, Context, Options, Reason, Trade-offs, Date.
   preview banner now shows only for local development sessions. Security reports go to
   `SECURITY_CONTACT_EMAIL`, published on /security and /.well-known/security.txt (RFC 9116). The
   misleading email-sign-in field was removed from the login page.
+
+## D-026 Help & support with complaints (2026-10-18)
+
+- Decision: the profile menu's "Sources and status" link is replaced by "Help & support"
+  (/support). Signed-in accounts can report a problem with a category, subject, description,
+  page link and up to 3 optional images. A confirmation step comes before sending. Guests cannot
+  report. Users see their reports under "My complaints" and can withdraw open or in-review ones,
+  after a confirmation. Staff (`SUPPORT_ADMIN_IDS`) see every report at /support/staff, set its
+  status (open, in review, resolved) and reply. Images are downscaled in the browser, checked by
+  their bytes, limited to PNG/JPEG/WebP under 2 MB, stored in Postgres (migration 010), and served
+  only to the reporter and staff. No extra storage service is used. Emails typed into reports are
+  scrubbed. Limits are 5 reports a minute and 10 a day per user. The /sources page still exists
+  but is no longer in the menu.

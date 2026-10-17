@@ -29,6 +29,8 @@ any open source question and shows where every fact came from.
 - **CNCF in LFX Mentorship:** every term from 2019 on, with the projects, mentors and timelines
   from the official CNCF mentoring repository.
 - **Discover, projects, repositories and interview practice**, plus a saved workspace.
+- **Help & support:** signed-in users report problems with optional screenshots, track them
+  under My complaints, and can withdraw them. Staff answer from a private staff view.
 - **Sign in** with GitHub or Google, or continue as a guest. A guest's chats move to their
   account when they sign in.
 

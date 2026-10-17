@@ -5687,3 +5687,245 @@ mark.porg-hit {
   max-width: 640px;
   text-align: center;
 }
+
+/* help & support */
+.support-layout {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 32px;
+  padding-top: 36px;
+  padding-bottom: 64px;
+  align-items: start;
+}
+.support-side {
+  position: sticky;
+  top: 96px;
+  display: grid;
+  gap: 14px;
+}
+.support-nav {
+  display: grid;
+  gap: 4px;
+}
+.support-nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14.5px;
+}
+.support-nav a:hover {
+  background: var(--glass-2);
+  color: var(--text);
+}
+.support-nav a.active {
+  background: var(--glass-2);
+  color: var(--text);
+  font-weight: 600;
+}
+.support-count {
+  margin-left: auto;
+  min-width: 22px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+}
+.support-side-note {
+  margin: 6px 4px 0;
+}
+.support-head {
+  margin-bottom: 20px;
+}
+.support-head .page {
+  margin: 0;
+  font-size: clamp(28px, 4vw, 40px);
+}
+.support-head .sub {
+  margin: 8px 0 0;
+}
+.support-form {
+  display: grid;
+  gap: 18px;
+  max-width: 760px;
+}
+.support-form textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+.support-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+.support-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 2px 0 6px;
+}
+.support-thumb {
+  position: relative;
+  width: 104px;
+  height: 104px;
+  margin: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  background: var(--glass);
+  display: block;
+}
+.support-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.support-thumb button {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 26px;
+  height: 26px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+}
+.support-add {
+  width: 104px;
+  height: 104px;
+  border: 1px dashed var(--border-strong);
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 13px;
+  cursor: pointer;
+}
+.support-add:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+.support-list {
+  display: grid;
+  gap: 14px;
+  max-width: 860px;
+}
+.support-ticket {
+  display: grid;
+  gap: 10px;
+}
+.support-ticket header {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: flex-start;
+}
+.support-ticket h2 {
+  margin: 0 0 4px;
+  font-size: 17px;
+}
+.support-ticket[data-status="withdrawn"] {
+  opacity: 0.7;
+}
+.support-desc {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.6;
+}
+.support-note {
+  margin: 0;
+  padding: 10px 12px;
+  border-left: 3px solid var(--accent);
+  background: var(--glass);
+  border-radius: 8px;
+}
+.support-status {
+  flex: none;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 600;
+  border: 1px solid currentColor;
+}
+.support-status.open {
+  color: var(--accent);
+}
+.support-status.in_review {
+  color: var(--inf);
+}
+.support-status.resolved {
+  color: var(--ok);
+}
+.support-status.withdrawn {
+  color: var(--text-dim);
+}
+.support-gate,
+.support-empty {
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+  max-width: 620px;
+}
+.support-gate h2,
+.support-empty h2 {
+  margin: 0;
+}
+.support-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.support-filters .chip {
+  text-decoration: none;
+  color: var(--text-muted);
+}
+.support-filters .chip.active {
+  color: var(--text);
+  border-color: var(--accent);
+}
+.support-staff-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.support-staff-actions select {
+  width: auto;
+}
+.support-staff-actions input {
+  flex: 1;
+  min-width: 200px;
+}
+@media (max-width: 860px) {
+  .support-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+    padding-top: 20px;
+  }
+  .support-side {
+    position: static;
+  }
+  .support-nav {
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    overflow-x: auto;
+  }
+  .support-side-note {
+    display: none;
+  }
+}
