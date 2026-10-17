@@ -6,6 +6,10 @@ export const metadata: Metadata = {
   title: { default: "OpenSourceX", template: "%s · OpenSourceX" },
   description:
     "Intelligence for open source. Understand programs, projects and repositories, with a source behind every fact.",
+  // Google Search Console ownership check (needed for Google sign-in branding verification)
+  ...(process.env.GOOGLE_SITE_VERIFICATION?.trim()
+    ? { verification: { google: process.env.GOOGLE_SITE_VERIFICATION.trim() } }
+    : {}),
 };
 export const viewport: Viewport = { width: "device-width", initialScale: 1 };
 
