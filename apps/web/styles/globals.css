@@ -6308,46 +6308,6 @@ mark.porg-hit {
   margin-top: 0;
 }
 
-/* programs strip */
-.home-programs {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 14px;
-  margin-top: 18px;
-}
-.home-program {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  padding: 20px 12px;
-  border-radius: 18px;
-  border: 1px solid var(--border);
-  background: var(--glass);
-  color: var(--text);
-  text-decoration: none;
-  transition:
-    transform 0.25s,
-    border-color 0.25s,
-    background 0.25s;
-}
-.home-program:hover {
-  transform: translateY(-3px);
-  border-color: var(--border-strong);
-  background: var(--glass-2);
-}
-.home-program .mark {
-  width: 64px;
-  height: 64px;
-  border-radius: 18px;
-  font-size: 17px;
-}
-.home-program-name {
-  font-size: 14px;
-  font-weight: 600;
-  text-align: center;
-}
-
 /* path */
 .home-path {
   list-style: none;
@@ -6408,9 +6368,6 @@ mark.porg-hit {
   .home-path {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .home-programs {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
 }
 @media (max-width: 620px) {
   .home-bento,
@@ -6420,9 +6377,6 @@ mark.porg-hit {
   .home-tile-ask {
     grid-column: auto;
     grid-row: auto;
-  }
-  .home-programs {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .home-stats {
     gap: 12px 24px;

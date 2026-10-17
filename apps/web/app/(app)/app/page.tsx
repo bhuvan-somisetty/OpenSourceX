@@ -336,23 +336,6 @@ export default async function AppHome() {
           </section>
         )}
 
-        <section className="block" aria-labelledby="prog-h">
-          <div className="section-head">
-            <h2 id="prog-h">Every major program, one place</h2>
-            <Link href="/programs" className="section-link">
-              All programs →
-            </Link>
-          </div>
-          <div className="home-programs">
-            {PROGRAMS.map((p) => (
-              <Link key={p.slug} href={`/programs/${p.slug}`} className="home-program">
-                <ProgramMark slug={p.slug} />
-                <span className="home-program-name">{p.short}</span>
-              </Link>
-            ))}
-          </div>
-        </section>
-
         <section className="block home-path-wrap" aria-labelledby="path-h">
           <div className="section-head">
             <h2 id="path-h">From first look to selected</h2>
