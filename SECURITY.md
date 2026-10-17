@@ -1,8 +1,10 @@
 # Security
 
-Security contact: **not yet designated.** The project owner has not supplied
-a contact address, so none is published here rather than inventing one.
-Until one is added, report concerns to the repository owner directly through
-GitHub. Do not open public issues for vulnerabilities.
+Report vulnerabilities privately, never in public issues.
+
+- Website: see https://opensource-x.vercel.app/security and the machine-readable
+  https://opensource-x.vercel.app/.well-known/security.txt (RFC 9116).
+- The contact address comes from the `SECURITY_CONTACT_EMAIL` environment variable. Until it
+  is set, the site says that no contact is designated rather than inventing one.
 
 See docs/SECURITY_ARCHITECTURE.md and docs/DATA_POLICY.md.

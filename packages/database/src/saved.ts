@@ -120,3 +120,32 @@ export async function resolveEntity(
   );
   return { exists: true, programSlug: rows[0]?.slug ?? null };
 }
+
+/**
+ * Moves everything a guest session owns (chats, saved items) to a signed-in account, then
+ * removes the guest user. Called once when a guest signs in, so nothing they did is lost.
+ */
+export async function mergeGuestInto(db: Db, guestId: string, userId: string): Promise<void> {
+  if (!guestId.startsWith("guest-") || guestId === userId) return;
+  const client = await db.connect();
+  try {
+    await client.query("BEGIN");
+    await client.query("UPDATE ask_conversation SET user_id=$2 WHERE user_id=$1", [
+      guestId,
+      userId,
+    ]);
+    await client.query(
+      `INSERT INTO saved_item(user_id, entity_type, entity_id, program_slug, created_at)
+       SELECT $2, entity_type, entity_id, program_slug, created_at FROM saved_item WHERE user_id=$1
+       ON CONFLICT (user_id, entity_type, entity_id) DO NOTHING`,
+      [guestId, userId],
+    );
+    await client.query("DELETE FROM app_user WHERE id=$1", [guestId]);
+    await client.query("COMMIT");
+  } catch (e) {
+    await client.query("ROLLBACK");
+    throw e;
+  } finally {
+    client.release();
+  }
+}
