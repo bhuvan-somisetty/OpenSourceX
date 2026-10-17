@@ -119,6 +119,8 @@ const STEPS = [
   ["Write a winning proposal", "Ask the AI guide to review your plan.", "/ask"],
 ];
 
+const STEP_GLOWS = ["ask", "blue", "teal", "amber"];
+
 export default async function AppHome() {
   const session = await requireSession();
   const res = await load(async (d) => ({
@@ -297,7 +299,7 @@ export default async function AppHome() {
           <ol className="home-path">
             {STEPS.map(([t, d, h], i) => (
               <li key={t}>
-                <Link href={h!} className="home-step">
+                <Link href={h!} className={`home-step glow-${STEP_GLOWS[i]}`}>
                   <span className="home-step-num">{String(i + 1).padStart(2, "0")}</span>
                   <strong>{t}</strong>
                   <span className="muted">{d}</span>

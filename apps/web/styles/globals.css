@@ -6315,6 +6315,8 @@ mark.porg-hit {
   gap: 16px;
 }
 .home-step {
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -6389,7 +6391,9 @@ mark.porg-hit {
 
 /* colored corner lights on the home tiles */
 .home-tile::before,
-.home-tile::after {
+.home-tile::after,
+.home-step::before,
+.home-step::after {
   content: "";
   position: absolute;
   width: 220px;
@@ -6401,24 +6405,29 @@ mark.porg-hit {
   z-index: 0;
   transition: opacity 0.3s;
 }
-.home-tile::before {
+.home-tile::before,
+.home-step::before {
   top: -110px;
   right: -110px;
   background: var(--glow-a);
 }
-.home-tile::after {
+.home-tile::after,
+.home-step::after {
   bottom: -120px;
   left: -120px;
   background: var(--glow-b);
   opacity: 0.35;
 }
-.home-tile:hover::before {
+.home-tile:hover::before,
+.home-step:hover::before {
   opacity: 0.85;
 }
-.home-tile:hover::after {
+.home-tile:hover::after,
+.home-step:hover::after {
   opacity: 0.55;
 }
-.home-tile > * {
+.home-tile > *,
+.home-step > * {
   position: relative;
   z-index: 1;
 }
@@ -6443,6 +6452,8 @@ mark.porg-hit {
   --glow-b: rgba(255, 84, 84, 0.6);
 }
 [data-theme="light"] .home-tile::before,
-[data-theme="light"] .home-tile::after {
+[data-theme="light"] .home-tile::after,
+[data-theme="light"] .home-step::before,
+[data-theme="light"] .home-step::after {
   opacity: 0.25;
 }
