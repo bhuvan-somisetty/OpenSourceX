@@ -180,15 +180,6 @@ export default async function AppHome() {
               Find where you fit, then make your first contribution count.
             </p>
 
-            <div className="home-actions">
-              <Link href="/ask" className="btn primary home-action">
-                Ask the AI guide <Arrow />
-              </Link>
-              <Link href="/discover" className="btn home-action">
-                Discover organizations
-              </Link>
-            </div>
-
             <dl className="home-stats">
               {stats.map(([n, l]) => (
                 <div key={l} className="home-stat">
@@ -206,7 +197,7 @@ export default async function AppHome() {
               <LogoMark size={54} />
             </div>
             <div className="home-orbit-spin">
-              {PROGRAMS.slice(0, 8).map((p, i) => (
+              {PROGRAMS.map((p, i) => (
                 <div key={p.slug} className="home-orbit-item" style={{ ["--i" as string]: i }}>
                   <div className="home-orbit-counter">
                     <ProgramMark slug={p.slug} />

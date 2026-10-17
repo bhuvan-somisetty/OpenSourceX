@@ -6055,18 +6055,6 @@ mark.porg-hit {
   line-height: 1.6;
   color: var(--text-muted);
 }
-.home-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 32px;
-}
-.home-action {
-  padding: 14px 24px;
-  font-size: 15px;
-  border-radius: 999px;
-  gap: 8px;
-}
 .home-stats {
   display: flex;
   flex-wrap: wrap;
@@ -6092,21 +6080,21 @@ mark.porg-hit {
 
 /* orbit of program logos */
 .home-orbit {
-  --r: 170px;
+  --r: 200px;
   position: relative;
-  width: calc(var(--r) * 2 + 80px);
+  width: calc(var(--r) * 2 + 76px);
   aspect-ratio: 1;
   max-width: 100%;
   margin: 0 auto;
 }
 .home-orbit-ring {
   position: absolute;
-  inset: 40px;
+  inset: 38px;
   border-radius: 50%;
   border: 1px dashed rgba(125, 155, 255, 0.22);
 }
 .home-orbit-ring.r2 {
-  inset: 110px;
+  inset: 130px;
   border: 1px solid rgba(155, 125, 255, 0.16);
   box-shadow: 0 0 80px rgba(125, 155, 255, 0.18) inset;
 }
@@ -6136,17 +6124,17 @@ mark.porg-hit {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: rotate(calc(var(--i) * 45deg)) translate(var(--r)) rotate(calc(var(--i) * -45deg));
+  transform: rotate(calc(var(--i) * 36deg)) translate(var(--r)) rotate(calc(var(--i) * -36deg));
 }
 .home-orbit-counter {
   translate: -50% -50%;
   animation: home-spin 60s linear infinite reverse;
 }
 .home-orbit .mark {
-  width: 62px;
-  height: 62px;
-  border-radius: 18px;
-  font-size: 16px;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  font-size: 15px;
   background: rgba(14, 18, 28, 0.85);
   backdrop-filter: blur(10px);
 }
