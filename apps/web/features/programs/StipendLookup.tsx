@@ -3,9 +3,16 @@
 import { useState } from "react";
 import type { StipendTable } from "@/lib/program-info";
 
-const LABEL: Record<string, string> = { amount: "Stipend", small: "Small project", medium: "Medium project", large: "Large project" };
+const LABEL: Record<string, string> = {
+  amount: "Stipend",
+  small: "Small project",
+  medium: "Medium project",
+  large: "Large project",
+};
 const money = (n: number, currency: string) =>
-  new Intl.NumberFormat("en-US", { style: "currency", currency, maximumFractionDigits: 0 }).format(n);
+  new Intl.NumberFormat("en-US", { style: "currency", currency, maximumFractionDigits: 0 }).format(
+    n,
+  );
 
 /** Pick a country, see the stipend the program publishes for it. */
 export function StipendLookup({ table, note }: { table: StipendTable; note?: string }) {
@@ -34,7 +41,11 @@ export function StipendLookup({ table, note }: { table: StipendTable; note?: str
           ))}
         </div>
       )}
-      {table.paidIn && <p className="dim pinfo-small">Paid in {table.paidIn} at the price on the day of payment.</p>}
+      {table.paidIn && (
+        <p className="dim pinfo-small">
+          Paid in {table.paidIn} at the price on the day of payment.
+        </p>
+      )}
     </div>
   );
 }

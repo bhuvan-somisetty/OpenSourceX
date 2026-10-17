@@ -10,7 +10,7 @@ sources: Google Summer of Code, program rules and FAQ | https://summerofcode.wit
 1. **Pick 1–3 organizations** from the accepted list (on the GSoC site, or the [GSoC page on OpenSourceX](/programs/gsoc)). Read their **project ideas** lists.
 2. **Join their chat or mailing list early** and introduce yourself. Ask focused questions about the idea you like.
 3. **Contribute before the proposal period:** set up the project, fix a good first issue, and get a PR reviewed or merged. Most organizations expect it, and some require it.
-4. **Write the proposal** (see *Writing a mentorship proposal*). Share a draft with the mentors and revise it based on their feedback.
+4. **Write the proposal** (see _Writing a mentorship proposal_). Share a draft with the mentors and revise it based on their feedback.
 5. **Submit up to three proposals** on summerofcode.withgoogle.com before the deadline. Only one can be accepted.
 6. Organizations rank proposals, and Google announces the accepted contributors on the published date.
 

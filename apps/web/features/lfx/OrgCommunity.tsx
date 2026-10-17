@@ -15,10 +15,22 @@ function PlatformIcon({ platform }: { platform: ChatPlatform }) {
   if (platform === "slack") {
     return (
       <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-        <path fill="#E01E5A" d="M5.04 15.17a2.52 2.52 0 1 1-2.52-2.52h2.52zm1.27 0a2.52 2.52 0 0 1 5.04 0v6.31a2.52 2.52 0 1 1-5.04 0z" />
-        <path fill="#36C5F0" d="M8.83 5.04a2.52 2.52 0 1 1 2.52-2.52v2.52zm0 1.27a2.52 2.52 0 0 1 0 5.04H2.52a2.52 2.52 0 1 1 0-5.04z" />
-        <path fill="#2EB67D" d="M18.96 8.83a2.52 2.52 0 1 1 2.52 2.52h-2.52zm-1.27 0a2.52 2.52 0 0 1-5.04 0V2.52a2.52 2.52 0 1 1 5.04 0z" />
-        <path fill="#ECB22E" d="M15.17 18.96a2.52 2.52 0 1 1-2.52 2.52v-2.52zm0-1.27a2.52 2.52 0 0 1 0-5.04h6.31a2.52 2.52 0 1 1 0 5.04z" />
+        <path
+          fill="#E01E5A"
+          d="M5.04 15.17a2.52 2.52 0 1 1-2.52-2.52h2.52zm1.27 0a2.52 2.52 0 0 1 5.04 0v6.31a2.52 2.52 0 1 1-5.04 0z"
+        />
+        <path
+          fill="#36C5F0"
+          d="M8.83 5.04a2.52 2.52 0 1 1 2.52-2.52v2.52zm0 1.27a2.52 2.52 0 0 1 0 5.04H2.52a2.52 2.52 0 1 1 0-5.04z"
+        />
+        <path
+          fill="#2EB67D"
+          d="M18.96 8.83a2.52 2.52 0 1 1 2.52 2.52h-2.52zm-1.27 0a2.52 2.52 0 0 1-5.04 0V2.52a2.52 2.52 0 1 1 5.04 0z"
+        />
+        <path
+          fill="#ECB22E"
+          d="M15.17 18.96a2.52 2.52 0 1 1-2.52 2.52v-2.52zm0-1.27a2.52 2.52 0 0 1 0-5.04h6.31a2.52 2.52 0 1 1 0 5.04z"
+        />
       </svg>
     );
   }
@@ -34,12 +46,7 @@ function PlatformIcon({ platform }: { platform: ChatPlatform }) {
   }
   return (
     <svg viewBox="0 0 24 24" width="22" height="22" fill="none" aria-hidden="true">
-      <path
-        d="M4 5h16v11H9l-5 4z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
+      <path d="M4 5h16v11H9l-5 4z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -70,13 +77,20 @@ function howTo(chat: OrgChat, orgName: string): string {
 }
 
 function prettySource(url: string): string {
-  return url.replace(/^https?:\/\/(www\.)?/, "").replace(/#readme$/, "").replace("/blob/HEAD/", " › ");
+  return url
+    .replace(/^https?:\/\/(www\.)?/, "")
+    .replace(/#readme$/, "")
+    .replace("/blob/HEAD/", " › ");
 }
 
 export function OrgCommunity({ community, orgName }: { community: Community; orgName: string }) {
   const { chats } = community;
   return (
-    <section className="block org-community" aria-labelledby="org-community-h" data-testid="org-community">
+    <section
+      className="block org-community"
+      aria-labelledby="org-community-h"
+      data-testid="org-community"
+    >
       <div className="section-head">
         <h2 id="org-community-h">Community</h2>
         <span className="dim">Where {orgName} talks</span>
@@ -93,7 +107,12 @@ export function OrgCommunity({ community, orgName }: { community: Community; org
           </p>
           {community.repoUrl && /github\.com\/[^/]+\/[^/]+/.test(community.repoUrl) && (
             <div className="actions" style={{ marginTop: 14 }}>
-              <a className="btn" href={`${community.repoUrl}/issues`} target="_blank" rel="noreferrer noopener">
+              <a
+                className="btn"
+                href={`${community.repoUrl}/issues`}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Open issues ↗
               </a>
             </div>
@@ -135,7 +154,12 @@ export function OrgCommunity({ community, orgName }: { community: Community; org
                     {p.verb} ↗
                   </a>
                   {chat.channelUrl && (
-                    <a className="btn" href={chat.channelUrl} target="_blank" rel="noreferrer noopener">
+                    <a
+                      className="btn"
+                      href={chat.channelUrl}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
                       {chat.channels?.length === 1 ? `Open ${chat.channels[0]}` : "Open channel"} ↗
                     </a>
                   )}

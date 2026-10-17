@@ -15,7 +15,7 @@ LFX programs ask the cover letter to answer these four questions:
 3. **What experience and knowledge or skills do you have that apply to this project?**
 4. **What do you hope to get out of this mentorship?**
 
-Answer each one under its own heading, using the same wording, so the reviewer can find it fast. Many strong CNCF applications then go on with a full proposal: problem, technical plan, timeline and risks (see *Writing a mentorship proposal*).
+Answer each one under its own heading, using the same wording, so the reviewer can find it fast. Many strong CNCF applications then go on with a full proposal: problem, technical plan, timeline and risks (see _Writing a mentorship proposal_).
 
 ## What makes a cover letter stand out
 

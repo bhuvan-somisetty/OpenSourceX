@@ -11,15 +11,15 @@ sources: CNCF, Getting Started with CNCF Mentorship (KubeCon India 2026, CC BY 4
 
 Every LFX Mentorship application asks for the same two documents, and each project can add its own prerequisites on top:
 
-| What | Asked by | Notes |
-| --- | --- | --- |
-| **Resume / CV** | Every program | One or two pages. Link your GitHub and your open source pull requests. |
-| **Cover letter** (statement of purpose) | Every program | Answers four set questions (see *LFX cover letter*). Many CNCF mentors expect it to read like a short proposal. |
-| **Project-specific prerequisites** | Set per program | Listed in the program's **Prerequisites** section on its LFX page. Each project chooses different ones. |
+| What                                    | Asked by        | Notes                                                                                                           |
+| --------------------------------------- | --------------- | --------------------------------------------------------------------------------------------------------------- |
+| **Resume / CV**                         | Every program   | One or two pages. Link your GitHub and your open source pull requests.                                          |
+| **Cover letter** (statement of purpose) | Every program   | Answers four set questions (see _LFX cover letter_). Many CNCF mentors expect it to read like a short proposal. |
+| **Project-specific prerequisites**      | Set per program | Listed in the program's **Prerequisites** section on its LFX page. Each project chooses different ones.         |
 
 Project-specific prerequisites vary, so some programs ask for one item and others ask for several. The common ones are:
 
-- **A certificate of completion of a free Linux Foundation Training course.** For example, the Linux Kernel Mentorship requires *A Beginner's Guide to Linux Kernel Development (LFD103)*. You finish the course and upload the certificate you download from it.
+- **A certificate of completion of a free Linux Foundation Training course.** For example, the Linux Kernel Mentorship requires _A Beginner's Guide to Linux Kernel Development (LFD103)_. You finish the course and upload the certificate you download from it.
 - **A coding task or test**, or a first contribution (an issue fix, a small PR), often linked from the project's GitHub mentorship issue.
 - **A project proposal** with your technical plan and a week-by-week timeline. CNCF projects usually ask for it in the cover letter or as an attached document.
 - **Proof of enrollment** (student ID, transcript or admission letter) for programs that are limited to students.
@@ -41,7 +41,7 @@ Some programs need only the resume and the cover letter. Others ask for all thre
 
 ## How many LFX programs can I apply to?
 
-You can apply to **at most three mentorship programs per term**. Programs you withdraw from during the application period do not count toward the limit, but re-applications do. You can only take part in one mentorship at a time, and an earlier LF mentorship can make you ineligible for another (see *Am I eligible?* in the LFX docs).
+You can apply to **at most three mentorship programs per term**. Programs you withdraw from during the application period do not count toward the limit, but re-applications do. You can only take part in one mentorship at a time, and an earlier LF mentorship can make you ineligible for another (see _Am I eligible?_ in the LFX docs).
 
 ## When LFX applications open
 

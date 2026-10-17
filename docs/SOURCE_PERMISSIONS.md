@@ -15,12 +15,12 @@ owner approval has been recorded yet.
 
 ## Summary
 
-| Provider                              | Decision                                                                               | Live ingestion |
-| ------------------------------------- | -------------------------------------------------------------------------------------- | -------------- |
-| GSoC archive (Google)                 | **APPROVED by owner 2026-10-15 (D-020)**: org-level snapshot, committed, no live fetch | off (snapshot) |
-| LFX Mentorship API (Linux Foundation) | **BLOCKED** until written permission                                                   | off            |
-| CNCF mentoring repository (CNCF)      | **CONDITIONAL**: licence basis established; owner approval and one confirmation needed | off            |
-| GitHub API (GitHub)                   | **CONDITIONAL**: API terms allow it; needs token model and owner approval              | off            |
+| Provider                              | Decision                                                                                                                  | Live ingestion |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| GSoC archive (Google)                 | **APPROVED by owner 2026-10-15 (D-020)**: org-level snapshot, committed, no live fetch                                    | off (snapshot) |
+| LFX Mentorship API (Linux Foundation) | **BLOCKED** until written permission                                                                                      | off            |
+| CNCF mentoring repository (CNCF)      | **CONDITIONAL**: licence basis established; owner approval and one confirmation needed                                    | off            |
+| GitHub API (GitHub)                   | **CONDITIONAL**: API terms allow it; needs token model and owner approval                                                 | off            |
 | Other program lists (D-020)           | **APPROVED by owner 2026-10-15**: Season of Docs, Outreachy, Summer of Bitcoin, ESoC, OSPP, C4GT, MLH, Igalia, Processing | off (snapshot) |
 
 ---

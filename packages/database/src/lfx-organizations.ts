@@ -164,10 +164,11 @@ export async function listLfxOrganizations(
 
   for (const r of mpRows) {
     const name = r.cncf_project_name as string;
-    const slug = (
-      r.cncf_project_slug ??
-      name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")
-    ) as string;
+    const slug = (r.cncf_project_slug ??
+      name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "")) as string;
 
     if (!orgMap.has(slug)) {
       orgMap.set(slug, {
@@ -206,7 +207,7 @@ export async function listLfxOrganizations(
         const trimmed = rawTech.trim();
         if (!trimmed) continue;
         const low = trimmed.toLowerCase();
-        
+
         // Org tech count
         org.techMap.set(low, (org.techMap.get(low) ?? 0) + 1);
 
@@ -238,7 +239,7 @@ export async function listLfxOrganizations(
   let orgList: LfxOrgSummary[] = [...orgMap.values()].map((o) => {
     const sortedYears = [...o.years].sort((a, b) => b - a);
     const sortedTerms = [...o.terms].sort((a, b) => b.localeCompare(a));
-    
+
     let latestTerm = "";
     if (sortedYears.length > 0) {
       const topYear = sortedYears[0];
@@ -262,7 +263,11 @@ export async function listLfxOrganizations(
     return {
       name: o.name,
       slug: o.slug,
-      description: o.summaries[0] ? (o.summaries[0].length > 120 ? `${o.summaries[0].slice(0, 117)}...` : o.summaries[0]) : null,
+      description: o.summaries[0]
+        ? o.summaries[0].length > 120
+          ? `${o.summaries[0].slice(0, 117)}...`
+          : o.summaries[0]
+        : null,
       projectCount: o.projectIds.size,
       yearCount: o.years.size,
       years: sortedYears,
@@ -300,7 +305,9 @@ export async function listLfxOrganizations(
   // Sort: projects count desc, then name asc
   orgList.sort((a, b) => b.projectCount - a.projectCount || a.name.localeCompare(b.name));
 
-  const sortedGlobalTech = [...globalTechMap.values()].sort((a, b) => b.n - a.n || a.value.localeCompare(b.value));
+  const sortedGlobalTech = [...globalTechMap.values()].sort(
+    (a, b) => b.n - a.n || a.value.localeCompare(b.value),
+  );
 
   return {
     organizations: orgList,
@@ -313,10 +320,7 @@ export async function listLfxOrganizations(
   };
 }
 
-export async function getLfxOrganization(
-  db: Db,
-  slugOrName: string,
-): Promise<LfxOrgDetail | null> {
+export async function getLfxOrganization(db: Db, slugOrName: string): Promise<LfxOrgDetail | null> {
   const cleanTarget = slugOrName.trim().toLowerCase();
 
   // Fetch mentorship projects for this org
@@ -348,10 +352,11 @@ export async function getLfxOrganization(
   if (!mpRows.length) return null;
 
   const orgName = mpRows[0].cncf_project_name as string;
-  const orgSlug = (
-    mpRows[0].cncf_project_slug ??
-    orgName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")
-  ) as string;
+  const orgSlug = (mpRows[0].cncf_project_slug ??
+    orgName
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "")) as string;
 
   // Fetch mentors for all these projects
   const mpIds = mpRows.map((r) => Number(r.id));
@@ -381,14 +386,20 @@ export async function getLfxOrganization(
   const srcMap = await fetchSources(db, provIds);
 
   const allProjectsMap = new Map<number, LfxOrgProject>();
-  const yearGroupsMap = new Map<number, Map<string, {
-    termCode: string;
-    termLabel: string;
-    termBadge: string;
-    startsOn: string | null;
-    endsOn: string | null;
-    projects: LfxOrgProject[];
-  }>>();
+  const yearGroupsMap = new Map<
+    number,
+    Map<
+      string,
+      {
+        termCode: string;
+        termLabel: string;
+        termBadge: string;
+        startsOn: string | null;
+        endsOn: string | null;
+        projects: LfxOrgProject[];
+      }
+    >
+  >();
 
   const techFreq = new Map<string, { value: string; n: number }>();
   const repoUrls = new Set<string>();
@@ -399,8 +410,13 @@ export async function getLfxOrganization(
     const rawId = Number(r.id);
     const yr = r.year ? Number(r.year) : null;
     const termCode = (r.term_code as string) || (r.raw_term_name as string) || null;
-    const termBadge = yr && termCode ? `${yr} ${termCode}` : termCode ?? (yr ? `${yr}` : "Recorded");
-    const termLabel = termCode ? (termCode.startsWith("T") ? `Term ${termCode.slice(1)}` : termCode) : "Recorded Term";
+    const termBadge =
+      yr && termCode ? `${yr} ${termCode}` : (termCode ?? (yr ? `${yr}` : "Recorded"));
+    const termLabel = termCode
+      ? termCode.startsWith("T")
+        ? `Term ${termCode.slice(1)}`
+        : termCode
+      : "Recorded Term";
 
     const techList: string[] = [];
     if (Array.isArray(r.technologies)) {
@@ -458,8 +474,14 @@ export async function getLfxOrganization(
     const termMap = yearGroupsMap.get(groupYear)!;
     const groupTermCode = termCode || "General";
     if (!termMap.has(groupTermCode)) {
-      const starts = r.d_starts_on || r.starts_on ? new Date(r.d_starts_on || r.starts_on).toISOString().slice(0, 10) : null;
-      const ends = r.d_ends_on || r.ends_on ? new Date(r.d_ends_on || r.ends_on).toISOString().slice(0, 10) : null;
+      const starts =
+        r.d_starts_on || r.starts_on
+          ? new Date(r.d_starts_on || r.starts_on).toISOString().slice(0, 10)
+          : null;
+      const ends =
+        r.d_ends_on || r.ends_on
+          ? new Date(r.d_ends_on || r.ends_on).toISOString().slice(0, 10)
+          : null;
       termMap.set(groupTermCode, {
         termCode: groupTermCode,
         termLabel,
@@ -493,7 +515,12 @@ export async function getLfxOrganization(
 
   const distinctYears = sortedYears.filter((y) => y > 0);
   let latestTerm = "";
-  if (timeline.length > 0 && timeline[0]?.terms && timeline[0].terms.length > 0 && timeline[0].terms[0]) {
+  if (
+    timeline.length > 0 &&
+    timeline[0]?.terms &&
+    timeline[0].terms.length > 0 &&
+    timeline[0].terms[0]
+  ) {
     latestTerm = timeline[0].terms[0].termBadge;
   }
 
@@ -505,7 +532,11 @@ export async function getLfxOrganization(
   return {
     name: orgName,
     slug: orgSlug,
-    description: summaries[0] ? (summaries[0].length > 150 ? `${summaries[0].slice(0, 147)}...` : summaries[0]) : null,
+    description: summaries[0]
+      ? summaries[0].length > 150
+        ? `${summaries[0].slice(0, 147)}...`
+        : summaries[0]
+      : null,
     projectCount: allProjectsMap.size,
     yearCount: distinctYears.length,
     years: distinctYears,

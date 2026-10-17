@@ -61,7 +61,7 @@ export function OrgLogo({ slug, name, size = 48, className = "" }: OrgLogoProps)
     boxShadow: isWhiteBg
       ? "0 2px 10px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.05)"
       : "0 2px 8px rgba(0,0,0,0.25)",
-    padding: isWhiteBg ? 4 : (isOpenEverest ? 0 : 2),
+    padding: isWhiteBg ? 4 : isOpenEverest ? 0 : 2,
   };
 
   if (hasError) {
@@ -85,11 +85,7 @@ export function OrgLogo({ slug, name, size = 48, className = "" }: OrgLogoProps)
     );
   }
 
-  const imageSize = isOpenEverest
-    ? size - 2
-    : isWhiteBg
-      ? size - 10
-      : size - 10;
+  const imageSize = isOpenEverest ? size - 2 : isWhiteBg ? size - 10 : size - 10;
 
   return (
     <div

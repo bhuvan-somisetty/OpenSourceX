@@ -116,7 +116,13 @@ export async function ProgramInfoBox({ info }: { info: ProgramInfo }) {
 
       <div className="actions pinfo-links">
         {info.links.map((l, i) => (
-          <a key={l.url} className={`btn${i === 0 ? " primary" : ""}`} href={l.url} target="_blank" rel="noreferrer noopener">
+          <a
+            key={l.url}
+            className={`btn${i === 0 ? " primary" : ""}`}
+            href={l.url}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             {l.label} ↗
           </a>
         ))}

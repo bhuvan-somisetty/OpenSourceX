@@ -6,3 +6,6 @@ allowBuilds:
   esbuild: true
 minimumReleaseAgeExclude:
   - tsx@4.23.15
+overrides:
+  # security fix (event-loop DoS), pulled in through next > postcss
+  source-map-js: ">=1.2.2"

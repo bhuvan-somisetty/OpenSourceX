@@ -8,14 +8,7 @@
  */
 
 export type ChatPlatform =
-  | "slack"
-  | "discord"
-  | "matrix"
-  | "irc"
-  | "zulip"
-  | "gitter"
-  | "telegram"
-  | "other";
+  "slack" | "discord" | "matrix" | "irc" | "zulip" | "gitter" | "telegram" | "other";
 
 export interface OrgChat {
   platform: ChatPlatform;
@@ -58,7 +51,12 @@ const k8s = (channels?: string[], channelUrl?: string): OrgChat => ({
   channels,
   channelUrl,
 });
-const slack = (workspace: string, joinUrl: string, channels?: string[], channelUrl?: string): OrgChat => ({
+const slack = (
+  workspace: string,
+  joinUrl: string,
+  channels?: string[],
+  channelUrl?: string,
+): OrgChat => ({
   platform: "slack",
   workspace,
   joinUrl,
@@ -78,31 +76,48 @@ const C = (repo: string, chats: OrgChat[], source = readme(repo)): OrgCommunity 
 });
 
 export const ORG_COMMUNITY: Record<string, OrgCommunity> = {
-  antrea: C("antrea-io/antrea", [k8s(["#antrea"], "https://kubernetes.slack.com/messages/CR2J23M0X")]),
+  antrea: C("antrea-io/antrea", [
+    k8s(["#antrea"], "https://kubernetes.slack.com/messages/CR2J23M0X"),
+  ]),
   "apicurio-registry": C("Apicurio/apicurio-registry", [
     cncf(["#apicurio-registry"], "https://cloud-native.slack.com/archives/C0BDWTC1DTM"),
   ]),
   argo: C(
     "argoproj/argo-cd",
     [
-      slack("CNCF Slack", "https://argoproj.github.io/community/join-slack", ["#argo-contributors"], "https://cloud-native.slack.com/archives/C020XM04CUW"),
+      slack(
+        "CNCF Slack",
+        "https://argoproj.github.io/community/join-slack",
+        ["#argo-contributors"],
+        "https://cloud-native.slack.com/archives/C020XM04CUW",
+      ),
     ],
     readme("argoproj/argoproj"),
   ),
-  armada: C("armadaproject/armada", [cncf(["#armada"], "https://cloud-native.slack.com/archives/C03T9CBCEMC")]),
+  armada: C("armadaproject/armada", [
+    cncf(["#armada"], "https://cloud-native.slack.com/archives/C03T9CBCEMC"),
+  ]),
   cartography: C("cartography-cncf/cartography", [
     slack("CNCF Slack", "https://communityinviter.com/apps/cloud-native/cncf", ["#cartography"]),
   ]),
-  carvel: C("carvel-dev/ytt", [slack("Kubernetes Slack", "https://slack.kubernetes.io/", ["#carvel"])]),
+  carvel: C("carvel-dev/ytt", [
+    slack("Kubernetes Slack", "https://slack.kubernetes.io/", ["#carvel"]),
+  ]),
   "chaos-mesh": C("chaos-mesh/chaos-mesh", [cncf(["#project-chaos-mesh"])]),
   cilium: C("cilium/cilium", [slack("Cilium Slack", "https://slack.cilium.io")]),
-  "cloud-native-buildpacks": C("buildpacks/pack", [cncf(["#buildpacks-maintainers"])], readme("buildpacks/docs")),
+  "cloud-native-buildpacks": C(
+    "buildpacks/pack",
+    [cncf(["#buildpacks-maintainers"])],
+    readme("buildpacks/docs"),
+  ),
   cloudnativepg: C(
     "cloudnative-pg/cloudnative-pg",
     [cncf(undefined, "https://cloud-native.slack.com/archives/C08MAUJ7NPM")],
     "https://cloudnative-pg.io/",
   ),
-  "cluster-api-provider-gcp": C("kubernetes-sigs/cluster-api-provider-gcp", [k8s(["#cluster-api-gcp"])]),
+  "cluster-api-provider-gcp": C("kubernetes-sigs/cluster-api-provider-gcp", [
+    k8s(["#cluster-api-gcp"]),
+  ]),
   "cncf-landscape": C("cncf/landscape", []),
   "cncf-tag-contributor-strategy": C("cncf/tag-contributor-strategy", [
     cncf(["#tag-contributor-strategy"], "https://cloud-native.slack.com/archives/CT6CWS1JN"),
@@ -114,9 +129,13 @@ export const ORG_COMMUNITY: Record<string, OrgCommunity> = {
     cncf(["#copacetic"], "https://cloud-native.slack.com/archives/C071UU5QDKJ"),
   ]),
   coredns: C("coredns/coredns", [cncf(["#coredns"])]),
-  cortex: C("cortexproject/cortex", [cncf(["#cortex"], "https://cloud-native.slack.com/messages/cortex/")]),
+  cortex: C("cortexproject/cortex", [
+    cncf(["#cortex"], "https://cloud-native.slack.com/messages/cortex/"),
+  ]),
   "cri-o": C("cri-o/cri-o", [k8s(["#crio"], "https://kubernetes.slack.com/archives/crio")]),
-  crossplane: C("crossplane/crossplane", [slack("Crossplane Slack", "https://slack.crossplane.io")]),
+  crossplane: C("crossplane/crossplane", [
+    slack("Crossplane Slack", "https://slack.crossplane.io"),
+  ]),
   devfile: C(
     "devfile/api",
     [k8s(["#devfile"], "https://kubernetes.slack.com/archives/C02SX9E5B55")],
@@ -130,10 +149,20 @@ export const ORG_COMMUNITY: Record<string, OrgCommunity> = {
   "elekto-and-kubernetes-sig-contribex": C("elekto-io/elekto", [cncf(["#elekto"])]),
   envoy: C("envoyproxy/envoy", [slack("Envoy Slack", "https://www.envoyproxy.io/slack")]),
   "envoy-gateway": C("envoyproxy/gateway", [
-    slack("Envoy Slack", "https://www.envoyproxy.io/slack", undefined, "https://envoyproxy.slack.com/archives/C03E6NHLESV"),
+    slack(
+      "Envoy Slack",
+      "https://www.envoyproxy.io/slack",
+      undefined,
+      "https://envoyproxy.slack.com/archives/C03E6NHLESV",
+    ),
   ]),
   etcd: C("etcd-io/etcd", [
-    slack("Kubernetes Slack", "https://slack.kubernetes.io/", ["#sig-etcd"], "https://kubernetes.slack.com/archives/C3HD8ARJ5"),
+    slack(
+      "Kubernetes Slack",
+      "https://slack.kubernetes.io/",
+      ["#sig-etcd"],
+      "https://kubernetes.slack.com/archives/C3HD8ARJ5",
+    ),
   ]),
   "flatcar-container-linux": C("flatcar/Flatcar", [
     discord("Flatcar Discord", "https://discord.gg/PMYjFUsJyq"),
@@ -150,34 +179,62 @@ export const ORG_COMMUNITY: Record<string, OrgCommunity> = {
   harbor: C("goharbor/harbor", [
     cncf(["#harbor", "#harbor-dev"], "https://cloud-native.slack.com/messages/harbor/"),
   ]),
-  headlamp: C("kubernetes-sigs/headlamp", [k8s(["#headlamp"], "https://kubernetes.slack.com/messages/headlamp")]),
-  "in-toto": C("in-toto/in-toto", [cncf(["#in-toto"], "https://cloud-native.slack.com/messages/in-toto")], LANDSCAPE),
+  headlamp: C("kubernetes-sigs/headlamp", [
+    k8s(["#headlamp"], "https://kubernetes.slack.com/messages/headlamp"),
+  ]),
+  "in-toto": C(
+    "in-toto/in-toto",
+    [cncf(["#in-toto"], "https://cloud-native.slack.com/messages/in-toto")],
+    LANDSCAPE,
+  ),
   "inspektor-gadget": C("inspektor-gadget/inspektor-gadget", [
     k8s(["#inspektor-gadget"], "https://kubernetes.slack.com/messages/inspektor-gadget/"),
   ]),
-  istio: C("istio/istio", [slack("Istio Slack", "https://slack.istio.io/", ["#contributors"])], readme("istio/community")),
-  jaeger: C("jaegertracing/jaeger", [cncf(["#jaeger"], "https://cloud-native.slack.com/archives/CGG7NFUJ3")]),
+  istio: C(
+    "istio/istio",
+    [slack("Istio Slack", "https://slack.istio.io/", ["#contributors"])],
+    readme("istio/community"),
+  ),
+  jaeger: C("jaegertracing/jaeger", [
+    cncf(["#jaeger"], "https://cloud-native.slack.com/archives/CGG7NFUJ3"),
+  ]),
   k8sgpt: C("k8sgpt-ai/k8sgpt", [
-    slack("K8sGPT Slack", "https://join.slack.com/t/k8sgpt/shared_invite/zt-332vhyaxv-bfjJwHZLXWVCB3QaXafEYQ"),
+    slack(
+      "K8sGPT Slack",
+      "https://join.slack.com/t/k8sgpt/shared_invite/zt-332vhyaxv-bfjJwHZLXWVCB3QaXafEYQ",
+    ),
   ]),
   kagent: C("kagent-dev/kagent", [
     discord("kagent Discord", "https://discord.gg/Fu3k65f2k3"),
     cncf(["#kagent"], "https://cloud-native.slack.com/archives/C08ETST0076"),
   ]),
-  karmada: C("karmada-io/karmada", [cncf(undefined, "https://cloud-native.slack.com/archives/C02MUF8QXUN")]),
+  karmada: C("karmada-io/karmada", [
+    cncf(undefined, "https://cloud-native.slack.com/archives/C02MUF8QXUN"),
+  ]),
   kcl: C(
     "kcl-lang/kcl",
     [cncf(undefined, "https://cloud-native.slack.com/archives/C05TC96NWN8")],
     readme("kcl-lang/community"),
   ),
-  keptn: C("keptn/lifecycle-toolkit", [cncf(["#keptn"], "https://cloud-native.slack.com/messages/keptn/")]),
+  keptn: C("keptn/lifecycle-toolkit", [
+    cncf(["#keptn"], "https://cloud-native.slack.com/messages/keptn/"),
+  ]),
   kgateway: C(
     "kgateway-dev/kgateway",
-    [cncf(["#kgateway", "#kgateway-contributors"], "https://cloud-native.slack.com/archives/C080D3PJMS4")],
+    [
+      cncf(
+        ["#kgateway", "#kgateway-contributors"],
+        "https://cloud-native.slack.com/archives/C080D3PJMS4",
+      ),
+    ],
     readme("kgateway-dev/community"),
   ),
-  kmesh: C("kmesh-net/kmesh", [cncf(undefined, "https://cloud-native.slack.com/archives/C06BU2GB8NL")]),
-  knative: C("knative/serving", [cncf(undefined, "https://cloud-native.slack.com/archives/C04LGHDR9K7")]),
+  kmesh: C("kmesh-net/kmesh", [
+    cncf(undefined, "https://cloud-native.slack.com/archives/C06BU2GB8NL"),
+  ]),
+  knative: C("knative/serving", [
+    cncf(undefined, "https://cloud-native.slack.com/archives/C04LGHDR9K7"),
+  ]),
   konveyor: C(
     "konveyor/operator",
     [k8s(["#konveyor"], "https://kubernetes.slack.com/archives/CR85S82A2")],
@@ -189,11 +246,16 @@ export const ORG_COMMUNITY: Record<string, OrgCommunity> = {
     readme("konveyor/community"),
   ),
   koordinator: C("koordinator-sh/koordinator", [
-    slack("Koordinator Slack", "https://join.slack.com/t/koordinator-sh/shared_invite/zt-1756qoub4-Cn4~esfdlfAPsD7cwO2NzA"),
+    slack(
+      "Koordinator Slack",
+      "https://join.slack.com/t/koordinator-sh/shared_invite/zt-1756qoub4-Cn4~esfdlfAPsD7cwO2NzA",
+    ),
     k8s(["#koordinator"], "https://kubernetes.slack.com/channels/koordinator"),
   ]),
   krkn: C("krkn-chaos/krkn", [k8s(["#krkn"], "https://kubernetes.slack.com/messages/C05SFMHRWK1")]),
-  kuadrant: C("kuadrant/kuadrant-operator", [k8s(["#kuadrant"], "https://kubernetes.slack.com/archives/C05J0D0V525")]),
+  kuadrant: C("kuadrant/kuadrant-operator", [
+    k8s(["#kuadrant"], "https://kubernetes.slack.com/archives/C05J0D0V525"),
+  ]),
   "kube-burner": C(
     "kube-burner/kube-burner",
     [k8s(["#kube-burner"], "https://kubernetes.slack.com/messages/kube-burner")],
@@ -202,10 +264,19 @@ export const ORG_COMMUNITY: Record<string, OrgCommunity> = {
   "kube-state-metrics": C("kubernetes/kube-state-metrics", [
     k8s(["#kube-state-metrics"], "https://kubernetes.slack.com/archives/CJJ529RUY"),
   ]),
-  kubearmor: C("kubearmor/kubearmor", [cncf(undefined, "https://cloud-native.slack.com/archives/C02R319HVL3")]),
+  kubearmor: C("kubearmor/kubearmor", [
+    cncf(undefined, "https://cloud-native.slack.com/archives/C02R319HVL3"),
+  ]),
   kubeedge: C(
     "kubeedge/kubeedge",
-    [slack("KubeEdge Slack", "https://kubeedge.io/docs/community/slack/", undefined, "https://kubeedge.slack.com/")],
+    [
+      slack(
+        "KubeEdge Slack",
+        "https://kubeedge.io/docs/community/slack/",
+        undefined,
+        "https://kubeedge.slack.com/",
+      ),
+    ],
     file("kubeedge/kubeedge", "CONTRIBUTING.md"),
   ),
   kubeflow: C(
@@ -218,7 +289,9 @@ export const ORG_COMMUNITY: Record<string, OrgCommunity> = {
     [k8s(["#kubernetes-contributors"])],
     file("kubernetes/community", "communication/README.md"),
   ),
-  kubescape: C("kubescape/kubescape", [cncf(undefined, "https://cloud-native.slack.com/archives/C04EY3ZF9GE")]),
+  kubescape: C("kubescape/kubescape", [
+    cncf(undefined, "https://cloud-native.slack.com/archives/C04EY3ZF9GE"),
+  ]),
   kubeslice: C("kubeslice/kubeslice", [k8s(["#kubeslice"])], LANDSCAPE),
   kubespray: C("kubernetes-sigs/kubespray", [k8s(["#kubespray"])]),
   kubestellar: C("kubestellar/kubestellar", [
@@ -236,7 +309,9 @@ export const ORG_COMMUNITY: Record<string, OrgCommunity> = {
     readme("kubewarden/community"),
   ),
   kuma: C("kumahq/kuma", [cncf(["#kuma"])]),
-  kwok: C("kubernetes-sigs/kwok", [k8s(["#kwok", "#kwok-dev"], "https://kubernetes.slack.com/messages/kwok/")]),
+  kwok: C("kubernetes-sigs/kwok", [
+    k8s(["#kwok", "#kwok-dev"], "https://kubernetes.slack.com/messages/kwok/"),
+  ]),
   kyverno: C("kyverno/kyverno", [k8s(["#kyverno"])]),
   lima: C("lima-vm/lima", [cncf(["#lima"])]),
   linkerd: C("linkerd/linkerd2", [slack("Linkerd Slack", "https://slack.linkerd.io")]),
@@ -249,14 +324,18 @@ export const ORG_COMMUNITY: Record<string, OrgCommunity> = {
   ),
   nats: C("nats-io/nats-server", [slack("NATS Slack", "https://slack.nats.io")]),
   notary: C("notaryproject/notation", [cncf(["#notary-project"])]),
-  opa: C("open-policy-agent/opa", [slack("OPA Slack", "https://slack.openpolicyagent.org", ["#contributors", "#help"])]),
+  opa: C("open-policy-agent/opa", [
+    slack("OPA Slack", "https://slack.openpolicyagent.org", ["#contributors", "#help"]),
+  ]),
   "open-service-mesh": C("openservicemesh/osm", [
     cncf(["#openservicemesh"], "https://cloud-native.slack.com/archives/C018794NV1C"),
   ]),
   "open-service-mesh-kuma-and-service-mesh-interface": C("openservicemesh/osm", [
     cncf(["#openservicemesh"], "https://cloud-native.slack.com/archives/C018794NV1C"),
   ]),
-  opencost: C("opencost/opencost", [cncf(["#opencost"], "https://cloud-native.slack.com/archives/C03D56FPD4G")]),
+  opencost: C("opencost/opencost", [
+    cncf(["#opencost"], "https://cloud-native.slack.com/archives/C03D56FPD4G"),
+  ]),
   openebs: C("openebs/openebs", [
     k8s(["#openebs", "#openebs-dev"], "https://kubernetes.slack.com/messages/openebs"),
   ]),
@@ -266,16 +345,33 @@ export const ORG_COMMUNITY: Record<string, OrgCommunity> = {
       "https://join.slack.com/t/kubesphere/shared_invite/enQtNTE3MDIxNzUxNzQ0LTZkNTdkYWNiYTVkMTM5ZThhODY1MjAyZmVlYWEwZmQ3ODQ1NmM1MGVkNWEzZTRhNzk0MzM5MmY4NDc3ZWVhMjE",
     ),
   ]),
-  openeverest: C("openeverest/openeverest", [cncf(undefined, "https://cloud-native.slack.com/archives/C09RRGZL2UX")]),
-  openfunction: C("OpenFunction/OpenFunction", [cncf(undefined, "https://cloud-native.slack.com/archives/C03ETDMD3LZ")]),
-  openkruise: C("openkruise/kruise", [k8s(["#openkruise"], "https://kubernetes.slack.com/channels/openkruise")]),
+  openeverest: C("openeverest/openeverest", [
+    cncf(undefined, "https://cloud-native.slack.com/archives/C09RRGZL2UX"),
+  ]),
+  openfunction: C("OpenFunction/OpenFunction", [
+    cncf(undefined, "https://cloud-native.slack.com/archives/C03ETDMD3LZ"),
+  ]),
+  openkruise: C("openkruise/kruise", [
+    k8s(["#openkruise"], "https://kubernetes.slack.com/channels/openkruise"),
+  ]),
   opentelemetry: C("open-telemetry/community", [cncf()]),
   openyurt: C("openyurtio/openyurt", [
-    slack("OpenYurt Slack", "https://join.slack.com/t/openyurt/shared_invite/zt-2ajsy47br-jl~zjumRsCAE~BlPRRsIvg"),
+    slack(
+      "OpenYurt Slack",
+      "https://join.slack.com/t/openyurt/shared_invite/zt-2ajsy47br-jl~zjumRsCAE~BlPRRsIvg",
+    ),
   ]),
-  oras: C("oras-project/oras", [cncf(["#oras"], "https://cloud-native.slack.com/archives/CJ1KHJM5Z")], readme("oras-project/community")),
-  pipecd: C("pipe-cd/pipecd", [cncf(["#pipecd"], "https://cloud-native.slack.com/archives/C01B27F9T0X")]),
-  pixie: C("pixie-io/pixie", [cncf(["#pixie"], "https://slack.cncf.io/app_redirect?channel=pixie")]),
+  oras: C(
+    "oras-project/oras",
+    [cncf(["#oras"], "https://cloud-native.slack.com/archives/CJ1KHJM5Z")],
+    readme("oras-project/community"),
+  ),
+  pipecd: C("pipe-cd/pipecd", [
+    cncf(["#pipecd"], "https://cloud-native.slack.com/archives/C01B27F9T0X"),
+  ]),
+  pixie: C("pixie-io/pixie", [
+    cncf(["#pixie"], "https://slack.cncf.io/app_redirect?channel=pixie"),
+  ]),
   "podman-container-tools": C(
     "containers/podman",
     [
@@ -302,11 +398,21 @@ export const ORG_COMMUNITY: Record<string, OrgCommunity> = {
     file("prometheus/prometheus", "CONTRIBUTING.md"),
   ),
   racklet: C("racklet/racklet", [
-    slack("OSFW Slack", "https://slack.osfw.dev/", ["#racklet"], "https://osfw.slack.com/messages/racklet/"),
+    slack(
+      "OSFW Slack",
+      "https://slack.osfw.dev/",
+      ["#racklet"],
+      "https://osfw.slack.com/messages/racklet/",
+    ),
   ]),
   rekor: C(
     "sigstore/rekor",
-    [slack("Sigstore Slack", "https://join.slack.com/t/sigstore/shared_invite/zt-47srvpyn6-j8Ek5hGBwKN32IjLw8BvYA")],
+    [
+      slack(
+        "Sigstore Slack",
+        "https://join.slack.com/t/sigstore/shared_invite/zt-47srvpyn6-j8Ek5hGBwKN32IjLw8BvYA",
+      ),
+    ],
     readme("sigstore/community"),
   ),
   "service-mesh-interface": C("servicemeshinterface/smi-spec", [
@@ -321,20 +427,31 @@ export const ORG_COMMUNITY: Record<string, OrgCommunity> = {
   ]),
   testgrid: C("GoogleCloudPlatform/testgrid", []),
   thanos: C("thanos-io/thanos", [cncf(["#thanos"])]),
-  tikv: C("tikv/tikv", [slack("TiKV Slack", "https://slack.tidb.io/invite?team=tikv-wg&channel=general")]),
+  tikv: C("tikv/tikv", [
+    slack("TiKV Slack", "https://slack.tidb.io/invite?team=tikv-wg&channel=general"),
+  ]),
   tremor: C(
     "tremor-rs/tremor-runtime",
     [discord("Tremor Discord", "https://discord.com/invite/Wjqu5H9rhQ")],
     readme("tremor-rs/tremor-www"),
   ),
-  tuf: C("theupdateframework/python-tuf", [cncf(["#tuf"], "https://cloud-native.slack.com/archives/C8NMD3QJ3")]),
-  urunc: C("urunc-dev/urunc", [cncf(undefined, "https://cloud-native.slack.com/archives/C08V201G35J")]),
+  tuf: C("theupdateframework/python-tuf", [
+    cncf(["#tuf"], "https://cloud-native.slack.com/archives/C8NMD3QJ3"),
+  ]),
+  urunc: C("urunc-dev/urunc", [
+    cncf(undefined, "https://cloud-native.slack.com/archives/C08V201G35J"),
+  ]),
   velero: C("velero-io/velero", [
     k8s(["#velero-users", "#velero-dev"], "https://kubernetes.slack.com/messages/velero-users"),
   ]),
   vitess: C("vitessio/vitess", [slack("Vitess Slack", "https://vitess.io/slack")]),
-  volcano: C("volcano-sh/volcano", [cncf(["#volcano"], "https://cloud-native.slack.com/archives/C011GJDQS0N")]),
-  wasmedge: C("WasmEdge/WasmEdge", [discord("WasmEdge Discord", "https://discord.gg/h4KDyB8XTt"), cncf(["#WasmEdge"])]),
+  volcano: C("volcano-sh/volcano", [
+    cncf(["#volcano"], "https://cloud-native.slack.com/archives/C011GJDQS0N"),
+  ]),
+  wasmedge: C("WasmEdge/WasmEdge", [
+    discord("WasmEdge Discord", "https://discord.gg/h4KDyB8XTt"),
+    cncf(["#WasmEdge"]),
+  ]),
 };
 
 export function orgCommunity(slug: string): OrgCommunity | null {

@@ -46,15 +46,9 @@ function LfxLogo() {
       aria-hidden="true"
     >
       {/* Dark Navy Blue Outer Frame (Top, Right, Bottom-Right & Top-Left Tab) */}
-      <path
-        d="M0 0 H100 V100 H70 V80 H80 V20 H20 V30 H0 V0 Z"
-        fill="#003764"
-      />
+      <path d="M0 0 H100 V100 H70 V80 H80 V20 H20 V30 H0 V0 Z" fill="#003764" />
       {/* Light Cyan L-Mark (Bottom-Left) */}
-      <path
-        d="M0 40 H20 V80 H60 V100 H0 V40 Z"
-        fill="#0099FF"
-      />
+      <path d="M0 40 H20 V80 H60 V100 H0 V40 Z" fill="#0099FF" />
     </svg>
   );
 }
@@ -126,10 +120,7 @@ export function LinuxFoundationFullLogo({ height = 135 }: { height?: number }) {
         />
 
         {/* Mark Corner L (Bottom-Left) */}
-        <path
-          d="m 8.5827,31.6667 v -15.427 h -7.729 v 23.142 h 23.152 v -7.715 z"
-          fill="#0099FF"
-        />
+        <path d="m 8.5827,31.6667 v -15.427 h -7.729 v 23.142 h 23.152 v -7.715 z" fill="#0099FF" />
       </svg>
     </div>
   );
@@ -447,23 +438,11 @@ function ProcessingFoundationLogo() {
       aria-hidden="true"
     >
       {/* Top-Center Violet Curve */}
-      <path
-        d="M400 100C300 400 600 300 600 600"
-        stroke="#9C4BFF"
-        strokeWidth="150"
-      />
+      <path d="M400 100C300 400 600 300 600 600" stroke="#9C4BFF" strokeWidth="150" />
       {/* Dark Purple S-Ribbon */}
-      <path
-        d="M600 100C700 600 100 300 100 700"
-        stroke="#5501A4"
-        strokeWidth="150"
-      />
+      <path d="M600 100C700 600 100 300 100 700" stroke="#5501A4" strokeWidth="150" />
       {/* Lavender Diagonal Bar */}
-      <path
-        d="M100 300L400 700"
-        stroke="#D4B2FE"
-        strokeWidth="150"
-      />
+      <path d="M100 300L400 700" stroke="#D4B2FE" strokeWidth="150" />
     </svg>
   );
 }

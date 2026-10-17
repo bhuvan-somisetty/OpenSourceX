@@ -67,7 +67,8 @@ export const PROGRAM_CATALOG: readonly ProgramDef[] = [
     name: "Processing Foundation",
     short: "Processing Foundation",
     tagline: "Fellowships & creative code",
-    blurb: "Fellowships and community mentorships across Processing, p5.js, and open-source creative coding.",
+    blurb:
+      "Fellowships and community mentorships across Processing, p5.js, and open-source creative coding.",
   },
   {
     slug: "mlh-fellowship",
@@ -91,7 +92,8 @@ export const PROGRAM_CATALOG: readonly ProgramDef[] = [
     name: "Code for GovTech",
     short: "C4GT",
     tagline: "Tech for good mentorship",
-    blurb: "Dedicated mentorship program creating digital public goods and tech-for-good open source solutions.",
+    blurb:
+      "Dedicated mentorship program creating digital public goods and tech-for-good open source solutions.",
   },
   {
     slug: "season-of-docs",

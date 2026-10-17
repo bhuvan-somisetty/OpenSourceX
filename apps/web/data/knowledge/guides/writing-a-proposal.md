@@ -13,7 +13,7 @@ The reference proposals OpenSourceX keeps (LFX proposals for Kyverno integration
 2. **Contact information:** name, GitHub, email, university, year, timezone.
 3. **How I found the project:** a short, honest story that ends at this mentorship issue.
 4. **Why I want to work on this:** a real problem you hit yourself (for example, "I waited 30+ minutes for E2E tests to tell me something I could have known in 5 seconds").
-5. **Experience and skills:** languages and the internals you learned *by contributing to this project*.
+5. **Experience and skills:** languages and the internals you learned _by contributing to this project_.
 6. **"3 PRs that show I can do this":** a table with PR, what I did, and why it matters for this project.
 7. **Proof of concept:** a draft PR or prototype, with a short code excerpt and what you learned from building it.
 8. **Full contribution history:** a table of PRs with status (merged, open, cherry-picked).
@@ -29,7 +29,7 @@ The reference proposals OpenSourceX keeps (LFX proposals for Kyverno integration
 
 ## Tips for writing a strong proposal (from the reference examples)
 
-- **Lead with evidence.** Every reference shows merged or open PRs *in the same project* before the plan begins.
+- **Lead with evidence.** Every reference shows merged or open PRs _in the same project_ before the plan begins.
 - **Ship a proof of concept before applying.** A draft PR that already works (for example, an envtest bootstrap with 4 passing smoke tests, or a TypeScript PoC with 24 tests) is the strongest signal you can send.
 - **Quote the real code.** Point at actual files, functions and line ranges (for example `pkg/policycache/cache.go`), not generic descriptions.
 - **Make milestones measurable:** "`make test-integration` passes in ≤10 seconds, no cluster needed", "CI green on all three language PoCs".
@@ -40,12 +40,12 @@ The reference proposals OpenSourceX keeps (LFX proposals for Kyverno integration
 
 ## Proposal timeline template (12 weeks)
 
-| Phase | Weeks | Work | Milestone |
-| --- | --- | --- | --- |
-| 1. Foundation | 1–3 | Set up the structure, extend your PoC, first tests, docs skeleton | Foundation merged, CI runs |
-| 2. Core feature | 4–6 | Main implementation, with tests for each piece | Core flow works end to end |
-| 3. Advanced cases | 7–9 | Hard parts, edge cases, integrations | Feature complete behind a flag |
-| 4. Hardening | 10–12 | CI, docs, migration guide, review fixes | Everything merged and documented |
+| Phase             | Weeks | Work                                                              | Milestone                        |
+| ----------------- | ----- | ----------------------------------------------------------------- | -------------------------------- |
+| 1. Foundation     | 1–3   | Set up the structure, extend your PoC, first tests, docs skeleton | Foundation merged, CI runs       |
+| 2. Core feature   | 4–6   | Main implementation, with tests for each piece                    | Core flow works end to end       |
+| 3. Advanced cases | 7–9   | Hard parts, edge cases, integrations                              | Feature complete behind a flag   |
+| 4. Hardening      | 10–12 | CI, docs, migration guide, review fixes                           | Everything merged and documented |
 
 For 24-week part-time terms, double each phase, or add phases.
 

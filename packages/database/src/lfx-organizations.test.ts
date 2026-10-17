@@ -6,7 +6,10 @@ describe("lfx-organizations domain logic", () => {
   const mockDb = {
     query: async (sql: unknown, params?: unknown[]) => {
       const s = String(sql);
-      if (s.includes("FROM mentorship_project m") && s.includes("WHERE p.slug = 'lfx-mentorship'")) {
+      if (
+        s.includes("FROM mentorship_project m") &&
+        s.includes("WHERE p.slug = 'lfx-mentorship'")
+      ) {
         // If single org detail query
         if (params && params.length > 0) {
           const target = String(params[0]).toLowerCase();

@@ -18,5 +18,8 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" vi
     <path d="M22.5 10L31.5 16L22.5 22L25 16Z" fill="url(#a)"/>
   </g>
 </svg>`;
-sharp(Buffer.from(svg), { density: 1200 }).resize(512, 512).png().toFile(process.argv[2] ?? path.join(web, "public/brand/opensourcex-logo-512.png"))
+sharp(Buffer.from(svg), { density: 1200 })
+  .resize(512, 512)
+  .png()
+  .toFile(process.argv[2] ?? path.join(web, "public/brand/opensourcex-logo-512.png"))
   .then((i) => console.log("saved", i.width + "x" + i.height, i.size, "bytes"));

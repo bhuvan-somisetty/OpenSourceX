@@ -5,3 +5,5 @@ coverage
 pnpm-lock.yaml
 docs/RESEARCH
 docs/design
+# collected program data and verbatim copies of official source pages (not code)
+apps/web/data/programs
