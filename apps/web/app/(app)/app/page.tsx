@@ -126,6 +126,8 @@ const STEPS = [
   ["Write a winning proposal", "Ask the AI guide to review your plan.", "/ask"],
 ];
 
+const LANGS = ["Python", "Go", "JavaScript", "Rust", "TypeScript", "Java", "C++", "Kubernetes"];
+
 const STEP_GLOWS = ["ask", "blue", "teal", "amber"];
 
 export default async function AppHome() {
@@ -275,18 +277,21 @@ export default async function AppHome() {
               </>
             ) : (
               <>
-                <h2 className="home-next-title">Pick a program to start</h2>
+                <h2 className="home-next-title">What do you code in?</h2>
                 <p className="home-next-text">
-                  Save an organization you like, and this card will show its chat, its first issues
-                  and how to begin.
+                  Tap a language to see matching organizations from every program. Save one, and
+                  this card turns into your next step with its chat and first issues.
                 </p>
-                <div className="home-next-actions">
-                  <Link className="btn sm primary" href="/programs">
-                    Explore Programs
-                  </Link>
-                  <Link className="btn sm" href="/discover">
-                    Find orgs by skill
-                  </Link>
+                <div className="home-langs">
+                  {LANGS.map((l) => (
+                    <Link
+                      key={l}
+                      href={`/discover?i=${encodeURIComponent(l)}`}
+                      className="home-lang"
+                    >
+                      {l}
+                    </Link>
+                  ))}
                 </div>
               </>
             )}

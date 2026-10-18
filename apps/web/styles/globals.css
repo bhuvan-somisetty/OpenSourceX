@@ -7126,3 +7126,31 @@ mark.porg-hit {
     padding: 22px 20px;
   }
 }
+
+/* home: language picker in the empty next-step card */
+.home-langs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 6px;
+}
+.home-lang {
+  padding: 9px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: var(--glass);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    transform 0.2s;
+}
+.home-lang:hover {
+  background: rgba(125, 155, 255, 0.14);
+  border-color: rgba(125, 155, 255, 0.55);
+  transform: translateY(-2px);
+}
