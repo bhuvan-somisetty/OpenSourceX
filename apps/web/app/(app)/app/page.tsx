@@ -126,7 +126,29 @@ const STEPS = [
   ["Write a winning proposal", "Ask the AI guide to review your plan.", "/ask"],
 ];
 
-const LANGS = ["Python", "Go", "JavaScript", "Rust", "TypeScript", "Java", "C++", "Kubernetes"];
+/** Programming languages and the tag spellings organizations use for them. */
+const LANGUAGES: [string, string[]][] = [
+  ["Python", ["python"]],
+  ["JavaScript", ["javascript", "js"]],
+  ["C++", ["c++", "c/c++", "cpp"]],
+  ["Go", ["go", "golang"]],
+  ["C", ["c", "c/c++"]],
+  ["Java", ["java"]],
+  ["Rust", ["rust"]],
+  ["TypeScript", ["typescript"]],
+  ["PHP", ["php"]],
+  ["Ruby", ["ruby"]],
+  ["Kotlin", ["kotlin"]],
+  ["Swift", ["swift"]],
+  ["Lua", ["lua"]],
+  ["Shell", ["shell", "bash"]],
+  ["Scala", ["scala"]],
+  ["Haskell", ["haskell"]],
+  ["Julia", ["julia"]],
+  ["R", ["r"]],
+  ["Dart", ["dart"]],
+  ["Elixir", ["elixir"]],
+];
 
 const STEP_GLOWS = ["ask", "blue", "teal", "amber"];
 
@@ -162,13 +184,19 @@ export default async function AppHome() {
         .slice(0, 3)
     : [];
   const savedCount = res.ok ? res.data.saved.length : 0;
-  // organizations per language, counted the same way Discover matches them (tags, any case)
-  const langCounts = new Map(
-    LANGS.map((l) => [
-      l,
-      k ? k.orgs.filter((o) => o.tags.some((t) => t.toLowerCase() === l.toLowerCase())).length : 0,
-    ]),
-  );
+  // the most used languages across every recorded organization, most organizations first
+  const topLangs = k
+    ? LANGUAGES.map(([name, tags]) => ({
+        name,
+        tags,
+        count: k.orgs.filter((o) => o.tags.some((t) => tags.includes(t.toLowerCase().trim())))
+          .length,
+      }))
+        .filter((l) => l.count > 0)
+        .sort((a, b) => b.count - a.count)
+        .slice(0, 8)
+    : [];
+  const topMax = topLangs[0]?.count ?? 1;
 
   const first = session.kind === "guest" ? "" : (session.name.split(/\s+/)[0] ?? "");
   const orgCount = k?.orgs.length ?? 0;
@@ -284,23 +312,28 @@ export default async function AppHome() {
               </>
             ) : (
               <>
-                <h2 className="home-next-title">What do you code in?</h2>
+                <h2 className="home-next-title">Top languages in open source</h2>
                 <p className="home-next-text">
-                  Tap a language to see matching organizations from every program. Save one, and
-                  this card turns into your next step with its chat and first issues.
+                  Ranked by how many of the {k ? k.orgs.length : ""} organizations across our{" "}
+                  {PROGRAMS.length} programs use each one. Tap yours to see them all.
                 </p>
-                <div className="home-langs">
-                  {LANGS.map((l) => (
-                    <Link
-                      key={l}
-                      href={`/discover?i=${encodeURIComponent(l)}`}
-                      className="home-lang"
-                    >
-                      <strong>{l}</strong>
-                      {(langCounts.get(l) ?? 0) > 0 && <span>{langCounts.get(l)} orgs</span>}
-                    </Link>
+                <ol className="home-langs">
+                  {topLangs.map((l, i) => (
+                    <li key={l.name}>
+                      <Link
+                        href={`/discover?${l.tags.map((t) => `i=${encodeURIComponent(t)}`).join("&")}`}
+                        className="home-lang"
+                      >
+                        <span className="home-lang-rank">{i + 1}</span>
+                        <span className="home-lang-name">{l.name}</span>
+                        <span className="home-lang-bar" aria-hidden="true">
+                          <i style={{ width: `${Math.max(6, (l.count / topMax) * 100)}%` }} />
+                        </span>
+                        <span className="home-lang-count">{l.count}</span>
+                      </Link>
+                    </li>
                   ))}
-                </div>
+                </ol>
               </>
             )}
           </div>
