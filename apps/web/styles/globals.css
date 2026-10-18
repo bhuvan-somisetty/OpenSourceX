@@ -6740,3 +6740,119 @@ mark.porg-hit {
     animation: none;
   }
 }
+
+/* home: hero badge (program logos + one line) with a moving gradient border */
+.home-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 100%;
+  padding: 6px 14px 6px 8px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(rgba(12, 15, 24, 0.92), rgba(12, 15, 24, 0.92)) padding-box,
+    linear-gradient(
+        110deg,
+        rgba(125, 155, 255, 0.25),
+        #9b7dff,
+        #5ad1e6,
+        rgba(255, 84, 112, 0.7),
+        rgba(125, 155, 255, 0.25)
+      )
+      border-box;
+  background-size:
+    100% 100%,
+    300% 100%;
+  animation: home-badge-flow 8s linear infinite;
+  color: var(--text-muted);
+  font-size: 14px;
+  text-decoration: none;
+  box-shadow: 0 10px 40px -12px rgba(155, 125, 255, 0.45);
+  transition:
+    box-shadow 0.25s,
+    color 0.25s;
+}
+.home-badge:hover {
+  color: var(--text);
+  box-shadow: 0 12px 48px -10px rgba(155, 125, 255, 0.7);
+}
+.home-badge-logos {
+  display: inline-flex;
+  flex: none;
+}
+.home-badge-logos .mark {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  margin: 0 0 0 -8px;
+  border: 2px solid #0c0f18;
+  background: #141926;
+  box-shadow: none;
+  font-size: 10px;
+}
+.home-badge-logos .mark:first-child {
+  margin-left: 0;
+}
+.home-badge-logos .mark-icon-wrap {
+  padding: 3px;
+}
+.home-badge-text strong {
+  color: var(--text);
+  font-weight: 600;
+}
+.home-badge-arrow {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  transition: transform 0.25s;
+}
+.home-badge-arrow svg {
+  width: 13px;
+  height: 13px;
+  min-width: 13px;
+}
+.home-badge:hover .home-badge-arrow {
+  transform: translateX(3px);
+}
+@keyframes home-badge-flow {
+  to {
+    background-position:
+      0 0,
+      300% 0;
+  }
+}
+[data-theme="light"] .home-badge {
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(
+        110deg,
+        rgba(37, 99, 235, 0.3),
+        #7c3aed,
+        #0891b2,
+        #e11d48,
+        rgba(37, 99, 235, 0.3)
+      )
+      border-box;
+  background-size:
+    100% 100%,
+    300% 100%;
+}
+@media (max-width: 620px) {
+  .home-badge {
+    font-size: 13px;
+  }
+  .home-badge-logos .mark:nth-child(n + 3) {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-badge {
+    animation: none;
+  }
+}

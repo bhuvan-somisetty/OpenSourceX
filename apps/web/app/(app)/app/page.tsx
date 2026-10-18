@@ -175,12 +175,20 @@ export default async function AppHome() {
       <div className="wrap">
         <section className="home-hero">
           <div className="home-hero-copy">
-            <div className="hero-eyebrow-pill">
-              <span className="hero-eyebrow-dot" aria-hidden="true" />
-              <span className="eyebrow">
-                {first ? `Welcome back, ${first}` : "Welcome to OpenSourceX"}
+            <Link href="/programs" className="home-badge">
+              <span className="home-badge-logos" aria-hidden="true">
+                {PROGRAMS.slice(0, 4).map((p) => (
+                  <ProgramMark key={p.slug} slug={p.slug} />
+                ))}
               </span>
-            </div>
+              <span className="home-badge-text">
+                {first && <strong>Hi {first} · </strong>}
+                GSoC, LFX, Outreachy and {PROGRAMS.length - 3} more programs, in one place
+              </span>
+              <span className="home-badge-arrow" aria-hidden="true">
+                <Arrow />
+              </span>
+            </Link>
             <h1 className="home-title">
               Your launchpad into <span className="home-gradient">open source</span>.
             </h1>
