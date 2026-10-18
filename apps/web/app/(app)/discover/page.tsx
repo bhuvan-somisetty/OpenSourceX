@@ -43,7 +43,7 @@ export default async function Discover({ searchParams }: { searchParams: Promise
         return {
           slug: e.program,
           orgSlug: e.orgSlug,
-          name: def?.short ?? e.programName,
+          name: e.foundation ? `LFX · ${e.foundation}` : (def?.short ?? e.programName),
           fullName: def?.name ?? e.programName,
           href: e.pageUrl,
           years: e.years,

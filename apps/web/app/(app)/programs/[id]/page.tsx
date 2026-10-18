@@ -18,6 +18,8 @@ import { ProgramOrgDirectory } from "@/features/programs/ProgramOrgDirectory";
 import { programData } from "@/lib/program-data";
 import { programInfo } from "@/lib/program-info";
 import { ProgramInfoBox } from "@/features/programs/ProgramInfoBox";
+import { FoundationSwitch } from "@/features/lfx/FoundationSwitch";
+import { lfxFoundations } from "@/lib/lfx-foundations";
 
 export const dynamic = "force-dynamic";
 
@@ -46,6 +48,102 @@ export default async function ProgramDetail({
   const isLfx = def.slug === "lfx-mentorship";
 
   const info = await programInfo(def.slug);
+  const foundationsFile = isLfx ? await lfxFoundations() : null;
+  const foundation = foundationsFile?.foundations.find((f) => f.key === first(sp.f)) ?? null;
+  const switchItems = foundationsFile
+    ? foundationsFile.foundations.map((f) => ({
+        key: f.key,
+        label: f.short === "More" ? "More foundations" : f.short,
+        count: f.orgCount,
+      }))
+    : [];
+
+  // LFX, a foundation other than CNCF: organizations from the LFX platform's public list
+  if (isLfx && foundationsFile && foundation) {
+    const savedOrgIds = [...(await currentSaved())].filter((k) =>
+      k.startsWith("ORGANIZATION:org:"),
+    );
+    const label = foundation.short === "More" ? "More foundations" : foundation.name;
+    return (
+      <div className="wrap">
+        <section className="page-hero" data-testid="program-hero">
+          <div className="spine">
+            <Link href="/programs">Programs</Link>›<Link href="/programs/lfx">{def.short}</Link>›
+            <span className="pill" aria-current="page">
+              {foundation.short === "More" ? "More" : foundation.short}
+            </span>
+          </div>
+          <div className="lfx-hero-center">
+            <LinuxFoundationFullLogo height={120} />
+            <div className="eyebrow" style={{ marginTop: 18 }}>
+              {foundation.orgCount} organizations · {foundation.projectCount} mentorship projects
+            </div>
+            <h1 className="page" style={{ marginTop: 10, textAlign: "center" }}>
+              {label}
+            </h1>
+            <p className="sub" style={{ margin: "8px auto 0", maxWidth: 640, textAlign: "center" }}>
+              {foundation.short === "More"
+                ? "Smaller Linux Foundation projects that run LFX Mentorship projects."
+                : `LFX Mentorship organizations and projects from ${foundation.name}.`}
+            </p>
+          </div>
+          <FoundationSwitch items={switchItems} current={foundation.key} />
+        </section>
+
+        {info && (
+          <div style={{ marginTop: 24 }}>
+            <ProgramInfoBox info={info} />
+          </div>
+        )}
+
+        <section className="block" style={{ marginTop: 28 }} aria-label="Organizations">
+          <ProgramOrgDirectory
+            orgs={foundation.orgs.map((o) => ({
+              slug: o.slug,
+              name: o.name,
+              blurb: o.description
+                ? o.description.slice(0, 220)
+                : `${o.lfProject} · LFX Mentorship`,
+              tags: o.tags,
+              years: o.years,
+              logo: o.logo,
+              logoOnDark: o.logoOnDark,
+              chats: [],
+            }))}
+            programName={label}
+            years={foundation.years}
+            basePath="/programs/lfx"
+            keepQuery={{ f: foundation.key }}
+            initial={{ q: first(sp.q), tech: first(sp.tech), year: first(sp.year) }}
+            programSlug="lfx-mentorship"
+            savedIds={savedOrgIds}
+          />
+        </section>
+
+        <section className="block" aria-labelledby="src-h" style={{ marginTop: 40 }}>
+          <h2 id="src-h" style={{ fontSize: 20 }}>
+            Sources
+          </h2>
+          <ul className="porg-sources">
+            {foundationsFile.sources.map((x) => (
+              <li key={x.url}>
+                <a href={x.url} target="_blank" rel="noreferrer noopener">
+                  {x.label} ↗
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p className="hint" style={{ marginTop: 10 }}>
+            Collected {foundationsFile.generatedAt}. Projects and terms come from the LFX Mentorship
+            platform&apos;s public list; organization names, websites and logos from each
+            project&apos;s own GitHub account. The stipend above is the Linux Foundation&apos;s LFX
+            table, which applies to every foundation.
+          </p>
+        </section>
+      </div>
+    );
+  }
+
   const staticData = isLfx ? null : await programData(def.slug);
   if (staticData) {
     const savedOrgIds = [...(await currentSaved())].filter((k) =>
@@ -236,6 +334,13 @@ export default async function ProgramDetail({
             <p className="sub" style={{ margin: "8px auto 0", maxWidth: 640, textAlign: "center" }}>
               Explore organizations, historical terms, and mentorship projects.
             </p>
+            {switchItems.length > 0 && (
+              <FoundationSwitch
+                items={switchItems}
+                current="cncf"
+                cncfCount={res.data.lfxAllOrgs.length}
+              />
+            )}
           </div>
         ) : (
           <>
@@ -270,8 +375,8 @@ export default async function ProgramDetail({
           </Notice>
         ) : (
           <Notice kind="info" testId="ecosystem-note">
-            <strong>CNCF ecosystem only.</strong> This shows CNCF-listed LFX Mentorship projects. It
-            is <strong>not the whole LFX Mentorship</strong> program.
+            <strong>CNCF projects.</strong> This tab shows CNCF-listed LFX Mentorship projects. Use
+            the switch above for LF Decentralized Trust, RISC-V and the other foundations.
           </Notice>
         )}
       </div>

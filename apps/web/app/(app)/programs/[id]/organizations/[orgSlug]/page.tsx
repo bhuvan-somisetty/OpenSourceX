@@ -17,6 +17,7 @@ import { OrgCommunity } from "@/features/lfx/OrgCommunity";
 import { orgCommunity } from "@/lib/org-community";
 import { programOrg } from "@/lib/program-data";
 import { ProgramOrgPage } from "@/features/programs/ProgramOrgPage";
+import { foundationAsProgram, foundationOrg } from "@/lib/lfx-foundations";
 
 export const dynamic = "force-dynamic";
 
@@ -31,6 +32,8 @@ export async function generateMetadata({
     const r = await programOrg(def.slug, orgSlug);
     return { title: r ? `${r.org.name} · ${def.short}` : def.name };
   }
+  const f = await foundationOrg(orgSlug);
+  if (f) return { title: `${f.org.name} · LFX Mentorship` };
   const decoded = decodeURIComponent(orgSlug);
   return {
     title: `${decoded.charAt(0).toUpperCase() + decoded.slice(1)} · LFX Mentorship`,
@@ -59,6 +62,23 @@ export default async function LfxOrgDetailPage({
         org={r.org}
         programSlug={def.slug}
         programShort={def.short}
+        saved={saved}
+      />
+    );
+  }
+
+  // an organization from a Linux Foundation project other than CNCF (LFX platform list)
+  const f = await foundationOrg(orgSlug);
+  if (f) {
+    const saved = (await currentSaved()).has(
+      `ORGANIZATION:${orgEntityId("lfx-mentorship", f.org.slug)}`,
+    );
+    return (
+      <ProgramOrgPage
+        data={foundationAsProgram(f.file, f.foundation)}
+        org={f.org}
+        programSlug="lfx-mentorship"
+        programShort={`LFX · ${f.foundation.short === "More" ? f.org.lfProject : f.foundation.short}`}
         saved={saved}
       />
     );

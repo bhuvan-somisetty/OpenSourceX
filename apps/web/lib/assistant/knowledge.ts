@@ -2,6 +2,7 @@ import type { LfxHistory } from "@opensourcex/database";
 import { orgCommunity, type OrgChat } from "@/lib/org-community";
 import { programData, type ProgramData } from "@/lib/program-data";
 import { programInfo, type ProgramInfo } from "@/lib/program-info";
+import { CNCF_NAME, lfxFoundations, type FoundationsFile } from "@/lib/lfx-foundations";
 import { PROGRAM_CATALOG, type ProgramDef } from "@/lib/programs";
 
 /**
@@ -22,6 +23,8 @@ export interface OrgProgramEntry {
   projects: { title: string; year: number | null; url?: string }[];
   pageUrl: string;
   links: { label: string; url: string }[];
+  /** LFX only: the Linux Foundation project it belongs to, e.g. "CNCF" or "LFDT" */
+  foundation?: string;
 }
 
 export interface KnowledgeOrg {
@@ -69,8 +72,11 @@ export const normalize = (s: string) =>
 
 const uniq = <T>(xs: T[]) => [...new Set(xs)];
 
-let staticCache: Promise<{ data: ProgramData[]; info: Map<string, ProgramInfo | null> }> | null =
-  null;
+let staticCache: Promise<{
+  data: ProgramData[];
+  info: Map<string, ProgramInfo | null>;
+  foundations: FoundationsFile | null;
+}> | null = null;
 
 function loadStatic() {
   staticCache ??= (async () => {
@@ -81,7 +87,8 @@ function loadStatic() {
       if (d) data.push(d);
       info.set(def.slug, await programInfo(def.slug));
     }
-    return { data, info };
+    const foundations: FoundationsFile | null = await lfxFoundations().catch(() => null);
+    return { data, info, foundations };
   })();
   return staticCache;
 }
@@ -94,7 +101,7 @@ function mergeChats(a: OrgChat[], b: OrgChat[]): OrgChat[] {
 }
 
 export async function buildKnowledge(lfx: LfxHistory | null): Promise<Knowledge> {
-  const { data, info } = await loadStatic();
+  const { data, info, foundations } = await loadStatic();
   const byKey = new Map<string, KnowledgeOrg>();
   const upsert = (
     name: string,
@@ -161,6 +168,42 @@ export async function buildKnowledge(lfx: LfxHistory | null): Promise<Knowledge>
       });
       continue;
     }
+    let foundationOrgCount = 0;
+    if (def.slug === "lfx-mentorship" && foundations) {
+      for (const f of foundations.foundations)
+        for (const o of f.orgs) {
+          foundationOrgCount++;
+          upsert(
+            o.name,
+            {
+              description: o.description,
+              website: o.website,
+              repoUrl: o.repoUrl,
+              githubUrl: o.githubUrl ?? null,
+              tags: o.tags,
+              chats: [],
+              chatSource: null,
+              logo: o.logo,
+              categories: o.categories ?? [f.name],
+            },
+            {
+              program: def.slug,
+              orgSlug: o.slug,
+              programName: `LFX Mentorship (${f.short === "More" ? o.lfProject : f.name})`,
+              foundation: f.short === "More" ? "More" : f.short,
+              years: o.years,
+              projectCount: o.projects?.length ?? 0,
+              projects: (o.projects ?? []).map((x) => ({
+                title: x.title,
+                year: x.year,
+                url: x.url,
+              })),
+              pageUrl: `/programs/lfx/organizations/${encodeURIComponent(o.slug)}`,
+              links: o.links ?? [],
+            },
+          );
+        }
+    }
     if (def.slug === "lfx-mentorship" && lfx?.programs.length) {
       const groups = new Map<string, LfxHistory["programs"]>();
       for (const p of lfx.programs)
@@ -181,11 +224,13 @@ export async function buildKnowledge(lfx: LfxHistory | null): Promise<Knowledge>
             chats: community?.chats ?? [],
             chatSource: community?.source ?? null,
             lfxSlug: slug,
+            categories: [CNCF_NAME],
           },
           {
             program: def.slug,
             orgSlug: slug,
             programName: "LFX Mentorship (CNCF)",
+            foundation: "CNCF",
             years: uniq(terms.map((t) => Number(t.slice(0, 4)))).sort(),
             terms,
             projectCount: ps.length,
@@ -205,10 +250,13 @@ export async function buildKnowledge(lfx: LfxHistory | null): Promise<Knowledge>
       programs.push({
         def,
         info: info.get(def.slug) ?? null,
-        orgCount: projects.size,
+        orgCount: projects.size + foundationOrgCount,
         years: uniq(lfx.terms.map((t) => t.year)).sort(),
         pageUrl: "/programs/lfx",
-        sources: [{ label: "CNCF mentoring repository", url: lfx.source.url }],
+        sources: [
+          { label: "CNCF mentoring repository", url: lfx.source.url },
+          ...(foundations?.sources.slice(0, 1) ?? []),
+        ],
       });
       continue;
     }

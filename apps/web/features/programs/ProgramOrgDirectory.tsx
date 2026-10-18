@@ -68,6 +68,7 @@ export function ProgramOrgDirectory({
   initial,
   programSlug,
   savedIds = [],
+  keepQuery,
 }: {
   orgs: DirectoryOrg[];
   programName: string;
@@ -77,6 +78,8 @@ export function ProgramOrgDirectory({
   programSlug: string;
   /** saved-item keys of this session, e.g. "ORGANIZATION:org:gsoc/alaska" */
   savedIds?: string[];
+  /** query parameters to keep in the URL while filtering, e.g. { f: "lfdt" } */
+  keepQuery?: Record<string, string>;
 }) {
   const savedSet = useMemo(() => new Set(savedIds), [savedIds]);
   const router = useRouter();
@@ -126,7 +129,7 @@ export function ProgramOrgDirectory({
 
   // keep the URL in step so a filtered view can be shared or reloaded
   useEffect(() => {
-    const p = new URLSearchParams();
+    const p = new URLSearchParams(keepQuery);
     if (query.trim()) p.set("q", query.trim());
     if (tech) p.set("tech", tech);
     if (year) p.set("year", year);

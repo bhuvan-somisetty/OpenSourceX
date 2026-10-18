@@ -39,7 +39,7 @@ export async function resolveSavedOrg(id: string): Promise<SavedOrg | null> {
       name: o.name,
       program: def.slug,
       programName: def.name,
-      programShort: def.short,
+      programShort: e.foundation ? `LFX · ${e.foundation}` : def.short,
       href: e.pageUrl,
       description: o.description?.slice(0, 200) ?? null,
       logo: o.logo ?? null,
