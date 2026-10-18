@@ -13,6 +13,8 @@ import { SavedOrgCard } from "@/features/saved/SavedOrgCard";
 import { resolveSavedOrg } from "@/lib/saved-orgs";
 import { HomeEffects } from "@/features/home/HomeEffects";
 import { OrbitCore } from "@/features/home/OrbitCore";
+import { deadlinesChecked, nextStep, upcomingDeadlines } from "@/lib/home-insights";
+import { formatInfoDate } from "@/lib/program-info";
 
 export const metadata: Metadata = { title: "Home" };
 export const dynamic = "force-dynamic";
@@ -133,6 +135,11 @@ export default async function AppHome() {
     cards: (await listProjects(d)).items,
   }));
   const k = await knowledge().catch(() => null);
+  const [step, deadlines, checked] = await Promise.all([
+    nextStep(res.ok ? res.data.saved.map((r) => r.entityId) : []),
+    upcomingDeadlines(),
+    deadlinesChecked(),
+  ]);
 
   // the newest saved organizations from any program (`org:<program>/<slug>`)
   const recentOrgs = res.ok
@@ -229,6 +236,92 @@ export default async function AppHome() {
               ))}
             </div>
           </nav>
+        </section>
+
+        <section className="block home-now" aria-label="Your next step and upcoming deadlines">
+          <div className="home-next glow-violet" data-reveal>
+            <div className="home-next-eyebrow">✦ Your next step</div>
+            {step ? (
+              <>
+                <h2 className="home-next-title">
+                  You saved <Link href={step.href}>{step.name}</Link>
+                  <span className="pill lfx-org-latest-pill">{step.programShort}</span>
+                </h2>
+                <p className="home-next-text">
+                  {step.chat
+                    ? "Say hi to the team, pick a first issue, then ask how to make it count."
+                    : "Pick a first issue, read the contributor guide, then ask how to make it count."}
+                </p>
+                <div className="home-next-actions">
+                  {step.chat && (
+                    <a
+                      className="btn sm primary"
+                      href={step.chat.url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {step.chat.label}
+                    </a>
+                  )}
+                  {step.issuesUrl && (
+                    <a className="btn sm" href={step.issuesUrl} target="_blank" rel="noreferrer">
+                      Good first issues
+                    </a>
+                  )}
+                  <Link className="btn sm" href={`/ask?q=${encodeURIComponent(step.askQuery)}`}>
+                    Ask how to start
+                  </Link>
+                </div>
+              </>
+            ) : (
+              <>
+                <h2 className="home-next-title">Pick a program to start</h2>
+                <p className="home-next-text">
+                  Save an organization you like, and this card will show its chat, its first issues
+                  and how to begin.
+                </p>
+                <div className="home-next-actions">
+                  <Link className="btn sm primary" href="/programs">
+                    Explore Programs
+                  </Link>
+                  <Link className="btn sm" href="/discover">
+                    Find orgs by skill
+                  </Link>
+                </div>
+              </>
+            )}
+          </div>
+
+          <div className="home-deadlines glow-blue" data-reveal>
+            <div className="home-next-eyebrow">Coming up</div>
+            {deadlines.length ? (
+              <ul className="home-deadline-list">
+                {deadlines.map((d) => (
+                  <li key={`${d.program.slug}-${d.date}-${d.label}`}>
+                    <Link href={`/programs/${d.program.slug}`} className="home-deadline">
+                      <span className={`home-deadline-days${d.days <= 14 ? " soon" : ""}`}>
+                        <strong>{d.days === 0 ? "Today" : d.days}</strong>
+                        {d.days > 0 && <small>{d.days === 1 ? "day" : "days"}</small>}
+                      </span>
+                      <span className="home-deadline-body">
+                        <strong>{d.label}</strong>
+                        <span className="muted">
+                          {d.program.short} · {formatInfoDate(d.date)}
+                        </span>
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="home-next-text">No dated milestones are coming up right now.</p>
+            )}
+            {checked && (
+              <p className="home-deadline-note">
+                From each program&apos;s official timeline, checked {formatInfoDate(checked)}.
+              </p>
+            )}
+          </div>
         </section>
 
         <section className="block home-bento" aria-label="Start here">
