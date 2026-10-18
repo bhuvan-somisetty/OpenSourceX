@@ -7104,3 +7104,25 @@ mark.porg-hit {
     grid-template-columns: 1fr;
   }
 }
+
+/* home on phones: stats as a 2x2 grid, and the empty saved box stacks */
+@media (max-width: 620px) {
+  .home-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 16px;
+  }
+  .home .empty-saved-prompt {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .home .empty-saved-prompt .btn {
+    align-self: stretch;
+    justify-content: center;
+  }
+  .home-next,
+  .home-deadlines {
+    padding: 22px 20px;
+  }
+}
