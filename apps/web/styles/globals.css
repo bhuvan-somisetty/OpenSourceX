@@ -6916,17 +6916,19 @@ mark.porg-hit {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 64px;
-  height: 14px;
-  margin: -7px 0 0 -10px;
-  transform-origin: 10px 7px;
+  width: 96px;
+  height: 21px;
+  margin: -10.5px 0 0 -14px;
+  transform-origin: 14px 10.5px;
   transform: rotate(-45deg);
   pointer-events: none;
-  animation: home-arrow-fly 0.9s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
-  filter: drop-shadow(0 0 6px rgba(159, 182, 255, 0.9));
+  animation: home-arrow-fly 1.3s cubic-bezier(0.15, 0.6, 0.35, 1) forwards;
+  filter: drop-shadow(0 0 8px rgba(159, 182, 255, 1)) drop-shadow(0 0 18px rgba(155, 125, 255, 0.7));
 }
 .home-arrow svg {
   display: block;
+  width: 96px;
+  height: 21px;
 }
 @keyframes home-arrow-fly {
   0% {
@@ -6940,7 +6942,7 @@ mark.porg-hit {
     opacity: 1;
   }
   100% {
-    transform: rotate(-45deg) translateX(70vmin);
+    transform: rotate(-45deg) translateX(380px);
     opacity: 0;
   }
 }
