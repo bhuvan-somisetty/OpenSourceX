@@ -7647,6 +7647,116 @@ mark.porg-hit {
   color: #d4547c;
   margin-bottom: 2px;
 }
+/* cards in the hand are buttons */
+button.play-card {
+  font: inherit;
+  cursor: pointer;
+}
+/* the tapped card, big in the middle of the screen */
+.play-card.play-card-big {
+  position: relative;
+  left: auto;
+  bottom: auto;
+  margin: 0;
+  width: min(380px, 92vw);
+  height: auto;
+  min-height: min(532px, 88vh);
+  max-height: 92vh;
+  overflow-y: auto;
+  padding: 56px 34px 46px;
+  border-radius: 22px;
+  transform: none;
+  cursor: default;
+  border-color: rgba(190, 40, 80, 0.85);
+  box-shadow:
+    inset 0 0 0 9px var(--surface),
+    inset 0 0 0 10px rgba(180, 30, 70, 0.4),
+    0 40px 100px -20px rgba(0, 0, 0, 0.95),
+    0 0 60px -10px rgba(150, 16, 56, 0.6);
+  animation: playCardIn 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes playCardIn {
+  from {
+    opacity: 0;
+    transform: scale(0.82) rotate(-4deg);
+  }
+}
+.play-card-big .play-corner {
+  top: 20px;
+  left: 22px;
+  font-size: 22px;
+}
+.play-card-big .play-corner svg {
+  width: 16px;
+  height: 16px;
+}
+.play-card-big .play-corner.flip {
+  top: auto;
+  left: auto;
+  bottom: 20px;
+  right: 22px;
+}
+.play-card-big .play-icon {
+  width: 84px;
+  height: 84px;
+}
+.play-card-big .play-icon svg {
+  width: 40px;
+  height: 40px;
+}
+.play-card-big .play-title {
+  margin: 18px 0 0;
+  font-size: 26px;
+}
+.play-card-big .play-what {
+  margin: 10px 0 0;
+  font-size: 15px;
+}
+.play-points {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+}
+.play-points li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--text);
+}
+.play-points li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0.5em;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  transform: rotate(45deg);
+  background: #d4547c;
+}
+.play-card-big .play-why {
+  margin: 22px 0 0;
+  font-size: 13px;
+}
+.play-card-big .play-why strong {
+  font-size: 10px;
+}
+.play-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 24px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .play-card.play-card-big {
+    animation: none;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .play-card {
     transition: none;
