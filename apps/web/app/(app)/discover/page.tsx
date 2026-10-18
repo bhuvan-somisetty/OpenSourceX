@@ -107,9 +107,11 @@ export default async function Discover({ searchParams }: { searchParams: Promise
   const facetOrgs = ranked.map((f) => [...f.orgs]);
   const savedArr = [...saved].filter((s) => s.startsWith("ORGANIZATION:"));
   // send only matching organizations to the browser (the page re-renders when interests change)
-  const wanted = new Set(interests.map((i) => i.toLowerCase()));
+  const wanted = new Set(interests.map((i) => i.toLowerCase().trim()));
   const allOrgs = wanted.size
-    ? cards.filter((c) => [...c.technologies, ...c.topics].some((t) => wanted.has(t.toLowerCase())))
+    ? cards.filter((c) =>
+        [...c.technologies, ...c.topics].some((t) => wanted.has(t.toLowerCase().trim())),
+      )
     : [];
 
   return (

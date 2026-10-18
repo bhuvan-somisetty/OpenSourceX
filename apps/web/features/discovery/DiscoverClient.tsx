@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { DiscoveryOrgCard, type DiscoverOrg } from "@/features/discovery/DiscoveryOrgCard";
 import { Notice } from "@/components/feedback/Notice";
 
-const norm = (s: string) => s.toLowerCase();
+const norm = (s: string) => s.toLowerCase().trim();
 
 export function DiscoverClient({
   allOrgs,
