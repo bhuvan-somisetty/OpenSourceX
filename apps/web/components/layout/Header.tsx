@@ -10,7 +10,6 @@ export const NAV = [
   { href: "/discover", label: "Discover" },
   { href: "/ask", label: "Ask" },
   { href: "/programs", label: "Programs" },
-  { href: "/projects", label: "Projects" },
   { href: "/saved", label: "Saved" },
   { href: "/repositories/analyze", label: "Repositories" },
   { href: "/interview", label: "Interview" },

@@ -65,8 +65,8 @@ export default async function Interview({ searchParams }: { searchParams: Promis
           <EmptyState
             title="No recorded project to practice with"
             action={
-              <Link className="btn" href="/projects">
-                Browse projects
+              <Link className="btn" href="/programs">
+                Browse programs
               </Link>
             }
           >
