@@ -29,7 +29,14 @@ export function OrbitCore() {
         >
           <svg width="64" height="14" viewBox="0 0 64 14" fill="none">
             <defs>
-              <linearGradient id={`arrow-trail-${id}`} x1="0" x2="1">
+              <linearGradient
+                id={`arrow-trail-${id}`}
+                x1="0"
+                y1="0"
+                x2="64"
+                y2="0"
+                gradientUnits="userSpaceOnUse"
+              >
                 <stop offset="0" stopColor="#9b7dff" stopOpacity="0.55" />
                 <stop offset="1" stopColor="#e2e9ff" />
               </linearGradient>
