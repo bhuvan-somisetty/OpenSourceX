@@ -7302,13 +7302,74 @@ mark.porg-hit {
 }
 
 /* Discover picker: program filters (GSoC, LFX, LFX · CNCF, ...) */
+.picker-list {
+  flex: 1;
+  min-height: 180px;
+  max-height: min(46vh, 380px);
+  overflow-y: auto;
+  padding-right: 6px;
+  margin-bottom: 18px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(160, 24, 64, 0.55) transparent;
+}
+.picker-list::-webkit-scrollbar {
+  width: 6px;
+}
+.picker-list::-webkit-scrollbar-thumb {
+  background: rgba(160, 24, 64, 0.55);
+  border-radius: 999px;
+}
+.picker-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+/* section titles stay in view while the list scrolls */
 .picker-heading {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 0 10px;
+  background: var(--surface);
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--text-dim, #94a3b8);
-  margin-bottom: 8px;
+}
+.picker-heading span {
+  font-variant-numeric: tabular-nums;
+  padding: 1px 7px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-size: 10px;
+  letter-spacing: 0;
+}
+.picker-chips {
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.picker-chips .interest {
+  font-size: 13px;
+}
+.picker-divider {
+  border: 0;
+  height: 1px;
+  margin: 18px 0 16px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(160, 24, 64, 0.7) 20%,
+    rgba(160, 24, 64, 0.7) 80%,
+    transparent
+  );
+}
+.picker-empty {
+  margin: 24px 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 14px;
 }
 .interest.program.foundation {
   border-style: dashed;

@@ -4,7 +4,7 @@ import { load } from "@/lib/data";
 import { currentSaved } from "@/lib/saved";
 import { many, type Params } from "@/lib/url";
 import { PROGRAM_CATALOG, programDef } from "@/lib/programs";
-import { lfxFoundations } from "@/lib/lfx-foundations";
+import { CNCF_NAME, lfxFoundations } from "@/lib/lfx-foundations";
 import { orgEntityId } from "@/lib/org-ids";
 import { knowledge } from "@/lib/assistant/engine";
 import { normalize, type KnowledgeOrg } from "@/lib/assistant/knowledge";
@@ -123,10 +123,17 @@ export default async function Discover({ searchParams }: { searchParams: Promise
 
   // interest facets: one entry per technology/topic, case-insensitive, most common first
   const freq = new Map<string, { label: string; n: number; orgs: Set<number> }>();
+  // foundation names (CNCF, LF Decentralized Trust, ...) are program filters, not interests
+  const foundationNames = new Set(
+    [
+      CNCF_NAME,
+      ...((await lfxFoundations().catch(() => null))?.foundations ?? []).map((f) => f.name),
+    ].map((n) => n.toLowerCase()),
+  );
   cards.forEach((org, idx) => {
     for (const t of [...org.technologies, ...org.topics]) {
       const key = t.toLowerCase().trim();
-      if (!key || key.length > 40) continue;
+      if (!key || key.length > 40 || foundationNames.has(key)) continue;
       const cur = freq.get(key);
       if (!cur) freq.set(key, { label: t, n: 1, orgs: new Set([idx]) });
       else {

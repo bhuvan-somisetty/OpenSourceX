@@ -423,25 +423,14 @@ export function DiscoverClient({
               </div>
             )}
 
-            {/* All available languages and technologies */}
-            <div
-              style={{
-                flex: 1,
-                minHeight: 180,
-                maxHeight: 280,
-                overflowY: "auto",
-                paddingRight: 4,
-                marginBottom: 18,
-              }}
-            >
+            {/* Programs, then languages and technologies */}
+            <div className="picker-list">
               {filteredPrograms.length > 0 && (
-                <>
-                  <div className="picker-heading">Programs ({filteredPrograms.length})</div>
-                  <div
-                    className="chips"
-                    style={{ gap: 8, flexWrap: "wrap", marginBottom: 16 }}
-                    data-testid="program-facets"
-                  >
+                <section className="picker-section" aria-label="Programs">
+                  <div className="picker-heading">
+                    Programs <span>{filteredPrograms.length}</span>
+                  </div>
+                  <div className="chips picker-chips" data-testid="program-facets">
                     {filteredPrograms.map((f) => (
                       <button
                         key={f.key}
@@ -449,44 +438,45 @@ export function DiscoverClient({
                         className={`interest program${f.key.includes("/") ? " foundation" : ""}`}
                         aria-pressed={pendingPrograms.includes(f.key)}
                         onClick={() => togglePendingProgram(f.key)}
-                        style={{ cursor: "pointer", fontSize: 13 }}
                       >
                         {f.label}
                         <span className="interest-count">{f.orgs.length}</span>
                       </button>
                     ))}
                   </div>
-                </>
+                </section>
               )}
-              <div
-                style={{
-                  fontSize: 11,
-                  fontWeight: 700,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.06em",
-                  color: "var(--text-dim, #94a3b8)",
-                  marginBottom: 8,
-                }}
-              >
-                All languages & technologies ({filteredFacets.length})
-              </div>
-              <div className="chips" style={{ gap: 8, flexWrap: "wrap" }}>
-                {filteredFacets.map((f) => {
-                  const on = pendingInterests.some((p) => norm(p) === norm(f));
-                  return (
-                    <button
-                      key={f}
-                      type="button"
-                      className="interest"
-                      aria-pressed={on}
-                      onClick={() => togglePending(f)}
-                      style={{ cursor: "pointer", fontSize: 13 }}
-                    >
-                      {f}
-                    </button>
-                  );
-                })}
-              </div>
+              {filteredPrograms.length > 0 && filteredFacets.length > 0 && (
+                <hr className="picker-divider" />
+              )}
+              {filteredFacets.length > 0 && (
+                <section className="picker-section" aria-label="Languages and technologies">
+                  <div className="picker-heading">
+                    Languages &amp; technologies <span>{filteredFacets.length}</span>
+                  </div>
+                  <div className="chips picker-chips">
+                    {filteredFacets.map((f) => {
+                      const on = pendingInterests.some((p) => norm(p) === norm(f));
+                      const n = facetOrgs[facetIndex.get(norm(f)) ?? -1]?.length;
+                      return (
+                        <button
+                          key={f}
+                          type="button"
+                          className="interest"
+                          aria-pressed={on}
+                          onClick={() => togglePending(f)}
+                        >
+                          {f}
+                          {n ? <span className="interest-count">{n}</span> : null}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </section>
+              )}
+              {filteredPrograms.length === 0 && filteredFacets.length === 0 && (
+                <p className="picker-empty">Nothing matches &ldquo;{searchQuery.trim()}&rdquo;.</p>
+              )}
             </div>
 
             <div className="modal-actions">
