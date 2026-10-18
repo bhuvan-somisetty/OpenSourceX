@@ -7278,30 +7278,3 @@ mark.porg-hit {
       linear-gradient(160deg, #12151f, #0a0c10 75%);
   }
 }
-
-/* start page: one low crimson eclipse glow behind the mark, fading into the violet */
-.intro-red {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(
-      62% 44% at 50% 102%,
-      rgba(255, 70, 104, 0.3) 0%,
-      rgba(214, 74, 150, 0.14) 38%,
-      rgba(155, 110, 255, 0.05) 60%,
-      transparent 75%
-    ),
-    radial-gradient(24% 16% at 50% 100%, rgba(255, 120, 140, 0.22), transparent 70%);
-  animation: intro-red-breathe 9s ease-in-out infinite;
-}
-@keyframes intro-red-breathe {
-  50% {
-    opacity: 0.72;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .intro-red {
-    animation: none;
-  }
-}

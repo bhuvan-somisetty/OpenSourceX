@@ -9,7 +9,6 @@ export default function Intro() {
       <div className="intro-bg" aria-hidden="true">
         <div className="intro-glow" />
         <div className="intro-glow b" />
-        <div className="intro-red" />
         <div className="intro-horizon" />
         <div className="intro-spot" />
         <div className="intro-rings">
