@@ -7465,15 +7465,26 @@ mark.porg-hit {
 .discover-fan {
   display: none;
 }
-@media (min-width: 1300px) {
+/* laptops (including 1920 screens at 150% scaling): smaller, below the heading */
+@media (min-width: 1080px) {
   .discover-fan {
     display: block;
     position: absolute;
-    top: 96px;
-    right: 3%;
+    top: 236px;
+    right: 0;
     width: 520px;
     height: 360px;
     z-index: 1;
+    transform: scale(0.78);
+    transform-origin: top right;
+  }
+}
+/* big screens: full size, beside the heading */
+@media (min-width: 1440px) {
+  .discover-fan {
+    top: 96px;
+    right: 3%;
+    transform: none;
   }
 }
 .discover-fan-card {

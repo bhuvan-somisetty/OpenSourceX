@@ -189,7 +189,8 @@ export default async function Discover({ searchParams }: { searchParams: Promise
 
   return (
     <div className="wrap discover-top">
-      <DiscoverFan orgs={fanOrgs} />
+      {/* only before filtering, so the cards never cover results */}
+      {!interests.length && !wantedPrograms.length && <DiscoverFan orgs={fanOrgs} />}
       <section className="page-hero">
         <div className="eyebrow">Discover</div>
         <h1 className="page" style={{ marginTop: 14 }}>
