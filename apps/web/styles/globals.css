@@ -7291,13 +7291,13 @@ mark.porg-hit {
   font-variant-numeric: tabular-nums;
 }
 
-/* Discover picker: a steady red glow around the whole filter box */
+/* Discover picker: a steady burgundy glow around the whole filter box */
 .picker-modal {
-  border-color: rgba(255, 77, 77, 0.55);
+  border-color: rgba(160, 24, 64, 0.85);
   box-shadow:
-    0 0 0 1px rgba(255, 77, 77, 0.25),
-    0 0 18px rgba(255, 60, 60, 0.35),
-    0 0 48px rgba(255, 40, 40, 0.18),
+    0 0 0 1px rgba(128, 0, 32, 0.5),
+    0 0 20px rgba(150, 16, 56, 0.55),
+    0 0 52px rgba(128, 0, 32, 0.35),
     0 30px 90px -10px rgba(0, 0, 0, 0.8);
 }
 
