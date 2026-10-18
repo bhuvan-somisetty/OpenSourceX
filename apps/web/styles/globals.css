@@ -7129,28 +7129,41 @@ mark.porg-hit {
 
 /* home: language picker in the empty next-step card */
 .home-langs {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
-  margin-top: auto;
-  padding-top: 6px;
+  margin-top: 6px;
 }
 .home-lang {
-  padding: 9px 16px;
-  border-radius: 999px;
-  border: 1px solid var(--border-strong);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
   background: var(--glass);
   color: var(--text);
-  font-size: 14px;
-  font-weight: 500;
   text-decoration: none;
   transition:
     background 0.2s,
     border-color 0.2s,
     transform 0.2s;
 }
+.home-lang strong {
+  font-size: 15px;
+  font-weight: 600;
+}
+.home-lang span {
+  font-size: 12px;
+  color: var(--text-dim);
+}
 .home-lang:hover {
-  background: rgba(125, 155, 255, 0.14);
-  border-color: rgba(125, 155, 255, 0.55);
+  background: rgba(125, 155, 255, 0.12);
+  border-color: rgba(125, 155, 255, 0.5);
   transform: translateY(-2px);
+}
+@media (max-width: 620px) {
+  .home-langs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }

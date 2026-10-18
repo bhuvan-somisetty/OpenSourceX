@@ -162,6 +162,13 @@ export default async function AppHome() {
         .slice(0, 3)
     : [];
   const savedCount = res.ok ? res.data.saved.length : 0;
+  // organizations per language, counted the same way Discover matches them (tags, any case)
+  const langCounts = new Map(
+    LANGS.map((l) => [
+      l,
+      k ? k.orgs.filter((o) => o.tags.some((t) => t.toLowerCase() === l.toLowerCase())).length : 0,
+    ]),
+  );
 
   const first = session.kind === "guest" ? "" : (session.name.split(/\s+/)[0] ?? "");
   const orgCount = k?.orgs.length ?? 0;
@@ -289,7 +296,8 @@ export default async function AppHome() {
                       href={`/discover?i=${encodeURIComponent(l)}`}
                       className="home-lang"
                     >
-                      {l}
+                      <strong>{l}</strong>
+                      {(langCounts.get(l) ?? 0) > 0 && <span>{langCounts.get(l)} orgs</span>}
                     </Link>
                   ))}
                 </div>
