@@ -10,6 +10,7 @@ import { orgEntityId } from "@/lib/org-ids";
 import { knowledge } from "@/lib/assistant/engine";
 import { normalize, type KnowledgeOrg } from "@/lib/assistant/knowledge";
 import { DiscoverClient, type ProgramFacet } from "@/features/discovery/DiscoverClient";
+import { DiscoverFan } from "@/features/discovery/DiscoverFan";
 import type { DiscoverOrg } from "@/features/discovery/DiscoveryOrgCard";
 
 export const metadata: Metadata = { title: "Discover" };
@@ -175,8 +176,20 @@ export default async function Discover({ searchParams }: { searchParams: Promise
         )
       : [];
 
+  // the hero's fanned cards: organizations in the most programs, for the most years, with a logo
+  const fanOrgs = cards
+    .filter((c) => c.description && (c.programs?.length ?? 0) > 1)
+    .sort(
+      (a, b) =>
+        (b.programs?.length ?? 0) - (a.programs?.length ?? 0) ||
+        b.yearCount - a.yearCount ||
+        a.name.localeCompare(b.name),
+    )
+    .slice(0, 3);
+
   return (
-    <div className="wrap">
+    <div className="wrap discover-top">
+      <DiscoverFan orgs={fanOrgs} />
       <section className="page-hero">
         <div className="eyebrow">Discover</div>
         <h1 className="page" style={{ marginTop: 14 }}>

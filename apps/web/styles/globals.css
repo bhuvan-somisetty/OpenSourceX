@@ -7457,3 +7457,124 @@ mark.porg-hit {
   opacity: 0.65;
   font-variant-numeric: tabular-nums;
 }
+
+/* Discover: three real organizations fanned like a hand of cards beside the hero */
+.discover-top {
+  position: relative;
+}
+.discover-fan {
+  display: none;
+}
+@media (min-width: 1300px) {
+  .discover-fan {
+    display: block;
+    position: absolute;
+    top: 96px;
+    right: 3%;
+    width: 520px;
+    height: 360px;
+    z-index: 1;
+  }
+}
+.discover-fan-card {
+  position: absolute;
+  left: 50%;
+  top: 30px;
+  width: 290px;
+  margin-left: -145px;
+  padding: 20px;
+  border-radius: 18px;
+  background: var(--surface);
+  border: 1px solid rgba(160, 24, 64, 0.45);
+  box-shadow:
+    0 24px 60px -20px rgba(0, 0, 0, 0.85),
+    0 0 26px -10px rgba(128, 0, 32, 0.5);
+  color: var(--text);
+  text-decoration: none;
+  transform-origin: 50% 120%;
+  transition:
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+.discover-fan-card.fan-0 {
+  transform: rotate(-10deg) translateX(-62px);
+  z-index: 1;
+}
+.discover-fan-card.fan-1 {
+  transform: translateY(-10px);
+  z-index: 3;
+}
+.discover-fan-card.fan-2 {
+  transform: rotate(10deg) translateX(62px);
+  z-index: 2;
+}
+.discover-fan:hover .discover-fan-card.fan-0 {
+  transform: rotate(-15deg) translateX(-118px) translateY(6px);
+}
+.discover-fan:hover .discover-fan-card.fan-1 {
+  transform: translateY(-22px);
+}
+.discover-fan:hover .discover-fan-card.fan-2 {
+  transform: rotate(15deg) translateX(118px) translateY(6px);
+}
+.discover-fan .discover-fan-card:hover {
+  z-index: 4;
+  border-color: rgba(190, 40, 80, 0.85);
+  box-shadow:
+    0 30px 70px -20px rgba(0, 0, 0, 0.9),
+    0 0 34px -6px rgba(150, 16, 56, 0.6);
+}
+.discover-fan-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.discover-fan-name {
+  font-weight: 700;
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.discover-fan-years {
+  font-size: 12px;
+  color: var(--text-dim, #94a3b8);
+  margin-top: 2px;
+}
+.discover-fan-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+}
+.discover-fan-pills .pill {
+  font-size: 11px;
+}
+.discover-fan-desc {
+  margin: 12px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.discover-fan-tags {
+  display: flex;
+  gap: 6px;
+  margin-top: 14px;
+}
+.discover-fan-tags span {
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+@media (prefers-reduced-motion: reduce) {
+  .discover-fan-card {
+    transition: none;
+  }
+}
