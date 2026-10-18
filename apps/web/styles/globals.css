@@ -7330,7 +7330,7 @@ mark.porg-hit {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 2px 0 10px;
+  padding: 2px 0 6px;
   background: var(--surface);
   font-size: 11px;
   font-weight: 700;
@@ -7349,6 +7349,8 @@ mark.porg-hit {
 .picker-chips {
   gap: 8px;
   flex-wrap: wrap;
+  /* room for the hover lift, so the top row never slides under the sticky title */
+  padding-top: 4px;
 }
 .picker-chips .interest {
   font-size: 13px;
