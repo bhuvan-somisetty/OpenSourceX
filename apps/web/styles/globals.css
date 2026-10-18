@@ -7286,13 +7286,13 @@ mark.porg-hit {
   pointer-events: none;
   background:
     radial-gradient(
-      58% 34% at 50% 106%,
-      rgba(255, 70, 104, 0.24) 0%,
-      rgba(214, 74, 150, 0.12) 38%,
+      62% 44% at 50% 102%,
+      rgba(255, 70, 104, 0.3) 0%,
+      rgba(214, 74, 150, 0.14) 38%,
       rgba(155, 110, 255, 0.05) 60%,
       transparent 75%
     ),
-    radial-gradient(22% 12% at 50% 100%, rgba(255, 120, 140, 0.18), transparent 70%);
+    radial-gradient(24% 16% at 50% 100%, rgba(255, 120, 140, 0.22), transparent 70%);
   animation: intro-red-breathe 9s ease-in-out infinite;
 }
 @keyframes intro-red-breathe {
