@@ -105,7 +105,7 @@ async function githubAccount(login) {
       name: (o?.name || u.name || u.login).trim(),
       description: o?.description?.trim() || null,
       website: o?.blog ? (/^https?:\/\//.test(o.blog) ? o.blog : `https://${o.blog}`) : null,
-      avatar: `https://avatars.githubusercontent.com/${u.login}?s=160`,
+      avatar: o?.avatar_url || u.avatar_url ? `${o?.avatar_url || u.avatar_url}&s=160` : null,
     };
   }
   ghCache.set(login, acct);
