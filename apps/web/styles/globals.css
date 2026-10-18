@@ -7458,134 +7458,197 @@ mark.porg-hit {
   font-variant-numeric: tabular-nums;
 }
 
-/* Discover: three real organizations fanned like a hand of cards beside the hero */
+/* Discover: what OpenSourceX gives you, as a fanned hand of playing cards beside the hero */
 .discover-top {
   position: relative;
 }
 .discover-fan {
   display: none;
 }
-/* laptops (including 1920 screens at 150% scaling): smaller, below the heading */
+/* laptops (including 1920 screens at 150% scaling): smaller, beside the text */
 @media (min-width: 1080px) {
   .discover-fan {
     display: block;
     position: absolute;
-    top: 130px;
-    right: 48px;
-    width: 520px;
-    height: 360px;
+    top: 120px;
+    right: 40px;
+    width: 600px;
+    height: 340px;
     z-index: 1;
-    transform: scale(0.78);
+    transform: scale(0.74);
     transform-origin: top right;
   }
 }
 /* big screens: full size, beside the heading */
 @media (min-width: 1440px) {
   .discover-fan {
-    top: 96px;
-    right: 3%;
+    top: 80px;
+    right: 2%;
     transform: none;
   }
 }
-.discover-fan-card {
+.play-card {
+  --r: 0deg;
+  --x: 0px;
+  --y: 0px;
+  --lift: 0px;
   position: absolute;
   left: 50%;
-  top: 30px;
-  width: 290px;
-  margin-left: -145px;
-  padding: 20px;
-  border-radius: 18px;
-  background: var(--surface);
-  border: 1px solid rgba(160, 24, 64, 0.45);
+  bottom: 0;
+  width: 168px;
+  height: 236px;
+  margin-left: -84px;
+  padding: 34px 16px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-radius: 14px;
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--surface) 92%, #4a0a1c),
+    var(--surface)
+  );
+  border: 1px solid rgba(160, 24, 64, 0.5);
   box-shadow:
-    0 24px 60px -20px rgba(0, 0, 0, 0.85),
-    0 0 26px -10px rgba(128, 0, 32, 0.5);
+    inset 0 0 0 6px var(--surface),
+    inset 0 0 0 7px rgba(160, 24, 64, 0.28),
+    0 22px 50px -18px rgba(0, 0, 0, 0.9),
+    0 0 24px -10px rgba(128, 0, 32, 0.55);
   color: var(--text);
   text-decoration: none;
-  transform-origin: 50% 120%;
+  transform-origin: 50% 115%;
+  transform: translateX(var(--x)) translateY(calc(var(--y) + var(--lift))) rotate(var(--r));
   transition:
     transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 0.3s ease,
     border-color 0.3s ease;
 }
-.discover-fan-card.fan-0 {
-  transform: rotate(-10deg) translateX(-62px);
+.play-card.fan-0 {
+  --r: -22deg;
+  --x: -116px;
+  --y: 18px;
   z-index: 1;
 }
-.discover-fan-card.fan-1 {
-  transform: translateY(-10px);
-  z-index: 3;
-}
-.discover-fan-card.fan-2 {
-  transform: rotate(10deg) translateX(62px);
+.play-card.fan-1 {
+  --r: -11deg;
+  --x: -58px;
+  --y: 5px;
   z-index: 2;
 }
-.discover-fan:hover .discover-fan-card.fan-0 {
-  transform: rotate(-15deg) translateX(-118px) translateY(6px);
+.play-card.fan-2 {
+  z-index: 5;
 }
-.discover-fan:hover .discover-fan-card.fan-1 {
-  transform: translateY(-22px);
-}
-.discover-fan:hover .discover-fan-card.fan-2 {
-  transform: rotate(15deg) translateX(118px) translateY(6px);
-}
-.discover-fan .discover-fan-card:hover {
+.play-card.fan-3 {
+  --r: 11deg;
+  --x: 58px;
+  --y: 5px;
   z-index: 4;
-  border-color: rgba(190, 40, 80, 0.85);
+}
+.play-card.fan-4 {
+  --r: 22deg;
+  --x: 116px;
+  --y: 18px;
+  z-index: 3;
+}
+.discover-fan:hover .play-card.fan-0 {
+  --r: -26deg;
+  --x: -200px;
+  --y: 30px;
+}
+.discover-fan:hover .play-card.fan-1 {
+  --r: -13deg;
+  --x: -102px;
+  --y: 8px;
+}
+.discover-fan:hover .play-card.fan-3 {
+  --r: 13deg;
+  --x: 102px;
+  --y: 8px;
+}
+.discover-fan:hover .play-card.fan-4 {
+  --r: 26deg;
+  --x: 200px;
+  --y: 30px;
+}
+.discover-fan .play-card:hover,
+.discover-fan .play-card:focus-visible {
+  --lift: -26px;
+  z-index: 6;
+  border-color: rgba(200, 44, 88, 0.9);
   box-shadow:
-    0 30px 70px -20px rgba(0, 0, 0, 0.9),
-    0 0 34px -6px rgba(150, 16, 56, 0.6);
+    inset 0 0 0 6px var(--surface),
+    inset 0 0 0 7px rgba(180, 30, 70, 0.45),
+    0 30px 60px -18px rgba(0, 0, 0, 0.95),
+    0 0 34px -6px rgba(150, 16, 56, 0.65);
 }
-.discover-fan-top {
+/* corner marks, like a real card: top-left, and upside down at bottom-right */
+.play-corner {
+  position: absolute;
+  top: 12px;
+  left: 13px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 2px;
+  font-weight: 800;
+  font-size: 15px;
+  line-height: 1;
+  color: #d4547c;
 }
-.discover-fan-name {
+.play-corner svg {
+  width: 12px;
+  height: 12px;
+}
+.play-corner.flip {
+  top: auto;
+  left: auto;
+  bottom: 12px;
+  right: 13px;
+  transform: rotate(180deg);
+}
+.play-icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  color: #e06b8f;
+  background: radial-gradient(circle, rgba(160, 24, 64, 0.28), rgba(160, 24, 64, 0.06));
+  border: 1px solid rgba(160, 24, 64, 0.45);
+}
+.play-icon svg {
+  width: 26px;
+  height: 26px;
+}
+.play-title {
+  margin-top: 12px;
+  font-size: 15px;
   font-weight: 700;
-  font-size: 16px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  letter-spacing: -0.01em;
 }
-.discover-fan-years {
-  font-size: 12px;
+.play-what {
+  margin-top: 6px;
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+.play-why {
+  margin-top: auto;
+  font-size: 10.5px;
+  line-height: 1.4;
   color: var(--text-dim, #94a3b8);
-  margin-top: 2px;
 }
-.discover-fan-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 14px;
-}
-.discover-fan-pills .pill {
-  font-size: 11px;
-}
-.discover-fan-desc {
-  margin: 12px 0 0;
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--text-muted);
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.discover-fan-tags {
-  display: flex;
-  gap: 6px;
-  margin-top: 14px;
-}
-.discover-fan-tags span {
-  font-size: 11px;
-  padding: 3px 9px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  color: var(--text-muted);
+.play-why strong {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #d4547c;
+  margin-bottom: 2px;
 }
 @media (prefers-reduced-motion: reduce) {
-  .discover-fan-card {
+  .play-card {
     transition: none;
   }
 }
