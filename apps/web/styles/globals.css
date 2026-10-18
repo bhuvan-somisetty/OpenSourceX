@@ -7291,6 +7291,61 @@ mark.porg-hit {
   font-variant-numeric: tabular-nums;
 }
 
+/* Discover picker: a red light travelling around the edge of the filter box */
+@property --picker-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes picker-orbit {
+  to {
+    --picker-angle: 360deg;
+  }
+}
+.picker-modal::before,
+.picker-modal::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--picker-angle),
+    transparent 0deg 250deg,
+    rgba(255, 70, 70, 0.15) 290deg,
+    #ff4d4d 335deg,
+    #ffd0d0 350deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+  animation: picker-orbit 4.5s linear infinite;
+  pointer-events: none;
+}
+/* soft glow that follows the light */
+.picker-modal::after {
+  inset: -3px;
+  padding: 4px;
+  filter: blur(10px);
+  opacity: 0.7;
+}
+.picker-modal {
+  box-shadow:
+    0 30px 90px -10px rgba(0, 0, 0, 0.8),
+    0 0 60px -20px rgba(255, 60, 60, 0.35);
+}
+@media (prefers-reduced-motion: reduce) {
+  .picker-modal::before,
+  .picker-modal::after {
+    animation: none;
+  }
+}
+
 /* Discover picker: program filters (GSoC, LFX, LFX · CNCF, ...) */
 .picker-heading {
   font-size: 11px;
@@ -7300,7 +7355,7 @@ mark.porg-hit {
   color: var(--text-dim, #94a3b8);
   margin-bottom: 8px;
 }
-.interest.program.sub {
+.interest.program.foundation {
   border-style: dashed;
 }
 .interest-count {

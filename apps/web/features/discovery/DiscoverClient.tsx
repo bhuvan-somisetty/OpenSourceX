@@ -310,7 +310,7 @@ export function DiscoverClient({
           }}
         >
           <div
-            className="modal-card"
+            className="modal-card picker-modal"
             role="dialog"
             aria-modal="true"
             aria-labelledby="interest-modal-title"
@@ -446,7 +446,7 @@ export function DiscoverClient({
                       <button
                         key={f.key}
                         type="button"
-                        className={`interest program${f.key.includes("/") ? " sub" : ""}`}
+                        className={`interest program${f.key.includes("/") ? " foundation" : ""}`}
                         aria-pressed={pendingPrograms.includes(f.key)}
                         onClick={() => togglePendingProgram(f.key)}
                         style={{ cursor: "pointer", fontSize: 13 }}
