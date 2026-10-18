@@ -7249,3 +7249,32 @@ mark.porg-hit {
     display: none;
   }
 }
+
+/* login: very light red shades, behind the card and in two corners */
+.auth-body {
+  position: relative;
+}
+.auth-body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 45% at 82% 30%, rgba(255, 84, 112, 0.07), transparent 70%),
+    radial-gradient(30% 40% at 14% 85%, rgba(255, 84, 112, 0.05), transparent 70%);
+}
+.auth-form {
+  background:
+    radial-gradient(55% 45% at 100% 0%, rgba(255, 84, 112, 0.07), transparent 70%),
+    radial-gradient(60% 50% at 100% 0%, rgba(125, 155, 255, 0.07), transparent 75%),
+    rgba(255, 255, 255, 0.015);
+}
+@media (min-width: 860px) {
+  .auth-visual {
+    background:
+      radial-gradient(70% 45% at 0% 100%, rgba(255, 84, 112, 0.06), transparent 70%),
+      radial-gradient(120% 80% at 100% 100%, rgba(155, 125, 255, 0.1), transparent 60%),
+      linear-gradient(160deg, #12151f, #0a0c10 75%);
+  }
+}
