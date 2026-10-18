@@ -6102,10 +6102,10 @@ mark.porg-hit {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 112px;
-  height: 112px;
+  width: 116px;
+  height: 116px;
   transform: translate(-50%, -50%);
-  border-radius: 32px;
+  border-radius: 50%;
   display: grid;
   place-items: center;
   background: linear-gradient(145deg, rgba(125, 155, 255, 0.22), rgba(155, 125, 255, 0.1));
