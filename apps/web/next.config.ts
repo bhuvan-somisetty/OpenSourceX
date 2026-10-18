@@ -23,6 +23,10 @@ const config: NextConfig = {
   async headers() {
     return [{ source: "/:path*", headers }];
   },
+  // the old project catalog; each project keeps its own page under /projects/<id>
+  async redirects() {
+    return [{ source: "/projects", destination: "/programs", permanent: false }];
+  },
 };
 
 export default config;
