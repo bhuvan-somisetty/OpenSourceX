@@ -6168,9 +6168,21 @@ mark.porg-hit {
     "icon title cta"
     "icon text cta";
   align-items: center;
-  column-gap: 20px;
-  row-gap: 2px;
-  padding: 22px 28px;
+  column-gap: 22px;
+  row-gap: 6px;
+  padding: 36px 32px;
+  min-height: 132px;
+}
+.tile-banner .home-tile-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 15px;
+}
+.tile-banner .home-tile-title {
+  font-size: 20px;
+}
+.tile-banner .home-tile-text {
+  font-size: 15px;
 }
 .tile-banner .home-tile-icon {
   grid-area: icon;
