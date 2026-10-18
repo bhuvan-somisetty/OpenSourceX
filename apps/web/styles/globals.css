@@ -7470,8 +7470,8 @@ mark.porg-hit {
   .discover-fan {
     display: block;
     position: absolute;
-    top: 236px;
-    right: 0;
+    top: 130px;
+    right: 48px;
     width: 520px;
     height: 360px;
     z-index: 1;
