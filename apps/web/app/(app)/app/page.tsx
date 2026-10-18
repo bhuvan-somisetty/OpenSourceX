@@ -7,12 +7,12 @@ import { load } from "@/lib/data";
 import { knowledge } from "@/lib/assistant/engine";
 import { PROGRAM_CATALOG } from "@/lib/programs";
 import { DbDown } from "@/components/feedback/Notice";
-import { LogoMark } from "@/components/ui/Logo";
 import { ProgramMark } from "@/components/ui/ProgramMark";
 import { ProjectRow } from "@/features/projects/ProjectRow";
 import { SavedOrgCard } from "@/features/saved/SavedOrgCard";
 import { resolveSavedOrg } from "@/lib/saved-orgs";
 import { HomeEffects } from "@/features/home/HomeEffects";
+import { OrbitCore } from "@/features/home/OrbitCore";
 
 export const metadata: Metadata = { title: "Home" };
 export const dynamic = "force-dynamic";
@@ -176,14 +176,13 @@ export default async function AppHome() {
         <section className="home-hero">
           <div className="home-hero-copy">
             <Link href="/programs" className="home-badge">
-              <span className="home-badge-logos" aria-hidden="true">
-                {PROGRAMS.slice(0, 4).map((p) => (
-                  <ProgramMark key={p.slug} slug={p.slug} />
-                ))}
+              <span className="home-badge-tag">
+                <span className="home-badge-live" aria-hidden="true" />
+                Live
               </span>
               <span className="home-badge-text">
                 {first && <strong>Hi {first} · </strong>}
-                GSoC, LFX, Outreachy and {PROGRAMS.length - 3} more programs, in one place
+                {PROGRAMS.length} mentorship programs, tracked in one place
               </span>
               <span className="home-badge-arrow" aria-hidden="true">
                 <Arrow />
@@ -210,9 +209,7 @@ export default async function AppHome() {
           <nav className="home-orbit" aria-label="Programs">
             <div className="home-orbit-ring r1" aria-hidden="true" />
             <div className="home-orbit-ring r2" aria-hidden="true" />
-            <div className="home-orbit-core" aria-hidden="true">
-              <LogoMark size={54} />
-            </div>
+            <OrbitCore />
             <div className="home-orbit-spin">
               {PROGRAMS.map((p, i) => (
                 <div key={p.slug} className="home-orbit-item" style={{ ["--i" as string]: i }}>
