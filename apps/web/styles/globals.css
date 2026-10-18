@@ -7278,3 +7278,15 @@ mark.porg-hit {
       linear-gradient(160deg, #12151f, #0a0c10 75%);
   }
 }
+
+/* discover picker: live match count on the left of the actions */
+.picker-count {
+  margin-right: auto;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.picker-count strong {
+  color: var(--text);
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}

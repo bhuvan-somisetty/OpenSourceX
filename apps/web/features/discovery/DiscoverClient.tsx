@@ -12,11 +12,14 @@ export function DiscoverClient({
   facets,
   initialInterests,
   savedSet,
+  facetOrgs = [],
 }: {
   allOrgs: DiscoverOrg[];
   facets: string[];
   initialInterests: string[];
   savedSet: string[];
+  /** for each facet (same order), the indexes of the organizations that carry it */
+  facetOrgs?: number[][];
 }) {
   const router = useRouter();
   const [interests, setInterests] = useState<string[]>(initialInterests);
@@ -54,6 +57,17 @@ export function DiscoverClient({
             a.org.name.localeCompare(b.org.name),
         )
     : [];
+
+  // organizations matching the picker's current selection (any of them), counted live
+  const facetIndex = new Map(facets.map((f, i) => [norm(f), i]));
+  const pendingCount = (() => {
+    const hit = new Set<number>();
+    for (const p of pendingInterests) {
+      const i = facetIndex.get(norm(p));
+      if (i !== undefined) for (const o of facetOrgs[i] ?? []) hit.add(o);
+    }
+    return hit.size;
+  })();
 
   function openPicker() {
     setPendingInterests([...interests]);
@@ -382,6 +396,12 @@ export function DiscoverClient({
             </div>
 
             <div className="modal-actions">
+              {pendingInterests.length > 0 && facetOrgs.length > 0 && (
+                <span className="picker-count" aria-live="polite" data-testid="picker-count">
+                  <strong>{pendingCount}</strong>{" "}
+                  {pendingCount === 1 ? "organization matches" : "organizations match"}
+                </span>
+              )}
               <button
                 type="button"
                 className="btn sm"

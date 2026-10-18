@@ -86,22 +86,25 @@ export default async function Discover({ searchParams }: { searchParams: Promise
   const cards = k.orgs.map(toCard);
 
   // interest facets: one entry per technology/topic, case-insensitive, most common first
-  const freq = new Map<string, { label: string; n: number }>();
-  for (const org of cards)
+  const freq = new Map<string, { label: string; n: number; orgs: Set<number> }>();
+  cards.forEach((org, idx) => {
     for (const t of [...org.technologies, ...org.topics]) {
       const key = t.toLowerCase().trim();
       if (!key || key.length > 40) continue;
       const cur = freq.get(key);
-      if (!cur) freq.set(key, { label: t, n: 1 });
+      if (!cur) freq.set(key, { label: t, n: 1, orgs: new Set([idx]) });
       else {
+        cur.orgs.add(idx);
         cur.n++;
         // prefer a spelling with capitals ("TypeScript" over "typescript")
         if (cur.label === cur.label.toLowerCase() && t !== t.toLowerCase()) cur.label = t;
       }
     }
-  const facets = [...freq.values()]
-    .sort((a, b) => b.n - a.n || a.label.localeCompare(b.label))
-    .map((f) => f.label);
+  });
+  const ranked = [...freq.values()].sort((a, b) => b.n - a.n || a.label.localeCompare(b.label));
+  const facets = ranked.map((f) => f.label);
+  // which organizations carry each facet (same order), so the picker can count matches live
+  const facetOrgs = ranked.map((f) => [...f.orgs]);
   const savedArr = [...saved].filter((s) => s.startsWith("ORGANIZATION:"));
   // send only matching organizations to the browser (the page re-renders when interests change)
   const wanted = new Set(interests.map((i) => i.toLowerCase()));
@@ -128,6 +131,7 @@ export default async function Discover({ searchParams }: { searchParams: Promise
         facets={facets}
         initialInterests={interests}
         savedSet={savedArr}
+        facetOrgs={facetOrgs}
       />
     </div>
   );
