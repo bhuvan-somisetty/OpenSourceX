@@ -7433,7 +7433,8 @@ mark.porg-hit {
   }
 }
 @media (max-width: 859px) {
-  .auth-point-icon {
+  .auth-point-icon,
+  .auth-form-head {
     display: none;
   }
 }
