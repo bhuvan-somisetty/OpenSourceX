@@ -7,24 +7,48 @@ import { Notice } from "@/components/feedback/Notice";
 
 const norm = (s: string) => s.toLowerCase().trim();
 
+/** A program filter: a whole program ("gsoc") or one LFX foundation ("lfx-mentorship/CNCF"). */
+export interface ProgramFacet {
+  key: string;
+  label: string;
+  /** indexes of the organizations in it (same indexing as facetOrgs) */
+  orgs: number[];
+}
+
+/** /discover URL for these programs and interests */
+function discoverUrl(programs: string[], interests: string[]) {
+  const params = new URLSearchParams();
+  for (const p of programs) params.append("p", p);
+  for (const i of interests) params.append("i", i);
+  const q = params.toString();
+  return `/discover${q ? `?${q}` : ""}`;
+}
+
 export function DiscoverClient({
   allOrgs,
   facets,
   initialInterests,
+  initialPrograms = [],
+  programFacets = [],
   savedSet,
   facetOrgs = [],
 }: {
   allOrgs: DiscoverOrg[];
   facets: string[];
   initialInterests: string[];
+  initialPrograms?: string[];
+  programFacets?: ProgramFacet[];
   savedSet: string[];
   /** for each facet (same order), the indexes of the organizations that carry it */
   facetOrgs?: number[][];
 }) {
   const router = useRouter();
   const [interests, setInterests] = useState<string[]>(initialInterests);
+  const [programs, setPrograms] = useState<string[]>(initialPrograms);
   const [showPicker, setShowPicker] = useState(false);
   const [pendingInterests, setPendingInterests] = useState<string[]>([]);
+  const [pendingPrograms, setPendingPrograms] = useState<string[]>([]);
+  const programLabel = (key: string) => programFacets.find((f) => f.key === key)?.label ?? key;
   const [searchQuery, setSearchQuery] = useState("");
   const saved = new Set(savedSet);
 
@@ -39,15 +63,18 @@ export function DiscoverClient({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [showPicker]);
 
-  const matched = interests.length
+  // programs narrow the list (any of them); interests then match on technologies and topics
+  const filtering = interests.length > 0 || programs.length > 0;
+  const matched = filtering
     ? allOrgs
+        .filter((org) => !programs.length || programs.some((p) => org.programKeys?.includes(p)))
         .map((org) => ({
           org,
           hits: interests.filter((i) =>
             [...org.technologies, ...org.topics].some((t) => norm(t) === norm(i)),
           ),
         }))
-        .filter((m) => m.hits.length > 0)
+        .filter((m) => !interests.length || m.hits.length > 0)
         .sort(
           (a, b) =>
             b.hits.length - a.hits.length ||
@@ -61,18 +88,33 @@ export function DiscoverClient({
   // organizations matching the picker's current selection (any of them), counted live
   const facetIndex = new Map(facets.map((f, i) => [norm(f), i]));
   const pendingCount = (() => {
-    const hit = new Set<number>();
+    const byInterest = new Set<number>();
     for (const p of pendingInterests) {
       const i = facetIndex.get(norm(p));
-      if (i !== undefined) for (const o of facetOrgs[i] ?? []) hit.add(o);
+      if (i !== undefined) for (const o of facetOrgs[i] ?? []) byInterest.add(o);
     }
-    return hit.size;
+    if (!pendingPrograms.length) return byInterest.size;
+    const byProgram = new Set<number>();
+    for (const p of pendingPrograms)
+      for (const o of programFacets.find((f) => f.key === p)?.orgs ?? []) byProgram.add(o);
+    if (!pendingInterests.length) return byProgram.size;
+    let n = 0;
+    for (const o of byProgram) if (byInterest.has(o)) n++;
+    return n;
   })();
+  const pendingTotal = pendingInterests.length + pendingPrograms.length;
 
   function openPicker() {
     setPendingInterests([...interests]);
+    setPendingPrograms([...programs]);
     setSearchQuery("");
     setShowPicker(true);
+  }
+
+  function togglePendingProgram(key: string) {
+    setPendingPrograms((prev) =>
+      prev.includes(key) ? prev.filter((p) => p !== key) : [...prev, key],
+    );
   }
 
   function togglePending(tech: string) {
@@ -87,24 +129,25 @@ export function DiscoverClient({
 
   function applyInterests() {
     setInterests([...pendingInterests]);
+    setPrograms([...pendingPrograms]);
     setShowPicker(false);
-    const params = new URLSearchParams();
-    for (const i of pendingInterests) params.append("i", i);
-    router.replace(`/discover${pendingInterests.length ? `?${params.toString()}` : ""}`, {
-      scroll: false,
-    });
+    router.replace(discoverUrl(pendingPrograms, pendingInterests), { scroll: false });
   }
 
   function clearInterests() {
     setInterests([]);
+    setPrograms([]);
     setPendingInterests([]);
+    setPendingPrograms([]);
     setShowPicker(false);
     router.replace("/discover", { scroll: false });
   }
 
-  const filteredFacets = searchQuery.trim()
-    ? facets.filter((f) => f.toLowerCase().includes(searchQuery.trim().toLowerCase()))
-    : facets;
+  const q = searchQuery.trim().toLowerCase();
+  const filteredFacets = q ? facets.filter((f) => f.toLowerCase().includes(q)) : facets;
+  const filteredPrograms = q
+    ? programFacets.filter((f) => f.label.toLowerCase().includes(q) || f.key.includes(q))
+    : programFacets;
 
   return (
     <>
@@ -132,12 +175,28 @@ export function DiscoverClient({
           >
             <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
           </svg>
-          {interests.length > 0 ? `Interests (${interests.length})` : "Select your interests"}
+          {filtering ? `Filters (${interests.length + programs.length})` : "Select your interests"}
         </button>
 
-        {interests.length > 0 && (
+        {filtering && (
           <>
             <div className="chips" style={{ gap: 6 }}>
+              {programs.map((p) => (
+                <span key={p} className="tag discover-program-chip">
+                  {programLabel(p)}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const next = programs.filter((x) => x !== p);
+                      setPrograms(next);
+                      router.replace(discoverUrl(next, interests), { scroll: false });
+                    }}
+                    aria-label={`Remove ${programLabel(p)}`}
+                  >
+                    ×
+                  </button>
+                </span>
+              ))}
               {interests.map((i) => (
                 <span
                   key={i}
@@ -159,11 +218,7 @@ export function DiscoverClient({
                     onClick={() => {
                       const next = interests.filter((x) => norm(x) !== norm(i));
                       setInterests(next);
-                      const params = new URLSearchParams();
-                      for (const t of next) params.append("i", t);
-                      router.replace(`/discover${next.length ? `?${params.toString()}` : ""}`, {
-                        scroll: false,
-                      });
+                      router.replace(discoverUrl(programs, next), { scroll: false });
                     }}
                     style={{
                       background: "none",
@@ -194,11 +249,11 @@ export function DiscoverClient({
       </div>
 
       {/* Results - Only shown after user selects and applies interests */}
-      {interests.length > 0 && (
+      {filtering && (
         <section className="block" aria-labelledby="res-h" style={{ marginTop: 28 }}>
           {matched.length === 0 ? (
             <div className="card" style={{ padding: 40, textAlign: "center" }}>
-              <h3 style={{ fontSize: 20, marginBottom: 8 }}>No matches for these interests</h3>
+              <h3 style={{ fontSize: 20, marginBottom: 8 }}>No matches for these filters</h3>
               <p className="muted" style={{ marginBottom: 16, fontSize: 14 }}>
                 Try selecting broader programming languages or ecosystem topics.
               </p>
@@ -219,7 +274,7 @@ export function DiscoverClient({
                 data-testid="match-count"
               >
                 {matched.length} organization{matched.length > 1 ? "s" : ""} match your selected
-                interests. Ordered by coverage and participation depth.
+                filters. Ordered by coverage and participation depth.
               </p>
               <div className="lfx-org-grid" data-testid="results">
                 {matched.map(({ org, hits }) => (
@@ -289,14 +344,14 @@ export function DiscoverClient({
               Select your interests
             </h2>
             <p className="modal-description" style={{ marginBottom: 14 }}>
-              Choose up to 8 programming languages and technologies to filter matching
-              organizations.
+              Pick programs to see all their organizations, and up to 8 languages and technologies
+              to narrow them down.
             </p>
 
             {/* Quick search input */}
             <input
               type="search"
-              placeholder="Search languages and technologies..."
+              placeholder="Search programs, languages and technologies..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               autoFocus
@@ -314,7 +369,7 @@ export function DiscoverClient({
             />
 
             {/* Currently selected items in modal */}
-            {pendingInterests.length > 0 && (
+            {pendingTotal > 0 && (
               <div style={{ marginBottom: 12 }}>
                 <div
                   style={{
@@ -326,9 +381,24 @@ export function DiscoverClient({
                     marginBottom: 6,
                   }}
                 >
-                  Selected ({pendingInterests.length}/8)
+                  Selected (
+                  {pendingPrograms.length > 0 &&
+                    `${pendingPrograms.length} program${pendingPrograms.length === 1 ? "" : "s"} · `}
+                  {pendingInterests.length}/8 interests)
                 </div>
                 <div className="chips" style={{ gap: 6, flexWrap: "wrap" }}>
+                  {pendingPrograms.map((p) => (
+                    <button
+                      key={p}
+                      type="button"
+                      className="interest program"
+                      aria-pressed="true"
+                      onClick={() => togglePendingProgram(p)}
+                      style={{ cursor: "pointer", fontSize: 12, padding: "4px 10px" }}
+                    >
+                      {programLabel(p)} ×
+                    </button>
+                  ))}
                   {pendingInterests.map((i) => (
                     <button
                       key={i}
@@ -364,6 +434,30 @@ export function DiscoverClient({
                 marginBottom: 18,
               }}
             >
+              {filteredPrograms.length > 0 && (
+                <>
+                  <div className="picker-heading">Programs ({filteredPrograms.length})</div>
+                  <div
+                    className="chips"
+                    style={{ gap: 8, flexWrap: "wrap", marginBottom: 16 }}
+                    data-testid="program-facets"
+                  >
+                    {filteredPrograms.map((f) => (
+                      <button
+                        key={f.key}
+                        type="button"
+                        className={`interest program${f.key.includes("/") ? " sub" : ""}`}
+                        aria-pressed={pendingPrograms.includes(f.key)}
+                        onClick={() => togglePendingProgram(f.key)}
+                        style={{ cursor: "pointer", fontSize: 13 }}
+                      >
+                        {f.label}
+                        <span className="interest-count">{f.orgs.length}</span>
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
               <div
                 style={{
                   fontSize: 11,
@@ -396,7 +490,7 @@ export function DiscoverClient({
             </div>
 
             <div className="modal-actions">
-              {pendingInterests.length > 0 && facetOrgs.length > 0 && (
+              {pendingTotal > 0 && facetOrgs.length > 0 && (
                 <span className="picker-count" aria-live="polite" data-testid="picker-count">
                   <strong>{pendingCount}</strong>{" "}
                   {pendingCount === 1 ? "organization matches" : "organizations match"}
@@ -410,11 +504,14 @@ export function DiscoverClient({
               >
                 Cancel
               </button>
-              {pendingInterests.length > 0 && (
+              {pendingTotal > 0 && (
                 <button
                   type="button"
                   className="btn sm"
-                  onClick={() => setPendingInterests([])}
+                  onClick={() => {
+                    setPendingInterests([]);
+                    setPendingPrograms([]);
+                  }}
                   style={{ color: "var(--text-dim)" }}
                 >
                   Clear
@@ -426,7 +523,7 @@ export function DiscoverClient({
                 onClick={applyInterests}
                 data-testid="apply-interests"
               >
-                {pendingInterests.length > 0 ? `Apply (${pendingInterests.length})` : "Apply"}
+                {pendingTotal > 0 ? `Apply (${pendingTotal})` : "Apply"}
               </button>
             </div>
           </div>

@@ -7291,6 +7291,44 @@ mark.porg-hit {
   font-variant-numeric: tabular-nums;
 }
 
+/* Discover picker: program filters (GSoC, LFX, LFX · CNCF, ...) */
+.picker-heading {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-dim, #94a3b8);
+  margin-bottom: 8px;
+}
+.interest.program.sub {
+  border-style: dashed;
+}
+.interest-count {
+  font-size: 11px;
+  font-weight: 600;
+  opacity: 0.6;
+  font-variant-numeric: tabular-nums;
+}
+.discover-program-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  color: var(--text);
+}
+.discover-program-chip button {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+}
+
 /* LFX: switch between Linux Foundation projects */
 .lfx-hero-center {
   display: flex;

@@ -3,11 +3,12 @@ import { listLfxOrganizations } from "@opensourcex/database";
 import { load } from "@/lib/data";
 import { currentSaved } from "@/lib/saved";
 import { many, type Params } from "@/lib/url";
-import { programDef } from "@/lib/programs";
+import { PROGRAM_CATALOG, programDef } from "@/lib/programs";
+import { lfxFoundations } from "@/lib/lfx-foundations";
 import { orgEntityId } from "@/lib/org-ids";
 import { knowledge } from "@/lib/assistant/engine";
 import { normalize, type KnowledgeOrg } from "@/lib/assistant/knowledge";
-import { DiscoverClient } from "@/features/discovery/DiscoverClient";
+import { DiscoverClient, type ProgramFacet } from "@/features/discovery/DiscoverClient";
 import type { DiscoverOrg } from "@/features/discovery/DiscoveryOrgCard";
 
 export const metadata: Metadata = { title: "Discover" };
@@ -25,7 +26,9 @@ const yearsLabel = (ys: number[]) => {
  * part in several programs is one card listing all of them.
  */
 export default async function Discover({ searchParams }: { searchParams: Promise<Params> }) {
-  const interests = many((await searchParams).i).slice(0, 8);
+  const sp = await searchParams;
+  const interests = many(sp.i).slice(0, 8);
+  const programsPicked = many(sp.p).slice(0, 20);
   const k = await knowledge();
   // LFX organizations keep their richer database details (terms, sources, saving)
   const lfx = await load((d) => listLfxOrganizations(d));
@@ -50,13 +53,19 @@ export default async function Discover({ searchParams }: { searchParams: Promise
           latest,
         };
       })
-      .sort((a, b) => b.latest.localeCompare(a.latest));
+      .sort((a, b) => b.latest.localeCompare(a.latest))
+      // one pill per program name (an organization can have two GitHub accounts in one foundation)
+      .filter((p, i, all) => {
+        const first = all.findIndex((x) => x.name === p.name);
+        if (first !== i) all[first]!.years = [...all[first]!.years, ...p.years];
+        return first === i;
+      });
     const primary = programs.find((p) => p.slug === "lfx-mentorship") ?? programs[0]!;
     const years = [...new Set(o.programs.flatMap((e) => e.years))];
     const projectCount = o.programs.reduce((n, e) => n + e.projectCount, 0);
     return {
       id: orgEntityId(primary.slug, primary.orgSlug),
-      saveIds: programs.map((p) => orgEntityId(p.slug, p.orgSlug)),
+      saveIds: o.programs.map((e) => orgEntityId(e.program, e.orgSlug)),
       name: o.name,
       slug: l?.slug ?? o.lfxSlug ?? o.key.replace(/ /g, "-"),
       programSlug: primary.slug,
@@ -85,6 +94,33 @@ export default async function Discover({ searchParams }: { searchParams: Promise
 
   const cards = k.orgs.map(toCard);
 
+  // program facets: every program, and each LFX foundation ("LFX · CNCF", "LFX · LFDT", ...).
+  // Keys are the program slug, or "lfx-mentorship/<foundation>" for one foundation.
+  const programKeys = k.orgs.map((o) => {
+    const keys = new Set<string>();
+    for (const e of o.programs) {
+      keys.add(e.program);
+      if (e.foundation) keys.add(`${e.program}/${e.foundation}`);
+    }
+    return keys;
+  });
+  const foundationsFile = await lfxFoundations().catch(() => null);
+  const foundationShorts = ["CNCF", ...(foundationsFile?.foundations.map((f) => f.short) ?? [])];
+  const programFacets: ProgramFacet[] = PROGRAM_CATALOG.flatMap((def) => [
+    { key: def.slug, label: def.short },
+    ...(def.slug === "lfx-mentorship"
+      ? foundationShorts.map((s) => ({
+          key: `${def.slug}/${s}`,
+          label: `LFX · ${s === "More" ? "More foundations" : s}`,
+        }))
+      : []),
+  ])
+    .map((f) => ({
+      ...f,
+      orgs: programKeys.flatMap((keys, idx) => (keys.has(f.key) ? [idx] : [])),
+    }))
+    .filter((f) => f.orgs.length > 0);
+
   // interest facets: one entry per technology/topic, case-insensitive, most common first
   const freq = new Map<string, { label: string; n: number; orgs: Set<number> }>();
   cards.forEach((org, idx) => {
@@ -108,11 +144,17 @@ export default async function Discover({ searchParams }: { searchParams: Promise
   const savedArr = [...saved].filter((s) => s.startsWith("ORGANIZATION:"));
   // send only matching organizations to the browser (the page re-renders when interests change)
   const wanted = new Set(interests.map((i) => i.toLowerCase().trim()));
-  const allOrgs = wanted.size
-    ? cards.filter((c) =>
-        [...c.technologies, ...c.topics].some((t) => wanted.has(t.toLowerCase().trim())),
-      )
-    : [];
+  const wantedPrograms = programsPicked.filter((p) => programFacets.some((f) => f.key === p));
+  const allOrgs =
+    wanted.size || wantedPrograms.length
+      ? cards.flatMap((c, idx) =>
+          (!wantedPrograms.length || wantedPrograms.some((p) => programKeys[idx]!.has(p))) &&
+          (!wanted.size ||
+            [...c.technologies, ...c.topics].some((t) => wanted.has(t.toLowerCase().trim())))
+            ? [{ ...c, programKeys: [...programKeys[idx]!] }]
+            : [],
+        )
+      : [];
 
   return (
     <div className="wrap">
@@ -122,9 +164,9 @@ export default async function Discover({ searchParams }: { searchParams: Promise
           What are you interested in?
         </h1>
         <p className="sub">
-          Pick your preferred languages and technologies. We suggest open source organizations from
-          every program we track (GSoC, LFX Mentorship, Outreachy, Summer of Bitcoin and more), with
-          the reasons they match.
+          Pick programs (GSoC, LFX and each LFX foundation like CNCF or LFDT, Outreachy and more),
+          languages and technologies. We suggest open source organizations from every program we
+          track, with the reasons they match.
         </p>
       </section>
 
@@ -132,6 +174,8 @@ export default async function Discover({ searchParams }: { searchParams: Promise
         allOrgs={allOrgs}
         facets={facets}
         initialInterests={interests}
+        initialPrograms={wantedPrograms}
+        programFacets={programFacets}
         savedSet={savedArr}
         facetOrgs={facetOrgs}
       />

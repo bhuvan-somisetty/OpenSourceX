@@ -20,6 +20,8 @@ export interface DiscoverOrg {
   programName: string;
   /** every program this organization took part in, newest first */
   programs?: { slug: string; name: string; href: string; latest: string; years: string }[];
+  /** program filter keys it matches, e.g. "gsoc", "lfx-mentorship", "lfx-mentorship/CNCF" */
+  programKeys?: string[];
   description: string | null;
   technologies: string[];
   topics: string[];
@@ -78,7 +80,7 @@ export function DiscoveryOrgCard({
             <div className="discover-programs">
               {programs.slice(0, 3).map((p) => (
                 <span
-                  key={p.slug}
+                  key={`${p.slug}:${p.name}`}
                   className="pill lfx-org-latest-pill"
                   title={p.years ? `${p.name}: ${p.years}` : p.name}
                   data-testid="discover-program"
