@@ -5,6 +5,7 @@ import { currentSaved } from "@/lib/saved";
 import { many, type Params } from "@/lib/url";
 import { PROGRAM_CATALOG, programDef } from "@/lib/programs";
 import { CNCF_NAME, lfxFoundations } from "@/lib/lfx-foundations";
+import { canonicalTags, cleanTags, isLanguage } from "@/lib/tech-tags";
 import { orgEntityId } from "@/lib/org-ids";
 import { knowledge } from "@/lib/assistant/engine";
 import { normalize, type KnowledgeOrg } from "@/lib/assistant/knowledge";
@@ -27,7 +28,8 @@ const yearsLabel = (ys: number[]) => {
  */
 export default async function Discover({ searchParams }: { searchParams: Promise<Params> }) {
   const sp = await searchParams;
-  const interests = many(sp.i).slice(0, 8);
+  // old links may carry another spelling ("golang"): use the clean tag
+  const interests = cleanTags(many(sp.i).flatMap((i) => canonicalTags(i))).slice(0, 8);
   const programsPicked = many(sp.p).slice(0, 20);
   const k = await knowledge();
   // LFX organizations keep their richer database details (terms, sources, saving)
@@ -78,8 +80,8 @@ export default async function Discover({ searchParams }: { searchParams: Promise
         years: yearsLabel(ys),
       })),
       description: (o.description ?? l?.description ?? null)?.slice(0, 240) ?? null,
-      technologies: [...new Set([...(l?.technologies ?? []), ...o.tags])].slice(0, 24),
-      topics: (o.categories ?? []).slice(0, 8),
+      technologies: cleanTags([...(l?.technologies ?? []), ...o.tags]).slice(0, 24),
+      topics: cleanTags(o.categories ?? []).slice(0, 8),
       latestTerm: l?.latestTerm ?? primary.latest,
       projectCount: l?.projectCount ?? projectCount,
       yearCount: years.length,
@@ -127,7 +129,11 @@ export default async function Discover({ searchParams }: { searchParams: Promise
   const foundationNames = new Set(
     [
       CNCF_NAME,
-      ...((await lfxFoundations().catch(() => null))?.foundations ?? []).map((f) => f.name),
+      "The Linux Foundation",
+      ...(foundationsFile?.foundations ?? []).flatMap((f) => [
+        f.name,
+        ...f.orgs.flatMap((o) => [o.lfProject, ...(o.categories ?? [])]),
+      ]),
     ].map((n) => n.toLowerCase()),
   );
   cards.forEach((org, idx) => {
@@ -144,8 +150,14 @@ export default async function Discover({ searchParams }: { searchParams: Promise
       }
     }
   });
-  const ranked = [...freq.values()].sort((a, b) => b.n - a.n || a.label.localeCompare(b.label));
+  const ranked = [...freq.values()].sort(
+    (a, b) => b.orgs.size - a.orgs.size || a.label.localeCompare(b.label),
+  );
   const facets = ranked.map((f) => f.label);
+  // languages and topics are listed apart in the picker
+  const facetKinds = ranked.map((f): "language" | "topic" =>
+    isLanguage(f.label) ? "language" : "topic",
+  );
   // which organizations carry each facet (same order), so the picker can count matches live
   const facetOrgs = ranked.map((f) => [...f.orgs]);
   const savedArr = [...saved].filter((s) => s.startsWith("ORGANIZATION:"));
@@ -180,6 +192,7 @@ export default async function Discover({ searchParams }: { searchParams: Promise
       <DiscoverClient
         allOrgs={allOrgs}
         facets={facets}
+        facetKinds={facetKinds}
         initialInterests={interests}
         initialPrograms={wantedPrograms}
         programFacets={programFacets}

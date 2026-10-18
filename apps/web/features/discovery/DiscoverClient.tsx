@@ -27,6 +27,7 @@ function discoverUrl(programs: string[], interests: string[]) {
 export function DiscoverClient({
   allOrgs,
   facets,
+  facetKinds = [],
   initialInterests,
   initialPrograms = [],
   programFacets = [],
@@ -35,6 +36,8 @@ export function DiscoverClient({
 }: {
   allOrgs: DiscoverOrg[];
   facets: string[];
+  /** for each facet (same order), whether it is a programming language or a topic */
+  facetKinds?: ("language" | "topic")[];
   initialInterests: string[];
   initialPrograms?: string[];
   programFacets?: ProgramFacet[];
@@ -144,7 +147,21 @@ export function DiscoverClient({
   }
 
   const q = searchQuery.trim().toLowerCase();
-  const filteredFacets = q ? facets.filter((f) => f.toLowerCase().includes(q)) : facets;
+  // tags used by only one or two organizations stay hidden until searched for (or selected)
+  const COMMON = 3;
+  const sections = (["language", "topic"] as const).map((kind) => {
+    const all = facets.filter((_, i) => (facetKinds[i] ?? "topic") === kind);
+    const matching = q ? all.filter((f) => f.toLowerCase().includes(q)) : all;
+    const shown = q
+      ? matching
+      : matching.filter(
+          (f) =>
+            (facetOrgs[facetIndex.get(norm(f)) ?? -1]?.length ?? COMMON) >= COMMON ||
+            pendingInterests.some((p) => norm(p) === norm(f)),
+        );
+    return { kind, shown, hidden: matching.length - shown.length };
+  });
+  const filteredFacets = sections.flatMap((x) => x.shown);
   const filteredPrograms = q
     ? programFacets.filter((f) => f.label.toLowerCase().includes(q) || f.key.includes(q))
     : programFacets;
@@ -446,33 +463,48 @@ export function DiscoverClient({
                   </div>
                 </section>
               )}
-              {filteredPrograms.length > 0 && filteredFacets.length > 0 && (
-                <hr className="picker-divider" />
-              )}
-              {filteredFacets.length > 0 && (
-                <section className="picker-section" aria-label="Languages and technologies">
-                  <div className="picker-heading">
-                    Languages &amp; technologies <span>{filteredFacets.length}</span>
-                  </div>
-                  <div className="chips picker-chips">
-                    {filteredFacets.map((f) => {
-                      const on = pendingInterests.some((p) => norm(p) === norm(f));
-                      const n = facetOrgs[facetIndex.get(norm(f)) ?? -1]?.length;
-                      return (
-                        <button
-                          key={f}
-                          type="button"
-                          className="interest"
-                          aria-pressed={on}
-                          onClick={() => togglePending(f)}
-                        >
-                          {f}
-                          {n ? <span className="interest-count">{n}</span> : null}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </section>
+              {sections.map(
+                ({ kind, shown, hidden }, si) =>
+                  shown.length > 0 && (
+                    <section
+                      key={kind}
+                      className="picker-section"
+                      aria-label={kind === "language" ? "Languages" : "Topics and technologies"}
+                    >
+                      {(filteredPrograms.length > 0 ||
+                        (si > 0 && sections[0]!.shown.length > 0)) && (
+                        <hr className="picker-divider" />
+                      )}
+                      <div className="picker-heading">
+                        {kind === "language" ? "Languages" : "Topics & technologies"}{" "}
+                        <span>{shown.length}</span>
+                      </div>
+                      <div className="chips picker-chips" data-testid={`${kind}-facets`}>
+                        {shown.map((f) => {
+                          const on = pendingInterests.some((p) => norm(p) === norm(f));
+                          const n = facetOrgs[facetIndex.get(norm(f)) ?? -1]?.length;
+                          return (
+                            <button
+                              key={f}
+                              type="button"
+                              className="interest"
+                              aria-pressed={on}
+                              onClick={() => togglePending(f)}
+                            >
+                              {f}
+                              {n ? <span className="interest-count">{n}</span> : null}
+                            </button>
+                          );
+                        })}
+                      </div>
+                      {hidden > 0 && (
+                        <p className="picker-more">
+                          {hidden} less common {kind === "language" ? "languages" : "tags"} hidden.
+                          Search to find them.
+                        </p>
+                      )}
+                    </section>
+                  ),
               )}
               {filteredPrograms.length === 0 && filteredFacets.length === 0 && (
                 <p className="picker-empty">Nothing matches &ldquo;{searchQuery.trim()}&rdquo;.</p>

@@ -7367,6 +7367,14 @@ mark.porg-hit {
     transparent
   );
 }
+.picker-more {
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: var(--text-dim, #94a3b8);
+}
+.picker-section > .picker-divider:first-child {
+  margin-top: 4px;
+}
 .picker-empty {
   margin: 24px 0;
   text-align: center;
