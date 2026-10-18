@@ -5,6 +5,8 @@ import { developmentAuthAvailable, getSession, guestPreviewAvailable } from "@/l
 import { OAUTH_PROVIDERS, oauthConfigured } from "@/lib/auth-config";
 import { LogoMark } from "@/components/ui/Logo";
 import { PublicNav } from "@/features/landing/PublicNav";
+import { knowledge } from "@/lib/assistant/engine";
+import { PROGRAM_CATALOG } from "@/lib/programs";
 import {
   continueAsGuest,
   continueInDevelopmentMode,
@@ -16,9 +18,21 @@ export const metadata: Metadata = { title: "Sign in" };
 export const dynamic = "force-dynamic";
 
 const POINTS = [
-  "Programs, organizations, projects and repositories in one place",
-  "Ask anything about open source, with your chat history saved",
-  "Evidence and sources behind every fact, not a guess",
+  {
+    title: "Every program in one place",
+    text: "GSoC, LFX, Outreachy, Summer of Bitcoin and more, side by side.",
+    icon: "M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z",
+  },
+  {
+    title: "An AI guide that knows them",
+    text: "Ask anything about open source, with your chat history saved.",
+    icon: "M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z",
+  },
+  {
+    title: "Facts with sources",
+    text: "Evidence behind every answer, never a guess.",
+    icon: "M9 12l2 2 4-4M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z",
+  },
 ];
 
 const ERRORS: Record<string, string> = {
@@ -72,6 +86,7 @@ export default async function Login({
   const oauth = oauthConfigured();
   const github = oauth && OAUTH_PROVIDERS.github;
   const google = oauth && OAUTH_PROVIDERS.google;
+  const orgCount = (await knowledge().catch(() => null))?.orgs.length ?? 0;
 
   return (
     <div className="auth" data-testid="login-page">
@@ -81,19 +96,60 @@ export default async function Login({
         <section className="auth-card" aria-labelledby="login-h" data-testid="login-card">
           <div className="auth-visual" aria-hidden="true">
             <div className="auth-glow" />
-            <LogoMark size={76} />
-            <h1 id="login-h">Your path into open source starts here.</h1>
-            <p className="muted">
-              Sign in to explore programs, save projects and prepare to contribute.
-            </p>
+            <div className="auth-orb o1" />
+            <div className="auth-orb o2" />
+            <LogoMark size={64} />
+            <h1 id="login-h">
+              Your path into <span className="auth-gradient">open source</span> starts here.
+            </h1>
+            <p className="muted">Explore programs, save organizations and prepare to contribute.</p>
             <ul className="auth-points">
               {POINTS.map((p) => (
-                <li key={p}>{p}</li>
+                <li key={p.title}>
+                  <span className="auth-point-icon">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d={p.icon} />
+                    </svg>
+                  </span>
+                  <span>
+                    <strong>{p.title}</strong>
+                    {p.text}
+                  </span>
+                </li>
               ))}
             </ul>
+            <dl className="auth-stats">
+              <div>
+                <dt>{PROGRAM_CATALOG.slice(0, 10).length}</dt>
+                <dd>programs</dd>
+              </div>
+              {orgCount > 0 && (
+                <div>
+                  <dt>{orgCount}</dt>
+                  <dd>organizations</dd>
+                </div>
+              )}
+              <div>
+                <dt>24/7</dt>
+                <dd>AI guide</dd>
+              </div>
+            </dl>
           </div>
 
           <div className="auth-form">
+            <div className="auth-form-head">
+              <h2>Welcome to OpenSourceX</h2>
+              <p>Choose how you want to continue.</p>
+            </div>
             {error && (
               <p className="notice err" role="alert" style={{ margin: "0 0 14px" }}>
                 {ERRORS[error] ?? "Sign-in did not complete. Please try again."}
@@ -144,17 +200,45 @@ export default async function Login({
 
             {guest ? (
               <form action={continueAsGuest} data-testid="local-preview">
-                <button
-                  className="btn"
-                  type="submit"
-                  style={{ width: "100%" }}
-                  data-testid="guest-login"
-                >
-                  Continue as guest
+                <button className="guest-cta" type="submit" data-testid="guest-login">
+                  <span className="guest-cta-icon" aria-hidden="true">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M13 2 4 14h7l-1 8 9-12h-7z" />
+                    </svg>
+                  </span>
+                  <span className="guest-cta-text">
+                    <strong>Continue as guest</strong>
+                    <small>Jump straight in, no sign-up</small>
+                  </span>
+                  <span className="guest-cta-arrow" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path
+                        d="M3 8h9m0 0L8.5 4.5M12 8l-3.5 3.5"
+                        stroke="currentColor"
+                        strokeWidth="1.9"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
                 </button>
+                <ul className="guest-perks" aria-label="Guest access">
+                  <li>Free</li>
+                  <li>Instant</li>
+                  <li>Saved for 7 days</li>
+                </ul>
                 <p className="hint" style={{ margin: "10px 0 0" }}>
-                  No account needed. Your chats and saved items stay in this browser for up to 7
-                  days{oauth ? ", and move to your account if you sign in later" : ""}.
+                  Your chats and saved items stay in this browser for up to 7 days
+                  {oauth ? ", and move to your account if you sign in later" : ""}.
                 </p>
               </form>
             ) : dev ? (
