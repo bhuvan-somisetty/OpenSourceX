@@ -30,14 +30,14 @@ export function OrbitCore() {
           <svg width="64" height="14" viewBox="0 0 64 14" fill="none">
             <defs>
               <linearGradient id={`arrow-trail-${id}`} x1="0" x2="1">
-                <stop offset="0" stopColor="#7d9bff" stopOpacity="0" />
-                <stop offset="1" stopColor="#9fb6ff" />
+                <stop offset="0" stopColor="#9b7dff" stopOpacity="0.55" />
+                <stop offset="1" stopColor="#e2e9ff" />
               </linearGradient>
             </defs>
             <path
               d="M2 7h52"
               stroke={`url(#arrow-trail-${id})`}
-              strokeWidth="2.4"
+              strokeWidth="3"
               strokeLinecap="round"
             />
             <path d="M52 2l10 5-10 5z" fill="#cdd8ff" />
