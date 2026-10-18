@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Logo } from "@/components/ui/Logo";
 
@@ -14,7 +15,7 @@ const PANELS = {
   programs: {
     label: "Programs",
     title: "Choose a program, explore its ecosystem",
-    body: "Google Summer of Code and LFX Mentorship have recorded data in this build. Summer of Bitcoin is configured and set to follow, along with other programs as they get data.",
+    body: "Ten mentorship programs, including Google Summer of Code, LFX Mentorship, Outreachy and Summer of Bitcoin, with their organizations, timelines, stipends and how to apply.",
   },
   how: {
     label: "How it works",
@@ -23,14 +24,15 @@ const PANELS = {
   },
   about: {
     label: "About",
-    title: "A local development build",
-    body: "This build runs on recorded, sanitized snapshots. Nothing is live, and sign-in is a local preview session, not a real account.",
+    title: "Built for first-time contributors",
+    body: "OpenSourceX helps students and new contributors find the right program and organization, understand the codebase, and prepare a strong application. It is free to use.",
   },
 } as const;
 type Key = keyof typeof PANELS;
 const ORDER: Key[] = ["product", "programs", "how", "about"];
 
 export function PublicNav() {
+  const onLogin = usePathname() === "/login";
   const [panel, setPanel] = useState<Key | null>(null);
   const [menu, setMenu] = useState(false);
   const closeRef = useRef<HTMLButtonElement>(null);
@@ -61,9 +63,11 @@ export function PublicNav() {
             ))}
           </nav>
           <span style={{ flex: 1 }} />
-          <Link className="btn sm signin" href="/login" data-testid="nav-signin">
-            Sign in
-          </Link>
+          {!onLogin && (
+            <Link className="btn sm signin" href="/login" data-testid="nav-signin">
+              Sign in
+            </Link>
+          )}
           <button
             type="button"
             className="btn sm menu-toggle"
@@ -83,9 +87,11 @@ export function PublicNav() {
                   {PANELS[k].label}
                 </button>
               ))}
-              <Link href="/login" className="btn primary" style={{ width: "100%" }}>
-                Sign in
-              </Link>
+              {!onLogin && (
+                <Link href="/login" className="btn primary" style={{ width: "100%" }}>
+                  Sign in
+                </Link>
+              )}
             </div>
           </nav>
         )}

@@ -16,9 +16,9 @@ export const metadata: Metadata = { title: "Sign in" };
 export const dynamic = "force-dynamic";
 
 const POINTS = [
-  "Every mentorship program and organization in one place",
-  "Ask anything about open source, with your chat history saved",
-  "Evidence and sources behind every fact, not a guess",
+  "Every program and organization in one place",
+  "An AI guide, with your chats saved",
+  "Sources behind every fact",
 ];
 
 const ERRORS: Record<string, string> = {
@@ -95,8 +95,8 @@ export default async function Login({
 
           <div className="auth-form">
             <div className="auth-form-head">
-              <h2>Welcome to OpenSourceX</h2>
-              <p>Choose how you want to continue.</p>
+              <h2>Sign in</h2>
+              <p>Keep your saved organizations and chats on every device.</p>
             </div>
             {error && (
               <p className="notice err" role="alert" style={{ margin: "0 0 14px" }}>
@@ -106,7 +106,7 @@ export default async function Login({
             <div className="auth-stack">
               <form action={signInWithGoogle}>
                 <button
-                  className="btn oauth"
+                  className="btn oauth oauth-primary"
                   type="submit"
                   disabled={!google}
                   aria-disabled={!google}
@@ -148,7 +148,7 @@ export default async function Login({
 
             {guest ? (
               <form action={continueAsGuest} data-testid="local-preview">
-                <button className="guest-cta" type="submit" data-testid="guest-login">
+                <button className="guest-link" type="submit" data-testid="guest-login">
                   Continue as guest
                   <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                     <path

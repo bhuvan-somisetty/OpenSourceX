@@ -7210,39 +7210,58 @@ mark.porg-hit {
   font-size: 14px;
   color: var(--text-muted);
 }
-.guest-cta {
+/* Google is the main way in; GitHub stays outlined; guest is the quiet option */
+.btn.oauth.oauth-primary {
+  background: var(--btn-bg);
+  color: var(--btn-ink);
+  border-color: transparent;
+  font-weight: 600;
+  box-shadow: 0 8px 24px -14px rgba(125, 155, 255, 0.55);
+}
+.btn.oauth.oauth-primary:hover:not([disabled]) {
+  background: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 30px -14px rgba(125, 155, 255, 0.75);
+}
+.guest-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   width: 100%;
   min-height: clamp(36px, 4.8svh, 46px);
-  border: 0;
   border-radius: 999px;
-  cursor: pointer;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: var(--text);
   font: inherit;
-  font-size: 15px;
-  font-weight: 600;
-  background: var(--btn-bg);
-  color: var(--btn-ink);
-  box-shadow: 0 8px 24px -12px rgba(125, 155, 255, 0.5);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
   transition:
-    transform 0.2s,
-    box-shadow 0.2s;
+    border-color 0.2s,
+    background 0.2s;
 }
-.guest-cta svg {
+.guest-link svg {
   transition: transform 0.2s;
 }
-.guest-cta:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 12px 30px -12px rgba(125, 155, 255, 0.7);
+.guest-link:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.04);
 }
-.guest-cta:hover svg {
+.guest-link:hover svg {
   transform: translateX(3px);
 }
-.guest-cta:focus-visible {
+.guest-link:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
+}
+/* sit the card a little higher instead of dead centre */
+@media (min-width: 860px) {
+  .auth-body {
+    place-items: start center;
+    padding-top: clamp(16px, 7svh, 72px);
+  }
 }
 @media (max-width: 859px) {
   .auth-form-head {
