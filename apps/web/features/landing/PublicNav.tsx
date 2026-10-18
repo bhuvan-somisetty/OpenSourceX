@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Logo } from "@/components/ui/Logo";
 
@@ -32,7 +31,6 @@ type Key = keyof typeof PANELS;
 const ORDER: Key[] = ["product", "programs", "how", "about"];
 
 export function PublicNav() {
-  const onLogin = usePathname() === "/login";
   const [panel, setPanel] = useState<Key | null>(null);
   const [menu, setMenu] = useState(false);
   const closeRef = useRef<HTMLButtonElement>(null);
@@ -63,11 +61,9 @@ export function PublicNav() {
             ))}
           </nav>
           <span style={{ flex: 1 }} />
-          {!onLogin && (
-            <Link className="btn sm signin" href="/login" data-testid="nav-signin">
-              Sign in
-            </Link>
-          )}
+          <Link className="btn sm signin" href="/login" data-testid="nav-signin">
+            Sign in
+          </Link>
           <button
             type="button"
             className="btn sm menu-toggle"
@@ -87,11 +83,9 @@ export function PublicNav() {
                   {PANELS[k].label}
                 </button>
               ))}
-              {!onLogin && (
-                <Link href="/login" className="btn primary" style={{ width: "100%" }}>
-                  Sign in
-                </Link>
-              )}
+              <Link href="/login" className="btn primary" style={{ width: "100%" }}>
+                Sign in
+              </Link>
             </div>
           </nav>
         )}
