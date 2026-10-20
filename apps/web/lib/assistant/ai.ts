@@ -15,6 +15,7 @@ import { z } from "zod";
 import { createLogger } from "@opensourcex/shared";
 import type { AskEngine, KnowledgeHit } from "@opensourcex/database";
 import { answerQuestion } from "@/lib/ask";
+import { answerOffline } from "./offline";
 import {
   findOrg,
   findProgram,
@@ -167,6 +168,7 @@ How to answer:
 - Write clear Markdown: short paragraphs, bullet lists, and tables for lists of organizations. Be concise and direct, like a helpful senior contributor.
 - Recorded LFX Mentorship data covers CNCF projects only. Program data was collected from official sources; mention the date or source when a fact may change (stipends, deadlines).
 - For CURRENT facts use the live tools: repository stats and open good first issues (githubRepoStats, githubGoodFirstIssues), popular projects (githubSearchRepositories), package versions and licences (packageInfo), vulnerabilities (packageVulnerabilities), news (hackerNewsSearch), coding errors (stackOverflowSearch) and short explanations (wikipediaSummary). For an organization, get its recorded repository with findOrganization first, then call githubRepoStats on it. Say the numbers are live from that API, and give its links. If a live tool returns an error, say so briefly and link the site instead.
+- CALL recordedAnswer for: questions about OpenSourceX itself (what it is, saving, support, sign-in, privacy, terms, security, where the data comes from, Discover, Analyze, Interview), counts ("how many organizations"), a stipend in a named country, comparing programs, upcoming deadlines across programs, forecasts of which organizations are likely in the next LFX term or program year, and which repositories inside an organization repeat in LFX Mentorship. Its Markdown is already checked against recorded data: keep its tables and links, and keep its note that a forecast is not an official list.
 - Today's date is ${new Date().toISOString().slice(0, 10)}.`;
 
 const MAX_LIST = 40;
@@ -317,6 +319,12 @@ export function buildTools(k: Knowledge, searchGuides: GuideSearch = async () =>
           programs: a.programs?.slice(0, 25).map((p) => ({ ...p, page: `/projects/${p.id}` })),
         };
       },
+    }),
+    recordedAnswer: tool({
+      description:
+        "OpenSourceX's own answer from its recorded data, as Markdown: site help (saving, support, sign-in, privacy, terms, security, data sources), counts, per-country stipends, program comparisons, upcoming deadlines, forecasts of organizations likely in the next LFX term or program year, and repositories inside an organization that repeat in LFX Mentorship. Pass the user's question in plain English.",
+      inputSchema: z.object({ question: z.string() }),
+      execute: async ({ question }) => ({ markdown: answerOffline(question, k).slice(0, 6000) }),
     }),
     ...(liveApisEnabled() ? liveTools() : {}),
   };

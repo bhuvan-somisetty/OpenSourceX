@@ -81,6 +81,15 @@ describe("AI tools", () => {
     } as never)) as { found: boolean };
     expect(miss.found).toBe(false);
   });
+
+  it("give the model the offline engine's recorded answers", async () => {
+    const exec = buildTools(k).recordedAnswer.execute!;
+    const r = (await exec({ question: "how do i save an organization" }, {
+      toolCallId: "3",
+      messages: [],
+    } as never)) as { markdown: string };
+    expect(r.markdown).toMatch(/^### Saving organizations/);
+  });
 });
 
 describe("provider configuration", () => {
