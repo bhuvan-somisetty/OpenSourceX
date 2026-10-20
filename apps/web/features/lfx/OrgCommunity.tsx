@@ -8,6 +8,7 @@ const PLATFORM: Record<ChatPlatform, { label: string; verb: string }> = {
   zulip: { label: "Zulip", verb: "Join Zulip" },
   gitter: { label: "Gitter", verb: "Join Gitter" },
   telegram: { label: "Telegram", verb: "Join Telegram" },
+  forum: { label: "Forum", verb: "Open forum" },
   other: { label: "Community chat", verb: "Open chat" },
 };
 
@@ -71,6 +72,10 @@ function howTo(chat: OrgChat, orgName: string): string {
       return `${orgName} chats on Gitter. Sign in with GitHub or GitLab to join the room and talk with maintainers.`;
     case "telegram":
       return `${orgName} runs a Telegram group for contributors. Open the invite in Telegram to join.`;
+    case "forum":
+      return chat.workspace === "GitHub Discussions"
+        ? `${orgName} answers questions and talks about the project in GitHub Discussions. Sign in with GitHub to ask a question or join a thread.`
+        : `${orgName} runs a public forum, ${chat.workspace}. Read past threads, then sign up to ask questions and talk with maintainers.`;
     case "other":
       return `This is the chat link ${orgName} publishes for new contributors. Open it to find where the community talks.`;
   }

@@ -10,6 +10,7 @@
 // When a match is not exact, the field stays empty. Nothing is guessed.
 //
 // Usage: node scripts/programs/collect.mjs [program ...]
+// Then run find-chats.mjs for the same programs: it looks deeper for community links.
 // Needs a GitHub token (GITHUB_TOKEN, or a logged-in `gh`).
 
 import fs from "node:fs";

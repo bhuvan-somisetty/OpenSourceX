@@ -136,8 +136,15 @@
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-december-2025-internship-cohort/communities/bioconductor/",
    "githubUrl": "https://github.com/Bioconductor",
-   "chats": [],
-   "logo": "/logos/programs/outreachy/bioconductor.jpg"
+   "chats": [
+    {
+     "platform": "zulip",
+     "workspace": "Bioconductor Zulip",
+     "joinUrl": "https://community-bioc.zulipchat.com/join/4k2tpsy7h6zjbaduydwm2n56/"
+    }
+   ],
+   "logo": "/logos/programs/outreachy/bioconductor.jpg",
+   "chatSource": "https://chat.bioconductor.org/"
   },
   {
    "slug": "bokeh",
@@ -178,8 +185,15 @@
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-may-2023-internship-cohort/communities/bokeh/",
    "githubUrl": "https://github.com/bokeh",
-   "chats": [],
-   "logo": "/logos/programs/outreachy/bokeh.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "Bokeh Forum",
+     "joinUrl": "https://discourse.bokeh.org"
+    }
+   ],
+   "logo": "/logos/programs/outreachy/bokeh.png",
+   "chatSource": "https://github.com/bokeh/bokeh#readme"
   },
   {
    "slug": "camicroscope",
@@ -1119,8 +1133,15 @@
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-may-2022-internship-round/communities/galaxy-community/",
    "githubUrl": "https://github.com/galaxyproject",
-   "chats": [],
-   "logo": "/logos/programs/outreachy/galaxy-community.png"
+   "chats": [
+    {
+     "platform": "gitter",
+     "workspace": "Galaxy Community Gitter",
+     "joinUrl": "https://gitter.im/galaxyproject/Lobby"
+    }
+   ],
+   "logo": "/logos/programs/outreachy/galaxy-community.png",
+   "chatSource": "https://github.com/galaxyproject/galaxy#readme"
   },
   {
    "slug": "git",
@@ -1358,8 +1379,18 @@
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-may-2022-internship-round/communities/irdest/",
    "githubUrl": "https://github.com/irdest",
-   "chats": [],
-   "logo": "/logos/programs/outreachy/irdest.png"
+   "chats": [
+    {
+     "platform": "matrix",
+     "workspace": "Irdest Matrix",
+     "joinUrl": "https://matrix.to/#/#irdest:fairydust.space?via=ontheblueplanet.com&via=matrix.org&via=fairydust.space",
+     "channels": [
+      "#irdest:fairydust.space"
+     ]
+    }
+   ],
+   "logo": "/logos/programs/outreachy/irdest.png",
+   "chatSource": "https://github.com/irdest/irdest#readme"
   },
   {
    "slug": "jupyterhub",
@@ -1972,8 +2003,15 @@
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/modeci/",
    "githubUrl": "https://github.com/ModECI",
-   "chats": [],
-   "logo": "/logos/programs/outreachy/modeci.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/ModECI/MDF/discussions"
+    }
+   ],
+   "logo": "/logos/programs/outreachy/modeci.png",
+   "chatSource": "http://www.modeci.org"
   },
   {
    "slug": "moja-global",
@@ -2118,8 +2156,15 @@
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-december-2023-internship-round/communities/networkx/",
    "githubUrl": "https://github.com/networkx",
-   "chats": [],
-   "logo": "/logos/programs/outreachy/networkx.png"
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "Scientific Python",
+     "joinUrl": "https://discord.com/invite/vur45CbwMz"
+    }
+   ],
+   "logo": "/logos/programs/outreachy/networkx.png",
+   "chatSource": "https://github.com/networkx/networkx#readme"
   },
   {
    "slug": "nixos",
@@ -2474,8 +2519,15 @@
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-june-2025-internship-cohort/communities/odk-x/",
    "githubUrl": "https://github.com/odk-x",
-   "chats": [],
-   "logo": "/logos/programs/outreachy/odk-x.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "ODK-X Forum",
+     "joinUrl": "https://forum.odk-x.org"
+    }
+   ],
+   "logo": "/logos/programs/outreachy/odk-x.png",
+   "chatSource": "https://odk-x.org/"
   },
   {
    "slug": "open-information-security-foundation",
@@ -2906,8 +2958,15 @@
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-june-2025-internship-cohort/communities/oppia/",
    "githubUrl": "https://github.com/oppia",
-   "chats": [],
-   "logo": "/logos/programs/outreachy/oppia.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/oppia/oppia/discussions"
+    }
+   ],
+   "logo": "/logos/programs/outreachy/oppia.png",
+   "chatSource": "https://github.com/oppia/oppia#readme"
   },
   {
    "slug": "palisadoes-foundation",
@@ -3041,8 +3100,18 @@
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-june-2024-internship-round/communities/perl/",
    "githubUrl": "https://github.com/Perl",
-   "chats": [],
-   "logo": "/logos/programs/outreachy/perl-raku.png"
+   "chats": [
+    {
+     "platform": "irc",
+     "workspace": "Libera.Chat IRC",
+     "joinUrl": "https://web.libera.chat/?channels=%23perl",
+     "channels": [
+      "#perl"
+     ]
+    }
+   ],
+   "logo": "/logos/programs/outreachy/perl-raku.png",
+   "chatSource": "https://www.perl.org/community.html"
   },
   {
    "slug": "public-lab",
@@ -3386,8 +3455,26 @@
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-june-2025-internship-cohort/communities/systemd/",
    "githubUrl": "https://github.com/systemd",
-   "chats": [],
-   "logo": "/logos/programs/outreachy/systemd.png"
+   "chats": [
+    {
+     "platform": "matrix",
+     "workspace": "systemd Matrix",
+     "joinUrl": "https://matrix.to/#/#systemd-project:matrix.org",
+     "channels": [
+      "#systemd-project:matrix.org"
+     ]
+    },
+    {
+     "platform": "irc",
+     "workspace": "Libera.Chat IRC",
+     "joinUrl": "https://web.libera.chat/?channels=%23systemd",
+     "channels": [
+      "#systemd"
+     ]
+    }
+   ],
+   "logo": "/logos/programs/outreachy/systemd.png",
+   "chatSource": "https://github.com/systemd/systemd#readme"
   },
   {
    "slug": "tensorflow",
@@ -3418,8 +3505,15 @@
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-december-2022-internship-round/communities/tensorflow/",
    "githubUrl": "https://github.com/tensorflow",
-   "chats": [],
-   "logo": "/logos/programs/outreachy/tensorflow.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "TensorFlow Forum",
+     "joinUrl": "https://discuss.tensorflow.org"
+    }
+   ],
+   "logo": "/logos/programs/outreachy/tensorflow.png",
+   "chatSource": "https://github.com/tensorflow/tensorflow#readme"
   },
   {
    "slug": "tor-project",
@@ -3685,8 +3779,15 @@
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-december-2023-internship-round/communities/wagtail/",
    "githubUrl": "https://github.com/wagtail",
-   "chats": [],
-   "logo": "/logos/programs/outreachy/wagtail.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/wagtail/wagtail/discussions"
+    }
+   ],
+   "logo": "/logos/programs/outreachy/wagtail.png",
+   "chatSource": "https://github.com/wagtail/wagtail#readme"
   },
   {
    "slug": "wikimedia-foundation",
@@ -3949,8 +4050,15 @@
    ],
    "sourceUrl": "https://www.outreachy.org/outreachy-may-2023-internship-cohort/communities/xarray/",
    "githubUrl": "https://github.com/pydata",
-   "chats": [],
-   "logo": "/logos/programs/outreachy/xarray.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/pydata/xarray/discussions"
+    }
+   ],
+   "logo": "/logos/programs/outreachy/xarray.png",
+   "chatSource": "https://github.com/pydata/xarray#readme"
   },
   {
    "slug": "yocto-project",

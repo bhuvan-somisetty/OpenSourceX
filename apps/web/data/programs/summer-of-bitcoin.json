@@ -78,8 +78,18 @@
    "links": [],
    "sourceUrl": "https://www.summerofbitcoin.org/organizations",
    "githubUrl": "https://github.com/bitcoin",
-   "chats": [],
-   "logo": "/logos/programs/summer-of-bitcoin/bitcoin-core.png"
+   "chats": [
+    {
+     "platform": "irc",
+     "workspace": "Libera.Chat IRC",
+     "joinUrl": "https://web.libera.chat/?channels=%23bitcoin-core-dev",
+     "channels": [
+      "#bitcoin-core-dev"
+     ]
+    }
+   ],
+   "logo": "/logos/programs/summer-of-bitcoin/bitcoin-core.png",
+   "chatSource": "https://github.com/bitcoin/bitcoin/blob/HEAD/CONTRIBUTING.md"
   },
   {
    "slug": "bitcoin-design",
@@ -127,8 +137,15 @@
    "links": [],
    "sourceUrl": "https://www.summerofbitcoin.org/organizations",
    "githubUrl": "https://github.com/bitcoinfuzz",
-   "chats": [],
-   "logo": "/logos/programs/summer-of-bitcoin/bitcoin-fuzz.jpg"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/bitcoinfuzz/bitcoinfuzz/discussions"
+    }
+   ],
+   "logo": "/logos/programs/summer-of-bitcoin/bitcoin-fuzz.jpg",
+   "chatSource": "https://github.com/bitcoinfuzz/bitcoinfuzz"
   },
   {
    "slug": "braidpool",
@@ -527,8 +544,15 @@
    "links": [],
    "sourceUrl": "https://www.summerofbitcoin.org/organizations",
    "githubUrl": "https://github.com/shopstr-eng",
-   "chats": [],
-   "logo": "/logos/programs/summer-of-bitcoin/shopstr.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/shopstr-eng/shopstr/discussions"
+    }
+   ],
+   "logo": "/logos/programs/summer-of-bitcoin/shopstr.png",
+   "chatSource": "https://github.com/shopstr-eng/shopstr"
   },
   {
    "slug": "smite",

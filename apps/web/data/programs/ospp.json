@@ -227,8 +227,15 @@
    "links": [],
    "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
    "githubUrl": "https://github.com/apache",
-   "chats": [],
-   "logo": "/logos/programs/ospp/apache-seatunnel.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/apache/seatunnel/discussions"
+    }
+   ],
+   "logo": "/logos/programs/ospp/apache-seatunnel.png",
+   "chatSource": "https://github.com/apache/seatunnel"
   },
   {
    "slug": "apache-shenyu",
@@ -279,8 +286,15 @@
    "links": [],
    "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
    "githubUrl": "https://github.com/apache",
-   "chats": [],
-   "logo": "/logos/programs/ospp/apache-skywalking.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/apache/skywalking/discussions"
+    }
+   ],
+   "logo": "/logos/programs/ospp/apache-skywalking.png",
+   "chatSource": "https://skywalking.apache.org"
   },
   {
    "slug": "areno",
@@ -538,8 +552,15 @@
    "links": [],
    "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
    "githubUrl": "https://github.com/apache",
-   "chats": [],
-   "logo": "/logos/programs/ospp/dubbo-admin.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/apache/dubbo/discussions"
+    }
+   ],
+   "logo": "/logos/programs/ospp/dubbo-admin.png",
+   "chatSource": "https://github.com/apache/dubbo#readme"
   },
   {
    "slug": "easy-es",
@@ -678,8 +699,15 @@
    "links": [],
    "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
    "githubUrl": "https://github.com/xuri",
-   "chats": [],
-   "logo": "/logos/programs/ospp/excelize.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/qax-os/excelize/discussions"
+    }
+   ],
+   "logo": "/logos/programs/ospp/excelize.png",
+   "chatSource": "https://github.com/qax-os/excelize"
   },
   {
    "slug": "gevico-tech-open-community",
@@ -765,8 +793,15 @@
    "links": [],
    "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
    "githubUrl": "https://github.com/GreptimeTeam",
-   "chats": [],
-   "logo": "/logos/programs/ospp/greptimedb.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/GreptimeTeam/greptimedb/discussions"
+    }
+   ],
+   "logo": "/logos/programs/ospp/greptimedb.png",
+   "chatSource": "https://github.com/GreptimeTeam/greptimedb#readme"
   },
   {
    "slug": "hust-openatom-open-source-club",
@@ -789,8 +824,15 @@
    ],
    "links": [],
    "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
-   "chats": [],
-   "logo": "/logos/programs/ospp/hust-openatom-open-source-club.png"
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "HUST OPEN ATOM CLUB",
+     "joinUrl": "https://discord.gg/EMJqcQCCpW"
+    }
+   ],
+   "logo": "/logos/programs/ospp/hust-openatom-open-source-club.png",
+   "chatSource": "https://hust.openatom.club/wiki/joinus/"
   },
   {
    "slug": "iflytek-opensource",
@@ -873,8 +915,15 @@
    "links": [],
    "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
    "githubUrl": "https://github.com/qboson",
-   "chats": [],
-   "logo": "/logos/programs/ospp/kaiwu-pytorch-plugin.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/qboson/kaiwu-pytorch-plugin/discussions"
+    }
+   ],
+   "logo": "/logos/programs/ospp/kaiwu-pytorch-plugin.png",
+   "chatSource": "https://github.com/qboson/kaiwu-pytorch-plugin"
   },
   {
    "slug": "kata-containers",
@@ -928,8 +977,15 @@
    "links": [],
    "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
    "githubUrl": "https://github.com/kubeedge",
-   "chats": [],
-   "logo": "/logos/programs/ospp/kubeedge.png"
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "CNCF Slack",
+     "joinUrl": "https://slack.cncf.io/"
+    }
+   ],
+   "logo": "/logos/programs/ospp/kubeedge.png",
+   "chatSource": "https://kubeedge.io/docs/community/slack"
   },
   {
    "slug": "kwdb",
@@ -1213,8 +1269,15 @@
    "links": [],
    "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
    "githubUrl": "https://github.com/openeuler",
-   "chats": [],
-   "logo": "/logos/programs/ospp/openeuler.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "openEuler Forum",
+     "joinUrl": "https://forum.openeuler.org"
+    }
+   ],
+   "logo": "/logos/programs/ospp/openeuler.png",
+   "chatSource": "https://www.openeuler.org/en/"
   },
   {
    "slug": "opengauss",
@@ -1239,8 +1302,15 @@
    ],
    "links": [],
    "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
-   "chats": [],
-   "logo": "/logos/programs/ospp/opengauss.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "openGauss 社区 Forum",
+     "joinUrl": "https://discuss.opengauss.org"
+    }
+   ],
+   "logo": "/logos/programs/ospp/opengauss.png",
+   "chatSource": "https://opengauss.org/zh/"
   },
   {
    "slug": "openhitls",
@@ -1294,8 +1364,15 @@
    ],
    "links": [],
    "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
-   "chats": [],
-   "logo": "/logos/programs/ospp/openkylin.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "openKylin Forum",
+     "joinUrl": "https://forum.openkylin.top"
+    }
+   ],
+   "logo": "/logos/programs/ospp/openkylin.png",
+   "chatSource": "https://www.openkylin.top"
   },
   {
    "slug": "openruyi",
@@ -1363,8 +1440,15 @@
    "links": [],
    "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
    "githubUrl": "https://github.com/pikasTech",
-   "chats": [],
-   "logo": "/logos/programs/ospp/pikapython.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/pikasTech/PikaPython/discussions"
+    }
+   ],
+   "logo": "/logos/programs/ospp/pikapython.png",
+   "chatSource": "https://github.com/pikasTech/PikaPython"
   },
   {
    "slug": "pixiu",
@@ -1447,8 +1531,15 @@
    "links": [],
    "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
    "githubUrl": "https://github.com/rustsbi",
-   "chats": [],
-   "logo": "/logos/programs/ospp/rustsbi.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/rustsbi/.github/discussions"
+    }
+   ],
+   "logo": "/logos/programs/ospp/rustsbi.png",
+   "chatSource": "https://github.com/rustsbi"
   },
   {
    "slug": "ruyiai",
@@ -1502,8 +1593,15 @@
    "links": [],
    "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
    "githubUrl": "https://github.com/ruyisdk",
-   "chats": [],
-   "logo": "/logos/programs/ospp/ruyisdk.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/ruyisdk/ruyisdk/discussions"
+    }
+   ],
+   "logo": "/logos/programs/ospp/ruyisdk.png",
+   "chatSource": "https://github.com/ruyisdk"
   },
   {
    "slug": "sa-token",
@@ -1569,8 +1667,15 @@
    "links": [],
    "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
    "githubUrl": "https://github.com/SpinalHDL",
-   "chats": [],
-   "logo": "/logos/programs/ospp/spinalhdl.png"
+   "chats": [
+    {
+     "platform": "gitter",
+     "workspace": "SpinalHDL Gitter",
+     "joinUrl": "https://gitter.im/SpinalHDL/SpinalHDL"
+    }
+   ],
+   "logo": "/logos/programs/ospp/spinalhdl.png",
+   "chatSource": "https://github.com/SpinalHDL/SpinalHDL#readme"
   },
   {
    "slug": "vllm-semantic-router",
@@ -1685,8 +1790,15 @@
    ],
    "links": [],
    "sourceUrl": "https://summer.ospp.ac.cn/org/orglist",
-   "chats": [],
-   "logo": "/logos/programs/ospp/mindspore.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "昇思MindSpore Forum",
+     "joinUrl": "https://discuss.mindspore.cn"
+    }
+   ],
+   "logo": "/logos/programs/ospp/mindspore.png",
+   "chatSource": "https://www.mindspore.cn"
   },
   {
    "slug": "losu",

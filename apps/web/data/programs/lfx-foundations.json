@@ -726,9 +726,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/9f4039a0-cdd5-4bf6-9a2b-6c321da10950"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "discord",
+       "workspace": "Linux Foundation Decentralized Trust",
+       "joinUrl": "https://discord.gg/hyperledger"
+      }
+     ],
      "lfProject": "LF Decentralized Trust",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/hyperledger"
     },
     {
      "foundation": "lfdt",
@@ -1034,9 +1041,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/07092725-9d72-40f3-af6b-bccbd59666d6"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "discord",
+       "workspace": "Linux Foundation Decentralized Trust",
+       "joinUrl": "https://discord.lfdecentralizedtrust.org"
+      }
+     ],
      "lfProject": "LF Decentralized Trust",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://lf-decentralized-trust-labs.github.io/"
     },
     {
      "foundation": "lfdt",
@@ -1233,9 +1247,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/7a6a4164-9549-4dab-8778-2721acd98130"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "discord",
+       "workspace": "Linux Foundation Decentralized Trust",
+       "joinUrl": "https://discord.lfdecentralizedtrust.org"
+      }
+     ],
      "lfProject": "LF Decentralized Trust",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://www.lfdecentralizedtrust.org/"
     },
     {
      "foundation": "lfdt",
@@ -1311,9 +1332,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/9afaacd2-76ad-4758-8ae7-c0d4a2823f9a"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "discord",
+       "workspace": "Linux Foundation Decentralized Trust",
+       "joinUrl": "https://discord.gg/hyperledger"
+      }
+     ],
      "lfProject": "LF Decentralized Trust",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/hiero-ledger"
     },
     {
      "foundation": "lfdt",
@@ -1364,9 +1392,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/377bd7ec-c2fb-4903-acbf-7e0ead11aca0"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "discord",
+       "workspace": "Linux Foundation Decentralized Trust",
+       "joinUrl": "https://discord.com/invite/hyperledger"
+      }
+     ],
      "lfProject": "LF Decentralized Trust",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/besu-eth"
     },
     {
      "foundation": "lfdt",
@@ -1415,9 +1450,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/e27c5963-4a4c-4d17-98de-94d66eb8a2d6"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "discord",
+       "workspace": "Linux Foundation Decentralized Trust",
+       "joinUrl": "https://discord.lfdecentralizedtrust.org"
+      }
+     ],
      "lfProject": "LF Decentralized Trust",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://www.lfdecentralizedtrust.org/"
     },
     {
      "foundation": "lfdt",
@@ -1460,9 +1502,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/93854d9d-51ec-4460-b12b-42788492ace8"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "discord",
+       "workspace": "Eclipse Dataspace Components",
+       "joinUrl": "https://discord.gg/n4sD9qtjMQ"
+      }
+     ],
      "lfProject": "LF Decentralized Trust",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/eclipse-edc"
     },
     {
      "foundation": "lfdt",
@@ -1593,9 +1642,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/ab089edb-738d-4cdb-bbdb-e0ce2c17f57f"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "discord",
+       "workspace": "Linux Foundation Decentralized Trust",
+       "joinUrl": "https://discord.com/invite/hyperledger"
+      }
+     ],
      "lfProject": "LF Decentralized Trust",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/hyperledger-cacti"
     },
     {
      "foundation": "lfdt",
@@ -1640,9 +1696,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/b6136790-ac29-467a-943d-335124e58b4d"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "discord",
+       "workspace": "Linux Foundation Decentralized Trust",
+       "joinUrl": "https://discord.lfdecentralizedtrust.org"
+      }
+     ],
      "lfProject": "LF Decentralized Trust",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://www.lfdecentralizedtrust.org/"
     },
     {
      "foundation": "lfdt",
@@ -1686,9 +1749,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/c4b8a03c-8e33-4c08-b73d-62d27f6ac565"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "discord",
+       "workspace": "Linux Foundation Decentralized Trust",
+       "joinUrl": "https://discord.gg/hyperledger"
+      }
+     ],
      "lfProject": "LF Decentralized Trust",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/hyperledger-solang"
     },
     {
      "foundation": "lfdt",
@@ -1736,9 +1806,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/b78003c5-933e-4885-b576-a0eb55e65b49"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "discord",
+       "workspace": "Linux Foundation Decentralized Trust",
+       "joinUrl": "https://discord.lfdecentralizedtrust.org"
+      }
+     ],
      "lfProject": "LF Decentralized Trust",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://www.lfdecentralizedtrust.org/"
     },
     {
      "foundation": "lfdt",
@@ -1784,9 +1861,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/42810656-3f94-4255-a527-6f05defeb2c4"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "discord",
+       "workspace": "Linux Foundation Decentralized Trust",
+       "joinUrl": "https://discord.lfdecentralizedtrust.org"
+      }
+     ],
      "lfProject": "LF Decentralized Trust",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://lf-decentralized-trust-labs.github.io/"
     },
     {
      "foundation": "lfdt",
@@ -1829,9 +1913,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/7df3d0b5-7abb-41c1-9211-edc9508e3aa7"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "discord",
+       "workspace": "Linux Foundation Decentralized Trust",
+       "joinUrl": "https://discord.lfdecentralizedtrust.org"
+      }
+     ],
      "lfProject": "LF Decentralized Trust",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/OpenTokenizedAssetStandard"
     },
     {
      "foundation": "lfdt",
@@ -1875,9 +1966,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/1ef6172d-3ea5-468e-99b2-0dcd05ea719b"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "OpenMined Slack",
+       "joinUrl": "http://slack.openmined.org"
+      }
+     ],
      "lfProject": "LF Decentralized Trust",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/OpenMined/.github/blob/HEAD/CONTRIBUTING.md"
     },
     {
      "foundation": "lfdt",
@@ -1918,9 +2016,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/b0a24d64-fc7d-4a9c-8314-9c282298e904"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "discord",
+       "workspace": "Linux Foundation Decentralized Trust",
+       "joinUrl": "https://discord.lfdecentralizedtrust.org"
+      }
+     ],
      "lfProject": "LF Decentralized Trust",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://www.lfdecentralizedtrust.org/"
     },
     {
      "foundation": "lfdt",
@@ -2008,9 +2113,21 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/bd0a1306-fddc-426e-875d-30dc81799a33"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "discord",
+       "workspace": "Chainlens",
+       "joinUrl": "https://discord.gg/A9UXfPF2tS"
+      },
+      {
+       "platform": "telegram",
+       "workspace": "web3j Telegram",
+       "joinUrl": "https://t.me/+lI4ee8w4y3U2NWM1"
+      }
+     ],
      "lfProject": "LF Decentralized Trust",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://www.web3labs.com"
     },
     {
      "foundation": "lfdt",
@@ -2056,9 +2173,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/54546ffa-df1d-4985-a366-0e03780f5208"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "discord",
+       "workspace": "Chainlens",
+       "joinUrl": "https://discord.gg/A9UXfPF2tS"
+      }
+     ],
      "lfProject": "LF Decentralized Trust",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/LFDT-web3j"
     }
    ]
   },
@@ -2291,9 +2415,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/6e864220-8b7b-4712-a431-fc0f1a14f843"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "RISC-V International Slack",
+       "joinUrl": "https://risc-v-international.slack.com/join/shared_invite/zt-2y1w69wde-PdoN3fXovLlzoni~UaPrBA"
+      }
+     ],
      "lfProject": "RISC-V International",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://riscv.org/"
     },
     {
      "foundation": "riscv",
@@ -2444,9 +2575,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/f6ce2e3c-27c3-44dd-b318-074b37de9d07"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "RISC-V Software Slack",
+       "joinUrl": "https://risc-v-international.slack.com/join/shared_invite/zt-2y1w69wde-PdoN3fXovLlzoni~UaPrBA"
+      }
+     ],
      "lfProject": "RISC-V International",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://riscv.org"
     },
     {
      "foundation": "riscv",
@@ -2582,9 +2720,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/22296947-cecb-4a8f-8bcb-4f34710e9f66"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "RISC-V Slack",
+       "joinUrl": "https://risc-v-international.slack.com/join/shared_invite/zt-2y1w69wde-PdoN3fXovLlzoni~UaPrBA"
+      }
+     ],
      "lfProject": "RISC-V International",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://riscv.org"
     },
     {
      "foundation": "riscv",
@@ -3033,9 +3178,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/0d534b25-051d-4e02-aff8-aaba71e1687f"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "Persistent Memory Programming Slack",
+       "joinUrl": "https://pmem-io.slack.com/join/shared_invite/enQtNzU4MzQ2Mzk3MDQwLWQ1YThmODVmMGFkZWI0YTdhODg4ODVhODdhYjg3NmE4N2ViZGI5NTRmZTBiNDYyOGJjYTIyNmZjYzQxODcwNDg#/shared-invite/email"
+      }
+     ],
      "lfProject": "RISC-V International",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://pmem.io"
     },
     {
      "foundation": "riscv",
@@ -3120,9 +3272,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/19794b46-5311-4fcc-86dd-6393061fb7ec"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "RISC-V Android Slack",
+       "joinUrl": "https://risc-v-international.slack.com/join/shared_invite/zt-2y1w69wde-PdoN3fXovLlzoni~UaPrBA"
+      }
+     ],
      "lfProject": "RISC-V International",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://riscv.org"
     },
     {
      "foundation": "riscv",
@@ -3165,9 +3324,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/09e29f14-d107-4834-9d7e-353fd4729924"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "RISC-V Non-ISA Specifications Slack",
+       "joinUrl": "https://risc-v-international.slack.com/join/shared_invite/zt-2y1w69wde-PdoN3fXovLlzoni~UaPrBA"
+      }
+     ],
      "lfProject": "RISC-V International",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://riscv.org"
     },
     {
      "foundation": "riscv",
@@ -3504,9 +3670,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/edd4966c-44bb-4e1a-9c6d-15b0cb901b7e"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "Open Mainframe Project Slack",
+       "joinUrl": "https://slack.openmainframeproject.org"
+      }
+     ],
      "lfProject": "Open Mainframe Project (OMP)",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/openmainframeproject/cobol-programming-course#readme"
     },
     {
      "foundation": "omp",
@@ -3639,9 +3812,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/300dbe6d-15b3-4974-9b67-5c997da220c4"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "Open Mainframe Project Mentorship Program Slack",
+       "joinUrl": "https://slack.openmainframeproject.org"
+      }
+     ],
      "lfProject": "Open Mainframe Project (OMP)",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/openmainframeproject-internship/resources#readme"
     },
     {
      "foundation": "omp",
@@ -3742,9 +3922,17 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/8ca351b0-168d-4b89-87ec-3a37a3c77cd1"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "Zowe Slack",
+       "joinUrl": "https://openmainframeproject.slack.com",
+       "channelUrl": "https://openmainframeproject.slack.com/archives/CC08782AG"
+      }
+     ],
      "lfProject": "Open Mainframe Project (OMP)",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/zowe"
     },
     {
      "foundation": "omp",
@@ -3802,9 +3990,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/a1b5f370-e4c2-4b4c-bd9b-f41e11f96476"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "discord",
+       "workspace": "System Z Enthusiasts",
+       "joinUrl": "https://discord.com/invite/sze"
+      }
+     ],
      "lfProject": "Open Mainframe Project (OMP)",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://zopen.community"
     },
     {
      "foundation": "omp",
@@ -3853,9 +4048,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/f6ff5693-46c8-44c0-b4d9-325d9da342d3"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "galasa Slack",
+       "joinUrl": "https://galasa.slack.com"
+      }
+     ],
      "lfProject": "Open Mainframe Project (OMP)",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/galasa-dev/simplatform#readme"
     }
    ]
   },
@@ -4284,9 +4486,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/fe0f6feb-4571-4dd5-9bfd-8a01c10ed734"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "discord",
+       "workspace": "KernelCI",
+       "joinUrl": "https://discord.gg/KWbrbWEyqb"
+      }
+     ],
      "lfProject": "The Linux Kernel Organization",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://kernelci.org"
     },
     {
      "foundation": "kernel",
@@ -4371,9 +4580,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/7fbfee27-5402-4fd6-a36f-388ddf89c0fa"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "discord",
+       "workspace": "patchworkers",
+       "joinUrl": "https://discord.gg/hGWjXVTAbB"
+      }
+     ],
      "lfProject": "The Linux Kernel Organization",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/getpatchwork/patchwork#readme"
     }
    ]
   },
@@ -4532,9 +4748,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/6374af21-c973-4cd8-82ba-829285f5f259"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "SONiC Slack",
+       "joinUrl": "https://sonic-net.slack.com/"
+      }
+     ],
      "lfProject": "SONiC Foundation",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/sonic-net/SONiC#readme"
     },
     {
      "foundation": "sonic",
@@ -4590,9 +4813,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/d4c3f013-0e28-4f49-94ad-9c491a456a91"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "SONiC Foundation Slack",
+       "joinUrl": "http://sonicswitch.slack.com"
+      }
+     ],
      "lfProject": "SONiC Foundation",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://sonicfoundation.dev/"
     },
     {
      "foundation": "sonic",
@@ -4720,9 +4950,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/9f172d99-f0d0-4277-ab63-f78e039091d1"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "discord",
+       "workspace": "Redis",
+       "joinUrl": "https://discord.gg/W4txy5AeKM"
+      }
+     ],
      "lfProject": "SONiC Foundation",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/redis/go-redis#readme"
     }
    ]
   },
@@ -5027,9 +5264,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/285d7dd0-fec5-43cd-b0db-c47e63aa5132"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "L3AF Slack",
+       "joinUrl": "http://l3afworkspace.slack.com/"
+      }
+     ],
      "lfProject": "LF Networking (LFN)",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/l3af-project/l3afd#readme"
     }
    ]
   },
@@ -5237,9 +5481,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/d70e1f9e-abde-403f-8389-52a122301500"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "moja global Slack",
+       "joinUrl": "https://mojaglobal.slack.com/"
+      }
+     ],
      "lfProject": "MOJA Global Project",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/moja-global"
     },
     {
      "foundation": "more",
@@ -5317,9 +5568,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/a779bae4-dc15-402b-ba2d-3fda6523c3ce"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "zulip",
+       "workspace": "Veraison Zulip",
+       "joinUrl": "https://veraison.zulipchat.com"
+      }
+     ],
      "lfProject": "Confidential Computing Consortium (CCC)",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/veraison"
     },
     {
      "foundation": "more",
@@ -5379,9 +5637,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/450c99f1-edd7-49bc-8a3f-e27c0cd0377d"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "discord",
+       "workspace": "Cloudforet Community",
+       "joinUrl": "https://discord.gg/7ExpTmA6TE"
+      }
+     ],
      "lfProject": "Cloudforet",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/cloudforet-io"
     },
     {
      "foundation": "more",
@@ -5450,9 +5715,20 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/7c560645-b028-4a42-8ea5-4af880d6910f"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "The Fintech Open Source Foundation Slack",
+       "joinUrl": "https://finos-lf.slack.com",
+       "channelUrl": "https://finos-lf.slack.com/messages/open-source-readiness/",
+       "channels": [
+        "#open-source-readiness"
+       ]
+      }
+     ],
      "lfProject": "FDC3",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/finos"
     },
     {
      "foundation": "more",
@@ -5509,9 +5785,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/86dde479-923f-44da-aba0-bd786a078602"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "gittuf Slack",
+       "joinUrl": "https://slack.openssf.org/"
+      }
+     ],
      "lfProject": "Open Source Security Foundation (OpenSSF)",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/gittuf/gittuf#readme"
     },
     {
      "foundation": "more",
@@ -5565,9 +5848,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/9ff56391-34f5-40fd-99dd-c0454c5c5dd5"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "LF Energy Slack",
+       "joinUrl": "https://slack.lfenergy.org/"
+      }
+     ],
      "lfProject": "LF Energy (LFE)",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://lfenergy.org/get-involved/"
     },
     {
      "foundation": "more",
@@ -5752,9 +6042,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/a721e8b8-5999-45a7-920a-279eaca3983d"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "OpenHPC Slack",
+       "joinUrl": "https://openhpc.slack.com/signup"
+      }
+     ],
      "lfProject": "OpenHPC Project",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://openhpc.community/support/mailing-lists/"
     },
     {
      "foundation": "more",
@@ -5804,9 +6101,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/55cdb4a1-76bd-423a-ab48-3bdf1502a171"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "telegram",
+       "workspace": "OpenPrinting Telegram",
+       "joinUrl": "https://t.me/+RizBbjXz4uU2ZWM1"
+      }
+     ],
      "lfProject": "OpenPrinting",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "http://www.openprinting.org/contribute"
     },
     {
      "foundation": "more",
@@ -5867,9 +6171,17 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/304ded5e-1eb7-4f71-a6ac-1d281cba918a"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "OPI Project Slack",
+       "joinUrl": "https://opi-project.slack.com",
+       "channelUrl": "https://opi-project.slack.com/archives/C0344KMEAKB"
+      }
+     ],
      "lfProject": "Open Programmable Infrastructure",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/opiproject/opi-api#readme"
     },
     {
      "foundation": "more",
@@ -5923,9 +6235,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/4c012eae-8e43-46d3-a27b-6805dcc4e261"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "discord",
+       "workspace": "Post-Quantum Cryptography Alliance",
+       "joinUrl": "https://discord.gg/qRfMantKwc"
+      }
+     ],
      "lfProject": "Post-Quantum Cryptography Alliance",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/pq-code-package"
     },
     {
      "foundation": "more",
@@ -5994,9 +6313,17 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/8c05d93f-d7ba-45ba-8839-a6d591d3d9d2"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "repository-service-tuf Slack",
+       "joinUrl": "https://openssf.slack.com",
+       "channelUrl": "https://openssf.slack.com/archives/C052QF5CZFH"
+      }
+     ],
      "lfProject": "Open Source Security Foundation (OpenSSF)",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/repository-service-tuf/repository-service-tuf#readme"
     },
     {
      "foundation": "more",
@@ -6040,9 +6367,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/fd4fd9ab-7cb1-4763-9bd5-9c9362c6dbfc"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "Aether Project Slack",
+       "joinUrl": "https://onf-community.slack.com"
+      }
+     ],
      "lfProject": "Aether Project",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://aetherproject.org"
     },
     {
      "foundation": "more",
@@ -6172,9 +6506,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/bdbecf7d-baaa-4adc-98a0-2ecbb4e8f05c"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "discord",
+       "workspace": "Post-Quantum Cryptography Alliance",
+       "joinUrl": "http://discord.pqca.org/"
+      }
+     ],
      "lfProject": "Post-Quantum Cryptography Alliance",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://pqca.org"
     },
     {
      "foundation": "more",
@@ -6264,9 +6605,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/7deb8e48-6797-4115-bb96-9cf4ccee022e"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "Codeuino Slack",
+       "joinUrl": "https://codeuino.slack.com"
+      }
+     ],
      "lfProject": "The Linux Foundation",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/codeuino/social-platform-donut-frontend#readme"
     },
     {
      "foundation": "more",
@@ -6443,9 +6791,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/d24ab158-e4e5-4042-91ad-b30ae52941d2"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "Fluentd: Unified Logging Layer Slack",
+       "joinUrl": "https://slack.fluentd.org"
+      }
+     ],
      "lfProject": "Fluentd",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/fluent/fluentd#readme"
     },
     {
      "foundation": "more",
@@ -6484,9 +6839,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/4e97be2e-271c-445b-8c5d-a59ac85d35fb"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "GenevaERS Slack",
+       "joinUrl": "https://slack.openmainframeproject.org/"
+      }
+     ],
      "lfProject": "GenevaERS",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://genevaers.org/"
     },
     {
      "foundation": "more",
@@ -6525,9 +6887,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/903b8a9d-b4f5-48be-865f-193f8a048885"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "discord",
+       "workspace": "GraphQL",
+       "joinUrl": "https://discord.graphql.org"
+      }
+     ],
      "lfProject": "GraphQL Foundation",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/graphql/graphql-js#readme"
     },
     {
      "foundation": "more",
@@ -6585,9 +6954,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/80719aac-15fd-428a-8a4c-7963e71b469d"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "Hyphae Slack",
+       "joinUrl": "https://slack.lfenergy.org/"
+      }
+     ],
      "lfProject": "Hyphae",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://lfenergy.org/get-involved/"
     },
     {
      "foundation": "more",
@@ -6628,9 +7004,19 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/bce45251-1ff4-4131-9699-0a0017b31495"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "matrix",
+       "workspace": "Jenkins Matrix",
+       "joinUrl": "https://matrix.to/#/#jenkins-ci:matrix.org",
+       "channels": [
+        "#jenkins-ci:matrix.org"
+       ]
+      }
+     ],
      "lfProject": "Continuous Delivery Foundation (CDF)",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/jenkinsci"
     },
     {
      "foundation": "more",
@@ -6725,9 +7111,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/961861d2-4e87-4c5b-9d30-d185b071db29"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "Magma Slack",
+       "joinUrl": "https://slack.magmacore.org/"
+      }
+     ],
      "lfProject": "Magma",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/magma/magma#readme"
     },
     {
      "foundation": "more",
@@ -6768,9 +7161,19 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/dfd7b7d9-7f80-48f8-91f4-bada2ceb416a"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "matrix",
+       "workspace": "Mailu Matrix",
+       "joinUrl": "https://matrix.to/#/#mailu:tedomum.net",
+       "channels": [
+        "#mailu:tedomum.net"
+       ]
+      }
+     ],
      "lfProject": "The Linux Foundation",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://mailu.io"
     },
     {
      "foundation": "more",
@@ -6892,9 +7295,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/0d6fd362-04a1-4086-a6e7-ec753ed4a60b"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "Meshery Slack",
+       "joinUrl": "https://slack.meshery.io"
+      }
+     ],
      "lfProject": "Meshery",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/meshery"
     },
     {
      "foundation": "more",
@@ -6936,9 +7346,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/40b209ce-c759-4648-9d83-31db4ba1d481"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "Minder Slack",
+       "joinUrl": "http://slack.openssf.org/"
+      }
+     ],
      "lfProject": "Open Source Security Foundation (OpenSSF)",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://mindersec.dev/"
     },
     {
      "foundation": "more",
@@ -6983,9 +7400,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/e77be644-affc-4096-b27b-261de2c11f2a"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "gitter",
+       "workspace": "Mixcore Gitter",
+       "joinUrl": "https://gitter.im/mix-core/Lobby"
+      }
+     ],
      "lfProject": "The Linux Foundation",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/mixcore/mix.core#readme"
     },
     {
      "foundation": "more",
@@ -7134,9 +7558,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/52faa755-1d30-4692-9796-e6bef09fa236"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "zulip",
+       "workspace": "Open Horizon Zulip",
+       "joinUrl": "https://linuxfoundation.zulipchat.com/#narrow/channel/527924-open-horizon"
+      }
+     ],
      "lfProject": "Open Horizon",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/open-horizon"
     },
     {
      "foundation": "more",
@@ -7175,9 +7606,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/96d22656-ad60-4de2-9b1d-02c32173c40c"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "Open Mainframe Project Slack",
+       "joinUrl": "https://slack.openmainframeproject.org"
+      }
+     ],
      "lfProject": "The Linux Foundation",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/openmainframeproject/cobol-programming-course#readme"
     },
     {
      "foundation": "more",
@@ -7218,9 +7656,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/aad7822e-9ae8-402d-aeb0-2663a6bd8039"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "discord",
+       "workspace": "Post-Quantum Cryptography Alliance",
+       "joinUrl": "https://discord.gg/qRfMantKwc"
+      }
+     ],
      "lfProject": "Post-Quantum Cryptography Alliance",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/open-quantum-safe"
     },
     {
      "foundation": "more",
@@ -7275,9 +7720,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/4df8fab8-e11a-4877-8140-c3633099ea24"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "Open Source Security Foundation Slack",
+       "joinUrl": "http://slack.openssf.org/"
+      }
+     ],
      "lfProject": "Project Alpha-Omega",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/ossf"
     },
     {
      "foundation": "more",
@@ -7327,9 +7779,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/d419da30-b718-435d-8673-6c1260307339"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "zulip",
+       "workspace": "OpenBao Zulip",
+       "joinUrl": "https://linuxfoundation.zulipchat.com/"
+      }
+     ],
      "lfProject": "OpenBao",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/openbao"
     },
     {
      "foundation": "more",
@@ -7507,9 +7966,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/695343c8-2a1a-4d0b-9d4c-e2c7d319c161"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "SODA Foundation Slack",
+       "joinUrl": "https://sodafoundation.slack.com/"
+      }
+     ],
      "lfProject": "SODA API",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://sodafoundation.io"
     },
     {
      "foundation": "more",
@@ -7635,9 +8101,16 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/c3c5bb20-0091-4a56-bba1-98a9a6303812"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "TODO Group Slack",
+       "joinUrl": "https://slack.todogroup.org/"
+      }
+     ],
      "lfProject": "TODO Group",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/todogroup"
     },
     {
      "foundation": "more",
@@ -7685,9 +8158,19 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/e88106b8-bcf1-46b6-abf0-3f5c64a67c76"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "matrix",
+       "workspace": "Xen Project Matrix",
+       "joinUrl": "https://matrix.to/#/#XenProject:matrix.org",
+       "channels": [
+        "#XenProject:matrix.org"
+       ]
+      }
+     ],
      "lfProject": "Xen Project",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "http://www.xenproject.org/contribute/"
     },
     {
      "foundation": "more",
@@ -7766,9 +8249,17 @@
        "url": "https://mentorship.lfx.linuxfoundation.org/project/c1bbdaa9-8a73-4cdf-bb82-5a5db05a2f8c"
       }
      ],
-     "chats": [],
+     "chats": [
+      {
+       "platform": "slack",
+       "workspace": "Zowe Slack",
+       "joinUrl": "https://openmainframeproject.slack.com",
+       "channelUrl": "https://openmainframeproject.slack.com/archives/CC08782AG"
+      }
+     ],
      "lfProject": "Zowe",
-     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects"
+     "sourceUrl": "https://api.mentorship.lfx.linuxfoundation.org/projects",
+     "chatSource": "https://github.com/zowe"
     }
    ]
   }

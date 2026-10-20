@@ -112,8 +112,15 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/apache",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/apache-airflow.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/apache/airflow/discussions"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/apache-airflow.png",
+   "chatSource": "https://github.com/apache/airflow"
   },
   {
    "slug": "apache-beam",
@@ -214,8 +221,15 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/arviz-devs",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/arviz.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/arviz-devs/arviz/discussions"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/arviz.png",
+   "chatSource": "https://github.com/arviz-devs/arviz"
   },
   {
    "slug": "asyncapi-initiative",
@@ -275,8 +289,15 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/bokeh",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/bokeh.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "Bokeh Forum",
+     "joinUrl": "https://discourse.bokeh.org"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/bokeh.png",
+   "chatSource": "https://github.com/bokeh/bokeh#readme"
   },
   {
    "slug": "brl-cad",
@@ -817,8 +838,15 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/dipy",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/dipy.png"
+   "chats": [
+    {
+     "platform": "gitter",
+     "workspace": "DIPY Gitter",
+     "joinUrl": "https://gitter.im/dipy/dipy"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/dipy.png",
+   "chatSource": "https://github.com/dipy/dipy/blob/HEAD/.github/CONTRIBUTING.md"
   },
   {
    "slug": "django",
@@ -841,8 +869,15 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/django",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/django.png"
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "Django",
+     "joinUrl": "https://discord.com/invite/xcRH6mN4fa"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/django.png",
+   "chatSource": "https://chat.djangoproject.com/"
   },
   {
    "slug": "dvc",
@@ -876,8 +911,15 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/iterative",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/dvc.png"
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "dvc",
+     "joinUrl": "https://discord.com/invite/dvwXA2N"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/dvc.png",
+   "chatSource": "https://github.com/iterative"
   },
   {
    "slug": "electron",
@@ -948,8 +990,15 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/eslint",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/eslint.png"
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "ESLint",
+     "joinUrl": "https://discord.com/invite/8szcydm"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/eslint.png",
+   "chatSource": "https://eslint.org/chat"
   },
   {
    "slug": "expresslrs",
@@ -972,8 +1021,15 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/ExpressLRS",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/expresslrs.png"
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "ExpressLRS Community",
+     "joinUrl": "https://discord.gg/expresslrs"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/expresslrs.png",
+   "chatSource": "https://github.com/ExpressLRS/ExpressLRS#readme"
   },
   {
    "slug": "flux",
@@ -1238,8 +1294,15 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/globalwordnet",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/global-wordnet-association.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/orgs/globalwordnet/discussions"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/global-wordnet-association.png",
+   "chatSource": "http://globalwordnet.org/contact"
   },
   {
    "slug": "gnu-mailman",
@@ -1292,8 +1355,15 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/graphql",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/graphql.png"
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "GraphQL",
+     "joinUrl": "https://discord.graphql.org"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/graphql.png",
+   "chatSource": "https://github.com/graphql/graphql-js#readme"
   },
   {
    "slug": "grpc-gateway",
@@ -1353,8 +1423,15 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/STEllAR-GROUP",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/hpx.png"
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "The STE||AR Group",
+     "joinUrl": "https://discord.gg/Tn9QuzVjvy"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/hpx.png",
+   "chatSource": "https://github.com/STEllAR-GROUP/hpx/blob/HEAD/.github/CONTRIBUTING.md"
   },
   {
    "slug": "ignition-robotics",
@@ -1580,8 +1657,15 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/learningequality",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/kolibri.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "Kolibri Forum",
+     "joinUrl": "https://community.learningequality.org"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/kolibri.png",
+   "chatSource": "https://github.com/learningequality/kolibri#readme"
   },
   {
    "slug": "lfortran",
@@ -1780,8 +1864,15 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/mattermost",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/mattermost.jpg"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "Mattermost Forum",
+     "joinUrl": "https://forum.mattermost.com"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/mattermost.jpg",
+   "chatSource": "https://mattermost.com/"
   },
   {
    "slug": "mautic",
@@ -1877,8 +1968,15 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/metanorma",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/metanorma.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/metanorma/discussions"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/metanorma.png",
+   "chatSource": "https://www.metanorma.org/contribute/"
   },
   {
    "slug": "micropython",
@@ -2118,8 +2216,15 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/opencollective",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/open-collective.png"
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "Open Collective / OFi Community",
+     "joinUrl": "https://discord.opencollective.com"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/open-collective.png",
+   "chatSource": "https://github.com/opencollective/opencollective#readme"
   },
   {
    "slug": "open-contracting-data-standard",
@@ -2208,8 +2313,15 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/OSGeo",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/open-source-geospatial-foundation.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "Open Source Geospatial Foundation Forum",
+     "joinUrl": "https://discourse.osgeo.org"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/open-source-geospatial-foundation.png",
+   "chatSource": "https://www.osgeo.org/about/contact/"
   },
   {
    "slug": "open-rmf",
@@ -2232,8 +2344,15 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/open-rmf",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/open-rmf.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/open-rmf/rmf/discussions"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/open-rmf.png",
+   "chatSource": "https://www.open-rmf.org/"
   },
   {
    "slug": "open3d",
@@ -2323,8 +2442,16 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/openjs-foundation",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/openjs-foundation.png"
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "OpenJS Foundation Slack",
+     "joinUrl": "https://openjs-foundation.slack.com",
+     "channelUrl": "https://openjs-foundation.slack.com/archives/CPE10404W"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/openjs-foundation.png",
+   "chatSource": "https://github.com/openjs-foundation/summit#readme"
   },
   {
    "slug": "openmined",
@@ -2347,8 +2474,15 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/OpenMined",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/openmined.png"
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "OpenMined Slack",
+     "joinUrl": "http://slack.openmined.org"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/openmined.png",
+   "chatSource": "https://github.com/OpenMined/.github/blob/HEAD/CONTRIBUTING.md"
   },
   {
    "slug": "openmrs",
@@ -2502,8 +2636,18 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/openscad",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/openscad.png"
+   "chats": [
+    {
+     "platform": "irc",
+     "workspace": "Libera.Chat IRC",
+     "joinUrl": "https://web.libera.chat/?channels=%23openscad",
+     "channels": [
+      "#openscad"
+     ]
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/openscad.png",
+   "chatSource": "https://www.openscad.org/"
   },
   {
    "slug": "oppia",
@@ -2532,8 +2676,15 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/oppia",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/oppia.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/oppia/oppia/discussions"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/oppia.png",
+   "chatSource": "https://github.com/oppia/oppia#readme"
   },
   {
    "slug": "owasp-foundation",
@@ -2605,8 +2756,15 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/processing",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/p5-js.png"
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "p5.js",
+     "joinUrl": "https://discord.p5js.org"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/p5-js.png",
+   "chatSource": "https://github.com/processing/p5.js#readme"
   },
   {
    "slug": "performance-co-pilot",
@@ -2666,8 +2824,18 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/Perl",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/perl.png"
+   "chats": [
+    {
+     "platform": "irc",
+     "workspace": "Libera.Chat IRC",
+     "joinUrl": "https://web.libera.chat/?channels=%23perl",
+     "channels": [
+      "#perl"
+     ]
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/perl.png",
+   "chatSource": "https://www.perl.org/community.html"
   },
   {
    "slug": "postgresql",
@@ -2921,8 +3089,15 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/robocomp",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/robocomp.png"
+   "chats": [
+    {
+     "platform": "gitter",
+     "workspace": "RoboComp Gitter",
+     "joinUrl": "https://gitter.im/robocomp/robocomp"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/robocomp.png",
+   "chatSource": "https://github.com/robocomp/robocomp#readme"
   },
   {
    "slug": "rocket-chat",
@@ -3007,8 +3182,15 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/scipy",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/scipy.png"
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "Scientific Python",
+     "joinUrl": "https://discord.com/invite/vur45CbwMz"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/scipy.png",
+   "chatSource": "http://www.scipy.org/community"
   },
   {
    "slug": "scummvm",
@@ -3067,8 +3249,16 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/SigNoz",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/signoz.png"
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "SigNoz Slack",
+     "joinUrl": "https://signoz-community.slack.com",
+     "channelUrl": "https://signoz-community.slack.com/archives/C01LWQ8KS7M"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/signoz.png",
+   "chatSource": "https://github.com/signoz/signoz/blob/HEAD/CONTRIBUTING.md"
   },
   {
    "slug": "sigstore",
@@ -3091,8 +3281,15 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/sigstore",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/sigstore.png"
+   "chats": [
+    {
+     "platform": "slack",
+     "workspace": "Sigstore Slack",
+     "joinUrl": "https://sigstore.slack.com"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/sigstore.png",
+   "chatSource": "https://github.com/sigstore/cosign#readme"
   },
   {
    "slug": "spyder-ide",
@@ -3611,8 +3808,15 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/tryton",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/tryton.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "Tryton Forum",
+     "joinUrl": "https://discuss.tryton.org"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/tryton.png",
+   "chatSource": "https://www.tryton.org"
   },
   {
    "slug": "v-pipe",
@@ -3635,8 +3839,23 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/cbg-ethz",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/v-pipe.svg"
+   "chats": [
+    {
+     "platform": "matrix",
+     "workspace": "V-pipe Matrix",
+     "joinUrl": "https://matrix.to/#/#V-pipe_community:gitter.im?utm_source=gitter",
+     "channels": [
+      "#V-pipe_community:gitter.im"
+     ]
+    },
+    {
+     "platform": "gitter",
+     "workspace": "V-pipe Gitter",
+     "joinUrl": "https://gitter.im/V-pipe/community"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/v-pipe.svg",
+   "chatSource": "https://github.com/cbg-ethz/V-pipe/blob/HEAD/CONTRIBUTING.md"
   },
   {
    "slug": "videolan",
@@ -3658,8 +3877,18 @@
    ],
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/videolan.png"
+   "chats": [
+    {
+     "platform": "irc",
+     "workspace": "Libera.Chat IRC",
+     "joinUrl": "https://web.libera.chat/?channels=%23videolan",
+     "channels": [
+      "#videolan"
+     ]
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/videolan.png",
+   "chatSource": "https://www.videolan.org/support/"
   },
   {
    "slug": "vlc",
@@ -3686,8 +3915,18 @@
    ],
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/vlc.png"
+   "chats": [
+    {
+     "platform": "irc",
+     "workspace": "Libera.Chat IRC",
+     "joinUrl": "https://web.libera.chat/?channels=%23videolan",
+     "channels": [
+      "#videolan"
+     ]
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/vlc.png",
+   "chatSource": "https://www.videolan.org/support/"
   },
   {
    "slug": "wagtail",
@@ -3710,8 +3949,15 @@
    "links": [],
    "sourceUrl": "https://developers.google.com/season-of-docs/docs/participants",
    "githubUrl": "https://github.com/wagtail",
-   "chats": [],
-   "logo": "/logos/programs/season-of-docs/wagtail.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/wagtail/wagtail/discussions"
+    }
+   ],
+   "logo": "/logos/programs/season-of-docs/wagtail.png",
+   "chatSource": "https://github.com/wagtail/wagtail#readme"
   },
   {
    "slug": "weaviate",

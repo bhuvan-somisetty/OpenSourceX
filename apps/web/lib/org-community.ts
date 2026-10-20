@@ -8,7 +8,7 @@
  */
 
 export type ChatPlatform =
-  "slack" | "discord" | "matrix" | "irc" | "zulip" | "gitter" | "telegram" | "other";
+  "slack" | "discord" | "matrix" | "irc" | "zulip" | "gitter" | "telegram" | "forum" | "other";
 
 export interface OrgChat {
   platform: ChatPlatform;

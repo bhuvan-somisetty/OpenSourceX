@@ -11,7 +11,7 @@
 // CNCF projects are left out: the CNCF tab already shows them from the CNCF mentoring repository.
 // Mentor names are not stored.
 //
-// Usage: node scripts/programs/collect-lfx-foundations.mjs
+// Usage: node scripts/programs/collect-lfx-foundations.mjs, then find-chats.mjs lfx-foundations
 // Needs a GitHub token (GITHUB_TOKEN, or a logged-in `gh`).
 
 import fs from "node:fs";
@@ -186,6 +186,15 @@ for (const p of projects) {
   });
 }
 
+// Community links come from find-chats.mjs; keep them across re-collection.
+const previous = new Map(
+  fs.existsSync(OUT)
+    ? JSON.parse(fs.readFileSync(OUT, "utf8")).foundations.flatMap((f) =>
+        f.orgs.map((o) => [o.slug, o]),
+      )
+    : [],
+);
+
 const orgs = [...groups.values()].map((g) => {
   const years = [...g.years].sort();
   const tags = uniqCI(g.tags).slice(0, 24);
@@ -208,7 +217,8 @@ const orgs = [...groups.values()].map((g) => {
       (a, b) => (b.year ?? 0) - (a.year ?? 0) || a.title.localeCompare(b.title),
     ),
     links: [{ label: "LFX Mentorship listing", url: g.projects[0].url }],
-    chats: [],
+    chats: previous.get(g.slug)?.chats ?? [],
+    chatSource: previous.get(g.slug)?.chatSource ?? null,
     lfProject: g.lfProject,
     sourceUrl: API,
   };

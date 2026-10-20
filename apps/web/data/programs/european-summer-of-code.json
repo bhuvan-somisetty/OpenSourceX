@@ -27,8 +27,15 @@
    "links": [],
    "sourceUrl": "https://github.com/european-summer-of-code/esoc2026#affiliated-open-source-projects",
    "githubUrl": "https://github.com/aiondemand",
-   "chats": [],
-   "logo": "/logos/programs/european-summer-of-code/ai-on-demand.png"
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "AI-on-demand",
+     "joinUrl": "https://discord.gg/A7YDRyvqYE"
+    }
+   ],
+   "logo": "/logos/programs/european-summer-of-code/ai-on-demand.png",
+   "chatSource": "https://github.com/aiondemand/aiondemand#readme"
   },
   {
    "slug": "openml",
@@ -260,8 +267,15 @@
    "links": [],
    "sourceUrl": "https://github.com/european-summer-of-code/esoc2026#affiliated-open-source-projects",
    "githubUrl": "https://github.com/shap",
-   "chats": [],
-   "logo": "/logos/programs/european-summer-of-code/shap.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/shap/shap/discussions"
+    }
+   ],
+   "logo": "/logos/programs/european-summer-of-code/shap.png",
+   "chatSource": "https://github.com/shap/shap/blob/HEAD/CONTRIBUTING.md"
   },
   {
    "slug": "skpro",

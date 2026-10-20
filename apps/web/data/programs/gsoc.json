@@ -223,8 +223,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2025/organizations/aflplusplus"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "zulip",
+     "workspace": "AFLplusplus Zulip",
+     "joinUrl": "https://fuzz.zulipchat.com/"
+    }
+   ],
+   "chatSource": "https://github.com/AFLplusplus/AFLplusplus#readme",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2025/organizations/aflplusplus",
    "githubUrl": "https://github.com/AFLplusplus",
    "logo": "/logos/programs/gsoc/aflplusplus.png"
@@ -276,8 +282,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2026/organizations/alaska"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/uaanchorage/GSoC/discussions"
+    }
+   ],
+   "chatSource": "https://github.com/uaanchorage/GSoC",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2026/organizations/alaska",
    "githubUrl": "https://github.com/uaanchorage",
    "logo": "/logos/programs/gsoc/alaska.png"
@@ -1528,8 +1540,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2026/organizations/cgal-project"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/CGAL/cgal/discussions"
+    }
+   ],
+   "chatSource": "https://github.com/CGAL/cgal",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2026/organizations/cgal-project",
    "githubUrl": "https://github.com/CGAL",
    "logo": "/logos/programs/gsoc/cgal-project.png"
@@ -2438,8 +2456,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2026/organizations/dart"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "dart_community",
+     "joinUrl": "https://discord.gg/Qt6DgfAWWx"
+    }
+   ],
+   "chatSource": "https://dart.dev/community",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2026/organizations/dart",
    "githubUrl": "https://github.com/dart-lang",
    "logo": "/logos/programs/gsoc/dart.png"
@@ -2815,8 +2839,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2026/organizations/django-software-foundation-8o"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "Django",
+     "joinUrl": "https://discord.com/invite/xcRH6mN4fa"
+    }
+   ],
+   "chatSource": "https://chat.djangoproject.com/",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2026/organizations/django-software-foundation-8o",
    "githubUrl": "https://github.com/django",
    "logo": "/logos/programs/gsoc/django-software-foundation-8o.png"
@@ -3501,8 +3531,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2026/organizations/fossasia-bg"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "gitter",
+     "workspace": "FOSSASIA Gitter",
+     "joinUrl": "https://gitter.im/fossasia/fossasia"
+    }
+   ],
+   "chatSource": "https://github.com/fossasia/fossasia.org#readme",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2026/organizations/fossasia-bg",
    "githubUrl": "https://github.com/fossasia",
    "logo": "/logos/programs/gsoc/fossasia-bg.png"
@@ -3872,8 +3908,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2026/organizations/gambit-the-package-for-computation-in-game-theory"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/gambitproject/gambit/discussions"
+    }
+   ],
+   "chatSource": "https://github.com/gambitproject/gambit",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2026/organizations/gambit-the-package-for-computation-in-game-theory",
    "githubUrl": "https://github.com/gambitproject",
    "logo": "/logos/programs/gsoc/gambit-the-package-for-computation-in-game-theory.png"
@@ -3967,8 +4009,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2026/organizations/gemini-cli"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/google-gemini/gemini-cli/discussions"
+    }
+   ],
+   "chatSource": "https://github.com/google-gemini/gemini-cli",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2026/organizations/gemini-cli",
    "githubUrl": "https://github.com/google-gemini",
    "logo": "/logos/programs/gsoc/gemini-cli.png"
@@ -4661,8 +4709,17 @@
      "url": "https://summerofcode.withgoogle.com/programs/2026/organizations/gnu-octave"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "irc",
+     "workspace": "Libera.Chat IRC",
+     "joinUrl": "https://web.libera.chat/?channels=%23octave",
+     "channels": [
+      "#octave"
+     ]
+    }
+   ],
+   "chatSource": "https://www.octave.org/get-involved",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2026/organizations/gnu-octave",
    "githubUrl": "https://github.com/gnu-octave",
    "logo": "/logos/programs/gsoc/gnu-octave.png"
@@ -5242,8 +5299,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2022/organizations/homebrew"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/orgs/Homebrew/discussions"
+    }
+   ],
+   "chatSource": "https://github.com/Homebrew/brew#readme",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2022/organizations/homebrew",
    "githubUrl": "https://github.com/Homebrew",
    "logo": "/logos/programs/gsoc/homebrew.png"
@@ -5652,8 +5715,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2026/organizations/invesalius"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/invesalius/invesalius3/discussions"
+    }
+   ],
+   "chatSource": "https://github.com/invesalius/invesalius3",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2026/organizations/invesalius",
    "githubUrl": "https://github.com/invesalius",
    "logo": "/logos/programs/gsoc/invesalius.png"
@@ -5860,8 +5929,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2025/organizations/jax-and-keras"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/jax-ml/jax/discussions"
+    }
+   ],
+   "chatSource": "https://github.com/jax-ml/jax",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2025/organizations/jax-and-keras",
    "githubUrl": "https://github.com/jax-ml",
    "logo": "/logos/programs/gsoc/jax-and-keras.png"
@@ -5967,8 +6042,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2026/organizations/jderobot"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/orgs/JdeRobot/discussions"
+    }
+   ],
+   "chatSource": "http://jderobot.github.io/community",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2026/organizations/jderobot",
    "githubUrl": "https://github.com/JdeRobot",
    "logo": "/logos/programs/gsoc/jderobot.png"
@@ -6182,8 +6263,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2026/organizations/jitsi"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "Jitsi Forum",
+     "joinUrl": "https://community.jitsi.org"
+    }
+   ],
+   "chatSource": "https://community.jitsi.org/",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2026/organizations/jitsi",
    "githubUrl": "https://github.com/jitsi",
    "logo": "/logos/programs/gsoc/jitsi.png"
@@ -6403,8 +6490,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2022/organizations/kart-project"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/koordinates/kart/discussions"
+    }
+   ],
+   "chatSource": "https://github.com/koordinates/kart/blob/HEAD/CONTRIBUTING.md",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2022/organizations/kart-project",
    "githubUrl": "https://github.com/koordinates",
    "logo": "/logos/programs/gsoc/kart-project.png"
@@ -7265,8 +7358,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2026/organizations/learning-equality"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "Learning Equality Forum",
+     "joinUrl": "https://community.learningequality.org"
+    }
+   ],
+   "chatSource": "https://github.com/learningequality/kolibri#readme",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2026/organizations/learning-equality",
    "githubUrl": "https://github.com/learningequality",
    "logo": "/logos/programs/gsoc/learning-equality.png"
@@ -8652,8 +8751,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2026/organizations/mit-app-inventor"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "MIT App Inventor Forum",
+     "joinUrl": "https://community.appinventor.mit.edu"
+    }
+   ],
+   "chatSource": "https://community.appinventor.mit.edu/",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2026/organizations/mit-app-inventor",
    "githubUrl": "https://github.com/mit-cml",
    "logo": "/logos/programs/gsoc/mit-app-inventor.png"
@@ -8906,8 +9011,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2026/organizations/moganlab"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "Mogan & Liii STEM User Group",
+     "joinUrl": "https://discord.gg/Q7xARnAf8t"
+    }
+   ],
+   "chatSource": "https://github.com/XmacsLabs/mogan#readme",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2026/organizations/moganlab",
    "logo": "/logos/programs/gsoc/moganlab.png"
   },
@@ -9049,8 +9160,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2024/organizations/moveit"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/moveit/moveit2/discussions"
+    }
+   ],
+   "chatSource": "https://github.com/moveit/moveit2",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2024/organizations/moveit",
    "githubUrl": "https://github.com/ros-planning",
    "logo": "/logos/programs/gsoc/moveit.png"
@@ -9858,8 +9975,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2025/organizations/open-climate-fix"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/orgs/openclimatefix/discussions"
+    }
+   ],
+   "chatSource": "https://github.com/openclimatefix",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2025/organizations/open-climate-fix",
    "githubUrl": "https://github.com/openclimatefix",
    "logo": "/logos/programs/gsoc/open-climate-fix.png"
@@ -10513,8 +10636,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2025/organizations/opencv"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "OpenCV Forum",
+     "joinUrl": "https://forum.opencv.org"
+    }
+   ],
+   "chatSource": "https://github.com/opencv/opencv#readme",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2025/organizations/opencv",
    "githubUrl": "https://github.com/opencv",
    "logo": "/logos/programs/gsoc/opencv.png"
@@ -10787,8 +10916,19 @@
      "url": "https://summerofcode.withgoogle.com/programs/2026/organizations/openstreetmap"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "OpenStreetMap World",
+     "joinUrl": "https://discord.com/invite/openstreetmap"
+    },
+    {
+     "platform": "slack",
+     "workspace": "OpenStreetMap Slack",
+     "joinUrl": "https://slack.openstreetmap.us/"
+    }
+   ],
+   "chatSource": "https://github.com/openstreetmap/iD#readme",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2026/organizations/openstreetmap",
    "githubUrl": "https://github.com/openstreetmap",
    "logo": "/logos/programs/gsoc/openstreetmap.png"
@@ -11018,8 +11158,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2026/organizations/oppia-foundation"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/oppia/oppia/discussions"
+    }
+   ],
+   "chatSource": "https://github.com/oppia/oppia#readme",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2026/organizations/oppia-foundation",
    "githubUrl": "https://github.com/oppia",
    "logo": "/logos/programs/gsoc/oppia-foundation.png"
@@ -11912,8 +12058,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2026/organizations/processing-foundation"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "p5.js",
+     "joinUrl": "http://discord.p5js.org/"
+    }
+   ],
+   "chatSource": "http://processingfoundation.org/community/ways-to-contribute",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2026/organizations/processing-foundation",
    "githubUrl": "https://github.com/processing",
    "logo": "/logos/programs/gsoc/processing-foundation.png"
@@ -12753,8 +12905,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2022/organizations/robocomp"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "gitter",
+     "workspace": "RoboComp Gitter",
+     "joinUrl": "https://gitter.im/robocomp/robocomp"
+    }
+   ],
+   "chatSource": "https://github.com/robocomp/robocomp#readme",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2022/organizations/robocomp",
    "githubUrl": "https://github.com/robocomp",
    "logo": "/logos/programs/gsoc/robocomp.png"
@@ -14227,8 +14385,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2026/organizations/swift"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "Swift Forum",
+     "joinUrl": "https://forums.swift.org"
+    }
+   ],
+   "chatSource": "https://github.com/swiftlang/swift/blob/HEAD/CONTRIBUTING.md",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2026/organizations/swift",
    "githubUrl": "https://github.com/swiftlang",
    "logo": "/logos/programs/gsoc/swift.png"
@@ -14334,8 +14498,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2026/organizations/synfig"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "Synfig Forum",
+     "joinUrl": "https://forums.synfig.org"
+    }
+   ],
+   "chatSource": "https://synfig.org",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2026/organizations/synfig",
    "githubUrl": "https://github.com/synfig",
    "logo": "/logos/programs/gsoc/synfig.png"
@@ -14488,8 +14658,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2023/organizations/tensorflow-d1"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "TensorFlow Forum",
+     "joinUrl": "https://discuss.tensorflow.org"
+    }
+   ],
+   "chatSource": "https://github.com/tensorflow/tensorflow#readme",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2023/organizations/tensorflow-d1",
    "githubUrl": "https://github.com/tensorflow",
    "logo": "/logos/programs/gsoc/tensorflow-d1.png"
@@ -15106,8 +15282,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2026/organizations/the-openroad-initiative"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/The-OpenROAD-Project/OpenROAD/discussions"
+    }
+   ],
+   "chatSource": "https://github.com/The-OpenROAD-Project/OpenROAD",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2026/organizations/the-openroad-initiative",
    "githubUrl": "https://github.com/The-OpenROAD-Project",
    "logo": "/logos/programs/gsoc/the-openroad-initiative.png"
@@ -15265,8 +15447,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2026/organizations/the-rust-foundation"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "zulip",
+     "workspace": "The Rust Foundation Zulip",
+     "joinUrl": "https://rust-lang.zulipchat.com/#narrow/stream/122652-new-members"
+    }
+   ],
+   "chatSource": "https://github.com/rust-lang/rust/blob/HEAD/CONTRIBUTING.md",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2026/organizations/the-rust-foundation",
    "githubUrl": "https://github.com/rust-lang",
    "logo": "/logos/programs/gsoc/the-rust-foundation.png"
@@ -15792,8 +15980,17 @@
      "url": "https://summerofcode.withgoogle.com/programs/2026/organizations/videolan"
     }
    ],
-   "chats": [],
-   "chatSource": "https://summerofcode.withgoogle.com/programs/2026/organizations/videolan",
+   "chats": [
+    {
+     "platform": "irc",
+     "workspace": "Libera.Chat IRC",
+     "joinUrl": "https://web.libera.chat/?channels=%23videolan",
+     "channels": [
+      "#videolan"
+     ]
+    }
+   ],
+   "chatSource": "https://www.videolan.org/support/",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2026/organizations/videolan",
    "githubUrl": "https://github.com/videolan",
    "logo": "/logos/programs/gsoc/videolan.png"
@@ -15842,8 +16039,14 @@
      "url": "https://summerofcode.withgoogle.com/programs/2026/organizations/wagtail"
     }
    ],
-   "chats": [],
-   "chatSource": null,
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/wagtail/wagtail/discussions"
+    }
+   ],
+   "chatSource": "https://github.com/wagtail/wagtail#readme",
    "sourceUrl": "https://summerofcode.withgoogle.com/programs/2026/organizations/wagtail",
    "githubUrl": "https://github.com/wagtail",
    "logo": "/logos/programs/gsoc/wagtail.png"

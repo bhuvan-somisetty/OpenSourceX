@@ -149,8 +149,15 @@
    "links": [],
    "sourceUrl": "https://github.com/avantifellows/college-predictor/issues/59",
    "githubUrl": "https://github.com/avantifellows",
-   "chats": [],
-   "logo": "/logos/programs/c4gt/avanti-fellows.png"
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "Avanti Fellows",
+     "joinUrl": "https://discord.gg/29qYD7fZtZ"
+    }
+   ],
+   "logo": "/logos/programs/c4gt/avanti-fellows.png",
+   "chatSource": "https://github.com/avantifellows/quiz-creator#readme"
   },
   {
    "slug": "bandhu",
@@ -312,8 +319,15 @@
    "links": [],
    "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/613",
    "githubUrl": "https://github.com/egovernments",
-   "chats": [],
-   "logo": "/logos/programs/c4gt/egov.jpg"
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "DIGIT Community",
+     "joinUrl": "https://discord.com/invite/JADweR9qqX"
+    }
+   ],
+   "logo": "/logos/programs/c4gt/egov.jpg",
+   "chatSource": "https://egov.org.in/community/"
   },
   {
    "slug": "haqdarshak",
@@ -453,8 +467,15 @@
    "links": [],
    "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/543",
    "githubUrl": "https://github.com/ArgusoftOpen",
-   "chats": [],
-   "logo": "/logos/programs/c4gt/medplat.png"
+   "chats": [
+    {
+     "platform": "forum",
+     "workspace": "GitHub Discussions",
+     "joinUrl": "https://github.com/ArgusoftOpen/medplat/discussions"
+    }
+   ],
+   "logo": "/logos/programs/c4gt/medplat.png",
+   "chatSource": "https://github.com/ArgusoftOpen/medplat"
   },
   {
    "slug": "meity",
@@ -598,8 +619,15 @@
    "links": [],
    "sourceUrl": "https://github.com/CodeForGoodTech/C4GT/issues/465",
    "githubUrl": "https://github.com/OpenNyAI",
-   "chats": [],
-   "logo": "/logos/programs/c4gt/opennyai.png"
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "OpenNyAI",
+     "joinUrl": "https://discord.gg/grg4nqUPNe"
+    }
+   ],
+   "logo": "/logos/programs/c4gt/opennyai.png",
+   "chatSource": "https://github.com/OpenNyAI/Jugalbandi-Manager#readme"
   },
   {
    "slug": "protean",
