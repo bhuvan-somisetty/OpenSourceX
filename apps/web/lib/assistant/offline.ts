@@ -262,16 +262,23 @@ function recurringAnswer(k: Knowledge, p: KnowledgeProgram | null): string {
   ].join("\n\n");
 }
 
-/** LFX foundations as people name them: [pattern, entry foundation key, display name]. */
-const LFX_FOUNDATIONS: [RegExp, string, string][] = [
-  [/\bcncf\b|cloud native/, "CNCF", "CNCF"],
-  [/decentrali[sz]ed trust|\blfdt\b|hyperledger/, "LFDT", "LF Decentralized Trust"],
-  [/risc ?v/, "RISC-V", "RISC-V International"],
-  [/mainframe|\bomp\b/, "Open Mainframe", "Open Mainframe Project"],
-  [/\bkernel\b/, "Linux Kernel", "The Linux Kernel Organization"],
-  [/\bsonic\b/, "SONiC", "SONiC Foundation"],
-  [/lf networking|\blfn\b/, "LF Networking", "LF Networking"],
+/** LFX foundations as people name them: [pattern, entry foundation key, display name, page filter]. */
+type Foundation = [RegExp, string, string, string];
+const LFX_FOUNDATIONS: Foundation[] = [
+  [/\bcncf\b|cloud native/, "CNCF", "CNCF", ""],
+  [/decentrali[sz]ed trust|\blfdt\b|hyperledger/, "LFDT", "LF Decentralized Trust", "lfdt"],
+  [/risc ?v/, "RISC-V", "RISC-V International", "riscv"],
+  [/mainframe|\bomp\b/, "Open Mainframe", "Open Mainframe Project", "omp"],
+  [/\bkernel\b/, "Linux Kernel", "The Linux Kernel Organization", "kernel"],
+  [/\bsonic\b/, "SONiC", "SONiC Foundation", "sonic"],
+  [/lf networking|\blfn\b/, "LF Networking", "LF Networking", "lfn"],
 ];
+
+/** Mentees of an LFX foundation follow LFX Mentorship's shared rules. */
+function foundationNote(f: Foundation, p: KnowledgeProgram) {
+  const page = f[3] ? `${p.pageUrl}?f=${f[3]}` : p.pageUrl;
+  return `**${f[2]}** takes part through ${p.def.name}, so its mentees follow the program's shared rules below. ${md(`Browse ${f[2]} organizations`, page)}.`;
+}
 
 function orgList(
   k: Knowledge,
@@ -477,7 +484,6 @@ export function answerOffline(
   if (!q) return withNote(FAQ[0]!.answer);
 
   const programMatch = findProgramMatch(k, raw);
-  const program = programMatch?.p ?? null;
   const year = Number(q.match(/\b(20[12]\d)\b/)?.[1]) || null;
   const parts = wanted(q);
   const isRecurring =
@@ -489,6 +495,25 @@ export function answerOffline(
       q,
     );
   const lfxSpecific = /\bmentors?\b|mentored|\bterm\b|\bterms\b|\bt[123]\b|cncf/.test(q);
+  const dataQ =
+    /stipend|paid|salary|how much|amount|timeline|deadline|dates?|when (does|do|is|will|are)|eligib|who can apply/.test(
+      q,
+    );
+  const listIntent = /\b(orgs?|organi[sz]ations?|projects|communities|list|which|show|all)\b/.test(
+    q,
+  );
+
+  // an LFX foundation ("LFDT stipend", "list SONiC orgs") is asked about through LFX Mentorship
+  const foundation = LFX_FOUNDATIONS.find(([re]) => re.test(q)) ?? null;
+  const lfxProgram = k.programs.find((p) => p.def.slug === "lfx-mentorship") ?? null;
+  const viaFoundation =
+    !!foundation &&
+    !parts.length &&
+    (isProgramInfo || listIntent) &&
+    (!programMatch || programMatch.p === lfxProgram);
+  const program = programMatch?.p ?? (viaFoundation ? lfxProgram : null);
+  const withFoundation = (p: KnowledgeProgram, s: string) =>
+    viaFoundation && p === lfxProgram ? `${foundationNote(foundation!, p)}\n\n${s}` : s;
 
   // the program's own name is not an organization ("summer of bitcoin" is not Bitcoin Core)
   const orgText = programMatch ? ` ${q} `.replace(` ${programMatch.key} `, " ") : raw;
@@ -505,9 +530,20 @@ export function answerOffline(
   if (
     mentioned.length &&
     !isRecurring &&
+    !viaFoundation &&
     !(lfxSpecific && program?.def.slug === "lfx-mentorship" && !parts.length)
   ) {
     const org = mentioned[0]!;
+    // stipend or dates of an organization in a single program are that program's ("volcano stipend")
+    const orgPrograms = [...new Set(org.programs.map((e) => e.program))];
+    const own =
+      orgPrograms.length === 1 ? k.programs.find((p) => p.def.slug === orgPrograms[0]) : null;
+    if (own && dataQ && !parts.length) {
+      const entry = org.programs[0]!;
+      return withNote(
+        `**${org.name}** takes part in ${md(entry.programName, entry.pageUrl)}, so the program's rules apply.\n\n${programAnswer(own, q)}`,
+      );
+    }
     const isLfxMentorQ =
       /\bmentors?\b|mentored|who (mentors|guides)/.test(q) &&
       org.programs.some((e) => e.program === "lfx-mentorship");
@@ -533,10 +569,6 @@ export function answerOffline(
   }
 
   // 3. how-to and knowledge questions (prerequisites, proposals, cover letters, Git, licences...)
-  const dataQ =
-    /stipend|paid|salary|how much|amount|timeline|deadline|dates?|when (does|do|is|will|are)|eligib|who can apply/.test(
-      q,
-    );
   if (GUIDE_INTENT.test(q) && !(program && dataQ)) {
     const g = guideAnswer(q, ctx.guides ?? []);
     if (g) return withNote(g);
@@ -548,7 +580,7 @@ export function answerOffline(
     isProgramInfo &&
     !(program.def.slug === "lfx-mentorship" && /\bterm\b|t[123]\b/.test(q))
   )
-    return withNote(programAnswer(program, q));
+    return withNote(withFoundation(program, programAnswer(program, q)));
 
   // 5. CNCF LFX Mentorship history (terms, mentors, CNCF projects)
   if (k.lfx && (lfxSpecific || program?.def.slug === "lfx-mentorship")) {
@@ -557,10 +589,7 @@ export function answerOffline(
   }
 
   // 6. lists of organizations, by program and/or technology
-  const tech = techIn(q);
-  const listIntent = /\b(orgs?|organi[sz]ations?|projects|communities|list|which|show|all)\b/.test(
-    q,
-  );
+  const tech = techIn(normalize(orgText));
   if ((program && listIntent) || tech) {
     const list = orgList(k, q, program, tech, year);
     if (list) return withNote(list);

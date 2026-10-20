@@ -114,6 +114,24 @@ describe("offline answers", () => {
 
   it("lists the orgs of one LFX foundation", () => {
     expect(answerOffline("lfx decentralized trust orgs", k)).toMatch(/\(LF Decentralized Trust\)/);
+    expect(answerOffline("list SONiC organizations", k)).toMatch(/\(SONiC Foundation\)/);
+  });
+
+  it("answers program questions asked about an LFX foundation", () => {
+    for (const q of ["stipend for LFDT", "RISC-V deadline", "how to apply to open mainframe"]) {
+      const a = answerOffline(q, k);
+      expect(a).toMatch(/takes part through LFX Mentorship/);
+      expect(a).toMatch(/### LFX Mentorship/);
+    }
+    expect(answerOffline("SONiC eligibility", k)).toContain("/programs/lfx?f=sonic");
+  });
+
+  it("answers an org's stipend with its program's", () => {
+    expect(answerOffline("volcano stipend", k)).toMatch(/Volcano\*\* takes part in[\s\S]*Stipend/);
+  });
+
+  it("does not read a program's name as a technology", () => {
+    expect(answerOffline("list summer of bitcoin organizations", k)).not.toMatch(/using bitcoin/);
   });
 
   it("is honest when nothing matches", () => {
