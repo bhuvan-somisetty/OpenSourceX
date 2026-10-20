@@ -130,6 +130,31 @@ describe("offline answers", () => {
     expect(answerOffline("volcano stipend", k)).toMatch(/Volcano\*\* takes part in[\s\S]*Stipend/);
   });
 
+  it("answers every program detail the program pages show", () => {
+    expect(answerOffline("gsoc stipend in india", k)).toMatch(
+      /Stipend in India:\*\* small project \$/,
+    );
+    expect(answerOffline("summer of bitcoin stipend in nigeria", k)).toMatch(/paid in BTC/);
+    expect(answerOffline("how long is outreachy", k)).toMatch(/\| Length \|/);
+    expect(answerOffline("is mlh fellowship remote", k)).toMatch(/\| Format \|/);
+    expect(answerOffline("who runs ospp", k)).toMatch(/\*\*Run by:\*\* Institute of Software/);
+    expect(answerOffline("how is lfx stipend paid", k)).toMatch(/\*\*How it is paid:\*\*/);
+    expect(answerOffline("gsoc official website", k)).toMatch(/\*\*Official links:\*\*/);
+    const tracks = answerOffline("summer of bitcoin tracks", k);
+    expect(tracks).toMatch(/\| Tracks \|/);
+    expect(tracks).not.toMatch(/\*\*Stipend/);
+    expect(answerOffline("season of docs stipend", k)).toMatch(/Grants to organizations/);
+  });
+
+  it("answers questions across programs", () => {
+    expect(answerOffline("compare gsoc and outreachy", k)).toMatch(
+      /^### Google Summer of Code vs Outreachy/,
+    );
+    expect(answerOffline("list all programs", k)).toMatch(/programs on OpenSourceX/);
+    expect(answerOffline("which program pays the most", k)).toMatch(/\| Stipend \|/);
+    expect(answerOffline("upcoming deadlines", k)).toMatch(/^### Coming up across programs/);
+  });
+
   it("does not read a program's name as a technology", () => {
     expect(answerOffline("list summer of bitcoin organizations", k)).not.toMatch(/using bitcoin/);
   });

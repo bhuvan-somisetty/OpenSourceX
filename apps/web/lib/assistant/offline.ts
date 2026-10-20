@@ -37,7 +37,7 @@ function yearsText(ys: number[]) {
   return s.length > 3 && s.at(-1)! - s[0]! === s.length - 1 ? `${s[0]}–${s.at(-1)}` : s.join(", ");
 }
 
-type Part = "repo" | "chat" | "website" | "ideas" | "all";
+type Part = "repo" | "chat" | "website" | "ideas" | "projects" | "all";
 
 function wanted(q: string): Part[] {
   const out: Part[] = [];
@@ -51,6 +51,7 @@ function wanted(q: string): Part[] {
     out.push("chat");
   if (/\b(website|site|homepage|home page|web page)\b/.test(q)) out.push("website");
   if (/\b(ideas?|idea list|project ideas|proposal)\b/.test(q)) out.push("ideas");
+  if (/\b(projects|past projects|previous projects|worked on)\b/.test(q)) out.push("projects");
   return out;
 }
 
@@ -120,6 +121,23 @@ function orgCard(o: KnowledgeOrg, parts: Part[], q: string): string {
         : "**Ideas list:** not recorded.",
     );
   }
+  if (parts.includes("projects")) {
+    const year = Number(q.match(/\b(20[12]\d)\b/)?.[1]) || null;
+    const rows = o.programs.flatMap((e) =>
+      e.projects
+        .filter((x) => !year || x.year === year)
+        .map((x) => [
+          x.url ? md(x.title, x.url) : x.title,
+          x.year ?? "",
+          md(e.programName, e.pageUrl),
+        ]),
+    );
+    lines.push(
+      rows.length
+        ? `**Projects${year ? ` in ${year}` : ""}:**\n\n${table(["Project", "Year", "Program"], rows, 20)}`
+        : `**Projects:** none recorded${year ? ` for ${year}` : ""}.`,
+    );
+  }
   if (parts.includes("all")) {
     if (o.tags.length) lines.push(`**Technologies:** ${o.tags.slice(0, 12).join(", ")}`);
     lines.push(
@@ -163,6 +181,59 @@ function lfxToMarkdown(a: Answer): string {
   return out.join("\n\n");
 }
 
+/** Question words that point at a program fact, by the fact labels the program files use. */
+const FACT_TOPICS: [RegExp, RegExp][] = [
+  [/how long|duration|length|weeks?|months?|period/, /length|period|hours|terms|timetable/i],
+  [
+    /hours?|size|small|medium|large|part ?time|full ?time|commitment|per week/,
+    /size|hours|commitment|timetable|length|terms/i,
+  ],
+  [
+    /remote|online|offline|in person|on ?site|location|format|region|which countries/,
+    /format|location|region/i,
+  ],
+  [/evaluations?|midterm/, /evaluation/i],
+  [/certificate|completion/, /certificate|completion/i],
+  [
+    /how many (proposals|projects|applications)|how are .* selected|selection process/,
+    /proposals|projects|applications|selection/i,
+  ],
+  [/tracks?|areas?|domains?|topics?/, /tracks|areas|domain/i],
+  [/cohorts?|terms?|batches|rounds?/, /cohorts|terms/i],
+  [/employ|contract|job/, /employment/i],
+  [/mentoring (style|format|model)|how (is|are) .*mentored/, /mentoring/i],
+  [/presentation/, /presentation/i],
+  [/before the internship|bootcamp|challenge round/, /before/i],
+  [/funding|funded|still running|concluded|ended|discontinued/, /years|funding|status/i],
+];
+
+function matchingFacts(facts: { label: string; value: string }[], q: string) {
+  const topics = FACT_TOPICS.filter(([ask]) => ask.test(q)).map(([, label]) => label);
+  return facts.filter((f) => topics.some((re) => re.test(f.label)));
+}
+
+/** The stipend-table row of a country named in the question ("gsoc stipend in india"). */
+function countryIn(p: KnowledgeProgram, q: string) {
+  const rows = p.stipendTable?.rows ?? [];
+  const t = ` ${q} `;
+  const alias: Record<string, string> = {
+    usa: "united states",
+    "in us": "united states",
+    america: "united states",
+    uk: "united kingdom",
+  };
+  const hit = (name: string) => t.includes(` ${name} `);
+  return (
+    rows.find((r) => hit(normalize(String(r.country)))) ??
+    rows.find((r) =>
+      Object.entries(alias).some(
+        ([a, full]) => hit(a) && normalize(String(r.country)).startsWith(full),
+      ),
+    ) ??
+    null
+  );
+}
+
 function programAnswer(p: KnowledgeProgram, q: string): string {
   const i = p.info;
   const lines = [`### ${p.def.name}`];
@@ -170,15 +241,43 @@ function programAnswer(p: KnowledgeProgram, q: string): string {
     lines.push(p.def.blurb, `${md("Open the program page", p.pageUrl)}`);
     return lines.join("\n\n");
   }
-  const askStipend = /stipend|pay|paid|money|salary|amount|how much|usd|\$/.test(q);
+  const askStipend = /stipend|pay|paid|money|salary|amount|how much|usd|\$|btc|currency/.test(q);
   const askElig = /eligib|who can|can i|requirement|criteria|allowed|age|student/.test(q);
   const askTime = /timeline|when|date|deadline|schedule|start|open|close|announce/.test(q);
   const askApply = /apply|application|how to|steps|proposal|join/.test(q);
-  const any = askStipend || askElig || askTime || askApply;
+  const askRunBy =
+    /who (runs|run|organi[sz]es|hosts|funds|manages|conducts)|run by|organi[sz]er|host/.test(q);
+  const askLinks = /\b(website|official|links?|faq|site|url|page)\b/.test(q);
+  const facts = matchingFacts(i.facts, q);
+  const country = askStipend || facts.length === 0 ? countryIn(p, q) : null;
+  const any =
+    askStipend ||
+    askElig ||
+    askTime ||
+    askApply ||
+    askRunBy ||
+    askLinks ||
+    facts.length > 0 ||
+    !!country;
 
   lines.push(i.summary);
   if (i.statusNote) lines.push(`**Status:** ${i.statusNote}`);
-  if ((!any || askStipend) && i.stipend) {
+  if (!any || askRunBy) lines.push(`**Run by:** ${i.runBy}`);
+  if (country && p.stipendTable) {
+    const t = p.stipendTable;
+    const money = (v: string | number) =>
+      typeof v === "number" ? `$${v.toLocaleString("en-US")}` : v;
+    lines.push(
+      `**Stipend in ${country.country}:** ` +
+        t.columns
+          .map((c) =>
+            t.columns.length > 1 ? `${c} project ${money(country[c]!)}` : money(country[c]!),
+          )
+          .join(" · ") +
+        ` (${t.currency}${t.paidIn ? `, paid in ${t.paidIn}` : ""}). ${md("Source", t.source)}, retrieved ${t.retrieved}.`,
+    );
+  }
+  if ((!any || (askStipend && !country)) && i.stipend) {
     lines.push(`**Stipend:** ${i.stipend.headline}. ${i.stipend.detail}`);
     if (i.stipend.ranges?.length)
       lines.push(
@@ -187,6 +286,7 @@ function programAnswer(p: KnowledgeProgram, q: string): string {
           i.stipend.ranges.map((r) => [r.label, r.value]),
         ),
       );
+    if (i.stipend.yearNote) lines.push(i.stipend.yearNote);
     if (i.stipend.payments?.length && askStipend)
       lines.push(
         table(
@@ -194,7 +294,27 @@ function programAnswer(p: KnowledgeProgram, q: string): string {
           i.stipend.payments.map((x) => [x.label, x.share ?? "", x.when ?? ""]),
         ),
       );
+    if (askStipend && i.stipend.method) lines.push(`**How it is paid:** ${i.stipend.method}`);
+    if (askStipend && i.stipend.notes?.length)
+      lines.push(i.stipend.notes.map((n) => `- ${n}`).join("\n"));
+    if (askStipend && p.stipendTable)
+      lines.push(
+        `Amounts differ by country (${p.stipendTable.rows.length} countries recorded). Ask, for example, *${p.def.short} stipend in India*.`,
+      );
   }
+  if (askStipend && !i.stipend) {
+    const funding = i.facts.find((f) => /funding/i.test(f.label));
+    lines.push(
+      `**Stipend:** ${funding ? funding.value : "no stipend is recorded for this program"}.`,
+    );
+  }
+  if (facts.length)
+    lines.push(
+      table(
+        ["", ""],
+        facts.map((f) => [f.label, f.value]),
+      ),
+    );
   if ((!any || askElig) && i.eligibility.length)
     lines.push("**Eligibility:**\n" + i.eligibility.map((e) => `- ${e}`).join("\n"));
   if ((!any || askTime) && i.timeline?.length)
@@ -217,7 +337,9 @@ function programAnswer(p: KnowledgeProgram, q: string): string {
   if (p.orgCount)
     lines.push(`${plural(p.orgCount, "organization")} recorded: ${md("browse them", p.pageUrl)}.`);
   const links = [...i.links, ...i.sources.map((s) => ({ label: s.label, url: s.url }))];
-  if (links.length)
+  if (askLinks && i.links.length)
+    lines.push("**Official links:**\n" + i.links.map((l) => `- ${md(l.label, l.url)}`).join("\n"));
+  else if (links.length)
     lines.push(
       `_Official sources (checked ${i.checked}): ${links
         .slice(0, 5)
@@ -225,6 +347,102 @@ function programAnswer(p: KnowledgeProgram, q: string): string {
         .join(" · ")}_`,
     );
   return lines.join("\n\n");
+}
+
+const PROGRAM_DETAIL =
+  /who (runs|run|organi[sz]es|hosts|funds|manages|conducts)|run by|official (site|website|links?|page)|\bfaq\b|how long|duration|how many hours|remote|online|in person|certificate|evaluations?|part ?time|full ?time/;
+const UPCOMING =
+  /upcoming|coming up|next deadlines?|deadlines|open (now|right now|currently)|currently open|accepting (applications|applicants)|which programs? (is|are) open|can i apply (now|today)|apply now/;
+const ALL_PROGRAMS =
+  /\b(programs|mentorships|internships|fellowships)\b.*\b(list|which|what|all|available|support|cover|have|best|compare|options)\b|\b(list|which|what|all|available|compare)\b.*\b(programs|mentorships|internships|fellowships)\b|pays? (the )?most|highest stipend|best stipend|all stipends/;
+
+/** Every program named in the text, in order, each once ("compare gsoc and outreachy"). */
+function programsMentioned(k: Knowledge, text: string): KnowledgeProgram[] {
+  const found: { p: KnowledgeProgram; at: number }[] = [];
+  const full = ` ${normalize(text)} `;
+  let t = full;
+  for (let m = findProgramMatch(k, t); m; m = findProgramMatch(k, t)) {
+    if (!found.some((f) => f.p === m!.p)) found.push({ p: m.p, at: full.indexOf(` ${m.key} `) });
+    t = t.replace(` ${m.key} `, " ");
+  }
+  return found.sort((a, b) => a.at - b.at).map((f) => f.p);
+}
+
+const statusText = (p: KnowledgeProgram) =>
+  p.info ? { open: "Open", running: "Running", concluded: "Concluded" }[p.info.status] : "";
+
+function programsOverview(k: Knowledge): string {
+  const ps = k.programs.filter((p) => p.info);
+  return [
+    `### ${plural(ps.length, "program")} on OpenSourceX`,
+    table(
+      ["Program", "Status", "Stipend", "Run by", "Organizations"],
+      ps.map((p) => [
+        md(p.def.name, p.pageUrl),
+        statusText(p),
+        p.info!.stipend?.headline ?? "none recorded",
+        p.info!.runBy,
+        p.orgCount || "",
+      ]),
+    ),
+    "Ask about any one of them for its stipend, eligibility, timeline or how to apply, for example *Outreachy eligibility*.",
+  ].join("\n\n");
+}
+
+function compareAnswer(ps: KnowledgeProgram[], q: string): string {
+  const fact = (p: KnowledgeProgram, re: RegExp) =>
+    p.info?.facts.find((f) => re.test(f.label))?.value ?? "";
+  const rows: [string, (p: KnowledgeProgram) => string | number][] = [
+    ["Status", (p) => p.info?.statusNote ?? statusText(p)],
+    ["Run by", (p) => p.info?.runBy ?? ""],
+    ["Stipend", (p) => p.info?.stipend?.headline ?? "none recorded"],
+    ["Length", (p) => fact(p, /length|period/i)],
+    ["Format", (p) => fact(p, /format|location/i)],
+    ["Eligibility", (p) => p.info?.eligibility.join(" ") ?? ""],
+    ["Organizations", (p) => p.orgCount || ""],
+  ];
+  const wantElig = /eligib|who can/.test(q);
+  return [
+    `### ${ps.map((p) => p.def.name).join(" vs ")}`,
+    table(
+      ["", ...ps.map((p) => md(p.def.name, p.pageUrl))],
+      rows
+        .filter(([label]) => label !== "Eligibility" || wantElig)
+        .map(([label, get]) => [label, ...ps.map(get)]),
+    ),
+    "Ask about either one for its full timeline and how to apply.",
+  ].join("\n\n");
+}
+
+function upcomingAnswer(k: Knowledge): string {
+  const today = new Date().toISOString().slice(0, 10);
+  const dates = k.programs.flatMap((p) =>
+    (p.info?.timeline ?? [])
+      .filter((t) => /^\d{4}-\d{2}-\d{2}/.test(t.date) && t.date.slice(0, 10) >= today)
+      .map((t) => ({ p, ...t })),
+  );
+  dates.sort((a, b) => a.date.localeCompare(b.date));
+  const open = k.programs.filter((p) => p.info?.status === "open");
+  const out = ["### Coming up across programs"];
+  if (open.length)
+    out.push(
+      `**Open now:** ${open.map((p) => `${md(p.def.name, p.pageUrl)}${p.info!.statusNote ? ` (${p.info!.statusNote})` : ""}`).join(" · ")}`,
+    );
+  out.push(
+    dates.length
+      ? table(
+          ["Date", "Program", "Step"],
+          dates.map((d) => [d.date, md(d.p.def.name, d.p.pageUrl), d.label]),
+        )
+      : "No upcoming dates are recorded yet; programs publish their next timeline closer to the season.",
+  );
+  out.push(
+    `**Current status:**\n${k.programs
+      .filter((p) => p.info?.statusNote)
+      .map((p) => `- ${md(p.def.name, p.pageUrl)}: ${p.info!.statusNote}`)
+      .join("\n")}`,
+  );
+  return out.join("\n\n");
 }
 
 function recurringAnswer(k: Knowledge, p: KnowledgeProgram | null): string {
@@ -568,16 +786,27 @@ export function answerOffline(
     return withNote(recurringAnswer(k, program));
   }
 
+  // 3a. questions across programs: compare two, list them all, upcoming deadlines
+  const named = programsMentioned(k, raw);
+  if (named.length >= 2) return withNote(compareAnswer(named, q));
+  if (!program && UPCOMING.test(q)) return withNote(upcomingAnswer(k));
+  if (!program && ALL_PROGRAMS.test(q)) return withNote(programsOverview(k));
+
+  // the program details OpenSourceX shows: facts, who runs it, official links, per-country stipend
+  const programQ =
+    PROGRAM_DETAIL.test(q) ||
+    (!!program && (FACT_TOPICS.some(([re]) => re.test(q)) || !!countryIn(program, q)));
+
   // 3. how-to and knowledge questions (prerequisites, proposals, cover letters, Git, licences...)
-  if (GUIDE_INTENT.test(q) && !(program && dataQ)) {
+  if (GUIDE_INTENT.test(q) && !(program && (dataQ || programQ))) {
     const g = guideAnswer(q, ctx.guides ?? []);
     if (g) return withNote(g);
   }
 
-  // 4. stipend, eligibility, timeline, how to apply
+  // 4. stipend, eligibility, timeline, how to apply, facts and links
   if (
     program &&
-    isProgramInfo &&
+    (isProgramInfo || programQ) &&
     !(program.def.slug === "lfx-mentorship" && /\bterm\b|t[123]\b/.test(q))
   )
     return withNote(withFoundation(program, programAnswer(program, q)));

@@ -1,7 +1,7 @@
 import type { LfxHistory } from "@opensourcex/database";
 import { orgCommunity, type OrgChat } from "@/lib/org-community";
 import { programData, type ProgramData } from "@/lib/program-data";
-import { programInfo, type ProgramInfo } from "@/lib/program-info";
+import { programInfo, stipendTable, type ProgramInfo, type StipendTable } from "@/lib/program-info";
 import { CNCF_NAME, lfxFoundations, type FoundationsFile } from "@/lib/lfx-foundations";
 import { PROGRAM_CATALOG, type ProgramDef } from "@/lib/programs";
 
@@ -49,6 +49,8 @@ export interface KnowledgeOrg {
 export interface KnowledgeProgram {
   def: ProgramDef;
   info: ProgramInfo | null;
+  /** per-country stipend amounts, for programs that publish them */
+  stipendTable: StipendTable | null;
   orgCount: number;
   years: number[];
   pageUrl: string;
@@ -75,6 +77,7 @@ const uniq = <T>(xs: T[]) => [...new Set(xs)];
 let staticCache: Promise<{
   data: ProgramData[];
   info: Map<string, ProgramInfo | null>;
+  tables: Map<string, StipendTable | null>;
   foundations: FoundationsFile | null;
 }> | null = null;
 
@@ -82,13 +85,16 @@ function loadStatic() {
   staticCache ??= (async () => {
     const data: ProgramData[] = [];
     const info = new Map<string, ProgramInfo | null>();
+    const tables = new Map<string, StipendTable | null>();
     for (const def of PROGRAM_CATALOG) {
       const d = await programData(def.slug);
       if (d) data.push(d);
-      info.set(def.slug, await programInfo(def.slug));
+      const i = await programInfo(def.slug);
+      info.set(def.slug, i);
+      tables.set(def.slug, await stipendTable(i?.stipend?.table));
     }
     const foundations: FoundationsFile | null = await lfxFoundations().catch(() => null);
-    return { data, info, foundations };
+    return { data, info, tables, foundations };
   })();
   return staticCache;
 }
@@ -101,7 +107,7 @@ function mergeChats(a: OrgChat[], b: OrgChat[]): OrgChat[] {
 }
 
 export async function buildKnowledge(lfx: LfxHistory | null): Promise<Knowledge> {
-  const { data, info, foundations } = await loadStatic();
+  const { data, info, tables, foundations } = await loadStatic();
   const byKey = new Map<string, KnowledgeOrg>();
   const upsert = (
     name: string,
@@ -161,6 +167,7 @@ export async function buildKnowledge(lfx: LfxHistory | null): Promise<Knowledge>
       programs.push({
         def,
         info: info.get(def.slug) ?? null,
+        stipendTable: tables.get(def.slug) ?? null,
         orgCount: d.orgs.length,
         years: d.years,
         pageUrl: `/programs/${def.alias}`,
@@ -250,6 +257,7 @@ export async function buildKnowledge(lfx: LfxHistory | null): Promise<Knowledge>
       programs.push({
         def,
         info: info.get(def.slug) ?? null,
+        stipendTable: tables.get(def.slug) ?? null,
         orgCount: projects.size + foundationOrgCount,
         years: uniq(lfx.terms.map((t) => t.year)).sort(),
         pageUrl: "/programs/lfx",
@@ -263,6 +271,7 @@ export async function buildKnowledge(lfx: LfxHistory | null): Promise<Knowledge>
     programs.push({
       def,
       info: info.get(def.slug) ?? null,
+      stipendTable: tables.get(def.slug) ?? null,
       orgCount: 0,
       years: [],
       pageUrl: `/programs/${def.alias}`,
