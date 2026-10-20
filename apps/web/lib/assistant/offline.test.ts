@@ -155,6 +155,29 @@ describe("offline answers", () => {
     expect(answerOffline("upcoming deadlines", k)).toMatch(/^### Coming up across programs/);
   });
 
+  it("answers questions about OpenSourceX itself", () => {
+    const cases: [string, RegExp][] = [
+      ["what is opensourcex", /^### OpenSourceX/],
+      ["how do i save an organization", /^### Saving organizations/],
+      ["how to report a problem", /^### Help & support/],
+      ["can i login with google", /^### Signing in/],
+      ["do you sell my data", /^### Your data/],
+      ["where does the data come from", /^### Where the data comes from/],
+      ["security contact", /^### Reporting a security problem/],
+      ["what can you do", /^### About Ask/],
+      ["recommend me an org", /^### Finding organizations for you/],
+      ["what does analyze repository do", /^### Analyze a repository/],
+      ["how many organizations are there", /^### OpenSourceX in numbers/],
+      ["can i apply to multiple programs", /apply\*\* to several programs/],
+    ];
+    for (const [q, re] of cases) expect(answerOffline(q, k), q).toMatch(re);
+  });
+
+  it("says whether an org is in the program asked about", () => {
+    expect(answerOffline("is volcano in gsoc", k)).toMatch(/^\*\*No\.\*\* Volcano is not recorded/);
+    expect(answerOffline("is volcano in lfx", k)).toMatch(/^\*\*Yes\.\*\* Volcano takes part/);
+  });
+
   it("does not read a program's name as a technology", () => {
     expect(answerOffline("list summer of bitcoin organizations", k)).not.toMatch(/using bitcoin/);
   });

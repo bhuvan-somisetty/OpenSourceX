@@ -31,6 +31,8 @@ function table(columns: string[], rows: (string | number)[][], max = 25): string
   return `${head}\n${body}${more}`;
 }
 
+const uniqNums = (xs: number[]) => [...new Set(xs)].sort((a, b) => a - b);
+
 function yearsText(ys: number[]) {
   if (!ys.length) return "";
   const s = [...ys].sort();
@@ -107,6 +109,10 @@ function orgCard(o: KnowledgeOrg, parts: Part[], q: string): string {
   if (show("website") && o.website)
     lines.push(
       `**Website:** ${md(o.website.replace(/^https?:\/\//, "").replace(/\/$/, ""), o.website)}`,
+    );
+  else if (parts.includes("website"))
+    lines.push(
+      `**Website:** not recorded for this organization.${o.repoUrl ? ` Its repository is ${md(o.repoUrl.replace(/^https?:\/\//, ""), o.repoUrl)}.` : ""}`,
     );
   if (show("ideas")) {
     const ideas = o.programs.flatMap((e) =>
@@ -242,7 +248,10 @@ function programAnswer(p: KnowledgeProgram, q: string): string {
     return lines.join("\n\n");
   }
   const askStipend = /stipend|pay|paid|money|salary|amount|how much|usd|\$|btc|currency/.test(q);
-  const askElig = /eligib|who can|can i|requirement|criteria|allowed|age|student/.test(q);
+  const askElig =
+    /eligib|who can|can i|requirement|criteria|allowed|age|student|experience|beginners?|fresher|graduate|working professional/.test(
+      q,
+    );
   const askTime = /timeline|when|date|deadline|schedule|start|open|close|announce/.test(q);
   const askApply = /apply|application|how to|steps|proposal|join/.test(q);
   const askRunBy =
@@ -410,7 +419,9 @@ function compareAnswer(ps: KnowledgeProgram[], q: string): string {
         .filter(([label]) => label !== "Eligibility" || wantElig)
         .map(([label, get]) => [label, ...ps.map(get)]),
     ),
-    "Ask about either one for its full timeline and how to apply.",
+    /together|same time|both|multiple|at once|simultaneous|parallel/.test(q)
+      ? "OpenSourceX has no recorded rule on taking part in two programs at once. Most of them expect close to full-time work while they run, so compare the lengths and time commitments above and check each program's own rules before accepting two offers."
+      : "Ask about either one for its full timeline and how to apply.",
   ].join("\n\n");
 }
 
@@ -580,7 +591,10 @@ const TECH = [
 ];
 
 function techIn(q: string): string | null {
-  const ctx = /\b(use|uses|using|with|in|written|language|tech|stack|for)\b/.test(q);
+  const ctx =
+    /\b(use|uses|using|with|in|written|language|tech|stack|for|need|needs|require|requires|required)\b/.test(
+      q,
+    );
   for (const t of TECH) {
     if (["go", "c", "r", "ai"].includes(t) && !ctx) continue;
     if (` ${q} `.includes(` ${t} `)) return t === "golang" ? "go" : t === "node js" ? "node.js" : t;
@@ -588,7 +602,131 @@ function techIn(q: string): string | null {
   return null;
 }
 
+const SITE =
+  /\b(opensourcex|open source x|this (site|website|app|platform|page)|your (site|website|app|platform))\b/;
+
+/** Questions about OpenSourceX itself, answered from what its own pages say. */
+const SITE_HELP: { test: RegExp; answer: () => string }[] = [
+  {
+    test: /^(what|who) (is|are) (opensourcex|open source x)|about (opensourcex|this (site|website|platform))|what (does|can) (opensourcex|this (site|website|platform|app)) do|what can i do (here|on (opensourcex|this))|who (made|built|created|owns|runs) (opensourcex|this)|features of (opensourcex|this)|is (opensourcex|this (site|website|platform)|it) free|does (opensourcex|it) cost/,
+    answer: () =>
+      [
+        "### OpenSourceX",
+        "OpenSourceX is a free website for finding your place in open source. It puts every mentorship program and organization in one place, with the sources behind each fact.",
+        "- **[Programs](/programs):** GSoC, LFX Mentorship (CNCF, LFDT, RISC-V and the other Linux Foundation projects), Outreachy, Summer of Bitcoin, European Summer of Code, Igalia, Processing Foundation, MLH Fellowship, OSPP, C4GT and Season of Docs, each with stipend, eligibility, timeline and how to apply.",
+        "- **[Discover](/discover):** pick programs, languages and technologies and get matching organizations, with the reasons they match.",
+        "- **[Ask](/ask):** this chat. Ask anything about open source; signed-in users keep their chat history.",
+        "- **[Saved](/saved):** organizations, projects and repositories you keep for later.",
+        "- **[Analyze a repository](/repositories/analyze)** and **[Interview practice](/interview)**: previews; see their pages for what works today.",
+        "- **[Help & support](/support):** report a problem, with screenshots.",
+        "Using it is free: no ads and no selling of data. See the [Terms](/terms) and [Privacy policy](/privacy).",
+      ].join("\n\n"),
+  },
+  {
+    test: /\b(save|saving|bookmark|unsave)\b.*\b(orgs?|organi[sz]ations?|projects?|repos?|repositor(y|ies)|programs?|items?|it|them)\b|\bsaved (items|orgs|organi[sz]ations|projects|page|list)\b|where (are|is|can i (find|see)) my saved|remove .* from saved/,
+    answer: () =>
+      "### Saving organizations\n\nPress **Save** on any organization card (in a program, on [Discover](/discover) or on the organization's page) to keep it. Everything you save is on the [Saved](/saved) page, grouped by program; unsave it there or on the card, and you'll be asked to confirm.\n\nSigned in, your saved items stay with your account. As a guest they stay in this browser for up to 7 days, and move to your account if you sign in later.",
+  },
+  {
+    test: /report (a |an )?(problem|bug|issue|error)|contact (support|you|the team|opensourcex|admin)|support (page|team)|help (and|&) support|complain|complaint|withdraw|give feedback|send feedback|something (is )?(broken|not working|wrong) (on|with) (opensourcex|the site|this)/,
+    answer: () =>
+      "### Help & support\n\nOpen [Help & support](/support) while signed in, describe what went wrong and add up to 3 screenshots if they help, then confirm to send it. We read every report.\n\nYour reports are under **My complaints**, where you can follow them or withdraw one (you'll be asked to confirm). Only you and OpenSourceX staff can see them, and email addresses typed into a report are removed automatically.",
+  },
+  {
+    test: /\b(sign ?in|signin|log ?in|login|sign ?up|signup|sign ?out|log ?out|logout)\b|\bguest\b|create (an )?account (on|in|for) (opensourcex|this)|continue (as|without)/,
+    answer: () =>
+      "### Signing in\n\nOn the [sign-in page](/login) choose **GitHub** or **Google**. OpenSourceX keeps your provider and display name; your name, email and picture stay only in your encrypted sign-in cookie.\n\nNo account? **Continue as a guest**: your chats and saved items stay in this browser for up to 7 days and move to your account if you sign in later. Sign out at any time from the profile menu.",
+  },
+  {
+    test: /privacy|personal (data|information)|\bmy data\b|sell (my |your )?data|\bcookies?\b|tracking|\bads\b|delete (my )?(account|data|chats?|history)|export (my )?data|who can see my|store my (data|chats|questions)/,
+    answer: () =>
+      "### Your data\n\n- **Kept:** your sign-in provider and display name, your Ask chats (so history is there when you come back), your saved items, and problem reports with their screenshots.\n- **Not done:** no selling of data, no ads, no tracking or advertising cookies. Only the cookies needed to keep you signed in and protect sign-in.\n- **Shared to answer you:** the AI provider (currently Google Gemini) gets the text of your question and recent messages; live-data services get search terms only, never your identity. Vercel hosts the site and Neon the database.\n- **Your controls:** delete any chat from the Ask sidebar, remove saved items from [Saved](/saved), sign out from the profile menu, or ask through [Help & support](/support) to export or delete everything linked to your account.\n\nFull details: [Privacy policy](/privacy).",
+  },
+  {
+    test: /terms (of (service|use)|and conditions)|\btos\b|rules (of|for) (the )?(site|opensourcex|using)|can i (scrape|use a bot)|allowed to scrape/,
+    answer: () =>
+      "### Terms of Service, in short\n\n- OpenSourceX is free; features may change.\n- Program details come from official sources and are dated, but they can change, and Ask can be incomplete or wrong. Check deadlines, eligibility and payments on the program's official page.\n- Don't misuse it, try to break its security, overload it or scrape it at scale.\n- Linked sites (GitHub, program websites, community chats) have their own terms.\n\nRead them in full: [Terms](/terms).",
+  },
+  {
+    test: /vulnerab|security (contact|issue|bug|problem|report|policy|team)|report (a )?security|bug bounty|security\.txt|responsible disclosure/,
+    answer: () => {
+      const email = process.env.SECURITY_CONTACT_EMAIL;
+      return `### Reporting a security problem\n\n${email ? `Email **${email}**` : "Use the contact on the [Security](/security) page"} with what you found, the steps to reproduce it and the impact you expect.\n\n- Don't post about it publicly before it is fixed.\n- Don't access, change or delete other people's data while testing.\n- Give a reasonable time to fix it before disclosing.\n\nDetails: [Security](/security) and [/.well-known/security.txt](/.well-known/security.txt).`;
+    },
+  },
+  {
+    test: /where (does|do|did) (the|your|this|all|opensourcex'?s?) (data|information|info)|data (come|comes|sources?)|sources? (of|for) (the |your )?(data|information)|how (often|frequently) .*(updated?|refresh)|is (the |your )?(data|information) (accurate|correct|reliable|up to date|verified|official)|how (accurate|reliable)|last (updated|checked)/,
+    answer: () =>
+      "### Where the data comes from\n\n- **Programs:** each program's official pages (stipend, eligibility, timeline, how to apply). Every answer names its sources and the date they were checked.\n- **Organizations:** each program's published organization lists, saved as dated snapshots; LFX Mentorship from the LFX public data and the CNCF mentoring repository.\n- **Community chats:** the organization's own README, CONTRIBUTING files and community pages; Discord invites are checked to be live.\n- **Live answers:** GitHub, package registries, OSV, Hacker News, Stack Exchange and Wikipedia, when you ask for current data.\n\nDetails can change after they were checked, so confirm deadlines and payments on the official page. Provenance: [Sources and status](/sources).",
+  },
+  {
+    test: /what can (you|ask) (do|answer|help)|how does (ask|this chat|the chat) work|are you (an? )?(ai|bot|human|chatgpt|gemini)|which (ai|model|llm)|offline (mode|engine)|chat history|ask page/,
+    answer: () =>
+      "### About Ask\n\nAsk answers questions about open source from OpenSourceX's recorded data: programs (stipends, by country where published; eligibility; timelines; how to apply; comparisons), organizations (repository, Slack/Discord and other chats, website, ideas, technologies, past projects), LFX Mentorship terms and mentors, and guides on proposals, resumes, cover letters, Git and licences.\n\nWhen an AI model is available (currently Google Gemini, within a free daily limit) it writes the answer from that data; otherwise the offline engine answers from the same data. Signed-in users keep their chat history; delete any chat from the sidebar.\n\nTry: *GSoC stipend in India*, *compare GSoC and Outreachy*, *Volcano slack link*, *upcoming deadlines*.",
+  },
+  {
+    test: /discover( page)?\b|recommend (me )?(an? |some )?(orgs?|organi[sz]ations?|projects?)|suggest (me )?(an? |some )?(orgs?|organi[sz]ations?|projects?)|which (org|organi[sz]ation|project) should i|find (orgs|organi[sz]ations|projects) (for|that match) me/,
+    answer: () =>
+      "### Finding organizations for you\n\nOpen [Discover](/discover), pick programs (GSoC, LFX and each LFX foundation such as CNCF or LFDT, Outreachy and more), languages and technologies, and it suggests organizations from every program, with the reasons they match. An organization in several programs is one card listing all of them; tap a card to see it in full, and **Save** the ones you like.\n\nYou can also ask here, for example *GSoC orgs using Rust* or *Outreachy orgs using Python*.",
+  },
+  {
+    test: /analy[sz]e (a |my |the |this |any )?(github )?(repo|repository)|(repo|repository) analy[sz]/,
+    answer: () =>
+      "### Analyze a repository\n\n[Analyze a repository](/repositories/analyze) is meant to show what a GitHub repository is, how active it is and how to start contributing, with evidence and no single score. Live analysis is not switched on yet: today you can check a repository URL and save it.\n\nMeanwhile, ask here about a repository (for example *activity of kubernetes/kubernetes*) and Ask uses live GitHub data when it is available.",
+  },
+  {
+    test: /\binterview (practice|prep|preparation|page|mode)|practi[cs]e (an? |for )?interview|mock interview/,
+    answer: () =>
+      "### Interview practice\n\n[Interview practice](/interview) helps you explain a contribution: you answer first, and reference material appears only after you submit, with a check of which recorded technologies you mentioned. It is a preview; the PR review, Technical and Architecture modes need repository analysis and AI, which are not connected yet.",
+  },
+  {
+    test: /mobile app|android app|ios app|iphone app|(download|install) (the |an )?app|play store|app store/,
+    answer: () =>
+      "OpenSourceX has no separate mobile app. Use the website in your phone's browser: the site is built to work on phones.",
+  },
+];
+
+/** Counts across everything OpenSourceX records ("how many organizations are there?"). */
+function statsAnswer(k: Knowledge, q: string): string | null {
+  if (!/how many|number of|total|count/.test(q)) return null;
+  const terms = k.lfx?.terms.length ?? 0;
+  if (/\bterms?\b/.test(q) && terms)
+    return `LFX Mentorship (CNCF) has ${plural(terms, "recorded term")}, from ${k.lfx!.terms[0]!.label} to ${k.lfx!.terms.at(-1)!.label}. Ask about one, for example *LFX 2025 term 3 projects*.`;
+  if (!/\b(programs?|orgs?|organi[sz]ations?|projects?|foundations?|mentors?)\b/.test(q))
+    return null;
+  const ps = k.programs.filter((p) => p.info || p.orgCount);
+  const foundations = new Set(
+    k.orgs.flatMap((o) => o.programs.map((e) => e.foundation).filter(Boolean)),
+  );
+  const projects = k.orgs.reduce(
+    (n, o) => n + o.programs.reduce((m, e) => m + e.projectCount, 0),
+    0,
+  );
+  return [
+    "### OpenSourceX in numbers",
+    table(
+      ["", "Count"],
+      [
+        ["Programs", ps.length],
+        ["Organizations (each counted once, across programs)", k.orgs.length],
+        ["Recorded mentorship projects", projects],
+        ["LFX foundations and projects", foundations.size],
+        ...(terms ? [["LFX Mentorship (CNCF) terms", terms] as [string, number]] : []),
+      ],
+    ),
+    table(
+      ["Program", "Organizations"],
+      ps.map((p) => [md(p.def.name, p.pageUrl), p.orgCount || "none recorded"]),
+    ),
+  ].join("\n\n");
+}
+
 const FAQ: { test: RegExp; answer: string }[] = [
+  {
+    test: /(apply|applying|join|do|take part) (to|in|for)? ?(multiple|many|more than one|two|several|different) (programs|mentorships|internships)|(multiple|two) programs (at once|together|same time)/,
+    answer:
+      "You can usually **apply** to several programs, since each one selects separately. **Taking part** in two at once is another matter: most programs expect close to full-time work while they run, and OpenSourceX has no recorded rule that allows it. Check each program's own rules before accepting two offers.\n\nCompare two programs here, for example *compare GSoC and LFX*, or see them all with *list all programs*.",
+  },
   {
     test: /^(hi|hello|hey|yo|hola|namaste|good (morning|evening|afternoon))\b/,
     answer:
@@ -744,6 +882,20 @@ export function answerOffline(
       if (mentioned.length) break;
     }
 
+  // 0. questions about OpenSourceX itself, and counts across everything it records
+  const signInQ =
+    /\b(log ?in|login|sign ?in|sign ?up)\b.*\b(google|github)\b|\b(google|github) (log ?in|login|sign ?in|account)\b/.test(
+      q,
+    );
+  if (!programMatch && (SITE.test(q) || signInQ || !mentioned.length)) {
+    const help = SITE_HELP.find((h) => h.test.test(q));
+    if (help) return withNote(help.answer());
+  }
+  if ((!program || (program === lfxProgram && /\bterms?\b/.test(q))) && !mentioned.length) {
+    const stats = statsAnswer(k, q);
+    if (stats) return withNote(stats);
+  }
+
   // 1. links and details for a named organization
   if (
     mentioned.length &&
@@ -752,6 +904,16 @@ export function answerOffline(
     !(lfxSpecific && program?.def.slug === "lfx-mentorship" && !parts.length)
   ) {
     const org = mentioned[0]!;
+    // "is volcano in gsoc?": say plainly whether the organization is in the named program
+    const asked = programMatch?.p;
+    const inAsked = asked && org.programs.filter((e) => e.program === asked.def.slug);
+    const membership =
+      asked && inAsked && !parts.length
+        ? inAsked.length
+          ? `**Yes.** ${org.name} takes part in ${inAsked.map((e) => md(e.programName, e.pageUrl)).join(", ")}${inAsked[0]!.years.length ? ` (${yearsText(uniqNums(inAsked.flatMap((e) => e.years)))})` : ""}.`
+          : `**No.** ${org.name} is not recorded in ${md(asked.def.name, asked.pageUrl)}. It takes part in ${org.programs.map((e) => md(e.programName, e.pageUrl)).join(", ")}.`
+        : "";
+    const withMembership = (s: string) => (membership ? `${membership}\n\n${s}` : s);
     // stipend or dates of an organization in a single program are that program's ("volcano stipend")
     const orgPrograms = [...new Set(org.programs.map((e) => e.program))];
     const own =
@@ -768,14 +930,16 @@ export function answerOffline(
     if (isLfxMentorQ && k.lfx) return withNote(lfxToMarkdown(answerQuestion(raw, k.lfx)));
     if (!parts.length && GUIDE_INTENT.test(q)) {
       const g = guideAnswer(q, ctx.guides ?? []);
-      if (g) return withNote(`${g}\n\n---\n\n${orgCard(org, ["repo", "chat"], q)}`);
+      if (g) return withNote(withMembership(`${g}\n\n---\n\n${orgCard(org, ["repo", "chat"], q)}`));
     }
     const body = orgCard(org, parts.length ? parts : ["all"], q);
     const others = mentioned.slice(1, 4);
     return withNote(
-      others.length && !parts.length
-        ? `${body}\n\n---\n\n${others.map((o) => orgCard(o, ["all"], q)).join("\n\n---\n\n")}`
-        : body,
+      withMembership(
+        others.length && !parts.length
+          ? `${body}\n\n---\n\n${others.map((o) => orgCard(o, ["all"], q)).join("\n\n---\n\n")}`
+          : body,
+      ),
     );
   }
 
