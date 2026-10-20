@@ -456,6 +456,194 @@ function upcomingAnswer(k: Knowledge): string {
   return out.join("\n\n");
 }
 
+const PREDICT =
+  /predict|prediction|forecast|likely|likelihood|chances?|expect(ed)?|guess|will .*\b(come|appear|repeat|return|be (there|selected|in)|participate|take part|join)|next (term|year|season|round|cohort)|upcoming term|coming term/;
+
+type Likelihood = "High" | "Medium" | "Low";
+const likelihood = (recent: number, recentOf: number, same: number, sameOf: number): Likelihood =>
+  recent === recentOf || (recent >= recentOf - 1 && same >= Math.min(2, sameOf))
+    ? "High"
+    : recent >= 2 || same >= 2
+      ? "Medium"
+      : "Low";
+const RANK: Record<Likelihood, number> = { High: 0, Medium: 1, Low: 2 };
+const PREDICT_NOTE =
+  "_This is a forecast from past participation, not an official list. The real list appears when the program announces it; until then, follow the organizations you like in their community chat._";
+
+/** The LFX term after `key` ("2026-T3" -> "2027-T1"). */
+function nextTermKey(key: string) {
+  const [y, t] = key.split("-T").map(Number) as [number, number];
+  return t >= 3 ? `${y + 1}-T1` : `${y}-T${t + 1}`;
+}
+
+/** Which CNCF projects are likely in an upcoming LFX term, from every recorded term. */
+function lfxPrediction(k: Knowledge, q: string, only: KnowledgeOrg[]): string | null {
+  const lfx = k.lfx;
+  if (!lfx) return null;
+  const byTerm = new Map<string, Set<string>>();
+  for (const p of lfx.programs)
+    for (const t of p.terms) {
+      if (!byTerm.has(t)) byTerm.set(t, new Set());
+      byTerm.get(t)!.add(p.cncfProject);
+    }
+  const done = lfx.terms.map((t) => t.key).filter((key) => byTerm.get(key)?.size);
+  if (done.length < 3) return null;
+  const named = q.match(
+    /\b(20\d\d) ?(?:term|t) ?([123])\b|\b(?:term|t) ?([123]) (?:of )?(20\d\d)\b/,
+  );
+  let target = named
+    ? `${named[1] ?? named[4]}-T${named[2] ?? named[3]}`
+    : nextTermKey(done.at(-1)!);
+  // a term that already has its list is answered with history, not a forecast
+  if (byTerm.get(target)?.size) target = nextTermKey(done.at(-1)!);
+  const history = done.filter((key) => key < target);
+  const code = target.split("-")[1]!;
+  const recentTerms = history.slice(-3);
+  const sameTerms = history.filter((key) => key.endsWith(code)).slice(-3);
+  const label = (key: string) =>
+    lfx.terms.find((t) => t.key === key)?.label ?? key.replace("-T", " Term ");
+  const projects = new Set(history.flatMap((key) => [...byTerm.get(key)!]));
+  const rows = [...projects].map((name) => {
+    const inTerm = (key: string) => byTerm.get(key)!.has(name);
+    let streak = 0;
+    for (let i = history.length - 1; i >= 0 && inTerm(history[i]!); i--) streak++;
+    const recent = recentTerms.filter(inTerm).length;
+    const same = sameTerms.filter(inTerm).length;
+    return {
+      name,
+      recent,
+      same,
+      streak,
+      total: history.filter(inTerm).length,
+      chance: likelihood(recent, recentTerms.length, same, sameTerms.length),
+    };
+  });
+  rows.sort(
+    (a, b) =>
+      RANK[a.chance] - RANK[b.chance] ||
+      b.recent - a.recent ||
+      b.same - a.same ||
+      b.streak - a.streak ||
+      b.total - a.total,
+  );
+  const wanted = only.length
+    ? rows.filter((r) => only.some((o) => normalize(o.name) === normalize(r.name)))
+    : rows.filter((r) => r.chance !== "Low");
+  const lfxP = k.programs.find((p) => p.def.slug === "lfx-mentorship");
+  const out = [
+    `### Prediction: CNCF projects likely in LFX Mentorship ${label(target)}`,
+    `Based on ${plural(history.length, "recorded term")} up to ${label(history.at(-1)!)}. **High** means the project was in all of the last ${recentTerms.length} terms, or nearly all of them and in most recent ${code.replace("T", "Term ")}s; **Medium** means it came at least twice recently or in at least 2 recent ${code.replace("T", "Term ")}s.`,
+  ];
+  if (only.length && !wanted.length)
+    out.push(
+      `${only.map((o) => o.name).join(", ")} has no CNCF LFX Mentorship programs recorded before ${label(target)}, so there is nothing to forecast from.`,
+    );
+  else
+    out.push(
+      table(
+        [
+          "CNCF project",
+          "Chance",
+          `Last ${recentTerms.length} terms`,
+          `Past ${code.replace("T", "Term ")}s`,
+          "Streak",
+          "Terms in total",
+        ],
+        wanted.map((r) => [
+          lfxP ? md(r.name, `/programs/lfx/organizations/${slugOf(k, r.name)}`) : r.name,
+          r.chance,
+          `${r.recent} of ${recentTerms.length}`,
+          `${r.same} of ${sameTerms.length}`,
+          r.streak ? `${r.streak} in a row` : "",
+          r.total,
+        ]),
+        40,
+      ),
+    );
+  const t = lfx.terms.find((x) => x.key === target);
+  if (t?.timeline?.length)
+    out.push(
+      `**${t.label} dates:**\n\n${table(
+        ["Activity", "Dates"],
+        t.timeline.map((x) => [x.activity, x.dates]),
+        8,
+      )}`,
+    );
+  out.push(PREDICT_NOTE);
+  return out.join("\n\n");
+}
+
+function slugOf(k: Knowledge, name: string) {
+  const o = k.orgs.find(
+    (x) =>
+      normalize(x.name) === normalize(name) &&
+      x.programs.some((e) => e.program === "lfx-mentorship" && e.foundation === "CNCF"),
+  );
+  return (
+    o?.programs.find((e) => e.program === "lfx-mentorship" && e.foundation === "CNCF")?.orgSlug ??
+    encodeURIComponent(name)
+  );
+}
+
+/** Which organizations are likely in a program's next year, from the years they took part. */
+function yearPrediction(
+  k: Knowledge,
+  p: KnowledgeProgram,
+  q: string,
+  only: KnowledgeOrg[],
+): string {
+  const years = [...p.years].sort((a, b) => a - b);
+  const askedYear = Number(q.match(/\b(20\d\d)\b/)?.[1]) || null;
+  const target = askedYear && askedYear > years.at(-1)! ? askedYear : years.at(-1)! + 1;
+  const recentYears = years.filter((y) => y < target).slice(-3);
+  const rows = k.orgs
+    .map((o) => {
+      const ys = uniqNums(
+        o.programs.filter((e) => e.program === p.def.slug).flatMap((e) => e.years),
+      );
+      if (!ys.length) return null;
+      const recent = recentYears.filter((y) => ys.includes(y)).length;
+      let streak = 0;
+      for (let y = recentYears.at(-1)!; ys.includes(y); y--) streak++;
+      return {
+        o,
+        ys,
+        recent,
+        streak,
+        chance: likelihood(recent, recentYears.length, 0, 0),
+      };
+    })
+    .filter((r) => r !== null);
+  rows.sort(
+    (a, b) =>
+      RANK[a.chance] - RANK[b.chance] ||
+      b.recent - a.recent ||
+      b.streak - a.streak ||
+      b.ys.length - a.ys.length,
+  );
+  const wanted = only.length
+    ? rows.filter((r) => only.includes(r.o))
+    : rows.filter((r) => r.chance !== "Low");
+  return [
+    `### Prediction: organizations likely in ${p.def.name} ${target}`,
+    `Based on ${p.def.name} years ${yearsText(years)}. **High** means the organization took part in each of ${recentYears.join(", ")}; **Medium** means at least 2 of them.`,
+    wanted.length
+      ? table(
+          ["Organization", "Chance", `Of ${recentYears.join(", ")}`, "Streak", "Years in total"],
+          wanted.map((r) => [
+            md(r.o.name, r.o.programs.find((e) => e.program === p.def.slug)!.pageUrl),
+            r.chance,
+            `${r.recent} of ${recentYears.length}`,
+            r.streak ? `${r.streak} in a row` : "",
+            r.ys.length,
+          ]),
+          40,
+        )
+      : `${only.map((o) => o.name).join(", ")} has no recorded ${p.def.name} years to forecast from.`,
+    PREDICT_NOTE,
+  ].join("\n\n");
+}
+
 function recurringAnswer(k: Knowledge, p: KnowledgeProgram | null): string {
   const rows = recurringOrgs(k, p?.def.slug ?? null, 40);
   if (!rows.length) return `No organizations are recorded${p ? ` for ${p.def.name}` : ""} yet.`;
@@ -894,6 +1082,26 @@ export function answerOffline(
   if ((!program || (program === lfxProgram && /\bterms?\b/.test(q))) && !mentioned.length) {
     const stats = statsAnswer(k, q);
     if (stats) return withNote(stats);
+  }
+
+  // 0b. forecasts: which organizations are likely in the next term or year
+  if (
+    PREDICT.test(q) &&
+    !parts.length &&
+    (program ||
+      mentioned.length ||
+      lfxSpecific ||
+      /\b(orgs?|organi[sz]ations?|projects?|repeat|selected)\b/.test(q))
+  ) {
+    const yearly = program && program.def.slug !== "lfx-mentorship" && program.years.length >= 2;
+    const forecast = yearly
+      ? yearPrediction(k, program, q, mentioned)
+      : lfxPrediction(k, q, mentioned);
+    const cncfOnly =
+      !yearly && foundation && foundation[1] !== "CNCF"
+        ? `Term-by-term history is recorded only for CNCF projects, so this forecast covers CNCF, not ${foundation[2]}.\n\n`
+        : "";
+    if (forecast) return withNote(cncfOnly + forecast);
   }
 
   // 1. links and details for a named organization

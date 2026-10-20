@@ -186,3 +186,59 @@ describe("offline answers", () => {
     expect(answerOffline("zzqx flurble", k)).toMatch(/couldn't find/);
   });
 });
+
+describe("forecasts", () => {
+  const term = (year: number, code: "T1" | "T2" | "T3") => ({
+    key: `${year}-${code}`,
+    year,
+    termCode: code,
+    label: `${year} Term ${code.slice(1)}`,
+    sourceUrl: null,
+    startsOn: null,
+    endsOn: null,
+    timeline: [],
+  });
+  const keys = ["2025-T3", "2026-T1", "2026-T2", "2026-T3"];
+  const history: LfxHistory = {
+    terms: [
+      term(2025, "T3"),
+      term(2026, "T1"),
+      term(2026, "T2"),
+      term(2026, "T3"),
+      term(2027, "T1"),
+    ],
+    programs: [
+      ...keys.map((t) => prog("Volcano", "volcano", [t])),
+      prog("WasmEdge", "wasmedge", ["2025-T3"]),
+    ],
+    source: LFX.source,
+  };
+  let fk: Knowledge;
+  beforeAll(async () => {
+    fk = await buildKnowledge(history);
+  });
+
+  it("predicts the next LFX term from term history", () => {
+    const a = answerOffline("what is your prediction of what orgs can repeat in 2027 term 1", fk);
+    expect(a).toMatch(/^### Prediction: CNCF projects likely in LFX Mentorship 2027 Term 1/);
+    expect(a).toMatch(/Volcano.*\| High \| 3 of 3/);
+    expect(a).not.toMatch(/WasmEdge/);
+    expect(a).toMatch(/not an official list/);
+  });
+
+  it("forecasts one named project", () => {
+    expect(answerOffline("will volcano come in the next lfx term", fk)).toMatch(
+      /Volcano.*\| High \|/,
+    );
+  });
+
+  it("predicts a yearly program's next year", () => {
+    expect(answerOffline("predict gsoc 2027 orgs", fk)).toMatch(
+      /^### Prediction: organizations likely in Google Summer of Code 2027/,
+    );
+  });
+
+  it("still lists a finished term's orgs as history", () => {
+    expect(answerOffline("which orgs appeared in lfx 2026 term 3", fk)).not.toMatch(/Prediction/);
+  });
+});
