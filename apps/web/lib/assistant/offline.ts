@@ -326,6 +326,17 @@ function programAnswer(p: KnowledgeProgram, q: string): string {
     );
   if ((!any || askElig) && i.eligibility.length)
     lines.push("**Eligibility:**\n" + i.eligibility.map((e) => `- ${e}`).join("\n"));
+  // "gsoc 2027 timeline" before 2027 dates exist: say so, and show the latest one as a guide
+  const tlYear = Math.max(
+    ...(i.timeline ?? []).map((t) => Number(t.date.slice(0, 4)) || 0),
+    Number(i.timelineTitle?.match(/\b(20\d\d)\b/)?.[1]) || 0,
+  );
+  const askedYear = Number(q.match(/\b(20\d\d)\b/)?.[1]) || 0;
+  const timelineYear = Number(i.timelineTitle?.match(/\b(20\d\d)\b/)?.[1]) || tlYear;
+  if (askTime && askedYear > timelineYear && timelineYear)
+    lines.push(
+      `**${p.def.short} ${askedYear} dates are not published yet.** The latest recorded timeline is for ${timelineYear}; programs usually keep a similar calendar, so use it as a rough guide and check ${i.links[0] ? md(i.links[0].label, i.links[0].url) : "the official site"} for the new dates.`,
+    );
   if ((!any || askTime) && i.timeline?.length)
     lines.push(
       `**${i.timelineTitle ?? "Timeline"}:**\n\n` +
@@ -531,6 +542,12 @@ function lfxPrediction(k: Knowledge, q: string, only: KnowledgeOrg[]): string | 
     : rows.filter((r) => r.chance !== "Low");
   const lfxP = k.programs.find((p) => p.def.slug === "lfx-mentorship");
   const out = [
+    ...(only.length
+      ? wanted.map(
+          (r) =>
+            `**${r.name}: ${r.chance} chance for ${label(target)}.** It was in ${r.recent} of the last ${recentTerms.length} terms and ${r.same} of the past ${sameTerms.length} ${code.replace("T", "Term ")}s${r.streak ? `, ${r.streak} in a row so far` : ""}.`,
+        )
+      : []),
     `### Prediction: CNCF projects likely in LFX Mentorship ${label(target)}`,
     `Based on ${plural(history.length, "recorded term")} up to ${label(history.at(-1)!)}. **High** means the project was in all of the last ${recentTerms.length} terms, or nearly all of them and in most recent ${code.replace("T", "Term ")}s; **Medium** means it came at least twice recently or in at least 2 recent ${code.replace("T", "Term ")}s.`,
   ];
@@ -591,6 +608,7 @@ function yearPrediction(
   p: KnowledgeProgram,
   q: string,
   only: KnowledgeOrg[],
+  tech: string | null = null,
 ): string {
   const years = [...p.years].sort((a, b) => a - b);
   const askedYear = Number(q.match(/\b(20\d\d)\b/)?.[1]) || null;
@@ -602,6 +620,8 @@ function yearPrediction(
         o.programs.filter((e) => e.program === p.def.slug).flatMap((e) => e.years),
       );
       if (!ys.length) return null;
+      if (tech && !o.tags.some((t) => ` ${normalize(t)} `.includes(` ${normalize(tech)} `)))
+        return null;
       const recent = recentYears.filter((y) => ys.includes(y)).length;
       let streak = 0;
       for (let y = recentYears.at(-1)!; ys.includes(y); y--) streak++;
@@ -625,7 +645,13 @@ function yearPrediction(
     ? rows.filter((r) => only.includes(r.o))
     : rows.filter((r) => r.chance !== "Low");
   return [
-    `### Prediction: organizations likely in ${p.def.name} ${target}`,
+    ...(only.length
+      ? wanted.map(
+          (r) =>
+            `**${r.o.name}: ${r.chance} chance for ${p.def.short} ${target}.** It took part in ${r.recent} of ${recentYears.join(", ")}${r.streak ? `, ${r.streak} ${r.streak === 1 ? "year" : "years"} in a row so far` : ""}, and ${plural(r.ys.length, "year")} in total.`,
+        )
+      : []),
+    `### Prediction: organizations${tech ? ` using ${tech}` : ""} likely in ${p.def.name} ${target}`,
     `Based on ${p.def.name} years ${yearsText(years)}. **High** means the organization took part in each of ${recentYears.join(", ")}; **Medium** means at least 2 of them.`,
     wanted.length
       ? table(
@@ -713,18 +739,144 @@ function repoRepeatAnswer(k: Knowledge, org: KnowledgeOrg): string | null {
   return out.join("\n\n");
 }
 
-function recurringAnswer(k: Knowledge, p: KnowledgeProgram | null): string {
-  const rows = recurringOrgs(k, p?.def.slug ?? null, 40);
-  if (!rows.length) return `No organizations are recorded${p ? ` for ${p.def.name}` : ""} yet.`;
-  if (p) {
-    const all = p.years.length;
-    const every = rows.filter((r) => r.years.length === all);
-    const isLfx = p.def.slug === "lfx-mentorship";
+/** An LFX term named in the text: "2026 term 3", "term 1 2027", "t3 2026". */
+function termIn(q: string): string | null {
+  const m = q.match(
+    /\b(20\d\d) ?(?:term|t) ?([123])\b|\b(?:term|t) ?([123]) (?:of |in )?(20\d\d)\b/,
+  );
+  return m ? `${m[1] ?? m[4]}-T${m[2] ?? m[3]}` : null;
+}
+
+/** Organizations in one year (or LFX term) split into first-timers and returning ones. */
+function cohortAnswer(
+  k: Knowledge,
+  p: KnowledgeProgram,
+  q: string,
+  year: number | null,
+  focus: "new" | "returning",
+): string | null {
+  if (p.def.slug === "lfx-mentorship") {
+    const lfx = k.lfx;
+    if (!lfx) return null;
+    const byTerm = new Map<string, Set<string>>();
+    for (const x of lfx.programs)
+      for (const t of x.terms) {
+        if (!byTerm.has(t)) byTerm.set(t, new Set());
+        byTerm.get(t)!.add(x.cncfProject);
+      }
+    const done = lfx.terms.map((t) => t.key).filter((key) => byTerm.get(key)?.size);
+    const asked = termIn(q);
+    const target = asked && byTerm.get(asked)?.size ? asked : asked ? null : done.at(-1);
+    const label = (key: string) => lfx.terms.find((t) => t.key === key)?.label ?? key;
+    if (!target)
+      return `LFX Mentorship ${label(asked!)} has no selected projects listed yet. Ask for a forecast instead, for example *which CNCF projects are likely in ${label(asked!)}*.`;
+    const before = done.filter((key) => key < target);
+    const rows = [...byTerm.get(target)!].map((name) => {
+      const earlier = before.filter((key) => byTerm.get(key)!.has(name));
+      return {
+        name,
+        earlier,
+        programs: lfx.programs.filter((x) => x.cncfProject === name && x.terms.includes(target))
+          .length,
+      };
+    });
+    const fresh = rows.filter((r) => !r.earlier.length);
+    const back = rows
+      .filter((r) => r.earlier.length)
+      .sort((a, b) => b.earlier.length - a.earlier.length);
+    const shown = focus === "new" ? fresh : back;
     return [
-      `### Organizations that keep coming back to ${p.def.name}`,
+      `### ${focus === "new" ? "New" : "Returning"} CNCF projects in LFX Mentorship ${label(target)}`,
+      `${label(target)} has ${plural(rows.length, "CNCF project")}: ${fresh.length} taking part for the first time and ${back.length} that were in earlier terms.`,
+      shown.length
+        ? table(
+            focus === "new"
+              ? ["CNCF project", "Programs this term"]
+              : ["CNCF project", "Programs this term", "Earlier terms", "Previous term"],
+            shown.map((r) =>
+              focus === "new"
+                ? [md(r.name, `/programs/lfx/organizations/${slugOf(k, r.name)}`), r.programs]
+                : [
+                    md(r.name, `/programs/lfx/organizations/${slugOf(k, r.name)}`),
+                    r.programs,
+                    r.earlier.length,
+                    label(r.earlier.at(-1)!),
+                  ],
+            ),
+            40,
+          )
+        : `No ${focus === "new" ? "first-time" : "returning"} projects in this term.`,
+    ].join("\n\n");
+  }
+  const years = [...p.years].sort((a, b) => a - b);
+  const target = year && years.includes(year) ? year : year ? null : years.at(-1);
+  if (!target)
+    return `${p.def.name} ${year} has no organizations recorded yet. Ask for a forecast instead, for example *which organizations are likely in ${p.def.short} ${year}*.`;
+  const rows = k.orgs
+    .map((o) => {
+      const entries = o.programs.filter((e) => e.program === p.def.slug);
+      const ys = uniqNums(entries.flatMap((e) => e.years));
+      return ys.includes(target)
+        ? { o, entry: entries[0]!, earlier: ys.filter((y) => y < target) }
+        : null;
+    })
+    .filter((r) => r !== null);
+  const fresh = rows.filter((r) => !r.earlier.length);
+  const back = rows
+    .filter((r) => r.earlier.length)
+    .sort((a, b) => b.earlier.length - a.earlier.length);
+  const shown = focus === "new" ? fresh : back;
+  const first = years[0]!;
+  return [
+    `### ${focus === "new" ? "New" : "Returning"} organizations in ${p.def.name} ${target}`,
+    `${p.def.name} ${target} has ${plural(rows.length, "organization")}: ${fresh.length} not seen in any recorded earlier year${first < target ? ` (since ${first})` : ""} and ${back.length} that came back.`,
+    shown.length
+      ? table(
+          focus === "new"
+            ? ["Organization", "Repository"]
+            : ["Organization", "Earlier years", "Repository"],
+          shown.map((r) => {
+            const repo = r.o.repoUrl
+              ? md(r.o.repoUrl.replace(/^https?:\/\/(www\.)?/, ""), r.o.repoUrl)
+              : "";
+            return focus === "new"
+              ? [md(r.o.name, r.entry.pageUrl), repo]
+              : [md(r.o.name, r.entry.pageUrl), yearsText(r.earlier), repo];
+          }),
+          60,
+        )
+      : `No ${focus === "new" ? "new" : "returning"} organizations that year.`,
+    first === target
+      ? `_${target} is the first year OpenSourceX records, so every organization counts as new._`
+      : "",
+  ]
+    .filter(Boolean)
+    .join("\n\n");
+}
+
+function recurringAnswer(
+  k: Knowledge,
+  p: KnowledgeProgram | null,
+  tech: string | null = null,
+): string {
+  const usesTech = (o: KnowledgeOrg) =>
+    !tech || o.tags.some((t) => ` ${normalize(t)} `.includes(` ${normalize(tech)} `));
+  const rows = recurringOrgs(k, p?.def.slug ?? null, tech ? 2000 : 40)
+    .filter((r) => usesTech(r.org))
+    .slice(0, 40);
+  if (!rows.length)
+    return `No organizations${tech ? ` using ${tech}` : ""} are recorded${p ? ` for ${p.def.name}` : ""} yet.`;
+  if (p) {
+    // terms only when the LFX term history loaded; otherwise rank by the years each org lists
+    const isLfx = p.def.slug === "lfx-mentorship" && rows.some((r) => r.terms.length);
+    const years = p.years.length ? p.years : uniqNums(rows.flatMap((r) => r.years));
+    const all = years.length;
+    const every = rows.filter((r) => r.years.length === all);
+    return [
+      `### Organizations${tech ? ` using ${tech}` : ""} that keep coming back to ${p.def.name}`,
       every.length && all > 1
-        ? `${plural(every.length, "organization")} took part in every recorded year (${yearsText(p.years)}).`
-        : `Ranked by how many recorded ${isLfx ? "terms" : "years"} each organization took part in (${yearsText(p.years)}).`,
+        ? `${plural(every.length, "organization")} took part in every recorded year (${yearsText(years)}).`
+        : `Ranked by how many recorded ${isLfx ? "terms" : "years"} each organization took part in (${yearsText(years)}).`,
       table(
         ["Organization", isLfx ? "Terms" : "Years", "Which", "Page"],
         rows.map((r) => [
@@ -1099,6 +1251,7 @@ export function answerOffline(
   const programMatch = findProgramMatch(k, raw);
   const year = Number(q.match(/\b(20[12]\d)\b/)?.[1]) || null;
   const parts = wanted(q);
+  const linkParts = parts.filter((x) => x !== "projects");
   const isRecurring =
     /repeat|recurr|every (year|term|time)|each (year|term)|again and again|consisten|regular|returning|most (years|terms|times|often)|keep coming|many (years|terms)|multiple (years|terms)/.test(
       q,
@@ -1121,7 +1274,7 @@ export function answerOffline(
   const lfxProgram = k.programs.find((p) => p.def.slug === "lfx-mentorship") ?? null;
   const viaFoundation =
     !!foundation &&
-    !parts.length &&
+    !linkParts.length &&
     (isProgramInfo || listIntent) &&
     (!programMatch || programMatch.p === lfxProgram);
   const program = programMatch?.p ?? (viaFoundation ? lfxProgram : null);
@@ -1133,6 +1286,12 @@ export function answerOffline(
   let mentioned = orgsMentioned(k, orgText).filter(
     (o) => !program || normalize(o.name) !== normalize(program.def.name),
   );
+  if (
+    foundation?.[1] === "CNCF" &&
+    !linkParts.length &&
+    (!programMatch || programMatch.p === lfxProgram)
+  )
+    mentioned = mentioned.filter((o) => normalize(o.name) !== "cncf");
   if (!mentioned.length && (parts.length || /\b(its|their|it|they|that|this)\b/.test(q)))
     for (const prev of [...ctx.previous].reverse()) {
       mentioned = orgsMentioned(k, prev);
@@ -1168,21 +1327,40 @@ ${orgCard(org, ["repo", "projects"], q)}`,
   // 0b. forecasts: which organizations are likely in the next term or year
   if (
     PREDICT.test(q) &&
-    !parts.length &&
+    !linkParts.length &&
     (program ||
       mentioned.length ||
       lfxSpecific ||
       /\b(orgs?|organi[sz]ations?|projects?|repeat|selected)\b/.test(q))
   ) {
     const yearly = program && program.def.slug !== "lfx-mentorship" && program.years.length >= 2;
+    if (program && program !== lfxProgram && !yearly) {
+      const last = program.years.at(-1);
+      const list = last ? orgList(k, q, program, null, last) : null;
+      return withNote(
+        `OpenSourceX records ${program.def.name} for ${last ? `only ${last}` : "no year yet"}, so there is no pattern to forecast from. The organizations from that year are the best guide to the next one.${list ? `\n\n${list}` : ""}\n\n${PREDICT_NOTE}`,
+      );
+    }
     const forecast = yearly
-      ? yearPrediction(k, program, q, mentioned)
+      ? yearPrediction(k, program, q, mentioned, techIn(normalize(orgText)))
       : lfxPrediction(k, q, mentioned);
     const cncfOnly =
       !yearly && foundation && foundation[1] !== "CNCF"
         ? `Term-by-term history is recorded only for CNCF projects, so this forecast covers CNCF, not ${foundation[2]}.\n\n`
         : "";
     if (forecast) return withNote(cncfOnly + forecast);
+  }
+
+  // 0c. which organizations in a year or term are new, and which came back
+  const newQ = /\bnew\b|first time|first-time|debut|newcomers?|newly/.test(q);
+  const backQ =
+    isRecurring ||
+    /came back|again|returning|returned|old orgs|previous(ly)? (years?|terms?)/.test(q);
+  const whenQ =
+    !!year || !!termIn(q) || /this (year|term)|latest|recent|last (year|term)|current/.test(q);
+  if (program && !mentioned.length && (newQ || (backQ && whenQ))) {
+    const a = cohortAnswer(k, program, q, year, newQ ? "new" : "returning");
+    if (a) return withNote(a);
   }
 
   // 1. links and details for a named organization
@@ -1236,7 +1414,7 @@ ${orgCard(org, ["repo", "projects"], q)}`,
   if (isRecurring) {
     if (program?.def.slug === "lfx-mentorship" && k.lfx)
       return withNote(lfxToMarkdown(answerQuestion(raw, k.lfx)));
-    return withNote(recurringAnswer(k, program));
+    return withNote(recurringAnswer(k, program, techIn(normalize(orgText))));
   }
 
   // 3a. questions across programs: compare two, list them all, upcoming deadlines

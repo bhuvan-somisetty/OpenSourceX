@@ -238,6 +238,36 @@ describe("forecasts", () => {
     );
   });
 
+  it("answers the questions people ask before GSoC and LFX open", () => {
+    const cases: [string, RegExp][] = [
+      ["new orgs in gsoc 2026", /^### New organizations in Google Summer of Code 2026/],
+      [
+        "which orgs repeated in gsoc 2026",
+        /^### Returning organizations in Google Summer of Code 2026/,
+      ],
+      [
+        "will ankidroid come again in gsoc",
+        /^\*\*AnkiDroid: (High|Medium|Low) chance for GSoC 2027\.\*\*/,
+      ],
+      ["gsoc 2027 timeline", /GSoC 2027 dates are not published yet/],
+      ["summer of bitcoin 2027 orgs prediction", /no pattern to forecast from/],
+      [
+        "predict gsoc orgs using rust",
+        /organizations using rust likely in Google Summer of Code 2027/,
+      ],
+      [
+        "which orgs repeated in lfx 2026 term 3",
+        /^### Returning CNCF projects in LFX Mentorship 2026 Term 3[\s\S]*Volcano/,
+      ],
+      ["which projects are new in lfx 2026 term 3", /0 taking part for the first time/],
+      [
+        "which cncf projects will be in lfx term 1 2027",
+        /^### Prediction: CNCF projects likely in LFX Mentorship 2027 Term 1/,
+      ],
+    ];
+    for (const [q, re] of cases) expect(answerOffline(q, fk), q).toMatch(re);
+  });
+
   it("still lists a finished term's orgs as history", () => {
     expect(answerOffline("which orgs appeared in lfx 2026 term 3", fk)).not.toMatch(/Prediction/);
   });
