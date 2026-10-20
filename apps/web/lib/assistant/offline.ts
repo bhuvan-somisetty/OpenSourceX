@@ -644,6 +644,75 @@ function yearPrediction(
   ].join("\n\n");
 }
 
+const REPO_REPEAT =
+  /\b(repos?|repositor(y|ies))\b.*\b(repeat\w*|again|most|many times|often|recurr\w*|last (time|term)|latest|previous|every term|each term|keep)\b|\b(repeat\w*|most|recurr\w*)\b.*\b(repos?|repositor(y|ies))\b/;
+
+/** Repositories inside one CNCF project, by how many LFX terms had mentorships in them. */
+function repoRepeatAnswer(k: Knowledge, org: KnowledgeOrg): string | null {
+  const lfx = k.lfx;
+  if (!lfx) return null;
+  const own = lfx.programs.filter(
+    (p) =>
+      normalize(p.cncfProject) === normalize(org.name) ||
+      (!!org.lfxSlug && p.cncfProjectSlug === org.lfxSlug),
+  );
+  if (!own.length) return null;
+  const repos = new Map<string, { url: string; terms: Set<string>; programs: typeof own }>();
+  for (const p of own) {
+    const m = p.upstreamUrl?.match(/github\.com\/([^/\s]+\/[^/\s#?]+)/i);
+    if (!m) continue;
+    const name = m[1]!.replace(/\.git$/, "");
+    const key = name.toLowerCase();
+    if (!repos.has(key))
+      repos.set(key, { url: `https://github.com/${name}`, terms: new Set(), programs: [] });
+    const r = repos.get(key)!;
+    p.terms.forEach((t) => r.terms.add(t));
+    r.programs.push(p);
+  }
+  if (!repos.size) return null;
+  const label = (key: string) => lfx.terms.find((t) => t.key === key)?.label ?? key;
+  const orgTerms = [...new Set(own.flatMap((p) => p.terms))].sort();
+  const latest = orgTerms.at(-1)!;
+  const rows = [...repos.entries()]
+    .map(([key, r]) => {
+      const terms = [...r.terms].sort();
+      return {
+        key,
+        ...r,
+        list: terms,
+        inLatest: r.terms.has(latest),
+        before: terms.filter((t) => t < latest).length,
+      };
+    })
+    .sort((a, b) => b.list.length - a.list.length || b.programs.length - a.programs.length);
+  const repoLink = (r: (typeof rows)[number]) => md(r.key, r.url);
+  const lastTime = rows.filter((r) => r.inLatest);
+  const repeatedLast = lastTime.filter((r) => r.before > 0);
+  const out = [
+    `### ${org.name}: repositories that repeat in LFX Mentorship`,
+    `${plural(own.length, "mentorship program")} across ${plural(orgTerms.length, "term")} (${label(orgTerms[0]!)} to ${label(latest)}), in ${repos.size} ${repos.size === 1 ? "repository" : "repositories"}.`,
+    `**Latest term, ${label(latest)}:** ${lastTime.map(repoLink).join(", ") || "none"}.` +
+      (repeatedLast.length
+        ? ` Of these, ${repeatedLast.map((r) => `${repoLink(r)} (${plural(r.before + 1, "term")} so far)`).join(", ")} also had mentorships in earlier terms.`
+        : " None of them had mentorships in earlier terms."),
+    "**Repeated most often:**",
+    table(
+      ["Repository", "Terms", "Programs", "First", "Latest", `In ${label(latest)}`],
+      rows.map((r) => [
+        repoLink(r),
+        r.list.length,
+        r.programs.length,
+        label(r.list[0]!),
+        label(r.list.at(-1)!),
+        r.inLatest ? "Yes" : "",
+      ]),
+      20,
+    ),
+    `Each program's own link points to an issue in that repository; see them on ${md(`${org.name}'s page`, (org.programs.find((e) => e.program === "lfx-mentorship") ?? org.programs[0]!).pageUrl)}. _Source: CNCF mentoring repository._`,
+  ];
+  return out.join("\n\n");
+}
+
 function recurringAnswer(k: Knowledge, p: KnowledgeProgram | null): string {
   const rows = recurringOrgs(k, p?.def.slug ?? null, 40);
   if (!rows.length) return `No organizations are recorded${p ? ` for ${p.def.name}` : ""} yet.`;
@@ -1082,6 +1151,18 @@ export function answerOffline(
   if ((!program || (program === lfxProgram && /\bterms?\b/.test(q))) && !mentioned.length) {
     const stats = statsAnswer(k, q);
     if (stats) return withNote(stats);
+  }
+
+  // 0a. repositories inside one organization that keep getting mentorships
+  if (mentioned.length && REPO_REPEAT.test(q)) {
+    const org = mentioned[0]!;
+    const a = repoRepeatAnswer(k, org);
+    return withNote(
+      a ??
+        `Repository-by-term history is recorded only for CNCF projects in LFX Mentorship, so OpenSourceX can't say which ${org.name} repositories repeat. Here is what it records:
+
+${orgCard(org, ["repo", "projects"], q)}`,
+    );
   }
 
   // 0b. forecasts: which organizations are likely in the next term or year

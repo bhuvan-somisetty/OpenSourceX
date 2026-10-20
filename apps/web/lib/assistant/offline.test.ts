@@ -242,3 +242,35 @@ describe("forecasts", () => {
     expect(answerOffline("which orgs appeared in lfx 2026 term 3", fk)).not.toMatch(/Prediction/);
   });
 });
+
+describe("repositories that repeat inside an organization", () => {
+  const withRepo = (term: string, repo: string): HistoryProgram => ({
+    ...prog("Volcano", "volcano", [term]),
+    id: `mp-${term}-${repo}`,
+    upstreamUrl: `https://github.com/volcano-sh/${repo}/issues/1`,
+  });
+  let rk: Knowledge;
+  beforeAll(async () => {
+    rk = await buildKnowledge({
+      ...LFX,
+      programs: [
+        withRepo("2025-T3", "volcano"),
+        withRepo("2026-T1", "volcano"),
+        withRepo("2026-T1", "dashboard"),
+        withRepo("2025-T3", "website"),
+      ],
+    });
+  });
+
+  it("lists the latest term's repos and ranks them by terms", () => {
+    const a = answerOffline(
+      "in volcano org, give me repo links that repeated last time and which repeated many times",
+      rk,
+    );
+    expect(a).toMatch(/^### Volcano: repositories that repeat/);
+    expect(a).toMatch(/Latest term, 2026 Term 1:\*\* \[volcano-sh\/volcano\]/);
+    expect(a).toMatch(
+      /\| \[volcano-sh\/volcano\]\(https:\/\/github.com\/volcano-sh\/volcano\) \| 2 \|/,
+    );
+  });
+});
