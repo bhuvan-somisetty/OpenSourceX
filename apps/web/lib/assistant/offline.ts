@@ -1,7 +1,7 @@
 import type { KnowledgeHit } from "@opensourcex/database";
 import { answerQuestion, type Answer } from "@/lib/ask";
 import {
-  findProgram,
+  findProgramMatch,
   normalize,
   orgsMentioned,
   recurringOrgs,
@@ -67,9 +67,16 @@ function orgCard(o: KnowledgeOrg, parts: Part[], q: string): string {
   const show = (p: Part) => parts.includes("all") || parts.includes(p);
   const lines: string[] = [`### ${o.name}`];
   if (o.description && parts.includes("all")) lines.push(o.description);
-  const platform = ["slack", "discord", "matrix", "irc", "zulip", "gitter", "telegram"].find((p) =>
-    q.includes(p),
-  );
+  const platform = [
+    "slack",
+    "discord",
+    "matrix",
+    "irc",
+    "zulip",
+    "gitter",
+    "telegram",
+    "forum",
+  ].find((p) => q.includes(p));
 
   if (show("repo")) {
     const repo = o.repoUrl ?? o.githubUrl;
@@ -255,6 +262,17 @@ function recurringAnswer(k: Knowledge, p: KnowledgeProgram | null): string {
   ].join("\n\n");
 }
 
+/** LFX foundations as people name them: [pattern, entry foundation key, display name]. */
+const LFX_FOUNDATIONS: [RegExp, string, string][] = [
+  [/\bcncf\b|cloud native/, "CNCF", "CNCF"],
+  [/decentrali[sz]ed trust|\blfdt\b|hyperledger/, "LFDT", "LF Decentralized Trust"],
+  [/risc ?v/, "RISC-V", "RISC-V International"],
+  [/mainframe|\bomp\b/, "Open Mainframe", "Open Mainframe Project"],
+  [/\bkernel\b/, "Linux Kernel", "The Linux Kernel Organization"],
+  [/\bsonic\b/, "SONiC", "SONiC Foundation"],
+  [/lf networking|\blfn\b/, "LF Networking", "LF Networking"],
+];
+
 function orgList(
   k: Knowledge,
   q: string,
@@ -262,13 +280,20 @@ function orgList(
   tech: string | null,
   year: number | null,
 ): string | null {
+  const foundation =
+    p?.def.slug === "lfx-mentorship" ? (LFX_FOUNDATIONS.find(([re]) => re.test(q)) ?? null) : null;
   const found = searchOrgs(k, {
     program: p?.def.slug,
     technology: tech ?? undefined,
     year: year ?? undefined,
-  });
+  }).filter(
+    (o) =>
+      !foundation ||
+      o.programs.some((e) => e.program === p!.def.slug && e.foundation === foundation[1]),
+  );
   if (!found.length) return null;
-  const scope = [p ? `in ${p.def.name}` : "", tech ? `using ${tech}` : "", year ? `in ${year}` : ""]
+  const where = foundation ? `${p!.def.name} (${foundation[2]})` : p?.def.name;
+  const scope = [p ? `in ${where}` : "", tech ? `using ${tech}` : "", year ? `in ${year}` : ""]
     .filter(Boolean)
     .join(" ");
   return [
@@ -451,7 +476,8 @@ export function answerOffline(
   const withNote = (s: string) => (ctx.aiNote ? `${s}\n\n_${ctx.aiNote}_` : s);
   if (!q) return withNote(FAQ[0]!.answer);
 
-  const program = findProgram(k, raw);
+  const programMatch = findProgramMatch(k, raw);
+  const program = programMatch?.p ?? null;
   const year = Number(q.match(/\b(20[12]\d)\b/)?.[1]) || null;
   const parts = wanted(q);
   const isRecurring =
@@ -464,7 +490,9 @@ export function answerOffline(
     );
   const lfxSpecific = /\bmentors?\b|mentored|\bterm\b|\bterms\b|\bt[123]\b|cncf/.test(q);
 
-  let mentioned = orgsMentioned(k, raw).filter(
+  // the program's own name is not an organization ("summer of bitcoin" is not Bitcoin Core)
+  const orgText = programMatch ? ` ${q} `.replace(` ${programMatch.key} `, " ") : raw;
+  let mentioned = orgsMentioned(k, orgText).filter(
     (o) => !program || normalize(o.name) !== normalize(program.def.name),
   );
   if (!mentioned.length && (parts.length || /\b(its|their|it|they|that|this)\b/.test(q)))
@@ -545,6 +573,8 @@ export function answerOffline(
 
   // 8. keyword search over organizations
   const found = searchOrgs(k, { query: raw }).slice(0, 12);
+  // a single match is the organization the user meant ("hiero discord")
+  if (found.length === 1) return withNote(orgCard(found[0]!, parts.length ? parts : ["all"], q));
   if (found.length && found.length < k.orgs.length)
     return withNote(
       [

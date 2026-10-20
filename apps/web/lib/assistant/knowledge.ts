@@ -181,8 +181,8 @@ export async function buildKnowledge(lfx: LfxHistory | null): Promise<Knowledge>
               repoUrl: o.repoUrl,
               githubUrl: o.githubUrl ?? null,
               tags: o.tags,
-              chats: [],
-              chatSource: null,
+              chats: o.chats ?? [],
+              chatSource: o.chatSource ?? null,
               logo: o.logo,
               categories: o.categories ?? [f.name],
             },
@@ -288,6 +288,9 @@ function aliases(o: KnowledgeOrg): string[] {
   const stripped = base.replace(GENERIC_SUFFIX, " ").replace(/\s+/g, " ").trim();
   const out = [base];
   if (stripped.length >= 4 && stripped !== base) out.push(stripped);
+  // "LF Energy (LFE)" is asked about as "LF Energy"
+  const bare = normalize(o.name.replace(/\s*\([^)]*\)/g, " "));
+  if (bare.length >= 4 && bare !== base) out.push(bare);
   for (const u of [o.repoUrl, o.githubUrl]) {
     const m = u?.match(/github\.com\/(?:orgs\/)?([^/?#]+)/i);
     if (m && m[1]!.length >= 4) out.push(normalize(m[1]!));
@@ -346,6 +349,14 @@ export function findOrg(
 }
 
 export function findProgram(k: Knowledge, text: string): KnowledgeProgram | null {
+  return findProgramMatch(k, text)?.p ?? null;
+}
+
+/** The program named in free text and the words that named it ("summer of bitcoin"). */
+export function findProgramMatch(
+  k: Knowledge,
+  text: string,
+): { p: KnowledgeProgram; key: string } | null {
   const t = normalize(text);
   const names = k.programs.flatMap((p) => {
     const keys = [
@@ -367,7 +378,7 @@ export function findProgram(k: Knowledge, text: string): KnowledgeProgram | null
       .map((key) => ({ key, p }));
   });
   names.sort((a, b) => b.key.length - a.key.length);
-  return names.find((x) => has(t, x.key))?.p ?? null;
+  return names.find((x) => has(t, x.key)) ?? null;
 }
 
 const QUERY_STOP = new Set(

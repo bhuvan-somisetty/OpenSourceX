@@ -102,6 +102,20 @@ describe("offline answers", () => {
     expect(answerOffline("what is the gsoc stipend?", k)).toMatch(/Stipend/);
   });
 
+  it("gives community links for orgs in other LFX foundations and programs", () => {
+    expect(answerOffline("lf energy slack", k)).toContain("https://slack.lfenergy.org/");
+    expect(answerOffline("hiero discord", k)).toMatch(/Hiero Ledger[\s\S]*discord/);
+    expect(answerOffline("tryton forum", k)).toContain("https://discuss.tryton.org");
+  });
+
+  it("reads a program's own name as the program, not an org", () => {
+    expect(answerOffline("summer of bitcoin stipend", k)).toMatch(/^### Summer of Bitcoin/);
+  });
+
+  it("lists the orgs of one LFX foundation", () => {
+    expect(answerOffline("lfx decentralized trust orgs", k)).toMatch(/\(LF Decentralized Trust\)/);
+  });
+
   it("is honest when nothing matches", () => {
     expect(answerOffline("zzqx flurble", k)).toMatch(/couldn't find/);
   });
