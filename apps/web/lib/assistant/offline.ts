@@ -1026,7 +1026,8 @@ const SITE_HELP: { test: RegExp; answer: () => string }[] = [
         "- **[Discover](/discover):** pick programs, languages and technologies and get matching organizations, with the reasons they match.",
         "- **[Ask](/ask):** this chat. Ask anything about open source; signed-in users keep their chat history.",
         "- **[Saved](/saved):** organizations, projects and repositories you keep for later.",
-        "- **[Analyze a repository](/repositories/analyze)** and **[Interview practice](/interview)**: previews; see their pages for what works today.",
+        "- **[Analyze a repository](/repositories/analyze):** paste any public GitHub repository and see, live from GitHub, its activity, issues and good first issues, languages, contributors, releases, contribution docs, structure and how to start contributing.",
+        "- **[Interview practice](/interview):** a preview; see its page for what works today.",
         "- **[Help & support](/support):** report a problem, with screenshots.",
         "Using it is free: no ads and no selling of data. See the [Terms](/terms) and [Privacy policy](/privacy).",
       ].join("\n\n"),
@@ -1081,7 +1082,7 @@ const SITE_HELP: { test: RegExp; answer: () => string }[] = [
   {
     test: /analy[sz]e (a |my |the |this |any )?(github )?(repo|repository)|(repo|repository) analy[sz]/,
     answer: () =>
-      "### Analyze a repository\n\n[Analyze a repository](/repositories/analyze) is meant to show what a GitHub repository is, how active it is and how to start contributing, with evidence and no single score. Live analysis is not switched on yet: today you can check a repository URL and save it.\n\nMeanwhile, ask here about a repository (for example *activity of kubernetes/kubernetes*) and Ask uses live GitHub data when it is available.",
+      "### Analyze a repository\n\nOpen [Analyze a repository](/repositories/analyze) and paste a GitHub URL (or just *owner/repo*). It reads the repository live from GitHub and shows:\n\n- **Activity:** commits in the last 90 days on the branch work is merged into, weeks with commits, merged and open pull requests, and a plain label (Active, Steady, Quiet…) with the numbers behind it.\n- **Issues:** open and recently closed issues, good first issues and help wanted, with the newest good first issues listed.\n- **Languages and technology:** language shares, build tools and CI found in the repository.\n- **Contribution docs:** README, contributing guide, code of conduct, licence and templates.\n- **Contributors, releases and the top-level folder structure.**\n- **How to start contributing**, built from those facts, plus the organization's programs, community chat and past LFX Mentorship projects when OpenSourceX records them.\n\nNothing is scored, and every figure links to its source on GitHub. On a project page, *Analyze this repository live* opens it directly.",
   },
   {
     test: /\binterview (practice|prep|preparation|page|mode)|practi[cs]e (an? |for )?interview|mock interview/,

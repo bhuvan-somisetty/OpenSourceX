@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { AnalyzeForm } from "@/features/repositories/AnalyzeForm";
-import { Notice } from "@/components/feedback/Notice";
 
 export const metadata: Metadata = { title: "Analyze a repository" };
 
@@ -16,7 +15,13 @@ const CAN = [
   "Contribution docs",
 ];
 
-export default function Analyze() {
+export default async function Analyze({
+  searchParams,
+}: {
+  searchParams: Promise<{ repo?: string | string[] }>;
+}) {
+  const sp = await searchParams;
+  const initial = (Array.isArray(sp.repo) ? sp.repo[0] : sp.repo)?.slice(0, 300) ?? "";
   return (
     <div className="narrow">
       <section className="page-hero">
@@ -29,16 +34,12 @@ export default function Analyze() {
           is, and how to start contributing, with evidence and no single score.
         </p>
       </section>
-      <Notice kind="dev" testId="analyze-banner">
-        Live repository analysis is not enabled in this development build. You can validate a URL,
-        save the repository, and check the recorded sample.
-      </Notice>
       <div style={{ marginTop: 20 }}>
-        <AnalyzeForm />
+        <AnalyzeForm initial={initial} />
       </div>
       <section className="block" aria-labelledby="can-h">
         <h2 id="can-h" style={{ fontSize: 20 }}>
-          What OpenSourceX will understand
+          What the analysis shows
         </h2>
         <div className="chips" style={{ marginTop: 14, gap: 10 }}>
           {CAN.map((c) => (
@@ -48,7 +49,10 @@ export default function Analyze() {
           ))}
         </div>
         <p className="hint" style={{ marginTop: 12 }}>
-          None of this is available until live GitHub analysis is approved and connected.
+          Read live from GitHub&apos;s public API for public repositories, with links to the source
+          of every figure. Nothing is scored; activity labels come with the numbers behind them. If
+          the organization is in a mentorship program, its programs, community chat and past LFX
+          Mentorship projects in the repository are shown too.
         </p>
       </section>
     </div>

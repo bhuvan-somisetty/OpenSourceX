@@ -7762,3 +7762,136 @@ button.play-card {
     transition: none;
   }
 }
+
+/* repository analysis */
+.ra {
+  display: grid;
+  gap: 16px;
+}
+.ra-head .ra-title {
+  margin: 14px 0 6px;
+  font-size: clamp(22px, 3vw, 30px);
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+}
+.ra-head .ra-title a {
+  color: var(--text);
+  text-decoration: none;
+}
+.ra-head .ra-title a:hover {
+  text-decoration: underline;
+}
+.ra-desc {
+  margin: 0 0 6px;
+}
+.ra-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+.ra-fact {
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--glass);
+  min-width: 0;
+}
+.ra-fact-v {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+}
+.ra-panel {
+  margin: 0;
+}
+.ra-h {
+  margin: 0 0 12px;
+  font-size: 16px;
+}
+.ra-sub {
+  margin: 16px 0 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+.ra-steps ol {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 8px;
+  line-height: 1.55;
+}
+.ra-langbar {
+  display: flex;
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--glass);
+}
+.ra-langbar span {
+  min-width: 2px;
+}
+.ra-langs,
+.ra-docs,
+.ra-tree {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  font-size: 14px;
+}
+.ra-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+.ra-docs {
+  display: grid;
+  gap: 8px;
+}
+.ra-docs li {
+  display: flex;
+  gap: 8px;
+}
+.ra-docs li.has > span:first-child {
+  color: var(--ok);
+}
+.ra-docs li.missing > span:first-child {
+  color: var(--text-dim);
+}
+.ra-tree {
+  font: 13px var(--mono);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  gap: 6px 16px;
+}
+.ra-tree li {
+  overflow-wrap: anywhere;
+}
+.ra-tree li.dir a {
+  font-weight: 600;
+}
+.ra-tree .muted {
+  font-family: var(--font);
+  font-size: 12px;
+}
+.linklike {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--accent);
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.linklike:disabled {
+  opacity: 0.5;
+  cursor: default;
+}

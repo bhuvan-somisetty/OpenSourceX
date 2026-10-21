@@ -328,14 +328,20 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
             ) : (
               <p className="muted">Repository not verified.</p>
             )}
-            <div style={{ marginTop: 12 }}>
-              <Notice kind="dev">
-                Repository facts (languages, contributors, commits, issues, pull requests) require
-                live GitHub analysis, which is{" "}
-                <strong>not enabled in this development build</strong>.{" "}
-                <Link href="/repositories/analyze">Analyze a repository</Link>
-              </Notice>
-            </div>
+            {p.repoUrl && /github\.com\//i.test(p.repoUrl) && (
+              <div className="actions" style={{ marginTop: 12 }}>
+                <Link
+                  className="btn"
+                  href={`/repositories/analyze?repo=${encodeURIComponent(p.repoUrl)}`}
+                >
+                  Analyze this repository live
+                </Link>
+                <span className="hint">
+                  Languages, activity, issues, contributors, releases and contribution docs, from
+                  GitHub.
+                </span>
+              </div>
+            )}
           </section>
 
           <section className="card" id="mentors" aria-labelledby="me">

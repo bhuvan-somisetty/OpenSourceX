@@ -194,7 +194,7 @@ test("saved page filters by program and type; repository and project-detail save
   await page.goto("/repositories/analyze");
   await page.waitForLoadState("networkidle");
   await page.getByLabel("GitHub repository URL").fill("https://github.com/jaegertracing/jaeger-ui");
-  await page.getByRole("button", { name: "Check repository" }).click();
+  await page.getByRole("button", { name: "Analyze repository" }).click();
   await page.getByTestId("analyze-save").getByTestId("save-button").click();
   await expect(page.getByTestId("analyze-save").getByTestId("save-button")).toHaveAttribute(
     "aria-pressed",
@@ -322,11 +322,8 @@ test("repository analyzer, interview workspace and not-found", async ({ page }) 
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
     "Understand any open source repository.",
   );
-  await expect(page.getByTestId("analyze-banner")).toContainText(
-    "Live repository analysis is not enabled in this development build",
-  );
   await page.getByLabel("GitHub repository URL").fill("https://gitlab.com/a/b");
-  await page.getByRole("button", { name: "Check repository" }).click();
+  await page.getByRole("button", { name: "Analyze repository" }).click();
   await expect(page.getByTestId("analyze-invalid")).toContainText("github.com");
   await page.goto("/interview");
   await page.waitForLoadState("networkidle");
