@@ -1,21 +1,17 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getProject, listProjects } from "@opensourcex/database";
+import { listProjects } from "@opensourcex/database";
+import { getSession } from "@/lib/auth";
 import { load } from "@/lib/data";
-import { first, withParams, type Params } from "@/lib/url";
-import { DbDown, EmptyState, Notice } from "@/components/feedback/Notice";
-import { InterviewSession, type InterviewContext } from "@/features/interview/InterviewSession";
+import { first, type Params } from "@/lib/url";
+import { DbDown, EmptyState } from "@/components/feedback/Notice";
+import { interviewAiAvailable } from "@/lib/interview/ai";
+import { MODE_KEYS, tidyTechnologies, type Mode } from "@/lib/interview/coach";
+import { interviewProject } from "@/lib/interview/project";
+import { VoiceInterview, type ProjectOption } from "@/features/interview/VoiceInterview";
 
 export const metadata: Metadata = { title: "Interview" };
 export const dynamic = "force-dynamic";
-
-const MODES = [
-  ["understanding", "Project understanding", true],
-  ["contribution", "Contribution", true],
-  ["pr", "PR review", false],
-  ["technical", "Technical", false],
-  ["architecture", "Architecture", false],
-] as const;
 
 export default async function Interview({ searchParams }: { searchParams: Promise<Params> }) {
   const sp = await searchParams;
@@ -27,39 +23,43 @@ export default async function Interview({ searchParams }: { searchParams: Promis
       </div>
     );
   const items = list.data.items.filter((p) => p.kind === "mentorship");
-  const chosen = first(sp.project) || items[0]?.id;
-  const mode = (MODES.find((m) => m[0] === first(sp.mode) && m[2])?.[0] ?? "understanding") as
-    "understanding" | "contribution";
-  const detail = chosen ? await load((d) => getProject(d, chosen)) : null;
-  const ctx: InterviewContext | null =
-    detail && detail.ok && detail.data
-      ? {
-          id: detail.data.card.id,
-          name: detail.data.card.name,
-          summary: detail.data.card.summary,
-          technologies: detail.data.card.technologies,
-          repoUrl: detail.data.card.repoUrl,
-          mentors: detail.data.detail.mentors.map((m) => m.name),
-        }
-      : null;
-  const cur: Params = { project: chosen, mode };
+  const chosen = items.find((p) => p.id === first(sp.project))?.id ?? items[0]?.id;
+  const mode = (MODE_KEYS.find((m) => m === first(sp.mode)) ?? "understanding") as Mode;
+  const detail = chosen ? await load((d) => interviewProject(d, chosen)) : null;
+  const ctx = detail?.ok ? detail.data : null;
+  const projects: ProjectOption[] = items.map((p) => ({
+    id: p.id,
+    name: p.name,
+    org: p.org,
+    program: p.program.name,
+    technologies: tidyTechnologies(p.technologies),
+    repoUrl: p.repoUrl,
+  }));
+  const session = await getSession();
 
   return (
-    <div className="narrow">
-      <section className="page-hero">
-        <div className="eyebrow">Interview</div>
+    <div className="wrap iv-wrap">
+      <section className="page-hero iv-hero">
+        <div className="eyebrow">Interview practice</div>
         <h1 className="page" style={{ marginTop: 14 }}>
-          Prepare to explain your contribution.
+          Talk it through with an interviewer.
         </h1>
         <p className="sub">
-          Answer first. Reference material appears only after you submit, so you practice
-          understanding, not reading.
+          Pick your project and answer out loud. The interviewer asks real mentorship-interview
+          questions, listens, follows up, and tells you exactly where to focus.
         </p>
+        <ul className="iv-hero-points" aria-label="How it works">
+          <li>
+            <span>1</span> Choose a project and interview type
+          </li>
+          <li>
+            <span>2</span> Speak your answers, or type them
+          </li>
+          <li>
+            <span>3</span> Get scores, feedback and a focus plan
+          </li>
+        </ul>
       </section>
-      <Notice kind="dev" testId="interview-dev">
-        <strong>Development version.</strong> No AI is connected. After you answer you see the
-        recorded facts and a simple check of which recorded technologies you mentioned.
-      </Notice>
       {items.length === 0 || !ctx ? (
         <div style={{ marginTop: 20 }}>
           <EmptyState
@@ -74,61 +74,20 @@ export default async function Interview({ searchParams }: { searchParams: Promis
           </EmptyState>
         </div>
       ) : (
-        <>
-          <form method="get" className="card" style={{ marginTop: 20, display: "grid", gap: 16 }}>
-            <input type="hidden" name="mode" value={mode} />
-            <div className="field">
-              <label htmlFor="project">Choose a project</label>
-              <select id="project" name="project" defaultValue={ctx.id}>
-                {items.map((p) => (
-                  <option key={p.id} value={p.id}>
-                    {p.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <div className="dim" style={{ fontSize: 13, marginBottom: 8 }}>
-                Choose mode
-              </div>
-              <div className="scroll-x">
-                <div
-                  className="segmented"
-                  role="group"
-                  aria-label="Interview mode"
-                  data-testid="modes"
-                >
-                  {MODES.map(([k, l, on]) =>
-                    on ? (
-                      <Link
-                        key={k}
-                        href={withParams("/interview", cur, { mode: k })}
-                        aria-current={mode === k ? "true" : undefined}
-                      >
-                        {l}
-                      </Link>
-                    ) : (
-                      <button key={k} type="button" disabled title="Not available in this build">
-                        {l}
-                      </button>
-                    ),
-                  )}
-                </div>
-              </div>
-              <p className="hint" style={{ marginTop: 8 }}>
-                PR review, Technical and Architecture modes need repository analysis and AI, which
-                are not connected.
-              </p>
-            </div>
-            <div className="actions" style={{ marginTop: 0 }}>
-              <button className="btn primary" type="submit" data-testid="start-interview">
-                Start Interview
-              </button>
-            </div>
-          </form>
-          <InterviewSession key={`${ctx.id}-${mode}`} ctx={ctx} mode={mode} />
-        </>
+        <VoiceInterview
+          key={ctx.id}
+          projects={projects}
+          initial={ctx}
+          initialMode={mode}
+          aiReady={interviewAiAvailable()}
+          signedIn={!!session}
+        />
       )}
+      <p className="hint iv-privacy">
+        Voice stays in your browser: your browser turns speech into text (Chrome and Edge use their
+        own speech service for this). Only the text of your answers is sent to OpenSourceX to be
+        scored, and it is not saved. See the <Link href="/privacy">Privacy policy</Link>.
+      </p>
     </div>
   );
 }

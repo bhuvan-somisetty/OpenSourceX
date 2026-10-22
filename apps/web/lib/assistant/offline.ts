@@ -1027,7 +1027,7 @@ const SITE_HELP: { test: RegExp; answer: () => string }[] = [
         "- **[Ask](/ask):** this chat. Ask anything about open source; signed-in users keep their chat history.",
         "- **[Saved](/saved):** organizations, projects and repositories you keep for later.",
         "- **[Analyze a repository](/repositories/analyze):** paste any public GitHub repository and see, live from GitHub, its activity, issues and good first issues, languages, contributors, releases, contribution docs, structure and how to start contributing.",
-        "- **[Interview practice](/interview):** a preview; see its page for what works today.",
+        "- **[Interview practice](/interview):** a voice mock interview on a mentorship project: the interviewer asks questions out loud, you answer by voice or typing, and you get scores, feedback and where to focus.",
         "- **[Help & support](/support):** report a problem, with screenshots.",
         "Using it is free: no ads and no selling of data. See the [Terms](/terms) and [Privacy policy](/privacy).",
       ].join("\n\n"),
@@ -1087,7 +1087,7 @@ const SITE_HELP: { test: RegExp; answer: () => string }[] = [
   {
     test: /\binterview (practice|prep|preparation|page|mode)|practi[cs]e (an? |for )?interview|mock interview/,
     answer: () =>
-      "### Interview practice\n\n[Interview practice](/interview) helps you explain a contribution: you answer first, and reference material appears only after you submit, with a check of which recorded technologies you mentioned. It is a preview; the PR review, Technical and Architecture modes need repository analysis and AI, which are not connected yet.",
+      "### Interview practice\n\n[Interview practice](/interview) is a voice mock interview for mentorship programs. Pick a project and a mode (Project understanding, Contribution, PR review, Technical or Architecture), a level and 3 to 6 questions. The interviewer reads each question aloud; you answer out loud (Chrome or Edge) or type. Hands-free mode opens the mic after each question and sends your answer after a short pause; otherwise hold Space or tap the mic.\n\nEach answer is scored on answering the question, project knowledge, technical depth, structure and clarity, with filler words and pace. Signed in, the AI interviewer asks follow-ups; otherwise the offline coach scores. The report ends with where to focus next, and you can download it.",
   },
   {
     test: /mobile app|android app|ios app|iphone app|(download|install) (the |an )?app|play store|app store/,

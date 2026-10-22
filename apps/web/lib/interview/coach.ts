@@ -1,0 +1,542 @@
+/**
+ * Interview coach: question banks, answer scoring and the final report. Everything here is pure
+ * and runs without AI, so practice still works when no provider is configured or the free daily
+ * AI answers are used up. The AI interviewer (./ai.ts) returns the same shapes.
+ */
+
+export const MODES = {
+  understanding: {
+    label: "Project understanding",
+    blurb: "What it solves, who uses it, how it fits together.",
+  },
+  contribution: {
+    label: "Contribution",
+    blurb: "How you would start, plan and land your first changes.",
+  },
+  pr: { label: "PR review", blurb: "Walk a reviewer through a change, handle feedback." },
+  technical: { label: "Technical", blurb: "The stack, trade-offs and debugging under pressure." },
+  architecture: { label: "Architecture", blurb: "Components, data flow, scaling and failure." },
+} as const;
+export type Mode = keyof typeof MODES;
+export const MODE_KEYS = Object.keys(MODES) as Mode[];
+
+export const LEVELS = {
+  beginner: "Beginner",
+  intermediate: "Intermediate",
+  advanced: "Advanced",
+} as const;
+export type Level = keyof typeof LEVELS;
+
+export const DIMENSIONS = {
+  relevance: "Answers the question",
+  knowledge: "Project knowledge",
+  depth: "Technical depth",
+  structure: "Structure",
+  clarity: "Clarity",
+} as const;
+export type Dimension = keyof typeof DIMENSIONS;
+export type Scores = Record<Dimension, number>;
+
+export interface InterviewProject {
+  id: string;
+  name: string;
+  org: string | null;
+  program: string;
+  summary: string | null;
+  technologies: string[];
+  repoUrl: string | null;
+  mentors: string[];
+}
+
+export interface Question {
+  id: string;
+  text: string;
+  /** What a strong answer covers; shown after the answer, never before. */
+  lookFor: string[];
+  followUp?: boolean;
+}
+
+export interface Delivery {
+  words: number;
+  seconds: number;
+  wpm: number | null;
+  fillers: { word: string; count: number }[];
+  fillerCount: number;
+}
+
+export interface Feedback {
+  scores: Scores;
+  /** 0-100 */
+  overall: number;
+  /** One or two sentences the interviewer says out loud. */
+  spoken: string;
+  strengths: string[];
+  improve: string[];
+  /** Outline of a stronger answer. */
+  stronger: string[];
+}
+
+export interface Turn {
+  question: Question;
+  answer: string;
+  seconds: number;
+  feedback: Feedback;
+  delivery: Delivery;
+}
+
+export interface FocusArea {
+  dimension: Dimension;
+  title: string;
+  why: string;
+  actions: string[];
+}
+
+export interface Report {
+  overall: number;
+  verdict: string;
+  scores: Scores;
+  summary: string;
+  focus: FocusArea[];
+  delivery: { wpm: number | null; fillerCount: number; topFillers: string[]; talkSeconds: number };
+}
+
+/**
+ * Recorded skills are sometimes sentences ("familiarity with Golang, some knowledge about the K8s
+ * architecture"). Keep short technology names only, so questions read naturally.
+ */
+export function tidyTechnologies(list: string[], max = 6): string[] {
+  const out: string[] = [];
+  for (const raw of list.flatMap((t) => t.split(/[,;/]| and /))) {
+    const t = raw
+      .replace(/\(.*?\)/g, "")
+      .replace(
+        /^\s*[-*]?\s*(basic |some |good |strong )?(familiarity with|knowledge (of|about)|experience (with|in)|proficiency in|understanding of|skills? in)\s+(the\s+)?/i,
+        "",
+      )
+      .replace(/\s+(is|are) (essential|required|a plus|preferred|nice to have).*$/i, "")
+      .replace(/\s+architecture$/i, "")
+      .trim();
+    if (!t || t.length > 24 || t.split(/\s+/).length > 3 || /^(some|basic|good)\b/i.test(t))
+      continue;
+    if (!out.some((o) => o.toLowerCase() === t.toLowerCase())) out.push(t);
+    if (out.length >= max) break;
+  }
+  return out;
+}
+
+/** Long idea titles read badly inside a spoken question; refer to them more briefly. */
+function spokenName(p: InterviewProject): string {
+  if (p.name.length <= 40) return p.name;
+  return p.org ? `this ${p.org} project` : "this project";
+}
+
+const techList = (p: InterviewProject, n = 3) =>
+  p.technologies.length ? p.technologies.slice(0, n).join(", ") : "its main language";
+const tech1 = (p: InterviewProject) => p.technologies[0] ?? "the main language";
+
+type Bank = ((p: InterviewProject) => Omit<Question, "id">)[];
+
+const BANKS: Record<Mode, Bank> = {
+  understanding: [
+    (p) => ({
+      text: `In your own words, what problem does ${p.name} solve, and who is it for?`,
+      lookFor: ["the problem in one sentence", "who has it", "what changes once it is solved"],
+    }),
+    (p) => ({
+      text: `${p.name} uses ${techList(p)}. Why do you think the project chose them?`,
+      lookFor: ["each technology's role", "a trade-off it brings", "how they connect"],
+    }),
+    (p) => ({
+      text: `Describe how a user or another system interacts with ${p.name}, step by step.`,
+      lookFor: ["the entry point", "the main steps in order", "what the user gets back"],
+    }),
+    (p) => ({
+      text: `What would break, or get harder, for people if ${p.name} did not exist?`,
+      lookFor: ["the manual alternative", "a concrete pain point", "who feels it most"],
+    }),
+    (p) => ({
+      text: `If you had to explain ${p.name} to a new contributor in two minutes, what would you cover first?`,
+      lookFor: ["purpose first", "the main parts", "where to look in the repository"],
+    }),
+    (p) => ({
+      text: `What do you think is the hardest part of building ${p.name} well?`,
+      lookFor: ["a specific hard problem", "why it is hard", "how the project might handle it"],
+    }),
+  ],
+  contribution: [
+    (p) => ({
+      text: `You've just been selected for ${p.name}. What do you do in your first week?`,
+      lookFor: ["build and run it locally", "talk to mentors early", "a small first change"],
+    }),
+    (p) => ({
+      text: `Walk me through how you'd find a good first issue in ${p.org ?? p.name} and claim it.`,
+      lookFor: ["labels or the issue tracker", "asking before starting", "reading related code"],
+    }),
+    (p) => ({
+      text: `Break ${p.name} into milestones: what would you deliver first, and why?`,
+      lookFor: ["small, testable milestones", "the riskiest part early", "a buffer for review"],
+    }),
+    () => ({
+      text: "Tell me about a pull request you opened. What did it change, and what did you learn from the review?",
+      lookFor: ["what and why", "the feedback you got", "what you changed because of it"],
+    }),
+    () => ({
+      text: "You're stuck on a bug for two days. What do you do?",
+      lookFor: ["how you narrowed it down", "when and how you ask for help", "what you share"],
+    }),
+    (p) => ({
+      text: `How will you keep your mentors updated during the ${p.program} term?`,
+      lookFor: ["a regular cadence", "written updates", "raising blockers early"],
+    }),
+  ],
+  pr: [
+    () => ({
+      text: "Pick a change you'd make to this project. Walk me through the pull request as if I'm the reviewer.",
+      lookFor: ["the problem it fixes", "the approach and alternatives", "how it was tested"],
+    }),
+    () => ({
+      text: "A maintainer asks you to split your large PR into smaller ones. How do you respond and how do you split it?",
+      lookFor: ["agreeing without defensiveness", "a logical split", "keeping each PR green"],
+    }),
+    () => ({
+      text: "A reviewer disagrees with your approach. What do you do?",
+      lookFor: ["understand their reason", "evidence, not opinion", "accept the project's call"],
+    }),
+    (p) => ({
+      text: `What tests would you add with a change to ${p.name}, and how would you show the reviewer it works?`,
+      lookFor: ["unit and integration tests", "edge cases", "screenshots, logs or benchmarks"],
+    }),
+    () => ({
+      text: "What makes a pull request description good?",
+      lookFor: ["linked issue", "what and why", "how to test", "small focused diff"],
+    }),
+    () => ({
+      text: "CI fails on your PR in a test you didn't touch. What do you do?",
+      lookFor: ["read the log", "reproduce locally", "check main", "flag a flaky test"],
+    }),
+  ],
+  technical: [
+    (p) => ({
+      text: `Explain one core concept of ${tech1(p)} that matters for ${p.name}.`,
+      lookFor: ["the concept clearly", "why it matters here", "a concrete example"],
+    }),
+    (p) => ({
+      text: `How would you debug a failure in ${p.name} that only happens in production?`,
+      lookFor: ["logs and metrics", "reproducing it", "narrowing down", "a safe fix"],
+    }),
+    (p) => ({
+      text: `What trade-offs come with using ${techList(p, 2)} for this kind of project?`,
+      lookFor: ["at least one real downside", "when it is worth it", "an alternative"],
+    }),
+    () => ({
+      text: "How do you make sure your code is correct before a reviewer sees it?",
+      lookFor: ["tests", "linters and type checks", "running it for real", "self-review"],
+    }),
+    (p) => ({
+      text: `What could slow ${p.name} down as usage grows, and how would you measure it?`,
+      lookFor: ["a likely bottleneck", "how to measure", "one way to improve it"],
+    }),
+    () => ({
+      text: "Explain a technical decision you made recently and what you'd change now.",
+      lookFor: ["the context", "the options", "the outcome", "what you learned"],
+    }),
+  ],
+  architecture: [
+    (p) => ({
+      text: `Sketch the main components of ${p.name} and how data moves between them.`,
+      lookFor: ["three to five components", "the direction of data", "where state lives"],
+    }),
+    (p) => ({
+      text: `Where are the boundaries in ${p.name}: what is core, and what is pluggable or optional?`,
+      lookFor: ["core vs extension", "interfaces between them", "why that split helps"],
+    }),
+    () => ({
+      text: "What happens when one component fails? How should the system behave?",
+      lookFor: ["failure detection", "retries or fallbacks", "what the user sees"],
+    }),
+    (p) => ({
+      text: `If ${p.name} had ten times more users tomorrow, what would you change first?`,
+      lookFor: ["the first bottleneck", "a concrete change", "how you'd verify it"],
+    }),
+    () => ({
+      text: "How would you add a new feature without breaking existing users?",
+      lookFor: ["backward compatibility", "feature flags or versioning", "migration path"],
+    }),
+    () => ({
+      text: "Which part of this design would you test most carefully, and how?",
+      lookFor: ["the riskiest part", "test types", "how to keep tests fast"],
+    }),
+  ],
+};
+
+const OPENERS: Record<Level, string> = {
+  beginner: "Take your time and think out loud.",
+  intermediate: "Be specific where you can.",
+  advanced: "I'll push for depth and trade-offs.",
+};
+
+export function opening(p: InterviewProject, mode: Mode, level: Level, total: number): string {
+  return `Hi, I'll be your interviewer today. We'll do ${total} questions on ${p.name}, focused on ${MODES[mode].label.toLowerCase()}. ${OPENERS[level]}`;
+}
+
+/** Deterministic question list for a session; `seed` rotates it so repeats feel fresh. */
+export function offlineQuestions(
+  p: InterviewProject,
+  mode: Mode,
+  count: number,
+  seed = 0,
+): Question[] {
+  const bank = BANKS[mode];
+  const named = { ...p, name: spokenName(p) };
+  const out: Question[] = [];
+  for (let i = 0; i < Math.min(count, bank.length); i++) {
+    const idx = (i + seed) % bank.length;
+    out.push({ id: `${mode}-${idx}`, ...bank[idx]!(named) });
+  }
+  return out;
+}
+
+const FILLERS = [
+  "um",
+  "uh",
+  "erm",
+  "like",
+  "basically",
+  "actually",
+  "literally",
+  "you know",
+  "i mean",
+  "kind of",
+  "sort of",
+  "so yeah",
+];
+
+export function analyzeDelivery(answer: string, seconds: number): Delivery {
+  const text = ` ${answer.toLowerCase().replace(/[^a-z0-9' ]+/g, " ")} `;
+  const words = answer.trim() ? answer.trim().split(/\s+/).length : 0;
+  const fillers = FILLERS.map((word) => ({
+    word,
+    count: text.split(` ${word} `).length - 1,
+  })).filter((f) => f.count > 0);
+  return {
+    words,
+    seconds,
+    wpm: seconds >= 5 && words > 0 ? Math.round((words / seconds) * 60) : null,
+    fillers,
+    fillerCount: fillers.reduce((s, f) => s + f.count, 0),
+  };
+}
+
+const STOP = new Set(
+  "a an and are as at be but by can do does for from has have how i if in into is it its of on or that the their them then there these they this to was we what when where which who why will with would you your about".split(
+    " ",
+  ),
+);
+const terms = (s: string) =>
+  new Set(
+    s
+      .toLowerCase()
+      .split(/[^a-z0-9+#.]+/)
+      .filter((w) => w.length > 2 && !STOP.has(w)),
+  );
+
+const STRUCTURE =
+  /\b(first|second|then|next|finally|because|so that|for example|for instance|which means|as a result|the reason)\b/g;
+const SPECIFIC =
+  /\b(\d+|test(s|ing)?|benchmark|log(s|ging)?|metric(s)?|api|function|module|package|config|issue|commit|pull request|pr|ci|error|cache|database|queue|interface|controller|endpoint|schema|cli|command|flag|manifests?|pods?|cluster|container|script|file|version|release|branch|repo|repository|docs)\b/g;
+
+const clamp = (n: number) => Math.max(1, Math.min(10, Math.round(n)));
+
+export function scoreOffline(
+  p: InterviewProject,
+  q: Question,
+  answer: string,
+  d: Delivery,
+): Feedback {
+  const lower = answer.toLowerCase();
+  const ans = terms(answer);
+  const want = new Set([...terms(q.text), ...q.lookFor.flatMap((l) => [...terms(l)])]);
+  const overlap = [...want].filter((w) => ans.has(w)).length;
+  const facts = terms(`${p.summary ?? ""} ${p.name}`);
+  const factHits = [...facts].filter((w) => ans.has(w)).length;
+  const techHits = p.technologies.filter((t) => lower.includes(t.toLowerCase()));
+  const connectors = lower.match(STRUCTURE)?.length ?? 0;
+  const specifics = lower.match(SPECIFIC)?.length ?? 0;
+  const sentences = answer.split(/[.!?]+/).filter((s) => s.trim()).length || 1;
+  const avgSentence = d.words / sentences;
+  const fillerRate = d.words ? d.fillerCount / d.words : 0;
+  const lengthScore =
+    d.words < 15 ? 2 : d.words < 40 ? 5 : d.words < 80 ? 7 : d.words <= 260 ? 8 : 6;
+
+  const scores: Scores = {
+    relevance: clamp(2 + overlap * 1.4 + (d.words >= 25 ? 1.5 : 0)),
+    knowledge: clamp(2 + factHits * 1.2 + techHits.length * 1.5),
+    depth: clamp(lengthScore * 0.6 + specifics * 0.9 + techHits.length * 0.5),
+    structure: clamp(3 + connectors * 1.3 + (sentences >= 3 ? 1.5 : 0)),
+    clarity: clamp(9 - fillerRate * 60 - (avgSentence > 35 ? 2 : 0) - (d.words < 15 ? 3 : 0)),
+  };
+  const overall = Math.round(
+    ((scores.relevance * 0.3 +
+      scores.knowledge * 0.2 +
+      scores.depth * 0.2 +
+      scores.structure * 0.15 +
+      scores.clarity * 0.15) /
+      10) *
+      100,
+  );
+
+  const strengths: string[] = [];
+  const improve: string[] = [];
+  if (scores.relevance >= 7) strengths.push("You stayed on the question.");
+  if (techHits.length) strengths.push(`You named the stack: ${techHits.join(", ")}.`);
+  if (scores.structure >= 7) strengths.push("Your answer had a clear order.");
+  if (specifics >= 3) strengths.push("You used concrete details, not just general ideas.");
+  if (scores.clarity >= 8 && d.words >= 25) strengths.push("Clear delivery with few filler words.");
+  if (d.words < 25) improve.push("Say more: aim for 45 to 90 seconds with one concrete example.");
+  if (scores.relevance < 6)
+    improve.push(
+      `Answer the question directly in your first sentence, then cover: ${q.lookFor.join(", ")}.`,
+    );
+  if (!techHits.length && p.technologies.length)
+    improve.push(`Tie it to the project's stack (${techList(p)}).`);
+  if (scores.structure < 6)
+    improve.push(
+      'Give it a shape: "First... then... as a result..." or situation, action, result.',
+    );
+  if (specifics < 2)
+    improve.push("Add a specific: a file, a command, a number, a test or an error.");
+  if (d.fillerCount >= 3)
+    improve.push(
+      `Cut fillers (${d.fillers.map((f) => `"${f.word}" ×${f.count}`).join(", ")}): pause silently instead.`,
+    );
+  if (!strengths.length) strengths.push("You made an attempt, which is how this gets easier.");
+
+  const spoken =
+    overall >= 75
+      ? `Strong answer. ${strengths[0]}`
+      : overall >= 55
+        ? `Decent start. ${improve[0] ?? "Add one more concrete detail next time."}`
+        : `Let's tighten that. ${improve[0] ?? "Answer more directly."}`;
+
+  return {
+    scores,
+    overall,
+    spoken,
+    strengths: strengths.slice(0, 3),
+    improve: improve.slice(0, 3),
+    stronger: [
+      `Open with a one-line direct answer to: "${q.text}"`,
+      ...q.lookFor.map((l) => l[0]!.toUpperCase() + l.slice(1)),
+      "Close with what you'd do next, or what you learned.",
+    ],
+  };
+}
+
+const FOCUS: Record<Dimension, { title: string; actions: (p: InterviewProject) => string[] }> = {
+  relevance: {
+    title: "Answer the question that was asked",
+    actions: () => [
+      "Repeat the question in your head, then answer it in your first sentence.",
+      "Stop once you have covered it; extra topics dilute a good answer.",
+    ],
+  },
+  knowledge: {
+    title: "Know the project cold",
+    actions: (p) => [
+      "Read the project idea and the repository README again, and write the project's purpose in one sentence.",
+      p.repoUrl
+        ? "Run the Analyze page on its repository to learn the structure, activity and good first issues."
+        : "Find its repository and skim the top-level folders.",
+      p.mentors.length
+        ? `Read recent issues and PRs by the mentors (${p.mentors.slice(0, 2).join(", ")}).`
+        : "Read the last few merged pull requests to see how the team works.",
+    ],
+  },
+  depth: {
+    title: "Go one level deeper",
+    actions: (p) => [
+      `For each of ${techList(p)}, prepare one sentence on what it does in this project.`,
+      "Bring one concrete example per answer: a file, a command, an error, a test or a number.",
+      "Practice the Technical and Architecture modes.",
+    ],
+  },
+  structure: {
+    title: "Give answers a shape",
+    actions: () => [
+      "Use situation, action, result for experience questions.",
+      'Signpost: "There are three parts. First..."',
+      "End with the outcome or what you learned.",
+    ],
+  },
+  clarity: {
+    title: "Speak clearly and calmly",
+    actions: () => [
+      "Replace fillers with a short silent pause.",
+      "Aim for about 120 to 160 words a minute, with short sentences.",
+      "Record one answer and listen back once.",
+    ],
+  },
+};
+
+export function averageScores(turns: { feedback: Feedback }[]): Scores {
+  const out = {} as Scores;
+  for (const k of Object.keys(DIMENSIONS) as Dimension[]) {
+    out[k] = turns.length
+      ? Math.round((turns.reduce((s, t) => s + t.feedback.scores[k], 0) / turns.length) * 10) / 10
+      : 0;
+  }
+  return out;
+}
+
+export function verdictFor(overall: number): string {
+  if (overall >= 85) return "Interview ready";
+  if (overall >= 70) return "Almost there";
+  if (overall >= 55) return "Getting there";
+  return "Keep practicing";
+}
+
+export function offlineReport(p: InterviewProject, turns: Turn[]): Report {
+  const scores = averageScores(turns);
+  const overall = turns.length
+    ? Math.round(turns.reduce((s, t) => s + t.feedback.overall, 0) / turns.length)
+    : 0;
+  const ranked = (Object.keys(scores) as Dimension[]).sort((a, b) => scores[a] - scores[b]);
+  const best = ranked[ranked.length - 1]!;
+  const focus = ranked
+    .filter((k) => scores[k] < 8)
+    .slice(0, 3)
+    .map((k) => ({
+      dimension: k,
+      title: FOCUS[k].title,
+      why: `Your average for ${DIMENSIONS[k].toLowerCase()} was ${scores[k]}/10.`,
+      actions: FOCUS[k].actions(p),
+    }));
+  const talk = turns.reduce((s, t) => s + t.delivery.seconds, 0);
+  const words = turns.reduce((s, t) => s + t.delivery.words, 0);
+  const fillerTotals = new Map<string, number>();
+  for (const t of turns)
+    for (const f of t.delivery.fillers)
+      fillerTotals.set(f.word, (fillerTotals.get(f.word) ?? 0) + f.count);
+  return {
+    overall,
+    verdict: verdictFor(overall),
+    scores,
+    summary: turns.length
+      ? `Your strongest area was ${DIMENSIONS[best].toLowerCase()} (${scores[best]}/10). ${
+          focus.length
+            ? `Focus next on: ${focus.map((f) => f.title.toLowerCase()).join("; ")}.`
+            : "Every area scored 8 or more: try a harder level or another mode."
+        }`
+      : "No answers were recorded.",
+    focus,
+    delivery: {
+      wpm: talk >= 10 ? Math.round((words / talk) * 60) : null,
+      fillerCount: [...fillerTotals.values()].reduce((s, n) => s + n, 0),
+      topFillers: [...fillerTotals.entries()]
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 3)
+        .map(([w, n]) => `"${w}" ×${n}`),
+      talkSeconds: talk,
+    },
+  };
+}

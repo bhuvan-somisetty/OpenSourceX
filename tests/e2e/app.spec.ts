@@ -328,15 +328,26 @@ test("repository analyzer, interview workspace and not-found", async ({ page }) 
   await page.goto("/interview");
   await page.waitForLoadState("networkidle");
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
-    "Prepare to explain your contribution.",
+    "Talk it through with an interviewer.",
   );
-  await expect(page.getByTestId("modes").getByRole("button", { name: "PR review" })).toBeDisabled();
+  await page
+    .getByTestId("modes")
+    .getByRole("radio", { name: /PR review/ })
+    .click();
+  for (const name of ["Interviewer speaks", "Answer out loud", "Hands-free conversation"]) {
+    const box = page.getByRole("checkbox", { name: new RegExp(name) });
+    if (await box.isChecked()) await box.uncheck();
+  }
+  await page.getByTestId("start-interview").click();
+  await expect(page.getByTestId("question")).not.toBeEmpty();
   await expect(page.getByTestId("feedback")).toHaveCount(0);
   await page
-    .getByLabel("Your answer")
-    .fill("It helps developers observe distributed systems using TypeScript and React.");
-  await page.getByRole("button", { name: "Submit answer" }).click();
-  await expect(page.getByTestId("feedback")).toContainText("not AI evaluation");
+    .getByLabel(/Your answer/)
+    .fill(
+      "First I explain the problem the change fixes, then the approach and the tests I added, because reviewers need to see it works.",
+    );
+  await page.getByTestId("submit-answer").click();
+  await expect(page.getByTestId("feedback")).toBeVisible();
   await page.goto("/projects/mp-999999");
   await expect(page.getByTestId("not-found")).toBeVisible();
 });

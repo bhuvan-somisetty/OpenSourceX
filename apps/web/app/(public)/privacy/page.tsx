@@ -64,7 +64,14 @@ export default function Privacy() {
         <li>
           <b>AI providers</b> (currently Google Gemini) receive the text of your question and recent
           messages in that chat to write an answer. Please do not put passwords, keys or other
-          sensitive personal information in your questions.
+          sensitive personal information in your questions. In interview practice they receive the
+          text of your answers and the project's recorded facts to score them; answers are not
+          saved.
+        </li>
+        <li>
+          <b>Your browser's speech service</b> turns your voice into text when you answer out loud
+          in interview practice (Chrome and Edge use Google's and Microsoft's services for this).
+          OpenSourceX never receives audio.
         </li>
         <li>
           <b>Public APIs</b> (GitHub, package registries, OSV.dev, Hacker News, Stack Exchange,
