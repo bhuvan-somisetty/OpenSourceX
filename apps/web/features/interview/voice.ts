@@ -195,7 +195,18 @@ const PERSONAS = {
     "Nisha",
     "Tara",
   ],
-  Male: ["Arjun", "Rohan", "Aditya", "Karan", "Vikram", "Nikhil", "Rahul", "Kabir", "Dev", "Aarav"],
+  Male: [
+    "Tarak",
+    "Prabhas",
+    "Rana",
+    "Arjun",
+    "Rohan",
+    "Aditya",
+    "Karan",
+    "Vikram",
+    "Nikhil",
+    "Rahul",
+  ],
   Other: ["Kiran", "Sam", "Alex", "Jordan", "Noor", "Ari"],
 } as const;
 
