@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { flushSync } from "react-dom";
 import {
   analyzeDelivery,
   DIMENSIONS,
@@ -126,6 +127,19 @@ function write(key: string, v: unknown) {
   } catch {
     /* storage unavailable: settings just aren't remembered */
   }
+}
+
+/**
+ * Runs a layout change as a smooth morph (the subject box narrowing into two columns) where the
+ * browser supports view transitions; otherwise it just happens.
+ */
+function morph(update: () => void) {
+  const doc = document as Document & {
+    startViewTransition?: (cb: () => void) => unknown;
+  };
+  if (!doc.startViewTransition || matchMedia("(prefers-reduced-motion: reduce)").matches)
+    return update();
+  doc.startViewTransition(() => flushSync(update));
 }
 
 /** Brings the live interview or the report into view once it has rendered. */
@@ -596,7 +610,7 @@ export function VoiceInterview({
   }, [projects, query]);
 
   const choose = (p: InterviewProject) => {
-    setProject(p);
+    morph(() => setProject(p));
     try {
       // keep the URL in sync so a reload keeps the project
       window.history.replaceState(null, "", `/interview?project=${encodeURIComponent(p.id)}`);
@@ -639,184 +653,220 @@ export function VoiceInterview({
     return (
       <div className="iv" data-testid="interview-setup">
         <div className="iv-setup">
-          <section className="iv-panel" aria-labelledby="iv-project-h">
-            <div className="iv-step">1</div>
-            <h2 id="iv-project-h" className="iv-h">
-              What will you talk about?
-            </h2>
-            <p className="iv-sub">
-              Paste the repository you contribute to. Already picked a recorded mentorship idea? Use
-              the second tab.
-            </p>
-            <div className="iv-source" role="tablist" aria-label="Interview subject">
-              <button
-                type="button"
-                role="tab"
-                aria-selected={source === "repo"}
-                onClick={() => setSource("repo")}
-                data-testid="repo-tab"
-              >
-                Paste your repo link
-              </button>
-              <button
-                type="button"
-                role="tab"
-                aria-selected={source === "list"}
-                onClick={() => setSource("list")}
-              >
-                Mentorship projects
-              </button>
-            </div>
-            {project ? (
-              <div className="iv-picked" data-testid="picked-project">
-                <div>
-                  <span className="iv-picked-k">Interview subject</span>
-                  <strong>{project.name}</strong>
-                  <span className="dim">
-                    {[project.org, project.program].filter(Boolean).join(" · ")}
-                  </span>
-                </div>
-                {project.technologies.length > 0 && (
-                  <div className="chips">
-                    {project.technologies.slice(0, 6).map((t) => (
-                      <span key={t} className="tag">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                )}
+          <div className={`iv-pair ${project ? "has-subject" : ""}`}>
+            <section
+              className="iv-panel iv-subject"
+              aria-labelledby="iv-project-h"
+              style={{ viewTransitionName: "iv-subject" }}
+            >
+              <div className="iv-step">1</div>
+              <h2 id="iv-project-h" className="iv-h">
+                What will you talk about?
+              </h2>
+              <p className="iv-sub">
+                Paste the repository you contribute to. Already picked a recorded mentorship idea?
+                Use the second tab.
+              </p>
+              <div className="iv-source" role="tablist" aria-label="Interview subject">
                 <button
                   type="button"
-                  className="iv-picked-clear"
-                  onClick={() => {
-                    setProject(null);
-                    try {
-                      window.history.replaceState(null, "", "/interview");
-                    } catch {
-                      /* ignore */
-                    }
-                  }}
+                  role="tab"
+                  aria-selected={source === "repo"}
+                  onClick={() => setSource("repo")}
+                  data-testid="repo-tab"
                 >
-                  Change
+                  Paste your repo link
+                </button>
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={source === "list"}
+                  onClick={() => setSource("list")}
+                >
+                  Mentorship projects
                 </button>
               </div>
-            ) : null}
-            {source === "repo" ? (
-              <RepoLookup onUse={choose} onPickProject={pickById} activeId={project?.id ?? ""} />
-            ) : (
-              <>
-                <div className="field" style={{ marginTop: 12 }}>
-                  <label htmlFor="iv-search">Search projects</label>
-                  <input
-                    id="iv-search"
-                    type="search"
-                    placeholder="Name, organization or technology (e.g. Go, Kubernetes)"
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    autoComplete="off"
-                  />
-                </div>
-                <ul className="iv-projects" role="listbox" aria-label="Projects">
-                  {filtered.map((p) => (
-                    <li key={p.id}>
-                      <button
-                        type="button"
-                        role="option"
-                        aria-selected={p.id === project?.id}
-                        onClick={() => pick(p)}
-                      >
-                        <span className="iv-p-name">{p.name}</span>
-                        <span className="iv-p-meta">
-                          {[p.org, p.technologies.slice(0, 3).join(", ")]
-                            .filter(Boolean)
-                            .join(" · ")}
+              {project ? (
+                <div className="iv-picked" data-testid="picked-project">
+                  <div>
+                    <span className="iv-picked-k">Interview subject</span>
+                    <strong>{project.name}</strong>
+                    <span className="dim">
+                      {[project.org, project.program].filter(Boolean).join(" · ")}
+                    </span>
+                  </div>
+                  {project.technologies.length > 0 && (
+                    <div className="chips">
+                      {project.technologies.slice(0, 6).map((t) => (
+                        <span key={t} className="tag">
+                          {t}
                         </span>
-                      </button>
-                    </li>
-                  ))}
-                  {!filtered.length && (
-                    <li className="dim iv-empty">No project matches “{query}”.</li>
+                      ))}
+                    </div>
                   )}
-                </ul>
-              </>
-            )}
-          </section>
+                  <button
+                    type="button"
+                    className="iv-picked-clear"
+                    onClick={() => {
+                      morph(() => setProject(null));
+                      try {
+                        window.history.replaceState(null, "", "/interview");
+                      } catch {
+                        /* ignore */
+                      }
+                    }}
+                  >
+                    Change
+                  </button>
+                </div>
+              ) : null}
+              {source === "repo" ? (
+                <RepoLookup onUse={choose} onPickProject={pickById} activeId={project?.id ?? ""} />
+              ) : (
+                <>
+                  <div className="field" style={{ marginTop: 12 }}>
+                    <label htmlFor="iv-search">Search projects</label>
+                    <input
+                      id="iv-search"
+                      type="search"
+                      placeholder="Name, organization or technology (e.g. Go, Kubernetes)"
+                      value={query}
+                      onChange={(e) => setQuery(e.target.value)}
+                      autoComplete="off"
+                    />
+                  </div>
+                  <ul className="iv-projects" role="listbox" aria-label="Projects">
+                    {filtered.map((p) => (
+                      <li key={p.id}>
+                        <button
+                          type="button"
+                          role="option"
+                          aria-selected={p.id === project?.id}
+                          onClick={() => pick(p)}
+                        >
+                          <span className="iv-p-name">{p.name}</span>
+                          <span className="iv-p-meta">
+                            {[p.org, p.technologies.slice(0, 3).join(", ")]
+                              .filter(Boolean)
+                              .join(" · ")}
+                          </span>
+                        </button>
+                      </li>
+                    ))}
+                    {!filtered.length && (
+                      <li className="dim iv-empty">No project matches “{query}”.</li>
+                    )}
+                  </ul>
+                </>
+              )}
+            </section>
 
-          <section className="iv-panel" aria-labelledby="iv-mode-h">
-            <div className="iv-step">2</div>
-            <h2 id="iv-mode-h" className="iv-h">
-              Choose the interview
-            </h2>
-            <p className="iv-sub">Pick one or more. Questions take turns between them.</p>
-            <div className="iv-modes" role="group" aria-label="Interview types" data-testid="modes">
-              <button
-                type="button"
-                aria-pressed={everything}
-                className="iv-mode iv-mode-all"
-                onClick={() => toggleMode("all")}
+            <section
+              className="iv-panel"
+              aria-labelledby="iv-mode-h"
+              style={{ viewTransitionName: "iv-types" }}
+            >
+              <div className="iv-step">2</div>
+              <h2 id="iv-mode-h" className="iv-h">
+                Choose the interview
+              </h2>
+              <p className="iv-sub">Pick one or more. Questions take turns between them.</p>
+              <div
+                className="iv-modes"
+                role="group"
+                aria-label="Interview types"
+                data-testid="modes"
               >
-                <span className="iv-check" aria-hidden="true" />
-                <Icon d={ALL_ICON} size={20} />
-                <strong>Everything</strong>
-                <span>A full mock interview: questions from all five types.</span>
-              </button>
-              {MODE_KEYS.map((k) => (
                 <button
-                  key={k}
                   type="button"
-                  aria-pressed={settings.modes.includes(k)}
-                  className="iv-mode"
-                  onClick={() => toggleMode(k)}
+                  aria-pressed={everything}
+                  className="iv-mode iv-mode-all"
+                  onClick={() => toggleMode("all")}
                 >
                   <span className="iv-check" aria-hidden="true" />
-                  <Icon d={MODE_ICON[k]} size={20} />
-                  <strong>{MODES[k].label}</strong>
-                  <span>{MODES[k].blurb}</span>
+                  <Icon d={ALL_ICON} size={20} />
+                  <strong>Everything</strong>
+                  <span>A full mock interview: questions from all five types.</span>
                 </button>
-              ))}
-            </div>
-            <div className="iv-label" style={{ marginTop: 20 }}>
-              Level
-            </div>
-            <div className="segmented" role="group" aria-label="Level">
-              {(Object.keys(LEVELS) as Level[]).map((l) => (
-                <button
-                  key={l}
-                  type="button"
-                  aria-pressed={settings.level === l}
-                  onClick={() => update("level", l)}
-                >
-                  {LEVELS[l]}
-                </button>
-              ))}
-            </div>
-            <div className="iv-label" style={{ marginTop: 20 }}>
-              Interview length
-            </div>
-            <div className="iv-counts" role="radiogroup" aria-label="Number of questions">
-              {COUNTS.map((c) => {
-                const n = cap ? Math.min(c.n, cap) : c.n;
-                return (
+                {MODE_KEYS.map((k) => (
                   <button
-                    key={c.n}
+                    key={k}
                     type="button"
-                    role="radio"
-                    aria-checked={settings.count === c.n}
-                    onClick={() => update("count", c.n)}
+                    aria-pressed={settings.modes.includes(k)}
+                    className="iv-mode"
+                    onClick={() => toggleMode(k)}
                   >
-                    <span className="iv-count-n">{n}</span>
-                    <span className="iv-count-t">
-                      <strong>{c.label}</strong>
-                      <span>~{n * 2} min</span>
-                    </span>
+                    <span className="iv-check" aria-hidden="true" />
+                    <Icon d={MODE_ICON[k]} size={20} />
+                    <strong>{MODES[k].label}</strong>
+                    <span>{MODES[k].blurb}</span>
                   </button>
-                );
-              })}
+                ))}
+              </div>
+            </section>
+          </div>
+
+          <section
+            className="iv-panel iv-pace-panel"
+            aria-labelledby="iv-len-h"
+            style={{ viewTransitionName: "iv-length" }}
+          >
+            <div className="iv-step">3</div>
+            <h2 id="iv-len-h" className="iv-h">
+              Level and length
+            </h2>
+            <div className="iv-pace-row">
+              <div className="iv-pace-level">
+                <div className="iv-label" style={{ marginTop: 14 }}>
+                  Level
+                </div>
+                <div className="segmented" role="group" aria-label="Level">
+                  {(Object.keys(LEVELS) as Level[]).map((l) => (
+                    <button
+                      key={l}
+                      type="button"
+                      aria-pressed={settings.level === l}
+                      onClick={() => update("level", l)}
+                    >
+                      {LEVELS[l]}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div className="iv-pace-length">
+                <div className="iv-label" style={{ marginTop: 14 }}>
+                  Interview length
+                </div>
+                <div className="iv-counts" role="radiogroup" aria-label="Number of questions">
+                  {COUNTS.map((c) => {
+                    const n = cap ? Math.min(c.n, cap) : c.n;
+                    return (
+                      <button
+                        key={c.n}
+                        type="button"
+                        role="radio"
+                        aria-checked={settings.count === c.n}
+                        onClick={() => update("count", c.n)}
+                      >
+                        <span className="iv-count-n">{n}</span>
+                        <span className="iv-count-t">
+                          <strong>{c.label}</strong>
+                          <span>~{n * 2} min</span>
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           </section>
 
-          <section className="iv-panel" aria-labelledby="iv-voice-h">
-            <div className="iv-step">3</div>
+          <section
+            className="iv-panel"
+            aria-labelledby="iv-voice-h"
+            style={{ viewTransitionName: "iv-voice" }}
+          >
+            <div className="iv-step">4</div>
             <h2 id="iv-voice-h" className="iv-h">
               Set up your voice
             </h2>

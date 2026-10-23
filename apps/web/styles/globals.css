@@ -7960,13 +7960,64 @@ button.play-card {
   gap: 18px;
   grid-template-columns: 1fr;
 }
+/* subject + interview type: full width each until a subject is chosen, then side by side */
+.iv-pair {
+  display: grid;
+  gap: 18px;
+  align-items: start;
+  grid-template-columns: minmax(0, 1fr);
+}
 @media (min-width: 980px) {
-  .iv-setup {
+  .iv-pair.has-subject {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
   }
-  .iv-setup > :nth-child(3) {
-    grid-column: 1 / -1;
+  .iv-pair:not(.has-subject) .iv-modes {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+  .iv-pair:not(.has-subject) .iv-subject .iv-source,
+  .iv-pair:not(.has-subject) .iv-subject .iv-repo-form {
+    max-width: 760px;
+  }
+}
+@media (min-width: 1100px) {
+  .iv-pair:not(.has-subject) .iv-modes {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+/* level and length: their own card, everything in one row on wide screens */
+.iv-pace-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 36px;
+  align-items: flex-start;
+}
+.iv-pace-length {
+  flex: 1 1 520px;
+  min-width: 0;
+}
+@media (min-width: 760px) {
+  .iv-pace-length .iv-counts {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+::view-transition-old(iv-subject),
+::view-transition-new(iv-subject),
+::view-transition-old(iv-types),
+::view-transition-new(iv-types),
+::view-transition-old(iv-length),
+::view-transition-new(iv-length),
+::view-transition-old(iv-voice),
+::view-transition-new(iv-voice) {
+  height: 100%;
+  animation-duration: 0.45s;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+::view-transition-group(iv-subject),
+::view-transition-group(iv-types),
+::view-transition-group(iv-length),
+::view-transition-group(iv-voice) {
+  animation-duration: 0.45s;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .iv-step {
   position: absolute;
