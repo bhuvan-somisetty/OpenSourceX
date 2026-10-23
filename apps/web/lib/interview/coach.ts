@@ -54,6 +54,8 @@ export interface Question {
   /** What a strong answer covers; shown after the answer, never before. */
   lookFor: string[];
   followUp?: boolean;
+  /** which interview type it came from */
+  mode?: Mode;
 }
 
 export interface Delivery {
@@ -104,6 +106,21 @@ export interface Report {
  * Recorded skills are sometimes sentences ("familiarity with Golang, some knowledge about the K8s
  * architecture"). Keep short technology names only, so questions read naturally.
  */
+const ALIASES: Record<string, string> = {
+  golang: "Go",
+  go: "Go",
+  k8s: "Kubernetes",
+  kubernetes: "Kubernetes",
+  js: "JavaScript",
+  javascript: "JavaScript",
+  ts: "TypeScript",
+  typescript: "TypeScript",
+  py: "Python",
+  python: "Python",
+  rust: "Rust",
+  rustlang: "Rust",
+};
+
 export function tidyTechnologies(list: string[], max = 6): string[] {
   const out: string[] = [];
   for (const raw of list.flatMap((t) => t.split(/[,;/]| and /))) {
@@ -118,7 +135,8 @@ export function tidyTechnologies(list: string[], max = 6): string[] {
       .trim();
     if (!t || t.length > 24 || t.split(/\s+/).length > 3 || /^(some|basic|good)\b/i.test(t))
       continue;
-    if (!out.some((o) => o.toLowerCase() === t.toLowerCase())) out.push(t);
+    const name = ALIASES[t.toLowerCase()] ?? t;
+    if (!out.some((o) => o.toLowerCase() === name.toLowerCase())) out.push(name);
     if (out.length >= max) break;
   }
   return out;
@@ -162,6 +180,22 @@ const BANKS: Record<Mode, Bank> = {
       text: `What do you think is the hardest part of building ${p.name} well?`,
       lookFor: ["a specific hard problem", "why it is hard", "how the project might handle it"],
     }),
+    (p) => ({
+      text: `Who are the main users of ${p.name}, and what does a normal day of using it look like for them?`,
+      lookFor: ["a concrete user", "their workflow", "where the project fits in it"],
+    }),
+    (p) => ({
+      text: `How is ${p.name} different from the alternatives people could use instead?`,
+      lookFor: ["at least one alternative", "a real difference", "when the alternative is better"],
+    }),
+    (p) => ({
+      text: `What does success look like for ${p.name} at the end of the mentorship?`,
+      lookFor: ["a measurable outcome", "who benefits", "how you would show it"],
+    }),
+    (p) => ({
+      text: `Why did you choose ${p.name} over other projects?`,
+      lookFor: ["a genuine reason", "a link to your skills", "what you want to learn"],
+    }),
   ],
   contribution: [
     (p) => ({
@@ -187,6 +221,22 @@ const BANKS: Record<Mode, Bank> = {
     (p) => ({
       text: `How will you keep your mentors updated during the ${p.program} term?`,
       lookFor: ["a regular cadence", "written updates", "raising blockers early"],
+    }),
+    () => ({
+      text: "How do you set up the project locally, and what do you do when the setup guide doesn't work?",
+      lookFor: ["follow the docs", "read the error carefully", "fix or report the docs"],
+    }),
+    () => ({
+      text: "You disagree with how a maintainer wants something done. How do you handle it?",
+      lookFor: ["ask why", "share evidence politely", "respect the decision"],
+    }),
+    (p) => ({
+      text: `What have you already contributed to ${p.org ?? "this project"} or similar projects?`,
+      lookFor: ["specific PRs or issues", "what you learned", "what it shows about you"],
+    }),
+    () => ({
+      text: "Your milestone is running late. What do you do?",
+      lookFor: ["tell mentors early", "re-plan scope", "protect quality"],
     }),
   ],
   pr: [
@@ -214,6 +264,22 @@ const BANKS: Record<Mode, Bank> = {
       text: "CI fails on your PR in a test you didn't touch. What do you do?",
       lookFor: ["read the log", "reproduce locally", "check main", "flag a flaky test"],
     }),
+    () => ({
+      text: "How do you review someone else's pull request?",
+      lookFor: ["understand the goal", "run it", "kind, specific comments"],
+    }),
+    () => ({
+      text: "Your PR has had no review for two weeks. What do you do?",
+      lookFor: ["polite follow-up", "the right channel", "keep it up to date"],
+    }),
+    () => ({
+      text: "How do you write commit messages, and why does it matter?",
+      lookFor: ["clear summary line", "the why", "project conventions such as DCO"],
+    }),
+    () => ({
+      text: "A reviewer leaves twenty comments on your PR. How do you work through them?",
+      lookFor: ["read all first", "ask about unclear ones", "reply to each", "push focused fixes"],
+    }),
   ],
   technical: [
     (p) => ({
@@ -239,6 +305,22 @@ const BANKS: Record<Mode, Bank> = {
     () => ({
       text: "Explain a technical decision you made recently and what you'd change now.",
       lookFor: ["the context", "the options", "the outcome", "what you learned"],
+    }),
+    (p) => ({
+      text: `How does error handling usually work in ${tech1(p)}, and what would you watch for in ${p.name}?`,
+      lookFor: ["the language's approach", "a common mistake", "how to test it"],
+    }),
+    (p) => ({
+      text: `How would you write tests for a new feature in ${p.name}?`,
+      lookFor: ["unit tests", "integration or end-to-end tests", "edge cases"],
+    }),
+    () => ({
+      text: "What does concurrency mean to you, and where can it go wrong?",
+      lookFor: ["a clear definition", "a race or deadlock example", "how to prevent it"],
+    }),
+    () => ({
+      text: "How do you learn a large codebase you've never seen before?",
+      lookFor: ["start from the entry point", "run and debug it", "read tests and docs"],
     }),
   ],
   architecture: [
@@ -266,6 +348,22 @@ const BANKS: Record<Mode, Bank> = {
       text: "Which part of this design would you test most carefully, and how?",
       lookFor: ["the riskiest part", "test types", "how to keep tests fast"],
     }),
+    (p) => ({
+      text: `Where does ${p.name} keep its state or data, and why there?`,
+      lookFor: ["the storage", "the reason", "what happens on restart"],
+    }),
+    () => ({
+      text: "How would you make this system observable in production?",
+      lookFor: ["logs", "metrics", "traces or alerts"],
+    }),
+    (p) => ({
+      text: `What security risks should ${p.name} think about?`,
+      lookFor: ["a concrete risk", "who could exploit it", "a mitigation"],
+    }),
+    (p) => ({
+      text: `If you could redesign one part of ${p.name}, which would it be and why?`,
+      lookFor: ["a specific part", "the problem with it now", "the trade-off of changing it"],
+    }),
   ],
 };
 
@@ -275,23 +373,40 @@ const OPENERS: Record<Level, string> = {
   advanced: "I'll push for depth and trade-offs.",
 };
 
-export function opening(p: InterviewProject, mode: Mode, level: Level, total: number): string {
-  return `Hi, I'll be your interviewer today. We'll do ${total} questions on ${p.name}, focused on ${MODES[mode].label.toLowerCase()}. ${OPENERS[level]}`;
+export const modesLabel = (modes: Mode[]) =>
+  modes.length === MODE_KEYS.length
+    ? "everything"
+    : modes.map((m) => MODES[m].label.toLowerCase()).join(", ");
+
+export function opening(p: InterviewProject, modes: Mode[], level: Level, total: number): string {
+  return `Hi, I'll be your interviewer today. We'll do ${total} questions on ${spokenName(p)}, covering ${modesLabel(modes)}. ${OPENERS[level]}`;
 }
 
-/** Deterministic question list for a session; `seed` rotates it so repeats feel fresh. */
+/** Most questions one session can have without repeats. */
+export const maxQuestions = (modes: Mode[]) => modes.reduce((n, m) => n + BANKS[m].length, 0);
+
+/**
+ * Deterministic question list for a session, taking turns across the chosen modes; `seed`
+ * rotates it so repeats feel fresh.
+ */
 export function offlineQuestions(
   p: InterviewProject,
-  mode: Mode,
+  modes: Mode | Mode[],
   count: number,
   seed = 0,
 ): Question[] {
-  const bank = BANKS[mode];
+  const list = (Array.isArray(modes) ? modes : [modes]).filter((m) => BANKS[m]);
+  if (!list.length) return [];
   const named = { ...p, name: spokenName(p) };
   const out: Question[] = [];
-  for (let i = 0; i < Math.min(count, bank.length); i++) {
-    const idx = (i + seed) % bank.length;
-    out.push({ id: `${mode}-${idx}`, ...bank[idx]!(named) });
+  const total = Math.min(count, maxQuestions(list));
+  for (let i = 0; out.length < total; i++) {
+    const mode = list[(i + seed) % list.length]!;
+    const bank = BANKS[mode];
+    const round = Math.floor(i / list.length);
+    if (round >= bank.length) continue;
+    const idx = (round + seed) % bank.length;
+    out.push({ id: `${mode}-${idx}`, mode, ...bank[idx]!(named) });
   }
   return out;
 }

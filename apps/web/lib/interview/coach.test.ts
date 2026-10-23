@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   analyzeDelivery,
+  maxQuestions,
   MODE_KEYS,
   offlineQuestions,
   offlineReport,
@@ -82,6 +83,26 @@ describe("tidyTechnologies", () => {
         "Proficiency in Golang (Go) is essential",
         "REST APIs",
       ]),
-    ).toEqual(["Golang", "K8s", "APIs", "REST APIs"]);
+    ).toEqual(["Go", "Kubernetes", "APIs", "REST APIs"]);
+  });
+});
+
+describe("several interview types", () => {
+  it("takes turns across the chosen modes without repeats", () => {
+    const qs = offlineQuestions(p, ["pr", "technical"], 6);
+    expect(qs.map((q) => q.mode)).toEqual([
+      "pr",
+      "technical",
+      "pr",
+      "technical",
+      "pr",
+      "technical",
+    ]);
+    expect(new Set(qs.map((q) => q.id)).size).toBe(6);
+  });
+  it("has enough questions for a long interview on everything", () => {
+    expect(maxQuestions(MODE_KEYS)).toBeGreaterThanOrEqual(50);
+    expect(offlineQuestions(p, MODE_KEYS, 10)).toHaveLength(10);
+    expect(offlineQuestions(p, ["understanding"], 10)).toHaveLength(10);
   });
 });

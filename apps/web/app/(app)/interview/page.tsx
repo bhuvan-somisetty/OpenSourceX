@@ -23,10 +23,17 @@ export default async function Interview({ searchParams }: { searchParams: Promis
       </div>
     );
   const items = list.data.items.filter((p) => p.kind === "mentorship");
-  const chosen = items.find((p) => p.id === first(sp.project))?.id ?? items[0]?.id;
+  const asked = first(sp.project).slice(0, 160);
+  const chosen = asked.startsWith("repo:")
+    ? asked
+    : (items.find((p) => p.id === asked)?.id ?? items[0]?.id);
   const mode = (MODE_KEYS.find((m) => m === first(sp.mode)) ?? "understanding") as Mode;
   const detail = chosen ? await load((d) => interviewProject(d, chosen)) : null;
-  const ctx = detail?.ok ? detail.data : null;
+  const ctx =
+    (detail?.ok ? detail.data : null) ??
+    (asked.startsWith("repo:") && items[0]
+      ? await load((d) => interviewProject(d, items[0]!.id)).then((r) => (r.ok ? r.data : null))
+      : null);
   const projects: ProjectOption[] = items.map((p) => ({
     id: p.id,
     name: p.name,

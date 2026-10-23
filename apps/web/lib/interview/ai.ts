@@ -92,14 +92,14 @@ const ReportSchema = z.object({
     .max(3),
 });
 
-function persona(mode: Mode, level: Level) {
-  return `You are a warm but rigorous open source mentorship interviewer (like a maintainer interviewing a Google Summer of Code or LFX Mentorship candidate). Mode: ${MODES[mode].label} (${MODES[mode].blurb}). Candidate level: ${LEVELS[level]}.
+function persona(modes: Mode[], level: Level) {
+  return `You are a warm but rigorous open source mentorship interviewer (like a maintainer interviewing a Google Summer of Code or LFX Mentorship candidate). Interview types to cover, taking turns between them: ${modes.map((m) => `${MODES[m].label} (${MODES[m].blurb})`).join("; ")}. Candidate level: ${LEVELS[level]}.
 Rules:
 - Ground every question in the project facts given. Never invent facts about the project; if something is not recorded, ask the candidate to explain it instead.
 - Ask ONE question at a time, short enough to say aloud in under 20 seconds. No Markdown, no lists in spoken text.
 - Score honestly from 1 to 10 per dimension: relevance (answers the question), knowledge (of this project), depth (technical specifics), structure (clear order), clarity (concise, few fillers). A vague or very short answer must score low.
 - Feedback must be specific to what the candidate actually said; quote or paraphrase it. Be encouraging but never flattering.
-- If the answer was vague or skipped a key point, the next question may be a follow-up that digs into it (followUp true); otherwise move to a new topic for this mode. Do not repeat earlier questions.
+- If the answer was vague or skipped a key point, the next question may be a follow-up that digs into it (followUp true); otherwise move to a new topic, rotating through the interview types listed above. Do not repeat earlier questions.
 - The answer is a speech transcript, so ignore punctuation and small recognition errors.`;
 }
 
@@ -144,7 +144,7 @@ async function generate<T>(schema: z.ZodType<T>, system: string, prompt: string)
 
 export interface AiTurnInput {
   project: InterviewProject;
-  mode: Mode;
+  modes: Mode[];
   level: Level;
   history: { question: string; answer: string }[];
   question: Question;
@@ -161,7 +161,7 @@ export async function aiTurn(
     .join("\n\n");
   const out = await generate(
     TurnSchema,
-    persona(i.mode, i.level),
+    persona(i.modes, i.level),
     `${facts(i.project)}
 
 ${earlier ? `Earlier in this interview:\n${earlier}\n\n` : ""}Current question: ${i.question.text}
@@ -211,7 +211,7 @@ Score and give feedback on this answer. ${
 
 export async function aiReport(
   p: InterviewProject,
-  mode: Mode,
+  modes: Mode[],
   level: Level,
   turns: Turn[],
   base: Report,
@@ -224,7 +224,7 @@ export async function aiReport(
     .join("\n\n");
   const out = await generate(
     ReportSchema,
-    persona(mode, level),
+    persona(modes, level),
     `${facts(p)}
 
 The interview is over. Average scores: ${JSON.stringify(base.scores)}. Overall ${base.overall}/100.

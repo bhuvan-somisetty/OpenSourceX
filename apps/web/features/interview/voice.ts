@@ -128,6 +128,14 @@ export function useDictation(lang = "en-US") {
     setListening(true);
   }, [lang]);
 
+  // a new accent needs a new recognizer
+  useEffect(() => {
+    want.current = false;
+    rec.current?.abort();
+    rec.current = null;
+    setListening(false);
+  }, [lang]);
+
   const reset = useCallback((text = "") => {
     setFinalText(text);
     setInterim("");
@@ -144,12 +152,63 @@ export function useDictation(lang = "en-US") {
   return { listening, finalText, interim, error, lastHeard, start, stop, reset, setFinalText };
 }
 
+export type Region = "India" | "US" | "UK" | "Australia" | "Other";
+
 export interface VoiceOption {
   id: string;
-  label: string;
+  name: string;
+  lang: string;
+  region: Region;
+  gender: "Female" | "Male" | null;
+  natural: boolean;
+  /** a Hindi voice reading English: an Indian accent many listeners find easy to follow */
+  hindi: boolean;
 }
 
-/** Interviewer voice. Prefers natural/online English voices when the browser has them. */
+const FEMALE =
+  /female|zira|heera|neerja|swara|kalpana|aria|jenny|sonia|libby|hazel|susan|samantha|karen|moira|tessa|veena|lekha|catherine|natasha|clara|emma|ava|michelle|\bana\b|sara|isha/i;
+const MALE =
+  /\bmale|david|mark|ravi|prabhat|madhur|hemant|guy|ryan|george|thomas|daniel|james|william|liam|connor|christopher|eric|roger|steffan|brian|andrew|rishi|aaron|fred/i;
+
+function region(lang: string): Region {
+  const l = lang.toLowerCase();
+  if (l.endsWith("-in")) return "India";
+  if (l === "en-us") return "US";
+  if (l === "en-gb") return "UK";
+  if (l === "en-au") return "Australia";
+  return "Other";
+}
+
+function describe(v: SpeechSynthesisVoice): VoiceOption {
+  const name = v.name
+    .replace(/^(Microsoft|Google)\s+/, "")
+    .replace(/\s*Online\s*\(Natural\)/i, "")
+    .replace(/\s*-\s*(English|Hindi).*$/i, "")
+    .replace(/^हिन्दी$/, "Hindi")
+    .trim();
+  return {
+    id: v.voiceURI,
+    name: /google/i.test(v.name) && /^hindi$/i.test(name) ? "Google Hindi" : name,
+    lang: v.lang,
+    region: region(v.lang),
+    gender:
+      MALE.test(v.name) && !/female/i.test(v.name) ? "Male" : FEMALE.test(v.name) ? "Female" : null,
+    natural: /natural|neural|online|google/i.test(v.name),
+    hindi: v.lang.toLowerCase().startsWith("hi"),
+  };
+}
+
+/** True when the visitor is most likely in India, so Indian voices and accent come first. */
+export function prefersIndian(): boolean {
+  try {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    return /Kolkata|Calcutta/.test(tz) || /-IN$|^hi/i.test(navigator.language);
+  } catch {
+    return false;
+  }
+}
+
+/** Interviewer voice: English voices plus Indian voices (en-IN and Hindi), best first. */
 export function useSpeaker() {
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [speaking, setSpeaking] = useState(false);
@@ -157,12 +216,20 @@ export function useSpeaker() {
 
   useEffect(() => {
     if (!("speechSynthesis" in window)) return;
+    const india = prefersIndian();
     const load = () => {
       const all = window.speechSynthesis.getVoices();
-      const en = all.filter((v) => v.lang.toLowerCase().startsWith("en"));
-      const rank = (v: SpeechSynthesisVoice) =>
-        (/natural|neural|online/i.test(v.name) ? 0 : 2) + (/google/i.test(v.name) ? 0 : 1);
-      setVoices((en.length ? en : all).sort((a, b) => rank(a) - rank(b)));
+      const usable = all.filter((v) => /^en/i.test(v.lang) || /^hi[-_]/i.test(v.lang));
+      const rank = (v: SpeechSynthesisVoice) => {
+        const d = describe(v);
+        return (
+          (india && d.region === "India" ? 0 : 10) +
+          (d.hindi ? 3 : 0) +
+          (/natural|neural|online/i.test(v.name) ? 0 : 2) +
+          (/google/i.test(v.name) ? 0 : 1)
+        );
+      };
+      setVoices((usable.length ? usable : all).sort((a, b) => rank(a) - rank(b)));
     };
     load();
     window.speechSynthesis.addEventListener("voiceschanged", load);
@@ -203,12 +270,7 @@ export function useSpeaker() {
     [voices],
   );
 
-  const options: VoiceOption[] = voices.map((v) => ({
-    id: v.voiceURI,
-    label: `${v.name.replace(/^(Microsoft|Google)\s+/, "").replace(/\s*-\s*English.*$/, "")} (${v.lang})`,
-  }));
-
-  return { speak, cancel, speaking, voices: options };
+  return { speak, cancel, speaking, voices: voices.map(describe) };
 }
 
 /** Microphone loudness from 0 to 1, sampled every animation frame while `on`. */

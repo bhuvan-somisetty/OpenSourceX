@@ -8070,12 +8070,12 @@ button.play-card {
 .iv-mode:hover {
   border-color: var(--border-strong);
 }
-.iv-mode[aria-checked="true"] {
+.iv-mode[aria-pressed="true"] {
   border-color: color-mix(in srgb, var(--wine-2) 60%, transparent);
   background: color-mix(in srgb, var(--wine) 14%, var(--surface));
   box-shadow: 0 0 26px -8px color-mix(in srgb, var(--wine) 70%, transparent);
 }
-.iv-mode[aria-checked="true"] svg {
+.iv-mode[aria-pressed="true"] svg {
   color: var(--wine-2);
 }
 .iv-row {
@@ -8823,4 +8823,516 @@ button.play-card {
   .iv-orb-core {
     transform: none;
   }
+}
+
+/* interview: subject tabs, multi-select modes, length cards */
+.iv-sub {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.iv-source {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--glass);
+}
+.iv-source button {
+  border: 0;
+  border-radius: 9px;
+  padding: 9px 10px;
+  background: none;
+  color: var(--text-muted);
+  font: 500 13px var(--font);
+  cursor: pointer;
+}
+.iv-source button[aria-selected="true"] {
+  background: var(--btn-bg);
+  color: var(--btn-ink);
+  font-weight: 600;
+}
+.iv-picked-k {
+  font: 500 11px var(--font);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--wine-2);
+}
+.iv-mode {
+  position: relative;
+}
+.iv-check {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  border: 1.5px solid var(--border-strong);
+}
+.iv-mode[aria-pressed="true"] .iv-check {
+  border-color: var(--wine-2);
+  background: var(--wine);
+}
+.iv-mode[aria-pressed="true"] .iv-check::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 5px;
+  height: 10px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.iv-mode-all {
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--wine) 12%, transparent), transparent 70%),
+    var(--surface);
+}
+.iv-counts {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.iv-counts button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+}
+.iv-counts button:hover {
+  border-color: var(--border-strong);
+}
+.iv-counts button[aria-checked="true"] {
+  border-color: color-mix(in srgb, var(--wine-2) 60%, transparent);
+  background: color-mix(in srgb, var(--wine) 14%, var(--surface));
+  box-shadow: 0 0 22px -8px color-mix(in srgb, var(--wine) 70%, transparent);
+}
+.iv-count-n {
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  font: 700 17px var(--font);
+  background: var(--glass-2);
+}
+.iv-counts button[aria-checked="true"] .iv-count-n {
+  background: var(--wine);
+  color: #fff;
+}
+.iv-count-t {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+.iv-count-t strong {
+  font-size: 13.5px;
+}
+.iv-count-t span {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+.iv-chip-mode {
+  border-color: var(--border-strong);
+  color: var(--text-muted);
+}
+.iv-mic-setup {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 28px;
+  align-items: flex-start;
+}
+.iv-mic-setup .iv-mictest {
+  margin-top: 26px;
+  flex: 1 1 280px;
+}
+
+/* voice picker */
+.iv-voices {
+  margin-top: 20px;
+  padding: 18px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+.iv-vhead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+.iv-vtabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.iv-vtabs button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 99px;
+  border: 1px solid var(--border);
+  background: var(--glass);
+  color: var(--text-muted);
+  font: 500 12.5px var(--font);
+  cursor: pointer;
+}
+.iv-vtabs button[aria-selected="true"] {
+  border-color: color-mix(in srgb, var(--wine-2) 60%, transparent);
+  background: color-mix(in srgb, var(--wine) 20%, transparent);
+  color: var(--text);
+}
+.iv-vcode {
+  font: 700 10px var(--mono);
+  padding: 1px 4px;
+  border-radius: 4px;
+  background: var(--glass-2);
+  color: var(--text);
+}
+.iv-vcount {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+.iv-vgrid {
+  margin-top: 14px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  max-height: 330px;
+  overflow: auto;
+  padding: 2px;
+}
+.iv-voice {
+  position: relative;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--glass);
+  transition:
+    border-color 0.16s ease,
+    background 0.16s ease;
+}
+.iv-voice:hover {
+  border-color: var(--border-strong);
+}
+.iv-voice.on {
+  border-color: color-mix(in srgb, var(--wine-2) 65%, transparent);
+  background: color-mix(in srgb, var(--wine) 14%, var(--surface));
+  box-shadow: 0 0 24px -8px color-mix(in srgb, var(--wine) 75%, transparent);
+}
+.iv-voice-main {
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 52px 12px 12px;
+  border: 0;
+  background: none;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+.iv-vavatar {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font: 700 16px var(--font);
+  color: #fff;
+  background: linear-gradient(135deg, #4b5568, #262c38);
+}
+.iv-vavatar.r-india {
+  background: linear-gradient(135deg, var(--wine-2), var(--wine));
+}
+.iv-vavatar.r-us {
+  background: linear-gradient(135deg, #5a6fb0, #2d3a66);
+}
+.iv-vavatar.r-uk {
+  background: linear-gradient(135deg, #6c5aa8, #382d63);
+}
+.iv-vtext {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.iv-vtext strong {
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.iv-vtext > span {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+.iv-vbadges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 2px;
+}
+.iv-vbadges em {
+  font-style: normal;
+  font-size: 10.5px;
+  padding: 0 6px;
+  border-radius: 99px;
+  border: 1px solid var(--border-strong);
+  color: var(--text-muted);
+}
+.iv-vbadges em.sel {
+  border-color: color-mix(in srgb, var(--wine-2) 60%, transparent);
+  color: var(--wine-2);
+}
+.iv-vplay {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border-strong);
+  background: var(--surface-2);
+  color: var(--text);
+  cursor: pointer;
+}
+.iv-vplay:hover,
+.iv-vplay.on {
+  border-color: var(--wine-2);
+  background: var(--wine);
+  color: #fff;
+}
+.iv-vwave {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 14px;
+}
+.iv-vwave i {
+  width: 2.5px;
+  border-radius: 2px;
+  background: currentColor;
+}
+.iv-vtip {
+  margin-top: 12px;
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px dashed color-mix(in srgb, var(--wine-2) 45%, var(--border));
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+.iv-vtip strong {
+  color: var(--text);
+  font-size: 13px;
+}
+.iv-vfoot {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.iv-rates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.iv-rates button {
+  display: grid;
+  gap: 0;
+  padding: 6px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--glass);
+  color: var(--text-muted);
+  cursor: pointer;
+  font: inherit;
+  text-align: center;
+}
+.iv-rates button strong {
+  font-size: 12.5px;
+  color: var(--text);
+}
+.iv-rates button span {
+  font: 11px var(--mono);
+}
+.iv-rates button[aria-checked="true"] {
+  border-color: color-mix(in srgb, var(--wine-2) 60%, transparent);
+  background: color-mix(in srgb, var(--wine) 20%, transparent);
+}
+.iv-vtry.on {
+  border-color: var(--wine-2);
+}
+
+/* paste a repo */
+.iv-repo {
+  margin-top: 14px;
+  display: grid;
+  gap: 14px;
+}
+.iv-repo-row {
+  display: flex;
+  gap: 8px;
+}
+.iv-repo-row input {
+  flex: 1;
+  min-width: 0;
+}
+.iv-repo-skel {
+  display: grid;
+  gap: 8px;
+}
+.iv-repo-skel span {
+  height: 16px;
+  border-radius: 8px;
+  background: var(--glass-2);
+}
+.iv-repo-skel span:nth-child(2) {
+  width: 70%;
+}
+.iv-repo-skel span:nth-child(3) {
+  width: 45%;
+}
+.iv-repo-result {
+  display: grid;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+.iv-repo-name {
+  font: 600 16px var(--font);
+  color: var(--text);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.iv-repo-name:hover {
+  text-decoration: underline;
+}
+.iv-repo-head p {
+  margin: 6px 0 0;
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.iv-repo-meta {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  font: 12px var(--mono);
+  color: var(--text-dim);
+}
+.iv-repo-orgs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+.iv-repo-orgs > li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--glass);
+}
+.iv-repo-org {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.iv-repo-org-name {
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+}
+.iv-repo-org-name:hover {
+  text-decoration: underline;
+}
+.iv-repo-org .dim {
+  font-size: 12px;
+}
+.iv-repo-progs {
+  margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.iv-prog {
+  display: inline-flex;
+  gap: 6px;
+  align-items: baseline;
+  padding: 3px 10px;
+  border-radius: 99px;
+  border: 1px solid color-mix(in srgb, var(--wine-2) 40%, var(--border));
+  background: color-mix(in srgb, var(--wine) 10%, transparent);
+  font-size: 12px;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.iv-prog strong {
+  color: var(--text);
+  font-weight: 600;
+}
+.iv-repo-none {
+  margin: 0;
+  font-size: 13px;
+}
+.iv-repo-projects {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.iv-repo-projects button {
+  width: 100%;
+  display: grid;
+  gap: 2px;
+  text-align: left;
+  padding: 9px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--glass);
+  color: var(--text);
+  cursor: pointer;
+  font: 13.5px var(--font);
+}
+.iv-repo-projects button[aria-pressed="true"] {
+  border-color: var(--wine-2);
+  background: color-mix(in srgb, var(--wine) 16%, transparent);
+}
+.iv-repo-projects .dim {
+  font-size: 12px;
+}
+.iv-repo-use {
+  justify-self: start;
 }

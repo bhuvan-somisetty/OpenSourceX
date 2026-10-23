@@ -22,14 +22,18 @@ export const maxDuration = 60;
 
 const QuestionSchema = z.object({
   id: z.string().max(40),
+  mode: z.enum(MODE_KEYS as [Mode, ...Mode[]]).optional(),
   text: z.string().min(1).max(600),
   lookFor: z.array(z.string().max(200)).max(6),
   followUp: z.boolean().optional(),
 });
 const score = z.number().min(0).max(10);
 const Common = {
-  projectId: z.string().max(40),
-  mode: z.enum(MODE_KEYS as [Mode, ...Mode[]]),
+  projectId: z.string().max(160),
+  modes: z
+    .array(z.enum(MODE_KEYS as [Mode, ...Mode[]]))
+    .min(1)
+    .max(MODE_KEYS.length),
   level: z.enum(Object.keys(LEVELS) as [Level, ...Level[]]),
 };
 const Body = z.discriminatedUnion("action", [
@@ -135,7 +139,7 @@ export const POST = route(async (req) => {
   if (useAi) {
     try {
       return Response.json({
-        report: await aiReport(project, b.mode, b.level, turns, base),
+        report: await aiReport(project, b.modes, b.level, turns, base),
         engine: "ai",
       });
     } catch {

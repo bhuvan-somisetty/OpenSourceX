@@ -330,10 +330,12 @@ test("repository analyzer, interview workspace and not-found", async ({ page }) 
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
     "Talk it through with an interviewer.",
   );
-  await page
-    .getByTestId("modes")
-    .getByRole("radio", { name: /PR review/ })
-    .click();
+  const modes = page.getByTestId("modes");
+  await modes.getByRole("button", { name: /Everything/ }).click();
+  await expect(modes.getByRole("button", { name: /PR review/ })).toHaveAttribute(
+    "aria-pressed",
+    "true",
+  );
   for (const name of ["Interviewer speaks", "Answer out loud", "Hands-free conversation"]) {
     const box = page.getByRole("checkbox", { name: new RegExp(name) });
     if (await box.isChecked()) await box.uncheck();
