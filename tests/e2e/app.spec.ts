@@ -330,8 +330,14 @@ test("repository analyzer, interview workspace and not-found", async ({ page }) 
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
     "Talk it through with an interviewer.",
   );
+  // nothing is chosen until the user picks it
+  await expect(page.getByTestId("start-interview")).toBeDisabled();
+  await page.getByRole("tab", { name: "Mentorship projects" }).click();
+  await page.getByRole("option").first().click();
+  await expect(page.getByTestId("picked-project")).toBeVisible();
   const modes = page.getByTestId("modes");
   await modes.getByRole("button", { name: /Everything/ }).click();
+  await page.getByRole("radio", { name: /Quick/ }).click();
   await expect(modes.getByRole("button", { name: /PR review/ })).toHaveAttribute(
     "aria-pressed",
     "true",
@@ -350,6 +356,11 @@ test("repository analyzer, interview workspace and not-found", async ({ page }) 
     );
   await page.getByTestId("submit-answer").click();
   await expect(page.getByTestId("feedback")).toBeVisible();
+  // "I don't know" scores zero, not a pity score
+  await page.getByRole("button", { name: /Next question/ }).click();
+  await page.getByLabel(/Your answer/).fill("I don't know");
+  await page.getByTestId("submit-answer").click();
+  await expect(page.getByTestId("feedback").first()).toContainText("—");
   await page.goto("/projects/mp-999999");
   await expect(page.getByTestId("not-found")).toBeVisible();
 });

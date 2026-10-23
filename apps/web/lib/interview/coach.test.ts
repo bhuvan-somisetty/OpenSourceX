@@ -4,12 +4,14 @@ import {
   maxQuestions,
   MODE_KEYS,
   offlineQuestions,
+  isNonAnswer,
   offlineReport,
   scoreOffline,
   tidyTechnologies,
   type InterviewProject,
   type Turn,
 } from "./coach";
+import { speakable } from "../../features/interview/voice";
 
 const p: InterviewProject = {
   id: "mp-1",
@@ -104,5 +106,64 @@ describe("several interview types", () => {
     expect(maxQuestions(MODE_KEYS)).toBeGreaterThanOrEqual(50);
     expect(offlineQuestions(p, MODE_KEYS, 10)).toHaveLength(10);
     expect(offlineQuestions(p, ["understanding"], 10)).toHaveLength(10);
+  });
+});
+
+describe("answers that say nothing", () => {
+  it("scores idk, I don't know and one-word answers as zero", () => {
+    const q = offlineQuestions(p, ["understanding"], 1)[0]!;
+    for (const a of [
+      "idk",
+      "I don't know",
+      "i dont know",
+      "I don't know anything",
+      "no idea",
+      "pass",
+      "ok",
+      "hmm",
+    ]) {
+      expect(isNonAnswer(a)).toBe(true);
+      const f = scoreOffline(p, q, a, analyzeDelivery(a, 3, false));
+      expect(f.overall).toBe(0);
+      expect(f.empty).toBe(true);
+    }
+    expect(isNonAnswer("I would read the operator code and run the tests first")).toBe(false);
+  });
+
+  it("reports a session of only empty answers as no real answers", () => {
+    const qs = offlineQuestions(p, ["technical"], 3);
+    const turns: Turn[] = qs.map((q) => {
+      const delivery = analyzeDelivery("idk", 4, false);
+      return {
+        question: q,
+        answer: "idk",
+        seconds: 4,
+        delivery,
+        feedback: scoreOffline(p, q, "idk", delivery),
+      };
+    });
+    const r = offlineReport(p, turns);
+    expect(r.overall).toBe(0);
+    expect(r.verdict).toBe("No real answers yet");
+    expect(r.emptyAnswers).toBe(3);
+    expect(r.delivery.wpm).toBeNull();
+  });
+
+  it("measures pace only for spoken answers", () => {
+    expect(
+      analyzeDelivery("I would start by reading the docs and the tests", 30, false).wpm,
+    ).toBeNull();
+    expect(analyzeDelivery("I would start by reading the docs and the tests", 6, true).wpm).toBe(
+      100,
+    );
+  });
+});
+
+describe("speakable", () => {
+  it("reads scores and symbols as words", () => {
+    expect(speakable("Your strongest area was clarity (5/10).")).toBe(
+      "Your strongest area was clarity (5 out of 10).",
+    );
+    expect(speakable('"um" ×3 · 140 wpm')).toBe("um 3 times, 140 words a minute");
   });
 });

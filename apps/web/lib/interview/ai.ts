@@ -7,6 +7,7 @@ import {
   LEVELS,
   MODES,
   verdictFor,
+  weighted,
   type Delivery,
   type Feedback,
   type FocusArea,
@@ -100,7 +101,8 @@ Rules:
 - Score honestly from 1 to 10 per dimension: relevance (answers the question), knowledge (of this project), depth (technical specifics), structure (clear order), clarity (concise, few fillers). A vague or very short answer must score low.
 - Feedback must be specific to what the candidate actually said; quote or paraphrase it. Be encouraging but never flattering.
 - If the answer was vague or skipped a key point, the next question may be a follow-up that digs into it (followUp true); otherwise move to a new topic, rotating through the interview types listed above. Do not repeat earlier questions.
-- The answer is a speech transcript, so ignore punctuation and small recognition errors.`;
+- The answer may be a speech transcript, so ignore punctuation and small recognition errors.
+- Spoken text is read aloud by a speech engine: write numbers as words ("five out of ten"), never "5/10", and use no symbols, emoji or Markdown in "spoken" or in question text.`;
 }
 
 function facts(p: InterviewProject) {
@@ -179,15 +181,8 @@ Score and give feedback on this answer. ${
     }`,
   );
   const s = out.scores;
-  const overall = Math.round(
-    ((s.relevance * 0.3 +
-      s.knowledge * 0.2 +
-      s.depth * 0.2 +
-      s.structure * 0.15 +
-      s.clarity * 0.15) /
-      10) *
-      100,
-  );
+  // same rule as the offline coach: a short answer can't be a strong one
+  const overall = Math.round(weighted(s) * Math.min(1, 0.35 + (0.65 * i.delivery.words) / 40));
   return {
     feedback: {
       scores: s,

@@ -24,16 +24,11 @@ export default async function Interview({ searchParams }: { searchParams: Promis
     );
   const items = list.data.items.filter((p) => p.kind === "mentorship");
   const asked = first(sp.project).slice(0, 160);
-  const chosen = asked.startsWith("repo:")
-    ? asked
-    : (items.find((p) => p.id === asked)?.id ?? items[0]?.id);
-  const mode = (MODE_KEYS.find((m) => m === first(sp.mode)) ?? "understanding") as Mode;
+  // nothing is preselected: only a subject or interview type named in the link
+  const chosen = asked.startsWith("repo:") ? asked : items.find((p) => p.id === asked)?.id;
+  const mode = (MODE_KEYS.find((m) => m === first(sp.mode)) ?? null) as Mode | null;
   const detail = chosen ? await load((d) => interviewProject(d, chosen)) : null;
-  const ctx =
-    (detail?.ok ? detail.data : null) ??
-    (asked.startsWith("repo:") && items[0]
-      ? await load((d) => interviewProject(d, items[0]!.id)).then((r) => (r.ok ? r.data : null))
-      : null);
+  const ctx = detail?.ok ? detail.data : null;
   const projects: ProjectOption[] = items.map((p) => ({
     id: p.id,
     name: p.name,
@@ -67,7 +62,7 @@ export default async function Interview({ searchParams }: { searchParams: Promis
           </li>
         </ul>
       </section>
-      {items.length === 0 || !ctx ? (
+      {items.length === 0 ? (
         <div style={{ marginTop: 20 }}>
           <EmptyState
             title="No recorded project to practice with"
@@ -82,7 +77,7 @@ export default async function Interview({ searchParams }: { searchParams: Promis
         </div>
       ) : (
         <VoiceInterview
-          key={ctx.id}
+          key={ctx?.id ?? "new"}
           projects={projects}
           initial={ctx}
           initialMode={mode}

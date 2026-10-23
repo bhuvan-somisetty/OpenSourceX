@@ -62,6 +62,8 @@ export function useDictation(lang = "en-US") {
   const [interim, setInterim] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [lastHeard, setLastHeard] = useState(0);
+  /** true once speech was recognised for the current answer (false = typed) */
+  const [heard, setHeard] = useState(false);
 
   const stop = useCallback(() => {
     want.current = false;
@@ -94,6 +96,7 @@ export function useDictation(lang = "en-US") {
         if (fin) setFinalText((t) => `${t}${t && !t.endsWith(" ") ? " " : ""}${fin.trim()}`);
         setInterim(mid);
         setLastHeard(Date.now());
+        if (fin || mid) setHeard(true);
       };
       r.onerror = (e) => {
         if (e.error === "no-speech" || e.error === "aborted") return;
@@ -139,6 +142,7 @@ export function useDictation(lang = "en-US") {
   const reset = useCallback((text = "") => {
     setFinalText(text);
     setInterim("");
+    setHeard(false);
   }, []);
 
   useEffect(
@@ -149,7 +153,18 @@ export function useDictation(lang = "en-US") {
     [],
   );
 
-  return { listening, finalText, interim, error, lastHeard, start, stop, reset, setFinalText };
+  return {
+    listening,
+    finalText,
+    interim,
+    error,
+    lastHeard,
+    heard,
+    start,
+    stop,
+    reset,
+    setFinalText,
+  };
 }
 
 export type Region = "India" | "US" | "UK" | "Australia" | "Other";
@@ -161,8 +176,6 @@ export interface VoiceOption {
   region: Region;
   gender: "Female" | "Male" | null;
   natural: boolean;
-  /** a Hindi voice reading English: an Indian accent many listeners find easy to follow */
-  hindi: boolean;
 }
 
 const FEMALE =
@@ -183,18 +196,16 @@ function describe(v: SpeechSynthesisVoice): VoiceOption {
   const name = v.name
     .replace(/^(Microsoft|Google)\s+/, "")
     .replace(/\s*Online\s*\(Natural\)/i, "")
-    .replace(/\s*-\s*(English|Hindi).*$/i, "")
-    .replace(/^हिन्दी$/, "Hindi")
+    .replace(/\s*-\s*English.*$/i, "")
     .trim();
   return {
     id: v.voiceURI,
-    name: /google/i.test(v.name) && /^hindi$/i.test(name) ? "Google Hindi" : name,
+    name,
     lang: v.lang,
     region: region(v.lang),
     gender:
       MALE.test(v.name) && !/female/i.test(v.name) ? "Male" : FEMALE.test(v.name) ? "Female" : null,
     natural: /natural|neural|online|google/i.test(v.name),
-    hindi: v.lang.toLowerCase().startsWith("hi"),
   };
 }
 
@@ -208,7 +219,7 @@ export function prefersIndian(): boolean {
   }
 }
 
-/** Interviewer voice: English voices plus Indian voices (en-IN and Hindi), best first. */
+/** Interviewer voice: English voices only, Indian English first for visitors in India. */
 export function useSpeaker() {
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [speaking, setSpeaking] = useState(false);
@@ -219,12 +230,11 @@ export function useSpeaker() {
     const india = prefersIndian();
     const load = () => {
       const all = window.speechSynthesis.getVoices();
-      const usable = all.filter((v) => /^en/i.test(v.lang) || /^hi[-_]/i.test(v.lang));
+      const usable = all.filter((v) => /^en/i.test(v.lang));
       const rank = (v: SpeechSynthesisVoice) => {
         const d = describe(v);
         return (
           (india && d.region === "India" ? 0 : 10) +
-          (d.hindi ? 3 : 0) +
           (/natural|neural|online/i.test(v.name) ? 0 : 2) +
           (/google/i.test(v.name) ? 0 : 1)
         );
@@ -249,7 +259,7 @@ export function useSpeaker() {
       new Promise<void>((resolve) => {
         if (!("speechSynthesis" in window) || !text.trim()) return resolve();
         window.speechSynthesis.cancel();
-        const u = new SpeechSynthesisUtterance(text);
+        const u = new SpeechSynthesisUtterance(speakable(text));
         const v = voices.find((x) => x.voiceURI === opts.voice) ?? voices[0];
         if (v) {
           u.voice = v;
@@ -271,6 +281,75 @@ export function useSpeaker() {
   );
 
   return { speak, cancel, speaking, voices: voices.map(describe) };
+}
+
+/**
+ * Text as a speech engine should read it: "5/10" becomes "5 out of 10" (not "510"), symbols
+ * become words, and Markdown and quote marks are dropped.
+ */
+export function speakable(text: string): string {
+  return text
+    .replace(/\*\*|__|`|#+\s/g, "")
+    .replace(/(\d+(?:\.\d+)?)\s*\/\s*(\d+)/g, "$1 out of $2")
+    .replace(/×\s*(\d+)/g, " $1 times")
+    .replace(/(\d+(?:\.\d+)?)\s*×/g, "$1 times")
+    .replace(/(\d+)\s*%/g, "$1 percent")
+    .replace(/\bwpm\b/gi, "words a minute")
+    .replace(/~\s*(\d)/g, "about $1")
+    .replace(/\be\.g\./gi, "for example")
+    .replace(/\bi\.e\./gi, "that is")
+    .replace(/\bQ(\d+)\b/g, "question $1")
+    .replace(/&/g, " and ")
+    .replace(/[·•|]/g, ", ")
+    .replace(/\s[–—-]\s/g, ", ")
+    .replace(/["“”‘’]/g, "")
+    .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, "")
+    .replace(/\s+([,.!?])/g, "$1")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
+export type MicPermission = "unknown" | "prompt" | "granted" | "denied" | "unsupported";
+
+/**
+ * Microphone permission. `request()` must run inside a click: browsers only show their
+ * "Allow microphone" prompt for a user gesture, and speech recognition started later (after the
+ * interviewer finishes speaking) is refused when permission was never granted.
+ */
+export function useMicPermission() {
+  const [state, setState] = useState<MicPermission>("unknown");
+  useEffect(() => {
+    if (!navigator.mediaDevices?.getUserMedia) {
+      setState("unsupported");
+      return;
+    }
+    let status: PermissionStatus | null = null;
+    const update = () => {
+      if (status) setState(status.state as MicPermission);
+    };
+    navigator.permissions
+      ?.query({ name: "microphone" as PermissionName })
+      .then((s) => {
+        status = s;
+        update();
+        s.addEventListener("change", update);
+      })
+      .catch(() => setState("prompt"));
+    return () => status?.removeEventListener("change", update);
+  }, []);
+  const request = useCallback(async (): Promise<MicPermission> => {
+    if (!navigator.mediaDevices?.getUserMedia) return "unsupported";
+    try {
+      const s = await navigator.mediaDevices.getUserMedia({ audio: true });
+      s.getTracks().forEach((t) => t.stop());
+      setState("granted");
+      return "granted";
+    } catch {
+      setState("denied");
+      return "denied";
+    }
+  }, []);
+  return { state, request };
 }
 
 /** Microphone loudness from 0 to 1, sampled every animation frame while `on`. */

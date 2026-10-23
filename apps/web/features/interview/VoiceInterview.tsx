@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   analyzeDelivery,
@@ -14,7 +13,6 @@ import {
   offlineReport,
   opening,
   scoreOffline,
-  verdictFor,
   type Dimension,
   type Feedback,
   type InterviewProject,
@@ -24,12 +22,14 @@ import {
   type Report,
   type Turn,
 } from "@/lib/interview/coach";
+import { ReportView } from "./ReportView";
 import { RepoLookup } from "./RepoLookup";
 import { VoicePicker } from "./VoicePicker";
 import {
   prefersIndian,
   useDictation,
   useMicLevel,
+  useMicPermission,
   useSpeaker,
   useSpeechSupport,
   type VoiceOption,
@@ -49,11 +49,6 @@ type Step = "intro" | "asking" | "answer" | "scoring" | "reacting" | "finishing"
 type Engine = "ai" | "offline";
 
 type Accent = "en-IN" | "en-US" | "en-GB";
-const ACCENTS: { v: Accent; label: string }[] = [
-  { v: "en-IN", label: "Indian English" },
-  { v: "en-US", label: "American" },
-  { v: "en-GB", label: "British" },
-];
 const COUNTS = [
   { n: 3, label: "Quick", min: 6 },
   { n: 5, label: "Standard", min: 10 },
@@ -133,6 +128,15 @@ function write(key: string, v: unknown) {
   }
 }
 
+/** Brings the live interview or the report into view once it has rendered. */
+function scrollTo(selector: string) {
+  requestAnimationFrame(() =>
+    requestAnimationFrame(() =>
+      document.querySelector(selector)?.scrollIntoView({ behavior: "smooth", block: "start" }),
+    ),
+  );
+}
+
 const fmt = (s: number) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
 
 function Icon({ d, size = 18 }: { d: string; size?: number }) {
@@ -153,35 +157,10 @@ function Icon({ d, size = 18 }: { d: string; size?: number }) {
   );
 }
 const MIC = "M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3Zm-7 9a7 7 0 0 0 14 0M12 19v3";
-const SPEAKER = "M11 5 6 9H3v6h3l5 4V5Zm5.5 3.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12";
 const REPEAT = "M4 12a8 8 0 0 1 14-5.3L20 9M20 4v5h-5M20 12a8 8 0 0 1-14 5.3L4 15m0 5v-5h5";
 const SKIP = "m5 5 8 7-8 7V5Zm12 0v14";
 const SEND = "m4 12 16-8-6 16-2.5-6.5L4 12Z";
 const STOP = "M7 7h10v10H7z";
-
-function ScoreRing({ value, size = 132, label }: { value: number; size?: number; label?: string }) {
-  const r = (size - 12) / 2;
-  const c = 2 * Math.PI * r;
-  return (
-    <div className="iv-ring" style={{ width: size, height: size }}>
-      <svg width={size} height={size} aria-hidden="true">
-        <circle cx={size / 2} cy={size / 2} r={r} className="iv-ring-track" />
-        <circle
-          cx={size / 2}
-          cy={size / 2}
-          r={r}
-          className="iv-ring-fill"
-          strokeDasharray={c}
-          strokeDashoffset={c * (1 - Math.max(0, Math.min(100, value)) / 100)}
-        />
-      </svg>
-      <div className="iv-ring-text">
-        <strong style={{ fontSize: size / 3.4 }}>{value}</strong>
-        {label && <span>{label}</span>}
-      </div>
-    </div>
-  );
-}
 
 function Orb({
   state,
@@ -192,13 +171,20 @@ function Orb({
 }) {
   return (
     <div className={`iv-orb is-${state}`} style={{ ["--lvl" as string]: level.toFixed(3) }}>
-      <div className="iv-orb-core" />
+      <span className="iv-orb-ripple" aria-hidden="true" />
+      <span className="iv-orb-ripple r2" aria-hidden="true" />
+      <span className="iv-orb-ripple r3" aria-hidden="true" />
+      <span className="iv-orb-halo" aria-hidden="true" />
+      <div className="iv-orb-core">
+        <span className="iv-orb-swirl" aria-hidden="true" />
+      </div>
       <div className="iv-orb-bars" aria-hidden="true">
         {[0.55, 0.85, 1, 0.85, 0.55].map((k, i) => (
           <span
             key={i}
             style={{
-              height: `${12 + (state === "listening" ? level * 70 * k : state === "speaking" ? 18 * k : 4)}%`,
+              height: `${12 + (state === "listening" ? level * 70 * k : state === "speaking" ? 30 * k : 4)}%`,
+              animationDelay: `${i * 0.12}s`,
             }}
           />
         ))}
@@ -215,8 +201,10 @@ export function VoiceInterview({
   signedIn,
 }: {
   projects: ProjectOption[];
-  initial: InterviewProject;
-  initialMode: Mode;
+  /** the subject named in the URL; null until the user picks one */
+  initial: InterviewProject | null;
+  /** an interview type named in the URL; nothing is preselected otherwise */
+  initialMode: Mode | null;
   aiReady: boolean;
   signedIn: boolean;
 }) {
@@ -224,13 +212,13 @@ export function VoiceInterview({
   const speaker = useSpeaker();
 
   const [phase, setPhase] = useState<Phase>("setup");
-  const [project, setProject] = useState<InterviewProject>(initial);
+  const [project, setProject] = useState<InterviewProject | null>(initial);
   const [query, setQuery] = useState("");
   const [settings, setSettings] = useState<Settings>({
-    modes: [initialMode],
+    modes: initialMode ? [initialMode] : [],
     accent: "en-US",
     level: "intermediate",
-    count: 5,
+    count: 0,
     voiceOut: true,
     voiceIn: true,
     handsFree: true,
@@ -240,7 +228,7 @@ export function VoiceInterview({
   const [history, setHistory] = useState<PastSession[]>([]);
   const [micTest, setMicTest] = useState(false);
   const [source, setSource] = useState<"list" | "repo">(
-    initial.id.startsWith("repo:") ? "repo" : "list",
+    initial && !initial.id.startsWith("repo:") ? "list" : "repo",
   );
   const [previewing, setPreviewing] = useState<string | null>(null);
   const [indian, setIndian] = useState(false);
@@ -264,21 +252,28 @@ export function VoiceInterview({
   useEffect(() => {
     const india = prefersIndian();
     setIndian(india);
+    // only voice preferences are remembered; the interview itself is chosen fresh each time
     setSettings((s) => {
-      const saved = read(SETTINGS_KEY, { ...s, accent: india ? "en-IN" : s.accent });
-      const modes = (saved.modes ?? []).filter((m) => MODE_KEYS.includes(m));
-      return {
-        ...saved,
-        modes:
-          new URLSearchParams(location.search).get("mode") || !modes.length ? [initialMode] : modes,
-      };
+      const saved = read(SETTINGS_KEY, {
+        voiceOut: s.voiceOut,
+        voiceIn: s.voiceIn,
+        handsFree: s.handsFree,
+        voice: s.voice,
+        rate: s.rate,
+      });
+      return { ...s, ...saved, accent: india ? "en-IN" : "en-US" };
     });
     setHistory(readList<PastSession>(HISTORY_KEY));
   }, [initialMode]);
   useEffect(() => {
-    if (phase === "setup") write(SETTINGS_KEY, settings);
+    if (phase === "setup") {
+      const { voiceOut, voiceIn, handsFree, voice, rate } = settings;
+      write(SETTINGS_KEY, { voiceOut, voiceIn, handsFree, voice, rate });
+    }
   }, [settings, phase]);
 
+  const mic = useMicPermission();
+  const [micBlocked, setMicBlocked] = useState(false);
   const canListen = support.stt && settings.voiceIn && !typing;
   const level = useMicLevel(micTest || (phase === "live" && dict.listening));
 
@@ -324,8 +319,16 @@ export function VoiceInterview({
   );
 
   const start = useCallback(async () => {
+    if (!project || !settings.modes.length || !settings.count) return;
     const sid = ++session.current;
     setMicTest(false);
+    // ask for the microphone now, inside the click, so the browser shows its Allow prompt
+    let typed = !support.stt || !settings.voiceIn;
+    setMicBlocked(false);
+    if (!typed && (await mic.request()) !== "granted") {
+      typed = true;
+      setMicBlocked(true);
+    }
     const qs = offlineQuestions(
       project,
       settings.modes,
@@ -338,21 +341,21 @@ export function VoiceInterview({
     setReport(null);
     setNote(null);
     setEngine("offline");
-    setTyping(!support.stt || !settings.voiceIn);
+    setTyping(typed);
     setPhase("live");
     setStep("intro");
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    scrollTo(".iv-live");
     await say(
       opening(project, settings.modes, settings.level, Math.min(settings.count, qs.length)),
     );
     if (session.current === sid) await ask(qs[0]!, sid);
-  }, [project, settings, support.stt, say, ask]);
+  }, [project, settings, support.stt, say, ask, mic]);
 
   const finish = useCallback(
     async (all: Turn[], sid: number) => {
       speaker.cancel();
       dict.stop();
-      if (!all.length) {
+      if (!all.length || !project) {
         setPhase("setup");
         return;
       }
@@ -368,10 +371,11 @@ export function VoiceInterview({
             projectId: project.id,
             modes: settings.modes,
             level: settings.level,
-            turns: all.map(({ question, answer, seconds, feedback }) => ({
+            turns: all.map(({ question, answer, seconds, feedback, delivery }) => ({
               question,
               answer,
               seconds,
+              spoken: delivery.spoken,
               feedback,
             })),
           }),
@@ -400,7 +404,7 @@ export function VoiceInterview({
       ].slice(0, 12);
       write(HISTORY_KEY, past);
       setHistory(past);
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      scrollTo(".ivr");
       await say(
         `That's the end of the interview. You scored ${r.overall} out of 100: ${r.verdict}. ${r.summary}`,
       );
@@ -409,9 +413,10 @@ export function VoiceInterview({
   );
 
   const submit = useCallback(async () => {
-    if (!question || step !== "answer") return;
+    if (!project || !question || step !== "answer") return;
     const text = answer.trim();
-    if (text.length < 3) return;
+    if (text.length < 2) return;
+    const spoken = dict.heard;
     const sid = session.current;
     dict.stop();
     speaker.cancel();
@@ -420,7 +425,7 @@ export function VoiceInterview({
     const remaining = total - (idx + 1);
     let feedback: Feedback;
     let next: Question | null = null;
-    let delivery = analyzeDelivery(text, seconds);
+    let delivery = analyzeDelivery(text, seconds, spoken);
     try {
       const res = await fetch("/api/v1/interview", {
         method: "POST",
@@ -434,6 +439,7 @@ export function VoiceInterview({
           question,
           answer: text,
           seconds,
+          spoken,
           remaining,
         }),
       });
@@ -556,9 +562,11 @@ export function VoiceInterview({
   // push to talk: hold Space outside text fields
   useEffect(() => {
     if (phase !== "live" || !canListen) return;
+    // Space is push-to-talk everywhere except text fields, even when a button has focus
+    // (otherwise it "clicks" the focused button, e.g. Repeat question)
     const editable = (t: EventTarget | null) =>
       t instanceof HTMLElement &&
-      (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT|BUTTON)$/.test(t.tagName));
+      (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName));
     const down = (e: KeyboardEvent) => {
       if (e.code !== "Space" || e.repeat || editable(e.target) || step !== "answer") return;
       e.preventDefault();
@@ -597,7 +605,7 @@ export function VoiceInterview({
     }
   };
   const pick = (p: ProjectOption) =>
-    choose(p.id === initial.id ? initial : { ...p, summary: null, mentors: [] });
+    choose(initial && p.id === initial.id ? initial : { ...p, summary: null, mentors: [] });
   const pickById = (id: string) => {
     const p = projects.find((x) => x.id === id);
     if (p) pick(p);
@@ -606,17 +614,14 @@ export function VoiceInterview({
   const toggleMode = (m: Mode | "all") =>
     setSettings((s) => {
       if (m === "all")
-        return {
-          ...s,
-          modes: s.modes.length === MODE_KEYS.length ? [MODE_KEYS[0]!] : [...MODE_KEYS],
-        };
-      const has = s.modes.includes(m);
-      const modes = has
+        return { ...s, modes: s.modes.length === MODE_KEYS.length ? [] : [...MODE_KEYS] };
+      const modes = s.modes.includes(m)
         ? s.modes.filter((x) => x !== m)
         : MODE_KEYS.filter((x) => x === m || s.modes.includes(x));
-      return { ...s, modes: modes.length ? modes : s.modes };
+      return { ...s, modes };
     });
   const everything = settings.modes.length === MODE_KEYS.length;
+  const ready = !!project && settings.modes.length > 0 && settings.count > 0;
   const cap = maxQuestions(settings.modes);
 
   const preview = (v: VoiceOption | null) => {
@@ -639,15 +644,11 @@ export function VoiceInterview({
             <h2 id="iv-project-h" className="iv-h">
               What will you talk about?
             </h2>
+            <p className="iv-sub">
+              Paste the repository you contribute to. Already picked a recorded mentorship idea? Use
+              the second tab.
+            </p>
             <div className="iv-source" role="tablist" aria-label="Interview subject">
-              <button
-                type="button"
-                role="tab"
-                aria-selected={source === "list"}
-                onClick={() => setSource("list")}
-              >
-                Pick a mentorship project
-              </button>
               <button
                 type="button"
                 role="tab"
@@ -657,27 +658,51 @@ export function VoiceInterview({
               >
                 Paste your repo link
               </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={source === "list"}
+                onClick={() => setSource("list")}
+              >
+                Mentorship projects
+              </button>
             </div>
-            <div className="iv-picked" data-testid="picked-project">
-              <div>
-                <span className="iv-picked-k">Interview subject</span>
-                <strong>{project.name}</strong>
-                <span className="dim">
-                  {[project.org, project.program].filter(Boolean).join(" · ")}
-                </span>
-              </div>
-              {project.technologies.length > 0 && (
-                <div className="chips">
-                  {project.technologies.slice(0, 6).map((t) => (
-                    <span key={t} className="tag">
-                      {t}
-                    </span>
-                  ))}
+            {project ? (
+              <div className="iv-picked" data-testid="picked-project">
+                <div>
+                  <span className="iv-picked-k">Interview subject</span>
+                  <strong>{project.name}</strong>
+                  <span className="dim">
+                    {[project.org, project.program].filter(Boolean).join(" · ")}
+                  </span>
                 </div>
-              )}
-            </div>
+                {project.technologies.length > 0 && (
+                  <div className="chips">
+                    {project.technologies.slice(0, 6).map((t) => (
+                      <span key={t} className="tag">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                <button
+                  type="button"
+                  className="iv-picked-clear"
+                  onClick={() => {
+                    setProject(null);
+                    try {
+                      window.history.replaceState(null, "", "/interview");
+                    } catch {
+                      /* ignore */
+                    }
+                  }}
+                >
+                  Change
+                </button>
+              </div>
+            ) : null}
             {source === "repo" ? (
-              <RepoLookup onUse={choose} onPickProject={pickById} activeId={project.id} />
+              <RepoLookup onUse={choose} onPickProject={pickById} activeId={project?.id ?? ""} />
             ) : (
               <>
                 <div className="field" style={{ marginTop: 12 }}>
@@ -697,7 +722,7 @@ export function VoiceInterview({
                       <button
                         type="button"
                         role="option"
-                        aria-selected={p.id === project.id}
+                        aria-selected={p.id === project?.id}
                         onClick={() => pick(p)}
                       >
                         <span className="iv-p-name">{p.name}</span>
@@ -770,7 +795,7 @@ export function VoiceInterview({
             </div>
             <div className="iv-counts" role="radiogroup" aria-label="Number of questions">
               {COUNTS.map((c) => {
-                const n = Math.min(c.n, cap);
+                const n = cap ? Math.min(c.n, cap) : c.n;
                 return (
                   <button
                     key={c.n}
@@ -851,73 +876,107 @@ export function VoiceInterview({
               />
             )}
             {support.stt && settings.voiceIn && (
-              <div className="iv-mic-setup">
-                <div>
-                  <div className="iv-label">Your accent</div>
-                  <div className="segmented" role="group" aria-label="Your accent">
-                    {ACCENTS.map((a) => (
-                      <button
-                        key={a.v}
-                        type="button"
-                        aria-pressed={settings.accent === a.v}
-                        onClick={() => update("accent", a.v)}
-                      >
-                        {a.label}
-                      </button>
-                    ))}
-                  </div>
-                  <p className="hint" style={{ marginTop: 6 }}>
-                    Helps the mic understand you correctly.
-                  </p>
-                </div>
-                <div className="iv-mictest">
-                  <button type="button" className="btn sm" onClick={() => setMicTest((m) => !m)}>
-                    <Icon d={micTest ? STOP : MIC} size={16} />{" "}
-                    {micTest ? "Stop mic check" : "Check microphone"}
-                  </button>
-                  <div
-                    className="iv-meter"
-                    aria-label="Microphone level"
-                    role="meter"
-                    aria-valuenow={Math.round(level.level * 100)}
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                  >
-                    <span style={{ width: `${Math.round(level.level * 100)}%` }} />
-                  </div>
-                  <span className="hint">
-                    {level.denied
-                      ? "Microphone blocked: allow it in the address bar."
-                      : micTest
-                        ? level.level > 0.08
-                          ? "Sounds good."
-                          : "Say something…"
-                        : "Optional."}
+              <div className={`iv-micperm is-${mic.state}`} data-testid="mic-permission">
+                <span className="iv-micperm-icon" aria-hidden="true">
+                  <Icon d={MIC} size={20} />
+                </span>
+                <div className="iv-micperm-text">
+                  <strong>
+                    {mic.state === "granted"
+                      ? "Microphone ready"
+                      : mic.state === "denied"
+                        ? "Microphone is blocked"
+                        : "Allow your microphone"}
+                  </strong>
+                  <span>
+                    {mic.state === "granted"
+                      ? "Speak to test it: the bar should move."
+                      : mic.state === "denied"
+                        ? "Click the lock or settings icon left of the web address, set Microphone to Allow, then reload this page. You can also type your answers."
+                        : "Your browser will ask for permission. Choose Allow so you can answer out loud."}
                   </span>
+                  {mic.state === "granted" && (
+                    <div
+                      className="iv-meter"
+                      aria-label="Microphone level"
+                      role="meter"
+                      aria-valuenow={Math.round(level.level * 100)}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                    >
+                      <span style={{ width: `${Math.round(level.level * 100)}%` }} />
+                    </div>
+                  )}
                 </div>
+                {mic.state === "granted" ? (
+                  <button type="button" className="btn sm" onClick={() => setMicTest((m) => !m)}>
+                    <Icon d={micTest ? STOP : MIC} size={16} /> {micTest ? "Stop test" : "Test mic"}
+                  </button>
+                ) : mic.state !== "denied" ? (
+                  <button
+                    type="button"
+                    className="btn primary sm"
+                    onClick={() =>
+                      void mic.request().then((st: string) => setMicTest(st === "granted"))
+                    }
+                    data-testid="allow-mic"
+                  >
+                    Allow microphone
+                  </button>
+                ) : (
+                  <button type="button" className="btn sm" onClick={() => location.reload()}>
+                    Reload page
+                  </button>
+                )}
               </div>
             )}
           </section>
         </div>
 
-        <div className="iv-launch">
+        <div className={`iv-launch ${ready ? "is-ready" : ""}`}>
           <div className="iv-launch-copy">
-            <strong>
-              {Math.min(settings.count, cap)} questions on {project.name}:{" "}
-              {everything ? "everything" : modesLabel(settings.modes)}
-            </strong>
-            <span className="dim">
-              {aiReady
-                ? signedIn
-                  ? "The AI interviewer adapts follow-ups to what you say and scores every answer."
-                  : "Sign in for the AI interviewer. Without it, the offline coach scores your answers."
-                : "The offline coach scores your answers on relevance, project knowledge, depth, structure and clarity."}
-            </span>
+            {ready && project ? (
+              <>
+                <strong>
+                  {Math.min(settings.count, cap)} questions on {project.name}:{" "}
+                  {everything ? "everything" : modesLabel(settings.modes)}
+                </strong>
+                <span className="dim">
+                  {aiReady
+                    ? signedIn
+                      ? "The AI interviewer adapts follow-ups to what you say and scores every answer."
+                      : "Sign in for the AI interviewer. Without it, the offline coach scores your answers."
+                    : "The offline coach scores your answers on relevance, project knowledge, depth, structure and clarity."}
+                </span>
+              </>
+            ) : (
+              <>
+                <strong>Almost ready</strong>
+                <ul className="iv-todo" data-testid="setup-todo">
+                  <li className={project ? "done" : ""}>
+                    {project
+                      ? `Subject: ${project.name}`
+                      : "Paste your repo link or pick a project"}
+                  </li>
+                  <li className={settings.modes.length ? "done" : ""}>
+                    {settings.modes.length
+                      ? `Interview: ${everything ? "Everything" : modesLabel(settings.modes)}`
+                      : "Choose at least one interview type"}
+                  </li>
+                  <li className={settings.count ? "done" : ""}>
+                    {settings.count
+                      ? `Length: ${cap ? Math.min(settings.count, cap) : settings.count} questions`
+                      : "Choose the interview length"}
+                  </li>
+                </ul>
+              </>
+            )}
           </div>
           <button
             type="button"
             className="btn primary lg iv-start"
             onClick={() => void start()}
+            disabled={!ready}
             data-testid="start-interview"
           >
             <Icon d={MIC} /> Start interview
@@ -954,6 +1013,9 @@ export function VoiceInterview({
       </div>
     );
   }
+
+  // past setup there is always a subject
+  if (!project) return null;
 
   /* ------------------------------ report ------------------------------ */
   if (phase === "report" && report) {
@@ -1090,7 +1152,16 @@ export function VoiceInterview({
                 }
               }}
             />
-            {dict.error && (
+            {(micBlocked || /blocked/i.test(dict.error ?? "")) && (
+              <div className="iv-micalert" role="alert" data-testid="mic-blocked">
+                <strong>Your microphone is blocked, so you can type for now.</strong>
+                <span>
+                  To answer out loud: click the lock or settings icon left of the web address, set
+                  Microphone to Allow, then reload the page.
+                </span>
+              </div>
+            )}
+            {dict.error && !/blocked/i.test(dict.error) && (
               <p className="iv-err" role="alert">
                 {dict.error}
               </p>
@@ -1102,10 +1173,14 @@ export function VoiceInterview({
               <button
                 type="button"
                 className={`iv-mic ${dict.listening ? "is-on" : ""}`}
-                onClick={() => {
+                onClick={async (e) => {
+                  e.currentTarget.blur();
+                  if (dict.listening) return dict.stop();
+                  if (mic.state !== "granted" && (await mic.request()) !== "granted")
+                    return setMicBlocked(true);
+                  setMicBlocked(false);
                   setTyping(false);
-                  if (dict.listening) dict.stop();
-                  else dict.start();
+                  dict.start();
                 }}
                 disabled={step !== "answer"}
                 aria-pressed={dict.listening}
@@ -1215,7 +1290,7 @@ function TurnCard({ turn, index, open }: { turn: Turn; index: number; open?: boo
           className="iv-turn-score"
           data-band={f.overall >= 75 ? "hi" : f.overall >= 55 ? "mid" : "lo"}
         >
-          {f.overall}
+          {f.empty ? "—" : f.overall}
         </span>
         <span className="iv-turn-q">
           <span className="dim">Q{index}</span> {turn.question.text}
@@ -1240,9 +1315,15 @@ function TurnCard({ turn, index, open }: { turn: Turn; index: number; open?: boo
         <Bars scores={f.scores} />
         <div className="iv-delivery">
           <span>{turn.delivery.words} words</span>
-          <span>{fmt(turn.seconds)}</span>
-          {turn.delivery.wpm && <span>{turn.delivery.wpm} wpm</span>}
-          <span>{turn.delivery.fillerCount} fillers</span>
+          {turn.delivery.spoken ? (
+            <>
+              <span>{fmt(turn.seconds)} spoken</span>
+              {turn.delivery.wpm && <span>{turn.delivery.wpm} words/min</span>}
+              <span>{turn.delivery.fillerCount} fillers</span>
+            </>
+          ) : (
+            <span>typed</span>
+          )}
         </div>
         <details className="iv-stronger">
           <summary>A stronger answer would…</summary>
@@ -1258,202 +1339,5 @@ function TurnCard({ turn, index, open }: { turn: Turn; index: number; open?: boo
         </details>
       </div>
     </details>
-  );
-}
-
-function toMarkdown(r: Report, turns: Turn[], p: InterviewProject, modes: Mode[], level: Level) {
-  const lines = [
-    `# Interview report: ${p.name}`,
-    "",
-    `${modesTitle(modes)} · ${LEVELS[level]} · ${new Date().toLocaleString()}`,
-    "",
-    `**Score: ${r.overall}/100 (${r.verdict})**`,
-    "",
-    r.summary,
-    "",
-    "## Scores",
-    ...(Object.keys(DIMENSIONS) as Dimension[]).map((k) => `- ${DIMENSIONS[k]}: ${r.scores[k]}/10`),
-    "",
-    "## Where to focus",
-    ...r.focus.flatMap((f, i) => [
-      `### ${i + 1}. ${f.title}`,
-      f.why,
-      ...f.actions.map((a) => `- ${a}`),
-      "",
-    ]),
-    "## Questions",
-    ...turns.flatMap((t, i) => [
-      `### Q${i + 1}. ${t.question.text}`,
-      `Score: ${t.feedback.overall}/100`,
-      "",
-      `> ${t.answer.replace(/\n/g, "\n> ")}`,
-      "",
-      ...t.feedback.improve.map((s) => `- Improve: ${s}`),
-      ...t.feedback.stronger.map((s) => `- Stronger answer: ${s}`),
-      "",
-    ]),
-    "From OpenSourceX interview practice.",
-  ];
-  return lines.join("\n");
-}
-
-function ReportView({
-  report: r,
-  turns,
-  project,
-  modes,
-  level,
-  engine,
-  note,
-  onAgain,
-  onSetup,
-  onHear,
-  speaking,
-  onStopSpeaking,
-}: {
-  report: Report;
-  turns: Turn[];
-  project: InterviewProject;
-  modes: Mode[];
-  level: Level;
-  engine: Engine;
-  note: string | null;
-  onAgain: () => void;
-  onSetup: () => void;
-  onHear: () => void;
-  speaking: boolean;
-  onStopSpeaking: () => void;
-}) {
-  const download = () => {
-    const blob = new Blob([toMarkdown(r, turns, project, modes, level)], { type: "text/markdown" });
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = `interview-${project.name
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .slice(0, 40)}.md`;
-    a.click();
-    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-  };
-  const wpm = r.delivery.wpm;
-  const pace = wpm == null ? "—" : wpm < 110 ? "a little slow" : wpm > 175 ? "fast" : "good pace";
-  return (
-    <div className="iv iv-report" data-testid="interview-report">
-      <section className="iv-hero-card">
-        <ScoreRing value={r.overall} size={168} label="/ 100" />
-        <div className="iv-hero-copy">
-          <div className="eyebrow">Interview report</div>
-          <h2 className="iv-verdict">{r.verdict || verdictFor(r.overall)}</h2>
-          <p className="iv-hero-meta">
-            {project.name} · {modesTitle(modes)} · {LEVELS[level]} · {turns.length} answered
-          </p>
-          <p className="iv-summary">{r.summary}</p>
-          <div className="iv-hero-actions">
-            <button type="button" className="btn primary" onClick={onAgain}>
-              Practice again
-            </button>
-            <button type="button" className="btn" onClick={speaking ? onStopSpeaking : onHear}>
-              <Icon d={speaking ? STOP : SPEAKER} size={16} /> {speaking ? "Stop" : "Hear feedback"}
-            </button>
-            <button type="button" className="btn" onClick={download}>
-              Download report
-            </button>
-            <button type="button" className="btn iv-ghost" onClick={onSetup}>
-              Change setup
-            </button>
-          </div>
-          <p className="hint" style={{ marginTop: 10 }}>
-            Scored by {engine === "ai" ? "the AI interviewer" : "the offline coach"}. {note}
-          </p>
-        </div>
-      </section>
-
-      <div className="iv-report-grid">
-        <section className="iv-panel">
-          <h2 className="iv-h">Scores</h2>
-          <Bars scores={r.scores} />
-        </section>
-        <section className="iv-panel">
-          <h2 className="iv-h">Delivery</h2>
-          <dl className="iv-stats">
-            <div>
-              <dt>Talk time</dt>
-              <dd>{fmt(r.delivery.talkSeconds)}</dd>
-            </div>
-            <div>
-              <dt>Pace</dt>
-              <dd>
-                {wpm ?? "—"}
-                <small> wpm · {pace}</small>
-              </dd>
-            </div>
-            <div>
-              <dt>Filler words</dt>
-              <dd>
-                {r.delivery.fillerCount}
-                {r.delivery.topFillers.length > 0 && (
-                  <small> · {r.delivery.topFillers.join(", ")}</small>
-                )}
-              </dd>
-            </div>
-          </dl>
-        </section>
-      </div>
-
-      <section className="iv-panel" aria-labelledby="iv-focus-h">
-        <h2 id="iv-focus-h" className="iv-h">
-          Where to focus next
-        </h2>
-        {r.focus.length ? (
-          <ol className="iv-focus">
-            {r.focus.map((f, i) => (
-              <li key={i}>
-                <div className="iv-focus-n">{i + 1}</div>
-                <div>
-                  <strong>{f.title}</strong>
-                  <p className="dim">{f.why}</p>
-                  <ul>
-                    {f.actions.map((a, j) => (
-                      <li key={j}>{a}</li>
-                    ))}
-                  </ul>
-                </div>
-              </li>
-            ))}
-          </ol>
-        ) : (
-          <p className="dim">
-            Every area scored 8 or more. Try the Advanced level or another mode.
-          </p>
-        )}
-        <div className="iv-links">
-          <Link className="btn sm" href={`/projects/${project.id}`}>
-            Review the project
-          </Link>
-          {project.repoUrl && (
-            <Link
-              className="btn sm"
-              href={`/repositories/analyze?repo=${encodeURIComponent(project.repoUrl)}`}
-            >
-              Analyze its repository
-            </Link>
-          )}
-          <Link className="btn sm" href="/ask">
-            Ask a follow-up question
-          </Link>
-        </div>
-      </section>
-
-      <section className="iv-panel" aria-labelledby="iv-q-h">
-        <h2 id="iv-q-h" className="iv-h">
-          Answer by answer
-        </h2>
-        <div className="iv-turns">
-          {turns.map((t, i) => (
-            <TurnCard key={i} turn={t} index={i + 1} />
-          ))}
-        </div>
-      </section>
-    </div>
   );
 }

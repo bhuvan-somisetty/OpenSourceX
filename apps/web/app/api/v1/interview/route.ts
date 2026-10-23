@@ -6,6 +6,8 @@ import { rateLimit, route } from "@/lib/http";
 import { aiReport, aiTurn, interviewAiAvailable, spendAi } from "@/lib/interview/ai";
 import {
   analyzeDelivery,
+  emptyFeedback,
+  isNonAnswer,
   DIMENSIONS,
   MODE_KEYS,
   LEVELS,
@@ -46,6 +48,7 @@ const Body = z.discriminatedUnion("action", [
     question: QuestionSchema,
     answer: z.string().trim().min(1).max(4000),
     seconds: z.number().min(0).max(1800),
+    spoken: z.boolean().optional(),
     remaining: z.number().int().min(0).max(12),
   }),
   z.object({
@@ -57,6 +60,7 @@ const Body = z.discriminatedUnion("action", [
           question: QuestionSchema,
           answer: z.string().max(4000),
           seconds: z.number().min(0).max(1800),
+          spoken: z.boolean().optional(),
           feedback: z.object({
             scores: z.object(
               Object.fromEntries(Object.keys(DIMENSIONS).map((k) => [k, score])) as Record<
@@ -69,6 +73,7 @@ const Body = z.discriminatedUnion("action", [
             strengths: z.array(z.string().max(400)).max(4),
             improve: z.array(z.string().max(400)).max(4),
             stronger: z.array(z.string().max(400)).max(8),
+            empty: z.boolean().optional(),
           }),
         }),
       )
@@ -98,7 +103,8 @@ export const POST = route(async (req) => {
   if (!project) throw new AppError(404, "not_found", "Project not found");
 
   let note: string | undefined;
-  const useAi = (() => {
+  /** Spends one free AI call only at the moment it is needed. */
+  const useAi = () => {
     if (!interviewAiAvailable()) return false;
     if (!session) {
       note = "Sign in to get feedback from the AI interviewer.";
@@ -110,11 +116,19 @@ export const POST = route(async (req) => {
       return false;
     }
     return true;
-  })();
+  };
 
   if (b.action === "turn") {
-    const delivery = analyzeDelivery(b.answer, b.seconds);
-    if (useAi) {
+    const delivery = analyzeDelivery(b.answer, b.seconds, b.spoken ?? false);
+    // "idk" and one-word answers score zero, and never spend an AI call
+    if (isNonAnswer(b.answer))
+      return Response.json({
+        feedback: emptyFeedback(b.question),
+        next: null,
+        delivery,
+        engine: "offline",
+      });
+    if (useAi()) {
       try {
         const r = await aiTurn({ project, ...b, delivery });
         return Response.json({ ...r, delivery, engine: "ai" });
@@ -133,10 +147,10 @@ export const POST = route(async (req) => {
 
   const turns: Turn[] = b.turns.map((t) => ({
     ...t,
-    delivery: analyzeDelivery(t.answer, t.seconds),
+    delivery: analyzeDelivery(t.answer, t.seconds, t.spoken ?? false),
   }));
   const base = offlineReport(project, turns);
-  if (useAi) {
+  if (base.emptyAnswers < turns.length && useAi()) {
     try {
       return Response.json({
         report: await aiReport(project, b.modes, b.level, turns, base),

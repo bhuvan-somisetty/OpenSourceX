@@ -59,6 +59,8 @@ export interface Question {
 }
 
 export interface Delivery {
+  /** false when the answer was typed: no pace or talk time then */
+  spoken: boolean;
   words: number;
   seconds: number;
   wpm: number | null;
@@ -76,6 +78,8 @@ export interface Feedback {
   improve: string[];
   /** Outline of a stronger answer. */
   stronger: string[];
+  /** the answer said nothing scoreable */
+  empty?: boolean;
 }
 
 export interface Turn {
@@ -99,7 +103,16 @@ export interface Report {
   scores: Scores;
   summary: string;
   focus: FocusArea[];
-  delivery: { wpm: number | null; fillerCount: number; topFillers: string[]; talkSeconds: number };
+  delivery: {
+    wpm: number | null;
+    fillerCount: number;
+    topFillers: string[];
+    talkSeconds: number;
+    /** how many answers were spoken rather than typed */
+    spokenAnswers: number;
+  };
+  /** answers that said nothing ("I don't know", one word, skipped) */
+  emptyAnswers: number;
 }
 
 /**
@@ -426,7 +439,7 @@ const FILLERS = [
   "so yeah",
 ];
 
-export function analyzeDelivery(answer: string, seconds: number): Delivery {
+export function analyzeDelivery(answer: string, seconds: number, spoken = true): Delivery {
   const text = ` ${answer.toLowerCase().replace(/[^a-z0-9' ]+/g, " ")} `;
   const words = answer.trim() ? answer.trim().split(/\s+/).length : 0;
   const fillers = FILLERS.map((word) => ({
@@ -434,9 +447,10 @@ export function analyzeDelivery(answer: string, seconds: number): Delivery {
     count: text.split(` ${word} `).length - 1,
   })).filter((f) => f.count > 0);
   return {
+    spoken,
     words,
     seconds,
-    wpm: seconds >= 5 && words > 0 ? Math.round((words / seconds) * 60) : null,
+    wpm: spoken && seconds >= 5 && words >= 5 ? Math.round((words / seconds) * 60) : null,
     fillers,
     fillerCount: fillers.reduce((s, f) => s + f.count, 0),
   };
@@ -462,12 +476,62 @@ const SPECIFIC =
 
 const clamp = (n: number) => Math.max(1, Math.min(10, Math.round(n)));
 
+/** 0-100 from the five 1-10 scores; answering the question counts most. */
+export function weighted(s: Scores): number {
+  return (
+    ((s.relevance * 0.3 +
+      s.knowledge * 0.2 +
+      s.depth * 0.2 +
+      s.structure * 0.15 +
+      s.clarity * 0.15) /
+      10) *
+    100
+  );
+}
+
+const NON_ANSWER =
+  /^(sorry,?\s*)?(i\s*)?(idk|dunno|don'?t know|do not know|dont kn[ow]+|have no idea|no idea|not sure|no clue|forgot|can'?t say|can'?t remember|pass|skip|next|nothing|none|no|nope|yes|ok(ay)?|maybe|hm+|um+|uh+|n\/?a|\?+|\.+)(\s+(anything|really|much|about (it|this|that)|sorry))*[.!?\s]*$/i;
+
+/** "idk", "I don't know", a single word or only fillers: there is nothing to score. */
+export function isNonAnswer(answer: string): boolean {
+  const t = answer.trim().toLowerCase().replace(/\s+/g, " ");
+  if (!t) return true;
+  if (NON_ANSWER.test(t)) return true;
+  const words = t.split(" ").filter((w) => /[a-z0-9]/.test(w));
+  const meaningful = words.filter((w) => !STOP.has(w.replace(/[^a-z']/g, "")) && w.length > 2);
+  return words.length < 4 || meaningful.length < 2;
+}
+
+const ZERO: Scores = { relevance: 0, knowledge: 0, depth: 0, structure: 0, clarity: 0 };
+
+/** Feedback for an answer that said nothing: zero, and a kind push to try. */
+export function emptyFeedback(q: Question): Feedback {
+  return {
+    scores: { ...ZERO },
+    overall: 0,
+    empty: true,
+    spoken:
+      "No answer there. That's okay, it happens in real interviews too. Next time, say what you do know and how you would find out the rest.",
+    strengths: [],
+    improve: [
+      "Never stop at \"I don't know\": say what you do know, then how you'd find the answer (docs, code, asking mentors).",
+      `This question wanted: ${q.lookFor.join(", ")}.`,
+    ],
+    stronger: [
+      `Open with a one-line direct answer to: "${q.text}"`,
+      ...q.lookFor.map((l) => l[0]!.toUpperCase() + l.slice(1)),
+      "If you're unsure, say how you'd find out.",
+    ],
+  };
+}
+
 export function scoreOffline(
   p: InterviewProject,
   q: Question,
   answer: string,
   d: Delivery,
 ): Feedback {
+  if (isNonAnswer(answer)) return emptyFeedback(q);
   const lower = answer.toLowerCase();
   const ans = terms(answer);
   const want = new Set([...terms(q.text), ...q.lookFor.flatMap((l) => [...terms(l)])]);
@@ -490,15 +554,8 @@ export function scoreOffline(
     structure: clamp(3 + connectors * 1.3 + (sentences >= 3 ? 1.5 : 0)),
     clarity: clamp(9 - fillerRate * 60 - (avgSentence > 35 ? 2 : 0) - (d.words < 15 ? 3 : 0)),
   };
-  const overall = Math.round(
-    ((scores.relevance * 0.3 +
-      scores.knowledge * 0.2 +
-      scores.depth * 0.2 +
-      scores.structure * 0.15 +
-      scores.clarity * 0.15) /
-      10) *
-      100,
-  );
+  // a short answer can't be a strong one, however well it is phrased
+  const overall = Math.round(weighted(scores) * Math.min(1, 0.35 + (0.65 * d.words) / 40));
 
   const strengths: string[] = [];
   const improve: string[] = [];
@@ -506,7 +563,8 @@ export function scoreOffline(
   if (techHits.length) strengths.push(`You named the stack: ${techHits.join(", ")}.`);
   if (scores.structure >= 7) strengths.push("Your answer had a clear order.");
   if (specifics >= 3) strengths.push("You used concrete details, not just general ideas.");
-  if (scores.clarity >= 8 && d.words >= 25) strengths.push("Clear delivery with few filler words.");
+  if (scores.clarity >= 8 && d.words >= 25)
+    strengths.push(d.spoken ? "Clear delivery with few filler words." : "Clear, readable answer.");
   if (d.words < 25) improve.push("Say more: aim for 45 to 90 seconds with one concrete example.");
   if (scores.relevance < 6)
     improve.push(
@@ -604,6 +662,7 @@ export function averageScores(turns: { feedback: Feedback }[]): Scores {
 }
 
 export function verdictFor(overall: number): string {
+  if (overall < 10) return "No real answers yet";
   if (overall >= 85) return "Interview ready";
   if (overall >= 70) return "Almost there";
   if (overall >= 55) return "Getting there";
@@ -626,8 +685,10 @@ export function offlineReport(p: InterviewProject, turns: Turn[]): Report {
       why: `Your average for ${DIMENSIONS[k].toLowerCase()} was ${scores[k]}/10.`,
       actions: FOCUS[k].actions(p),
     }));
-  const talk = turns.reduce((s, t) => s + t.delivery.seconds, 0);
-  const words = turns.reduce((s, t) => s + t.delivery.words, 0);
+  const spoken = turns.filter((t) => t.delivery.spoken && !t.feedback.empty);
+  const empty = turns.filter((t) => t.feedback.empty).length;
+  const talk = spoken.reduce((s, t) => s + t.delivery.seconds, 0);
+  const words = spoken.reduce((s, t) => s + t.delivery.words, 0);
   const fillerTotals = new Map<string, number>();
   for (const t of turns)
     for (const f of t.delivery.fillers)
@@ -636,22 +697,26 @@ export function offlineReport(p: InterviewProject, turns: Turn[]): Report {
     overall,
     verdict: verdictFor(overall),
     scores,
-    summary: turns.length
-      ? `Your strongest area was ${DIMENSIONS[best].toLowerCase()} (${scores[best]}/10). ${
-          focus.length
-            ? `Focus next on: ${focus.map((f) => f.title.toLowerCase()).join("; ")}.`
-            : "Every area scored 8 or more: try a harder level or another mode."
-        }`
-      : "No answers were recorded.",
+    summary: !turns.length
+      ? "No answers were recorded."
+      : empty === turns.length
+        ? "You didn't answer any question yet, so there is nothing to score. Try again and say whatever you know, even a little: interviewers reward honest reasoning far more than silence."
+        : `${empty ? `${empty} of ${turns.length} answers were empty. ` : ""}${scores[best] >= 6 ? `Your strongest area was ${DIMENSIONS[best].toLowerCase()} (${scores[best]}/10). ` : ""}${
+            focus.length
+              ? `Focus next on: ${focus.map((f) => f.title.toLowerCase()).join("; ")}.`
+              : "Every area scored 8 or more: try a harder level or another mode."
+          }`,
     focus,
     delivery: {
-      wpm: talk >= 10 ? Math.round((words / talk) * 60) : null,
+      wpm: talk >= 10 && words >= 20 ? Math.round((words / talk) * 60) : null,
       fillerCount: [...fillerTotals.values()].reduce((s, n) => s + n, 0),
       topFillers: [...fillerTotals.entries()]
         .sort((a, b) => b[1] - a[1])
         .slice(0, 3)
         .map(([w, n]) => `"${w}" ×${n}`),
       talkSeconds: talk,
+      spokenAnswers: spoken.length,
     },
+    emptyAnswers: empty,
   };
 }

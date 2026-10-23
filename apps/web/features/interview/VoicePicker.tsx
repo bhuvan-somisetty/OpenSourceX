@@ -69,7 +69,6 @@ export function VoicePicker({
   );
   const shown = tab === "all" ? voices : voices.filter((v) => v.region === tab);
   const hasIndian = (counts.get("India") ?? 0) > 0;
-  const hasEnIn = voices.some((v) => v.region === "India" && !v.hindi);
 
   if (!voices.length)
     return (
@@ -120,12 +119,11 @@ export function VoicePicker({
                 <span className="iv-vtext">
                   <strong>{v.name}</strong>
                   <span>
-                    {v.hindi ? "Indian accent" : ACCENT[v.region]}
+                    {ACCENT[v.region]}
                     {v.gender ? ` · ${v.gender}` : ""}
                   </span>
                   <span className="iv-vbadges">
                     {v.natural && <em>Natural</em>}
-                    {v.hindi && <em>Easy to follow</em>}
                     {on && <em className="sel">Selected</em>}
                   </span>
                 </span>
@@ -155,16 +153,14 @@ export function VoicePicker({
         })}
       </div>
 
-      {(!hasIndian || !hasEnIn) && (
+      {!hasIndian && (
         <div className="iv-vtip">
           <strong>Want a natural Indian English voice?</strong>
           <span>
-            {hasIndian
-              ? "The Hindi voice reads English with a clear Indian accent. "
-              : "This browser has no Indian voice yet. "}
-            Open this page in <b>Microsoft Edge</b> for the natural Neerja and Prabhat voices, or on
-            Windows add one in Settings, then Time &amp; language, then Speech, then Add voices,
-            then English (India), and reload this page.
+            This browser has no Indian English voice yet. Open this page in <b>Microsoft Edge</b>{" "}
+            for the natural Neerja and Prabhat voices, or on Windows add one in Settings, then Time
+            &amp; language, then Speech, then Add voices, then English (India), and reload this
+            page.
           </span>
         </div>
       )}
