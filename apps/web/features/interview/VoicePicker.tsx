@@ -86,6 +86,18 @@ function Wave({ v, playing }: { v: VoiceOption; playing: boolean }) {
   );
 }
 
+/** One woman, one man, one woman...: the "All" list takes turns, voices of unknown gender last. */
+function alternate(list: VoiceOption[]): VoiceOption[] {
+  const f = list.filter((v) => v.gender === "Female");
+  const m = list.filter((v) => v.gender === "Male");
+  const out: VoiceOption[] = [];
+  for (let i = 0; i < Math.max(f.length, m.length); i++) {
+    if (f[i]) out.push(f[i]!);
+    if (m[i]) out.push(m[i]!);
+  }
+  return [...out, ...list.filter((v) => !v.gender)];
+}
+
 function PlayIcon({ stop }: { stop?: boolean }) {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -120,7 +132,7 @@ export function VoicePicker({
   const selected = voices.find((v) => v.id === value) ?? voices[0];
   const [tab, setTab] = useState<Tab>("all");
   const tabs = TABS.filter((t) => t.key === "all" || counts[t.key]);
-  const shown = tab === "all" ? voices : voices.filter((v) => v.gender === tab);
+  const shown = tab === "all" ? alternate(voices) : voices.filter((v) => v.gender === tab);
   const rateIndex = Math.max(
     0,
     RATES.findIndex((r) => Math.abs(rate - r.v) < 0.01),
