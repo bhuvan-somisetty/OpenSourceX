@@ -176,6 +176,8 @@ export interface VoiceOption {
   region: Region;
   gender: "Female" | "Male" | null;
   natural: boolean;
+  /** who makes the voice, from its system name ("Google US English" -> "Google") */
+  provider: "Google" | "Microsoft" | "Apple" | null;
 }
 
 const FEMALE =
@@ -206,6 +208,13 @@ function describe(v: SpeechSynthesisVoice): VoiceOption {
     gender:
       MALE.test(v.name) && !/female/i.test(v.name) ? "Male" : FEMALE.test(v.name) ? "Female" : null,
     natural: /natural|neural|online|google/i.test(v.name),
+    provider: /^google\s/i.test(v.name)
+      ? "Google"
+      : /^microsoft\s/i.test(v.name)
+        ? "Microsoft"
+        : /com\.apple\./i.test(v.voiceURI)
+          ? "Apple"
+          : null,
   };
 }
 
