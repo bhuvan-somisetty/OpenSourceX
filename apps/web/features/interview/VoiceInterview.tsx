@@ -253,7 +253,6 @@ export function VoiceInterview({
     initial && !initial.id.startsWith("repo:") ? "list" : "repo",
   );
   const [previewing, setPreviewing] = useState<string | null>(null);
-  const [indian, setIndian] = useState(false);
   const dict = useDictation(settings.accent);
 
   // live session
@@ -273,7 +272,6 @@ export function VoiceInterview({
 
   useEffect(() => {
     const india = prefersIndian();
-    setIndian(india);
     // only voice preferences are remembered; the interview itself is chosen fresh each time
     setSettings((s) => {
       const saved = read(SETTINGS_KEY, {
@@ -939,7 +937,6 @@ export function VoiceInterview({
                 onRate={(r) => update("rate", r)}
                 onPreview={preview}
                 previewing={previewing}
-                indianFirst={indian}
               />
             )}
             {support.stt && settings.voiceIn && (

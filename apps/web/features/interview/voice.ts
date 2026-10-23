@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 /**
  * Browser voice for the interviewer, with no server and no cost:
@@ -178,6 +178,44 @@ export interface VoiceOption {
   natural: boolean;
   /** who makes the voice, from its system name ("Google US English" -> "Google") */
   provider: "Google" | "Microsoft" | "Apple" | null;
+  /** the interviewer's name shown for this voice, e.g. "Pooja" */
+  persona: string;
+}
+
+const PERSONAS = {
+  Female: [
+    "Disha",
+    "Pooja",
+    "Samantha",
+    "Ananya",
+    "Meera",
+    "Riya",
+    "Kavya",
+    "Isha",
+    "Nisha",
+    "Tara",
+  ],
+  Male: ["Arjun", "Rohan", "Aditya", "Karan", "Vikram", "Nikhil", "Rahul", "Kabir", "Dev", "Aarav"],
+  Other: ["Kiran", "Sam", "Alex", "Jordan", "Noor", "Ari"],
+} as const;
+
+/**
+ * Give every voice an interviewer's name. Names follow the voice's gender and are handed out
+ * in a fixed order of the voices' ids, so a voice keeps its name across visits.
+ */
+export function withPersonas(list: Omit<VoiceOption, "persona">[]): VoiceOption[] {
+  const used = { Female: 0, Male: 0, Other: 0 };
+  const names = new Map<string, string>();
+  for (const v of [...list].sort((a, b) => a.id.localeCompare(b.id))) {
+    const g = v.gender ?? "Other";
+    const pool = PERSONAS[g];
+    const i = used[g]++;
+    names.set(
+      v.id,
+      i < pool.length ? pool[i]! : `${pool[i % pool.length]} ${Math.floor(i / pool.length) + 1}`,
+    );
+  }
+  return list.map((v) => ({ ...v, persona: names.get(v.id)! }));
 }
 
 const FEMALE =
@@ -194,7 +232,7 @@ function region(lang: string): Region {
   return "Other";
 }
 
-function describe(v: SpeechSynthesisVoice): VoiceOption {
+function describe(v: SpeechSynthesisVoice): Omit<VoiceOption, "persona"> {
   const name = v.name
     .replace(/^(Microsoft|Google)\s+/, "")
     .replace(/\s*Online\s*\(Natural\)/i, "")
@@ -206,7 +244,11 @@ function describe(v: SpeechSynthesisVoice): VoiceOption {
     lang: v.lang,
     region: region(v.lang),
     gender:
-      MALE.test(v.name) && !/female/i.test(v.name) ? "Male" : FEMALE.test(v.name) ? "Female" : null,
+      MALE.test(v.name) && !/female/i.test(v.name)
+        ? "Male"
+        : FEMALE.test(v.name) || /^Google US English$/i.test(v.name) // Google's US voice is female
+          ? "Female"
+          : null,
     natural: /natural|neural|online|google/i.test(v.name),
     provider: /^google\s/i.test(v.name)
       ? "Google"
@@ -289,7 +331,8 @@ export function useSpeaker() {
     [voices],
   );
 
-  return { speak, cancel, speaking, voices: voices.map(describe) };
+  const options = useMemo(() => withPersonas(voices.map(describe)), [voices]);
+  return { speak, cancel, speaking, voices: options };
 }
 
 /**

@@ -3,13 +3,11 @@
 import { useMemo, useState } from "react";
 import type { Region, VoiceOption } from "./voice";
 
-const REGIONS: { key: Region | "all"; label: string; code: string }[] = [
-  { key: "India", label: "Indian", code: "IN" },
-  { key: "US", label: "American", code: "US" },
-  { key: "UK", label: "British", code: "UK" },
-  { key: "Australia", label: "Australian", code: "AU" },
-  { key: "Other", label: "Other", code: "EN" },
-  { key: "all", label: "All", code: "" },
+type Tab = "Female" | "Male" | "all";
+const TABS: { key: Tab; label: string }[] = [
+  { key: "Female", label: "Female" },
+  { key: "Male", label: "Male" },
+  { key: "all", label: "All" },
 ];
 const CODE: Record<Region, string> = {
   India: "IN",
@@ -35,55 +33,67 @@ export const RATES = [
 const PLAY = "M8 5v14l11-7z";
 const STOP = "M7 7h10v10H7z";
 
-/**
- * A voice's own name as a person would say it. Google ships accent labels as names
- * ("US English", "UK English Female"); those read as "Google", with the accent and gender
- * shown beside it.
- */
-export function voiceTitle(v: VoiceOption): string {
-  if (/^(US|UK|Indian?|Australian?)\s+English(\s+(Fe)?male)?$/i.test(v.name))
-    return [v.provider ?? "System", CODE[v.region], v.gender].filter(Boolean).join(" ");
-  return v.name;
-}
-
-/** Bar heights unique to each voice, so every card has its own signature. */
-function signature(seed: string, n: number): number[] {
+const hash = (seed: string) => {
   let h = 2166136261;
   for (const c of seed) h = Math.imul(h ^ c.charCodeAt(0), 16777619);
+  return h >>> 0;
+};
+
+/** Bar heights unique to each voice: a spoken phrase, taller in the middle. */
+function signature(seed: string, n: number): number[] {
+  let h = hash(seed);
   const out: number[] = [];
   for (let i = 0; i < n; i++) {
-    h = Math.imul(h ^ (h >>> 13), 1274126177);
-    const r = ((h >>> 0) % 1000) / 1000;
-    // a soft envelope, taller in the middle like a spoken phrase; small marks lean on the
-    // voice's own randomness so no two look alike
+    h = Math.imul(h ^ (h >>> 13), 1274126177) >>> 0;
+    const r = (h % 1000) / 1000;
     const env = Math.sin(((i + 0.5) / n) * Math.PI);
-    const shape = n < 16 ? 0.35 + 0.65 * env : env;
-    out.push(0.18 + 0.82 * shape * (0.3 + 0.7 * r));
+    out.push(0.18 + 0.82 * env * (0.3 + 0.7 * r));
   }
   return out;
 }
 
-function Signature({
-  v,
-  bars,
-  playing,
-  className,
-}: {
-  v: VoiceOption;
-  bars: number;
-  playing: boolean;
-  className: string;
-}) {
-  const hs = useMemo(() => signature(v.id + v.name, bars), [v.id, v.name, bars]);
+// orb colours stay in the brand's family: wine, rose and plum for female voices,
+// indigo and violet for male ones
+const HUES: Record<"Female" | "Male" | "Other", number[]> = {
+  Female: [342, 330, 352, 318, 305],
+  Male: [232, 248, 262, 218, 275],
+  Other: [290, 200, 170],
+};
+
+/** A small glossy sphere per voice, with a sound mark that speaks while the voice plays. */
+function VoiceOrb({ v, size, playing }: { v: VoiceOption; size: number; playing: boolean }) {
+  const h = hash(v.id);
+  const hues = HUES[v.gender ?? "Other"];
+  const h1 = hues[h % hues.length]!;
+  // the second hue leans toward plum for warm orbs and toward violet for cool ones, never orange
+  const h2 = v.gender === "Female" ? h1 - 14 - (h % 18) : h1 + 14 + (h % 18);
+  const bars = useMemo(() => signature(v.id, 5).map((x) => 0.35 + 0.65 * x), [v.id]);
   return (
     <span
-      className={`${className} r-${v.region.toLowerCase()} ${playing ? "playing" : ""}`}
+      className={`iv-vorb ${playing ? "playing" : ""}`}
+      style={{ ["--h1" as string]: h1, ["--h2" as string]: h2, width: size, height: size }}
       aria-hidden="true"
     >
-      {hs.map((h, i) => (
+      <span className="iv-vorb-mark">
+        {bars.map((b, i) => (
+          <i
+            key={i}
+            style={{ height: `${Math.round(b * 100)}%`, animationDelay: `${i * -0.17}s` }}
+          />
+        ))}
+      </span>
+    </span>
+  );
+}
+
+function Wave({ v, playing }: { v: VoiceOption; playing: boolean }) {
+  const hs = useMemo(() => signature(v.id + v.persona, 44), [v.id, v.persona]);
+  return (
+    <span className={`iv-vsig-lg ${playing ? "playing" : ""}`} aria-hidden="true">
+      {hs.map((x, i) => (
         <i
           key={i}
-          style={{ height: `${Math.round(h * 100)}%`, animationDelay: `${(i % 5) * -0.13}s` }}
+          style={{ height: `${Math.round(x * 100)}%`, animationDelay: `${(i % 5) * -0.13}s` }}
         />
       ))}
     </span>
@@ -98,7 +108,7 @@ function PlayIcon({ stop }: { stop?: boolean }) {
   );
 }
 
-/** The selected voice up front, every other voice one tap away, and the speaking speed. */
+/** The chosen interviewer up front, every other voice one tap away, and the speaking speed. */
 export function VoicePicker({
   voices,
   value,
@@ -107,7 +117,6 @@ export function VoicePicker({
   onRate,
   onPreview,
   previewing,
-  indianFirst,
 }: {
   voices: VoiceOption[];
   value: string;
@@ -116,20 +125,16 @@ export function VoicePicker({
   onRate: (r: number) => void;
   onPreview: (v: VoiceOption | null) => void;
   previewing: string | null;
-  indianFirst: boolean;
 }) {
   const counts = useMemo(() => {
-    const c = new Map<string, number>();
-    for (const v of voices) c.set(v.region, (c.get(v.region) ?? 0) + 1);
+    const c = { Female: 0, Male: 0 };
+    for (const v of voices) if (v.gender) c[v.gender]++;
     return c;
   }, [voices]);
   const selected = voices.find((v) => v.id === value) ?? voices[0];
-  const [tab, setTab] = useState<Region | "all">(() =>
-    indianFirst && voices.some((v) => v.region === "India") ? "India" : "all",
-  );
-  const tabs = REGIONS.filter((r) => r.key === "all" || counts.get(r.key));
-  const shown = tab === "all" ? voices : voices.filter((v) => v.region === tab);
-  const hasIndian = (counts.get("India") ?? 0) > 0;
+  const [tab, setTab] = useState<Tab>("all");
+  const tabs = TABS.filter((t) => t.key === "all" || counts[t.key]);
+  const shown = tab === "all" ? voices : voices.filter((v) => v.gender === tab);
   const rateIndex = Math.max(
     0,
     RATES.findIndex((r) => Math.abs(rate - r.v) < 0.01),
@@ -141,33 +146,29 @@ export function VoicePicker({
     );
 
   const selPlaying = previewing === selected.id;
-  const meta = (v: VoiceOption) =>
-    [
-      ACCENT[v.region],
-      voiceTitle(v).includes(v.gender ?? "~") ? null : v.gender,
-      v.provider && !voiceTitle(v).startsWith(v.provider) ? v.provider : null,
-    ]
-      .filter(Boolean)
-      .join(" · ");
+  const meta = (v: VoiceOption) => [v.gender, ACCENT[v.region]].filter(Boolean).join(" · ");
 
   return (
     <div className="iv-voices">
       <div className="iv-vstage">
-        {/* the voice that will ask the questions */}
+        {/* the interviewer who will ask the questions */}
         <div className={`iv-vhero ${selPlaying ? "playing" : ""}`}>
-          <div className="iv-vhero-k">Interviewer voice</div>
+          <div className="iv-vhero-k">Your interviewer</div>
           <div className="iv-vhero-main" key={selected.id}>
-            <Signature v={selected} bars={44} playing={selPlaying} className="iv-vsig-lg" />
-            <div className="iv-vhero-text">
-              <strong>{voiceTitle(selected)}</strong>
-              <span>{meta(selected)}</span>
-              <span className="iv-vchips">
-                <em className="code">{CODE[selected.region]}</em>
-                <em className={selected.natural ? "nat" : ""}>
-                  {selected.natural ? "Natural" : "Standard"}
-                </em>
-              </span>
+            <Wave v={selected} playing={selPlaying} />
+            <div className="iv-vhero-id">
+              <VoiceOrb v={selected} size={56} playing={selPlaying} />
+              <div className="iv-vhero-text">
+                <strong>{selected.persona}</strong>
+                <span>{meta(selected)}</span>
+              </div>
             </div>
+            <span className="iv-vchips">
+              <em className="code">{CODE[selected.region]}</em>
+              <em className={selected.natural ? "nat" : ""}>
+                {selected.natural ? "Natural voice" : "Standard voice"}
+              </em>
+            </span>
           </div>
           <button
             type="button"
@@ -175,7 +176,7 @@ export function VoicePicker({
             onClick={() => onPreview(selPlaying ? null : selected)}
           >
             <PlayIcon stop={selPlaying} />
-            {selPlaying ? "Stop" : "Hear this voice"}
+            {selPlaying ? "Stop" : `Hear ${selected.persona}`}
           </button>
 
           <div className="iv-vspeed">
@@ -207,19 +208,17 @@ export function VoicePicker({
 
         {/* every voice this browser can speak with */}
         <div className="iv-vlist-wrap">
-          <div className="iv-vtabs" role="tablist" aria-label="Accent">
-            {tabs.map((r) => (
+          <div className="iv-vtabs" role="tablist" aria-label="Voice">
+            {tabs.map((t) => (
               <button
-                key={r.key}
+                key={t.key}
                 type="button"
                 role="tab"
-                aria-selected={tab === r.key}
-                onClick={() => setTab(r.key)}
+                aria-selected={tab === t.key}
+                onClick={() => setTab(t.key)}
               >
-                {r.label}
-                <span className="iv-vcount">
-                  {r.key === "all" ? voices.length : counts.get(r.key)}
-                </span>
+                {t.label}
+                <span className="iv-vcount">{t.key === "all" ? voices.length : counts[t.key]}</span>
               </button>
             ))}
           </div>
@@ -239,11 +238,12 @@ export function VoicePicker({
                     aria-checked={on}
                     className="iv-vrow-main"
                     onClick={() => onChange(v.id)}
+                    title={v.name}
                   >
-                    <Signature v={v} bars={9} playing={playing} className="iv-vsig" />
+                    <VoiceOrb v={v} size={42} playing={playing} />
                     <span className="iv-vrow-text">
                       <strong>
-                        {voiceTitle(v)}
+                        {v.persona}
                         {v.natural && <em className="iv-vnat">Natural</em>}
                       </strong>
                       <span>{meta(v)}</span>
@@ -264,7 +264,7 @@ export function VoicePicker({
                   <button
                     type="button"
                     className={`iv-vplay ${playing ? "on" : ""}`}
-                    aria-label={playing ? `Stop ${voiceTitle(v)}` : `Preview ${voiceTitle(v)}`}
+                    aria-label={playing ? `Stop ${v.persona}` : `Hear ${v.persona}`}
                     onClick={() => onPreview(playing ? null : v)}
                   >
                     <PlayIcon stop={playing} />
@@ -275,28 +275,6 @@ export function VoicePicker({
           </div>
         </div>
       </div>
-
-      {!hasIndian && (
-        <div className="iv-vtip">
-          <span className="iv-vtip-code" aria-hidden="true">
-            IN
-          </span>
-          <div>
-            <strong>Want an Indian English interviewer?</strong>
-            <span>
-              Open this page in <b>Microsoft Edge</b> for the natural Neerja and Prabhat voices, or
-              add one on Windows and reload:
-            </span>
-            <ol className="iv-vsteps">
-              <li>Settings</li>
-              <li>Time &amp; language</li>
-              <li>Speech</li>
-              <li>Add voices</li>
-              <li>English (India)</li>
-            </ol>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
