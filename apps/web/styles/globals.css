@@ -8008,7 +8008,11 @@ button.play-card {
 ::view-transition-new(iv-length),
 ::view-transition-old(iv-voice),
 ::view-transition-new(iv-voice) {
-  height: 100%;
+  /* natural size, pinned top-left: the card's box morphs, its content never stretches */
+  width: auto;
+  height: auto;
+  object-fit: none;
+  object-position: left top;
   animation-duration: 0.45s;
   animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
@@ -8016,6 +8020,8 @@ button.play-card {
 ::view-transition-group(iv-types),
 ::view-transition-group(iv-length),
 ::view-transition-group(iv-voice) {
+  overflow: clip;
+  border-radius: 18px;
   animation-duration: 0.45s;
   animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
@@ -9386,6 +9392,16 @@ button.play-card {
 }
 .iv-repo-use {
   justify-self: start;
+}
+.iv-repo-folded {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 14px;
+  padding: 12px 14px;
+  font-size: 13.5px;
+  overflow-wrap: anywhere;
 }
 
 /* interview v3: animated orb */

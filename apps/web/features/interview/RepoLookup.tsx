@@ -29,6 +29,7 @@ export function RepoLookup({
   const [error, setError] = useState("");
   const [match, setMatch] = useState<RepoMatch | null>(null);
   const [project, setProject] = useState<InterviewProject | null>(null);
+  const [showDetails, setShowDetails] = useState(false);
 
   const find = async (value = url) => {
     const v = value.trim();
@@ -50,6 +51,7 @@ export function RepoLookup({
       if (!res.ok || !j.match) throw new Error(j.detail ?? "Couldn't look up that repository.");
       setMatch(j.match);
       setProject(j.project ?? null);
+      setShowDetails(false);
       setState("done");
     } catch (e) {
       setState("error");
@@ -58,6 +60,10 @@ export function RepoLookup({
   };
 
   const inUse = project && activeId === project.id;
+  // once the interview is about this repository (or one of its projects), the
+  // subject card says so; fold the long result away so the column stays short
+  const folded =
+    !showDetails && (!!inUse || (match?.projects.some((p) => p.id === activeId) ?? false));
 
   return (
     <div className="iv-repo">
@@ -104,7 +110,24 @@ export function RepoLookup({
         </p>
       )}
 
-      {state === "done" && match && (
+      {state === "done" && match && folded && (
+        <div className="iv-repo-result iv-repo-folded" data-testid="repo-match">
+          <span>
+            <strong>{match.slug}</strong>
+            <span className="dim">
+              {" "}
+              · {match.orgs.length} organization{match.orgs.length === 1 ? "" : "s"}
+              {match.projects.length > 0 &&
+                ` · ${match.projects.length} mentorship project${match.projects.length === 1 ? "" : "s"}`}
+            </span>
+          </span>
+          <button type="button" className="btn sm" onClick={() => setShowDetails(true)}>
+            Show details
+          </button>
+        </div>
+      )}
+
+      {state === "done" && match && !folded && (
         <div className="iv-repo-result" data-testid="repo-match">
           <div className="iv-repo-head">
             <div>
