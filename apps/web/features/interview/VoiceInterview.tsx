@@ -93,7 +93,9 @@ const pastLabel = (h: PastSession) => {
 };
 const modesTitle = (m: Mode[]) =>
   m.length === MODE_KEYS.length ? "Everything" : m.map((x) => MODES[x].label).join(", ");
-const SAMPLE = "Hi, I'm your interviewer. Tell me about the project you're working on.";
+/** what a voice says when previewed: it introduces itself by its interviewer's name */
+const sample = (name: string) =>
+  `Hi, I'm ${name}, your interviewer. Tell me about the project you're working on.`;
 
 const HISTORY_KEY = "osx.interview.history.v1";
 const SETTINGS_KEY = "osx.interview.settings.v1";
@@ -247,6 +249,10 @@ export function VoiceInterview({
     voice: "",
     rate: 1,
   });
+  // the interviewer introduces themself by the chosen voice's name when a voice reads aloud
+  const interviewerName = settings.voiceOut
+    ? (speaker.voices.find((v) => v.id === settings.voice) ?? speaker.voices[0])?.persona
+    : undefined;
   const [history, setHistory] = useState<PastSession[]>([]);
   const [micTest, setMicTest] = useState(false);
   const [source, setSource] = useState<"list" | "repo">(
@@ -366,7 +372,13 @@ export function VoiceInterview({
     setStep("intro");
     scrollTo(".iv-live");
     await say(
-      opening(project, settings.modes, settings.level, Math.min(settings.count, qs.length)),
+      opening(
+        project,
+        settings.modes,
+        settings.level,
+        Math.min(settings.count, qs.length),
+        interviewerName,
+      ),
     );
     if (session.current === sid) await ask(qs[0]!, sid);
   }, [project, settings, support.stt, say, ask, mic]);
@@ -658,7 +670,7 @@ export function VoiceInterview({
     if (!v) return setPreviewing(null);
     setPreviewing(v.id);
     void speaker
-      .speak(SAMPLE, { voice: v.id, rate: settings.rate })
+      .speak(sample(v.persona), { voice: v.id, rate: settings.rate })
       .then(() => setPreviewing((cur) => (cur === v.id ? null : cur)));
   };
 
@@ -1180,7 +1192,8 @@ export function VoiceInterview({
             {question?.followUp && <span className="iv-chip">Follow-up</span>}
           </div>
           <p className="iv-question" data-testid="question">
-            {question?.text ?? opening(project, settings.modes, settings.level, total)}
+            {question?.text ??
+              opening(project, settings.modes, settings.level, total, interviewerName)}
           </p>
           {support.tts && settings.voiceOut && question && (
             <button

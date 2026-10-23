@@ -391,8 +391,18 @@ export const modesLabel = (modes: Mode[]) =>
     ? "everything"
     : modes.map((m) => MODES[m].label.toLowerCase()).join(", ");
 
-export function opening(p: InterviewProject, modes: Mode[], level: Level, total: number): string {
-  return `Hi, I'll be your interviewer today. We'll do ${total} questions on ${spokenName(p)}, covering ${modesLabel(modes)}. ${OPENERS[level]}`;
+export function opening(
+  p: InterviewProject,
+  modes: Mode[],
+  level: Level,
+  total: number,
+  /** the interviewer's name, when a voice reads the interview */
+  name?: string,
+): string {
+  const hi = name
+    ? `Hi, I'm ${name}, and I'll be your interviewer today.`
+    : "Hi, I'll be your interviewer today.";
+  return `${hi} We'll do ${total} questions on ${spokenName(p)}, covering ${modesLabel(modes)}. ${OPENERS[level]}`;
 }
 
 /** Most questions one session can have without repeats. */

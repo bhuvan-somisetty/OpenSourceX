@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { Region, VoiceOption } from "./voice";
+import type { VoiceOption } from "./voice";
 
 type Tab = "Female" | "Male" | "all";
 const TABS: { key: Tab; label: string }[] = [
@@ -9,20 +9,6 @@ const TABS: { key: Tab; label: string }[] = [
   { key: "Male", label: "Male" },
   { key: "all", label: "All" },
 ];
-const CODE: Record<Region, string> = {
-  India: "IN",
-  US: "US",
-  UK: "UK",
-  Australia: "AU",
-  Other: "EN",
-};
-const ACCENT: Record<Region, string> = {
-  India: "Indian English",
-  US: "American English",
-  UK: "British English",
-  Australia: "Australian English",
-  Other: "English",
-};
 export const RATES = [
   { v: 0.85, label: "Slow" },
   { v: 0.95, label: "Relaxed" },
@@ -146,7 +132,6 @@ export function VoicePicker({
     );
 
   const selPlaying = previewing === selected.id;
-  const meta = (v: VoiceOption) => [v.gender, ACCENT[v.region]].filter(Boolean).join(" · ");
 
   return (
     <div className="iv-voices">
@@ -160,15 +145,8 @@ export function VoicePicker({
               <VoiceOrb v={selected} size={56} playing={selPlaying} />
               <div className="iv-vhero-text">
                 <strong>{selected.persona}</strong>
-                <span>{meta(selected)}</span>
               </div>
             </div>
-            <span className="iv-vchips">
-              <em className="code">{CODE[selected.region]}</em>
-              <em className={selected.natural ? "nat" : ""}>
-                {selected.natural ? "Natural voice" : "Standard voice"}
-              </em>
-            </span>
           </div>
           <button
             type="button"
@@ -242,11 +220,7 @@ export function VoicePicker({
                   >
                     <VoiceOrb v={v} size={42} playing={playing} />
                     <span className="iv-vrow-text">
-                      <strong>
-                        {v.persona}
-                        {v.natural && <em className="iv-vnat">Natural</em>}
-                      </strong>
-                      <span>{meta(v)}</span>
+                      <strong>{v.persona}</strong>
                     </span>
                     <span className="iv-vcheck" aria-hidden="true">
                       <svg viewBox="0 0 16 16" width="12" height="12">
