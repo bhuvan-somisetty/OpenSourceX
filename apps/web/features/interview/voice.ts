@@ -313,9 +313,73 @@ export function useSpeaker() {
 
   // every speak or cancel bumps this, so a voice that was asked for and then replaced never starts
   const generation = useRef(0);
+  // live volume, 0 to 1: read by every piece of speech as it starts
+  const volume = useRef(1);
+  const restartTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  /**
+   * The speech now playing, kept as sentences so it can be picked up again: a browser fixes an
+   * utterance's volume when it starts, so a volume change restarts the current sentence from
+   * the word it had reached (or from its start, for voices that do not report words).
+   */
+  const session = useRef<{
+    my: number;
+    parts: string[];
+    index: number;
+    /** where in the current sentence to start, after a restart */
+    offset: number;
+    /** start of the last word the voice reported, within the current sentence */
+    word: number;
+    voice: SpeechSynthesisVoice | undefined;
+    rate: number;
+    utterance: SpeechSynthesisUtterance | null;
+    resolve: () => void;
+  } | null>(null);
+
+  const finish = useCallback(() => {
+    const s = session.current;
+    if (!s) return;
+    session.current = null;
+    current.current = null;
+    setSpeaking(false);
+    s.resolve();
+  }, []);
+
+  const play = useCallback(() => {
+    const s = session.current;
+    if (!s || s.my !== generation.current) return;
+    if (s.index >= s.parts.length) return finish();
+    const synth = window.speechSynthesis;
+    const base = s.offset;
+    const u = new SpeechSynthesisUtterance(s.parts[s.index]!.slice(base));
+    if (s.voice) {
+      u.voice = s.voice;
+      u.lang = s.voice.lang;
+    }
+    u.rate = s.rate;
+    u.pitch = 1;
+    u.volume = volume.current;
+    u.onboundary = (e) => {
+      if (session.current === s && s.utterance === u && e.name === "word")
+        s.word = base + e.charIndex;
+    };
+    const next = () => {
+      // a restart or a cancel replaced this utterance: its end is not the sentence's end
+      if (session.current !== s || s.utterance !== u) return;
+      s.index++;
+      s.offset = 0;
+      s.word = 0;
+      play();
+    };
+    u.onend = next;
+    u.onerror = next;
+    s.utterance = u;
+    current.current = u;
+    synth.speak(u);
+  }, [finish]);
 
   const cancel = useCallback(() => {
     const my = ++generation.current;
+    if (restartTimer.current) clearTimeout(restartTimer.current);
     if ("speechSynthesis" in window) {
       window.speechSynthesis.cancel();
       // Chrome's online voices can keep streaming through the first cancel: cancel again
@@ -324,54 +388,66 @@ export function useSpeaker() {
         if (generation.current === my) window.speechSynthesis.cancel();
       }, 80);
     }
-    current.current = null;
-    setSpeaking(false);
-  }, []);
+    finish();
+  }, [finish]);
+
+  /** Change the interviewer's volume, live: what is being said continues at the new level. */
+  const setVolume = useCallback(
+    (v: number) => {
+      const level = Math.min(1, Math.max(0, v));
+      if (Math.abs(level - volume.current) < 0.005) return;
+      volume.current = level;
+      if (!session.current?.utterance || !("speechSynthesis" in window)) return;
+      // while the slider is being dragged, restart once it settles, not on every step
+      if (restartTimer.current) clearTimeout(restartTimer.current);
+      restartTimer.current = setTimeout(() => {
+        const s = session.current;
+        if (!s?.utterance) return;
+        s.offset = s.word;
+        s.utterance = null;
+        window.speechSynthesis.cancel();
+        setTimeout(play, 60);
+      }, 140);
+    },
+    [play],
+  );
 
   const speak = useCallback(
     (text: string, opts: { voice?: string; rate?: number; volume?: number } = {}) =>
       new Promise<void>((resolve) => {
         if (!("speechSynthesis" in window) || !text.trim()) return resolve();
         const synth = window.speechSynthesis;
+        const busy = synth.speaking || synth.pending || session.current !== null;
+        // whatever was playing stops; its caller carries on
+        session.current?.resolve();
+        session.current = null;
+        if (restartTimer.current) clearTimeout(restartTimer.current);
         const my = ++generation.current;
-        const busy = synth.speaking || synth.pending || current.current !== null;
         synth.cancel();
-        const start = () => {
-          // a newer speak or a cancel arrived while waiting: this one never plays
-          if (generation.current !== my) return resolve();
-          synth.cancel();
-          const u = new SpeechSynthesisUtterance(speakable(text));
-          const v = voices.find((x) => x.voiceURI === opts.voice) ?? voices[0];
-          if (v) {
-            u.voice = v;
-            u.lang = v.lang;
-          }
-          u.rate = opts.rate ?? 1;
-          u.volume = Math.min(1, Math.max(0, opts.volume ?? 1));
-          u.pitch = 1;
-          const done = () => {
-            if (current.current === u) {
-              current.current = null;
-              setSpeaking(false);
-            }
-            resolve();
-          };
-          u.onend = done;
-          u.onerror = done;
-          current.current = u;
-          setSpeaking(true);
-          synth.speak(u);
+        if (opts.volume != null) volume.current = Math.min(1, Math.max(0, opts.volume));
+        const spoken = speakable(text);
+        session.current = {
+          my,
+          parts: spoken.match(/[^.!?]+[.!?]*\s*/g)?.filter((p) => p.trim()) ?? [spoken],
+          index: 0,
+          offset: 0,
+          word: 0,
+          voice: voices.find((x) => x.voiceURI === opts.voice) ?? voices[0],
+          rate: opts.rate ?? 1,
+          utterance: null,
+          resolve,
         };
+        setSpeaking(true);
         // speaking straight after a cancel can be dropped, or leave the old voice talking,
         // so give the engine a beat to let go of the previous voice first
-        if (busy) setTimeout(start, 120);
-        else start();
+        if (busy) setTimeout(play, 120);
+        else play();
       }),
-    [voices],
+    [voices, play],
   );
 
   const options = useMemo(() => withPersonas(voices.map(describe)), [voices]);
-  return { speak, cancel, speaking, voices: options };
+  return { speak, cancel, setVolume, speaking, voices: options };
 }
 
 /**

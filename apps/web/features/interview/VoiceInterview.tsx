@@ -970,7 +970,11 @@ export function VoiceInterview({
                 rate={settings.rate}
                 onRate={(r) => update("rate", r)}
                 volume={settings.volume}
-                onVolume={(v) => update("volume", v)}
+                onVolume={(v) => {
+                  update("volume", v);
+                  // like a call: whoever is talking gets louder or quieter right away
+                  speaker.setVolume(v);
+                }}
                 onPreview={preview}
                 previewing={previewing}
               />
