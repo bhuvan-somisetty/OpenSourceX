@@ -122,7 +122,8 @@ async function generate<T>(
   schema: z.ZodType<T>,
   system: string,
   prompt: string,
-  maxOutputTokens = 900,
+  // room for the model's own reasoning as well as the answer: too little cuts the JSON short
+  maxOutputTokens = 2500,
 ): Promise<T> {
   let lastError: unknown = null;
   for (const p of configuredProviders()) {
@@ -139,11 +140,41 @@ async function generate<T>(
       return output as T;
     } catch (e) {
       lastError = e;
-      markFailed(p.engine);
-      log.warn(
-        { engine: p.engine, err: String((e as Error)?.message ?? e).slice(0, 300) },
-        "interview provider failed",
-      );
+      noteFailure(p.engine, e);
+    }
+  }
+  throw lastError ?? new Error("no AI provider configured");
+}
+
+/**
+ * A provider that is down or refusing is rested for a while; one reply that could not be read is
+ * not an outage, so it does not bench the provider for every later call.
+ */
+function noteFailure(engine: Parameters<typeof markFailed>[0], e: unknown) {
+  const err = String((e as Error)?.message ?? e);
+  if (!/no object generated|could not parse|json|schema|type validation/i.test(err))
+    markFailed(engine);
+  log.warn({ engine, err: err.slice(0, 300) }, "interview provider failed");
+}
+
+/** Plain text from the first provider that answers; nothing to parse, so nothing to fail on. */
+async function generatePlain(system: string, prompt: string, maxOutputTokens: number) {
+  let lastError: unknown = null;
+  for (const p of configuredProviders()) {
+    try {
+      const { text } = await generateText({
+        model: p.model,
+        instructions: system,
+        prompt,
+        maxOutputTokens,
+        maxRetries: 1,
+        timeout: { totalMs: 45_000 },
+      });
+      if (text.trim()) return text;
+      lastError = new Error("empty reply");
+    } catch (e) {
+      lastError = e;
+      noteFailure(p.engine, e);
     }
   }
   throw lastError ?? new Error("no AI provider configured");
@@ -240,34 +271,35 @@ Write a short summary for the candidate and up to three focus areas (lowest scor
   };
 }
 
-const ModelsSchema = z.object({
-  answers: z
-    .array(z.string())
-    .describe("One model answer per question, in the same order as the questions"),
-});
-
 /**
  * A model answer for every question of the interview, as a well-prepared candidate would say it
  * out loud. Written only from the project's recorded facts and well-known facts about its
- * technologies and open source practice, so it never invents files, numbers or people.
+ * technologies and open source practice, so it never invents files, numbers or people. Asked for
+ * as plain text under "### Q1" headings, so a long reply cannot fail to parse.
  */
 export async function aiModelAnswers(p: InterviewProject, turns: Turn[]): Promise<string[]> {
   const questions = turns
     .map(
       (t, n) =>
-        `Q${n + 1}: ${t.question.text}\nA strong answer covers: ${t.question.lookFor.join("; ")}`,
+        `### Q${n + 1}\n${t.question.text}\nA strong answer covers: ${t.question.lookFor.join("; ")}`,
     )
     .join("\n\n");
-  const out = await generate(
-    ModelsSchema,
-    "You are an experienced open source mentor writing model answers for a mentorship interview. Write each answer the way a well-prepared candidate would say it out loud: first person, plain spoken English, 80 to 150 words, answering the question in the first sentence and then covering what a strong answer covers. Be specific to this project, but use only the project facts given and widely known facts about its technologies and normal open source contribution practice (issue trackers, labels, forks, pull requests, reviews, tests, CI). Never invent file paths, function names, numbers, people, features or history that are not in the facts; where a detail is unknown, say how you would find out.",
+  const text = await generatePlain(
+    "You are an experienced open source mentor writing model answers for a mentorship interview. Write each answer the way a well-prepared candidate would say it out loud: first person, plain spoken English, 80 to 150 words, answering the question in the first sentence and then covering what a strong answer covers. Be specific to this project, but use only the project facts given and widely known facts about its technologies and normal open source contribution practice (issue trackers, labels, forks, pull requests, reviews, tests, CI). Never invent file paths, function names, numbers, people, features or history that are not in the facts; where a detail is unknown, say how you would find out. No markdown inside the answers.",
     `${facts(p)}
 
 Questions:
 ${questions}
 
-Write one model answer per question, in order (${turns.length} answers).`,
-    Math.min(4000, 400 + turns.length * 320),
+Reply with exactly ${turns.length} sections in order. Start each with its heading line ("### Q1", "### Q2", ...) and put only the spoken answer under it.`,
+    Math.min(8000, 1500 + turns.length * 600),
   );
-  return turns.map((_, i) => out.answers[i]?.trim() ?? "");
+  const parts = new Map<number, string>();
+  for (const m of text.matchAll(
+    /^#{1,4}\s*Q?(\d+)[^\n]*\n([\s\S]*?)(?=^#{1,4}\s*Q?\d+|$(?![\s\S]))/gm,
+  )) {
+    const body = m[2]!.replace(/\*\*|__|`/g, "").trim();
+    if (body) parts.set(Number(m[1]), body);
+  }
+  return turns.map((_, i) => parts.get(i + 1) ?? "");
 }

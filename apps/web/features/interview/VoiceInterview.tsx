@@ -24,7 +24,7 @@ import {
   type Report,
   type Turn,
 } from "@/lib/interview/coach";
-import { ReportView } from "./ReportView";
+import { ReportView, readPlan } from "./ReportView";
 import { RepoLookup } from "./RepoLookup";
 import { VoicePicker } from "./VoicePicker";
 import {
@@ -337,6 +337,8 @@ export function VoiceInterview({
   const [answerStart, setAnswerStart] = useState(0);
   const [now, setNow] = useState(0);
   const [report, setReport] = useState<Report | null>(null);
+  /** id of the saved report on screen, so its practice plan ticks are kept */
+  const [reportId, setReportId] = useState<string | null>(null);
   const [typing, setTyping] = useState(false);
   const [pending, setPending] = useState<Question | null>(null);
   const session = useRef(0);
@@ -515,6 +517,7 @@ export function VoiceInterview({
         past.flatMap((h) => (h.id ? [h.id] : [])),
       );
       setHistory(past);
+      setReportId(id);
       scrollTo(".ivr");
       await say(
         `That's the end of the interview. You scored ${r.overall} out of 100: ${r.verdict}. ${r.summary}`,
@@ -639,6 +642,7 @@ export function VoiceInterview({
     setProject(saved.project);
     setTurns(saved.turns);
     setReport(saved.report);
+    setReportId(id);
     setEngine(saved.engine);
     setSettings((st) => ({ ...st, modes: saved.modes, level: saved.level }));
     setPhase("report");
@@ -1195,7 +1199,10 @@ export function VoiceInterview({
             </div>
             <ul className="iv-hist">
               {history.slice(0, 6).map((h, i) => {
-                const saved = !!h.id && !!loadReport(h.id);
+                const kept = h.id ? loadReport(h.id) : null;
+                const saved = !!kept;
+                const planTotal = kept?.report.focus.reduce((n, f) => n + f.actions.length, 0) ?? 0;
+                const planDone = kept ? Object.values(readPlan(h.id)).filter(Boolean).length : 0;
                 return (
                   <li key={h.id ?? i}>
                     <div className="iv-hist-main">
@@ -1204,6 +1211,14 @@ export function VoiceInterview({
                         <time dateTime={h.at}>{when(h.at)}</time>
                         {pastLabel(h) ? ` · ${pastLabel(h)}` : ""}
                       </span>
+                      {planTotal > 0 && (
+                        <span className="iv-hist-plan">
+                          <span aria-hidden="true">
+                            <i style={{ width: `${(planDone / planTotal) * 100}%` }} />
+                          </span>
+                          {planDone}/{planTotal} of plan done
+                        </span>
+                      )}
                     </div>
                     <strong className="iv-hist-score">{h.overall}</strong>
                     {saved ? (
@@ -1215,8 +1230,11 @@ export function VoiceInterview({
                         View feedback
                       </button>
                     ) : (
-                      <span className="dim iv-hist-none" title="Recorded before reports were kept">
-                        No report kept
+                      <span
+                        className="dim iv-hist-none"
+                        title="This session finished before reports were saved in the browser"
+                      >
+                        Older session, report not saved
                       </span>
                     )}
                   </li>
@@ -1236,6 +1254,7 @@ export function VoiceInterview({
   if (phase === "report" && report) {
     return (
       <ReportView
+        reportId={reportId}
         report={report}
         turns={turns}
         project={project}

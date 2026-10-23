@@ -298,7 +298,38 @@ function I({ d }: { d: string }) {
   );
 }
 
+/** Practice plan ticks, per saved interview, kept in this browser. */
+export const PLAN_KEY = "osx.interview.plan.v1";
+export function readPlan(id: string | null | undefined): Record<string, boolean> {
+  if (!id) return {};
+  try {
+    return (
+      (
+        JSON.parse(localStorage.getItem(PLAN_KEY) ?? "{}") as Record<
+          string,
+          Record<string, boolean>
+        >
+      )[id] ?? {}
+    );
+  } catch {
+    return {};
+  }
+}
+function writePlan(id: string, done: Record<string, boolean>) {
+  try {
+    const all = JSON.parse(localStorage.getItem(PLAN_KEY) ?? "{}") as Record<
+      string,
+      Record<string, boolean>
+    >;
+    all[id] = done;
+    localStorage.setItem(PLAN_KEY, JSON.stringify(all));
+  } catch {
+    /* storage unavailable: ticks last for this visit only */
+  }
+}
+
 export function ReportView({
+  reportId,
   report: r,
   turns,
   project,
@@ -312,6 +343,8 @@ export function ReportView({
   speaking,
   onStopSpeaking,
 }: {
+  /** the saved interview this report belongs to; its practice plan ticks are remembered */
+  reportId?: string | null;
   report: Report;
   turns: Turn[];
   project: InterviewProject;
@@ -325,7 +358,13 @@ export function ReportView({
   speaking: boolean;
   onStopSpeaking: () => void;
 }) {
-  const [done, setDone] = useState<Record<string, boolean>>({});
+  const [done, setDoneState] = useState<Record<string, boolean>>(() => readPlan(reportId));
+  // another saved interview opened in the same view: show its own ticks
+  useEffect(() => setDoneState(readPlan(reportId)), [reportId]);
+  const setDone = (next: Record<string, boolean>) => {
+    setDoneState(next);
+    if (reportId) writePlan(reportId, next);
+  };
   const answered = turns.filter((t) => !t.feedback.empty);
   const empty = r.emptyAnswers ?? turns.length - answered.length;
   const ranked = [...answered].sort((a, b) => b.feedback.overall - a.feedback.overall);
@@ -479,13 +518,63 @@ export function ReportView({
               </p>
             </>
           ) : (
-            <div className="ivr-typed">
-              <strong>You typed your answers</strong>
-              <p>
-                Pace and filler words are measured only when you speak. Real interviews are spoken,
-                so try the next one out loud.
-              </p>
-            </div>
+            <>
+              <div className="ivr-typed">
+                <strong>You typed your answers</strong>
+                <p>
+                  Pace and filler words are measured only when you speak. Real interviews are
+                  spoken, so try the next one out loud.
+                </p>
+              </div>
+              {(() => {
+                const words = turns.map((t) => t.delivery.words);
+                const answered = turns.filter((t) => !t.feedback.empty).length;
+                const total = words.reduce((a, b) => a + b, 0);
+                const secs = turns.reduce((a, t) => a + t.seconds, 0);
+                const most = Math.max(40, ...words);
+                return (
+                  <>
+                    <div className="ivr-typed-stats">
+                      <div>
+                        <strong>
+                          {answered}/{turns.length}
+                        </strong>
+                        <span>answered</span>
+                      </div>
+                      <div>
+                        <strong>{turns.length ? Math.round(total / turns.length) : 0}</strong>
+                        <span>words per answer</span>
+                      </div>
+                      <div>
+                        <strong>{Math.max(0, ...words)}</strong>
+                        <span>longest answer</span>
+                      </div>
+                      <div>
+                        <strong>{fmt(secs)}</strong>
+                        <span>on answers</span>
+                      </div>
+                    </div>
+                    <div className="ivr-lengths" aria-label="Words in each answer">
+                      {turns.map((t, i) => (
+                        <div key={i} className="ivr-length">
+                          <span>Q{i + 1}</span>
+                          <div>
+                            <i
+                              style={{ width: `${Math.max(2, (t.delivery.words / most) * 100)}%` }}
+                              data-low={t.delivery.words < 40 || undefined}
+                            />
+                          </div>
+                          <b>{t.delivery.words}</b>
+                        </div>
+                      ))}
+                      <p className="dim ivr-small">
+                        Aim for 60 to 150 words: one direct answer, then a concrete example.
+                      </p>
+                    </div>
+                  </>
+                );
+              })()}
+            </>
           )}
           {best && worst && (
             <div className="ivr-hl">
