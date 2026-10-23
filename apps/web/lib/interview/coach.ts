@@ -156,7 +156,10 @@ export function tidyTechnologies(list: string[], max = 6): string[] {
 }
 
 /** Long idea titles read badly inside a spoken question; refer to them more briefly. */
-function spokenName(p: InterviewProject): string {
+/** How the interviewer says the subject out loud: a repository is its name, not "owner/name". */
+export function spokenName(p: InterviewProject): string {
+  const repo = p.name.match(/^[\w.-]+\/([\w.-]+)$/);
+  if (repo) return repo[1]!.replace(/[-_.]+/g, " ");
   if (p.name.length <= 40) return p.name;
   return p.org ? `this ${p.org} project` : "this project";
 }

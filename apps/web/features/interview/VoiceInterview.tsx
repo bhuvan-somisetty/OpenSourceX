@@ -14,6 +14,7 @@ import {
   offlineReport,
   opening,
   scoreOffline,
+  spokenName,
   type Dimension,
   type Feedback,
   type InterviewProject,
@@ -93,9 +94,11 @@ const pastLabel = (h: PastSession) => {
 };
 const modesTitle = (m: Mode[]) =>
   m.length === MODE_KEYS.length ? "Everything" : m.map((x) => MODES[x].label).join(", ");
-/** what a voice says when previewed: it introduces itself by its interviewer's name */
-const sample = (name: string) =>
-  `Hi, I'm ${name}, your interviewer. Tell me about the project you're working on.`;
+/** What a voice says when previewed: its name, then the interview it is about to run. */
+const sample = (name: string, p: InterviewProject | null) =>
+  `Hi, I'm ${name}, your interviewer. ${
+    p ? `Let's talk about ${spokenName(p)}.` : "Let's get you ready for your mentorship interview."
+  }`;
 
 const HISTORY_KEY = "osx.interview.history.v1";
 const SETTINGS_KEY = "osx.interview.settings.v1";
@@ -670,7 +673,7 @@ export function VoiceInterview({
     if (!v) return setPreviewing(null);
     setPreviewing(v.id);
     void speaker
-      .speak(sample(v.persona), { voice: v.id, rate: settings.rate })
+      .speak(sample(v.persona, project), { voice: v.id, rate: settings.rate })
       .then(() => setPreviewing((cur) => (cur === v.id ? null : cur)));
   };
 
