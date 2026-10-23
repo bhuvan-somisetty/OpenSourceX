@@ -318,9 +318,8 @@ export function useSpeaker() {
   const restartTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   /**
    * The speech now playing, kept as sentences so it can be picked up again: a browser fixes an
-   * utterance's volume when it starts, so a volume change picks the sentence up again from the
-   * word being said: the one the voice reported, or, for voices that report no words (Chrome's
-   * Google voices), the one its measured speaking speed says it has reached.
+   * utterance's volume when it starts, so a volume change restarts the current sentence from
+   * the word it had reached (or from its start, for voices that do not report words).
    */
   const session = useRef<{
     my: number;
@@ -330,31 +329,11 @@ export function useSpeaker() {
     offset: number;
     /** start of the last word the voice reported, within the current sentence */
     word: number;
-    /** the voice reported a word during the current utterance */
-    heard: boolean;
-    /** when the current utterance became audible, and where in the sentence it began */
-    startedAt: number | null;
-    base: number;
     voice: SpeechSynthesisVoice | undefined;
     rate: number;
     utterance: SpeechSynthesisUtterance | null;
     resolve: () => void;
   } | null>(null);
-
-  // characters per second at rate 1, measured per voice from sentences it finished
-  const pace = useRef(new Map<string, number>());
-
-  /** Where the voice is in the current sentence right now: the start of the word being said. */
-  const position = (s: NonNullable<typeof session.current>) => {
-    const text = s.parts[s.index] ?? "";
-    if (s.heard) return s.word;
-    if (s.startedAt == null) return s.base;
-    const cps = pace.current.get(s.voice?.voiceURI ?? "") ?? 14;
-    const at = s.base + ((performance.now() - s.startedAt) / 1000) * cps * s.rate;
-    if (at >= text.length) return text.length;
-    // back to the start of the word in progress, so nothing is skipped
-    return Math.max(s.base, text.lastIndexOf(" ", Math.floor(at)) + 1);
-  };
 
   const finish = useCallback(() => {
     const s = session.current;
@@ -371,17 +350,7 @@ export function useSpeaker() {
     if (s.index >= s.parts.length) return finish();
     const synth = window.speechSynthesis;
     const base = s.offset;
-    const piece = s.parts[s.index]!.slice(base);
-    // a restart that lands at the very end of a sentence goes straight on to the next one
-    if (!piece.trim()) {
-      s.index++;
-      s.offset = 0;
-      return play();
-    }
-    const u = new SpeechSynthesisUtterance(piece);
-    s.base = base;
-    s.heard = false;
-    s.startedAt = null;
+    const u = new SpeechSynthesisUtterance(s.parts[s.index]!.slice(base));
     if (s.voice) {
       u.voice = s.voice;
       u.lang = s.voice.lang;
@@ -389,35 +358,20 @@ export function useSpeaker() {
     u.rate = s.rate;
     u.pitch = 1;
     u.volume = volume.current;
-    u.onstart = () => {
-      if (session.current === s && s.utterance === u) s.startedAt = performance.now();
-    };
     u.onboundary = (e) => {
-      if (session.current === s && s.utterance === u && e.name === "word") {
+      if (session.current === s && s.utterance === u && e.name === "word")
         s.word = base + e.charIndex;
-        s.heard = true;
-      }
     };
-    const next = (e?: SpeechSynthesisEvent) => {
+    const next = () => {
       // a restart or a cancel replaced this utterance: its end is not the sentence's end
       if (session.current !== s || s.utterance !== u) return;
-      // learn this voice's speaking speed from a sentence it said in full
-      if (e?.type === "end" && s.startedAt != null) {
-        const secs = (performance.now() - s.startedAt) / 1000;
-        if (secs > 0.6 && piece.length > 12) {
-          const cps = piece.length / secs / s.rate;
-          const key = s.voice?.voiceURI ?? "";
-          const prev = pace.current.get(key);
-          pace.current.set(key, prev ? prev * 0.6 + cps * 0.4 : cps);
-        }
-      }
       s.index++;
       s.offset = 0;
       s.word = 0;
       play();
     };
     u.onend = next;
-    u.onerror = () => next();
+    u.onerror = next;
     s.utterance = u;
     current.current = u;
     synth.speak(u);
@@ -449,11 +403,11 @@ export function useSpeaker() {
       restartTimer.current = setTimeout(() => {
         const s = session.current;
         if (!s?.utterance) return;
-        s.offset = position(s);
+        s.offset = s.word;
         s.utterance = null;
         window.speechSynthesis.cancel();
-        setTimeout(play, 40);
-      }, 120);
+        setTimeout(play, 60);
+      }, 140);
     },
     [play],
   );
@@ -478,9 +432,6 @@ export function useSpeaker() {
           index: 0,
           offset: 0,
           word: 0,
-          heard: false,
-          startedAt: null,
-          base: 0,
           voice: voices.find((x) => x.voiceURI === opts.voice) ?? voices[0],
           rate: opts.rate ?? 1,
           utterance: null,
