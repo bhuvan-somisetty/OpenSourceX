@@ -556,10 +556,6 @@ export function VoiceInterview({
     await ask(upcoming, sid, "No problem, let's move on.");
   }, [dict, speaker, total, idx, plan, turns, ask, finish]);
 
-  const end = useCallback(() => {
-    void finish(turns, session.current);
-  }, [finish, turns]);
-
   /** Open a past session's feedback page, from the account or this browser. */
   const openPast = async (id: string) => {
     const saved = await openSession(id);
@@ -1205,19 +1201,6 @@ export function VoiceInterview({
             />
           ))}
         </ol>
-        <div className="iv-topbar-actions">
-          <button type="button" className="btn sm" onClick={end} disabled={step === "finishing"}>
-            End &amp; get report
-          </button>
-          <button
-            type="button"
-            className="btn sm iv-ghost"
-            onClick={leave}
-            aria-label="Leave interview"
-          >
-            ✕
-          </button>
-        </div>
       </div>
 
       <div className="iv-stage-grid">

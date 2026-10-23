@@ -11119,7 +11119,7 @@ html.iv-morphing::view-transition-new(root) {
 }
 .iv-progress-kpis {
   display: grid;
-  grid-template-columns: repeat(4, minmax(72px, auto));
+  grid-template-columns: minmax(96px, auto);
   gap: 8px;
 }
 .iv-progress-kpis > div {
