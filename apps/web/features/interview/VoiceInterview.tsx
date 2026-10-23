@@ -762,7 +762,7 @@ export function VoiceInterview({
             </section>
 
             <section
-              className="iv-panel"
+              className="iv-panel iv-types"
               aria-labelledby="iv-mode-h"
               style={{ viewTransitionName: "iv-types" }}
             >
@@ -804,62 +804,62 @@ export function VoiceInterview({
                 ))}
               </div>
             </section>
-          </div>
 
-          <section
-            className="iv-panel iv-pace-panel"
-            aria-labelledby="iv-len-h"
-            style={{ viewTransitionName: "iv-length" }}
-          >
-            <div className="iv-step">3</div>
-            <h2 id="iv-len-h" className="iv-h">
-              Level and length
-            </h2>
-            <div className="iv-pace-row">
-              <div className="iv-pace-level">
-                <div className="iv-label" style={{ marginTop: 14 }}>
-                  Level
-                </div>
-                <div className="segmented" role="group" aria-label="Level">
-                  {(Object.keys(LEVELS) as Level[]).map((l) => (
-                    <button
-                      key={l}
-                      type="button"
-                      aria-pressed={settings.level === l}
-                      onClick={() => update("level", l)}
-                    >
-                      {LEVELS[l]}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <div className="iv-pace-length">
-                <div className="iv-label" style={{ marginTop: 14 }}>
-                  Interview length
-                </div>
-                <div className="iv-counts" role="radiogroup" aria-label="Number of questions">
-                  {COUNTS.map((c) => {
-                    const n = cap ? Math.min(c.n, cap) : c.n;
-                    return (
+            <section
+              className="iv-panel iv-pace-panel"
+              aria-labelledby="iv-len-h"
+              style={{ viewTransitionName: "iv-length" }}
+            >
+              <div className="iv-step">3</div>
+              <h2 id="iv-len-h" className="iv-h">
+                Level and length
+              </h2>
+              <div className="iv-pace-row">
+                <div className="iv-pace-level">
+                  <div className="iv-label" style={{ marginTop: 14 }}>
+                    Level
+                  </div>
+                  <div className="segmented" role="group" aria-label="Level">
+                    {(Object.keys(LEVELS) as Level[]).map((l) => (
                       <button
-                        key={c.n}
+                        key={l}
                         type="button"
-                        role="radio"
-                        aria-checked={settings.count === c.n}
-                        onClick={() => update("count", c.n)}
+                        aria-pressed={settings.level === l}
+                        onClick={() => update("level", l)}
                       >
-                        <span className="iv-count-n">{n}</span>
-                        <span className="iv-count-t">
-                          <strong>{c.label}</strong>
-                          <span>~{n * 2} min</span>
-                        </span>
+                        {LEVELS[l]}
                       </button>
-                    );
-                  })}
+                    ))}
+                  </div>
+                </div>
+                <div className="iv-pace-length">
+                  <div className="iv-label" style={{ marginTop: 14 }}>
+                    Interview length
+                  </div>
+                  <div className="iv-counts" role="radiogroup" aria-label="Number of questions">
+                    {COUNTS.map((c) => {
+                      const n = cap ? Math.min(c.n, cap) : c.n;
+                      return (
+                        <button
+                          key={c.n}
+                          type="button"
+                          role="radio"
+                          aria-checked={settings.count === c.n}
+                          onClick={() => update("count", c.n)}
+                        >
+                          <span className="iv-count-n">{n}</span>
+                          <span className="iv-count-t">
+                            <strong>{c.label}</strong>
+                            <span>~{n * 2} min</span>
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
-            </div>
-          </section>
+            </section>
+          </div>
 
           <section
             className="iv-panel"

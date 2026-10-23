@@ -7960,7 +7960,9 @@ button.play-card {
   gap: 18px;
   grid-template-columns: 1fr;
 }
-/* subject + interview type: full width each until a subject is chosen, then side by side */
+/* subject and interview type side by side, level and length full width below;
+   once a subject is chosen the subject card grows and level and length moves
+   up under the interview types */
 .iv-pair {
   display: grid;
   gap: 18px;
@@ -7968,20 +7970,33 @@ button.play-card {
   grid-template-columns: minmax(0, 1fr);
 }
 @media (min-width: 980px) {
-  .iv-pair.has-subject {
+  .iv-pair {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+    grid-template-areas:
+      "subject types"
+      "length length";
   }
-  .iv-pair:not(.has-subject) .iv-modes {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .iv-pair.has-subject {
+    grid-template-areas:
+      "subject types"
+      "subject length";
   }
-  .iv-pair:not(.has-subject) .iv-subject .iv-source,
-  .iv-pair:not(.has-subject) .iv-subject .iv-repo-form {
-    max-width: 760px;
+  .iv-pair > .iv-subject {
+    grid-area: subject;
+    align-self: stretch;
   }
-}
-@media (min-width: 1100px) {
-  .iv-pair:not(.has-subject) .iv-modes {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+  .iv-pair > .iv-types {
+    grid-area: types;
+    align-self: stretch;
+  }
+  .iv-pair.has-subject > .iv-types {
+    align-self: start;
+  }
+  .iv-pair > .iv-pace-panel {
+    grid-area: length;
+  }
+  .iv-pair.has-subject .iv-pace-length .iv-counts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 /* level and length: their own card, everything in one row on wide screens */
@@ -9392,16 +9407,6 @@ button.play-card {
 }
 .iv-repo-use {
   justify-self: start;
-}
-.iv-repo-folded {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px 14px;
-  padding: 12px 14px;
-  font-size: 13.5px;
-  overflow-wrap: anywhere;
 }
 
 /* interview v3: animated orb */
