@@ -27,6 +27,7 @@ import {
 import { ReportView } from "./ReportView";
 import { ProgressPanel } from "./ProgressPanel";
 import {
+  latestTurns,
   loadHistory,
   newSessionId,
   openSession,
@@ -555,6 +556,62 @@ export function VoiceInterview({
     if (remaining <= 0 || !upcoming) return finish(turns, sid);
     await ask(upcoming, sid, "No problem, let's move on.");
   }, [dict, speaker, total, idx, plan, turns, ask, finish]);
+
+  /**
+   * A retried question changes the interview: the whole report is rebuilt from each question's
+   * latest answer. The offline rebuild shows at once; the AI's summary and plan follow when
+   * it is available. Model answers stay, since the questions did not change.
+   */
+  const rescore = async (index: number, retry: Retry) => {
+    if (!project || !report) return;
+    const updated = turns.map((t, i) => (i === index ? ({ ...t, retry } as SavedTurn) : t));
+    const latest = latestTurns(updated);
+    const id = reportId;
+    const at = history.find((h) => h.id === id)?.at ?? new Date().toISOString();
+    const keep = (r: Report): Report => ({ ...r, models: report.models });
+    let next = keep(offlineReport(project, latest));
+    let eng: Engine = "offline";
+    setTurns(updated);
+    setReport(next);
+    if (id) saveRetry(id, index, retry);
+    try {
+      const res = await fetch("/api/v1/interview", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          action: "report",
+          keepModels: true,
+          projectId: project.id,
+          modes: settings.modes.length ? settings.modes : MODE_KEYS.slice(0, 1),
+          level: settings.level,
+          turns: latest.map(({ question, answer, seconds, feedback, delivery }) => ({
+            question,
+            answer,
+            seconds,
+            spoken: delivery.spoken,
+            feedback,
+          })),
+        }),
+      });
+      if (res.ok) {
+        const j = (await res.json()) as { report: Report; engine: Engine };
+        next = keep(j.report);
+        eng = j.engine;
+        setReport(next);
+      }
+    } catch {
+      /* the offline rebuild stands */
+    }
+    if (id)
+      void saveSession(id, at, {
+        project,
+        turns: updated,
+        report: next,
+        modes: settings.modes,
+        level: settings.level,
+        engine: eng === "ai" || engine === "ai" ? "ai" : "offline",
+      }).then(() => refreshHistory());
+  };
 
   /** Open a past session's feedback page, from the account or this browser. */
   const openPast = async (id: string) => {
@@ -1131,10 +1188,7 @@ export function VoiceInterview({
         shareable={synced}
         shared={history.find((h) => h.id === reportId)?.shared ?? false}
         previous={previousScores}
-        onRetry={(index: number, retry: Retry) => {
-          setTurns((ts) => ts.map((t, i) => (i === index ? ({ ...t, retry } as SavedTurn) : t)));
-          if (reportId) saveRetry(reportId, index, retry);
-        }}
+        onRetry={(index: number, retry: Retry) => void rescore(index, retry)}
         report={report}
         turns={turns}
         project={project}

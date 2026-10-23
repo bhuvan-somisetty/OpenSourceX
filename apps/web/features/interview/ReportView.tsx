@@ -16,7 +16,7 @@ import {
   type Scores,
   type Turn,
 } from "@/lib/interview/coach";
-import { localPlan, savePlan, setShare, type Retry, type SavedTurn } from "./history";
+import { latestTurns, localPlan, savePlan, setShare, type Retry, type SavedTurn } from "./history";
 import { RetryBox } from "./RetryBox";
 
 type Engine = "ai" | "offline";
@@ -402,7 +402,7 @@ export function ReportView({
   onRetry,
   readOnly = false,
   report: r,
-  turns,
+  turns: savedTurns,
   project,
   modes,
   level,
@@ -473,6 +473,9 @@ export function ReportView({
       setShareState("idle");
     }
   };
+  // scores and stats follow each question's latest answer; the cards show both tries
+  const turns = latestTurns(savedTurns);
+  const retried = savedTurns.some((t) => t.retry);
   const answered = turns.filter((t) => !t.feedback.empty);
   const empty = r.emptyAnswers ?? turns.length - answered.length;
   const ranked = [...answered].sort((a, b) => b.feedback.overall - a.feedback.overall);
@@ -515,6 +518,12 @@ export function ReportView({
             <span>{LEVELS[level]}</span>
           </p>
           <p className="ivr-summary">{r.summary}</p>
+          {retried && (
+            <p className="ivr-retried-note">
+              Updated with your second tries: scores, skill profile and plan use your latest answer
+              to each question.
+            </p>
+          )}
           {!readOnly && (
             <div className="ivr-actions">
               <button type="button" className="btn primary" onClick={onAgain}>
@@ -753,7 +762,7 @@ export function ReportView({
           Answer by answer
         </h2>
         <div className="ivr-answers">
-          {turns.map((t, i) => (
+          {savedTurns.map((t, i) => (
             <AnswerCard
               key={i}
               turn={t}

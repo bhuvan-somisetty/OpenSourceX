@@ -60,6 +60,8 @@ const Body = z.discriminatedUnion("action", [
   z.object({
     action: z.literal("report"),
     ...Common,
+    /** a report rebuilt after a retry: the model answers already exist */
+    keepModels: z.boolean().optional(),
     turns: z
       .array(
         z.object({
@@ -163,16 +165,15 @@ export const POST = route(async (req) => {
       base.emptyAnswers < turns.length
         ? aiReport(project, b.modes, b.level, turns, base)
         : Promise.resolve(base),
-      aiModelAnswers(project, turns),
+      b.keepModels ? Promise.resolve([] as string[]) : aiModelAnswers(project, turns),
     ]);
     if (report.status === "fulfilled" || models.status === "fulfilled") {
       const r = report.status === "fulfilled" ? report.value : base;
       const written = models.status === "fulfilled" ? models.value : [];
       return Response.json({
-        report: {
-          ...r,
-          models: turns.map((_, i) => ({ text: written[i] ?? "", by: "ai" as const })),
-        },
+        report: b.keepModels
+          ? r
+          : { ...r, models: turns.map((_, i) => ({ text: written[i] ?? "", by: "ai" as const })) },
         engine: "ai",
       });
     }

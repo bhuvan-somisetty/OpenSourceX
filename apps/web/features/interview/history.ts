@@ -1,6 +1,7 @@
 "use client";
 
 import type {
+  Delivery,
   Feedback,
   InterviewProject,
   Level,
@@ -22,6 +23,26 @@ export interface Retry {
   answer: string;
   at: string;
   feedback: Feedback;
+  delivery?: Delivery;
+  seconds?: number;
+}
+
+/**
+ * Each question's latest answer: a retried question counts with its second try, so scores,
+ * the skill profile, delivery and the practice plan follow the answers as they stand now.
+ */
+export function latestTurns(turns: SavedTurn[]): Turn[] {
+  return turns.map((t) =>
+    t.retry
+      ? {
+          ...t,
+          answer: t.retry.answer,
+          feedback: t.retry.feedback,
+          delivery: t.retry.delivery ?? t.delivery,
+          seconds: t.retry.seconds ?? t.seconds,
+        }
+      : t,
+  );
 }
 
 export type SavedTurn = Turn & { retry?: Retry };

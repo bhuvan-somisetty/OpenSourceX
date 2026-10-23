@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import {
   MODE_KEYS,
+  type Delivery,
   type Feedback,
   type InterviewProject,
   type Level,
@@ -85,8 +86,14 @@ export function RetryBox({
         }),
       });
       if (!res.ok) throw new Error();
-      const j = (await res.json()) as { feedback: Feedback };
-      onRetry(index, { answer, at: new Date().toISOString(), feedback: j.feedback });
+      const j = (await res.json()) as { feedback: Feedback; delivery?: Delivery };
+      onRetry(index, {
+        answer,
+        at: new Date().toISOString(),
+        feedback: j.feedback,
+        delivery: j.delivery,
+        seconds: Math.max(1, Math.round((Date.now() - started.current) / 1000)),
+      });
       dict.reset("");
       setOpen(false);
     } catch {
