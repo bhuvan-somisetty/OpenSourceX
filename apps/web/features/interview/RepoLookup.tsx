@@ -53,6 +53,9 @@ export function RepoLookup({
       setProject(j.project ?? null);
       setShowDetails(false);
       setState("done");
+      // pasting your repository means you want to talk about it: make it the
+      // subject straight away, which slides the setup into two columns
+      if (j.project) onUse(j.project);
     } catch (e) {
       setState("error");
       setError(e instanceof Error ? e.message : "Couldn't look up that repository.");
