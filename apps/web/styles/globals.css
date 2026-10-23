@@ -8311,11 +8311,45 @@ html.iv-morphing::view-transition-new(root) {
 }
 .iv-hist li {
   display: grid;
-  grid-template-columns: 1fr auto 40px;
-  gap: 12px;
+  grid-template-columns: minmax(0, 1fr) 44px auto;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--glass);
 }
-.iv-hist strong {
+.iv-hist-main {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.iv-hist-name {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.iv-hist-main .dim {
+  font-size: 12.5px;
+}
+.iv-hist-score {
   text-align: right;
+  font: 700 16px var(--mono);
+}
+.iv-hist-none {
+  font-size: 12px;
+  text-align: right;
+}
+@media (max-width: 560px) {
+  .iv-hist li {
+    grid-template-columns: minmax(0, 1fr) 44px;
+  }
+  .iv-hist-open,
+  .iv-hist-none {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
 }
 
 /* live */
@@ -8480,6 +8514,70 @@ html.iv-morphing::view-transition-new(root) {
   line-height: 1.35;
   letter-spacing: -0.02em;
   font-weight: 600;
+}
+.iv-qaction {
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 15px 7px 12px;
+  border-radius: 99px;
+  border: 1px solid color-mix(in srgb, var(--wine-2) 45%, var(--border));
+  background: color-mix(in srgb, var(--wine) 14%, var(--glass));
+  color: var(--text);
+  font: 600 13px var(--font);
+  cursor: pointer;
+  box-shadow: 0 6px 18px -10px color-mix(in srgb, var(--wine) 80%, transparent);
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.15s ease;
+}
+.iv-qaction:hover {
+  border-color: var(--wine-2);
+  background: color-mix(in srgb, var(--wine) 24%, var(--glass));
+  transform: translateY(-1px);
+}
+.iv-qaction.is-on {
+  background: var(--wine);
+  border-color: var(--wine-2);
+  color: #fff;
+}
+.iv-review {
+  margin: 8px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: color-mix(in srgb, var(--wine-2) 70%, var(--text));
+}
+.ivr-model {
+  margin: 4px 0 2px;
+  display: grid;
+  gap: 8px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--wine-2) 40%, var(--border));
+  background:
+    radial-gradient(
+      120% 120% at 0% 0%,
+      color-mix(in srgb, var(--wine) 16%, transparent),
+      transparent 60%
+    ),
+    var(--glass);
+}
+.ivr-model .ivr-k {
+  color: color-mix(in srgb, var(--wine-2) 80%, var(--text));
+}
+.ivr-model p {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--text);
+}
+.ivr-model-note {
+  margin: 10px 0 0;
+  font-size: 12.5px;
 }
 .iv-link {
   margin-top: 10px;

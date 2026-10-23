@@ -77,7 +77,10 @@ interface Settings {
 }
 
 interface PastSession {
+  /** when the interview ended (ISO time) */
   at: string;
+  /** key of the full saved report, for sessions recorded since reports were kept */
+  id?: string;
   project: string;
   /** older sessions stored a single mode */
   mode?: Mode;
@@ -103,6 +106,61 @@ const sample = (name: string, p: InterviewProject | null) =>
   }`;
 
 const HISTORY_KEY = "osx.interview.history.v1";
+/** full reports of past sessions, by id, so a session's feedback page can be opened again */
+const REPORTS_KEY = "osx.interview.reports.v1";
+const KEEP = 12;
+
+interface SavedReport {
+  project: InterviewProject;
+  turns: Turn[];
+  report: Report;
+  modes: Mode[];
+  level: Level;
+  engine: Engine;
+}
+
+/** Keep a finished interview's report in this browser; the oldest go first if space runs out. */
+function saveReport(id: string, saved: SavedReport, keep: string[]) {
+  let all: Record<string, SavedReport> = {};
+  try {
+    all = JSON.parse(localStorage.getItem(REPORTS_KEY) ?? "{}") ?? {};
+  } catch {
+    all = {};
+  }
+  all[id] = saved;
+  // only reports still listed in the history are kept
+  let ids = keep.filter((k) => all[k]);
+  for (;;) {
+    try {
+      localStorage.setItem(
+        REPORTS_KEY,
+        JSON.stringify(Object.fromEntries(ids.map((k) => [k, all[k]]))),
+      );
+      return;
+    } catch {
+      if (ids.length <= 1) return;
+      ids = ids.slice(0, -1);
+    }
+  }
+}
+
+function loadReport(id: string): SavedReport | null {
+  try {
+    return (
+      (JSON.parse(localStorage.getItem(REPORTS_KEY) ?? "{}") as Record<string, SavedReport>)[id] ??
+      null
+    );
+  } catch {
+    return null;
+  }
+}
+
+const when = (iso: string) => {
+  const d = new Date(iso);
+  return Number.isNaN(d.getTime())
+    ? ""
+    : new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(d);
+};
 const SETTINGS_KEY = "osx.interview.settings.v1";
 const SILENCE_MS = 4500;
 
@@ -187,6 +245,7 @@ function Icon({ d, size = 18 }: { d: string; size?: number }) {
 }
 const MIC = "M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3Zm-7 9a7 7 0 0 0 14 0M12 19v3";
 const REPEAT = "M4 12a8 8 0 0 1 14-5.3L20 9M20 4v5h-5M20 12a8 8 0 0 1-14 5.3L4 15m0 5v-5h5";
+const EDIT = "M4 20h4L19 9l-4-4L4 16v4Zm10-14 4 4";
 const SKIP = "m5 5 8 7-8 7V5Zm12 0v14";
 const SEND = "m4 12 16-8-6 16-2.5-6.5L4 12Z";
 const STOP = "M7 7h10v10H7z";
@@ -436,16 +495,25 @@ export function VoiceInterview({
       setEngine((e) => (e === "ai" || eng === "ai" ? "ai" : "offline"));
       setReport(r);
       setPhase("report");
+      const at = new Date().toISOString();
+      const id = `${at}-${Math.random().toString(36).slice(2, 8)}`;
       const past = [
-        {
-          at: new Date().toISOString(),
-          project: project.name,
-          modes: settings.modes,
-          overall: r.overall,
-        },
+        { at, id, project: project.name, modes: settings.modes, overall: r.overall },
         ...readList<PastSession>(HISTORY_KEY),
-      ].slice(0, 12);
+      ].slice(0, KEEP);
       write(HISTORY_KEY, past);
+      saveReport(
+        id,
+        {
+          project,
+          turns: all,
+          report: r,
+          modes: settings.modes,
+          level: settings.level,
+          engine: eng,
+        },
+        past.flatMap((h) => (h.id ? [h.id] : [])),
+      );
       setHistory(past);
       scrollTo(".ivr");
       await say(
@@ -563,6 +631,20 @@ export function VoiceInterview({
     void finish(turns, session.current);
   }, [finish, turns]);
 
+  /** Open a past session's feedback page from the reports kept in this browser. */
+  const openPast = (id: string) => {
+    const saved = loadReport(id);
+    if (!saved) return;
+    speaker.cancel();
+    setProject(saved.project);
+    setTurns(saved.turns);
+    setReport(saved.report);
+    setEngine(saved.engine);
+    setSettings((st) => ({ ...st, modes: saved.modes, level: saved.level }));
+    setPhase("report");
+    scrollTo(".ivr");
+  };
+
   const leave = useCallback(() => {
     session.current++;
     speaker.cancel();
@@ -577,9 +659,9 @@ export function VoiceInterview({
     return () => clearInterval(t);
   }, [phase]);
 
-  // silence auto-submit (hands-free)
-  const submitRef = useRef(submit);
-  submitRef.current = submit;
+  // hands-free: after a pause the mic stops and the answer waits in the box, so the words the
+  // browser heard can be checked and fixed before sending
+  const answerBox = useRef<HTMLTextAreaElement | null>(null);
   useEffect(() => {
     if (
       phase === "live" &&
@@ -589,8 +671,15 @@ export function VoiceInterview({
       dict.finalText.trim().split(/\s+/).length >= 8 &&
       !dict.interim &&
       now - dict.lastHeard > SILENCE_MS
-    )
-      void submitRef.current();
+    ) {
+      dict.stop();
+      requestAnimationFrame(() => {
+        const el = answerBox.current;
+        if (!el) return;
+        el.focus();
+        el.setSelectionRange(el.value.length, el.value.length);
+      });
+    }
   }, [
     now,
     phase,
@@ -953,7 +1042,8 @@ export function VoiceInterview({
                 <span>
                   <strong>Hands-free conversation</strong>
                   <em>
-                    The mic opens after each question and your answer is sent after a short pause.
+                    The mic opens after each question and stops after a short pause, so you can fix
+                    any word before sending.
                   </em>
                 </span>
               </label>
@@ -1104,13 +1194,34 @@ export function VoiceInterview({
               ))}
             </div>
             <ul className="iv-hist">
-              {history.slice(0, 4).map((h, i) => (
-                <li key={i}>
-                  <span>{h.project}</span>
-                  <span className="dim">{pastLabel(h)}</span>
-                  <strong>{h.overall}</strong>
-                </li>
-              ))}
+              {history.slice(0, 6).map((h, i) => {
+                const saved = !!h.id && !!loadReport(h.id);
+                return (
+                  <li key={h.id ?? i}>
+                    <div className="iv-hist-main">
+                      <span className="iv-hist-name">{h.project}</span>
+                      <span className="dim">
+                        <time dateTime={h.at}>{when(h.at)}</time>
+                        {pastLabel(h) ? ` · ${pastLabel(h)}` : ""}
+                      </span>
+                    </div>
+                    <strong className="iv-hist-score">{h.overall}</strong>
+                    {saved ? (
+                      <button
+                        type="button"
+                        className="btn sm iv-hist-open"
+                        onClick={() => openPast(h.id!)}
+                      >
+                        View feedback
+                      </button>
+                    ) : (
+                      <span className="dim iv-hist-none" title="Recorded before reports were kept">
+                        No report kept
+                      </span>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </section>
         )}
@@ -1169,7 +1280,7 @@ export function VoiceInterview({
                 : "Ready for the next question"
               : dict.listening
                 ? settings.handsFree
-                  ? "Listening · pause to send"
+                  ? "Listening · pause when you're done"
                   : "Listening"
                 : "Your turn";
   const elapsed = step === "answer" && answerStart ? Math.max(0, (now - answerStart) / 1000) : 0;
@@ -1226,7 +1337,7 @@ export function VoiceInterview({
           {support.tts && settings.voiceOut && question && (
             <button
               type="button"
-              className="iv-link"
+              className={`iv-qaction ${speaker.speaking ? "is-on" : ""}`}
               onClick={() => (speaker.speaking ? speaker.cancel() : void say(question.text))}
             >
               <Icon d={speaker.speaking ? STOP : REPEAT} size={15} />{" "}
@@ -1240,6 +1351,7 @@ export function VoiceInterview({
             </label>
             <textarea
               id="answer"
+              ref={answerBox}
               value={answer}
               placeholder={
                 canListen
@@ -1247,6 +1359,10 @@ export function VoiceInterview({
                   : "Type your answer as you would say it."
               }
               onChange={(e) => dict.setFinalText(e.target.value)}
+              // clicking into the words while the mic is on stops it, so they can be edited
+              onPointerDown={() => {
+                if (dict.listening) dict.stop();
+              }}
               readOnly={dict.listening}
               disabled={step !== "answer"}
               maxLength={4000}
@@ -1257,6 +1373,12 @@ export function VoiceInterview({
                 }
               }}
             />
+            {step === "answer" && !dict.listening && dict.heard && answer.trim() && (
+              <p className="iv-review" data-testid="answer-review">
+                <Icon d={EDIT} size={14} /> Check what was heard: fix any word in the box, then send
+                your answer.
+              </p>
+            )}
             {(micBlocked || /blocked/i.test(dict.error ?? "")) && (
               <div className="iv-micalert" role="alert" data-testid="mic-blocked">
                 <strong>Your microphone is blocked, so you can type for now.</strong>
@@ -1324,8 +1446,8 @@ export function VoiceInterview({
           <p className="hint iv-keys">
             {canListen
               ? settings.handsFree
-                ? "Hands-free: the mic opens by itself and sends after a 4-second pause. Ctrl+Enter sends now."
-                : "Hold Space to talk, or tap the mic. Ctrl+Enter sends."
+                ? "Hands-free: the mic opens by itself and stops after a 4-second pause so you can check your words. Ctrl+Enter sends."
+                : "Hold Space to talk, or tap the mic. Fix any word in the box, then Ctrl+Enter sends."
               : "Ctrl+Enter sends."}
           </p>
           {note && <p className="iv-note">{note}</p>}

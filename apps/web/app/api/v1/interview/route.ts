@@ -3,7 +3,13 @@ import { z } from "zod";
 import { getSession } from "@/lib/auth";
 import { db } from "@/lib/data";
 import { rateLimit, route } from "@/lib/http";
-import { aiReport, aiTurn, interviewAiAvailable, spendAi } from "@/lib/interview/ai";
+import {
+  aiModelAnswers,
+  aiReport,
+  aiTurn,
+  interviewAiAvailable,
+  spendAi,
+} from "@/lib/interview/ai";
 import {
   analyzeDelivery,
   emptyFeedback,
@@ -150,15 +156,27 @@ export const POST = route(async (req) => {
     delivery: analyzeDelivery(t.answer, t.seconds, t.spoken ?? false),
   }));
   const base = offlineReport(project, turns);
-  if (base.emptyAnswers < turns.length && useAi()) {
-    try {
+  // model answers are worth having even when every answer was empty, so the AI is asked for
+  // them whenever it is available; the summary and focus areas need at least one real answer
+  if (useAi()) {
+    const [report, models] = await Promise.allSettled([
+      base.emptyAnswers < turns.length
+        ? aiReport(project, b.modes, b.level, turns, base)
+        : Promise.resolve(base),
+      aiModelAnswers(project, turns),
+    ]);
+    if (report.status === "fulfilled" || models.status === "fulfilled") {
+      const r = report.status === "fulfilled" ? report.value : base;
+      const written = models.status === "fulfilled" ? models.value : [];
       return Response.json({
-        report: await aiReport(project, b.modes, b.level, turns, base),
+        report: {
+          ...r,
+          models: turns.map((_, i) => ({ text: written[i] ?? "", by: "ai" as const })),
+        },
         engine: "ai",
       });
-    } catch {
-      note = "The AI interviewer is busy, so the offline coach wrote this report.";
     }
+    note = "The AI interviewer is busy, so the offline coach wrote this report.";
   }
   return Response.json({ report: base, engine: "offline", note });
 });

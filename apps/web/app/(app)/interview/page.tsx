@@ -106,7 +106,8 @@ export default async function Interview({ searchParams }: { searchParams: Promis
       <p className="hint iv-privacy">
         Voice stays in your browser: your browser turns speech into text (Chrome and Edge use their
         own speech service for this). Only the text of your answers is sent to OpenSourceX to be
-        scored, and it is not saved. See the <Link href="/privacy">Privacy policy</Link>.
+        scored, and it is not saved there. Your past reports are kept only in this browser, so you
+        can open them again. See the <Link href="/privacy">Privacy policy</Link>.
       </p>
     </div>
   );

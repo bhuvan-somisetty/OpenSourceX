@@ -118,7 +118,12 @@ function facts(p: InterviewProject) {
     .join("\n");
 }
 
-async function generate<T>(schema: z.ZodType<T>, system: string, prompt: string): Promise<T> {
+async function generate<T>(
+  schema: z.ZodType<T>,
+  system: string,
+  prompt: string,
+  maxOutputTokens = 900,
+): Promise<T> {
   let lastError: unknown = null;
   for (const p of configuredProviders()) {
     try {
@@ -127,7 +132,7 @@ async function generate<T>(schema: z.ZodType<T>, system: string, prompt: string)
         instructions: system,
         prompt,
         output: Output.object({ schema }),
-        maxOutputTokens: 900,
+        maxOutputTokens,
         maxRetries: 1,
         timeout: { totalMs: 30_000 },
       });
@@ -233,4 +238,36 @@ Write a short summary for the candidate and up to three focus areas (lowest scor
     summary: out.summary,
     focus: out.focus.length ? (out.focus as FocusArea[]) : base.focus,
   };
+}
+
+const ModelsSchema = z.object({
+  answers: z
+    .array(z.string())
+    .describe("One model answer per question, in the same order as the questions"),
+});
+
+/**
+ * A model answer for every question of the interview, as a well-prepared candidate would say it
+ * out loud. Written only from the project's recorded facts and well-known facts about its
+ * technologies and open source practice, so it never invents files, numbers or people.
+ */
+export async function aiModelAnswers(p: InterviewProject, turns: Turn[]): Promise<string[]> {
+  const questions = turns
+    .map(
+      (t, n) =>
+        `Q${n + 1}: ${t.question.text}\nA strong answer covers: ${t.question.lookFor.join("; ")}`,
+    )
+    .join("\n\n");
+  const out = await generate(
+    ModelsSchema,
+    "You are an experienced open source mentor writing model answers for a mentorship interview. Write each answer the way a well-prepared candidate would say it out loud: first person, plain spoken English, 80 to 150 words, answering the question in the first sentence and then covering what a strong answer covers. Be specific to this project, but use only the project facts given and widely known facts about its technologies and normal open source contribution practice (issue trackers, labels, forks, pull requests, reviews, tests, CI). Never invent file paths, function names, numbers, people, features or history that are not in the facts; where a detail is unknown, say how you would find out.",
+    `${facts(p)}
+
+Questions:
+${questions}
+
+Write one model answer per question, in order (${turns.length} answers).`,
+    Math.min(4000, 400 + turns.length * 320),
+  );
+  return turns.map((_, i) => out.answers[i]?.trim() ?? "");
 }

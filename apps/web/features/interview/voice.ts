@@ -64,11 +64,16 @@ export function useDictation(lang = "en-US") {
   const [lastHeard, setLastHeard] = useState(0);
   /** true once speech was recognised for the current answer (false = typed) */
   const [heard, setHeard] = useState(false);
+  // words still being recognised; kept when the mic stops so nothing said is lost
+  const pending = useRef("");
 
   const stop = useCallback(() => {
     want.current = false;
     rec.current?.stop();
     setListening(false);
+    const last = pending.current.trim();
+    pending.current = "";
+    if (last) setFinalText((t) => `${t}${t && !t.endsWith(" ") ? " " : ""}${last}`);
     setInterim("");
   }, []);
 
@@ -86,6 +91,8 @@ export function useDictation(lang = "en-US") {
       r.continuous = true;
       r.interimResults = true;
       r.onresult = (e) => {
+        // after stop() the in-progress words were already kept; late results would repeat them
+        if (!want.current) return;
         let fin = "";
         let mid = "";
         for (let i = e.resultIndex; i < e.results.length; i++) {
@@ -95,6 +102,7 @@ export function useDictation(lang = "en-US") {
         }
         if (fin) setFinalText((t) => `${t}${t && !t.endsWith(" ") ? " " : ""}${fin.trim()}`);
         setInterim(mid);
+        pending.current = mid;
         setLastHeard(Date.now());
         if (fin || mid) setHeard(true);
       };
@@ -141,6 +149,7 @@ export function useDictation(lang = "en-US") {
 
   const reset = useCallback((text = "") => {
     setFinalText(text);
+    pending.current = "";
     setInterim("");
     setHeard(false);
   }, []);

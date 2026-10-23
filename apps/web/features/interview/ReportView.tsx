@@ -148,10 +148,18 @@ function Bars({ scores }: { scores: Scores }) {
   );
 }
 
-function AnswerCard({ turn, index }: { turn: Turn; index: number }) {
+function AnswerCard({
+  turn,
+  index,
+  model,
+}: {
+  turn: Turn;
+  index: number;
+  model?: { text: string; by: string };
+}) {
   const f = turn.feedback;
   return (
-    <details className={`ivr-answer b-${band(f.overall)}`}>
+    <details className={`ivr-answer b-${band(f.overall)}`} open>
       <summary>
         <span className="ivr-answer-score">{f.empty ? "—" : f.overall}</span>
         <span className="ivr-answer-q">
@@ -168,6 +176,12 @@ function AnswerCard({ turn, index }: { turn: Turn; index: number }) {
           <span className="ivr-k">You {turn.delivery.spoken ? "said" : "wrote"}</span>
           <p>{turn.answer}</p>
         </div>
+        {model?.by === "ai" && model.text && (
+          <div className="ivr-model">
+            <span className="ivr-k">Model answer</span>
+            <p>{model.text}</p>
+          </div>
+        )}
         <p className="ivr-reaction">{f.spoken}</p>
         <div className="ivr-two">
           {f.strengths.length > 0 && (
@@ -191,14 +205,20 @@ function AnswerCard({ turn, index }: { turn: Turn; index: number }) {
             </div>
           )}
         </div>
-        <div className="ivr-stronger">
-          <span className="ivr-k">A stronger answer would</span>
-          <ol>
-            {f.stronger.map((s, i) => (
-              <li key={i}>{s}</li>
-            ))}
-          </ol>
-        </div>
+        {!(model?.by === "ai" && model.text) && (
+          <div className="ivr-stronger">
+            <span className="ivr-k">A stronger answer would</span>
+            <ol>
+              {f.stronger.map((s, i) => (
+                <li key={i}>{s}</li>
+              ))}
+            </ol>
+            <p className="dim ivr-model-note">
+              A full written model answer comes from the AI interviewer: sign in, and it writes one
+              for every question while the free daily AI interviews last.
+            </p>
+          </div>
+        )}
         {!f.empty && <Bars scores={f.scores} />}
         <div className="iv-delivery">
           <span>{turn.delivery.words} words</span>
@@ -244,6 +264,9 @@ function toMarkdown(r: Report, turns: Turn[], p: InterviewProject, modes: Mode[]
       "",
       `> ${t.answer.replace(/\n/g, "\n> ")}`,
       "",
+      ...(r.models?.[i]?.by === "ai" && r.models[i]!.text
+        ? [`**Model answer:** ${r.models[i]!.text}`, ""]
+        : []),
       ...t.feedback.improve.map((s) => `- Improve: ${s}`),
       ...t.feedback.stronger.map((s) => `- Stronger answer: ${s}`),
       "",
@@ -481,6 +504,17 @@ export function ReportView({
         </section>
       </div>
 
+      <section className="iv-panel" aria-labelledby="ivr-q-h">
+        <h2 id="ivr-q-h" className="iv-h">
+          Answer by answer
+        </h2>
+        <div className="ivr-answers">
+          {turns.map((t, i) => (
+            <AnswerCard key={i} turn={t} index={i + 1} model={r.models?.[i]} />
+          ))}
+        </div>
+      </section>
+
       <section className="iv-panel ivr-focus" aria-labelledby="ivr-focus-h">
         <div className="ivr-focus-head">
           <h2 id="ivr-focus-h" className="iv-h">
@@ -546,17 +580,6 @@ export function ReportView({
           <Link className="btn sm" href="/ask">
             Ask a follow-up question
           </Link>
-        </div>
-      </section>
-
-      <section className="iv-panel" aria-labelledby="ivr-q-h">
-        <h2 id="ivr-q-h" className="iv-h">
-          Answer by answer
-        </h2>
-        <div className="ivr-answers">
-          {turns.map((t, i) => (
-            <AnswerCard key={i} turn={t} index={i + 1} />
-          ))}
         </div>
       </section>
     </div>

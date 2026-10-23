@@ -113,6 +113,8 @@ export interface Report {
   };
   /** answers that said nothing ("I don't know", one word, skipped) */
   emptyAnswers: number;
+  /** One model answer per question, in order, written by the AI interviewer from the project's facts. */
+  models?: { text: string; by: "ai" }[];
 }
 
 /**
