@@ -9,3 +9,4 @@ export * from "./ask-chat";
 export * from "./knowledge";
 export * from "./knowledge-files";
 export * from "./support";
+export * from "./interview";

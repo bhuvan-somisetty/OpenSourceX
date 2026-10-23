@@ -24,7 +24,18 @@ import {
   type Report,
   type Turn,
 } from "@/lib/interview/coach";
-import { ReportView, readPlan } from "./ReportView";
+import { ReportView } from "./ReportView";
+import { ProgressPanel } from "./ProgressPanel";
+import {
+  loadHistory,
+  newSessionId,
+  openSession,
+  saveRetry,
+  saveSession,
+  type Retry,
+  type SavedTurn,
+  type SessionSummary,
+} from "./history";
 import { RepoLookup } from "./RepoLookup";
 import { VoicePicker } from "./VoicePicker";
 import {
@@ -76,27 +87,6 @@ interface Settings {
   volume: number;
 }
 
-interface PastSession {
-  /** when the interview ended (ISO time) */
-  at: string;
-  /** key of the full saved report, for sessions recorded since reports were kept */
-  id?: string;
-  project: string;
-  /** older sessions stored a single mode */
-  mode?: Mode;
-  modes?: Mode[];
-  overall: number;
-}
-
-const pastLabel = (h: PastSession) => {
-  const m = h.modes ?? (h.mode ? [h.mode] : []);
-  return m.length === MODE_KEYS.length
-    ? "Everything"
-    : m
-        .map((x) => MODES[x]?.label)
-        .filter(Boolean)
-        .join(", ");
-};
 const modesTitle = (m: Mode[]) =>
   m.length === MODE_KEYS.length ? "Everything" : m.map((x) => MODES[x].label).join(", ");
 /** What a voice says when previewed: its name, then the interview it is about to run. */
@@ -105,62 +95,6 @@ const sample = (name: string, p: InterviewProject | null) =>
     p ? `Let's talk about ${spokenName(p)}.` : "Let's get you ready for your mentorship interview."
   }`;
 
-const HISTORY_KEY = "osx.interview.history.v1";
-/** full reports of past sessions, by id, so a session's feedback page can be opened again */
-const REPORTS_KEY = "osx.interview.reports.v1";
-const KEEP = 12;
-
-interface SavedReport {
-  project: InterviewProject;
-  turns: Turn[];
-  report: Report;
-  modes: Mode[];
-  level: Level;
-  engine: Engine;
-}
-
-/** Keep a finished interview's report in this browser; the oldest go first if space runs out. */
-function saveReport(id: string, saved: SavedReport, keep: string[]) {
-  let all: Record<string, SavedReport> = {};
-  try {
-    all = JSON.parse(localStorage.getItem(REPORTS_KEY) ?? "{}") ?? {};
-  } catch {
-    all = {};
-  }
-  all[id] = saved;
-  // only reports still listed in the history are kept
-  let ids = keep.filter((k) => all[k]);
-  for (;;) {
-    try {
-      localStorage.setItem(
-        REPORTS_KEY,
-        JSON.stringify(Object.fromEntries(ids.map((k) => [k, all[k]]))),
-      );
-      return;
-    } catch {
-      if (ids.length <= 1) return;
-      ids = ids.slice(0, -1);
-    }
-  }
-}
-
-function loadReport(id: string): SavedReport | null {
-  try {
-    return (
-      (JSON.parse(localStorage.getItem(REPORTS_KEY) ?? "{}") as Record<string, SavedReport>)[id] ??
-      null
-    );
-  } catch {
-    return null;
-  }
-}
-
-const when = (iso: string) => {
-  const d = new Date(iso);
-  return Number.isNaN(d.getTime())
-    ? ""
-    : new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(d);
-};
 const SETTINGS_KEY = "osx.interview.settings.v1";
 const SILENCE_MS = 4500;
 
@@ -180,14 +114,6 @@ function read<T>(key: string, fallback: T): T {
     return v ? ({ ...fallback, ...JSON.parse(v) } as T) : fallback;
   } catch {
     return fallback;
-  }
-}
-function readList<T>(key: string): T[] {
-  try {
-    const v = JSON.parse(localStorage.getItem(key) ?? "[]");
-    return Array.isArray(v) ? v : [];
-  } catch {
-    return [];
   }
 }
 function write(key: string, v: unknown) {
@@ -318,7 +244,16 @@ export function VoiceInterview({
   const interviewerName = settings.voiceOut
     ? (speaker.voices.find((v) => v.id === settings.voice) ?? speaker.voices[0])?.persona
     : undefined;
-  const [history, setHistory] = useState<PastSession[]>([]);
+  const [history, setHistory] = useState<SessionSummary[]>([]);
+  // interviews can be kept on the server for this session (an account, or a guest session)
+  const [synced, setSynced] = useState(false);
+  const [historyLoading, setHistoryLoading] = useState(true);
+  const refreshHistory = useCallback(async () => {
+    const h = await loadHistory();
+    setHistory(h.sessions);
+    setSynced(h.signedIn);
+    setHistoryLoading(false);
+  }, []);
   const [micTest, setMicTest] = useState(false);
   const [source, setSource] = useState<"list" | "repo">(
     initial && !initial.id.startsWith("repo:") ? "list" : "repo",
@@ -357,7 +292,7 @@ export function VoiceInterview({
       });
       return { ...s, ...saved, accent: india ? "en-IN" : "en-US" };
     });
-    setHistory(readList<PastSession>(HISTORY_KEY));
+    void refreshHistory();
   }, [initialMode]);
   useEffect(() => {
     if (phase === "setup") {
@@ -498,32 +433,23 @@ export function VoiceInterview({
       setReport(r);
       setPhase("report");
       const at = new Date().toISOString();
-      const id = `${at}-${Math.random().toString(36).slice(2, 8)}`;
-      const past = [
-        { at, id, project: project.name, modes: settings.modes, overall: r.overall },
-        ...readList<PastSession>(HISTORY_KEY),
-      ].slice(0, KEEP);
-      write(HISTORY_KEY, past);
-      saveReport(
-        id,
-        {
-          project,
-          turns: all,
-          report: r,
-          modes: settings.modes,
-          level: settings.level,
-          engine: eng,
-        },
-        past.flatMap((h) => (h.id ? [h.id] : [])),
-      );
-      setHistory(past);
+      const id = newSessionId(at);
       setReportId(id);
+      // kept in this browser at once, and in the account when there is one
+      void saveSession(id, at, {
+        project,
+        turns: all,
+        report: r,
+        modes: settings.modes,
+        level: settings.level,
+        engine: eng,
+      }).then(() => refreshHistory());
       scrollTo(".ivr");
       await say(
         `That's the end of the interview. You scored ${r.overall} out of 100: ${r.verdict}. ${r.summary}`,
       );
     },
-    [project, settings.modes, settings.level, speaker, dict, say],
+    [project, settings.modes, settings.level, speaker, dict, say, refreshHistory],
   );
 
   const submit = useCallback(async () => {
@@ -634,9 +560,9 @@ export function VoiceInterview({
     void finish(turns, session.current);
   }, [finish, turns]);
 
-  /** Open a past session's feedback page from the reports kept in this browser. */
-  const openPast = (id: string) => {
-    const saved = loadReport(id);
+  /** Open a past session's feedback page, from the account or this browser. */
+  const openPast = async (id: string) => {
+    const saved = await openSession(id);
     if (!saved) return;
     speaker.cancel();
     setProject(saved.project);
@@ -787,7 +713,6 @@ export function VoiceInterview({
 
   /* ------------------------------ setup ------------------------------ */
   if (phase === "setup") {
-    const best = history.length ? Math.max(...history.map((h) => h.overall)) : null;
     return (
       <div className="iv" data-testid="interview-setup">
         <div className="iv-setup">
@@ -1180,69 +1105,13 @@ export function VoiceInterview({
             <Icon d={MIC} /> Start interview
           </button>
         </div>
-        {history.length > 0 && (
-          <section className="iv-panel iv-progress" aria-labelledby="iv-hist-h">
-            <h2 id="iv-hist-h" className="iv-h">
-              Your progress
-            </h2>
-            <p className="dim" style={{ margin: "4px 0 14px" }}>
-              Last {history.length} sessions in this browser. Best: {best}/100.
-            </p>
-            <div className="iv-spark" aria-hidden="true">
-              {[...history].reverse().map((h, i) => (
-                <span
-                  key={i}
-                  style={{ height: `${Math.max(6, h.overall)}%` }}
-                  title={`${h.project} · ${pastLabel(h)} · ${h.overall}`}
-                />
-              ))}
-            </div>
-            <ul className="iv-hist">
-              {history.slice(0, 6).map((h, i) => {
-                const kept = h.id ? loadReport(h.id) : null;
-                const saved = !!kept;
-                const planTotal = kept?.report.focus.reduce((n, f) => n + f.actions.length, 0) ?? 0;
-                const planDone = kept ? Object.values(readPlan(h.id)).filter(Boolean).length : 0;
-                return (
-                  <li key={h.id ?? i}>
-                    <div className="iv-hist-main">
-                      <span className="iv-hist-name">{h.project}</span>
-                      <span className="dim">
-                        <time dateTime={h.at}>{when(h.at)}</time>
-                        {pastLabel(h) ? ` · ${pastLabel(h)}` : ""}
-                      </span>
-                      {planTotal > 0 && (
-                        <span className="iv-hist-plan">
-                          <span aria-hidden="true">
-                            <i style={{ width: `${(planDone / planTotal) * 100}%` }} />
-                          </span>
-                          {planDone}/{planTotal} of plan done
-                        </span>
-                      )}
-                    </div>
-                    <strong className="iv-hist-score">{h.overall}</strong>
-                    {saved ? (
-                      <button
-                        type="button"
-                        className="btn sm iv-hist-open"
-                        onClick={() => openPast(h.id!)}
-                      >
-                        View feedback
-                      </button>
-                    ) : (
-                      <span
-                        className="dim iv-hist-none"
-                        title="This session finished before reports were saved in the browser"
-                      >
-                        Older session, report not saved
-                      </span>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          </section>
-        )}
+        <ProgressPanel
+          sessions={history}
+          synced={synced}
+          account={signedIn}
+          loading={historyLoading}
+          onOpen={(id) => void openPast(id)}
+        />
       </div>
     );
   }
@@ -1251,10 +1120,25 @@ export function VoiceInterview({
   if (!project) return null;
 
   /* ------------------------------ report ------------------------------ */
+  // the interview before this one, for the skill profile: the same project first
+  const others = history.filter((h) => h.id !== reportId && h.scores);
+  const thisAt = history.find((h) => h.id === reportId)?.at ?? new Date().toISOString();
+  const earlier = others.filter((h) => h.at < thisAt);
+  const prevSession = earlier.find((h) => h.projectName === project.name) ?? earlier[0] ?? null;
+  const previousScores = prevSession
+    ? { scores: prevSession.scores!, at: prevSession.at, projectName: prevSession.projectName }
+    : null;
   if (phase === "report" && report) {
     return (
       <ReportView
         reportId={reportId}
+        shareable={synced}
+        shared={history.find((h) => h.id === reportId)?.shared ?? false}
+        previous={previousScores}
+        onRetry={(index: number, retry: Retry) => {
+          setTurns((ts) => ts.map((t, i) => (i === index ? ({ ...t, retry } as SavedTurn) : t)));
+          if (reportId) saveRetry(reportId, index, retry);
+        }}
         report={report}
         turns={turns}
         project={project}

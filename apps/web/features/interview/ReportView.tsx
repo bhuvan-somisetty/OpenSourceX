@@ -16,8 +16,16 @@ import {
   type Scores,
   type Turn,
 } from "@/lib/interview/coach";
+import { localPlan, savePlan, setShare, type Retry, type SavedTurn } from "./history";
+import { RetryBox } from "./RetryBox";
 
 type Engine = "ai" | "offline";
+/** The interview before this one, drawn faintly on the skill profile. */
+export interface PreviousScores {
+  scores: Scores;
+  at: string;
+  projectName: string;
+}
 const DIMS = Object.keys(DIMENSIONS) as Dimension[];
 const SHORT: Record<Dimension, string> = {
   relevance: "On point",
@@ -86,7 +94,7 @@ function BigScore({ value }: { value: number }) {
 }
 
 /** Five-axis skill chart. */
-function Radar({ scores }: { scores: Scores }) {
+function Radar({ scores, previous }: { scores: Scores; previous?: Scores | null }) {
   const size = 260;
   const cx = size / 2;
   const cy = size / 2 + 6;
@@ -110,6 +118,12 @@ function Radar({ scores }: { scores: Scores }) {
         const [x, y] = pt(i, 10);
         return <line key={i} x1={cx} y1={cy} x2={x} y2={y} className="ivr-radar-axis" />;
       })}
+      {previous && (
+        <polygon
+          points={poly((i) => Math.max(0.2, previous[DIMS[i]!] ?? 0))}
+          className="ivr-radar-prev"
+        />
+      )}
       <polygon points={poly((i) => Math.max(0.2, scores[DIMS[i]!]))} className="ivr-radar-shape" />
       {DIMS.map((d, i) => {
         const [x, y] = pt(i, Math.max(0.2, scores[d]));
@@ -132,7 +146,61 @@ function Radar({ scores }: { scores: Scores }) {
   );
 }
 
-function Bars({ scores }: { scores: Scores }) {
+/** What each score measures, in the words the coach scores by. */
+const MEANS: Record<Dimension, string> = {
+  relevance: "Each answer addressed the question that was asked.",
+  knowledge: "You used real facts about this project and its stack.",
+  depth: "You went past the surface: details, trade-offs, examples.",
+  structure: "A clear order: the answer first, then reasons, then an example.",
+  clarity: "Easy to follow: short sentences and few filler words.",
+};
+
+function SkillRead({ scores }: { scores: Scores }) {
+  const ranked = [...DIMS].sort((a, b) => scores[b] - scores[a]);
+  const top = ranked[0]!;
+  const low = ranked[ranked.length - 1]!;
+  const none = DIMS.every((d) => !scores[d]);
+  return (
+    <div className="ivr-skillread">
+      {none ? (
+        <p className="ivr-skillread-none">
+          Nothing to score yet: no question got a real answer, so every skill is 0. Answer even a
+          little next time and these will show where you stand.
+        </p>
+      ) : (
+        <div className="ivr-skillread-pair">
+          <div className="good">
+            <span>Strongest</span>
+            <strong>
+              {DIMENSIONS[top]} · {scores[top]}/10
+            </strong>
+          </div>
+          {low !== top && scores[low] < scores[top] && (
+            <div className="weak">
+              <span>Work on next</span>
+              <strong>
+                {DIMENSIONS[low]} · {scores[low]}/10
+              </strong>
+            </div>
+          )}
+        </div>
+      )}
+      <dl className="ivr-means">
+        {DIMS.map((d) => (
+          <div key={d}>
+            <dt>{DIMENSIONS[d]}</dt>
+            <dd>{MEANS[d]}</dd>
+          </div>
+        ))}
+      </dl>
+      <p className="dim ivr-small">
+        Each skill is the average of its scores across your answers, out of 10.
+      </p>
+    </div>
+  );
+}
+
+function Bars({ scores, previous }: { scores: Scores; previous?: Scores | null }) {
   return (
     <ul className="iv-bars">
       {DIMS.map((k) => (
@@ -142,9 +210,29 @@ function Bars({ scores }: { scores: Scores }) {
             <span style={{ width: `${scores[k] * 10}%` }} data-low={scores[k] < 6 || undefined} />
           </div>
           <strong>{scores[k]}</strong>
+          {previous && previous[k] != null && scores[k] !== previous[k] && (
+            <em className={scores[k] > previous[k] ? "up" : "down"}>
+              {scores[k] > previous[k] ? "▲" : "▼"}
+              {Math.abs(Math.round((scores[k] - previous[k]) * 10) / 10)}
+            </em>
+          )}
         </li>
       ))}
     </ul>
+  );
+}
+
+function ReadOnlyRetry({ turn }: { turn: SavedTurn }) {
+  const r = turn.retry;
+  if (!r) return null;
+  return (
+    <div className="ivr-retry-result">
+      <div className="ivr-retry-head">
+        <span className="ivr-k">Second try</span>
+        <span className="ivr-retry-score">{r.feedback.empty ? 0 : r.feedback.overall}</span>
+      </div>
+      <p className="ivr-retry-answer">{r.answer}</p>
+    </div>
   );
 }
 
@@ -152,10 +240,13 @@ function AnswerCard({
   turn,
   index,
   model,
+  retry,
 }: {
-  turn: Turn;
+  turn: SavedTurn;
   index: number;
   model?: { text: string; by: string };
+  /** shows "Try this question again"; absent on a shared, read-only report */
+  retry?: React.ReactNode;
 }) {
   const f = turn.feedback;
   return (
@@ -220,6 +311,7 @@ function AnswerCard({
           </div>
         )}
         {!f.empty && <Bars scores={f.scores} />}
+        {retry}
         <div className="iv-delivery">
           <span>{turn.delivery.words} words</span>
           {turn.delivery.spoken ? (
@@ -278,6 +370,10 @@ function toMarkdown(r: Report, turns: Turn[], p: InterviewProject, modes: Mode[]
 const SPEAKER = "M11 5 6 9H3v6h3l5 4V5Zm5.5 3.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12";
 const STOP = "M7 7h10v10H7z";
 const DOWNLOAD = "M12 4v11m0 0-4-4m4 4 4-4M5 20h14";
+const PRINT =
+  "M7 9V4h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2M7 14h10v6H7z";
+const LINK =
+  "M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1";
 const AGAIN = "M4 12a8 8 0 0 1 14-5.3L20 9M20 4v5h-5M20 12a8 8 0 0 1-14 5.3L4 15m0 5v-5h5";
 
 function I({ d }: { d: string }) {
@@ -298,38 +394,13 @@ function I({ d }: { d: string }) {
   );
 }
 
-/** Practice plan ticks, per saved interview, kept in this browser. */
-export const PLAN_KEY = "osx.interview.plan.v1";
-export function readPlan(id: string | null | undefined): Record<string, boolean> {
-  if (!id) return {};
-  try {
-    return (
-      (
-        JSON.parse(localStorage.getItem(PLAN_KEY) ?? "{}") as Record<
-          string,
-          Record<string, boolean>
-        >
-      )[id] ?? {}
-    );
-  } catch {
-    return {};
-  }
-}
-function writePlan(id: string, done: Record<string, boolean>) {
-  try {
-    const all = JSON.parse(localStorage.getItem(PLAN_KEY) ?? "{}") as Record<
-      string,
-      Record<string, boolean>
-    >;
-    all[id] = done;
-    localStorage.setItem(PLAN_KEY, JSON.stringify(all));
-  } catch {
-    /* storage unavailable: ticks last for this visit only */
-  }
-}
-
 export function ReportView({
   reportId,
+  shareable = false,
+  shared: initiallyShared = false,
+  previous,
+  onRetry,
+  readOnly = false,
   report: r,
   turns,
   project,
@@ -342,28 +413,65 @@ export function ReportView({
   onHear,
   speaking,
   onStopSpeaking,
+  plan: sharedPlan,
 }: {
   /** the saved interview this report belongs to; its practice plan ticks are remembered */
   reportId?: string | null;
+  /** it is kept in an account, so it can be shared by link */
+  shareable?: boolean;
+  shared?: boolean;
+  previous?: PreviousScores | null;
+  onRetry?: (index: number, retry: Retry) => void;
+  /** a shared report: no practising, retrying or plan ticking */
+  readOnly?: boolean;
+  /** the plan ticks a shared report was saved with */
+  plan?: Record<string, boolean>;
   report: Report;
-  turns: Turn[];
+  turns: SavedTurn[];
   project: InterviewProject;
   modes: Mode[];
   level: Level;
   engine: Engine;
   note: string | null;
-  onAgain: () => void;
-  onSetup: () => void;
-  onHear: () => void;
-  speaking: boolean;
-  onStopSpeaking: () => void;
+  onAgain?: () => void;
+  onSetup?: () => void;
+  onHear?: () => void;
+  speaking?: boolean;
+  onStopSpeaking?: () => void;
 }) {
-  const [done, setDoneState] = useState<Record<string, boolean>>(() => readPlan(reportId));
+  const [done, setDoneState] = useState<Record<string, boolean>>(() =>
+    readOnly ? (sharedPlan ?? {}) : localPlan(reportId),
+  );
   // another saved interview opened in the same view: show its own ticks
-  useEffect(() => setDoneState(readPlan(reportId)), [reportId]);
+  useEffect(() => {
+    if (!readOnly) setDoneState(localPlan(reportId));
+  }, [reportId, readOnly]);
   const setDone = (next: Record<string, boolean>) => {
+    if (readOnly) return;
     setDoneState(next);
-    if (reportId) writePlan(reportId, next);
+    if (reportId) savePlan(reportId, next);
+  };
+  const [shareUrl, setShareUrl] = useState<string | null>(null);
+  const [shareState, setShareState] = useState<"idle" | "busy" | "copied" | "error">("idle");
+  const [isShared, setIsShared] = useState(initiallyShared);
+  const share = async (on: boolean) => {
+    if (!reportId) return;
+    setShareState("busy");
+    const url = await setShare(reportId, on);
+    if (url === false) return setShareState("error");
+    setIsShared(!!url);
+    if (!url) {
+      setShareUrl(null);
+      return setShareState("idle");
+    }
+    const full = `${window.location.origin}${url}`;
+    setShareUrl(full);
+    try {
+      await navigator.clipboard.writeText(full);
+      setShareState("copied");
+    } catch {
+      setShareState("idle");
+    }
   };
   const answered = turns.filter((t) => !t.feedback.empty);
   const empty = r.emptyAnswers ?? turns.length - answered.length;
@@ -407,20 +515,58 @@ export function ReportView({
             <span>{LEVELS[level]}</span>
           </p>
           <p className="ivr-summary">{r.summary}</p>
-          <div className="ivr-actions">
-            <button type="button" className="btn primary" onClick={onAgain}>
-              <I d={AGAIN} /> Practice again
-            </button>
-            <button type="button" className="btn" onClick={speaking ? onStopSpeaking : onHear}>
-              <I d={speaking ? STOP : SPEAKER} /> {speaking ? "Stop" : "Hear feedback"}
-            </button>
-            <button type="button" className="btn" onClick={download}>
-              <I d={DOWNLOAD} /> Download
-            </button>
-            <button type="button" className="btn iv-ghost" onClick={onSetup}>
-              New interview
-            </button>
-          </div>
+          {!readOnly && (
+            <div className="ivr-actions">
+              <button type="button" className="btn primary" onClick={onAgain}>
+                <I d={AGAIN} /> Practice again
+              </button>
+              <button type="button" className="btn" onClick={speaking ? onStopSpeaking : onHear}>
+                <I d={speaking ? STOP : SPEAKER} /> {speaking ? "Stop" : "Hear feedback"}
+              </button>
+              <button type="button" className="btn" onClick={() => window.print()}>
+                <I d={PRINT} /> Save as PDF
+              </button>
+              <button type="button" className="btn" onClick={download}>
+                <I d={DOWNLOAD} /> Notes (.md)
+              </button>
+              {shareable && reportId && (
+                <button
+                  type="button"
+                  className={`btn ${isShared ? "is-on" : ""}`}
+                  disabled={shareState === "busy"}
+                  onClick={() => void share(true)}
+                >
+                  <I d={LINK} />{" "}
+                  {shareState === "copied"
+                    ? "Link copied"
+                    : isShared
+                      ? "Copy share link"
+                      : "Share link"}
+                </button>
+              )}
+              <button type="button" className="btn iv-ghost" onClick={onSetup}>
+                New interview
+              </button>
+            </div>
+          )}
+          {!readOnly && (isShared || shareState === "error") && (
+            <p className="ivr-share-note">
+              {shareState === "error" ? (
+                "Couldn't change sharing just now. Try again in a moment."
+              ) : (
+                <>
+                  Anyone with the link can read this report{shareUrl ? `: ${shareUrl}` : "."}{" "}
+                  <button
+                    type="button"
+                    className="iv-link-inline"
+                    onClick={() => void share(false)}
+                  >
+                    Stop sharing
+                  </button>
+                </>
+              )}
+            </p>
+          )}
           <p className="ivr-engine">
             <span className={`iv-engine ${engine}`}>
               {engine === "ai" ? "Scored by the AI interviewer" : "Scored by the offline coach"}
@@ -481,11 +627,20 @@ export function ReportView({
 
       <div className="ivr-grid">
         <section className="iv-panel ivr-skills">
-          <h2 className="iv-h">Skill profile</h2>
-          <div className="ivr-skills-body">
-            <Radar scores={r.scores} />
-            <Bars scores={r.scores} />
+          <div className="ivr-skills-head">
+            <h2 className="iv-h">Skill profile</h2>
+            {previous && (
+              <span className="ivr-legend">
+                <i className="now" /> This interview <i className="prev" /> Last time
+                {previous.projectName !== project.name ? ` (${previous.projectName})` : ""}
+              </span>
+            )}
           </div>
+          <div className="ivr-skills-body">
+            <Radar scores={r.scores} previous={previous?.scores} />
+            <Bars scores={r.scores} previous={previous?.scores} />
+          </div>
+          <SkillRead scores={r.scores} />
         </section>
 
         <section className="iv-panel ivr-delivery">
@@ -599,7 +754,26 @@ export function ReportView({
         </h2>
         <div className="ivr-answers">
           {turns.map((t, i) => (
-            <AnswerCard key={i} turn={t} index={i + 1} model={r.models?.[i]} />
+            <AnswerCard
+              key={i}
+              turn={t}
+              index={i + 1}
+              model={r.models?.[i]}
+              retry={
+                readOnly || !onRetry ? (
+                  <ReadOnlyRetry turn={t} />
+                ) : (
+                  <RetryBox
+                    turn={t}
+                    index={i}
+                    project={project}
+                    modes={modes}
+                    level={level}
+                    onRetry={onRetry}
+                  />
+                )
+              }
+            />
           ))}
         </div>
       </section>
@@ -635,6 +809,7 @@ export function ReportView({
                             <input
                               type="checkbox"
                               checked={!!done[id]}
+                              disabled={readOnly}
                               onChange={(e) => setDone({ ...done, [id]: e.target.checked })}
                             />
                             <span>{a}</span>

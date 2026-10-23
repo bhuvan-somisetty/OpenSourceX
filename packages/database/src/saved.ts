@@ -122,7 +122,7 @@ export async function resolveEntity(
 }
 
 /**
- * Moves everything a guest session owns (chats, saved items) to a signed-in account, then
+ * Moves everything a guest session owns (chats, saved items, interviews) to a signed-in account, then
  * removes the guest user. Called once when a guest signs in, so nothing they did is lost.
  */
 export async function mergeGuestInto(db: Db, guestId: string, userId: string): Promise<void> {
@@ -140,6 +140,14 @@ export async function mergeGuestInto(db: Db, guestId: string, userId: string): P
        ON CONFLICT (user_id, entity_type, entity_id) DO NOTHING`,
       [guestId, userId],
     );
+    // interview history, when its table exists (it is created on first use)
+    const { rows } = await client.query("SELECT to_regclass('public.interview_session') AS t");
+    if (rows[0]?.t)
+      await client.query(
+        `UPDATE interview_session SET user_id=$2 WHERE user_id=$1
+           AND NOT EXISTS (SELECT 1 FROM interview_session s WHERE s.user_id=$2 AND s.id=interview_session.id)`,
+        [guestId, userId],
+      );
     await client.query("DELETE FROM app_user WHERE id=$1", [guestId]);
     await client.query("COMMIT");
   } catch (e) {
