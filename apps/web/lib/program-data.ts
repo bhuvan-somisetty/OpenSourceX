@@ -12,6 +12,8 @@ export interface ProgramOrgProject {
   url?: string;
   round?: string;
   product?: string | null;
+  /** repositories the project's official description links to */
+  repos?: string[];
 }
 
 export interface ProgramOrg {

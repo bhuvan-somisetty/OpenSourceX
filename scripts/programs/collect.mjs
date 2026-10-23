@@ -854,6 +854,27 @@ async function outreachy() {
 const SOB_FEED =
   "https://www.summerofbitcoin.org/v1/datasource/airtable/5abf9a13-d06f-44d6-b50c-187328a34a81/e1fe7459-43b9-446e-b78f-6bac70aa6d0c/27095893-142f-450d-ba8e-b244e02722f4/7f16bea1-c0aa-46b3-af3a-82fcec855166/data";
 
+// Each organization's own page on summerofbitcoin.org reads two more feeds: the organization
+// record (GitHub, website, contact) and its project ideas. The ideas feed is scoped to the
+// organization by the page that asks for it, so the request names that page as its referrer.
+const SOB_ORG_RECORD =
+  "https://www.summerofbitcoin.org/v1/datasource/applications/5abf9a13-d06f-44d6-b50c-187328a34a81/pages/66b9471e-eb6d-445a-baef-b8f27fb11c5f/blocks/ac6e86a8-142b-4130-b4a7-d5bac17391d4/datasources/18e53386-d880-4d28-9a74-480e20577451/records/";
+const SOB_IDEAS =
+  "https://www.summerofbitcoin.org/v1/datasource/airtable/5abf9a13-d06f-44d6-b50c-187328a34a81/66b9471e-eb6d-445a-baef-b8f27fb11c5f/45120a11-253e-42a8-b902-cdfff2e91dce/3b5a934d-9095-4c68-8704-c10fdf1dc228/data";
+
+/** owner/repo links (GitHub, GitLab) named anywhere in a project idea */
+const repoLinks = (text) => {
+  const out = new Set();
+  for (const m of text.matchAll(
+    /https?:\/\/(?:www\.)?(github|gitlab)\.com\/([A-Za-z0-9_.-]+)\/([A-Za-z0-9_.-]+)/g,
+  )) {
+    const repo = m[3].replace(/\.git$/, "").replace(/\.+$/, "");
+    if (["issues", "pulls", "orgs", "sponsors"].includes(m[2].toLowerCase()) || !repo) continue;
+    out.add(`https://${m[1]}.com/${m[2]}/${repo}`);
+  }
+  return [...out];
+};
+
 async function summerOfBitcoin() {
   const data = await fetchJson(SOB_FEED, {
     method: "POST",
@@ -861,22 +882,63 @@ async function summerOfBitcoin() {
     headers: { "content-type": "application/json" },
     cache: false,
   });
-  return (data?.records ?? []).map((r) => {
+  const out = [];
+  for (const r of data?.records ?? []) {
     const f = r.fields;
-    return {
+    const page = `https://www.summerofbitcoin.org/2026-org-details/${encodeURIComponent(f["SEO:Slug"] || f.Name)}/r/${r.id}`;
+    const scoped = { "content-type": "application/json", referer: page };
+    const [rec, ideas] = await Promise.all([
+      fetchJson(SOB_ORG_RECORD + r.id, {
+        method: "POST",
+        body: "{}",
+        headers: scoped,
+        cache: false,
+      }),
+      fetchJson(SOB_IDEAS, {
+        method: "POST",
+        body: JSON.stringify({ page_size: 100 }),
+        headers: scoped,
+        cache: false,
+      }),
+    ]);
+    const rf = rec?.fields ?? {};
+    const link = (v) =>
+      typeof v === "string" && /^\s*https?:\/\//.test(v) ? v.trim().replace(/\/+$/, "") : null;
+    const contact = typeof rf.Contact === "string" ? rf.Contact : "";
+    out.push({
       slug: slugify(f.Name),
       name: f.Name,
       tagline: null,
       description: (f.Description ?? "").trim() || null,
-      website: null,
-      repoUrl: null,
+      website: link(rf.Link),
+      // the program's own source-code link wins on any host
+      repoUrl: link(rf["Link to github repo"]),
       logoFrom: f.Attachments?.[0]?.url ?? null,
       tags: Array.isArray(f.Technologies) ? f.Technologies : [],
       years: [2026],
-      links: [],
+      projects: (ideas?.records ?? [])
+        .map((i) => i.fields)
+        .filter((i) => i["Idea Title"] && !/propose your own/i.test(i["Idea Title"]))
+        .map((i) => {
+          const repos = repoLinks(
+            [i.Description, i["Expected Outcomes"], i.Resources, i["Competency Test"]]
+              .filter((x) => typeof x === "string")
+              .join("\n"),
+          );
+          return {
+            year: 2026,
+            title: i["Idea Title"].trim(),
+            url: page,
+            ...(repos.length ? { repos } : {}),
+          };
+        }),
+      links: [{ label: "Summer of Bitcoin 2026 page", url: page }],
+      chats: chatsIn(contact, f.Name),
+      chatSource: contact ? page : null,
       sourceUrl: "https://www.summerofbitcoin.org/organizations",
-    };
-  });
+    });
+  }
+  return out;
 }
 
 async function esoc() {

@@ -1,7 +1,7 @@
 {
  "program": "summer-of-bitcoin",
  "name": "Summer of Bitcoin",
- "generatedAt": "2026-10-15",
+ "generatedAt": "2026-10-23",
  "years": [
   2026
  ],
@@ -19,7 +19,7 @@
    "tagline": null,
    "description": "Provides the ability to generate maps of IP address ranges to the Autonomous System they belong to, and use these ASmaps in Bitcoin Core.",
    "website": "https://asmap.org",
-   "repoUrl": "https://github.com/asmap",
+   "repoUrl": "https://github.com/bitcoin-core/asmap-data",
    "tags": [
     "Python",
     "Networking"
@@ -27,10 +27,28 @@
    "years": [
     2026
    ],
-   "links": [],
-   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
-   "githubUrl": "https://github.com/asmap",
+   "projects": [
+    {
+     "year": 2026,
+     "title": "ASmap Data Analysis Dashboard",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/asmap/r/reckostNrzYA5HCpx",
+     "repos": [
+      "https://github.com/bitcoin/bitcoin",
+      "https://github.com/bitcoin-core/asmap-data",
+      "https://github.com/asmap/kartograf"
+     ]
+    }
+   ],
+   "links": [
+    {
+     "label": "Summer of Bitcoin 2026 page",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/asmap/r/reckostNrzYA5HCpx"
+    }
+   ],
    "chats": [],
+   "chatSource": "https://www.summerofbitcoin.org/2026-org-details/asmap/r/reckostNrzYA5HCpx",
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/bitcoin-core",
    "logo": "/logos/programs/summer-of-bitcoin/asmap.png"
   },
   {
@@ -39,7 +57,7 @@
    "tagline": null,
    "description": "A library that allows you to seamlessly build cross-platform Bitcoin wallets without worrying about bitcoin internals.",
    "website": "https://bitcoindevkit.org",
-   "repoUrl": "https://github.com/bitcoindevkit/bdk",
+   "repoUrl": "https://github.com/bitcoindevkit",
    "tags": [
     "Rust",
     "SQLite",
@@ -48,17 +66,40 @@
    "years": [
     2026
    ],
-   "links": [],
-   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
-   "githubUrl": "https://github.com/bitcoindevkit",
-   "chatSource": "https://github.com/bitcoindevkit/bdk#readme",
+   "projects": [
+    {
+     "year": 2026,
+     "title": "Improve CI persistence and MSRV testing, automate issue triage",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/BDK/r/recJ7vM4c80aWxhJD",
+     "repos": [
+      "https://github.com/bitcoindevkit/bdk_wallet",
+      "https://github.com/luisschwab/bdk-floresta",
+      "https://github.com/rust-bitcoin/rust-bitcoin-maintainer-tools",
+      "https://github.com/actions/stale"
+     ]
+    },
+    {
+     "year": 2026,
+     "title": "Improve BDK Wallet Balance Interface and Related Methods",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/BDK/r/recJ7vM4c80aWxhJD"
+    }
+   ],
+   "links": [
+    {
+     "label": "Summer of Bitcoin 2026 page",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/BDK/r/recJ7vM4c80aWxhJD"
+    }
+   ],
    "chats": [
     {
      "platform": "discord",
      "workspace": "BDK Discord",
-     "joinUrl": "https://discord.gg/d7NkDKm"
+     "joinUrl": "https://discord.gg/dstn4dQ"
     }
    ],
+   "chatSource": "https://www.summerofbitcoin.org/2026-org-details/BDK/r/recJ7vM4c80aWxhJD",
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/bitcoindevkit",
    "logo": "/logos/programs/summer-of-bitcoin/bdk.png"
   },
   {
@@ -75,21 +116,24 @@
    "years": [
     2026
    ],
-   "links": [],
-   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
-   "githubUrl": "https://github.com/bitcoin",
-   "chats": [
+   "projects": [
     {
-     "platform": "irc",
-     "workspace": "Libera.Chat IRC",
-     "joinUrl": "https://web.libera.chat/?channels=%23bitcoin-core-dev",
-     "channels": [
-      "#bitcoin-core-dev"
-     ]
+     "year": 2026,
+     "title": "Eliminate backdating in the replacements of Replace-by-fee in Bitcoin Core.",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Bitcoin%20Core/r/recQOe7FvHYSrk6Ix"
     }
    ],
-   "logo": "/logos/programs/summer-of-bitcoin/bitcoin-core.png",
-   "chatSource": "https://github.com/bitcoin/bitcoin/blob/HEAD/CONTRIBUTING.md"
+   "links": [
+    {
+     "label": "Summer of Bitcoin 2026 page",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Bitcoin%20Core/r/recQOe7FvHYSrk6Ix"
+    }
+   ],
+   "chats": [],
+   "chatSource": null,
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/bitcoin",
+   "logo": "/logos/programs/summer-of-bitcoin/bitcoin-core.png"
   },
   {
    "slug": "bitcoin-design",
@@ -97,7 +141,7 @@
    "tagline": null,
    "description": "A open community of designers focused on improving the user experience of Bitcoin.",
    "website": "https://bitcoin.design",
-   "repoUrl": "https://github.com/BitcoinDesign/Guide",
+   "repoUrl": "https://github.com/BitcoinDesign",
    "tags": [
     "Design",
     "UX research",
@@ -106,10 +150,22 @@
    "years": [
     2026
    ],
-   "links": [],
-   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
-   "githubUrl": "https://github.com/BitcoinDesign",
-   "chatSource": "https://github.com/BitcoinDesign/Guide#readme",
+   "projects": [
+    {
+     "year": 2026,
+     "title": "AI-Age Refresh of Bitcoin.Design: UXR, Agent-Ready Content, and Builder Workflow Research",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Bitcoin%20Design/r/rechjnSJvdD5Poo8K",
+     "repos": [
+      "https://github.com/BitcoinDesign/Meta"
+     ]
+    }
+   ],
+   "links": [
+    {
+     "label": "Summer of Bitcoin 2026 page",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Bitcoin%20Design/r/rechjnSJvdD5Poo8K"
+    }
+   ],
    "chats": [
     {
      "platform": "discord",
@@ -117,6 +173,9 @@
      "joinUrl": "https://discord.gg/K7aQ5PErht"
     }
    ],
+   "chatSource": "https://www.summerofbitcoin.org/2026-org-details/Bitcoin%20Design/r/rechjnSJvdD5Poo8K",
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/BitcoinDesign",
    "logo": "/logos/programs/summer-of-bitcoin/bitcoin-design.svg"
   },
   {
@@ -124,8 +183,8 @@
    "name": "Bitcoin-Fuzz",
    "tagline": null,
    "description": "A project which applies differential fuzzing between Bitcoin protocol implementations and libraries.",
-   "website": null,
-   "repoUrl": "https://github.com/bitcoinfuzz/bitcoinfuzz",
+   "website": "https://github.com/brunoerg/bitcoinfuzz",
+   "repoUrl": "https://github.com/brunoerg/bitcoinfuzz",
    "tags": [
     "C++",
     "Python",
@@ -134,25 +193,46 @@
    "years": [
     2026
    ],
-   "links": [],
-   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
-   "githubUrl": "https://github.com/bitcoinfuzz",
-   "chats": [
+   "projects": [
     {
-     "platform": "forum",
-     "workspace": "GitHub Discussions",
-     "joinUrl": "https://github.com/bitcoinfuzz/bitcoinfuzz/discussions"
+     "year": 2026,
+     "title": "\"Module Contributor Kit\" — A First-Class Onboarding System for Adding New Bitcoin Library Integrations to bitcoinfuzz",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Bitcoin-Fuzz/r/recRa9aW6e8h5lklz"
+    },
+    {
+     "year": 2026,
+     "title": "MCP Server for bitcoinfuzz — Agent-Queryable Interface for Differential Fuzzing Targets, Module Coverage, and Bug Discovery",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Bitcoin-Fuzz/r/recRa9aW6e8h5lklz"
+    },
+    {
+     "year": 2026,
+     "title": "Driver Correctness Harness + Custom Mutator Test Suite",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Bitcoin-Fuzz/r/recRa9aW6e8h5lklz"
+    },
+    {
+     "year": 2026,
+     "title": "Infrastructure Automation & Monitoring Dashboard",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Bitcoin-Fuzz/r/recRa9aW6e8h5lklz"
     }
    ],
-   "logo": "/logos/programs/summer-of-bitcoin/bitcoin-fuzz.jpg",
-   "chatSource": "https://github.com/bitcoinfuzz/bitcoinfuzz"
+   "links": [
+    {
+     "label": "Summer of Bitcoin 2026 page",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Bitcoin-Fuzz/r/recRa9aW6e8h5lklz"
+    }
+   ],
+   "chats": [],
+   "chatSource": "https://www.summerofbitcoin.org/2026-org-details/Bitcoin-Fuzz/r/recRa9aW6e8h5lklz",
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/brunoerg",
+   "logo": "/logos/programs/summer-of-bitcoin/bitcoin-fuzz.jpg"
   },
   {
    "slug": "braidpool",
    "name": "braidpool",
    "tagline": null,
    "description": "A scalable peer to peer bitcoin mining pool with support for hashrate futures.",
-   "website": null,
+   "website": "https://github.com/braidpool/braidpool",
    "repoUrl": "https://github.com/braidpool/braidpool",
    "tags": [
     "Javascript",
@@ -165,17 +245,50 @@
    "years": [
     2026
    ],
-   "links": [],
-   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
-   "githubUrl": "https://github.com/braidpool",
-   "chatSource": "https://github.com/braidpool/braidpool#readme",
+   "projects": [
+    {
+     "year": 2026,
+     "title": "Functional Testing Infrastructure for Braidpool",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/briadpool/r/rec7nnl5CsMXRfEx6",
+     "repos": [
+      "https://github.com/braidpool/braidpool",
+      "https://github.com/bitcoin/bitcoin"
+     ]
+    },
+    {
+     "year": 2026,
+     "title": "Genesis_KB",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/briadpool/r/rec7nnl5CsMXRfEx6",
+     "repos": [
+      "https://github.com/genesis-kb/transcription_engine"
+     ]
+    },
+    {
+     "year": 2026,
+     "title": "Dashboard Monitoring System Improvements for Braidpool",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/briadpool/r/rec7nnl5CsMXRfEx6",
+     "repos": [
+      "https://github.com/braidpool/braidpool",
+      "https://github.com/braidpool/rust_cpunet_miner"
+     ]
+    }
+   ],
+   "links": [
+    {
+     "label": "Summer of Bitcoin 2026 page",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/briadpool/r/rec7nnl5CsMXRfEx6"
+    }
+   ],
    "chats": [
     {
      "platform": "discord",
      "workspace": "braidpool Discord",
-     "joinUrl": "https://discord.gg/pZYUDwkpPv"
+     "joinUrl": "https://discord.gg/9GSymnjDYG"
     }
    ],
+   "chatSource": "https://www.summerofbitcoin.org/2026-org-details/briadpool/r/rec7nnl5CsMXRfEx6",
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/braidpool",
    "logo": "/logos/programs/summer-of-bitcoin/braidpool.png"
   },
   {
@@ -183,25 +296,44 @@
    "name": "Coinswap",
    "tagline": null,
    "description": "Functioning, minimal-viable binaries and libraries to perform a trustless, p2p Maxwell-Belcher Coinswap Protocol",
-   "website": "https://openswap.live/",
-   "repoUrl": "https://github.com/citadel-foss/openswap",
+   "website": "https://github.com/citadel-tech/coinswap",
+   "repoUrl": "https://github.com/citadel-tech/coinswap",
    "tags": [
     "Rust"
    ],
    "years": [
     2026
    ],
-   "links": [],
-   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
-   "githubUrl": "https://github.com/citadel-foss",
-   "chatSource": "https://github.com/citadel-foss/openswap#readme",
+   "projects": [
+    {
+     "year": 2026,
+     "title": "Encrypted Coinswap Transport with BIP324",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Coinswap/r/recgZYutTRRQwP3Ci",
+     "repos": [
+      "https://github.com/rust-bitcoin/bip324"
+     ]
+    },
+    {
+     "year": 2026,
+     "title": "Kotlin Wallet & Electrum Sync & Address-Pool Privacy Layer for Taker",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Coinswap/r/recgZYutTRRQwP3Ci"
+    }
+   ],
+   "links": [
+    {
+     "label": "Summer of Bitcoin 2026 page",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Coinswap/r/recgZYutTRRQwP3Ci"
+    }
+   ],
    "chats": [
     {
      "platform": "matrix",
      "workspace": "Coinswap Matrix",
-     "joinUrl": "https://matrix.to/#/#citadel-foss:matrix.org"
+     "joinUrl": "https://matrix.to/#/#citadel-foss:matrix.org\\"
     }
    ],
+   "chatSource": "https://github.com/citadel-tech/coinswap",
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
    "logo": "/logos/programs/summer-of-bitcoin/coinswap.png"
   },
   {
@@ -209,7 +341,7 @@
    "name": "ContextVM",
    "tagline": null,
    "description": "A transport layer for MCP over the Nostr network",
-   "website": "https://docs.contextvm.org",
+   "website": "http://contextvm.org",
    "repoUrl": "https://github.com/ContextVM",
    "tags": [
     "Rust",
@@ -221,10 +353,69 @@
    "years": [
     2026
    ],
-   "links": [],
+   "projects": [
+    {
+     "year": 2026,
+     "title": "CEP for Server Identity, Profiles, and Public Communication",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/ContextVM/r/recWfSFhrkwCapzD9",
+     "repos": [
+      "https://github.com/ContextVM/contextvm-docs"
+     ]
+    },
+    {
+     "year": 2026,
+     "title": "Rust SDK for ContextVM",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/ContextVM/r/recWfSFhrkwCapzD9",
+     "repos": [
+      "https://github.com/ContextVM/rs-sdk",
+      "https://github.com/ContextVM/sdk"
+     ]
+    },
+    {
+     "year": 2026,
+     "title": "CEP for Common Tool Schemas",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/ContextVM/r/recWfSFhrkwCapzD9",
+     "repos": [
+      "https://github.com/ContextVM/contextvm-docs"
+     ]
+    },
+    {
+     "year": 2026,
+     "title": "Website Chat Interface for ContextVM Servers",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/ContextVM/r/recWfSFhrkwCapzD9"
+    },
+    {
+     "year": 2026,
+     "title": "Design Track: Website UX and Self-Hosting Experience",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/ContextVM/r/recWfSFhrkwCapzD9"
+    },
+    {
+     "year": 2026,
+     "title": "CEP for Server Reviews",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/ContextVM/r/recWfSFhrkwCapzD9",
+     "repos": [
+      "https://github.com/ContextVM/contextvm-docs"
+     ]
+    },
+    {
+     "year": 2026,
+     "title": "CEP for Payloads Larger Than Relay Limits",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/ContextVM/r/recWfSFhrkwCapzD9",
+     "repos": [
+      "https://github.com/ContextVM/contextvm-docs"
+     ]
+    }
+   ],
+   "links": [
+    {
+     "label": "Summer of Bitcoin 2026 page",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/ContextVM/r/recWfSFhrkwCapzD9"
+    }
+   ],
+   "chats": [],
+   "chatSource": "https://www.summerofbitcoin.org/2026-org-details/ContextVM/r/recWfSFhrkwCapzD9",
    "sourceUrl": "https://www.summerofbitcoin.org/organizations",
    "githubUrl": "https://github.com/ContextVM",
-   "chats": [],
    "logo": "/logos/programs/summer-of-bitcoin/contextvm.jpg"
   },
   {
@@ -232,7 +423,7 @@
    "name": "Cove",
    "tagline": null,
    "description": "A simple to use yet powerful Bitcoin mobile wallet built on top of BDK.",
-   "website": "https://covebitcoin.com",
+   "website": "https://covebitcoinwallet.com",
    "repoUrl": "https://github.com/bitcoinppl/cove",
    "tags": [
     "Rust"
@@ -240,10 +431,58 @@
    "years": [
     2026
    ],
-   "links": [],
+   "projects": [
+    {
+     "year": 2026,
+     "title": "Watch-Only Multisig Descriptor Support",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Cove/r/recohpy6ltCMOg203",
+     "repos": [
+      "https://github.com/bitcoinppl/cove"
+     ]
+    },
+    {
+     "year": 2026,
+     "title": "SATSCARD Support in Cove",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Cove/r/recohpy6ltCMOg203",
+     "repos": [
+      "https://github.com/bitcoinppl/cove",
+      "https://github.com/notmandatory/rust-cktap"
+     ]
+    },
+    {
+     "year": 2026,
+     "title": "RBF and CPFP Fee Bumping Support (NEEDS DESIGN)",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Cove/r/recohpy6ltCMOg203",
+     "repos": [
+      "https://github.com/bitcoinppl/cove"
+     ]
+    },
+    {
+     "year": 2026,
+     "title": "Sender-Side PayJoin Support",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Cove/r/recohpy6ltCMOg203",
+     "repos": [
+      "https://github.com/bitcoinppl/cove",
+      "https://github.com/payjoin/rust-payjoin"
+     ]
+    }
+   ],
+   "links": [
+    {
+     "label": "Summer of Bitcoin 2026 page",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Cove/r/recohpy6ltCMOg203"
+    }
+   ],
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "Cove Discord",
+     "joinUrl": "https://discord.gg/6T4yFV4T"
+    }
+   ],
+   "chatSource": "https://www.summerofbitcoin.org/2026-org-details/Cove/r/recohpy6ltCMOg203",
    "sourceUrl": "https://www.summerofbitcoin.org/organizations",
    "githubUrl": "https://github.com/bitcoinppl",
-   "chats": [],
    "logo": "/logos/programs/summer-of-bitcoin/cove.jpg"
   },
   {
@@ -251,8 +490,8 @@
    "name": "Demand",
    "tagline": null,
    "description": "The first fully StratumV2 Bitcoin Mining Pool.",
-   "website": null,
-   "repoUrl": "https://github.com/dmnd-pool",
+   "website": "https://www.dmnd.work",
+   "repoUrl": "https://github.com/demand-open-source/demand-cli",
    "tags": [
     "Figma",
     "React",
@@ -262,10 +501,41 @@
    "years": [
     2026
    ],
-   "links": [],
+   "projects": [
+    {
+     "year": 2026,
+     "title": "DMND Miner Dashboard - UI/UX Designer",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Demand/r/recj8Esnt1dxg39IA",
+     "repos": [
+      "https://github.com/stratum-mining/sv2-ui",
+      "https://github.com/dmnd-pool/sv2-ui"
+     ]
+    },
+    {
+     "year": 2026,
+     "title": "DMND Miner Dashboard - Frontend Developer",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Demand/r/recj8Esnt1dxg39IA",
+     "repos": [
+      "https://github.com/stratum-mining/sv2-ui",
+      "https://github.com/dmnd-pool/sv2-ui"
+     ]
+    }
+   ],
+   "links": [
+    {
+     "label": "Summer of Bitcoin 2026 page",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Demand/r/recj8Esnt1dxg39IA"
+    }
+   ],
+   "chats": [
+    {
+     "platform": "telegram",
+     "workspace": "Demand Telegram",
+     "joinUrl": "https://t.me/+nTi2Aozp5hY0NzU0"
+    }
+   ],
+   "chatSource": "https://www.summerofbitcoin.org/2026-org-details/Demand/r/recj8Esnt1dxg39IA",
    "sourceUrl": "https://www.summerofbitcoin.org/organizations",
-   "githubUrl": "https://github.com/dmnd-pool",
-   "chats": [],
    "logo": "/logos/programs/summer-of-bitcoin/demand.jpg"
   },
   {
@@ -273,7 +543,7 @@
    "name": "Fedimint",
    "tagline": null,
    "description": "Fedimint is an open-source federated Chaumian ecash protocol and SDK for building privacy-preserving Bitcoin applications.",
-   "website": "https://fedimint.org/",
+   "website": "https://fedimint.org",
    "repoUrl": "https://github.com/fedimint/fedimint",
    "tags": [
     "Rust",
@@ -283,10 +553,19 @@
    "years": [
     2026
    ],
-   "links": [],
-   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
-   "githubUrl": "https://github.com/fedimint",
-   "chatSource": "https://github.com/fedimint/fedimint#readme",
+   "projects": [
+    {
+     "year": 2026,
+     "title": "Native Android (Kotlin) & Swift Bindings for Fedimint SDK",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Fedimint/r/recFhnUsF9oD69Avh"
+    }
+   ],
+   "links": [
+    {
+     "label": "Summer of Bitcoin 2026 page",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Fedimint/r/recFhnUsF9oD69Avh"
+    }
+   ],
    "chats": [
     {
      "platform": "discord",
@@ -294,6 +573,9 @@
      "joinUrl": "https://discord.gg/cEVEmqCgWG"
     }
    ],
+   "chatSource": "https://github.com/fedimint/fedimint#readme",
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/fedimint",
    "logo": "/logos/programs/summer-of-bitcoin/fedimint.png"
   },
   {
@@ -301,7 +583,7 @@
    "name": "Floresta",
    "tagline": null,
    "description": "A lightweight Bitcoin full node implementation written in Rust, powered by Utreexo.",
-   "website": "https://getfloresta.org",
+   "website": "https://github.com/getfloresta/Floresta",
    "repoUrl": "https://github.com/getfloresta/Floresta",
    "tags": [
     "Rust",
@@ -311,17 +593,45 @@
    "years": [
     2026
    ],
-   "links": [],
-   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
-   "githubUrl": "https://github.com/getfloresta",
-   "chatSource": "https://github.com/getfloresta/Floresta#readme",
+   "projects": [
+    {
+     "year": 2026,
+     "title": "Transaction Relay Policy Enforcement for floresta-mempool: Fee and size guards with a full verification harness",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Floresta/r/rec8kxSsKA12LeXha"
+    },
+    {
+     "year": 2026,
+     "title": "Failpoint-Driven Resilience Testing for Floresta: OS Failure Injection + Simulated Adversarial Peers",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Floresta/r/rec8kxSsKA12LeXha",
+     "repos": [
+      "https://github.com/getfloresta/Floresta"
+     ]
+    },
+    {
+     "year": 2026,
+     "title": "Systematic Error Handling Overhaul: Granular Propagation, unwrap Removal, and Layered API Boundaries",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Floresta/r/rec8kxSsKA12LeXha",
+     "repos": [
+      "https://github.com/vinteumorg/Floresta"
+     ]
+    }
+   ],
+   "links": [
+    {
+     "label": "Summer of Bitcoin 2026 page",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Floresta/r/rec8kxSsKA12LeXha"
+    }
+   ],
    "chats": [
     {
      "platform": "discord",
      "workspace": "Floresta Discord",
-     "joinUrl": "https://discord.gg/5Wj8fjjS93"
+     "joinUrl": "https://discord.com/invite/5Wj8fjjS93"
     }
    ],
+   "chatSource": "https://www.summerofbitcoin.org/2026-org-details/Floresta/r/rec8kxSsKA12LeXha",
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/getfloresta",
    "logo": "/logos/programs/summer-of-bitcoin/floresta.jpg"
   },
   {
@@ -330,7 +640,7 @@
    "tagline": null,
    "description": "A discord-like nostr client based on the idea of \"relays as groups\".",
    "website": "https://flotilla.social",
-   "repoUrl": "https://github.com/coracle-social/flotilla",
+   "repoUrl": "https://gitea.coracle.social/coracle/flotilla",
    "tags": [
     "TypeScript",
     "Svelte",
@@ -341,10 +651,33 @@
    "years": [
     2026
    ],
-   "links": [],
-   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
-   "githubUrl": "https://github.com/coracle-social",
+   "projects": [
+    {
+     "year": 2026,
+     "title": "Feature Development",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Flotilla/r/reckQdzfi9LNEYUZp",
+     "repos": [
+      "https://github.com/coracle-social/zooid"
+     ]
+    },
+    {
+     "year": 2026,
+     "title": "Usability Testing and UX Research",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Flotilla/r/reckQdzfi9LNEYUZp",
+     "repos": [
+      "https://github.com/coracle-social/zooid"
+     ]
+    }
+   ],
+   "links": [
+    {
+     "label": "Summer of Bitcoin 2026 page",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Flotilla/r/reckQdzfi9LNEYUZp"
+    }
+   ],
    "chats": [],
+   "chatSource": "https://www.summerofbitcoin.org/2026-org-details/Flotilla/r/reckQdzfi9LNEYUZp",
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
    "logo": "/logos/programs/summer-of-bitcoin/flotilla.png"
   },
   {
@@ -353,7 +686,7 @@
    "tagline": null,
    "description": "A forms application, built on top of nostr",
    "website": "https://formstr.app",
-   "repoUrl": "https://github.com/formstr-hq/nostr-forms",
+   "repoUrl": "https://github.com/formstr-hq",
    "tags": [
     "WebAssembly",
     "Nostr",
@@ -362,10 +695,33 @@
    "years": [
     2026
    ],
-   "links": [],
+   "projects": [
+    {
+     "year": 2026,
+     "title": "Formstr Super App - Book calendar events, make private notes, file management, create forms, view responses and analytics - all from one app, with AI as the interface",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Formstr/r/recXlScc4bc4MDhbZ"
+    },
+    {
+     "year": 2026,
+     "title": "Embedding a small llm runner inside all our web-apps.",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Formstr/r/recXlScc4bc4MDhbZ"
+    },
+    {
+     "year": 2026,
+     "title": "Setting up distributed backend storage over yggdrasil mesh network. (Nostr Relay + Blossom Server)",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Formstr/r/recXlScc4bc4MDhbZ"
+    }
+   ],
+   "links": [
+    {
+     "label": "Summer of Bitcoin 2026 page",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Formstr/r/recXlScc4bc4MDhbZ"
+    }
+   ],
+   "chats": [],
+   "chatSource": "https://www.summerofbitcoin.org/2026-org-details/Formstr/r/recXlScc4bc4MDhbZ",
    "sourceUrl": "https://www.summerofbitcoin.org/organizations",
    "githubUrl": "https://github.com/formstr-hq",
-   "chats": [],
    "logo": "/logos/programs/summer-of-bitcoin/formstr.png"
   },
   {
@@ -373,7 +729,7 @@
    "name": "Jam",
    "tagline": null,
    "description": "Jam is a front-end for JoinMarket, a privacy-focused bitcoin software that uses a peer-to-peer marketplace to facilitate collaborative transactions.",
-   "website": "https://joinmarket-webui.github.io/jamdocs",
+   "website": "https://jamapp.org",
    "repoUrl": "https://github.com/joinmarket-webui/jam",
    "tags": [
     "Typescript",
@@ -382,10 +738,24 @@
    "years": [
     2026
    ],
-   "links": [],
-   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
-   "githubUrl": "https://github.com/joinmarket-webui",
-   "chatSource": "https://github.com/joinmarket-webui/jam#readme",
+   "projects": [
+    {
+     "year": 2026,
+     "title": "Comprehensive Test Coverage for the Core Send & Earn Flows, with CI Coverage Enforcement",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Jam/r/rec5WneNpyyMsZtUR"
+    },
+    {
+     "year": 2026,
+     "title": "Contextual Wallet Guidance - State-Aware 'What's Next' UI and Enhanced Onboarding Flow",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Jam/r/rec5WneNpyyMsZtUR"
+    }
+   ],
+   "links": [
+    {
+     "label": "Summer of Bitcoin 2026 page",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Jam/r/rec5WneNpyyMsZtUR"
+    }
+   ],
    "chats": [
     {
      "platform": "matrix",
@@ -393,6 +763,9 @@
      "joinUrl": "https://matrix.to/#/%23jam:bitcoin.kyoto"
     }
    ],
+   "chatSource": "https://github.com/joinmarket-webui/jam#readme",
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/joinmarket-webui",
    "logo": "/logos/programs/summer-of-bitcoin/jam.jpg"
   },
   {
@@ -400,7 +773,7 @@
    "name": "Kern",
    "tagline": null,
    "description": "An experimental project that explores the capabilities of the ESP32-P4 as a platform to perform air-gapped Bitcoin signatures and cryptography.",
-   "website": null,
+   "website": "https://github.com/odudex/Kern",
    "repoUrl": "https://github.com/odudex/Kern",
    "tags": [
     "Design",
@@ -409,10 +782,24 @@
    "years": [
     2026
    ],
-   "links": [],
-   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
-   "githubUrl": "https://github.com/odudex",
-   "chatSource": "https://github.com/odudex/Kern#readme",
+   "projects": [
+    {
+     "year": 2026,
+     "title": "Kern - Adaptive UI: Multi-Resolution, Multi-Theme Layout System",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Kern/r/recjKf6mYGXX5iths"
+    },
+    {
+     "year": 2026,
+     "title": "Kern - Icon & Visual Language System",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Kern/r/recjKf6mYGXX5iths"
+    }
+   ],
+   "links": [
+    {
+     "label": "Summer of Bitcoin 2026 page",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Kern/r/recjKf6mYGXX5iths"
+    }
+   ],
    "chats": [
     {
      "platform": "telegram",
@@ -420,6 +807,9 @@
      "joinUrl": "https://t.me/kern_custody"
     }
    ],
+   "chatSource": "https://www.summerofbitcoin.org/2026-org-details/Kern/r/recjKf6mYGXX5iths",
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/odudex",
    "logo": "/logos/programs/summer-of-bitcoin/kern.png"
   },
   {
@@ -427,7 +817,7 @@
    "name": "Krux",
    "tagline": null,
    "description": "An open-source signing device firmware for Bitcoin",
-   "website": "https://selfcustody.github.io/krux/",
+   "website": "https://selfcustody.github.io/krux",
    "repoUrl": "https://github.com/selfcustody/krux",
    "tags": [
     "Design",
@@ -436,17 +826,29 @@
    "years": [
     2026
    ],
-   "links": [],
-   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
-   "githubUrl": "https://github.com/selfcustody",
-   "chatSource": "https://github.com/selfcustody/krux#readme",
+   "projects": [
+    {
+     "year": 2026,
+     "title": "Krux - Accessibility & Readability Audit with Targeted Improvements",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Krux/r/rec2yFtD7D80xOFio"
+    }
+   ],
+   "links": [
+    {
+     "label": "Summer of Bitcoin 2026 page",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Krux/r/rec2yFtD7D80xOFio"
+    }
+   ],
    "chats": [
     {
      "platform": "telegram",
      "workspace": "Krux Telegram",
-     "joinUrl": "https://t.me/KruxDIY"
+     "joinUrl": "https://t.me/kern"
     }
    ],
+   "chatSource": "https://www.summerofbitcoin.org/2026-org-details/Krux/r/rec2yFtD7D80xOFio",
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/selfcustody",
    "logo": "/logos/programs/summer-of-bitcoin/krux.png"
   },
   {
@@ -454,7 +856,7 @@
    "name": "Nostr Components",
    "tagline": null,
    "description": "Take Nostr content beyond Nostr clients - embed it anywhere on the internet.",
-   "website": null,
+   "website": "https://nostr-components.web.app",
    "repoUrl": "https://github.com/saiy2k/nostr-components",
    "tags": [
     "Next.js",
@@ -464,10 +866,32 @@
    "years": [
     2026
    ],
-   "links": [],
+   "projects": [
+    {
+     "year": 2026,
+     "title": "Like & Zap Buttons on x.com and YouTube",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Nostr%20Components/r/rec2rWDkLRl2e4vKt",
+     "repos": [
+      "https://github.com/saiy2k/nostr-components"
+     ]
+    }
+   ],
+   "links": [
+    {
+     "label": "Summer of Bitcoin 2026 page",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Nostr%20Components/r/rec2rWDkLRl2e4vKt"
+    }
+   ],
+   "chats": [
+    {
+     "platform": "telegram",
+     "workspace": "Nostr Components Telegram",
+     "joinUrl": "https://t.me/+qOGo1CZUhhJhZGY1"
+    }
+   ],
+   "chatSource": "https://www.summerofbitcoin.org/2026-org-details/Nostr%20Components/r/rec2rWDkLRl2e4vKt",
    "sourceUrl": "https://www.summerofbitcoin.org/organizations",
    "githubUrl": "https://github.com/saiy2k",
-   "chats": [],
    "logo": "/logos/programs/summer-of-bitcoin/nostr-components.png"
   },
   {
@@ -475,7 +899,7 @@
    "name": "nostream",
    "tagline": null,
    "description": "A Nostr Relay written in TypeScript",
-   "website": null,
+   "website": "https://github.com/cameri/nostream",
    "repoUrl": "https://github.com/cameri/nostream",
    "tags": [
     "Typescript"
@@ -483,17 +907,44 @@
    "years": [
     2026
    ],
-   "links": [],
-   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
-   "githubUrl": "https://github.com/cameri",
-   "chatSource": "https://github.com/cameri/nostream#readme",
+   "projects": [
+    {
+     "year": 2026,
+     "title": "Local-First Sync & Performance Engine",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/nostream/r/rec83ONqZW5nz0c3E"
+    },
+    {
+     "year": 2026,
+     "title": "Enterprise Provisioning & Access Engine",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/nostream/r/rec83ONqZW5nz0c3E"
+    },
+    {
+     "year": 2026,
+     "title": "Moderation & Discovery Engine",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/nostream/r/rec83ONqZW5nz0c3E"
+    },
+    {
+     "year": 2026,
+     "title": "Autonomous DVM Orchestrator & Billing Gateway",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/nostream/r/rec83ONqZW5nz0c3E"
+    }
+   ],
+   "links": [
+    {
+     "label": "Summer of Bitcoin 2026 page",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/nostream/r/rec83ONqZW5nz0c3E"
+    }
+   ],
    "chats": [
     {
      "platform": "telegram",
      "workspace": "nostream Telegram",
-     "joinUrl": "https://t.me/nostream_dev"
+     "joinUrl": "https://t.me/+cCst"
     }
    ],
+   "chatSource": "https://www.summerofbitcoin.org/2026-org-details/nostream/r/rec83ONqZW5nz0c3E",
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/cameri",
    "logo": null
   },
   {
@@ -501,8 +952,8 @@
    "name": "SeedSigner",
    "tagline": null,
    "description": "A powerful, air-gapped, DIY Bitcoin hardware wallet project focused on sovereignty and verifiability",
-   "website": "https://seedsigner.com",
-   "repoUrl": "https://github.com/SeedSigner/seedsigner",
+   "website": null,
+   "repoUrl": "https://github.com/SeedSigner",
    "tags": [
     "Python",
     "C",
@@ -511,17 +962,54 @@
    "years": [
     2026
    ],
-   "links": [],
-   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
-   "githubUrl": "https://github.com/SeedSigner",
-   "chatSource": "https://github.com/SeedSigner/seedsigner#readme",
+   "projects": [
+    {
+     "year": 2026,
+     "title": "MicroPython Port R&D for Secure Boot and Removable Storage",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/SeedSigner/r/recEv7XbVcg3h75qT"
+    },
+    {
+     "year": 2026,
+     "title": "Meta-Intelligence Library and AI Project Manager for Contributors",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/SeedSigner/r/recEv7XbVcg3h75qT"
+    },
+    {
+     "year": 2026,
+     "title": "Property-Based Testing + CI Harness for the PSBT Parser and QR Decode Pipeline",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/SeedSigner/r/recEv7XbVcg3h75qT"
+    },
+    {
+     "year": 2026,
+     "title": "Localization Contributor Pipeline: CI Automation, Public Screenshot Gallery, and Translator Quickstart",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/SeedSigner/r/recEv7XbVcg3h75qT"
+    },
+    {
+     "year": 2026,
+     "title": "Alternative SeedSigner UIs Across Display Constraints and Accessibility Modes",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/SeedSigner/r/recEv7XbVcg3h75qT"
+    },
+    {
+     "year": 2026,
+     "title": "AI-Assisted FlowTest Navigation Graph Analyzer and Scaffold Generator",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/SeedSigner/r/recEv7XbVcg3h75qT"
+    }
+   ],
+   "links": [
+    {
+     "label": "Summer of Bitcoin 2026 page",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/SeedSigner/r/recEv7XbVcg3h75qT"
+    }
+   ],
    "chats": [
     {
      "platform": "telegram",
      "workspace": "SeedSigner Telegram",
-     "joinUrl": "https://t.me/joinchat"
+     "joinUrl": "https://t.me/seedsigner_new_devs"
     }
    ],
+   "chatSource": "https://www.summerofbitcoin.org/2026-org-details/SeedSigner/r/recEv7XbVcg3h75qT",
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/SeedSigner",
    "logo": "/logos/programs/summer-of-bitcoin/seedsigner.jpg"
   },
   {
@@ -529,7 +1017,7 @@
    "name": "Shopstr",
    "tagline": null,
    "description": "A global, decentralized Nostr marketplace to buy and sell anything, anywhere, anytime, anonymously with Bitcoin.",
-   "website": "https://shopstr.market",
+   "website": "https://shopstr.store",
    "repoUrl": "https://github.com/shopstr-eng/shopstr",
    "tags": [
     "TypeScript",
@@ -541,26 +1029,53 @@
    "years": [
     2026
    ],
-   "links": [],
-   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
-   "githubUrl": "https://github.com/shopstr-eng",
-   "chats": [
+   "projects": [
     {
-     "platform": "forum",
-     "workspace": "GitHub Discussions",
-     "joinUrl": "https://github.com/shopstr-eng/shopstr/discussions"
+     "year": 2026,
+     "title": "Mobile-First Buyer Experience: Responsive Checkout, Accessible Onboarding & UI Component Test Coverage",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Shopstr/r/rectcqBkZ730Gv0K1"
+    },
+    {
+     "year": 2026,
+     "title": "Search and Reporting for the Decentralized Bitcoin Marketplace",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Shopstr/r/rectcqBkZ730Gv0K1"
+    },
+    {
+     "year": 2026,
+     "title": "Close the CI Test Gap — Enforce, Harden, and Measure the Shopstr Test Suite Across Every Hot Path",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Shopstr/r/rectcqBkZ730Gv0K1"
+    },
+    {
+     "year": 2026,
+     "title": "Shopstr MCP Server — A Read-Only Agent Interface for the Decentralized Bitcoin Marketplace",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Shopstr/r/rectcqBkZ730Gv0K1"
     }
    ],
-   "logo": "/logos/programs/summer-of-bitcoin/shopstr.png",
-   "chatSource": "https://github.com/shopstr-eng/shopstr"
+   "links": [
+    {
+     "label": "Summer of Bitcoin 2026 page",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Shopstr/r/rectcqBkZ730Gv0K1"
+    }
+   ],
+   "chats": [
+    {
+     "platform": "discord",
+     "workspace": "Shopstr Discord",
+     "joinUrl": "https://discord.gg/gNh3tgByj2"
+    }
+   ],
+   "chatSource": "https://www.summerofbitcoin.org/2026-org-details/Shopstr/r/rectcqBkZ730Gv0K1",
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/shopstr-eng",
+   "logo": "/logos/programs/summer-of-bitcoin/shopstr.png"
   },
   {
    "slug": "smite",
    "name": "smite",
    "tagline": null,
    "description": "A coverage-guided fuzzing framework for Lightning Network implementations, derived from fuzzamoto.",
-   "website": null,
-   "repoUrl": "https://github.com/lnfuzz/smite",
+   "website": "https://github.com/morehouse/smite",
+   "repoUrl": "https://github.com/morehouse/smite",
    "tags": [
     "Rust",
     "AFL++",
@@ -569,10 +1084,67 @@
    "years": [
     2026
    ],
-   "links": [],
-   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
-   "githubUrl": "https://github.com/lnfuzz",
+   "projects": [
+    {
+     "year": 2026,
+     "title": "Comprehensive Documentation",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/smite/r/rechPrxYorYuYZikK",
+     "repos": [
+      "https://github.com/morehouse/smite",
+      "https://github.com/lightning/bolts",
+      "https://github.com/AFLplusplus/AFLplusplus"
+     ]
+    },
+    {
+     "year": 2026,
+     "title": "Gossip Message Fuzzing",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/smite/r/rechPrxYorYuYZikK",
+     "repos": [
+      "https://github.com/morehouse/smite",
+      "https://github.com/lightning/bolts",
+      "https://github.com/AFLplusplus/AFLplusplus"
+     ]
+    },
+    {
+     "year": 2026,
+     "title": "Smitebot: Automated Fuzzing Campaign Manager",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/smite/r/rechPrxYorYuYZikK",
+     "repos": [
+      "https://github.com/morehouse/smite",
+      "https://github.com/google/syzkaller",
+      "https://github.com/AFLplusplus/AFLplusplus",
+      "https://github.com/0xricksanchez/afl_runner"
+     ]
+    },
+    {
+     "year": 2026,
+     "title": "Advanced IR Mutators with Effectiveness Evaluation",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/smite/r/rechPrxYorYuYZikK",
+     "repos": [
+      "https://github.com/morehouse/smite",
+      "https://github.com/AFLplusplus/AFLplusplus"
+     ]
+    },
+    {
+     "year": 2026,
+     "title": "Interactive Transaction (Dual Funding) Fuzzing",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/smite/r/rechPrxYorYuYZikK",
+     "repos": [
+      "https://github.com/morehouse/smite",
+      "https://github.com/lightning/bolts"
+     ]
+    }
+   ],
+   "links": [
+    {
+     "label": "Summer of Bitcoin 2026 page",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/smite/r/rechPrxYorYuYZikK"
+    }
+   ],
    "chats": [],
+   "chatSource": "https://www.summerofbitcoin.org/2026-org-details/smite/r/rechPrxYorYuYZikK",
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/morehouse",
    "logo": "/logos/programs/summer-of-bitcoin/smite.png"
   },
   {
@@ -580,7 +1152,7 @@
    "name": "Stable Channels",
    "tagline": null,
    "description": "p2p stable channels on the Bitcoin Lightning Network",
-   "website": null,
+   "website": "https://github.com/toneloc/stable-channels",
    "repoUrl": "https://github.com/toneloc/stable-channels",
    "tags": [
     "Rust",
@@ -590,10 +1162,52 @@
    "years": [
     2026
    ],
-   "links": [],
+   "projects": [
+    {
+     "year": 2026,
+     "title": "Stable Channels: BTC/USD Lightning Wallet - iOS Development",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Stable%20Channels/r/recZnSrEoll97poLo",
+     "repos": [
+      "https://github.com/toneloc/stable-channels",
+      "https://github.com/lightningdevkit/ldk-node"
+     ]
+    },
+    {
+     "year": 2026,
+     "title": "Stable Channels: BTC/USD Lightning Wallet - Android Development",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Stable%20Channels/r/recZnSrEoll97poLo",
+     "repos": [
+      "https://github.com/toneloc/stable-channels",
+      "https://github.com/lightningdevkit/ldk-node"
+     ]
+    },
+    {
+     "year": 2026,
+     "title": "Stable Channels: BTC/USD Lightning Wallet - Server and LSP Development",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Stable%20Channels/r/recZnSrEoll97poLo",
+     "repos": [
+      "https://github.com/toneloc/stable-channels",
+      "https://github.com/toneloc/ldk-server",
+      "https://github.com/getumbrel/umbrel-apps"
+     ]
+    }
+   ],
+   "links": [
+    {
+     "label": "Summer of Bitcoin 2026 page",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/Stable%20Channels/r/recZnSrEoll97poLo"
+    }
+   ],
+   "chats": [
+    {
+     "platform": "telegram",
+     "workspace": "Stable Channels Telegram",
+     "joinUrl": "https://t.me/+jvZKrdM6XZFjZGMx"
+    }
+   ],
+   "chatSource": "https://www.summerofbitcoin.org/2026-org-details/Stable%20Channels/r/recZnSrEoll97poLo",
    "sourceUrl": "https://www.summerofbitcoin.org/organizations",
    "githubUrl": "https://github.com/toneloc",
-   "chats": [],
    "logo": "/logos/programs/summer-of-bitcoin/stable-channels.png"
   },
   {
@@ -601,7 +1215,7 @@
    "name": "strfry",
    "tagline": null,
    "description": "A relay for the nostr protocol",
-   "website": null,
+   "website": "https://github.com/hoytech/strfry",
    "repoUrl": "https://github.com/hoytech/strfry",
    "tags": [
     "C++"
@@ -609,10 +1223,28 @@
    "years": [
     2026
    ],
-   "links": [],
-   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
-   "githubUrl": "https://github.com/hoytech",
-   "chatSource": "https://github.com/hoytech/strfry#readme",
+   "projects": [
+    {
+     "year": 2026,
+     "title": "Enhance AUTH Support",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/strfry/r/recaMNCoo65acWGWx"
+    },
+    {
+     "year": 2026,
+     "title": "Performance Optimisation",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/strfry/r/recaMNCoo65acWGWx",
+     "repos": [
+      "https://github.com/hoytech/strfry",
+      "https://github.com/privkeyio/nostr-bench"
+     ]
+    }
+   ],
+   "links": [
+    {
+     "label": "Summer of Bitcoin 2026 page",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/strfry/r/recaMNCoo65acWGWx"
+    }
+   ],
    "chats": [
     {
      "platform": "telegram",
@@ -620,6 +1252,9 @@
      "joinUrl": "https://t.me/strfry_users"
     }
    ],
+   "chatSource": "https://www.summerofbitcoin.org/2026-org-details/strfry/r/recaMNCoo65acWGWx",
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/hoytech",
    "logo": "/logos/programs/summer-of-bitcoin/strfry.svg"
   },
   {
@@ -628,7 +1263,7 @@
    "tagline": null,
    "description": "Improving Lightning security with fully validated remote signing.",
    "website": "https://vls.tech",
-   "repoUrl": "https://gitlab.com/lightning-signer/validating-lightning-signer",
+   "repoUrl": "https://github.com/lightning-signer",
    "tags": [
     "Rust",
     "AWS",
@@ -637,16 +1272,29 @@
    "years": [
     2026
    ],
-   "links": [],
-   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
-   "chatSource": "https://vls.tech",
+   "projects": [
+    {
+     "year": 2026,
+     "title": "Running a Lightning signer inside an AWS Nitro Enclave",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/VLS/r/recEbLI3P52EkOT11"
+    }
+   ],
+   "links": [
+    {
+     "label": "Summer of Bitcoin 2026 page",
+     "url": "https://www.summerofbitcoin.org/2026-org-details/VLS/r/recEbLI3P52EkOT11"
+    }
+   ],
    "chats": [
     {
      "platform": "matrix",
      "workspace": "VLS Matrix",
-     "joinUrl": "https://matrix.to/#/#vls:matrix.org"
+     "joinUrl": "https://matrix.to/#/%23vls-summerofbitcoin:matrix.org"
     }
    ],
+   "chatSource": "https://www.summerofbitcoin.org/2026-org-details/VLS/r/recEbLI3P52EkOT11",
+   "sourceUrl": "https://www.summerofbitcoin.org/organizations",
+   "githubUrl": "https://github.com/lightning-signer",
    "logo": "/logos/programs/summer-of-bitcoin/vls.png"
   }
  ]

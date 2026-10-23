@@ -5,13 +5,6 @@
 //   fields: values to set directly (website, repoUrl)
 //   noGithubSearch: true when the organization has no GitHub presence
 
-// Summer of Bitcoin's feed has no links, so each project is matched by hand to the repository
-// whose own description is the project described on summerofbitcoin.org (checked 2026-10-15).
-const sob = (repoUrl, website) => ({
-  noGithubSearch: true,
-  fields: { repoUrl, ...(website ? { website } : {}) },
-});
-
 export const OVERRIDES = {
   // Season of Docs organizations whose own sites give no usable logo (checked 2026-10-15)
   "season-of-docs": {
@@ -156,37 +149,6 @@ export const OVERRIDES = {
     idinsight: { github: "IDinsight", fields: { website: "https://idinsight.org" } },
     // OpenNyAI: "OpenNyAI", https://opennyai.org/
     opennyai: { github: "OpenNyAI", fields: { website: "https://opennyai.org/" } },
-  },
-  "summer-of-bitcoin": {
-    asmap: sob("https://github.com/asmap", "https://asmap.org"),
-    bdk: sob("https://github.com/bitcoindevkit/bdk", "https://bitcoindevkit.org"),
-    "bitcoin-core": sob("https://github.com/bitcoin/bitcoin", "https://bitcoincore.org"),
-    "bitcoin-design": sob("https://github.com/BitcoinDesign/Guide", "https://bitcoin.design"),
-    "bitcoin-fuzz": sob("https://github.com/bitcoinfuzz/bitcoinfuzz"),
-    braidpool: sob("https://github.com/braidpool/braidpool"),
-    coinswap: sob("https://github.com/citadel-foss/openswap", "https://openswap.live/"),
-    contextvm: sob("https://github.com/ContextVM", "https://docs.contextvm.org"),
-    cove: sob("https://github.com/bitcoinppl/cove", "https://covebitcoin.com"),
-    demand: sob("https://github.com/dmnd-pool"),
-    fedimint: sob("https://github.com/fedimint/fedimint", "https://fedimint.org/"),
-    floresta: sob("https://github.com/getfloresta/Floresta", "https://getfloresta.org"),
-    flotilla: sob("https://github.com/coracle-social/flotilla", "https://flotilla.social"),
-    formstr: sob("https://github.com/formstr-hq/nostr-forms", "https://formstr.app"),
-    jam: sob(
-      "https://github.com/joinmarket-webui/jam",
-      "https://joinmarket-webui.github.io/jamdocs",
-    ),
-    kern: sob("https://github.com/odudex/Kern"),
-    krux: sob("https://github.com/selfcustody/krux", "https://selfcustody.github.io/krux/"),
-    "nostr-components": sob("https://github.com/saiy2k/nostr-components"),
-    nostream: sob("https://github.com/cameri/nostream"),
-    seedsigner: sob("https://github.com/SeedSigner/seedsigner", "https://seedsigner.com"),
-    shopstr: sob("https://github.com/shopstr-eng/shopstr", "https://shopstr.market"),
-    smite: sob("https://github.com/lnfuzz/smite"),
-    "stable-channels": sob("https://github.com/toneloc/stable-channels"),
-    strfry: sob("https://github.com/hoytech/strfry"),
-    // VLS is developed on GitLab; the GitHub copy is a mirror
-    vls: sob("https://gitlab.com/lightning-signer/validating-lightning-signer", "https://vls.tech"),
   },
   outreachy: {
     // apache: "The Apache Software Foundation", https://www.apache.org/
