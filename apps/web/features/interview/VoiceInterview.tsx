@@ -72,6 +72,8 @@ interface Settings {
   handsFree: boolean;
   voice: string;
   rate: number;
+  /** interviewer loudness, 0 to 1 */
+  volume: number;
 }
 
 interface PastSession {
@@ -251,6 +253,7 @@ export function VoiceInterview({
     handsFree: true,
     voice: "",
     rate: 1,
+    volume: 1,
   });
   // the interviewer introduces themself by the chosen voice's name when a voice reads aloud
   const interviewerName = settings.voiceOut
@@ -289,6 +292,7 @@ export function VoiceInterview({
         handsFree: s.handsFree,
         voice: s.voice,
         rate: s.rate,
+        volume: s.volume,
       });
       return { ...s, ...saved, accent: india ? "en-IN" : "en-US" };
     });
@@ -296,8 +300,8 @@ export function VoiceInterview({
   }, [initialMode]);
   useEffect(() => {
     if (phase === "setup") {
-      const { voiceOut, voiceIn, handsFree, voice, rate } = settings;
-      write(SETTINGS_KEY, { voiceOut, voiceIn, handsFree, voice, rate });
+      const { voiceOut, voiceIn, handsFree, voice, rate, volume } = settings;
+      write(SETTINGS_KEY, { voiceOut, voiceIn, handsFree, voice, rate, volume });
     }
   }, [settings, phase]);
 
@@ -312,7 +316,11 @@ export function VoiceInterview({
   const say = useCallback(
     async (text: string) => {
       if (!settings.voiceOut || !support.tts) return;
-      await speaker.speak(text, { voice: settings.voice || undefined, rate: settings.rate });
+      await speaker.speak(text, {
+        voice: settings.voice || undefined,
+        rate: settings.rate,
+        volume: settings.volume,
+      });
     },
     [settings.voiceOut, settings.voice, settings.rate, support.tts, speaker],
   );
@@ -669,11 +677,18 @@ export function VoiceInterview({
   const cap = maxQuestions(settings.modes);
 
   const preview = (v: VoiceOption | null) => {
-    speaker.cancel();
-    if (!v) return setPreviewing(null);
+    if (!v) {
+      speaker.cancel();
+      return setPreviewing(null);
+    }
+    // speak() itself stops the voice that is talking before the new one starts
     setPreviewing(v.id);
     void speaker
-      .speak(sample(v.persona, project), { voice: v.id, rate: settings.rate })
+      .speak(sample(v.persona, project), {
+        voice: v.id,
+        rate: settings.rate,
+        volume: settings.volume,
+      })
       .then(() => setPreviewing((cur) => (cur === v.id ? null : cur)));
   };
 
@@ -947,9 +962,15 @@ export function VoiceInterview({
               <VoicePicker
                 voices={speaker.voices}
                 value={settings.voice}
-                onChange={(id) => update("voice", id)}
+                onChange={(id) => {
+                  // picking another interviewer stops whoever is talking
+                  if (previewing) preview(null);
+                  update("voice", id);
+                }}
                 rate={settings.rate}
                 onRate={(r) => update("rate", r)}
+                volume={settings.volume}
+                onVolume={(v) => update("volume", v)}
                 onPreview={preview}
                 previewing={previewing}
               />

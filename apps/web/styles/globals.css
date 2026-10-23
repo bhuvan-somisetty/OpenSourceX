@@ -9227,45 +9227,90 @@ html.iv-morphing::view-transition-new(root) {
   animation: iv-vspeak 0.9s ease-in-out infinite alternate;
 }
 
-/* a voice's orb: a glossy sphere in the brand's family, lit from the top left */
+/* a voice's orb: a glass sphere in the brand's family, lit from the top left, with light
+   passing through its base, a thin bright rim and a glass highlight across the top */
 .iv-vorb {
   position: relative;
   flex: none;
   display: grid;
   place-items: center;
   border-radius: 50%;
+  isolation: isolate;
   background:
-    radial-gradient(circle at 32% 26%, rgb(255 255 255 / 0.5), transparent 30%),
-    radial-gradient(circle at 70% 78%, hsl(var(--h2) 55% 38% / 0.9), transparent 58%),
-    linear-gradient(145deg, hsl(var(--h1) 52% 46%), hsl(var(--h2) 48% 20%));
+    radial-gradient(circle at 50% 108%, hsl(var(--h1) 75% 66% / 0.75), transparent 46%),
+    radial-gradient(circle at 30% 24%, rgb(255 255 255 / 0.42), transparent 34%),
+    radial-gradient(circle at 72% 80%, hsl(var(--h2) 58% 36% / 0.95), transparent 60%),
+    linear-gradient(150deg, hsl(var(--h1) 56% 50%), hsl(var(--h2) 52% 18%) 78%);
   box-shadow:
-    inset 0 -6px 12px rgb(0 0 0 / 0.38),
-    inset 0 1px 1px rgb(255 255 255 / 0.3),
-    0 8px 18px -8px hsl(var(--h1) 60% 32% / 0.85);
+    inset 0 0 0 1px rgb(255 255 255 / 0.14),
+    inset 0 -10px 18px rgb(0 0 0 / 0.42),
+    inset 0 2px 2px rgb(255 255 255 / 0.28),
+    0 14px 28px -12px hsl(var(--h1) 65% 30% / 0.95),
+    0 2px 6px rgb(0 0 0 / 0.35);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
+/* glass highlight: a soft crescent across the top */
+.iv-vorb::before {
+  content: "";
+  position: absolute;
+  left: 16%;
+  right: 16%;
+  top: 6%;
+  height: 38%;
+  border-radius: 50% / 60% 60% 40% 40%;
+  background: linear-gradient(to bottom, rgb(255 255 255 / 0.38), rgb(255 255 255 / 0));
+  pointer-events: none;
+  z-index: 0;
+}
+/* the chosen voice: a burgundy ring set a little apart from the glass */
 .iv-vorb::after {
   content: "";
   position: absolute;
-  inset: -3px;
+  inset: -5px;
   border-radius: 50%;
   border: 1.5px solid transparent;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.25s ease;
 }
-.iv-vrow.on .iv-vorb::after {
-  border-color: color-mix(in srgb, var(--wine-2) 75%, transparent);
+.iv-vrow.on .iv-vorb::after,
+.iv-vhero .iv-vorb::after {
+  border-color: color-mix(in srgb, var(--wine-2) 70%, transparent);
+}
+.iv-vrow:hover .iv-vorb {
+  transform: scale(1.04);
+}
+.iv-vorb.playing {
+  animation: iv-vbreathe 1.6s ease-in-out infinite alternate;
 }
 .iv-vorb-mark {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 2.5px;
   height: 40%;
 }
 .iv-vorb-mark i {
-  width: 2.5px;
-  border-radius: 2px;
-  background: rgb(255 255 255 / 0.92);
-  box-shadow: 0 0 6px rgb(255 255 255 / 0.25);
+  width: 3px;
+  border-radius: 3px;
+  background: rgb(255 255 255 / 0.95);
+  box-shadow: 0 0 8px rgb(255 255 255 / 0.3);
   transform-origin: center;
+}
+.iv-vhero .iv-vorb-mark {
+  gap: 3.5px;
+}
+.iv-vhero .iv-vorb-mark i {
+  width: 4px;
+}
+@keyframes iv-vbreathe {
+  to {
+    transform: scale(1.05);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .iv-vorb.playing {
+    animation: none;
+  }
 }
 .iv-vhero-id {
   display: flex;
@@ -9273,6 +9318,103 @@ html.iv-morphing::view-transition-new(root) {
   gap: 14px;
   min-width: 0;
 }
+/* interviewer volume: bottom-right of the stage */
+.iv-vvol {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: min(100%, 260px);
+  padding: 6px 12px 6px 6px;
+  border-radius: 99px;
+  border: 1px solid var(--border);
+  background: var(--glass);
+}
+.iv-vvol-btn {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border-strong);
+  background: var(--surface-2);
+  color: var(--text);
+  cursor: pointer;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease;
+}
+.iv-vvol-btn:hover {
+  border-color: var(--wine-2);
+}
+.iv-vvol b {
+  flex: none;
+  min-width: 38px;
+  text-align: right;
+  font: 600 12px var(--mono);
+  color: var(--text);
+}
+.iv-vvol input[type="range"] {
+  flex: 1;
+  min-width: 0;
+  height: 18px;
+  margin: 0;
+  background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+.iv-vvol input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 99px;
+  background: linear-gradient(
+    to right,
+    var(--wine-2) 0 var(--p),
+    color-mix(in srgb, var(--text) 14%, transparent) var(--p) 100%
+  );
+}
+.iv-vvol input[type="range"]::-moz-range-track {
+  height: 4px;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--text) 14%, transparent);
+}
+.iv-vvol input[type="range"]::-moz-range-progress {
+  height: 4px;
+  border-radius: 99px;
+  background: var(--wine-2);
+}
+.iv-vvol input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  margin-top: -5px;
+  border-radius: 50%;
+  background: #fff;
+  border: 0;
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--wine) 55%, transparent),
+    0 2px 6px rgb(0 0 0 / 0.4);
+}
+.iv-vvol input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  border: 0;
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--wine) 55%, transparent),
+    0 2px 6px rgb(0 0 0 / 0.4);
+}
+.iv-vvol input[type="range"]:focus-visible {
+  outline: none;
+}
+.iv-vvol input[type="range"]:focus-visible::-webkit-slider-thumb {
+  box-shadow:
+    0 0 0 3px var(--wine-2),
+    0 2px 6px rgb(0 0 0 / 0.4);
+}
+
 /* the list */
 .iv-vlist-wrap {
   display: grid;
@@ -9351,8 +9493,8 @@ html.iv-morphing::view-transition-new(root) {
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 9px 56px 9px 9px;
+  padding: 10px 56px 10px 12px;
+  gap: 16px;
   border: 0;
   background: none;
   color: var(--text);

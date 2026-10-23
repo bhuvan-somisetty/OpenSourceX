@@ -98,6 +98,60 @@ function alternate(list: VoiceOption[]): VoiceOption[] {
   return [...out, ...list.filter((v) => !v.gender)];
 }
 
+/** Interviewer loudness, 0 to 100 percent; the speaker icon mutes and restores. */
+function Volume({ value, onChange }: { value: number; onChange: (v: number) => void }) {
+  const [before, setBefore] = useState(1);
+  const pct = Math.round(value * 100);
+  const icon =
+    pct === 0
+      ? "M11 5 6 9H2v6h4l5 4V5Zm5.5 4.5 5 5m0-5-5 5"
+      : pct < 50
+        ? "M11 5 6 9H2v6h4l5 4V5Zm4.5 3.5a5 5 0 0 1 0 7"
+        : "M11 5 6 9H2v6h4l5 4V5Zm4.5 3.5a5 5 0 0 1 0 7m3-10a9 9 0 0 1 0 13";
+  return (
+    <div className="iv-vvol">
+      <button
+        type="button"
+        className="iv-vvol-btn"
+        aria-label={pct === 0 ? "Unmute interviewer" : "Mute interviewer"}
+        onClick={() => {
+          if (pct === 0) onChange(before || 1);
+          else {
+            setBefore(value);
+            onChange(0);
+          }
+        }}
+      >
+        <svg
+          viewBox="0 0 24 24"
+          width="18"
+          height="18"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <path d={icon} />
+        </svg>
+      </button>
+      <input
+        type="range"
+        min={0}
+        max={100}
+        step={1}
+        value={pct}
+        onChange={(e) => onChange(Number(e.target.value) / 100)}
+        aria-label="Interviewer volume"
+        aria-valuetext={`${pct} percent`}
+        style={{ ["--p" as string]: `${pct}%` }}
+      />
+      <b>{pct}%</b>
+    </div>
+  );
+}
+
 function PlayIcon({ stop }: { stop?: boolean }) {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -113,6 +167,8 @@ export function VoicePicker({
   onChange,
   rate,
   onRate,
+  volume,
+  onVolume,
   onPreview,
   previewing,
 }: {
@@ -121,6 +177,8 @@ export function VoicePicker({
   onChange: (id: string) => void;
   rate: number;
   onRate: (r: number) => void;
+  volume: number;
+  onVolume: (v: number) => void;
   onPreview: (v: VoiceOption | null) => void;
   previewing: string | null;
 }) {
@@ -154,7 +212,7 @@ export function VoicePicker({
           <div className="iv-vhero-main" key={selected.id}>
             <Wave v={selected} playing={selPlaying} />
             <div className="iv-vhero-id">
-              <VoiceOrb v={selected} size={56} playing={selPlaying} />
+              <VoiceOrb v={selected} size={80} playing={selPlaying} />
               <div className="iv-vhero-text">
                 <strong>{selected.persona}</strong>
               </div>
@@ -194,6 +252,7 @@ export function VoicePicker({
               ))}
             </div>
           </div>
+          <Volume value={volume} onChange={onVolume} />
         </div>
 
         {/* every voice this browser can speak with */}
@@ -230,7 +289,7 @@ export function VoicePicker({
                     onClick={() => onChange(v.id)}
                     title={v.name}
                   >
-                    <VoiceOrb v={v} size={42} playing={playing} />
+                    <VoiceOrb v={v} size={52} playing={playing} />
                     <span className="iv-vrow-text">
                       <strong>{v.persona}</strong>
                     </span>

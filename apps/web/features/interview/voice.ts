@@ -311,33 +311,61 @@ export function useSpeaker() {
     };
   }, []);
 
+  // every speak or cancel bumps this, so a voice that was asked for and then replaced never starts
+  const generation = useRef(0);
+
   const cancel = useCallback(() => {
-    if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+    const my = ++generation.current;
+    if ("speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+      // Chrome's online voices can keep streaming through the first cancel: cancel again
+      // a moment later unless something new has started since
+      setTimeout(() => {
+        if (generation.current === my) window.speechSynthesis.cancel();
+      }, 80);
+    }
+    current.current = null;
     setSpeaking(false);
   }, []);
 
   const speak = useCallback(
-    (text: string, opts: { voice?: string; rate?: number } = {}) =>
+    (text: string, opts: { voice?: string; rate?: number; volume?: number } = {}) =>
       new Promise<void>((resolve) => {
         if (!("speechSynthesis" in window) || !text.trim()) return resolve();
-        window.speechSynthesis.cancel();
-        const u = new SpeechSynthesisUtterance(speakable(text));
-        const v = voices.find((x) => x.voiceURI === opts.voice) ?? voices[0];
-        if (v) {
-          u.voice = v;
-          u.lang = v.lang;
-        }
-        u.rate = opts.rate ?? 1;
-        u.pitch = 1;
-        const done = () => {
-          if (current.current === u) setSpeaking(false);
-          resolve();
+        const synth = window.speechSynthesis;
+        const my = ++generation.current;
+        const busy = synth.speaking || synth.pending || current.current !== null;
+        synth.cancel();
+        const start = () => {
+          // a newer speak or a cancel arrived while waiting: this one never plays
+          if (generation.current !== my) return resolve();
+          synth.cancel();
+          const u = new SpeechSynthesisUtterance(speakable(text));
+          const v = voices.find((x) => x.voiceURI === opts.voice) ?? voices[0];
+          if (v) {
+            u.voice = v;
+            u.lang = v.lang;
+          }
+          u.rate = opts.rate ?? 1;
+          u.volume = Math.min(1, Math.max(0, opts.volume ?? 1));
+          u.pitch = 1;
+          const done = () => {
+            if (current.current === u) {
+              current.current = null;
+              setSpeaking(false);
+            }
+            resolve();
+          };
+          u.onend = done;
+          u.onerror = done;
+          current.current = u;
+          setSpeaking(true);
+          synth.speak(u);
         };
-        u.onend = done;
-        u.onerror = done;
-        current.current = u;
-        setSpeaking(true);
-        window.speechSynthesis.speak(u);
+        // speaking straight after a cancel can be dropped, or leave the old voice talking,
+        // so give the engine a beat to let go of the previous voice first
+        if (busy) setTimeout(start, 120);
+        else start();
       }),
     [voices],
   );
