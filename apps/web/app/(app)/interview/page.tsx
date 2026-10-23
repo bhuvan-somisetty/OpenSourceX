@@ -29,14 +29,32 @@ export default async function Interview({ searchParams }: { searchParams: Promis
   const mode = (MODE_KEYS.find((m) => m === first(sp.mode)) ?? null) as Mode | null;
   const detail = chosen ? await load((d) => interviewProject(d, chosen)) : null;
   const ctx = detail?.ok ? detail.data : null;
-  const projects: ProjectOption[] = items.map((p) => ({
-    id: p.id,
-    name: p.name,
-    org: p.org,
-    program: p.program.name,
-    technologies: tidyTechnologies(p.technologies),
-    repoUrl: p.repoUrl,
-  }));
+  // the same idea offered in several terms is one choice, listed with every term it ran
+  const byIdea = new Map<string, ProjectOption>();
+  const ideaKey = (p: (typeof items)[number]) =>
+    `${p.org ?? ""}|${p.name}`.toLowerCase().replace(/[^a-z0-9|]+/g, "");
+  for (const p of items) {
+    const when = p.terms.filter((t) => !t.startsWith("unmapped"));
+    const cur = byIdea.get(ideaKey(p));
+    if (!cur) {
+      byIdea.set(ideaKey(p), {
+        id: p.id,
+        name: p.name,
+        org: p.org,
+        program: p.program.name,
+        technologies: tidyTechnologies(p.technologies),
+        repoUrl: p.repoUrl,
+        when,
+      });
+      continue;
+    }
+    const newer = (when.toSorted().at(-1) ?? "") > (cur.when.toSorted().at(-1) ?? "");
+    cur.alsoIds = [...(cur.alsoIds ?? []), newer ? cur.id : p.id];
+    if (newer) Object.assign(cur, { id: p.id, repoUrl: p.repoUrl ?? cur.repoUrl });
+    cur.when = [...new Set([...cur.when, ...when])];
+    cur.technologies = tidyTechnologies([...cur.technologies, ...p.technologies]);
+  }
+  const projects = [...byIdea.values()].map((p) => ({ ...p, when: p.when.toSorted().reverse() }));
   const session = await getSession();
 
   return (

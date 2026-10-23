@@ -8015,6 +8015,27 @@ button.play-card {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
+/* setup morph: each card glides to its new place on a soft spring, a beat apart; the old
+   content lets go with a slight blur and the new content comes into focus. Snapshots keep
+   their natural size, pinned top-left, so text never stretches while a box changes shape. */
+::view-transition-group(iv-subject),
+::view-transition-group(iv-types),
+::view-transition-group(iv-length),
+::view-transition-group(iv-voice) {
+  overflow: clip;
+  border-radius: 18px;
+  animation-duration: 0.72s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+::view-transition-group(iv-types) {
+  animation-delay: 0.04s;
+}
+::view-transition-group(iv-length) {
+  animation-delay: 0.09s;
+}
+::view-transition-group(iv-voice) {
+  animation-delay: 0.12s;
+}
 ::view-transition-old(iv-subject),
 ::view-transition-new(iv-subject),
 ::view-transition-old(iv-types),
@@ -8023,22 +8044,40 @@ button.play-card {
 ::view-transition-new(iv-length),
 ::view-transition-old(iv-voice),
 ::view-transition-new(iv-voice) {
-  /* natural size, pinned top-left: the card's box morphs, its content never stretches */
   width: auto;
   height: auto;
   object-fit: none;
   object-position: left top;
-  animation-duration: 0.45s;
-  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-::view-transition-group(iv-subject),
-::view-transition-group(iv-types),
-::view-transition-group(iv-length),
-::view-transition-group(iv-voice) {
-  overflow: clip;
-  border-radius: 18px;
-  animation-duration: 0.45s;
-  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+::view-transition-old(iv-subject),
+::view-transition-old(iv-types),
+::view-transition-old(iv-length),
+::view-transition-old(iv-voice) {
+  animation: iv-vt-out 0.26s ease-out both;
+}
+::view-transition-new(iv-subject),
+::view-transition-new(iv-types),
+::view-transition-new(iv-length),
+::view-transition-new(iv-voice) {
+  animation: iv-vt-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+/* the rest of the page holds still while the setup cards move */
+html.iv-morphing::view-transition-old(root),
+html.iv-morphing::view-transition-new(root) {
+  animation: none;
+}
+@keyframes iv-vt-out {
+  to {
+    opacity: 0;
+    filter: blur(5px);
+  }
+}
+@keyframes iv-vt-in {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(6px);
+  }
 }
 .iv-step {
   position: absolute;
@@ -9407,6 +9446,203 @@ button.play-card {
 }
 .iv-repo-use {
   justify-self: start;
+}
+.iv-repo-projects a,
+.iv-repo-projects li > div {
+  display: grid;
+  gap: 2px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--glass);
+  color: var(--text);
+  font: 13.5px var(--font);
+  text-decoration: none;
+}
+.iv-repo-projects a:hover,
+.iv-repo-projects button:hover {
+  border-color: var(--border-strong);
+}
+.iv-repo-result.is-subject {
+  border-color: color-mix(in srgb, var(--wine-2) 40%, var(--border));
+  box-shadow: 0 0 28px -6px color-mix(in srgb, var(--wine) 55%, transparent);
+  animation: iv-glow-in 0.9s ease-out both;
+}
+@keyframes iv-glow-in {
+  from {
+    box-shadow: 0 0 0 0 transparent;
+    border-color: var(--border);
+  }
+}
+.iv-tree-subject {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.iv-tree-change {
+  border: 1px solid var(--border-strong);
+  background: var(--glass);
+  color: var(--text-muted);
+  border-radius: 99px;
+  padding: 2px 10px;
+  font: 500 12px var(--font);
+  cursor: pointer;
+}
+.iv-tree-change:hover {
+  color: var(--text);
+}
+/* organization -> repository -> projects, drawn as a tree */
+.iv-tree {
+  display: grid;
+  gap: 12px;
+}
+.iv-tree-org-head {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  animation: iv-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.iv-tree-branch {
+  position: relative;
+  margin-left: 19px;
+  padding-left: 20px;
+  display: grid;
+  gap: 14px;
+}
+.iv-tree-branch::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -6px;
+  bottom: 18px;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--wine-2) 55%, transparent),
+    color-mix(in srgb, var(--wine-2) 15%, var(--border))
+  );
+  transform-origin: top;
+  animation: iv-branch 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
+}
+.iv-tree-repo,
+.iv-tree-projects {
+  position: relative;
+  min-width: 0;
+}
+.iv-tree-repo::before,
+.iv-tree-projects::before {
+  content: "";
+  position: absolute;
+  left: -20px;
+  top: 21px;
+  width: 14px;
+  height: 1px;
+  background: color-mix(in srgb, var(--wine-2) 35%, var(--border));
+}
+.iv-tree-repo {
+  display: grid;
+  gap: 8px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--glass);
+  animation: iv-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.22s both;
+}
+.iv-tree-repo-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-dim);
+  min-width: 0;
+}
+.iv-tree-fork {
+  font-size: 12px;
+}
+.iv-tree-fork a {
+  color: inherit;
+}
+.iv-tree-desc {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.iv-tree-repo .iv-repo-meta {
+  margin-top: 0;
+}
+.iv-tree-projects {
+  display: grid;
+  gap: 8px;
+  animation: iv-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.32s both;
+}
+.iv-tree-projects .iv-repo-projects > li {
+  animation: iv-rise 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.iv-tree-projects .iv-repo-projects > li:nth-child(1) {
+  animation-delay: 0.38s;
+}
+.iv-tree-projects .iv-repo-projects > li:nth-child(2) {
+  animation-delay: 0.44s;
+}
+.iv-tree-projects .iv-repo-projects > li:nth-child(3) {
+  animation-delay: 0.5s;
+}
+.iv-tree-projects .iv-repo-projects > li:nth-child(4) {
+  animation-delay: 0.56s;
+}
+.iv-tree-projects .iv-repo-projects > li:nth-child(5) {
+  animation-delay: 0.62s;
+}
+.iv-tree-projects .iv-repo-projects > li:nth-child(n + 6) {
+  animation-delay: 0.68s;
+}
+.iv-tree-also {
+  display: grid;
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border);
+  animation: iv-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+}
+.iv-tree-small .iv-tree-org-head {
+  animation: none;
+}
+.iv-repo-skel span {
+  animation: iv-breathe 1.4s ease-in-out infinite alternate;
+}
+.iv-repo-skel span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.iv-repo-skel span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes iv-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+@keyframes iv-branch {
+  from {
+    transform: scaleY(0);
+  }
+}
+@keyframes iv-breathe {
+  from {
+    opacity: 0.45;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .iv-tree-org-head,
+  .iv-tree-branch::before,
+  .iv-tree-repo,
+  .iv-tree-projects,
+  .iv-tree-projects .iv-repo-projects > li,
+  .iv-tree-also,
+  .iv-repo-result.is-subject,
+  .iv-repo-skel span {
+    animation: none;
+  }
 }
 
 /* interview v3: animated orb */

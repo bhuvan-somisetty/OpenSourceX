@@ -20,7 +20,7 @@ export interface OrgProgramEntry {
   /** LFX only: term keys such as "2025-T3" */
   terms?: string[];
   projectCount: number;
-  projects: { title: string; year: number | null; url?: string }[];
+  projects: { title: string; year: number | null; url?: string; repos?: string[] }[];
   pageUrl: string;
   links: { label: string; url: string }[];
   /** LFX only: the Linux Foundation project it belongs to, e.g. "CNCF" or "LFDT" */
@@ -159,7 +159,12 @@ export async function buildKnowledge(lfx: LfxHistory | null): Promise<Knowledge>
             programName: def.name,
             years: o.years,
             projectCount: o.projects?.length ?? 0,
-            projects: (o.projects ?? []).map((p) => ({ title: p.title, year: p.year, url: p.url })),
+            projects: (o.projects ?? []).map((p) => ({
+              title: p.title,
+              year: p.year,
+              url: p.url,
+              repos: p.repos,
+            })),
             pageUrl: `/programs/${def.alias}/organizations/${encodeURIComponent(o.slug)}`,
             links: o.links ?? [],
           },

@@ -43,6 +43,10 @@ export interface ProjectOption {
   program: string;
   technologies: string[];
   repoUrl: string | null;
+  /** when it ran, newest first; one entry per term for an idea offered several times */
+  when: string[];
+  /** ids of the same idea in other terms */
+  alsoIds?: string[];
 }
 
 type Phase = "setup" | "live" | "report";
@@ -139,7 +143,11 @@ function morph(update: () => void) {
   };
   if (!doc.startViewTransition || matchMedia("(prefers-reduced-motion: reduce)").matches)
     return update();
-  doc.startViewTransition(() => flushSync(update));
+  // only the setup cards animate; the rest of the page holds still
+  const root = document.documentElement;
+  root.classList.add("iv-morphing");
+  const t = doc.startViewTransition(() => flushSync(update)) as { finished?: Promise<void> };
+  void (t?.finished ?? Promise.resolve()).finally(() => root.classList.remove("iv-morphing"));
 }
 
 /** Brings the live interview or the report into view once it has rendered. */
@@ -620,8 +628,17 @@ export function VoiceInterview({
   };
   const pick = (p: ProjectOption) =>
     choose(initial && p.id === initial.id ? initial : { ...p, summary: null, mentors: [] });
+  const clearSubject = () => {
+    morph(() => setProject(null));
+    try {
+      window.history.replaceState(null, "", "/interview");
+    } catch {
+      /* ignore */
+    }
+  };
+
   const pickById = (id: string) => {
-    const p = projects.find((x) => x.id === id);
+    const p = projects.find((x) => x.id === id || x.alsoIds?.includes(id));
     if (p) pick(p);
   };
 
@@ -686,7 +703,8 @@ export function VoiceInterview({
                   Mentorship projects
                 </button>
               </div>
-              {project ? (
+              {/* a repository subject is shown inside the repository lookup itself */}
+              {project && !(source === "repo" && project.id.startsWith("repo:")) ? (
                 <div className="iv-picked" data-testid="picked-project">
                   <div>
                     <span className="iv-picked-k">Interview subject</span>
@@ -704,24 +722,18 @@ export function VoiceInterview({
                       ))}
                     </div>
                   )}
-                  <button
-                    type="button"
-                    className="iv-picked-clear"
-                    onClick={() => {
-                      morph(() => setProject(null));
-                      try {
-                        window.history.replaceState(null, "", "/interview");
-                      } catch {
-                        /* ignore */
-                      }
-                    }}
-                  >
+                  <button type="button" className="iv-picked-clear" onClick={clearSubject}>
                     Change
                   </button>
                 </div>
               ) : null}
               {source === "repo" ? (
-                <RepoLookup onUse={choose} onPickProject={pickById} activeId={project?.id ?? ""} />
+                <RepoLookup
+                  onUse={choose}
+                  onPickProject={pickById}
+                  onClear={clearSubject}
+                  activeId={project?.id ?? ""}
+                />
               ) : (
                 <>
                   <div className="field" style={{ marginTop: 12 }}>
@@ -746,7 +758,12 @@ export function VoiceInterview({
                         >
                           <span className="iv-p-name">{p.name}</span>
                           <span className="iv-p-meta">
-                            {[p.org, p.technologies.slice(0, 3).join(", ")]
+                            {[
+                              p.org,
+                              p.when[0] &&
+                                `${p.when[0].replace(/\s*\(.*\)$/, "")}${p.when.length > 1 ? ` +${p.when.length - 1}` : ""}`,
+                              p.technologies.slice(0, 3).join(", "),
+                            ]
                               .filter(Boolean)
                               .join(" · ")}
                           </span>

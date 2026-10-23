@@ -84,6 +84,9 @@ interface GhRepo {
   archived: boolean;
   homepage: string | null;
   default_branch: string;
+  owner?: { type?: string };
+  fork?: boolean;
+  parent?: { full_name: string };
 }
 
 export async function githubRepo(repo: string) {
@@ -110,6 +113,10 @@ export async function githubRepo(repo: string) {
     created: r.created_at,
     archived: r.archived,
     homepage: r.homepage || null,
+    /** "Organization" or "User": a person's other repositories are not an organization's */
+    ownerType: r.owner?.type ?? null,
+    /** the repository this one was forked from, if any */
+    forkOf: r.fork ? (r.parent?.full_name ?? null) : null,
     source: "GitHub REST API (live)",
   };
 }
