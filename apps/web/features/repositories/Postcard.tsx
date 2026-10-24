@@ -8,7 +8,7 @@ const H = 630;
 
 const fmt = (n: number) => (n >= 1000 ? `${(n / 1000).toFixed(n >= 10_000 ? 0 : 1)}k` : String(n));
 
-const LANG_COLORS = ["#7c8cff", "#a78bfa", "#2dd4bf", "#f5b84b", "#60a5fa", "#94a3b8"];
+const LANG_COLORS = ["#046a38", "#e34222", "#0c8d52", "#f2a33a", "#8a6f4e", "#b8a58a"];
 
 const ACTIVITY: Record<string, string> = {
   archived: "Archived",
@@ -44,14 +44,14 @@ function wrap(ctx: CanvasRenderingContext2D, text: string, width: number, max: n
 function pill(ctx: CanvasRenderingContext2D, x: number, y: number, text: string, family: string) {
   ctx.font = `600 22px ${family}`;
   const w = ctx.measureText(text).width + 32;
-  ctx.fillStyle = "rgba(255,255,255,0.08)";
-  ctx.strokeStyle = "rgba(255,255,255,0.14)";
+  ctx.fillStyle = "rgba(4,106,56,0.07)";
+  ctx.strokeStyle = "rgba(4,106,56,0.32)";
   ctx.lineWidth = 1.5;
   ctx.beginPath();
   ctx.roundRect(x, y, w, 42, 21);
   ctx.fill();
   ctx.stroke();
-  ctx.fillStyle = "#e9ebff";
+  ctx.fillStyle = "#17261c";
   ctx.fillText(text, x + 16, y + 29);
   return w;
 }
@@ -60,10 +60,10 @@ function pill(ctx: CanvasRenderingContext2D, x: number, y: number, text: string,
 export async function drawPostcard(a: RepoAnalysis): Promise<Blob> {
   await document.fonts.ready;
   const family = getComputedStyle(document.body).fontFamily || "system-ui, sans-serif";
-  const css = getComputedStyle(document.documentElement);
-  const accent = css.getPropertyValue("--accent").trim() || "#7c8cff";
-  const accent2 = css.getPropertyValue("--accent-2").trim() || "#a78bfa";
-  const rec = css.getPropertyValue("--rec").trim() || "#2dd4bf";
+  // warm ivory, emerald green and vermilion: a postcard, not a dark screen
+  const accent = "#046a38";
+  const accent2 = "#e34222";
+  const rec = "#e34222";
 
   const c = document.createElement("canvas");
   c.width = W;
@@ -73,8 +73,8 @@ export async function drawPostcard(a: RepoAnalysis): Promise<Blob> {
 
   // background: deep navy with two soft glows
   const bg = ctx.createLinearGradient(0, 0, W, H);
-  bg.addColorStop(0, "#0b0f24");
-  bg.addColorStop(1, "#161b3d");
+  bg.addColorStop(0, "#fbf2e4");
+  bg.addColorStop(1, "#f3e1c7");
   ctx.fillStyle = bg;
   ctx.fillRect(0, 0, W, H);
   for (const [x, y, r, col] of [
@@ -82,14 +82,14 @@ export async function drawPostcard(a: RepoAnalysis): Promise<Blob> {
     [1080, 600, 480, accent2],
   ] as const) {
     const g = ctx.createRadialGradient(x, y, 0, x, y, r);
-    g.addColorStop(0, `${col}44`);
+    g.addColorStop(0, `${col}1f`);
     g.addColorStop(1, `${col}00`);
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, W, H);
   }
 
   // card edge
-  ctx.strokeStyle = "rgba(255,255,255,0.10)";
+  ctx.strokeStyle = "rgba(4,106,56,0.28)";
   ctx.lineWidth = 2;
   ctx.beginPath();
   ctx.roundRect(24, 24, W - 48, H - 48, 28);
@@ -97,7 +97,7 @@ export async function drawPostcard(a: RepoAnalysis): Promise<Blob> {
 
   // postcard divider
   ctx.setLineDash([10, 10]);
-  ctx.strokeStyle = "rgba(255,255,255,0.16)";
+  ctx.strokeStyle = "rgba(4,106,56,0.3)";
   ctx.beginPath();
   ctx.moveTo(830, 90);
   ctx.lineTo(830, H - 90);
@@ -107,18 +107,18 @@ export async function drawPostcard(a: RepoAnalysis): Promise<Blob> {
   // left: the message
   const L = 72;
   font("700 20px var(--pc-font)");
-  ctx.fillStyle = accent;
+  ctx.fillStyle = accent2;
   ctx.fillText("REPOSITORY REPORT", L, 104);
 
   font("800 56px var(--pc-font)");
-  ctx.fillStyle = "#ffffff";
+  ctx.fillStyle = accent;
   const title = wrap(ctx, a.repository, 700, 2);
   title.forEach((t, i) => ctx.fillText(t, L, 172 + i * 62));
   let y = 172 + (title.length - 1) * 62 + 52;
 
   if (a.about.description) {
     font("400 26px var(--pc-font)");
-    ctx.fillStyle = "#b9bedc";
+    ctx.fillStyle = "#4a3f31";
     for (const t of wrap(ctx, a.about.description, 700, 3)) {
       ctx.fillText(t, L, y);
       y += 38;
@@ -148,7 +148,7 @@ export async function drawPostcard(a: RepoAnalysis): Promise<Blob> {
     ctx.fillText(label, L, y);
     const lw = ctx.measureText(label).width;
     font("400 22px var(--pc-font)");
-    ctx.fillStyle = "#c9cdea";
+    ctx.fillStyle = "#3d3528";
     ctx.fillText(
       `· ${fmt(act.commits90d)}${act.commitsCapped ? "+" : ""} commits, ${fmt(act.mergedPulls90d)} PRs merged in 90 days`,
       L + lw + 10,
@@ -159,7 +159,7 @@ export async function drawPostcard(a: RepoAnalysis): Promise<Blob> {
   const iss = a.issues.ok ? a.issues.data : null;
   if (iss?.goodFirstIssues) {
     font("400 22px var(--pc-font)");
-    ctx.fillStyle = "#c9cdea";
+    ctx.fillStyle = "#3d3528";
     ctx.fillText(`${fmt(iss.goodFirstIssues)} open good first issues`, L, y);
   }
 
@@ -187,7 +187,7 @@ export async function drawPostcard(a: RepoAnalysis): Promise<Blob> {
       ctx.beginPath();
       ctx.arc(lx + 6, H - 72, 6, 0, Math.PI * 2);
       ctx.fill();
-      ctx.fillStyle = "#a9aed0";
+      ctx.fillStyle = "#6b5a44";
       const t = `${l.name} ${Math.round(l.share)}%`;
       ctx.fillText(t, lx + 18, H - 66);
       lx += ctx.measureText(t).width + 40;
@@ -197,7 +197,7 @@ export async function drawPostcard(a: RepoAnalysis): Promise<Blob> {
   // right: stamp
   const sx = W - 72 - 120;
   const sy = 80;
-  ctx.fillStyle = "#f3f0e8";
+  ctx.fillStyle = "#fffaf2";
   ctx.beginPath();
   for (let i = 0; i <= 12; i++) {
     ctx.arc(sx + i * 10, sy, 4, 0, Math.PI * 2);
@@ -210,9 +210,9 @@ export async function drawPostcard(a: RepoAnalysis): Promise<Blob> {
   ctx.fill();
   ctx.fillRect(sx, sy, 120, 140);
   const sg = ctx.createLinearGradient(sx, sy, sx + 120, sy + 140);
-  sg.addColorStop(0, accent);
+  sg.addColorStop(0, "#ff6a45");
   sg.addColorStop(0.6, accent2);
-  sg.addColorStop(1, rec);
+  sg.addColorStop(1, "#b92f14");
   ctx.fillStyle = sg;
   ctx.fillRect(sx + 10, sy + 10, 100, 120);
   font("900 30px var(--pc-font)");
@@ -224,7 +224,7 @@ export async function drawPostcard(a: RepoAnalysis): Promise<Blob> {
   const when = new Date(a.fetchedAt);
   const px = sx - 92;
   const py = sy + 172;
-  ctx.strokeStyle = "rgba(233,235,255,0.7)";
+  ctx.strokeStyle = "rgba(227,66,34,0.75)";
   ctx.lineWidth = 3;
   ctx.beginPath();
   ctx.arc(px, py, 58, 0, Math.PI * 2);
@@ -233,7 +233,7 @@ export async function drawPostcard(a: RepoAnalysis): Promise<Blob> {
   ctx.beginPath();
   ctx.arc(px, py, 48, 0, Math.PI * 2);
   ctx.stroke();
-  ctx.fillStyle = "rgba(233,235,255,0.85)";
+  ctx.fillStyle = "rgba(227,66,34,0.9)";
   font("700 15px var(--pc-font)");
   ctx.fillText("ANALYZED", px, py - 14);
   font("800 17px var(--pc-font)");
@@ -254,14 +254,14 @@ export async function drawPostcard(a: RepoAnalysis): Promise<Blob> {
 
   // address lines
   font("600 16px var(--pc-font)");
-  ctx.fillStyle = "#8f96c4";
+  ctx.fillStyle = "#8a6f4e";
   ctx.fillText("TO", 880, 340);
   font("600 24px var(--pc-font)");
-  ctx.fillStyle = "#eef0ff";
+  ctx.fillStyle = "#17261c";
   for (const [i, t] of ["Every open source", "contributor"].entries()) {
     ctx.fillText(t, 880, 378 + i * 34);
   }
-  ctx.strokeStyle = "rgba(255,255,255,0.14)";
+  ctx.strokeStyle = "rgba(4,106,56,0.25)";
   ctx.lineWidth = 1.5;
   for (let i = 0; i < 3; i++) {
     ctx.beginPath();
@@ -272,10 +272,10 @@ export async function drawPostcard(a: RepoAnalysis): Promise<Blob> {
 
   // signature
   font("800 26px var(--pc-font)");
-  ctx.fillStyle = "#ffffff";
+  ctx.fillStyle = accent;
   ctx.fillText("OpenSourceX", 880, H - 96);
   font("400 18px var(--pc-font)");
-  ctx.fillStyle = "#a9aed0";
+  ctx.fillStyle = "#6b5a44";
   ctx.fillText(window.location.host, 880, H - 66);
 
   return new Promise((ok, fail) =>

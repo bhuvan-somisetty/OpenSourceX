@@ -14238,3 +14238,241 @@ a.lfxm-busy-item:hover {
 .cu-cal:hover {
   background: color-mix(in srgb, var(--accent) 20%, transparent);
 }
+
+/* ---------- accent palettes: envelope (ivory, emerald, vermilion), compare (lavender, tomato, chartreuse), Ask (lemon, lavender) ---------- */
+
+/* 1. Repository envelope + letter: warm ivory, emerald green, vermilion */
+.env-stage {
+  --iv: #f9ebd7;
+  --em: #046a38;
+  --vm: #e34222;
+}
+.env-back {
+  background: linear-gradient(170deg, #035a30, #023d21);
+  border-color: rgba(249, 235, 215, 0.14);
+}
+.env-pocket {
+  background: linear-gradient(160deg, #0a7d47 0%, #046a38 55%, #035a30 100%);
+}
+.env-pocket::after {
+  background: linear-gradient(
+    120deg,
+    rgba(249, 235, 215, 0.1),
+    transparent 40%,
+    rgba(227, 66, 34, 0.12)
+  );
+}
+.env-flap {
+  background: linear-gradient(180deg, #0c8d52, #05733d);
+}
+.env-seal {
+  background: radial-gradient(circle at 35% 30%, #ff7a55, var(--vm) 60%, #a82b12);
+  box-shadow:
+    0 6px 16px rgba(227, 66, 34, 0.5),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.25);
+}
+.env-letter {
+  background: linear-gradient(180deg, #fdf4e6, var(--iv));
+  color: #17261c;
+}
+.env-letter-head {
+  color: #6b5a44;
+  border-bottom-color: #e6d2b5;
+}
+.env-letter-mark {
+  background: var(--em);
+}
+.env-letter-title {
+  color: var(--em);
+}
+.env-letter-body p {
+  color: #4a3f31;
+}
+.env-letter-facts span {
+  background: #f0dcc0;
+  color: #2b2418;
+}
+.env-letter-lines i {
+  background: #ead6b9;
+}
+.env-sending .env-letter-lines i {
+  animation-name: env-write-iv;
+}
+@keyframes env-write-iv {
+  0% {
+    transform: scaleX(0.15);
+    background: #e3a08f;
+  }
+  60%,
+  100% {
+    transform: scaleX(1);
+    background: #ead6b9;
+  }
+}
+.env-label {
+  background: rgba(249, 235, 215, 0.06);
+  border-color: rgba(249, 235, 215, 0.14);
+}
+.env-label span {
+  color: #a8d4b9;
+}
+.env-label b {
+  color: #cfe5d7;
+}
+.env-addressed .env-label {
+  border-color: rgba(249, 235, 215, 0.55);
+  background: rgba(249, 235, 215, 0.1);
+}
+.env-addressed .env-label b {
+  color: var(--iv);
+}
+.env-stamp {
+  background: radial-gradient(circle, transparent 3px, var(--iv) 3.5px) -4px -4px / 8px 8px;
+}
+.env-stamp span {
+  background: linear-gradient(150deg, #ff6a45, var(--vm) 60%, #b92f14);
+}
+.env-postmark {
+  color: rgba(255, 140, 110, 0.92);
+  mix-blend-mode: normal;
+}
+.env-done .env-cap {
+  color: #6fd39b;
+}
+.env-stage .pc-main {
+  color: #fff;
+  background: var(--vm);
+}
+.env-stage .pc-main:hover {
+  background: #f04f2e;
+  filter: none;
+}
+
+/* 2. Compare: lavender (A), tomato red (B), chartreuse highlights */
+.cmp-search,
+.cmp-envs,
+.cmp-table {
+  --la: #cbb3e8;
+  --to: #e34234;
+  --ch: #d4ff3f;
+}
+.cmp-field:nth-child(1) .cmp-badge,
+.cmp-head-cell:nth-child(2) .cmp-badge {
+  color: #1d1230;
+  background: var(--la);
+}
+.cmp-field:nth-child(2) .cmp-badge,
+.cmp-head-cell:nth-child(3) .cmp-badge {
+  color: #fff;
+  background: var(--to);
+}
+.cmp-field:nth-child(1) .ra-search-bar:focus-within {
+  border-color: var(--la);
+}
+.cmp-field:nth-child(2) .ra-search-bar:focus-within {
+  border-color: var(--to);
+}
+.cmp-vs {
+  color: var(--ch);
+}
+.cmp-submit .ra-search-go {
+  color: #111;
+  background: var(--ch);
+  box-shadow: 0 14px 34px -14px rgba(212, 255, 63, 0.7);
+}
+.cmp-group h3 {
+  color: var(--ch);
+}
+.cmp-head-cell:nth-child(2) .cmp-name {
+  color: var(--la);
+}
+.cmp-head-cell:nth-child(3) .cmp-name {
+  color: #ff7a6b;
+}
+.cmp-row > .cmp-cell:nth-child(2) {
+  padding: 6px 10px;
+  margin: -6px -10px;
+  border-radius: 10px;
+  background: rgba(203, 179, 232, 0.05);
+}
+.cmp-row > .cmp-cell:nth-child(3) {
+  padding: 6px 10px;
+  margin: -6px -10px;
+  border-radius: 10px;
+  background: rgba(227, 66, 52, 0.05);
+}
+.cmp-row > .cmp-cell:nth-child(2) .cmp-spark-line {
+  stroke: var(--la);
+}
+.cmp-row > .cmp-cell:nth-child(2) .cmp-spark-fill {
+  fill: rgba(203, 179, 232, 0.18);
+}
+.cmp-row > .cmp-cell:nth-child(3) .cmp-spark-line {
+  stroke: var(--to);
+}
+.cmp-row > .cmp-cell:nth-child(3) .cmp-spark-fill {
+  fill: rgba(227, 66, 52, 0.18);
+}
+.cmp-table .cmp-active,
+.cmp-table .cmp-steady {
+  color: #141a00;
+  background: var(--ch);
+}
+
+/* 3. Ask: lemon, charcoal, electric lavender */
+.chat-main {
+  --le: #fff21a;
+  --lv: #a66bff;
+}
+.chat-empty {
+  position: relative;
+}
+.chat-empty::before {
+  content: "";
+  position: absolute;
+  inset: -120px -80px auto;
+  height: 360px;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(35% 50% at 35% 50%, rgba(166, 107, 255, 0.22), transparent 70%),
+    radial-gradient(30% 45% at 68% 45%, rgba(255, 242, 26, 0.1), transparent 70%);
+}
+.chat-main .chat-composer {
+  border-color: rgba(166, 107, 255, 0.55);
+  box-shadow:
+    0 0 0 4px rgba(166, 107, 255, 0.1),
+    0 24px 60px -24px rgba(166, 107, 255, 0.55);
+}
+.chat-main .chat-composer:focus-within {
+  border-color: var(--lv);
+}
+.chat-main .chat-send:not(:disabled) {
+  color: #171717;
+  background: var(--le);
+  box-shadow: 0 8px 22px -8px rgba(255, 242, 26, 0.7);
+}
+.chat-main .msg.user .bubble {
+  color: #fff;
+  background: var(--lv);
+}
+.chat-side .chat-new svg {
+  color: #fff21a;
+}
+.chat-side .chat-item.active {
+  box-shadow: inset 3px 0 0 #a66bff;
+}
+.cmp-row > .cmp-cell:nth-child(2) .cmp-lang-bar i:first-child,
+.cmp-row > .cmp-cell:nth-child(2) .cmp-lang-keys span:first-child i {
+  background: #cbb3e8 !important;
+}
+.cmp-row > .cmp-cell:nth-child(3) .cmp-lang-bar i:first-child,
+.cmp-row > .cmp-cell:nth-child(3) .cmp-lang-keys span:first-child i {
+  background: #e34234 !important;
+}
+.chat-main .msg th {
+  color: #fff21a;
+}
+.chat-main .msg:not(.user) a {
+  color: #c7a4ff;
+}
