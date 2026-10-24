@@ -194,8 +194,8 @@ export interface VoiceOption {
 const PERSONAS = {
   Female: [
     "Disha",
-    "Pooja",
     "Samantha",
+    "Pooja",
     "Ananya",
     "Meera",
     "Riya",
