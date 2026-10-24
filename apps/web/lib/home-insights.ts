@@ -11,6 +11,18 @@ export interface NextStep {
   chat: { label: string; url: string } | null;
   issuesUrl: string | null;
   askQuery: string;
+  program: string;
+  description: string | null;
+  logo: string | null;
+  logoOnDark: boolean;
+  /** LFX logo set key, when the organization has no program logo file */
+  lfxSlug: string | null;
+  tags: string[];
+  /** years (or LFX terms) the organization took part, oldest first */
+  years: number[];
+  terms: number;
+  projectCount: number;
+  repoUrl: string | null;
 }
 
 /** GitHub "good first issue" list for a repository, or a search across a GitHub organization. */
@@ -48,6 +60,16 @@ export async function nextStep(savedEntityIds: string[]): Promise<NextStep | nul
           : null,
         issuesUrl: firstIssuesUrl(o.repoUrl ?? o.githubUrl),
         askQuery: `How do I start contributing to ${o.name}?`,
+        program: ref.program,
+        description: o.description,
+        logo: o.logo ?? null,
+        logoOnDark: o.logoOnDark ?? false,
+        lfxSlug: ref.program === "lfx-mentorship" ? ref.orgSlug : null,
+        tags: [...new Set(o.tags.map((t) => t.trim()).filter(Boolean))].slice(0, 6),
+        years: [...new Set(e.years)].sort((a, b) => a - b),
+        terms: e.terms?.length ?? 0,
+        projectCount: e.projectCount,
+        repoUrl: o.repoUrl ?? o.githubUrl,
       };
     }
   }

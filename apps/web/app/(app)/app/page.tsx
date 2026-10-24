@@ -16,6 +16,7 @@ import { OrbitCore } from "@/features/home/OrbitCore";
 import { deadlinesChecked, nextStep, upcomingDeadlines } from "@/lib/home-insights";
 import { formatInfoDate } from "@/lib/program-info";
 import { lfxAnnouncement } from "@/lib/lfx-announce";
+import { NextStepBody } from "@/features/home/NextStepBody";
 import { LfxTermNotice } from "@/features/lfx/LfxTermNotice";
 
 export const metadata: Metadata = { title: "Home" };
@@ -167,6 +168,10 @@ export default async function AppHome() {
     deadlinesChecked(),
     lfxAnnouncement(),
   ]);
+  const stepDeadline = step
+    ? ((await upcomingDeadlines(new Date(), 200)).find((d) => d.program.slug === step.program) ??
+      null)
+    : null;
 
   // the newest saved organizations from any program (`org:<program>/<slug>`)
   const recentOrgs = res.ok
@@ -288,37 +293,7 @@ export default async function AppHome() {
           <div className="home-next glow-violet" data-reveal>
             <div className="home-next-eyebrow">✦ Your next step</div>
             {step ? (
-              <>
-                <h2 className="home-next-title">
-                  You saved <Link href={step.href}>{step.name}</Link>
-                  <span className="pill lfx-org-latest-pill">{step.programShort}</span>
-                </h2>
-                <p className="home-next-text">
-                  {step.chat
-                    ? "Say hi to the team, pick a first issue, then ask how to make it count."
-                    : "Pick a first issue, read the contributor guide, then ask how to make it count."}
-                </p>
-                <div className="home-next-actions">
-                  {step.chat && (
-                    <a
-                      className="btn sm primary"
-                      href={step.chat.url}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {step.chat.label}
-                    </a>
-                  )}
-                  {step.issuesUrl && (
-                    <a className="btn sm" href={step.issuesUrl} target="_blank" rel="noreferrer">
-                      Good first issues
-                    </a>
-                  )}
-                  <Link className="btn sm" href={`/ask?q=${encodeURIComponent(step.askQuery)}`}>
-                    Ask how to start
-                  </Link>
-                </div>
-              </>
+              <NextStepBody step={step} deadline={stepDeadline} />
             ) : (
               <>
                 <h2 className="home-next-title">Top languages in open source</h2>

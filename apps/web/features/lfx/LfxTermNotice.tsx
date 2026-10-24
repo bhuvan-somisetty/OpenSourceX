@@ -109,7 +109,6 @@ function TermCard({
   const states = rowStates(rows, today);
   const keys = milestones(term, rows);
   const apply = find(rows, /applications? open/i);
-  const name = termName(term);
   const card = useRef<HTMLDivElement>(null);
   const closeBtn = useRef<HTMLButtonElement>(null);
 
@@ -219,7 +218,9 @@ function TermCard({
 
         <header className="lfxm-head">
           <div className="lfxm-eyebrow">LFX Mentorship · official dates</div>
-          <h2 id="lfxm-title">{name}</h2>
+          <h2 id="lfxm-title">
+            {term.year} <span className="lfxm-hl">Term {term.termCode.slice(1)}</span>
+          </h2>
           <p>
             {term.startsOn && term.endsOn
               ? `${fmtDay(term.startsOn)} – ${fmtDay(term.endsOn, true)}`
