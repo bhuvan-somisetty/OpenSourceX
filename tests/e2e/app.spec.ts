@@ -426,3 +426,14 @@ test("ask: a chat about open source that keeps its history per session", async (
     EMAIL,
   );
 });
+
+test("compare: two repositories side by side, with a clear error for a bad link", async ({ page }) => {
+  await page.goto("/repositories/compare");
+  await page.waitForLoadState("networkidle");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("side by side");
+  await page.getByLabel("First repository").fill("https://gitlab.com/a/b");
+  await page.getByLabel("Second repository").fill("https://gitlab.com/c/d");
+  await page.getByTestId("compare-go").click();
+  await expect(page.getByTestId("compare-error").first()).toContainText("github.com");
+  await expect(page.getByTestId("compare-table")).toHaveCount(0);
+});

@@ -663,7 +663,10 @@ export function AnalyzeForm({ initial = "", hero }: { initial?: string; hero?: R
           </button>
         </div>
         <p id="repo-hint" className="ra-search-hint">
-          A github.com repository URL, or just owner/repo. Issue and pull request links work too.
+          A github.com repository URL, or just owner/repo. Issue and pull request links work too.{" "}
+          <Link href="/repositories/compare" className="ra-compare-link">
+            Compare two repositories →
+          </Link>
         </p>
         <div className="ra-try">
           <span>Try</span>

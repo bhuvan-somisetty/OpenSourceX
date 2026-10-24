@@ -228,3 +228,11 @@ export async function explainRepository(slug: string): Promise<RepoExplanation |
   }
   return explainFromData(analysis);
 }
+
+/** Two repositories analysed side by side, fetched at the same time. */
+export async function compareRepositories(
+  a: string,
+  b: string,
+): Promise<[AnalyzeResult, AnalyzeResult]> {
+  return Promise.all([analyzeRepository(a), analyzeRepository(b)]);
+}

@@ -2,19 +2,18 @@
 
 import { useState, type DragEvent } from "react";
 import type { RepoAnalysis } from "@/lib/repo-analysis";
+import { PostcardActions } from "./Postcard";
 
 export type EnvelopePhase = "idle" | "sending" | "done" | "error";
 
 /** owner/repo from a github.com link or a bare "owner/repo", or null */
 export function slugOf(value: string): string | null {
   const v = value.trim();
-  const m =
-    /github\.com\/([\w.-]+)\/([\w.-]+)/i.exec(v) ?? /^([\w.-]+)\/([\w.-]+)\/?$/.exec(v);
+  const m = /github\.com\/([\w.-]+)\/([\w.-]+)/i.exec(v) ?? /^([\w.-]+)\/([\w.-]+)\/?$/.exec(v);
   return m ? `${m[1]}/${m[2]!.replace(/\.git$/, "")}` : null;
 }
 
-const fmt = (n: number) =>
-  n >= 1000 ? `${(n / 1000).toFixed(n >= 10_000 ? 0 : 1)}k` : String(n);
+const fmt = (n: number) => (n >= 1000 ? `${(n / 1000).toFixed(n >= 10_000 ? 0 : 1)}k` : String(n));
 
 /**
  * The hero's mail metaphor: the link you paste is written on the envelope, the letter rises
@@ -110,10 +109,45 @@ export function Envelope({
         <div className="env-stamp">
           <span>OSX</span>
         </div>
+        {a && <Postmark at={a.fetchedAt} />}
       </div>
       <p className="env-cap" aria-live="polite">
         {caption}
       </p>
+      {a && <PostcardActions a={a} compact />}
+    </div>
+  );
+}
+
+/** The cancellation mark stamped when the analysis lands: the real date and time it was read. */
+function Postmark({ at }: { at: string }) {
+  const d = new Date(at);
+  const day = d
+    .toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" })
+    .toUpperCase();
+  const time = d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
+  return (
+    <div className="env-postmark" title={`Analyzed ${d.toLocaleString()}`}>
+      <svg viewBox="0 0 150 92" width="150" height="92">
+        <g fill="none" stroke="currentColor" strokeLinecap="round">
+          <path strokeWidth="2.4" d="M2 30c8-6 14 6 22 0s14 6 22 0" />
+          <path strokeWidth="2.4" d="M2 46c8-6 14 6 22 0s14 6 22 0" />
+          <path strokeWidth="2.4" d="M2 62c8-6 14 6 22 0s14 6 22 0" />
+          <circle cx="100" cy="46" r="42" strokeWidth="2.6" />
+          <circle cx="100" cy="46" r="34" strokeWidth="1.2" />
+        </g>
+        <g fill="currentColor" textAnchor="middle" fontFamily="inherit">
+          <text x="100" y="35" fontSize="8.5" fontWeight="700" letterSpacing="1.4">
+            ANALYZED
+          </text>
+          <text x="100" y="51" fontSize="11" fontWeight="800">
+            {day}
+          </text>
+          <text x="100" y="65" fontSize="10" fontWeight="600">
+            {time}
+          </text>
+        </g>
+      </svg>
     </div>
   );
 }

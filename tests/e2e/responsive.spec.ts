@@ -12,6 +12,7 @@ const APP = [
   "/saved",
   "/sources",
   "/repositories/analyze",
+  "/repositories/compare",
   "/interview",
 ];
 

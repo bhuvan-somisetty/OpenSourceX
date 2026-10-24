@@ -535,7 +535,7 @@ export async function analyzeGithubRepository(owner: string, repo: string): Prom
     fetchedAt: new Date().toISOString(),
     authenticated: !!process.env.GITHUB_TOKEN?.trim(),
     about: {
-      description: r.description,
+      description: r.description?.replace(/:[a-z0-9_+-]+:\s*/g, "").trim() || null,
       homepage: r.homepage || null,
       topics: r.topics?.slice(0, 15) ?? [],
       license:

@@ -6,6 +6,7 @@ import { explainRepository, listDirectory } from "@/app/(app)/repositories/analy
 import { ConfirmDelete } from "@/components/ui/ConfirmDelete";
 import type { RepoAnalysis, RepoDirEntry } from "@/lib/repo-analysis";
 import type { RepoExplanation } from "@/lib/repo-explain";
+import { PostcardActions } from "./Postcard";
 
 /**
  * The parts of the repository analysis that turn numbers into pictures and next steps: a health
@@ -197,6 +198,16 @@ export function RepoActions({ a }: { a: RepoAnalysis }) {
       <button type="button" className="btn" onClick={() => void copy("summary")}>
         {copied === "summary" ? "Summary copied" : "Copy summary"}
       </button>
+      <Link
+        className="btn"
+        href={`/repositories/compare?a=${encodeURIComponent(a.repository)}`}
+        data-testid="compare-link"
+      >
+        Compare with another
+      </Link>
+      <div className="pc-narrow">
+        <PostcardActions a={a} />
+      </div>
     </div>
   );
 }
