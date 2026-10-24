@@ -7729,13 +7729,6 @@ html.iv-morphing::view-transition-new(root) {
     transform: translateY(6px);
   }
 }
-.iv-step {
-  position: absolute;
-  top: 18px;
-  right: 20px;
-  font: 600 12px var(--mono);
-  color: var(--text-dim);
-}
 .iv-picked {
   margin-top: 14px;
   padding: 14px 16px;
@@ -11139,7 +11132,7 @@ html.iv-morphing::view-transition-new(root) {
 .iv-wrap::before {
   content: "";
   position: absolute;
-  inset: -40px -10vw auto;
+  inset: -40px 0 auto;
   height: 900px;
   z-index: -1;
   pointer-events: none;
@@ -11206,21 +11199,6 @@ html.iv-morphing::view-transition-new(root) {
 }
 
 /* step numbers become small burgundy badges */
-.iv-wrap .iv-step {
-  top: 16px;
-  right: 18px;
-  width: 26px;
-  height: 26px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  font: 700 12px var(--mono);
-  color: #fff;
-  background: linear-gradient(145deg, var(--wine-2), var(--wine));
-  box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.25),
-    0 6px 16px -6px color-mix(in srgb, var(--wine) 90%, transparent);
-}
 
 /* tabs and segmented controls: a lit pill for the choice */
 .iv-wrap .iv-source button[aria-selected="true"],

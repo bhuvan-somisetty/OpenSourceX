@@ -775,7 +775,6 @@ export function VoiceInterview({
               aria-labelledby="iv-project-h"
               style={{ viewTransitionName: "iv-subject" }}
             >
-              <div className="iv-step">1</div>
               <h2 id="iv-project-h" className="iv-h">
                 What will you talk about?
               </h2>
@@ -882,7 +881,6 @@ export function VoiceInterview({
               aria-labelledby="iv-mode-h"
               style={{ viewTransitionName: "iv-types" }}
             >
-              <div className="iv-step">2</div>
               <h2 id="iv-mode-h" className="iv-h">
                 Choose the interview
               </h2>
@@ -926,7 +924,6 @@ export function VoiceInterview({
               aria-labelledby="iv-len-h"
               style={{ viewTransitionName: "iv-length" }}
             >
-              <div className="iv-step">3</div>
               <h2 id="iv-len-h" className="iv-h">
                 Level and length
               </h2>
@@ -982,7 +979,6 @@ export function VoiceInterview({
             aria-labelledby="iv-voice-h"
             style={{ viewTransitionName: "iv-voice" }}
           >
-            <div className="iv-step">4</div>
             <h2 id="iv-voice-h" className="iv-h">
               Set up your voice
             </h2>
