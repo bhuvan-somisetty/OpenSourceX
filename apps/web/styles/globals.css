@@ -9227,8 +9227,14 @@ html.iv-morphing::view-transition-new(root) {
     0 0 0 3px color-mix(in srgb, var(--wine) 55%, transparent),
     0 2px 6px rgb(0 0 0 / 0.4);
 }
+/* no field box around the slider when it has focus; the knob shows keyboard focus instead */
+.iv-vvol input[type="range"],
+.iv-vvol input[type="range"]:focus,
 .iv-vvol input[type="range"]:focus-visible {
   outline: none;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
 }
 .iv-vvol input[type="range"]:focus-visible::-webkit-slider-thumb {
   box-shadow:
@@ -10095,6 +10101,29 @@ html.iv-morphing::view-transition-new(root) {
 }
 .iv-todo li.done {
   color: var(--text);
+}
+.iv-todo li button {
+  border: 0;
+  padding: 2px 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  text-underline-offset: 3px;
+}
+.iv-todo li button:hover,
+.iv-todo li button:focus-visible {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--wine-2) 70%, transparent);
+  outline: none;
+}
+/* the setup card a checklist item points to: a steady burgundy outline for a moment */
+.iv-wrap .iv-panel.iv-spot {
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--wine-2) 80%, transparent),
+    0 0 36px -6px color-mix(in srgb, var(--wine) 90%, transparent);
 }
 .iv-todo li.done::before {
   border-color: var(--wine-2);

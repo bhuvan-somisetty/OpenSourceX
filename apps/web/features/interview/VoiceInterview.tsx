@@ -142,6 +142,24 @@ function morph(update: () => void) {
   void (t?.finished ?? Promise.resolve()).finally(() => root.classList.remove("iv-morphing"));
 }
 
+/**
+ * Takes the user to a setup step from the "Almost ready" list: scrolls the card into view, puts
+ * focus where the step is done, and outlines the card for a moment so it is easy to spot.
+ */
+function goTo(card: string, focus?: string) {
+  const el = document.querySelector<HTMLElement>(card);
+  if (!el) return;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+  el.classList.add("iv-spot");
+  setTimeout(() => el.classList.remove("iv-spot"), 1800);
+  if (focus)
+    setTimeout(
+      () => el.querySelector<HTMLElement>(focus)?.focus({ preventScroll: true }),
+      reduce ? 0 : 450,
+    );
+}
+
 /** Brings the live interview or the report into view once it has rendered. */
 function scrollTo(selector: string) {
   requestAnimationFrame(() =>
@@ -1126,19 +1144,33 @@ export function VoiceInterview({
                 <strong>Almost ready</strong>
                 <ul className="iv-todo" data-testid="setup-todo">
                   <li className={project ? "done" : ""}>
-                    {project
-                      ? `Subject: ${project.name}`
-                      : "Paste your repo link or pick a project"}
+                    <button
+                      type="button"
+                      onClick={() =>
+                        goTo(".iv-subject", project ? undefined : "#iv-repo, #iv-search")
+                      }
+                    >
+                      {project
+                        ? `Subject: ${project.name}`
+                        : "Paste your repo link or pick a project"}
+                    </button>
                   </li>
                   <li className={settings.modes.length ? "done" : ""}>
-                    {settings.modes.length
-                      ? `Interview: ${everything ? "Everything" : modesLabel(settings.modes)}`
-                      : "Choose at least one interview type"}
+                    <button type="button" onClick={() => goTo(".iv-types", ".iv-mode")}>
+                      {settings.modes.length
+                        ? `Interview: ${everything ? "Everything" : modesLabel(settings.modes)}`
+                        : "Choose at least one interview type"}
+                    </button>
                   </li>
                   <li className={settings.count ? "done" : ""}>
-                    {settings.count
-                      ? `Length: ${cap ? Math.min(settings.count, cap) : settings.count} questions`
-                      : "Choose the interview length"}
+                    <button
+                      type="button"
+                      onClick={() => goTo(".iv-pace-panel", ".iv-counts button")}
+                    >
+                      {settings.count
+                        ? `Length: ${cap ? Math.min(settings.count, cap) : settings.count} questions`
+                        : "Choose the interview length"}
+                    </button>
                   </li>
                 </ul>
               </>
