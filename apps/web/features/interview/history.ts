@@ -308,3 +308,31 @@ export async function setShare(id: string, on: boolean): Promise<string | null |
     return false;
   }
 }
+
+/**
+ * Deletes a past interview everywhere: its report, plan ticks and list entry in this browser,
+ * and the account copy. Older entries without a report (ids "legacy-<time>") are browser-only.
+ */
+export async function deleteSession(id: string): Promise<boolean> {
+  const legacyAt = id.startsWith("legacy-") ? id.slice("legacy-".length) : null;
+  writeJson(
+    HISTORY_KEY,
+    readJson<LocalEntry[]>(HISTORY_KEY, []).filter((h) =>
+      legacyAt ? !(h.at === legacyAt && !h.id) : h.id !== id,
+    ),
+  );
+  const reports = readJson<Record<string, SavedReport>>(REPORTS_KEY, {});
+  delete reports[id];
+  writeJson(REPORTS_KEY, reports);
+  const plans = readJson<Record<string, Record<string, boolean>>>(PLAN_KEY, {});
+  delete plans[id];
+  writeJson(PLAN_KEY, plans);
+  if (legacyAt) return true;
+  try {
+    const res = await fetch(api(`/${encodeURIComponent(id)}`), { method: "DELETE" });
+    // 404: it was only ever in this browser
+    return res.ok || res.status === 404 || res.status === 401;
+  } catch {
+    return false;
+  }
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import { MODE_KEYS, MODES, type Mode } from "@/lib/interview/coach";
+import { ConfirmDelete } from "@/components/ui/ConfirmDelete";
 import type { SessionSummary } from "./history";
 
 const when = (iso: string) => {
@@ -22,6 +23,7 @@ export function ProgressPanel({
   account,
   loading,
   onOpen,
+  onDelete,
 }: {
   sessions: SessionSummary[];
   /** kept on the server for this session */
@@ -30,6 +32,7 @@ export function ProgressPanel({
   account: boolean;
   loading: boolean;
   onOpen: (id: string) => void;
+  onDelete: (id: string) => Promise<boolean>;
 }) {
   if (!sessions.length) return null;
   return (
@@ -86,6 +89,7 @@ export function ProgressPanel({
                 Older session, report not saved
               </span>
             )}
+            <ConfirmDelete compact what="this interview" onConfirm={() => onDelete(s.id)} />
           </li>
         ))}
       </ul>

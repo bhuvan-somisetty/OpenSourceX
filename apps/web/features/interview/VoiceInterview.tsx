@@ -27,6 +27,7 @@ import {
 import { ReportView } from "./ReportView";
 import { ProgressPanel } from "./ProgressPanel";
 import {
+  deleteSession,
   latestTurns,
   loadHistory,
   newSessionId,
@@ -1192,6 +1193,11 @@ export function VoiceInterview({
           account={signedIn}
           loading={historyLoading}
           onOpen={(id) => void openPast(id)}
+          onDelete={async (id) => {
+            const ok = await deleteSession(id);
+            await refreshHistory();
+            return ok;
+          }}
         />
       </div>
     );

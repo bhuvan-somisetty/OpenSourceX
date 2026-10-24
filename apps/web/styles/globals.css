@@ -7954,7 +7954,7 @@ html.iv-morphing::view-transition-new(root) {
 }
 .iv-hist li {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 44px auto;
+  grid-template-columns: minmax(0, 1fr) 44px auto auto;
   align-items: center;
   gap: 14px;
   padding: 10px 12px;
@@ -8011,6 +8011,11 @@ html.iv-morphing::view-transition-new(root) {
   }
   .iv-hist-open,
   .iv-hist-none {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+  .iv-hist li > .cdel,
+  .iv-hist li > .cdel-ask {
     grid-column: 1 / -1;
     justify-self: start;
   }
@@ -11383,5 +11388,563 @@ html.iv-morphing::view-transition-new(root) {
   .iv-wrap .iv-counts button:hover,
   .iv-wrap .iv-hist li:hover {
     transform: none;
+  }
+}
+
+/* delete that asks first (components/ui/ConfirmDelete) */
+.cdel {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 99px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  font: 500 13px var(--font);
+  cursor: pointer;
+  transition:
+    color 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease;
+}
+.cdel:hover,
+.cdel:focus-visible {
+  color: #ff8a8a;
+  border-color: rgb(255 120 120 / 0.45);
+  background: rgb(255 90 90 / 0.08);
+  outline: none;
+}
+.cdel-icon {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  justify-content: center;
+}
+.cdel-ask {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 4px 4px 12px;
+  border-radius: 99px;
+  border: 1px solid rgb(255 120 120 / 0.35);
+  background: rgb(255 90 90 / 0.07);
+  font-size: 13px;
+}
+.cdel-q {
+  color: var(--text);
+}
+.cdel-yes,
+.cdel-no {
+  padding: 5px 12px;
+  border-radius: 99px;
+  font: 600 12.5px var(--font);
+  cursor: pointer;
+}
+.cdel-yes {
+  border: 1px solid transparent;
+  background: #e5484d;
+  color: #fff;
+}
+.cdel-yes:hover {
+  background: #f2555a;
+}
+.cdel-no {
+  border: 1px solid var(--border-strong);
+  background: var(--glass);
+  color: var(--text-muted);
+}
+.cdel-no:hover {
+  color: var(--text);
+}
+.cdel-yes:disabled,
+.cdel-no:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* ==========================================================================
+   Repository analysis: pictures and next steps. Blue, violet and teal from
+   the site palette (no burgundy here), steady light only.
+   ========================================================================== */
+.ra {
+  --ra-a: var(--accent);
+  --ra-b: var(--accent-2);
+  --ra-t: var(--rec);
+  --ra-edge: color-mix(in srgb, var(--accent) 30%, var(--border));
+}
+.ra .card {
+  border-color: var(--ra-edge);
+  background:
+    radial-gradient(
+      120% 90% at 0% 0%,
+      color-mix(in srgb, var(--accent) 7%, transparent),
+      transparent 60%
+    ),
+    var(--glass);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--text) 6%, transparent),
+    0 24px 60px -40px rgb(0 0 0 / 0.8);
+}
+.ra-head .ra-title a {
+  background: linear-gradient(
+    100deg,
+    var(--text),
+    color-mix(in srgb, var(--accent) 70%, var(--text))
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* header actions */
+.ra2-actions {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.ra .btn.primary.ra2-practise {
+  background: linear-gradient(135deg, var(--ra-a), var(--ra-b));
+  color: #07090f;
+  border-color: transparent;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.35),
+    0 14px 36px -14px color-mix(in srgb, var(--ra-a) 85%, transparent);
+}
+
+/* 1. health snapshot */
+.ra2-health {
+  margin: 16px 0;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+}
+.ra2-tile {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid var(--ra-edge, var(--border));
+  background:
+    radial-gradient(
+      120% 120% at 100% 0%,
+      color-mix(in srgb, var(--accent) 12%, transparent),
+      transparent 60%
+    ),
+    var(--surface);
+  overflow: hidden;
+}
+.ra2-tile::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), var(--rec), transparent);
+  opacity: 0.8;
+}
+.ra2-tile-k {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.ra2-tile strong {
+  font: 700 28px/1.1 var(--mono);
+  color: var(--text);
+}
+.ra2-tile-s {
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+.ra2-spark {
+  margin-top: 8px;
+  height: 30px;
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+}
+.ra2-spark i {
+  flex: 1;
+  border-radius: 3px 3px 1px 1px;
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--accent) 45%, transparent),
+    var(--rec)
+  );
+}
+.ra2-spark i[data-zero] {
+  background: color-mix(in srgb, var(--text) 10%, transparent);
+}
+
+/* 2. weekly activity */
+.ra2-chart {
+  margin: 4px 0 16px;
+}
+.ra2-chart-legend {
+  display: flex;
+  gap: 16px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+.ra2-chart-legend i {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  margin-right: 6px;
+  vertical-align: -1px;
+}
+.ra2-chart-legend i.c,
+.ra2-week .c {
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--accent) 55%, transparent),
+    var(--accent)
+  );
+}
+.ra2-chart-legend i.m,
+.ra2-week .m {
+  background: linear-gradient(to top, color-mix(in srgb, var(--rec) 45%, transparent), var(--rec));
+}
+.ra2-bars {
+  margin-top: 10px;
+  height: 120px;
+  display: grid;
+  grid-template-columns: repeat(13, minmax(0, 1fr));
+  gap: 6px;
+  align-items: end;
+  padding: 8px 8px 0;
+  border-radius: 12px;
+  background:
+    repeating-linear-gradient(
+      to top,
+      transparent 0 29px,
+      color-mix(in srgb, var(--text) 6%, transparent) 29px 30px
+    ),
+    color-mix(in srgb, var(--text) 2%, transparent);
+}
+.ra2-week {
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+}
+.ra2-week span {
+  flex: 1;
+  min-height: 2px;
+  border-radius: 3px 3px 0 0;
+}
+.ra2-chart-axis {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 11.5px;
+  color: var(--text-dim);
+}
+
+/* 3. languages */
+.ra .ra-langbar {
+  height: 14px;
+  gap: 2px;
+  padding: 2px;
+  background: color-mix(in srgb, var(--text) 6%, transparent);
+}
+.ra .ra-langbar span {
+  border-radius: 999px;
+}
+.ra .ra-langs li {
+  padding: 4px 10px;
+  border-radius: 99px;
+  border: 1px solid var(--border);
+  background: var(--glass);
+}
+
+/* 4. first issues */
+.ra2-issues {
+  display: grid;
+  gap: 10px;
+}
+.ra2-issue {
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+  transition:
+    border-color 0.18s ease,
+    transform 0.18s ease;
+}
+.ra2-issue:hover {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  transform: translateY(-1px);
+}
+.ra2-issue strong {
+  font-size: 14.5px;
+  line-height: 1.4;
+}
+.ra2-issue-state {
+  justify-self: start;
+  padding: 2px 9px;
+  border-radius: 99px;
+  font: 600 11px var(--font);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.ra2-issue-state.free {
+  color: var(--rec);
+  border: 1px solid color-mix(in srgb, var(--rec) 45%, transparent);
+  background: color-mix(in srgb, var(--rec) 10%, transparent);
+}
+.ra2-issue-state.taken {
+  color: var(--text-dim);
+  border: 1px solid var(--border-strong);
+}
+.ra2-issue.taken {
+  opacity: 0.75;
+}
+.ra2-issue-meta {
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+.ra2-issue-go {
+  font-size: 12.5px;
+  color: var(--accent);
+}
+.ra2-issue-all {
+  justify-self: start;
+  font-size: 13px;
+}
+
+/* 9. folder tree */
+.ra2-tree,
+.ra2-tree ul {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  font: 13.5px var(--mono);
+}
+.ra2-tree ul {
+  margin: 4px 0 4px 10px;
+  padding-left: 12px;
+  border-left: 1px dashed color-mix(in srgb, var(--accent) 30%, var(--border));
+}
+.ra2-tree li {
+  padding: 3px 0;
+}
+.ra2-dir > button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  padding: 2px 6px 2px 2px;
+  border-radius: 6px;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+.ra2-dir > button:hover {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+.ra2-caret {
+  width: 0;
+  height: 0;
+  border-left: 5px solid var(--accent);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  transition: transform 0.15s ease;
+}
+.ra2-dir.open > button .ra2-caret {
+  transform: rotate(90deg);
+}
+.ra2-hint {
+  margin-left: 6px;
+  font: 12px var(--font);
+  color: var(--text-dim);
+}
+.ra2-out {
+  margin-left: 6px;
+  font-size: 12px;
+  color: var(--text-dim);
+  text-decoration: none;
+}
+.ra2-out:hover {
+  color: var(--accent);
+}
+.ra2-file a {
+  color: var(--text-muted);
+  text-decoration: none;
+  padding-left: 13px;
+}
+.ra2-file a:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+.ra2-file.first a {
+  color: var(--rec);
+}
+.ra2-badge {
+  margin-left: 8px;
+  padding: 1px 7px;
+  border-radius: 99px;
+  font: 600 10.5px var(--font);
+  color: var(--rec);
+  border: 1px solid color-mix(in srgb, var(--rec) 40%, transparent);
+}
+.ra2-loading {
+  font: 12.5px var(--font);
+  color: var(--text-dim);
+}
+
+/* 10. loading skeleton, in the shape of the report */
+.ra2-skel {
+  display: grid;
+  gap: 16px;
+}
+.ra2-skel .card,
+.ra2-skel .ra2-tile {
+  display: grid;
+  gap: 10px;
+}
+.ra2-skel .ra2-health {
+  margin: 0;
+}
+.ra2-skel-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+.sk {
+  display: block;
+  height: 14px;
+  border-radius: 8px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--text) 6%, transparent),
+    color-mix(in srgb, var(--accent) 14%, transparent),
+    color-mix(in srgb, var(--text) 6%, transparent)
+  );
+  background-size: 200% 100%;
+  animation: ra2-load 1.6s ease-in-out infinite;
+}
+.sk.h20 {
+  height: 20px;
+}
+.sk.h28 {
+  height: 28px;
+}
+.sk.h40 {
+  height: 40px;
+}
+.sk.h120 {
+  height: 120px;
+}
+.sk.w30 {
+  width: 30%;
+}
+.sk.w40 {
+  width: 40%;
+}
+.sk.w50 {
+  width: 50%;
+}
+.sk.w60 {
+  width: 60%;
+}
+.sk.w80 {
+  width: 80%;
+}
+.ra2-skel-note {
+  margin: 0;
+  text-align: center;
+}
+@keyframes ra2-load {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+
+/* 11. recently analysed */
+.ra2-recent {
+  margin-top: 16px;
+}
+.ra2-recent-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.ra2-recent-head h2 {
+  margin: 0;
+  font-size: 17px;
+}
+.ra2-recent ul {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.ra2-recent li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ra2-recent-open {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    border-color 0.18s ease,
+    transform 0.18s ease;
+}
+.ra2-recent-open:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  transform: translateY(-1px);
+}
+.ra2-recent-open strong {
+  font: 600 14px var(--mono);
+}
+.ra2-recent-open .muted {
+  font-size: 12.5px;
+}
+.ra2-recent-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sk {
+    animation: none;
+  }
+  .ra2-issue:hover,
+  .ra2-recent-open:hover:not(:disabled) {
+    transform: none;
+  }
+}
+@media (max-width: 560px) {
+  .ra2-skel-row {
+    grid-template-columns: repeat(3, 1fr);
   }
 }

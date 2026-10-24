@@ -7,6 +7,16 @@ import { Notice } from "@/components/feedback/Notice";
 import { StatusChip } from "@/components/status/StatusChip";
 import { SaveButton } from "@/features/saved/SaveButton";
 import type { ActivityStatus, RepoAnalysis, Section } from "@/lib/repo-analysis";
+import {
+  ActivityChart,
+  AnalyzeSkeleton,
+  FolderTree,
+  HealthTiles,
+  IssueCards,
+  RecentRepos,
+  RepoActions,
+  rememberRepo,
+} from "./AnalysisExtras";
 
 const EXAMPLES = ["kubernetes/kubernetes", "volcano-sh/volcano", "ControlCore-Project/concore"];
 
@@ -233,7 +243,10 @@ function Analysis({ a, found }: { a: RepoAnalysis; found: AnalyzeResult["inOpenS
             ))}
           </div>
         )}
+        <RepoActions a={a} />
       </div>
+
+      <HealthTiles a={a} />
 
       {steps.length > 0 && (
         <section className="card ra-panel ra-steps" aria-label="How to start contributing">
@@ -319,6 +332,7 @@ function Analysis({ a, found }: { a: RepoAnalysis; found: AnalyzeResult["inOpenS
               <p className="muted" style={{ marginTop: 0 }}>
                 {st?.hint}
               </p>
+              <ActivityChart commits={act.weeklyCommits} merged={act.weeklyMerged} />
               <dl className="kv">
                 <dt>Commits, 90 days</dt>
                 <dd>
@@ -397,20 +411,10 @@ function Analysis({ a, found }: { a: RepoAnalysis; found: AnalyzeResult["inOpenS
               {a.issues.data.recentGoodFirstIssues.length > 0 && (
                 <>
                   <h4 className="ra-sub">Newest good first issues</h4>
-                  <ul className="crit">
-                    {a.issues.data.recentGoodFirstIssues.map((i) => (
-                      <li key={i.url}>
-                        <a href={i.url} {...ext}>
-                          {i.title}
-                        </a>
-                        <span className="muted">
-                          {" "}
-                          · {ago(i.created)} · {i.comments} comments
-                          {i.assigned ? " · assigned" : ""}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
+                  <IssueCards
+                    issues={a.issues.data.recentGoodFirstIssues}
+                    all={a.issues.data.goodFirstIssuesUrl}
+                  />
                 </>
               )}
             </>
@@ -564,23 +568,11 @@ function Analysis({ a, found }: { a: RepoAnalysis; found: AnalyzeResult["inOpenS
         {a.structure.ok && (
           <>
             <p className="muted" style={{ marginTop: 0 }}>
-              Top level of <code>{a.about.defaultBranch}</code>.
+              Top level of <code>{a.about.defaultBranch}</code>. Open a folder to look inside.
               {a.structure.data.readFirst.length > 0 &&
                 ` Read first: ${a.structure.data.readFirst.join(", ")}.`}
             </p>
-            <ul className="ra-tree">
-              {a.structure.data.entries.map((e) => (
-                <li key={e.name} className={e.type}>
-                  <a
-                    href={`${a.url}/${e.type === "dir" ? "tree" : "blob"}/${encodeURIComponent(a.about.defaultBranch)}/${e.name}`}
-                    {...ext}
-                  >
-                    {e.type === "dir" ? `${e.name}/` : e.name}
-                  </a>
-                  {e.hint && <span className="muted"> · {e.hint}</span>}
-                </li>
-              ))}
-            </ul>
+            <FolderTree a={a} />
           </>
         )}
       </Panel>
@@ -598,7 +590,12 @@ export function AnalyzeForm({ initial = "" }: { initial?: string }) {
   const [url, setUrl] = useState(initial);
   const [res, setRes] = useState<AnalyzeResult | null>(null);
   const [pending, start] = useTransition();
-  const run = (value: string) => start(async () => setRes(await analyzeRepository(value)));
+  const run = (value: string) =>
+    start(async () => {
+      const r = await analyzeRepository(value);
+      setRes(r);
+      if (r.state === "repo" && r.analysis) rememberRepo(r.analysis);
+    });
   // "Analyze this repository" links from project pages open with ?repo= and run at once
   const ran = useRef(false);
   useEffect(() => {
@@ -662,17 +659,18 @@ export function AnalyzeForm({ initial = "" }: { initial?: string }) {
         </div>
       </form>
 
+      {!res && !pending && (
+        <RecentRepos
+          disabled={pending}
+          onPick={(slug) => {
+            setUrl(`https://github.com/${slug}`);
+            run(`https://github.com/${slug}`);
+          }}
+        />
+      )}
+
       <div aria-live="polite" aria-busy={pending} style={{ marginTop: 16 }}>
-        {pending && (
-          <div className="card" data-testid="analyze-loading">
-            <p className="muted" style={{ marginTop: 0 }}>
-              Reading the repository from GitHub…
-            </p>
-            <div className="skel" style={{ width: "60%" }} />
-            <div className="skel" style={{ width: "85%" }} />
-            <div className="skel" style={{ width: "40%" }} />
-          </div>
-        )}
+        {pending && <AnalyzeSkeleton />}
         {!pending && res && res.state !== "repo" && (
           <Notice kind="err" testId="analyze-invalid">
             {res.message}

@@ -198,6 +198,10 @@ export interface RepoAnalysis {
     commitsCapped: boolean;
     authors90d: number;
     weeksWithCommits: number;
+    /** commits per week for the last 13 weeks, oldest first (from up to 100 recent commits) */
+    weeklyCommits: number[];
+    /** pull requests merged per week for the last 13 weeks, oldest first */
+    weeklyMerged: number[];
     lastCommit: string | null;
     lastCommitUrl: string | null;
     mergedPulls90d: number;
@@ -330,6 +334,18 @@ export async function analyzeGithubRepository(owner: string, repo: string): Prom
             .filter((d): d is string => !!d)
             .map((d) => Math.floor((Date.now() - Date.parse(d)) / (7 * DAY))),
         );
+        // per-week counts for the last 13 weeks, oldest first; nothing extra is fetched
+        const perWeek = (dates: (string | null)[]) => {
+          const out = Array.from({ length: 13 }, () => 0);
+          for (const d of dates) {
+            if (!d) continue;
+            const w = Math.floor((Date.now() - Date.parse(d)) / (7 * DAY));
+            if (w >= 0 && w < 13) out[12 - w]!++;
+          }
+          return out;
+        };
+        const weeklyCommits = perWeek(commits.map(dateOf));
+        const weeklyMerged = perWeek(merged.map((p) => p.merged_at));
         let lastCommit = commits[0] ? dateOf(commits[0]) : null;
         let lastCommitUrl = commits[0]?.html_url ?? null;
         if (!lastCommit) {
@@ -359,6 +375,8 @@ export async function analyzeGithubRepository(owner: string, repo: string): Prom
           commitsCapped: false,
           authors90d: new Set(commits.map((c) => c.author?.login).filter(Boolean)).size,
           weeksWithCommits: Math.min(weeks.size, 13),
+          weeklyCommits,
+          weeklyMerged,
           lastCommit,
           lastCommitUrl,
           mergedPulls90d: merged.length,
@@ -562,4 +580,40 @@ export async function analyzeGithubRepository(owner: string, repo: string): Prom
 
 export function isNotFound(e: unknown) {
   return e instanceof NotFoundError;
+}
+
+export interface RepoDirEntry {
+  name: string;
+  path: string;
+  type: "dir" | "file";
+}
+
+const dirCache = new Map<string, { at: number; data: RepoDirEntry[] }>();
+
+/**
+ * One folder of a repository, read when the visitor opens it in the structure tree, so the
+ * analysis itself spends no requests on folders nobody opens. Cached like the analysis.
+ */
+export async function listRepoDirectory(
+  owner: string,
+  repo: string,
+  ref: string,
+  dir: string,
+): Promise<RepoDirEntry[]> {
+  const key = `${owner}/${repo}@${ref}:${dir}`.toLowerCase();
+  const hit = dirCache.get(key);
+  if (hit && Date.now() - hit.at < CACHE_MS) return hit.data;
+  const slug = `${encodeURIComponent(owner)}/${encodeURIComponent(repo)}`;
+  const path = dir.split("/").map(encodeURIComponent).join("/");
+  const { data } = await gh<{ name: string; path: string; type: string }[]>(
+    `/repos/${slug}/contents/${path}?ref=${encodeURIComponent(ref)}`,
+  );
+  const list = (Array.isArray(data) ? data : [])
+    .filter((e) => e.type === "dir" || e.type === "file")
+    .map((e) => ({ name: e.name, path: e.path, type: e.type as "dir" | "file" }))
+    .sort((a, b) => (a.type === b.type ? a.name.localeCompare(b.name) : a.type === "dir" ? -1 : 1))
+    .slice(0, 200);
+  if (dirCache.size > 500) dirCache.clear();
+  dirCache.set(key, { at: Date.now(), data: list });
+  return list;
 }

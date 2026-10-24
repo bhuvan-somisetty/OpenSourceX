@@ -11,7 +11,9 @@ import {
   analyzeGithubRepository,
   GithubLimitError,
   isNotFound,
+  listRepoDirectory,
   type RepoAnalysis,
+  type RepoDirEntry,
 } from "@/lib/repo-analysis";
 
 /** What OpenSourceX itself records about the repository's organization. */
@@ -170,4 +172,21 @@ export async function analyzeRepository(input: string): Promise<AnalyzeResult> {
         : undefined,
     recorded,
   };
+}
+
+/** One folder of a repository for the structure tree; empty when it cannot be read. */
+export async function listDirectory(
+  owner: string,
+  repo: string,
+  ref: string,
+  dir: string,
+): Promise<RepoDirEntry[]> {
+  const name = /^[A-Za-z0-9_.-]{1,100}$/;
+  if (!name.test(owner) || !name.test(repo) || !/^[\w./-]{1,200}$/.test(ref)) return [];
+  if (!/^[^\0]{1,400}$/.test(dir) || dir.split("/").some((p) => p === ".." || p === "")) return [];
+  try {
+    return await listRepoDirectory(owner, repo, ref, dir);
+  } catch {
+    return [];
+  }
 }
