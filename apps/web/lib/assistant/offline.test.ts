@@ -83,7 +83,7 @@ describe("offline answers", () => {
       rank: 1,
       matched: 2,
     };
-    const a = answerOffline("What is the timeline for 2026 Term 1?", k, { guides: [guide] });
+    const a = answerOffline("What is the timeline for 2026 Term 1?", k, { previous: [], guides: [guide] });
     expect(a).toContain("2026 Term 1");
     expect(a).not.toContain("Proposal timeline template");
   });
