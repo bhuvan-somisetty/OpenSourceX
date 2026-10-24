@@ -14,9 +14,9 @@ import { resolveSavedOrg } from "@/lib/saved-orgs";
 import { HomeEffects } from "@/features/home/HomeEffects";
 import { OrbitCore } from "@/features/home/OrbitCore";
 import { deadlinesChecked, nextStep, upcomingDeadlines } from "@/lib/home-insights";
-import { formatInfoDate } from "@/lib/program-info";
 import { lfxAnnouncement } from "@/lib/lfx-announce";
 import { NextStepBody } from "@/features/home/NextStepBody";
+import { ComingUp } from "@/features/home/ComingUp";
 import { LfxTermNotice } from "@/features/lfx/LfxTermNotice";
 
 export const metadata: Metadata = { title: "Home" };
@@ -164,7 +164,7 @@ export default async function AppHome() {
   const k = await knowledge().catch(() => null);
   const [step, deadlines, checked, announce] = await Promise.all([
     nextStep(res.ok ? res.data.saved.map((r) => r.entityId) : []),
-    upcomingDeadlines(),
+    upcomingDeadlines(new Date(), 6),
     deadlinesChecked(),
     lfxAnnouncement(),
   ]);
@@ -323,34 +323,7 @@ export default async function AppHome() {
           </div>
 
           <div className="home-deadlines glow-blue" data-reveal>
-            <div className="home-next-eyebrow">Coming up</div>
-            {deadlines.length ? (
-              <ul className="home-deadline-list">
-                {deadlines.map((d) => (
-                  <li key={`${d.program.slug}-${d.date}-${d.label}`}>
-                    <Link href={`/programs/${d.program.slug}`} className="home-deadline">
-                      <span className={`home-deadline-days${d.days <= 14 ? " soon" : ""}`}>
-                        <strong>{d.days === 0 ? "Today" : d.days}</strong>
-                        {d.days > 0 && <small>{d.days === 1 ? "day" : "days"}</small>}
-                      </span>
-                      <span className="home-deadline-body">
-                        <strong>{d.label}</strong>
-                        <span className="muted">
-                          {d.program.short} · {formatInfoDate(d.date)}
-                        </span>
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="home-next-text">No dated milestones are coming up right now.</p>
-            )}
-            {checked && (
-              <p className="home-deadline-note">
-                From each program&apos;s official timeline, checked {formatInfoDate(checked)}.
-              </p>
-            )}
+            <ComingUp deadlines={deadlines} announce={announce} checked={checked} />
           </div>
         </section>
 
