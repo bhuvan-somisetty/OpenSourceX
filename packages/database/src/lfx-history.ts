@@ -37,8 +37,9 @@ export interface LfxHistory {
   source: { publisher: string; url: string; fetchedAt: string | null };
 }
 
-export async function loadLfxHistory(db: Db): Promise<LfxHistory> {
-  const terms = (
+/** Every recorded LFX term with its official timeline, oldest first (no programs). */
+export async function loadLfxTerms(db: Db): Promise<HistoryTerm[]> {
+  return (
     await db.query(`
       SELECT pt.year, pt.term_code, d.label, d.source_url, d.timeline,
              to_char(COALESCE(d.starts_on, pt.starts_on), 'YYYY-MM-DD') AS starts_on,
@@ -56,6 +57,47 @@ export async function loadLfxHistory(db: Db): Promise<LfxHistory> {
     endsOn: r.ends_on,
     timeline: r.timeline ?? [],
   }));
+}
+
+/**
+ * CNCF projects that ran the most LFX mentorship projects over the last `lastTerms` recorded
+ * terms that have projects, busiest first: more past projects usually means more slots.
+ */
+export async function lfxBusiestProjects(
+  db: Db,
+  lastTerms = 5,
+  limit = 8,
+): Promise<{ name: string; slug: string | null; projects: number; terms: string[] }[]> {
+  const rows = (
+    await db.query(
+      `WITH recent AS (
+         SELECT pt.id, pt.year || '-' || pt.term_code AS key
+         FROM program_term pt JOIN program p ON p.id = pt.program_id
+         WHERE p.slug = 'lfx-mentorship'
+           AND EXISTS (SELECT 1 FROM mentorship_project_term t WHERE t.program_term_id = pt.id)
+         ORDER BY pt.year DESC, pt.term_code DESC LIMIT $1)
+       SELECT m.cncf_project_name AS name, max(m.cncf_project_slug) AS slug,
+              count(DISTINCT m.id)::int AS projects,
+              array_agg(DISTINCT r.key ORDER BY r.key) AS terms
+       FROM mentorship_project m
+       JOIN mentorship_project_term t ON t.mentorship_project_id = m.id
+       JOIN recent r ON r.id = t.program_term_id
+       WHERE m.cncf_project_name IS NOT NULL
+       GROUP BY m.cncf_project_name
+       ORDER BY projects DESC, name LIMIT $2`,
+      [lastTerms, limit],
+    )
+  ).rows;
+  return rows.map((r) => ({
+    name: r.name,
+    slug: r.slug ?? null,
+    projects: Number(r.projects),
+    terms: r.terms ?? [],
+  }));
+}
+
+export async function loadLfxHistory(db: Db): Promise<LfxHistory> {
+  const terms = await loadLfxTerms(db);
   const rows = (
     await db.query(`
       SELECT m.id, m.title, m.cncf_project_name, m.cncf_project_slug, m.technologies, m.summary, m.upstream_key, m.raw_repo_link,

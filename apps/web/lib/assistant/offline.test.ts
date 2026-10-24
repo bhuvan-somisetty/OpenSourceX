@@ -43,6 +43,24 @@ const LFX: LfxHistory = {
       endsOn: "2026-05-29",
       timeline: [],
     },
+    {
+      key: "2027-T1",
+      year: 2027,
+      termCode: "T1",
+      label: "2027 Term 1 (Mar-May)",
+      sourceUrl: null,
+      startsOn: "2027-03-08",
+      endsOn: "2027-05-28",
+      timeline: [
+        { activity: "Project Proposals Open", dates: "Wed, Jan 6 - Wed, Jan 27, 18:00 UTC" },
+        {
+          activity: "Mentee Applications Open",
+          dates: "Wed, Feb 3, 00:00 UTC - Tue, Feb 16, 23:59 UTC",
+        },
+        { activity: "Selection Notifications", dates: "Wed, Mar 3 - Fri, Mar 5" },
+        { activity: "Mentorship Program Begins", dates: "Mon, Mar 8" },
+      ],
+    },
   ],
   programs: [
     prog("Volcano", "volcano", ["2025-T3"], ["Go"]),
@@ -318,5 +336,15 @@ describe("repositories that repeat inside an organization", () => {
     expect(a).toMatch(
       /\| \[volcano-sh\/volcano\]\(https:\/\/github.com\/volcano-sh\/volcano\) \| 2 \|/,
     );
+  });
+});
+
+describe("2027 Term 1 dates", () => {
+  it("answers when applications open and the full timeline, from the official table", () => {
+    const a = answerOffline("When do LFX 2027 Term 1 applications open?", k);
+    expect(a).toContain("Feb 3");
+    const t = answerOffline("What is the timeline for 2027 Term 1?", k);
+    expect(t).toContain("Mentee Applications Open");
+    expect(t).toContain("Mon, Mar 8");
   });
 });

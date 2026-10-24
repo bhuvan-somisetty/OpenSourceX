@@ -437,3 +437,19 @@ test("compare: two repositories side by side, with a clear error for a bad link"
   await expect(page.getByTestId("compare-error").first()).toContainText("github.com");
   await expect(page.getByTestId("compare-table")).toHaveCount(0);
 });
+
+test("LFX: the next term's notice opens the official timetable", async ({ page }) => {
+  await page.goto("/programs/lfx");
+  const notice = page.getByTestId("lfx-term-notice");
+  await expect(notice).toContainText(/\d{4} Term \d dates are out/);
+  await notice.click();
+  const card = page.getByTestId("lfx-term-card");
+  await expect(card).toBeVisible();
+  await expect(card).toContainText("Mentee Applications Open");
+  await expect(card.getByRole("link", { name: /Official timeline/ })).toHaveAttribute(
+    "href",
+    /github\.com\/cncf\/mentoring\/blob\/main\//,
+  );
+  await page.keyboard.press("Escape");
+  await expect(card).toHaveCount(0);
+});

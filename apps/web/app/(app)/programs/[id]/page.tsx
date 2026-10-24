@@ -20,6 +20,8 @@ import { programInfo } from "@/lib/program-info";
 import { ProgramInfoBox } from "@/features/programs/ProgramInfoBox";
 import { FoundationSwitch } from "@/features/lfx/FoundationSwitch";
 import { lfxFoundations } from "@/lib/lfx-foundations";
+import { lfxAnnouncement } from "@/lib/lfx-announce";
+import { LfxTermNotice } from "@/features/lfx/LfxTermNotice";
 
 export const dynamic = "force-dynamic";
 
@@ -49,6 +51,12 @@ export default async function ProgramDetail({
 
   const info = await programInfo(def.slug);
   const foundationsFile = isLfx ? await lfxFoundations() : null;
+  const announce = isLfx ? await lfxAnnouncement() : null;
+  const notice = announce && (
+    <div className="lfxn-wrap">
+      <LfxTermNotice data={announce} />
+    </div>
+  );
   const foundation = foundationsFile?.foundations.find((f) => f.key === first(sp.f)) ?? null;
   const switchItems = foundationsFile
     ? foundationsFile.foundations.map((f) => ({
@@ -89,6 +97,7 @@ export default async function ProgramDetail({
           </div>
           <FoundationSwitch items={switchItems} current={foundation.key} />
         </section>
+        {notice}
 
         {info && (
           <div style={{ marginTop: 24 }}>
@@ -359,6 +368,7 @@ export default async function ProgramDetail({
           </>
         )}
       </section>
+      {notice}
 
       {info && (
         <div style={{ marginTop: 24, marginBottom: 20 }}>
