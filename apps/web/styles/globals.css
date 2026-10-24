@@ -13663,3 +13663,7 @@ a.lfxm-busy-item:hover {
     display: none;
   }
 }
+.lfxn-home {
+  max-width: none;
+  margin-top: 8px;
+}

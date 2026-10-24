@@ -15,6 +15,8 @@ import { HomeEffects } from "@/features/home/HomeEffects";
 import { OrbitCore } from "@/features/home/OrbitCore";
 import { deadlinesChecked, nextStep, upcomingDeadlines } from "@/lib/home-insights";
 import { formatInfoDate } from "@/lib/program-info";
+import { lfxAnnouncement } from "@/lib/lfx-announce";
+import { LfxTermNotice } from "@/features/lfx/LfxTermNotice";
 
 export const metadata: Metadata = { title: "Home" };
 export const dynamic = "force-dynamic";
@@ -159,10 +161,11 @@ export default async function AppHome() {
     cards: (await listProjects(d)).items,
   }));
   const k = await knowledge().catch(() => null);
-  const [step, deadlines, checked] = await Promise.all([
+  const [step, deadlines, checked, announce] = await Promise.all([
     nextStep(res.ok ? res.data.saved.map((r) => r.entityId) : []),
     upcomingDeadlines(),
     deadlinesChecked(),
+    lfxAnnouncement(),
   ]);
 
   // the newest saved organizations from any program (`org:<program>/<slug>`)
@@ -274,6 +277,12 @@ export default async function AppHome() {
             </div>
           </nav>
         </section>
+
+        {announce && (
+          <div className="lfxn-wrap lfxn-home">
+            <LfxTermNotice data={announce} />
+          </div>
+        )}
 
         <section className="block home-now" aria-label="Your next step and upcoming deadlines">
           <div className="home-next glow-violet" data-reveal>
