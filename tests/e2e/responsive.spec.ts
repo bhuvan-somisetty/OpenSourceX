@@ -19,7 +19,7 @@ const measure = () => {
   const d = document.documentElement;
   const clipped: string[] = [];
   document.querySelectorAll("main *").forEach((e) => {
-    if (e.closest(".scroll") || e.closest(".scroll-x") || e.closest(".tabs") || e.closest(".beams"))
+    if (e.closest(".scroll") || e.closest(".scroll-x") || e.closest(".tabs") || e.closest(".beams") || e.closest(".home-orbit"))
       return;
     const cs = getComputedStyle(e);
     if (cs.display === "inline" || cs.display === "none") return;

@@ -13,6 +13,7 @@ import {
   FolderTree,
   HealthTiles,
   IssueCards,
+  ProjectExplain,
   RecentRepos,
   RepoActions,
   rememberRepo,
@@ -245,6 +246,8 @@ function Analysis({ a, found }: { a: RepoAnalysis; found: AnalyzeResult["inOpenS
         )}
         <RepoActions a={a} />
       </div>
+
+      <ProjectExplain slug={a.repository} />
 
       <HealthTiles a={a} />
 
@@ -608,54 +611,64 @@ export function AnalyzeForm({ initial = "" }: { initial?: string }) {
   return (
     <div>
       <form
-        className="card"
+        className="ra-search"
         onSubmit={(e) => {
           e.preventDefault();
           run(url);
         }}
         aria-label="Analyze a repository"
       >
-        <div className="field">
-          <label htmlFor="repo-url">GitHub repository URL</label>
+        <label htmlFor="repo-url" className="ra-search-label">
+          GitHub repository URL
+        </label>
+        <div className="ra-search-bar">
+          <svg
+            className="ra-search-gh"
+            viewBox="0 0 16 16"
+            width="22"
+            height="22"
+            aria-hidden="true"
+          >
+            <path
+              fill="currentColor"
+              d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.22 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.19c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"
+            />
+          </svg>
           <input
             id="repo-url"
             type="text"
             name="url"
             required
-            placeholder="https://github.com/owner/repo"
+            placeholder="github.com/owner/repo"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             aria-describedby="repo-hint"
             autoComplete="off"
             spellCheck={false}
           />
-          <span id="repo-hint" className="hint">
-            A github.com repository URL, or just owner/repo. Issue and pull request links work too.
-          </span>
-        </div>
-        <div className="actions">
-          <button className="btn primary" type="submit" disabled={pending}>
+          <button className="ra-search-go" type="submit" disabled={pending}>
             {pending ? "Analyzing…" : "Analyze repository"}
           </button>
-          <span className="hint">
-            Try:{" "}
-            {EXAMPLES.map((x, i) => (
-              <span key={x}>
-                {i > 0 && " · "}
-                <button
-                  type="button"
-                  className="linklike"
-                  onClick={() => {
-                    setUrl(`https://github.com/${x}`);
-                    run(`https://github.com/${x}`);
-                  }}
-                  disabled={pending}
-                >
-                  {x}
-                </button>
-              </span>
-            ))}
-          </span>
+        </div>
+        <p id="repo-hint" className="ra-search-hint">
+          A github.com repository URL, or just owner/repo. Issue and pull request links work too.
+        </p>
+        <div className="ra-try">
+          <span>Try</span>
+          {EXAMPLES.map((x) => (
+            <button
+              key={x}
+              type="button"
+              className="ra-try-chip"
+              onClick={() => {
+                setUrl(`https://github.com/${x}`);
+                run(`https://github.com/${x}`);
+              }}
+              disabled={pending}
+            >
+              {x}
+            </button>
+          ))}
         </div>
       </form>
 

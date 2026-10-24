@@ -48,8 +48,8 @@ test("project-1280 and saved-with-items", async ({ page, isMobile, request }) =>
   );
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.addInitScript(() => localStorage.setItem("osx-theme", "dark"));
-  await page.goto("/projects?program=lfx");
-  await page.getByTestId("project-row").first().getByTestId("save-button").click();
+  await page.goto(`/projects/${ids.find((i) => i.startsWith("mp-"))}`);
+  await page.getByTestId("project-hero").getByTestId("save-button").first().click();
   await page.waitForTimeout(600);
   await page.goto("/saved");
   await page.waitForLoadState("networkidle");

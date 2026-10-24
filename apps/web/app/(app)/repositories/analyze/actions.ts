@@ -2,6 +2,8 @@
 
 import { listProjects, savedKeys, type ProjectCard } from "@opensourcex/database";
 import { getSession } from "@/lib/auth";
+import { interviewAiAvailable, spendAi } from "@/lib/interview/ai";
+import { explainFromData, explainWithAi, type RepoExplanation } from "@/lib/repo-explain";
 import { parseGithubUrl } from "@opensourcex/entity-resolution";
 import { db } from "@/lib/data";
 import { knowledge } from "@/lib/assistant/engine";
@@ -12,6 +14,7 @@ import {
   GithubLimitError,
   isNotFound,
   listRepoDirectory,
+  readmeText,
   type RepoAnalysis,
   type RepoDirEntry,
 } from "@/lib/repo-analysis";
@@ -189,4 +192,39 @@ export async function listDirectory(
   } catch {
     return [];
   }
+}
+
+const explained = new Map<string, { at: number; data: RepoExplanation }>();
+const EXPLAIN_MS = 24 * 60 * 60_000;
+
+/**
+ * "What is this project, why use it, what does it run on, and what do I need to know?" Written
+ * by the AI from the README and GitHub facts for a signed-in session while free AI calls last,
+ * otherwise put together from GitHub's data. AI explanations are kept for a day per repository.
+ */
+export async function explainRepository(slug: string): Promise<RepoExplanation | null> {
+  const m = slug.match(/^([A-Za-z0-9_.-]{1,100})\/([A-Za-z0-9_.-]{1,100})$/);
+  if (!m) return null;
+  const [, owner, repo] = m as unknown as [string, string, string];
+  const key = slug.toLowerCase();
+  const hit = explained.get(key);
+  if (hit && Date.now() - hit.at < EXPLAIN_MS) return hit.data;
+  let analysis: RepoAnalysis;
+  try {
+    analysis = await analyzeGithubRepository(owner, repo);
+  } catch {
+    return null;
+  }
+  const session = await getSession();
+  if (session && interviewAiAvailable() && spendAi(`explain:${session.userId}`)) {
+    try {
+      const data = await explainWithAi(analysis, await readmeText(owner, repo));
+      if (explained.size > 300) explained.clear();
+      explained.set(key, { at: Date.now(), data });
+      return data;
+    } catch {
+      /* the data-only explanation below */
+    }
+  }
+  return explainFromData(analysis);
 }

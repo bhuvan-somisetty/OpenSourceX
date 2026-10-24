@@ -23,11 +23,11 @@ export default async function Analyze({
   const sp = await searchParams;
   const initial = (Array.isArray(sp.repo) ? sp.repo[0] : sp.repo)?.slice(0, 300) ?? "";
   return (
-    <div className="narrow">
-      <section className="page-hero">
+    <div className="narrow ra-page">
+      <section className="page-hero ra-hero">
         <div className="eyebrow">Repositories</div>
         <h1 className="page" style={{ marginTop: 14 }}>
-          Understand any open source repository.
+          Understand any open source <span className="ra-grad">repository.</span>
         </h1>
         <p className="sub">
           Paste a GitHub repository URL. OpenSourceX will show what the repository is, how active it

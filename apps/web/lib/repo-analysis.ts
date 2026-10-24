@@ -617,3 +617,29 @@ export async function listRepoDirectory(
   dirCache.set(key, { at: Date.now(), data: list });
   return list;
 }
+
+/**
+ * The repository's README as plain text (badges, images, HTML and code blocks dropped), first
+ * part only: enough to say what the project is. Null when there is none.
+ */
+export async function readmeText(owner: string, repo: string, max = 9000): Promise<string | null> {
+  const slug = `${encodeURIComponent(owner)}/${encodeURIComponent(repo)}`;
+  try {
+    const { data } = await gh<{ content?: string; encoding?: string }>(`/repos/${slug}/readme`);
+    if (!data.content || data.encoding !== "base64") return null;
+    const text = Buffer.from(data.content, "base64")
+      .toString("utf8")
+      .replace(/```[\s\S]*?```/g, " ")
+      .replace(/<!--[\s\S]*?-->/g, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/!\[[^\]]*\]\([^)]*\)/g, " ")
+      .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+      .replace(EMAIL, "[email removed]")
+      .replace(/[ \t]+/g, " ")
+      .replace(/\n{3,}/g, "\n\n")
+      .trim();
+    return text ? text.slice(0, max) : null;
+  } catch {
+    return null;
+  }
+}

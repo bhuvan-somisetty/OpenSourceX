@@ -1429,8 +1429,11 @@ ${orgCard(org, ["repo", "projects"], q)}`,
     PROGRAM_DETAIL.test(q) ||
     (!!program && (FACT_TOPICS.some(([re]) => re.test(q)) || !!countryIn(program, q)));
 
+  // a named LFX term ("timeline for 2026 Term 3") is the term's own schedule, not a guide
+  const lfxTermQ = !!k.lfx && /\b20[12]\d\b[^.?!]*\bterm\s*[123]\b|\bt[123]\b/.test(q);
+
   // 3. how-to and knowledge questions (prerequisites, proposals, cover letters, Git, licences...)
-  if (GUIDE_INTENT.test(q) && !(program && (dataQ || programQ))) {
+  if (GUIDE_INTENT.test(q) && !(program && (dataQ || programQ)) && !lfxTermQ) {
     const g = guideAnswer(q, ctx.guides ?? []);
     if (g) return withNote(g);
   }

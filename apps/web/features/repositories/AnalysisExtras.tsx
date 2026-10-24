@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { listDirectory } from "@/app/(app)/repositories/analyze/actions";
+import { explainRepository, listDirectory } from "@/app/(app)/repositories/analyze/actions";
 import { ConfirmDelete } from "@/components/ui/ConfirmDelete";
 import type { RepoAnalysis, RepoDirEntry } from "@/lib/repo-analysis";
+import type { RepoExplanation } from "@/lib/repo-explain";
 
 /**
  * The parts of the repository analysis that turn numbers into pictures and next steps: a health
@@ -421,6 +422,163 @@ export function RecentRepos({
         ))}
       </ul>
       <p className="hint">Kept only in this browser.</p>
+    </section>
+  );
+}
+
+/* ------------------------------ understand the project ------------------------------ */
+
+const ICON = {
+  what: "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm0 5v.01M11 11h1v6h1",
+  why: "M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9L12 3Z",
+  runs: "M4 6h16v10H4zM8 20h8M12 16v4",
+  stack: "M12 3 3 8l9 5 9-5-9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5",
+  skills: "M4 19h16M6 15l4-4 3 3 5-6",
+  start: "M5 12h14M13 6l6 6-6 6",
+};
+
+function Glyph({ d }: { d: string }) {
+  return (
+    <span className="ux-glyph" aria-hidden="true">
+      <svg
+        viewBox="0 0 24 24"
+        width="16"
+        height="16"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d={d} />
+      </svg>
+    </span>
+  );
+}
+
+/** What the project is, why people use it, where it runs, its stack and the skills it needs. */
+export function ProjectExplain({ slug }: { slug: string }) {
+  const [x, setX] = useState<RepoExplanation | null | undefined>(undefined);
+  useEffect(() => {
+    let live = true;
+    setX(undefined);
+    void explainRepository(slug)
+      .then((r) => live && setX(r))
+      .catch(() => live && setX(null));
+    return () => {
+      live = false;
+    };
+  }, [slug]);
+
+  if (x === null) return null;
+  if (x === undefined)
+    return (
+      <section className="ux ux-loading" aria-label="Understanding this project" aria-busy="true">
+        <div className="ux-head">
+          <h3>Understand this project</h3>
+          <span className="ux-by">Reading the README…</span>
+        </div>
+        <div className="ux-grid">
+          <div className="ux-card ux-what">
+            <span className="sk w30" />
+            <span className="sk w80" />
+            <span className="sk w60" />
+          </div>
+          {Array.from({ length: 4 }, (_, i) => (
+            <div key={i} className="ux-card">
+              <span className="sk w40" />
+              <span className="sk w80" />
+              <span className="sk w60" />
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+
+  return (
+    <section className="ux" aria-labelledby="ux-h">
+      <div className="ux-head">
+        <h3 id="ux-h">Understand this project</h3>
+        <span className={`ux-by ${x.by}`}>
+          {x.by === "ai"
+            ? "Written by AI from the README and GitHub data"
+            : "Put together from GitHub data"}
+        </span>
+      </div>
+      <div className="ux-grid">
+        <div className="ux-card ux-what">
+          <h4>
+            <Glyph d={ICON.what} /> What it is
+          </h4>
+          <p>{x.what}</p>
+        </div>
+        {x.why.length > 0 && (
+          <div className="ux-card">
+            <h4>
+              <Glyph d={ICON.why} /> Why people use it
+            </h4>
+            <ul className="ux-list">
+              {x.why.map((w, i) => (
+                <li key={i}>{w}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {x.runsOn.length > 0 && (
+          <div className="ux-card">
+            <h4>
+              <Glyph d={ICON.runs} /> Where it runs
+            </h4>
+            <div className="ux-chips">
+              {x.runsOn.map((r, i) => (
+                <span key={i}>{r}</span>
+              ))}
+            </div>
+          </div>
+        )}
+        {x.stack.length > 0 && (
+          <div className="ux-card ux-wide">
+            <h4>
+              <Glyph d={ICON.stack} /> Tech stack
+            </h4>
+            <div className="ux-stack">
+              {x.stack.map((s, i) => (
+                <div key={i}>
+                  <strong>{s.name}</strong>
+                  {s.role && <span>{s.role}</span>}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        {x.skills.length > 0 && (
+          <div className="ux-card">
+            <h4>
+              <Glyph d={ICON.skills} /> Skills you need
+            </h4>
+            <ol className="ux-skills">
+              {x.skills.map((s, i) => (
+                <li key={i}>
+                  <strong>{s.name}</strong>
+                  {s.why && <span>{s.why}</span>}
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
+        {x.startWith.length > 0 && (
+          <div className="ux-card">
+            <h4>
+              <Glyph d={ICON.start} /> Start here
+            </h4>
+            <ul className="ux-list ux-start">
+              {x.startWith.map((s, i) => (
+                <li key={i}>{s}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
     </section>
   );
 }

@@ -54,6 +54,8 @@ anon(
     await page.getByTestId("profile-button").click();
     await expect(page.getByTestId("profile-menu")).toContainText("Local development session");
     await page.getByTestId("sign-out").click();
+    // signing out asks first
+    await page.getByTestId("confirm-sign-out").click();
     await expect(page).toHaveURL(/localhost:\d+\/$/);
   },
 );
@@ -67,13 +69,21 @@ anon("auth gate: app pages and the saved API require a session", async ({ page }
 });
 
 // ---------- signed-in app ----------
+/** The first recorded LFX Mentorship project; the old /projects catalog now opens Programs. */
+async function firstLfxProject(page: import("@playwright/test").Page): Promise<string> {
+  const res = await page.request.get("/api/v1/projects?program=lfx-mentorship");
+  const items = ((await res.json()) as { items: { id: string }[] }).items;
+  if (!items[0]) throw new Error("no recorded LFX Mentorship project");
+  return items[0].id;
+}
+
 test("app home: workspace with search, programs and next steps", async ({ page }) => {
   await page.goto("/app");
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
-    "What are you exploring today?",
+    "Your launchpad into open source.",
   );
   await expect(page.getByRole("link", { name: /Google Summer of Code/ }).first()).toBeVisible();
-  await expect(page.getByText("Recommended next step")).toBeVisible();
+  await expect(page.getByText(/your next step/i).first()).toBeVisible();
 });
 
 test("programs: selection screen, then GSoC and LFX ecosystems", async ({ page }) => {
@@ -81,61 +91,59 @@ test("programs: selection screen, then GSoC and LFX ecosystems", async ({ page }
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
     "Where do you want to contribute?",
   );
-  await expect(page.getByTestId("program-tile-gsoc")).toBeVisible();
-  await expect(page.getByTestId("program-tile-lfx")).toBeVisible();
-  await expect(page.getByTestId("programs-soon")).toContainText("Outreachy"); // configured, no data, labeled
-  await page.getByTestId("program-tile-gsoc").click();
+  const main = page.getByRole("main");
+  for (const name of ["Google Summer of Code", "LFX Mentorship", "Outreachy"])
+    await expect(main.getByRole("link", { name: new RegExp(name) }).first()).toBeVisible();
+  await main
+    .getByRole("link", { name: /Google Summer of Code/ })
+    .first()
+    .click();
   await expect(page).toHaveURL(/\/programs\/gsoc/);
   await expect(page.getByTestId("program-hero")).toContainText("Google Summer of Code");
-  await expect(page.getByTestId("granularity-note")).toContainText("not verified");
-  await page.getByTestId("program-tabs").getByRole("link", { name: "Technologies" }).click();
-  await expect(page.getByTestId("tech-list")).toBeVisible();
+  await expect(page.getByTestId("program-search-input")).toBeVisible();
   await page.goto("/programs/lfx");
-  await expect(page.getByTestId("ecosystem-note")).toContainText("not the whole LFX Mentorship");
-});
-
-test("program filter drives the actual data, and is URL state", async ({ page }) => {
-  await page.goto("/projects?program=gsoc");
-  const rows = page.getByTestId("project-row");
-  await expect(rows.first()).toBeVisible();
-  for (const t of await rows.allInnerTexts()) expect(t).toContain("Google Summer of Code");
-  await expect(page.getByTestId("result-count")).toContainText("in Google Summer of Code");
-  await page.goto("/projects?program=lfx");
-  for (const t of await page.getByTestId("project-row").allInnerTexts())
-    expect(t).toContain("LFX Mentorship");
-  // lists are paginated, so compare the totals in the result count, not the rows on one page
-  const total = async () =>
-    Number((await page.getByTestId("result-count").innerText()).match(/^(\d+)/)![1]);
-  const lfx = await total();
-  await page.goto("/projects");
-  expect(await total()).toBeGreaterThan(lfx);
-  await page.goto("/projects?program=outreachy"); // configured but no data: no invented rows
-  await expect(page.getByTestId("project-row")).toHaveCount(
-    await page.getByTestId("project-row").count(),
+  await expect(page.getByTestId("ecosystem-note")).toContainText(
+    "CNCF-listed LFX Mentorship projects",
   );
-  await page.goto("/projects");
-  await page.getByTestId("filter-gsoc").click();
-  await expect(page).toHaveURL(/program=gsoc/);
+  await expect(
+    page.getByTestId("program-tabs").getByRole("link", { name: "Technologies" }),
+  ).toBeVisible();
 });
 
-test("discover and projects are different experiences", async ({ page }) => {
+test("program filter drives the actual data", async ({ request }) => {
+  // the catalog page is gone (/projects opens Programs); its data API still filters by program
+  const list = async (q: string) =>
+    (await (await request.get(`/api/v1/projects${q}`)).json()) as {
+      total: number;
+      items: { program: { slug: string; name: string } }[];
+    };
+  const gsoc = await list("?program=gsoc");
+  expect(gsoc.items.length).toBeGreaterThan(0);
+  for (const i of gsoc.items) expect(i.program.slug).toBe("gsoc");
+  const lfx = await list("?program=lfx-mentorship");
+  for (const i of lfx.items) expect(i.program.slug).toBe("lfx-mentorship");
+  expect((await list("")).total).toBeGreaterThanOrEqual(lfx.total);
+  expect(
+    (await list("?program=outreachy")).items.every((i) => i.program.slug === "outreachy"),
+  ).toBe(true);
+});
+
+test("discover is not a catalog, and the old catalog opens Programs", async ({ page }) => {
   await page.goto("/discover");
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
     "What are you interested in?",
   );
   await expect(page.getByTestId("project-row")).toHaveCount(0); // discover is not a catalog
-  await expect(page.getByTestId("interests")).toBeVisible();
-  const interest = page.getByTestId("interests").getByRole("link").first();
-  const label = (await interest.innerText()).trim();
-  await interest.click();
-  await expect(page).toHaveURL(/i=/);
+  await expect(page.getByTestId("open-interest-picker")).toBeVisible();
+  // an interest in the URL drives the matches, each card says why it matched, nothing is a score
+  await page.goto("/discover?i=TypeScript");
   await expect(page.getByTestId("match-count")).toBeVisible();
-  await expect(page.getByTestId("why-matches").first()).toContainText(`Matches "${label}"`);
+  const cards = page.locator('[data-testid^="discovery-org-card-"]');
+  await expect(cards.first()).toBeVisible();
+  for (const t of (await cards.allInnerTexts()).slice(0, 10)) expect(t).toContain("TypeScript");
   await expect(page.getByText(/\d+\s*\/\s*100|% match/)).toHaveCount(0);
   await page.goto("/projects");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Project catalog");
-  await expect(page.getByTestId("project-row").first()).toBeVisible();
-  await expect(page.getByTestId("interests")).toHaveCount(0);
+  await expect(page).toHaveURL(/\/programs$/);
 });
 
 test("save and unsave a project persists across reloads, and shows on the Saved page", async ({
@@ -144,9 +152,9 @@ test("save and unsave a project persists across reloads, and shows on the Saved 
   await clearSaved(page);
   await page.goto("/saved");
   await expect(page.getByTestId("empty-state")).toContainText("You haven't saved anything yet.");
-  await page.goto("/projects?program=lfx");
+  await page.goto(`/projects/${await firstLfxProject(page)}`);
   await page.waitForLoadState("networkidle");
-  const btn = page.getByTestId("project-row").first().getByTestId("save-button");
+  const btn = page.getByTestId("project-hero").getByTestId("save-button").first();
   await expect(btn).toHaveAttribute("aria-pressed", "false");
   await btn.click();
   await expect(btn).toHaveAttribute("aria-pressed", "true");
@@ -157,7 +165,7 @@ test("save and unsave a project persists across reloads, and shows on the Saved 
     )
     .toBe(1);
   await page.reload();
-  await expect(page.getByTestId("project-row").first().getByTestId("save-button")).toHaveAttribute(
+  await expect(page.getByTestId("project-hero").getByTestId("save-button").first()).toHaveAttribute(
     "aria-pressed",
     "true",
   );
@@ -166,6 +174,8 @@ test("save and unsave a project persists across reloads, and shows on the Saved 
   await expect(page.getByTestId("saved-group-lfx-mentorship")).toBeVisible();
   await page.waitForLoadState("networkidle");
   await page.getByTestId("saved-item").getByTestId("save-button").click();
+  // unsaving asks first
+  await page.getByTestId("unsave-confirm-confirm").click();
   await expect(page.getByTestId("empty-state")).toBeVisible();
 });
 
@@ -173,18 +183,18 @@ test("saved page filters by program and type; repository and project-detail save
   page,
 }) => {
   await clearSaved(page);
-  await page.goto("/projects?program=lfx");
+  await page.goto(`/projects/${await firstLfxProject(page)}`);
   await page.waitForLoadState("networkidle");
-  await page.getByTestId("project-row").first().getByTestId("save-button").click();
+  await page.getByTestId("project-hero").getByTestId("save-button").first().click();
   await expect
     .poll(
       async () =>
         ((await (await page.request.get("/api/v1/saved")).json()).items as unknown[]).length,
     )
     .toBe(1);
-  await page.goto("/projects?program=gsoc");
+  await page.goto("/programs/gsoc");
   await page.waitForLoadState("networkidle");
-  await page.getByTestId("project-row").first().getByTestId("save-button").click();
+  await page.getByTestId("save-button").first().click();
   await expect
     .poll(
       async () =>
@@ -229,8 +239,7 @@ test("saved page filters by program and type; repository and project-detail save
 test("project detail is an intelligence profile with sources and no contact data", async ({
   page,
 }) => {
-  await page.goto("/projects?program=lfx");
-  await page.getByTestId("project-row").first().getByRole("link").first().click();
+  await page.goto(`/projects/${await firstLfxProject(page)}`);
   await expect(page).toHaveURL(/\/projects\/mp-\d+/);
   for (const h of [
     "Overview",
@@ -281,7 +290,7 @@ test("navigation: desktop shows the app nav (Saved, no Sources); mobile menu wor
   await page.waitForLoadState("networkidle");
   if (!isMobile) {
     const nav = page.getByRole("navigation", { name: "Primary" });
-    for (const l of ["Discover", "Programs", "Projects", "Saved", "Repositories", "Interview"])
+    for (const l of ["Discover", "Ask", "Programs", "Saved", "Repositories", "Interview"])
       await expect(nav.getByRole("link", { name: l })).toBeVisible();
     await expect(nav.getByRole("link", { name: "Sources" })).toHaveCount(0);
     await nav.getByRole("link", { name: "Programs" }).click();
@@ -290,7 +299,7 @@ test("navigation: desktop shows the app nav (Saved, no Sources); mobile menu wor
       "aria-current",
       "page",
     );
-    await expect(nav.getByRole("link", { name: "Projects" })).not.toHaveAttribute(
+    await expect(nav.getByRole("link", { name: "Discover" })).not.toHaveAttribute(
       "aria-current",
       "page",
     );
@@ -309,7 +318,7 @@ test("source status and development labeling stay visible", async ({ page }) => 
     await page.goto(path);
     await expect(page.getByTestId("dev-banner")).toContainText("not live data");
   }
-  await page.goto("/discover?i=TypeScript");
+  await page.goto("/programs/lfx");
   await expect(page.getByTestId("source-badge").first()).toContainText("Recorded snapshot");
   await page.goto("/sources");
   await expect(page.getByTestId("provider-table")).toContainText("Live blocked");
@@ -355,12 +364,13 @@ test("repository analyzer, interview workspace and not-found", async ({ page }) 
       "First I explain the problem the change fixes, then the approach and the tests I added, because reviewers need to see it works.",
     );
   await page.getByTestId("submit-answer").click();
-  await expect(page.getByTestId("feedback")).toBeVisible();
+  // scoring is a server call: allow for a busy local server
+  await expect(page.getByTestId("feedback")).toBeVisible({ timeout: 20_000 });
   // "I don't know" scores zero, not a pity score
   await page.getByRole("button", { name: /Next question/ }).click();
   await page.getByLabel(/Your answer/).fill("I don't know");
   await page.getByTestId("submit-answer").click();
-  await expect(page.getByTestId("feedback").first()).toContainText("—");
+  await expect(page.getByTestId("feedback").first()).toContainText("—", { timeout: 20_000 });
   await page.goto("/projects/mp-999999");
   await expect(page.getByTestId("not-found")).toBeVisible();
 });

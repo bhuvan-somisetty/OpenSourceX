@@ -72,6 +72,22 @@ describe("knowledge index", () => {
 });
 
 describe("offline answers", () => {
+  it("answers a named LFX term's timeline from the term, not from a proposal guide", () => {
+    const guide = {
+      docId: "writing-a-proposal",
+      kind: "guide" as const,
+      title: "Writing a proposal",
+      heading: "Proposal timeline template (12 weeks)",
+      content: "Phase, weeks, work and milestone for a 12-week proposal timeline.",
+      sources: [],
+      rank: 1,
+      matched: 2,
+    };
+    const a = answerOffline("What is the timeline for 2026 Term 1?", k, { guides: [guide] });
+    expect(a).toContain("2026 Term 1");
+    expect(a).not.toContain("Proposal timeline template");
+  });
+
   it("gives a repository link for a named org", () => {
     const a = answerOffline("give me volcano org repo link", k);
     expect(a).toContain("https://github.com/volcano-sh/volcano");
