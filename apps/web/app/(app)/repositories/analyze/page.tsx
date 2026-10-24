@@ -23,20 +23,22 @@ export default async function Analyze({
   const sp = await searchParams;
   const initial = (Array.isArray(sp.repo) ? sp.repo[0] : sp.repo)?.slice(0, 300) ?? "";
   return (
-    <div className="narrow ra-page">
-      <section className="page-hero ra-hero">
-        <div className="eyebrow">Repositories</div>
-        <h1 className="page" style={{ marginTop: 14 }}>
-          Understand any open source <span className="ra-grad">repository.</span>
-        </h1>
-        <p className="sub">
-          Paste a GitHub repository URL. OpenSourceX will show what the repository is, how active it
-          is, and how to start contributing, with evidence and no single score.
-        </p>
-      </section>
-      <div style={{ marginTop: 20 }}>
-        <AnalyzeForm initial={initial} />
-      </div>
+    <div className="ra-page">
+      <AnalyzeForm
+        initial={initial}
+        hero={
+          <section className="page-hero ra-hero">
+            <div className="eyebrow">Repositories</div>
+            <h1 className="page" style={{ marginTop: 14 }}>
+              Understand any open source <span className="ra-grad">repository.</span>
+            </h1>
+            <p className="sub">
+              Paste a GitHub repository URL. OpenSourceX will show what the repository is, how
+              active it is, and how to start contributing, with evidence and no single score.
+            </p>
+          </section>
+        }
+      />
       <section className="block" aria-labelledby="can-h">
         <h2 id="can-h" style={{ fontSize: 20 }}>
           What the analysis shows

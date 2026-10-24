@@ -18,6 +18,7 @@ import {
   RepoActions,
   rememberRepo,
 } from "./AnalysisExtras";
+import { Envelope, type EnvelopePhase } from "./Envelope";
 
 const EXAMPLES = ["kubernetes/kubernetes", "volcano-sh/volcano", "ControlCore-Project/concore"];
 
@@ -589,7 +590,7 @@ function Analysis({ a, found }: { a: RepoAnalysis; found: AnalyzeResult["inOpenS
   );
 }
 
-export function AnalyzeForm({ initial = "" }: { initial?: string }) {
+export function AnalyzeForm({ initial = "", hero }: { initial?: string; hero?: ReactNode }) {
   const [url, setUrl] = useState(initial);
   const [res, setRes] = useState<AnalyzeResult | null>(null);
   const [pending, start] = useTransition();
@@ -608,8 +609,19 @@ export function AnalyzeForm({ initial = "" }: { initial?: string }) {
     }
   }, [initial]);
 
+  const phase: EnvelopePhase = pending
+    ? "sending"
+    : res?.state === "repo" && res.analysis
+      ? "done"
+      : res && res.state !== "repo"
+        ? "error"
+        : "idle";
+
   return (
     <div>
+      <div className="ra-top">
+        <div className="ra-top-main">
+          {hero}
       <form
         className="ra-search"
         onSubmit={(e) => {
@@ -671,6 +683,17 @@ export function AnalyzeForm({ initial = "" }: { initial?: string }) {
           ))}
         </div>
       </form>
+        </div>
+        <Envelope
+          value={url}
+          phase={phase}
+          analysis={res?.state === "repo" ? res.analysis : null}
+          onDropLink={(link) => {
+            setUrl(link);
+            run(link);
+          }}
+        />
+      </div>
 
       {!res && !pending && (
         <RecentRepos
@@ -690,7 +713,7 @@ export function AnalyzeForm({ initial = "" }: { initial?: string }) {
           </Notice>
         )}
         {!pending && res && res.state === "repo" && (
-          <div className="fade" data-testid="analyze-result">
+          <div className="ra-unfold" data-testid="analyze-result">
             {res.analysisError && (
               <div style={{ marginBottom: 12 }}>
                 <Notice kind="dev" testId="analyze-unavailable">

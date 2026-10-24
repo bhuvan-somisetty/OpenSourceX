@@ -12386,3 +12386,373 @@ html.iv-morphing::view-transition-new(root) {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* ---------- analyze: wide two-column hero with the envelope ---------- */
+.ra-page {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.ra-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  gap: clamp(32px, 4vw, 64px);
+  align-items: end;
+}
+.ra-top-main {
+  min-width: 0;
+}
+.ra-top-main .ra-search {
+  margin-top: 20px;
+}
+@media (max-width: 1023px) {
+  .ra-top {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .env-stage {
+    display: none;
+  }
+}
+
+.env-stage {
+  --env-w: 360px;
+  --env-h: 226px;
+  position: relative;
+  padding-top: 178px;
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  align-self: end;
+}
+.env {
+  position: relative;
+  width: var(--env-w);
+  height: var(--env-h);
+  perspective: 1100px;
+  animation: env-float 6s ease-in-out infinite;
+  filter: drop-shadow(0 30px 50px rgba(4, 6, 20, 0.55));
+}
+@keyframes env-float {
+  50% {
+    transform: translateY(-8px) rotate(-0.6deg);
+  }
+}
+.env-sending .env,
+.env-done .env {
+  animation: none;
+}
+.env-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background: linear-gradient(170deg, #1d2346, #12162e);
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+}
+.env-letter {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 12px;
+  height: 200px;
+  z-index: 2;
+  padding: 16px 18px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #fbfaf6, #efece4);
+  color: #1b1e2b;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.8) inset,
+    0 12px 30px rgba(4, 6, 20, 0.35);
+  transform: translateY(0);
+  transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.35s;
+}
+.env-sending .env-letter {
+  transform: translateY(-112px);
+}
+.env-done .env-letter {
+  transform: translateY(-168px);
+}
+.env-letter-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5b6077;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #d4d0c4;
+}
+.env-letter-mark {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 18px;
+  border-radius: 5px;
+  font-size: 9px;
+  color: #fff;
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+}
+.env-letter-lines {
+  display: grid;
+  gap: 9px;
+  margin-top: 14px;
+}
+.env-letter-lines i {
+  display: block;
+  height: 7px;
+  border-radius: 4px;
+  background: #dcd8cd;
+  transform-origin: left;
+}
+.env-sending .env-letter-lines i {
+  animation: env-write 1.4s ease-in-out infinite;
+}
+.env-letter-lines i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.env-letter-lines i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.env-letter-lines i:nth-child(4) {
+  animation-delay: 0.45s;
+}
+.env-letter-lines i:nth-child(5) {
+  animation-delay: 0.6s;
+}
+@keyframes env-write {
+  0% {
+    transform: scaleX(0.15);
+    background: color-mix(in srgb, var(--accent) 45%, #dcd8cd);
+  }
+  60%,
+  100% {
+    transform: scaleX(1);
+    background: #dcd8cd;
+  }
+}
+.env-letter-body {
+  margin-top: 12px;
+  animation: env-ink 0.6s ease 0.9s both;
+}
+@keyframes env-ink {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+.env-letter-title {
+  display: block;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.env-letter-body p {
+  margin: 6px 0 0;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: #3d4256;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.env-letter-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+.env-letter-facts span {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #e6e2d7;
+  color: #2a2e40;
+}
+.env-pocket {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: 18px;
+  background: linear-gradient(160deg, #2a3163 0%, #1a1f42 60%, #151937 100%);
+  clip-path: polygon(0 0, 50% 54%, 100% 0, 100% 100%, 0 100%);
+}
+.env-pocket::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    color-mix(in srgb, var(--accent) 18%, transparent),
+    transparent 40%,
+    color-mix(in srgb, var(--accent-2) 14%, transparent)
+  );
+}
+.env-flap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 128px;
+  z-index: 4;
+  background: linear-gradient(180deg, #313a74, #232a58);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  border-radius: 18px 18px 0 0;
+  transform-origin: top;
+  transform: rotateX(0deg);
+  transition:
+    transform 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+    z-index 0s linear 0.28s;
+}
+.env-sending .env-flap,
+.env-done .env-flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+.env-seal {
+  position: absolute;
+  left: 50%;
+  top: 104px;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin-left: -20px;
+  border-radius: 50%;
+  color: #fff;
+  background: radial-gradient(circle at 35% 30%, var(--accent-2), var(--accent) 70%);
+  box-shadow:
+    0 6px 16px color-mix(in srgb, var(--accent) 45%, transparent),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.25);
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+.env-sending .env-seal,
+.env-done .env-seal {
+  transform: scale(0.4);
+  opacity: 0;
+}
+.env-label {
+  position: absolute;
+  left: 22px;
+  bottom: 20px;
+  right: 92px;
+  z-index: 5;
+  display: grid;
+  gap: 2px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+.env-label span {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8f96c4;
+}
+.env-label b {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 13px;
+  font-weight: 500;
+  color: #8b91b8;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.env-addressed .env-label {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+.env-addressed .env-label b {
+  color: #eef0ff;
+}
+.env-stamp {
+  position: absolute;
+  right: 20px;
+  bottom: 18px;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 64px;
+  padding: 4px;
+  rotate: 4deg;
+  background: radial-gradient(circle, transparent 3px, #f3f0e8 3.5px) -4px -4px / 8px 8px;
+}
+.env-stamp span {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #fff;
+  background: linear-gradient(150deg, var(--accent), var(--accent-2) 60%, var(--rec));
+}
+.env-over .env {
+  animation: none;
+  transform: translateY(-6px) scale(1.03);
+  transition: transform 0.2s ease;
+}
+.env-over .env-back {
+  border-color: var(--accent);
+}
+.env-error .env {
+  animation: env-shake 0.45s ease;
+}
+@keyframes env-shake {
+  20%,
+  60% {
+    transform: translateX(-6px);
+  }
+  40%,
+  80% {
+    transform: translateX(6px);
+  }
+}
+.env-cap {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+}
+.env-done .env-cap {
+  color: var(--accent);
+}
+
+/* results unfold out of the letter */
+.ra-unfold {
+  transform-origin: top center;
+  animation: ra-unfold 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@keyframes ra-unfold {
+  from {
+    opacity: 0;
+    transform: perspective(1400px) rotateX(-10deg) translateY(-18px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .env,
+  .env-error .env,
+  .env-sending .env-letter-lines i,
+  .env-letter-body,
+  .ra-unfold {
+    animation: none;
+  }
+  .env-letter,
+  .env-flap,
+  .env-seal {
+    transition: none;
+  }
+}
